@@ -1,7 +1,7 @@
-# The Epidemiologist R Handbook 
+# Тархвар судлаачийн R гарын авлага 
 
-# About this handbook
-**The Epi R Handbook is a R reference manual for applied epidemiology and public health.**  
+# Энэхүү гарын авлагын тухай
+**Тархвар судлаачийн R гарын авлага нь тархвар судлал, нийгмийн эрүүл мэндэд зориулсан R-ын лавлагаа сурах бичиг юм.**
 
 ***Go to www.epiRhandbook.com to see the latest version of the online handbook.***
 
