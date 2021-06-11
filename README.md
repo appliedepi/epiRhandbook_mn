@@ -85,7 +85,7 @@
 
 Гарын авлагын агуулгыг хөгжүүлэх мэдлэгээр хангасан олон тооны хичээл, виньетүүдийг тус тусын хуудсанд оруулсан болно.
 
-Ерөнхийдөө дараахь эх сурвалжууд энэхүү гарын авлагад нөлөө үзүүлсэн:
+Ерөнхийдөө дараахь эх сурвалжууд энэхүү гарын авлагад нөлөө үзүүлсэн:  
 ["R4Epis" төсөл](https://r4epis.netlify.app/) (MSF, RECON хоёрын хамтын ажиллагаа)  
 [R Эпидемикийн Консорциум (RECON)](https://www.repidemicsconsortium.org/)  
 [R-ыг Дата шинжлэх ухаанд ном (R4DS)](https://r4ds.had.co.nz/)  
@@ -100,23 +100,19 @@
 
 ## Ашиглалтын нөхцөл ба Лиценз   
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Энэхүү бүтээл дараах лицензтэй: <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+Академик курсууд, эпидемиологийн сургалтын хөтөлбөрүүд энэхүү гарын авлагыг ашиглан суралцагчиддаа хичээл заах нээллттэй. Хэрэв танд энэхүү номыг ашиглах зорилтын тань талаар асуулт байвал **epirhandbook@gmail.com** имэйлээр илгээнэ үү.
 
 
-Academic courses and epidemiologist training programs are welcome to use this handbook with their students. If you have questions about your intended use, email **epirhandbook@gmail.com**.  
-
-
-## Citation  
+## Ишлэл  
 
 Batra, Neale, et al. The Epidemiologist R Handbook. 2021. <a rel="license" href="https://zenodo.org/badge/231610102.svg"><img alt="DOI" style="border-width:0" src="https://zenodo.org/badge/231610102.svg" /></a><br />
 
 
 
-## Contribution
+## Хувь нэмрээ оруулах
 
-If you would like to make a content contribution, please contact with us first via Github issues or by email. We are implementing a schedule for updates and are creating a contributor guide.  
+Хэрэв та номын агуулгад хувь нэмрээ оруулахыг хүсч байвал Github-ын issues хэсгээр эсвэл имэйлээр бидэнтэй холбоо бариарай. Бид номын шинэчлэлийн хуваарийг боловсруулан, хэрхэн хувь нэмрээ оруулах зааврыг бэлдэж байна.  
 
-Please note that the epiRhandbook project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
-
-
-
+EpiRhandbook төсөл нь [Contributor-ын ёс зүйн дүрэмтэй](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html) болохыг анхаарна уу. Энэхүү төсөлд хувь нэмэр оруулснаар та үүний нөхцлийг дагаж мөрдөхийг зөвшөөрч байна.
