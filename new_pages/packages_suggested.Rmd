@@ -1,165 +1,165 @@
-# Suggested packages
+# Санал болгох багцууд
 
-Below is a long list of suggested packages for common epidemiological work in R. You can copy this code, run it, and all of these packages will install from CRAN and load for use in the current R session. If a package is already installed, it will be loaded for use only.  
+R -дээр тархвар судлалын ажилд өргөн хэрэглэдэг багцуудыг доор жагсаав. Доорх кодыг шууд хуулж аваад уншуулж болно. Уншуулсан код CRAN –аас эдгээр багцуудыг татаж аваад, тухайн нээлттэй R- дээр шууд ачааллаж өгдөг. Хэрэв өмнө нь татаж авагдсан багц байсан бол зөвхөн ачааллах үйлдэл нь хийгднэ.  
 
-You can modify the code with `#` symbols to exclude any packages you do not want.  
+Доорх жагсаалтад ашиглах шаардлагагүй багц буй бол кодны урд нь `#` тэмдгийг тавьж идэвхигүйжүүлж болно.  
 
-Of note:  
+Тэмдэглэл:
 
-* Install the **pacman** package first before running the below code. You can do this with `install.packages("pacman")`. In this handbook we emphasize `p_load()` from **pacman**, which installs the package if necessary *and* loads it for use in the current R session. You can also load packages that are already installed with `library()` from **base** R.  
-* In the code below, packages that are included when installing/loading another package are indicated by an indent and hash. For example how **ggplot2** is listed under **tidyverse**.  
-* If multiple packages have functions with the same name, *masking* can occur when the function from the more recently-loaded package takes precedent. Read more in the [R basics] page. Consider using the package **conflicted** to manage such conflicts.  
-* See the [R basics] section on packages for more information on **pacman** and masking.  
+* Доор кодыг уншуулахаас өмнө **pacman** багцыг суулга. `install.packages("pacman")`-кодыг уншуулж татаж авч болно. Энэ багцын `p_load()` функц нь аливаа багцыг шаардлагатай тохиолдолд суулгаад *мөн* ачааллаад тухайн нээлттэй R дээр шууд ашиглахад бэлэн болгож өгдгөөрөө онцлог. Бид энэ номонд ихэвчлэн `p_load()` -ыг ашиглана. Харин **base** R-ын багцуудыг татаж авах шаардлагагүй ба `library()`–ыг шууд уншуулж, ажиллуулж болно.
+* Аливаа багцыг суулгахад хамт суулгагдаж/ачааллагддаг багцуудыг догол мөр, болон "хэш" тэмдгээр тэмдэглэсэн. Жишээ нь **ggplot2** багц бол **tidyverse** багцын харьяа юм.
+* Хэрэв функцын нэрс олон багцуудад давхардаж орсон бол тухайн функцыг ашиглах үед хамгийн сүүлд ачааллагдсан багцын функц ажиллана. Үүнийг *masking* гэх ба энэ талаар [R basics] хэсгээс нэмж уншна уу. Мөн **conflicted** багцыг ашиглаж ийм давхардалтыг шийдвэрлэж боломжтой. 
+* [R basics] хэсгийн **pacman** болон masking гэсэн хэсгүүдийг уншна уу.
 
-To see the versions of R, RStudio, and R packages used during the production of this handbook, see the page on [Editorial and technical notes].  
+Энэхүү номыг боловсруулахад R, RStudio, болон R багцуудын хэддүгээр хувилбарыг ашигласан талаар [Editorial and technical notes] хэсгээс харна уу.
 
-## Packages from CRAN  
+
+## CRAN -ын багцууд  
 
 ```{r, eval=F}
 
 ##########################################
-# List of useful epidemiology R packages #
+# Тархвар судлалын хэрэглээнд тохиромжтой R –ын багцууд
 ##########################################
 
-# This script uses the p_load() function from pacman R package, 
-# which installs if package is absent, and loads for use if already installed
+# Энэхүү код pacman багцын p_load() функцыг ашигласан. Энэ нь аливаа кодыг уншуулахад шаардлагатай багц таньд суулгагдаагүй байгаа  тохиолдолд, тухайн багцыг суулгаад, шууд ачааллуулдаг функц.
 
 
-# Ensures the package "pacman" is installed
+# "pacman" багц суусан эсэхийг шалга!
 if (!require("pacman")) install.packages("pacman")
 
 
-# Packages available from CRAN
+# CRAN-аас татаж авах боломжтой багцууд
 ##############################
 pacman::p_load(
      
-     # learning R
+     # R-ыг сурах
      ############
-     learnr,   # interactive tutorials in RStudio Tutorial pane
-     swirl,    # interactive tutorials in R console
+     learnr,   # RStudio Tutorial цонхон дээрх интерактив хичээл
+     swirl,    # R console дээрх интерактив хичээл
         
-     # project and file management
+     # R төсөл болон файлын менежмент
      #############################
-     here,     # file paths relative to R project root folder
-     rio,      # import/export of many types of data
-     openxlsx, # import/export of multi-sheet Excel workbooks 
-     
-     # package install and management
+     here,     # R төслийн үндсэн хавтастай холбоотой файлын зам
+     rio,      # өгөгдлийн олон янзын хэлбэрийг импортлох/экспортлох 
+     openxlsx, # олон хуудастай (sheet) Excel файлыг импортлох/экспортлох 
+  
+     # Багц суулгах
      ################################
-     pacman,   # package install/load
-     renv,     # managing versions of packages when working in collaborative groups
-     remotes,  # install from github
-     
-     # General data management
+     pacman,   # багц суулгаж/ачааллана
+     renv,     # багаар хамтран ажиллахад багцын хувилбаруудыг тохируулна
+     remotes,  # github –аас татаж авч суулгах
+
+     # Өгөгдлийн ерөнхий менежмент  
      #########################
-     tidyverse,    # includes many packages for tidy data wrangling and presentation
-          #dplyr,      # data management
-          #tidyr,      # data management
-          #ggplot2,    # data visualization
-          #stringr,    # work with strings and characters
-          #forcats,    # work with factors 
-          #lubridate,  # work with dates
-          #purrr       # iteration and working with lists
-     linelist,     # cleaning linelists
-     naniar,       # assessing missing data
-     
-     # statistics  
+     tidyverse,    # өгөгдлийг цэгцтэй (tidy) байдалд оруулж янзлах, танилцуулахад зориулсан олон багцыг агуулсан 
+          #dplyr,      # Өгөгдөл янзлах
+          #tidyr,      # Өгөгдөл янзлах
+          #ggplot2,    # График зураглал
+          #stringr,    # string болон character хэлбэрийн өгөгдлийг янзлах
+          #forcats,    # factor хэлбэрийн өгөгдөлтэй ажиллах
+          #lubridate,  # dates хэлбэрийн өгөгдөлтэй ажиллах
+          #purrr       # давтан үйлдэл болон list –тэй ажиллах 
+     linelist,     # linelist хэлбэрийн хүснэгтийг цэвэрлэх
+     naniar,       # өгөгдлийн дутуу утгыг шалгаж, үнэлэх 
+
+    # Статистик анализ  
      ############
-     janitor,      # tables and data cleaning
-     gtsummary,    # making descriptive and statistical tables
-     rstatix,      # quickly run statistical tests and summaries
-     broom,        # tidy up results from regressions
-     lmtest,       # likelihood-ratio tests
+     janitor,      # хүснэгт болон өгөгдөл цэвэрлэх 
+     gtsummary,    # дескрибтив болон статистикийн хүснэгт хийх 
+     rstatix,      # статитистикийн тест болон статистикийн хураангуйг түргэн хугацаанд боловсруулна
+     broom,        # регрессийн анализийн үр дүнг цэгцтэй хэлбэрт оруулах
+     lmtest,       # likelihood-ratio тестүүд
      easystats,
-          # parameters, # alternative to tidy up results from regressions
-          # see,        # alternative to visualise forest plots 
+          # parameters, # регрессийн анализийн үр дүнг цэгцтэй хэлбэрт оруулах (өөр хувилбар)
+          # see,        # forest plots –ыг харуулаh өөр хувилбар
      
-     # epidemic modeling
-     ###################
-     epicontacts,  # Analysing transmission networks
-     EpiNow2,      # Rt estimation
-     EpiEstim,     # Rt estimation
-     projections,  # Incidence projections
-     incidence2,   # Make epicurves and handle incidence data
-     i2extras,     # Extra functions for the incidence2 package
-     epitrix,      # Useful epi functions
-     distcrete,    # Discrete delay distributions
-     
-     
-     # plots - general
-     #################
-     #ggplot2,         # included in tidyverse
-     cowplot,          # combining plots  
-     # patchwork,      # combining plots (alternative)     
-     RColorBrewer,     # color scales
-     ggnewscale,       # to add additional layers of color schemes
+     # Тархвар судлалын математик загварчлал
 
+     epicontacts,  # Халдварт өвчний тархалтын сүлжээг судлах 
+     EpiNow2,      # Rt-г тооцох
+     EpiEstim,     # Rt-г тооцох
+     projections,  # Тохиолдлын тоог урьдчилан тооцоолх
+     incidence2,   # Тархвар судлалын муруйг зурж, тохиолдлын тоог тооцох 
+     i2extras,     # incidence2 багцын нэмэлт функцууд
+     epitrix,      # тархвар судлалд хэрэглэгддэг нэмэлт функцууд
+     distcrete,    # Discrete delay тархалт
      
-     # plots - specific types
+    
+     # График зураглал -ерөнхий
+     #################
+     #ggplot2,         # tidyverse багцын харьяа
+     cowplot,          # графикуудыг нэгтгэх  
+     # patchwork,      # графикуудыг нэгтгэх  (өөр хувилбар)     
+     RColorBrewer,     # өнгө сонгох
+     ggnewscale,       # өнгөний нэмэлт тохируулга хийх
+
+    
+     # График зураглал – тусгай зориулалтын
      ########################
-     DiagrammeR,       # diagrams using DOT language
-     incidence2,       # epidemic curves
-     gghighlight,      # highlight a subset
-     ggrepel,          # smart labels
-     plotly,           # interactive graphics
-     gganimate,        # animated graphics 
+     DiagrammeR,       # DOT хэлийг ашиглах бүдүүвч, диаграмм хийх
+     incidence2,       # тархвар судлалын муруй
+     gghighlight,      # тусгай хэсгийг тодотгож харуулах
+     ggrepel,          # жижиг гарчиг
+     plotly,           # интерактив график
+     gganimate,        # хөдөлгөөнт график 
 
      
-     # gis
-     ######
-     sf,               # to manage spatial data using a Simple Feature format
-     tmap,             # to produce simple maps, works for both interactive and static maps
-     OpenStreetMap,    # to add OSM basemap in ggplot map
-     spdep,            # spatial statistics 
+    # ГИС орон зайн анализийн чиглэлээр
+     ########################
+     sf,               # Simple Feature хэлбэрийг ашиглан орон зайн мэдээллийг янзлах
+     tmap,             # энгийн газрын зураг боловсруулах (интерактив болон статик газрын зураг)
+     OpenStreetMap,    # ggplot-ын газрын зурагт OSM –ын basemap оруулах 
+     spdep,            # орон зайн статистик анализ 
      
-     # routine reports
+     # Тайлан, бичиг баримт
      #################
-     rmarkdown,        # produce PDFs, Word Documents, Powerpoints, and HTML files
-     reportfactory,    # auto-organization of R Markdown outputs
-     officer,          # powerpoints
-     
-     # dashboards
+     rmarkdown,        # PDFs, Word, Powerpoint, HTML -ын файлууд үүсгэх
+     reportfactory,    # R Markdown –ын үр дүнг автоматаар зохицуулах
+     officer,          # powerpoint-ын файлтай ажиллах
+
+     # Хяналтын самбар, аппликэйшн
      ############
-     flexdashboard,    # convert an R Markdown script into a dashboard
-     shiny,            # interactive web apps
+     flexdashboard,    # R Markdown –ын кодыг хяналтын самбар болгож хувиргах
+     shiny,            # интерактив веб аппликейшн хийх
      
-     # tables for presentation
+     # Илтгэл, тайлангийн хүснэгт гаргах
      #########################
-     knitr,            # R Markdown report generation and html tables
-     flextable,        # HTML tables
-     #DT,              # HTML tables (alternative)
-     #gt,              # HTML tables (alternative)
-     #huxtable,        # HTML tables (alternative) 
+     knitr,            # R Markdown –ын тайлан болон html-ын хүснэгт үүсгэх
+     flextable,        # HTML –ийн хүснэгтүүд
+     #DT,              # HTML –ийн хүснэгтүүд (өөр хувилбар)
+     #gt,              # HTML –ийн хүснэгтүүд (өөр хувилбар)
+     #huxtable,        # HTML –ийн хүснэгтүүд (өөр хувилбар) 
      
-     # phylogenetics
+     # Филогенетикийн анализ
      ###############
-     ggtree,           # visualization and annotation of trees
-     ape,              # analysis of phylogenetics and evolution
-     treeio            # to visualize phylogenetic files
+     ggtree,           # модны график зураглал,тэмдэглэгээ хийх
+     ape,              # филогенетикийн болон эволюцийн мэдээлэлтэй ажиллах 
+     treeio            # филогенетикийн график зураглал хийх
  
 )
 
+
 ```
 
-## Packages from Github  
+## Github-ын багцууд  
 
+Дор бичсэн кодоор дараах хоёр багцыг Github –ын агуулахаас шууд татаж авна
 
-Below are commmands to install two packages directly from Github repositories.  
+* Боловсролтын явцдаа буй **epicontacts** багц халдвар тархалтын модыг x-тэнхлэгт хугацаатайгаар харуулж өгдөг.
+* Энэхүү номны дасгалд ашиглах бүх өгөгдөл **epirhandbook** багцад буй.  Мөн номын pdf хэлбэрийг татаж авч болно.
 
-* The development version of **epicontacts** contains the ability to make transmission trees with an temporal x-axis  
-* The **epirhandbook** package contains all the example data for this handbook and can be used to download the offline version of the handbook.  
 
 
 ```{r, eval=F}
-# Packages to download from Github (not available on CRAN)
+# Github- аас татаж авах багцууд (CRAN-д байхгүй)
 ##########################################################
 
-# Development version of epicontacts (for transmission chains with a time x-axis)
+# Боловсролтын явцдаа буй epicontacts багц (халдварын хэлхээг x-тэнхлэгт хугацаатайгаар харуулна)
 pacman::p_install_gh("reconhub/epicontacts@timeline")
 
-# The package for this handbook, which includes all the example data  
+# Энэхүү номонд зориулсан багц (бүх дасгал, жишээг багтаасан) 
 pacman::p_install_gh("appliedepi/epirhandbook")
-
 
 
 ```
