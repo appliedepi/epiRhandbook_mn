@@ -1,112 +1,104 @@
 
-# R projects {}  
+# R төсөл {}  
+
+R төсөл нь таны файлуудын иж бүрдэл болсон зөөвөрлөхөд хялбар, бие даасан хавтас юм. Бүх скрипт код, дата файлууд, зураг/үр дүн, үйлдлийн түүх зэрэг нь R төсөл доторх дэд хавтсанд хадгалагддаг. Мөн R төслийн үндсэн хавтас *ажлын байрлал (working directory)* болж өгдгөөрөө онцлог.
+
+## Санал болгож буй хэрэглээ
+R-ыг үр өгөөжтэй, амархан, ердийн хэрэглээ болгохын тулд дараах гурван элементийг хавсарч хэрэглэдэг. *One discrete work project is hosted within one R project.* Элемент тус бүрийг дараах хэсгүүдэд тайлбарлав.
 
 
-An R project enables your work to be bundled in a portable, self-contained folder. Within the project, all the relevant scripts, data files, figures/outputs, and history are stored in sub-folders and importantly - the *working directory* is the project's root folder.  
-
-
-## Suggested use  
-
-A common, efficient, and trouble-free way to use R is to combine these 3 elements. One discrete work project is hosted within one R project. Each element is described in the sections below.  
-
-1) An **R project**  
-     - A self-contained working environment with folders for data, scripts, outputs, etc.  
-2) The **here** package for relative filepaths  
-     - Filepaths are written relative to the root folder of the R project - see [Import and export] for more information  
-3) The **rio** package for importing/exporting  
-     - `import()` and `export()` handle any file type by by its extension (e.g. .csv, .xlsx, .png)  
+1) **R төсөл**  
+     - өгөгдөл, код, үр дүн зэргийг тус бүр дэд хавтсанд агуулсан бие даасан ажлын орчин.
+2) Файлын холбоотой замд зориулсан **here** багц  
+     - Файлын зам R төслийн үндсэн хавтаст холбоотой байдлаар бичигддэг. Энэ талаар [Import and export] хэсэгт илүү дэлгэрүүлж үзнэ үү
+3) Файл импорт/экспорт хийхэд зориулсан **rio** багц  
+     - `import()` болон `export()` функцууд ямар ч өргөтгөлтэй файлтай ажиллаж чаддаг (.csv, .xlsx, .png г.м).  
      
      
-
-
 <!-- ======================================================= -->
-## Creating an R project {}
+## R төсөл үүсгэх {}
 
-To create an R project, select "New Project" from the File menu.
+R төсөл үүсгэхийн тулд File (файл) цэсний “New Project” (шинэ төсөл) -ыг сонго.
 
-* If you want to create a new folder for the project, select "New directory" and indicate where you want it to be created.  
-* If you want to create the project within an existing folder, click "Existing directory" and indicate the folder.  
-* If you want to clone a Github repository, select the third option "Version Control" and then "Git". See the page on [Version control and collaboration with Git and Github] for further details.  
+* Тухайн төсөлд зориулж шинэ хавтас нээх бол “New directory” (шинэ байрлал) –ыг сонгож хаана үүсгэхээ зааж өгнө.
+* Төслийг хуучин хавтаст хадгалах бол “Existing directory” (хуучин байрлал) –ыг сонгож хадгалах хавтсаа зааж өгнө.
+* Github –ын агуулахад файлаа хувилах бол “Version Control”-ыг сонгоод дараа нь “Git”-ыг сонгоно [Version control and collaboration with Git and Github] хэсгээс дэлгэрүүлж харж болно.
 
 
 ```{r out.width = "75%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "create_project.png"))
 ```
 
+Шинээр үүсгэсэн R төслийн хавтас *.Rproj* гэсэн өргөтгөлтэй файл агуулсан байна. Энэ файл нь тухайн төслийг нээх шууд холбоос болдог. Төслийг нээх өрр арга бол File цэснээс “Open Project” (төсөл нээх) –ийг сонгож болдог. Мөн RStudio-ын хамгийн баруун дээд буланд байрлах R төслийн лого болон арынх нь цэс дээр дарж болно. 
 
-The R project you create will come in the form of a folder containing a *.Rproj* file. This file is a shortcut and likely the primary way you will open your project. You can also open a project by selecting "Open Project" from the File menu. Alternatively on the far upper right side of RStudio you will see an R project icon and a drop-down menu of available R projects. 
-
-To exit from an R project, either open a new project, or close the project (File - Close Project).  
+R төслөөс гарахдаа шинэ төсөл нээ эсвэл тухайн төслийг хаа (File - Close Project).
 
 
-### Switch projects {.unnumbered}
+### Төслүүдийг сэлгэх {.unnumbered}
 
-To switch between projects, click the R project icon and drop-down menu at the very top-right of RStudio. You will see options to Close Project, Open Project, and a list of recent projects.  
+Төслүүдийн хооронд сэлгэж ажиллахын тулд RStudio-ын хамгийн баруун дээд буланд байрлах R төслийн лого болон арынх нь цэс дээр дар. Цэсийг нээснээр Close Project (төслийг хаах), Open Project (төслийг нээх) болон сүүлд ажиллаж байсан төслүүдийн нэр бүхий сонголтууд гарч ирнэ.
+
 
 ```{r out.width = "100%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "Rproject_dropdown.png"))
 ```
 
 
-### Settings {.unnumbered}  
-
-It is generally advised that you start RStudio each time with a "clean slate" - that is, with your workspace **not** preserved from your previous session. This will mean that your objects and results will not persist session-to-session (you must re-create them by running your scripts). This is good, because it will force you to write better scripts and avoid errors in the long run.  
-
-To set RStudio to have a "clean slate" each time at start-up:  
-
-* Select "Project Options" from the Tools menu.  
-* In the "General" tab, set RStudio to **not** restore .RData into workspace at startup, and to **not** save workspace to .RData on exit.  
+### Тохируулга {.unnumbered}  
 
 
+Rstudio-г асаахдаа "цэвэр хуудас" тайгаар эхлүүлэхийг зөвлөж байна. Өөрөөр хэлбэл өмнө нь хийж байсан ажлын код, бичиглэл ажлын талбайд **байхгүй** хоосон байна гэсэн үг. Энэ нь таны өмнө нь үүсгэсэн обьект, гарсан үр дүнгүүд R нээгдэх болгонд гарч ирэхгүй байхгүй байхыг хэлнэ (хэрэв шаардлагатай бол скрипт кодоо уншуулж дахин үүсгэж болно). Ингэснээр чанартай код бичигддэг ба хэтдээ алдаа бага гаргадаг. 
 
-### Organization {.unnumbered}  
+"Цэвэр хуудас"-аас эхлүүлэхийн тулд:
 
-It is common to have subfolders in your project. Consider having folders such as "data", "scripts", "figures", "presentations". You can add folders in the typical way you would add a new folder for your computer. Alternatively, see the page on [Directory interactions] to learn how to create new folders with R commands.  
-
-
-### Version control {.unnumbered}  
-
-Consider a version control system. It could be something as simple as having dates on the names of scripts (e.g. "transmission_analysis_2020-10-03.R") and an "archive" folder. Consider also having commented header text at the top of each script with a description, tags, authors, and change log.  
-
-A more complicated method would involve using Github or a similar platform for version control. See the page on [Version control and collaboration with Git and Github].  
-
-One tip is that you can search across an entire project or folder using the "Find in Files" tool (Edit menu). It can search and even replace strings across multiple files.  
+* Tools (багаж) цэснээс “Project Options”-г сонго.
+* "General" хэсэгт буй сонголтуудад RStudio-г нээхэд .RData-г ажлын талбайд *хадгалахгүй*, RStudio-оос гарахад .RData -г ажлын талбайд *хадгалахгүй* гэж тохируул. 
 
 
+### Бүтэц {.unnumbered}  
+
+Төслийн үндсэн хавтас дотор дэд хавтас нээх нь элбэг. Ийм тохиолдолд “дата”, "скрипт/код", “зураг”, “илтгэл” гэх мэтээр хавтсаа нэрлэх нь тохиромжтой. Шинэ хавтсыг жирийн хавтас нээдэг шигээ үүсгэнэ. R коммандаар хэрхэн шууд шинэ хавтас үүсгэхийг [Directory interactions] хэсгээс харна уу.
 
 
+### Хувилбаруудыг хянах {.unnumbered}  
+
+Файлын өөр өөр хувилбаруудыг хянах системийг бий болгоорой. Үүний хамгийн энгийн жишээ гэвэл скрипттэй файлдаа огноотой нэр   (“transmission_analysis_2020-10-03.R” г.м) өгөөд "архив" дэд хавтаст хадгалах юм. Мөн скриптийн толгой хэсэгт (header) тайлбар, зохиогч, гарчиг, өөрчлөлтийн дугаар, нэр зэргийг оруулж болно.
+
+Файлын хувилбарыг хянах арай нарийн арга бол Github болон бусад төстэй платформуудыг ашиглах юм. [Version control and collaboration with Git and Github] хэсгээс энэ талаар дэлгэрүүлж уншна уу.
+
+Edit цэсний “Find in Files” -г сонгож төслийн бүх файлд хайлтыг зэрэг хийж болдог.  Энэ үйлдлээр зөвхөн хайгаад зогсохгүй аливаа текстийг олон файлуудад зэрэг өөрчлөх боломжтой. 
 
 
-## Examples  
-
-Below are some examples of import/export/saving using `here()` from within an R projct. Read more about using the **here** package in the [Import and export] page.  
+## Жишээ  
 
 
-*Importing `linelist_raw.xlsx` from the "data" folder in your R project*  
+Доорх кодонд `here()` функцээр файл импортлох, экспортлох, хадгалах жишээ харуулав. **here** багцыг хэрхэн ашиглах талаар дэлгэрүүлж [Import and export] хэсгээс харна уу.
+
+
+*R төслийн “data” хавтаснаас `linelist_raw.xlsx` гэсэн файлыг импортлох*  
 
 ```{r eval=F}
 linelist <- import(here("data", "linelist_raw.xlsx"))
 ```
 
-*Exporting the R object `linelist` as "my_linelist.rds" to the "clean" folder within the "data" folder in your R project.*   
+*`linelist`гэсэн R обьектийг “my_linelist.rds” гэсэн өргөтгөлтэйгээр өөрийн R төсөл доторх “data” хавтсын “clean” хавтаст экспортлох.*   
 
 ```{r, eval=F}
 export(linelist, here("data","clean", "my_linelist.rds"))
 ```
 
-*Saving the most recently printed plot as "epicurve_2021-02-15.png" within the "epicurves" folder in "outputs" folder in your R project.*  
+*Хамгийн сүүлд үүсгэсэн графикийг “epicurve_2021-02-15.png” гэсэн нэртэйгээр өөрийн R төсөл доторх “outputs” хавтсын “epicurves” хавтаст хадгалах.*  
 
 ```{r, eval=F}
 ggsave(here("outputs", "epicurves", "epicurve_2021-02-15.png"))
 ```
 
 
-
-
 <!-- ======================================================= -->
-## Resources {}
+##Эх сурвалж {}
 
-RStudio webpage on [using R projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+RStudio –ын веб хуудсанд буй [using R projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
 
 
 
