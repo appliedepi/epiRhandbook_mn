@@ -1,96 +1,74 @@
-# Cleaning data and core functions
+# Өгөгдлийг цэвэрлэх ба үндсэн функцууд
 
 ```{r, out.height = "10%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "cleaning.png"))
 ```
 
-This page demonstrates common steps used in the process of "cleaning" a dataset, and also explains the use of many essential R data management functions.
+Энэ бүлэгт датаг "цэвэрлэх" нийтлэг аргуудыг үзэж R-ын дата менежментэд хэрэглэгддэг гол функцуудыг тайлбарлана.
 
-To demonstrate data cleaning, this page begins by importing a raw case linelist dataset, and proceeds step-by-step through the cleaning process. In the R code, this manifests as a "pipe" chain, which references the "pipe" operator `%>%` that passes a dataset from one operation to the next.
+Дата цэвэрлэгээг тайлбарлахдаа түүхий (raw) linelist -ийг импортлохоос эхлээд хэрхэн цэвэрлэгээ хийж буйг нэг бүрчлэн үзүүлэх болно. R- дээр дата "pipe (хоолой)" залгагдсан холбоосоор дамжин хийгддэг ба датаг нэгээс нөгөөрүү дамжуулах үйлдлийг "pipe" `%>%` буюу холбогч оператор гүйцэтгэдэг.
 
-### Core functions {.unnumbered}
+### Үндсэн функцууд {.unnumbered}
 
-This handbook emphasizes use of the functions from the [**tidyverse**](https://www.tidyverse.org/) family of R packages. The essential R functions demonstrated in this page are listed below.
+Энэхүү номонд [**tidyverse**](https://www.tidyverse.org/) бүлгийн харяа багцууд, тэдгээрийн функцыг голчлон тайлбарлна. Гол хэрэглэгдэх функцуудыг дор жагсаав.
 
-Many of these functions belong to the [**dplyr**](https://dplyr.tidyverse.org/) R package, which provides "verb" functions to solve data manipulation challenges (the name is a reference to a "data frame-[plier](https://www.thefreedictionary.com/plier#:~:text=also%20ply%C2%B7er%20(pl%C4%AB%E2%80%B2,holding%2C%20bending%2C%20or%20cutting.)%22). **dplyr** is part of the **tidyverse** family of R packages (which also includes **ggplot2**, **tidyr**, **stringr**, **tibble**, **purrr**, **magrittr**, and **forcats** among others).
+Үүнд [**dplyr**](https://dplyr.tidyverse.org/) багцын дата засаж, янзалдаг "үйл үгэн" функцууд түлхүү орсон (**dplyr** багцын нэр "data frame-[plier](https://www.thefreedictionary.com/plier#:~:text=also%20ply%C2%B7er%20(pl%C4%AB%E2%80%B2,holding%2C%20bending%2C%20or%20cutting.)(хүснэгтийг%20засах)%22%20гэсэн%20утгатай) буюу "хүснэгт засагч" гэсэн утгатай). **dplyr** бол **tidyverse** -ын харьяа багц ( **tidyverse** --ын бусад багцуудад **ggplot2**,**tidyr**,**stringr**,**tibble**,**purrr**,**magrittr**,**forcats** ордог).
 
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| Function                                            | Utility                                                        | Package                   |
-+=====================================================+================================================================+===========================+
-| `%>%`                                               | "pipe" (pass) data from one function to the next               | **magrittr**              |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `mutate()`                                          | create, transform, and re-define columns                       | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `select()`                                          | keep, remove, select, or re-name columns                       | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `rename()`                                          | rename columns                                                 | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `clean_names()`                                     | standardize the syntax of column names                         | **janitor**               |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `as.character()`, `as.numeric()`, `as.Date()`, etc. | convert the class of a column                                  | **base** R                |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `across()`                                          | transform multiple columns at one time                         | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| **tidyselect** functions                            | use logic to select columns                                    | **tidyselect**            |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `filter()`                                          | keep certain rows                                              | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `distinct()`                                        | de-duplicate rows                                              | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `rowwise()`                                         | operations by/within each row                                  | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `add_row()`                                         | add rows manually                                              | **tibble**                |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `arrange()`                                         | sort rows                                                      | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `recode()`                                          | re-code values in a column                                     | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `case_when()`                                       | re-code values in a column using more complex logical criteria | **dplyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `replace_na()`, `na_if()`, `coalesce()`             | special functions for re-coding                                | **tidyr**                 |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `age_categories()` and `cut()`                      | create categorical groups from a numeric column                | **epikit** and **base** R |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `clean_variable_spelling()`                         | re-code/clean values using a data dictionary                   | **linelist**              |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
-| `which()`                                           | apply logical criteria; return indices                         | **base** R                |
-+-----------------------------------------------------+----------------------------------------------------------------+---------------------------+
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| Function                                            | Utility                                                             | Package                       |
++=====================================================+=====================================================================+===============================+
+| `%>%`                                               | "pipe" (дамжуулах) датаг нэг функцээс нөгөөд дамжуулна              |     | **magrittr**            |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `mutate()`                                          | Баганыг үүсгэж, хувиргаж, өөрчилдөг \| \*\*dp                       | lyr\*\*                       |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `select()`                                          | Баганыг үлдээх, арилгах, шинээр нэр өгдөг                           | \| **dplyr**                  |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `rename()`                                          | Баганыг шинээр нэрлэдэг                                             |       | **dplyr**             |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `clean_names()`                                     | Баганын нэрсийг жигд болгодог \| \*\*janit                          | or\*\*                        |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `as.character()`, `as.numeric()`, `as.Date()`, etc. | Баганадах өгөгдлийн төрлийг өөрчилнө.                               | \| **base** R                 |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `across()`                                          | Олон баганыг зэрэг хувиргана \| **dplyr**                           |                               |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| **tidyselect** functions                            | Баганыг сонгохдоо logic ашиглаган                                   |     | **tidyselect**          |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `filter()`                                          | Тодорхой мөрүүдийг авч үлдэх                                        |          | **dplyr**          |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `distinct()`                                        | Мөрүүдийг давхардалтыг арилгах                                      |      | **dplyr**              |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `rowwise()`                                         | Мөр дагуу үйлдэл хийх \| \*\*dplyr                                  | \*\*                          |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `add_row()`                                         | Мөрийг гар аргаар нэмэх                                             | \| **tibble**                 |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `arrange()`                                         | Мөрийг эрэмбэлэх                                                    |      | **dplyr**              |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `recode()`                                          | Баганадах утгыг дахин өгөх \|                                       | **dplyr**                     |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `case_when()`                                       | Баганад илүү нарийвчилсэн логик шалгуураар утга оруулна\| \*\*dplyr | \*\*                          |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `replace_na()`, `na_if()`, `coalesce()`             | Баганад утга өгөх тусгай функцууд                                   | **tidyr**                     |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `age_categories()` and `cut()`                      | Тоон утгатай баганаас категортой бүлэг үүсгэ \| \*                  | \*epikit **and** base\*\* R   |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `clean_variable_spelling()`                         | Датаны тайлбар толийг ашиглан баганын утгыг өөрчлөх, арилг          | ах \| **linelist**            |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
+| `which()`                                           | Логик шалгуур ашиглах; Индексийг харуулах (return indices)          |                  | **base** R |
++-----------------------------------------------------+---------------------------------------------------------------------+-------------------------------+
 
-If you want to see how these functions compare to Stata or SAS commands, see the page on [Transition to R].
+Эдгээр функцууд Stata болон SAS программ дээр хэрхэн бичигддэг талаар [Transition to R] --линкээс үзэж болно.
 
-You may encounter an alternative data management framework from the **data.table** R package with operators like `:=` and frequent use of brackets `[ ]`. This approach and syntax is briefly explained in the [Data Table] page.
+Датаг янзалж байхад R-ын **data.table** багцын операторууд `:=` болон `[ ]`-ыг олж харах магадлалтай. **data.table** багцын хэрэглэгддэг синтакс, аргачлалыг [Data Table] хуудаст товч оруулсан.
 
-### Nomenclature {.unnumbered}
+### Нэр томьёо {.unnumbered}
 
-In this handbook, we generally reference "columns" and "rows" instead of "variables" and "observations". As explained in this primer on ["tidy data"](https://tidyr.tidyverse.org/articles/tidy-data.html), most epidemiological statistical datasets consist structurally of rows, columns, and values.
+Энэ номонд хувьсагч (variable) -ийг багана, ажиглалт (observations) -ийг мөр гэж нэрших болно. Тархвар судлалын ихэнх датаг гол бүрдүүлдэг зүйлс бол багана, мөр, доторх утгууд гэж ["tidy data"](https://tidyr.tidyverse.org/articles/tidy-data.html) "tidy data" линкэд тайлбарласан байна.
 
-*Variables* contain the values that measure the same underlying attribute (like age group, outcome, or date of onset). *Observations* contain all values measured on the same unit (e.g. a person, site, or lab sample). So these aspects can be more difficult to tangibly define.
+*Хувьсагч (Variables)* нь ижил хэв шинжтэй утгуудыг агуулсан байдаг (насны бүлэг, өвчин эхэлсэн огноо, эмчилгээний үр дүн гэх мэт ). *Ажиглалт (Observations)* гэж тухайн нэгжийн бүх төрлийн хэмжилтүүдийг хэлнэ (хүн, газар, лабораторийн дээж материал). Эдгээр шинж талуудыг бодитоор, барьцтай илэрхийлэх нь бэрхшээлтэй.
 
-In "tidy" datasets, each column is a variable, each row is an observation, and each cell is a single value. However some datasets you encounter will not fit this mold - a "wide" format dataset may have a variable split across several columns (see an example in the [Pivoting data] page). Likewise, observations could be split across several rows.
+"Tidy/Цэгцтэй" өгөгдөлд, багана болгон хувьсагч, мөр болгон ажиглалт ба нэг нүд болгон нэг утгыг зааж байдаг. Заримдаа энэ загварт хэлбэржээгүй дататай та учирч болох юм. Тухайлбал " wide(өргөн)" дата гэхэд хувьсагч нь хэд хэдэн баганад хуваагдан байрладаг. Үүний жишээг [Pivoting data]--т хэсэгт жишээг харуулсан. Ажиглалт ч гэсэн хэд хэдэн мөрөнд хуваагдан байрласан байх тохиолдол бий.
 
-Most of this handbook is about managing and transforming data, so referring to the concrete data structures of rows and columns is more relevant than the more abstract observations and variables. Exceptions occur primarily in pages on data analysis, where you will see more references to variables and observations.
-
-<!-- ======================================================= -->
-
-<!-- ======================================================= -->
-
-<!-- ======================================================= -->
-
-## Cleaning pipeline
-
-**This page proceeds through typical cleaning steps, adding them sequentially to a cleaning pipe chain.**
-
-In epidemiological analysis and data processing, cleaning steps are often performed sequentially, linked together. In R, this often manifests as a cleaning "pipeline", where *the raw dataset is passed or "piped" from one cleaning step to another*.
-
-Such chains utilize **dplyr** "verb" functions and the **magrittr** pipe operator `%>%`. This pipe begins with the "raw" data ("linelist_raw.xlsx") and ends with a "clean" R data frame (`linelist`) that can be used, saved, exported, etc.
-
-In a cleaning pipeline the order of the steps is important. Cleaning steps might include:
-
--   Importing of data\
--   Column names cleaned or changed\
--   De-duplication\
--   Column creation and transformation (e.g. re-coding or standardising values)\
--   Rows filtered or added
+Энэ номоороо бид датаг хэрхэн хувиргаж, янзлах, менежмент хийдгийг харуулахыг илүү эрмэлзсэн . Тийм ч учраас хувьсагч, ажиглалт зэрэг хийсвэр тодорхойлолт хэрэглэхийн оронд мөр, багана зэрэг бүтцийн нь нэршилийг хэрэглэх нь илүү тохиромжтой гэж үзсэн. Харин статистик дүн шинжилгээний талаар тайлбарласан хэсгүүдэд хувьсагч, ажиглалт гэсэн нэршил илүү хэрэглэгдсэн.
 
 <!-- ======================================================= -->
 
@@ -98,18 +76,40 @@ In a cleaning pipeline the order of the steps is important. Cleaning steps might
 
 <!-- ======================================================= -->
 
-## Load packages
+## Цэвэрлэх холбоос
 
-This code chunk shows the loading of packages required for the analyses. In this handbook we emphasize `p_load()` from **pacman**, which installs the package if necessary *and* loads it for use. You can also load installed packages with `library()` from **base** R. See the page on [R basics] for more information on R packages.
+**Энэ хэсэгт датаг цэвэрлэгээг үе шат тус бүрээр нь тайлбарласан. Цэвэрлэгээний явцыг нэг бүрчлэн "pipe" цэвэрлэх холбоост залгаж үзүүлсэн.**
+
+Тархвар судлалд датаг янзлах, цэвэрлэх явц хоорондоо холбоотой дараалласан үйлдлүүдээс бүрддэг. R программ дээр цэвэрлэгээг хийхдээ мөн адил *датаг нэг цэвэрлэх шатнаас нөгөөд угсруулан үйлддэг.*
+
+Ийм угсруулсан үйлдлүүдийг **dplyr** --ын "үйл үгт" функцуууд болон **magrittr**-ын pipe`%>%` холбогч оператор хамтран гүйцэтгэдэг. Цэвэрлэгээ түүхий датагаар ("linelist_raw.xlsx") эхлээд R --ын "цэвэрхэн" хүснэгт (`linelist`) болж хувиран гардаг. Үүнийг шууд ашиглаж, хадгалж, экспортлож болно.
+
+Цэвэрлэгээ хийж байхад үйлдлийн дараалал чухал. Дараах дарааллаар хийх нь элбэг:
+
+-   Датаг оруулж ирэх\
+-   Баганын нэрсийг өөрчлөх, арилгах\
+-   Давхардсан утгуудыг арилгах\
+-   Багана нэмж, хувиргах (утгыг хувиргах, )Column creation and transformation (баганадах утгыг хувиргах, утгыг стандардчилах гэх мэт)\
+-   Мөрүүдийг шүүж хасаж, нэмэх
+
+<!-- ======================================================= -->
+
+<!-- ======================================================= -->
+
+<!-- ======================================================= -->
+
+## Багцуудыг ачааллах
+
+Доорх кодыг уншуулж шаардлагатай багцуудыг ачааллана. Энэ номонд багцыг ачааллахад **pacman** -ны `p_load()`-ыг голчлон хэрэглэ. Энэ функц нь шаардлагатай багцыг автоматаар татаж авч, ачааллаад ажиллахад бэлэн болгодог. **base** R-ын багцыг `library()`--аар та өөрөө шууд (татаж авалгүйгээр )ачааллаж бас болно. [R basics] хэсгээс талаар нэмж үзнэ үү.
 
 ```{r, message = F}
 pacman::p_load(
-  rio,        # importing data  
-  here,       # relative file pathways  
-  janitor,    # data cleaning and tables
-  lubridate,  # working with dates
-  epikit,     # age_categories() function
-  tidyverse   # data management and visualization
+  rio,        # дата оруулах  
+  here,       # файлын холбоотой замыг тогтоох 
+  janitor,    # дата, хүснэгт цэвэрлэх
+  lubridate,  # огноотой ажиллах
+  epikit,     # age_categories() функц
+  tidyverse   # дата менежмент ба график зураглал
 )
 ```
 
@@ -119,13 +119,13 @@ pacman::p_load(
 
 <!-- ======================================================= -->
 
-## Import data
+## Датаг импортлох
 
-### Import {.unnumbered}
+### Импорт хийх {.unnumbered}
 
-Here we import the "raw" case linelist Excel file using the `import()` function from the package **rio**. The **rio** package flexibly handles many types of files (e.g. .xlsx, .csv, .tsv, .rds. See the page on [Import and export] for more information and tips on unusual situations (e.g. skipping rows, setting missing values, importing Google sheets, etc).
+Түүхий дата агуулсан Excel файлыг **rio**-ын `import()` функцээр импортлоно. **Rio** багц файл ын олон төрөлтэй ажиллаж чаддагаараа онцлог (.xlsx, .csv, .tsv, .rds. гэх мэт). [Import and export] хэсгээс дэлгэрүүлж үзнэ үү.
 
-If you want to follow along, <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_raw.xlsx' class='download-button'>click to download the "raw" linelist</a> (as .xlsx file).
+Хэрэв хамт дасгалыг зэрэг хийхийг хүсвэл энэ линкээр датаг татаж авна уу. <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_raw.xlsx' class='download-button'>линк дээр дарж "түүхий" linelist -ыг татаж ав</a> ( .xlsx файл).
 
 If your dataset is large and takes a long time to import, it can be useful to have the import command be separate from the pipe chain and the "raw" saved as a distinct file. This also allows easy comparison between the original and cleaned versions.
 
@@ -148,9 +148,9 @@ You can view the first 50 rows of the the data frame below. Note: the **base** R
 DT::datatable(head(linelist_raw,50), rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-### Review {.unnumbered}
+### Тоймлон үзэх {.unnumbered}
 
-You can use the function `skim()` from the package **skimr** to get an overview of the entire dataframe (see page on [Descriptive tables] for more info). Columns are summarised by class/type such as character, numeric. Note: "POSIXct" is a type of raw date class (see [Working with dates].
+Дата-хүснэгтийн талаарх ерөнхий тойм мэдээг авахдаа **skimr** багцын `skim()` функцыг хэрэглэж болно. ([Descriptive tables] хэсгээс нэмж харна уу). Баганууд numeric (тоон), character (үсгэн) зэрэг төрлөөсөө хамаарч тусдаа тоймлогддог. Тэмдэглэл: "POSIXct" бол нэг төрлийн боловсруулагдаагүй огнооны төрөл. ([Working with dates] хэсгээс харна уу).
 
 ```{r, eval=F}
 skimr::skim(linelist_raw)
@@ -166,132 +166,134 @@ skimr::skim_without_charts(linelist_raw)
 
 <!-- ======================================================= -->
 
-## Column names
+## Баганын нэрс
 
-In R, column *names* are the "header" or "top" value of a column. They are used to refer to columns in the code, and serve as a default label in figures.
+Хүснэгт импортлоход хамгийн эхний, толгой мөрийг R программ баганын *нэр* гэж уншдаг. Кодын синтакст мөн энэ нэрийг дуудаж хэрэглэнэ.
 
-Other statistical software such as SAS and STATA use *"labels"* that co-exist as longer printed versions of the shorter column names. While R does offer the possibility of adding column labels to the data, this is not emphasized in most practice. To make column names "printer-friendly" for figures, one typically adjusts their display within the plotting commands that create the outputs (e.g. axis or legend titles of a plot, or column headers in a printed table - see the [scales section of the ggplot tips page](#ggplot_tips_scales) and [Tables for presentation] pages). If you want to assign column labels in the data, read more online [here](https://cran.r-project.org/web/packages/expss/vignettes/labels-support.html) and [here](https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html).
+SAS, STATA зэрэг бусад статистик программд баганын толгойд буй товчилсон нэрнээс гадна *"дэлгэрэнгүй нэр (labels)"* гэж байдаг. R дээр багана тус бүрт label өгөх боломжтой ч ингэж нэмэх нь ховор. График дээр хэвлэлд тохиромжтой баганын нэрс оруулах бол тухайн график хэвлэх коммандад дэлгэцийг тохируулгыг оруулж өгөх хэрэгтэй (тэнхлэгийн (axis) нэрс, ялгах тэмдгийн (legends), нэрс, багана толгой гэх мэт. [scales section of the ggplot tips page](https://epirhandbook.com/ggplot-tips.html#ggplot_tips_scales) болон [Tables for presentation](https://epirhandbook.com/tables-for-presentation.html#tables-for-presentation) хуудсаас нэмж уншна уу). Баганад label өгөх талаар [here](https://cran.r-project.org/web/packages/expss/vignettes/labels-support.html) болон [here](https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html) гэсэн линкүүдээс үзэж болно.
 
-As R column names are used very often, so they must have "clean" syntax. We suggest the following:
+Баганын нэрс R дээр байнга хэрэглэгдэх тул "цэвэр" синтакстай байх нь чухал. Дараах аргаар нэрлэвэл тохиромжтой байдаг:
 
--   Short names
--   No spaces (replace with underscores \_ )
--   No unusual characters (&, \#, \<, \>, ...)\
--   Similar style nomenclature (e.g. all date columns named like **date\_**onset, **date\_**report, **date\_**death...)
+-   Богино
+-   Зай авахгүй, доогуур зураас \_ хэрэглэх
+-   Өвөрмөц тэмдэглэгээ оруулахгүй (&, \#, \<, \>, ...)
+-   Төстэй нэрлэх ( жишээ нь бүх огноотой баганыг **date\_**onset, **date\_**report, **date\_**death гэж нэрлэх)
 
-The columns names of `linelist_raw` are printed below using `names()` from **base** R. We can see that initially:
+`linelist_raw`--дах баганын нэрсийг **base** R --ын `names()` функцийг уншуулж дор хэвлээд эхний байдлаар харахад:
 
--   Some names contain spaces (e.g. `infection date`)\
--   Different naming patterns are used for dates (`date onset` vs. `infection date`)\
+-   Зарим нэрс зай авсан (жишээ нь `infection date`)\
+-   Огноотой баганууд жигд бус нэрлэгдсэн (жишээ `date onset` багана `infection date` ээс өөр)\
 -   There must have been a *merged header* across the two last columns in the .xlsx. We know this because the name of two merged columns ("merged_header") was assigned by R to the first column, and the second column was assigned a placeholder name "...28" (as it was then empty and is the 28th column).
 
 ```{r}
 names(linelist_raw)
 ```
 
-[***NOTE:*** To reference a column name that includes spaces, surround the name with back-ticks, for example: linelist\$`` ` '\x60infection date\x60'` ``. note that on your keyboard, the back-tick (\`) is different from the single quotation mark (').]{style="color: black;"}
+[***ТЭМДЭГЛЭЛ:*** зай авсан баганы нэрийг хойшоо харсан дан хашилтад хий. Жишээ нь: linelist\$`` ` '\x60infection date\x60'` ``. Үүнийг бичихдээ компьютерийн гаран дээрх хойшоо харсан дан хашилт (\`) бичгийн дан хашилтаас ( ' ) өөр гэдгйиг анхаарна уу.]{style="color: black;"}
 
-### Labels {.unnumbered}
+### Автомат цэвэрлэгээ {.unnumbered}
 
-Some other statistical software such as SAS have variable *labels*
+**janitor** багцын `clean_names()` функц баганын нэрсийн өвөрмөц хэвээр байлгангаа жигд болгож өгдөг. Ингэхдээ:
 
-### Automatic cleaning {.unnumbered}
+-   Бүх баганыг зөвхөн доогуур зураас, тоо, үсгээс бүрдсэн нэртэй болгож хувиргана.\
+-   Өргөгдсөн эгшгүүд ASCII хэлрүү галиглагдна (Герман хэлний ö --г "o"-руу, Испани хэлний "enye" -г "n" болгох гэх мэт)\
+-   Үсгийн том жижгийг `case =` аргументэд зааж өгч болно ("snake" хэлбэр default сонголт, "sentence", "title", "small_camel" гэх мэт өөр сонголтууд буй)\
+-   Нэр өөрчлөх, орлуулахдаа `replace =` аргументийг ашиглаж болно (ж: `replace = c(onset = "date_of_onset")`)\
+-   Онлайн [vignette](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#cleaning) --г эндээс харж болно
 
-The function `clean_names()` from the package **janitor** standardizes column names and makes them unique by doing the following:
-
--   Converts all names to consist of only underscores, numbers, and letters\
--   Accented characters are transliterated to ASCII (e.g. german o with umlaut becomes "o", spanish "enye" becomes "n")\
--   Capitalization preference for the new column names can be specified using the `case =` argument ("snake" is default, alternatives include "sentence", "title", "small_camel"...)\
--   You can specify specific name replacements by providing a vector to the `replace =` argument (e.g. `replace = c(onset = "date_of_onset")`)\
--   Here is an online [vignette](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#cleaning)
-
-Below, the cleaning pipeline begins by using `clean_names()` on the raw linelist.
+Цэвэрлэх процесс `clean_names()` функцэд түүхий linelist --ийг оруулснаар эхэлнэ:
 
 ```{r clean_names}
-# pipe the raw dataset through the function clean_names(), assign result as "linelist"  
+# түүхий датагаа clean_names() –д холбоод, үр дүнг нь "linelist" хүснэгтэд оноо
 linelist <- linelist_raw %>% 
   janitor::clean_names()
 
-# see the new column names
+# баганын шинэ нэрс
 names(linelist)
 ```
 
-[***NOTE:*** The last column name "...28" was changed to "x28".]{style="color: black;"}
+[***ТЭМДЭГЛЭЛ:*** сүүлийн баганын нэр "...28" байснаа "x28" болж хувирсан".]{style="color: black;"}
 
-### Manual name cleaning {.unnumbered}
+### Баганын нэрийг гар аргаар цэвэрлэх {.unnumbered}
 
-Re-naming columns manually is often necessary, even after the standardization step above. Below, re-naming is performed using the `rename()` function from the **dplyr** package, as part of a pipe chain. `rename()` uses the style `NEW = OLD` - the new column name is given before the old column name.
+Баганын нэрсийг дээрх байдлаар жигдрүүлсний дараа гар аргаар цэвэрлэх хэрэг заавал гардаг. Дор кодонд **dplyr** --ын `rename()` функцыг pipe холбоостоо залгаж зарим баганад шинэ нэр өгсөн. `rename()` функц `NEW = OLD`-- гэсэн дарааллаар аргументээ авдаг. Эхлээд шинэ, дараа нь хуучин нэрийг бичнэ.
 
-Below, a re-naming command is added to the cleaning pipeline. Spaces have been added strategically to align code for easier reading.
+Дараах цэвэрлэгээний процесст нэр өгөх комманд нэмэгдэж орж ирснийг ажиглаарай. Уншихад амар болгож зарим газар зай авсан.
 
 ```{r}
-# CLEANING 'PIPE' CHAIN (starts with raw data and pipes it through cleaning steps)
+# ЦЭВЭРЛЭХ 'PIPE' ХОЛБООС (түүхий датаг цэвэрлэх үе шатуудаар дамжуулан цэвэрлэдэг холбоос) 
 ##################################################################################
+
+# Цэвэрлэх холбоосыг эхлэх
+###########################
 linelist <- linelist_raw %>%
     
-    # standardize column name syntax
+    # баганын нэрсийг жигдрүүлэх
     janitor::clean_names() %>% 
     
-    # manually re-name columns
-           # NEW name             # OLD name
+    # зарим баганын нэрийг гараар өөрчил
+           # ШИНЭ нэр             # ХУУЧИН нэр
     rename(date_infection       = infection_date,
            date_hospitalisation = hosp_date,
            date_outcome         = date_of_outcome)
+    
 ```
 
-Now you can see that the columns names have been changed:
+Баганын нэрс өөрчлөгдсөн нь энд харагдаж байна:
 
 ```{r message=FALSE, echo=F}
 names(linelist)
 ```
 
-#### Rename by column position {.unnumbered}
+#### Баганын байрлалаар нь нэр өгөх {.unnumbered}
 
-You can also rename by column position, instead of column name, for example:
+Баганыг нэрийг солихдоо нэрээр нь дуудахаас гадна байрлалыг нь дуудаж болдог. Жишээ нь:
 
 ```{r, eval=F}
 rename(newNameForFirstColumn  = 1,
        newNameForSecondColumn = 2)
 ```
 
-#### Rename via `select()` and `summarise()` {.unnumbered}
+#### `select()`болон `summarise()` ашиглан нэр өгөх {.unnumbered}
 
-As a shortcut, you can also rename columns within the **dplyr** `select()` and `summarise()` functions. `select()` is used to keep only certain columns (and is covered later in this page). `summarise()` is covered in the [Grouping data] and [Descriptive tables] pages. These functions also uses the format `new_name = old_name`. Here is an example:
+Нэр өгөхдөө **dplyr** -ын `select()`болон `summarise()` функцуудыг хавсран ашиглавал арай түргэн байдаг. `select()`--ээр зөвхөн тодорхой багануудыг сонгож авна (дараагийн хэсгүүдэд дахин дурьдна).`summarise()`--г [Grouping data] болон [Descriptive tables] хэсгүүдэд тайлбарласан. Эдгээр функц мөн адил `new_name = old_name` гэсэн дарааллаар аргументээ авна. Жишээ:
 
 ```{r, eval=F}
 linelist_raw %>% 
-  select(# NEW name             # OLD name
-         date_infection       = `infection date`,    # rename and KEEP ONLY these columns
+  select(# ШИНЭ нэр              # ХУУЧИН нэр
+         date_infection       = `infection date`, # нэрийг солиод, ЗӨВХӨН тухайн багануудыг л авч үлднэ
          date_hospitalisation = `hosp date`)
 ```
 
-### Other challenges {.unnumbered}
+### Бусад {.unnumbered}
 
-#### Empty Excel column names {.unnumbered}
+#### Excel дээрх баганын нэр хоосон байх {.unnumbered}
 
-R cannot have dataset columns that do not have column names (headers). So, if you import an Excel dataset with data but no column headers, R will fill-in the headers with names like "...1" or "...2". The number represents the column number (e.g. if the 4th column in the dataset has no header, then R will name it "...4").
+R-т баганын нэргүй дата байх боломжгүй. Хэрэв Excel --ийн хоосон толгой агуулсан багануудтай хүснэгт R --луу оруулж ирвэл R баганыг "...1", "...2" гэх мэтээр байрлалаас нь хамаарч автоматаар нэрлэдэг (жишээ нь хүснэгтийн 4 дэх багана нэргүй хоосон орж ирсэн бол R тэр баганыг "...4" гэж нэрлэнэ).
 
 You can clean these names manually by referencing their position number (see example above), or their assigned name (`linelist_raw$...1`).
 
-#### Merged Excel column names and cells {.unnumbered}
+Эдгээр автоматаар өгөгдсөн нэрсийг та өөрөөр байрлалаар нь, эсвэл оноогдсон нэрээр нь дуудаж (linelist_raw\$...1) цэвэрлэж болно (жишээг дээр харуулсан),
 
-Merged cells in an Excel file are a common occurrence when receiving data. As explained in [Transition to R], merged cells can be nice for human reading of data, but are not "tidy data" and cause many problems for machine reading of data. R cannot accommodate merged cells.
+#### Excel багана, нүднүүд нэтгэгдсэн (merged) байх {.unnumbered}
 
-Remind people doing data entry that **human-readable data is not the same as machine-readable data**. Strive to train users about the principles of [**tidy data**](https://r4ds.had.co.nz/tidy-data.html). If at all possible, try to change procedures so that data arrive in a tidy format without merged cells.
+Заримдаа Excel --ийн файл хүлээж авахад хүснэгтийн нүднүүд нэтгэгдсэн (merged) байдаг. Нэгтгэгдсэн нүдтэй хүснэгт хүн уншихад амар боловч, "цэгцтэй дата/tidy data" хэлбэрт ороогүй учраас компьютерт сайн уншигддаггүй ([Transition to R] хэсэгт тайлбарласан). R --дээр нэгтгэгдсэн нүднүүд уншигдахгүй.
 
--   Each variable must have its own column.\
--   Each observation must have its own row.\
--   Each value must have its own cell.
+Дата оруулж буй хүмүүстээ **хүнд уншигддаг дата машинд уншигддаг дата хоёр өөр** гэдгийг сайн ойлгуулах хэрэгтэй. Цэгцтэй датаны [**tidy data**](https://r4ds.had.co.nz/tidy-data.html) зарчмыг ойлгуулахыг эрмэлз. Болж өгвөл дата оруулах аргачлалд нь өөрчлөлт хийж аль болох цэгцэрсэн, ямар нэг нэгтгэсэн нүдгүй байхгүй дата өөртөө авахаар зохицуулбал сайн.
 
-When using **rio**'s `import()` function, the value in a merged cell will be assigned to the first cell and subsequent cells will be empty.
+-   Хувьсагч тус бүр баганатай байна.\
+-   Ажиглалт тус бүр мөртэй байна\
+-   Утга тус бүр өөрийн нүдэнд байна.
 
-One solution to deal with merged cells is to import the data with the function `readWorkbook()` from the package **openxlsx**. Set the argument `fillMergedCells = TRUE`. This gives the value in a merged cell to all cells within the merge range.
+**rio-ын** `import()` функцээр дата оруулж байхад датанд нэтгэгдсэн нүд тохиолдвол тухайн нүд задарч доторх утга эхний нүдэнд бичигдээд дараах нүднүүд нь хоосон орхигддог.
+
+Нэтгэгдсэн нүдний асуудлыг **openxlsx** багцын `readWorkbook()`функцээр шийдвэрлэх боломжтой. Үүний `fillMergedCells =` аргументийг TRUE гэж тохируулснаар нэтгэгдсэн нүднүүд задрахад доторх утга бүгдэд нь зэрэг хуваарилагдаж ордог.
 
 ```{r, eval=F}
 linelist_raw <- openxlsx::readWorkbook("linelist_raw.xlsx", fillMergedCells = TRUE)
 ```
 
-[***DANGER:*** If column names are merged with `readWorkbook()`, you will end up with duplicate column names, which you will need to fix manually - R does not work well with duplicate column names! You can re-name them by referencing their position (e.g. column 5), as explained in the section on manual column name cleaning.]{style="color: red;"}
+[***АЮУЛТАЙ:*** `readWorkbook()` -өөр баганын нэрс нэгтгэгдсэн бол давхардсан нэртэй багануудтай болчихдог ба үүнийг гараар цэвэрлэхээс шаардлагатай. R давхардсан нэртэй ажиллахдаа муу! Давхар нэртэй багануудын нэрийг байршлаар нь дуудаж сольж болно (баганын нэрийг гар аргаар цэвэрлэх хэсэгт тайлбарласан)]{style="color: red;"}
 
 <!-- ======================================================= -->
 
@@ -299,106 +301,108 @@ linelist_raw <- openxlsx::readWorkbook("linelist_raw.xlsx", fillMergedCells = TR
 
 <!-- ======================================================= -->
 
-## Select or re-order columns
+## Баганыг сонгох болон эрэмбэлэх
 
-Use `select()` from **dplyr** to select the columns you want to retain, and to specify their order in the data frame.
+Аль баганыг үлдээхээ dplyr-ын `select()` --д оруулж, дэс дарааг нь зааж өгч болно.
 
-[***CAUTION:*** In the examples below, the `linelist` data frame is modified with `select()` and displayed, but not saved. This is for demonstration purposes. The modified column names are printed by piping the data frame to `names()`.]{style="color: orange;"}
+[***БОЛГООМЖЛОЛ:*** дорх жишээнд `linelist`- датаг `select()` --ээр өөрчилж харуулсан боловч хадгалаагүй. Энд зөвхөн үзүүлэх зорилготой. Pipe холбоостоо `names()-ыг` залгаж шинэ нэрүүдийг харж болж байна. ]{style="color: orange;"}
 
-**Here are ALL the column names in the linelist at this point in the cleaning pipe chain:**
+Цэвэрлэх холбоосонд [linelist --ын БҮХ нэрс цэвэрлэгдсэн байх үеийг энд харуулав]{style="color: orange;"}:
 
 ```{r}
 names(linelist)
 ```
 
-### Keep columns {.unnumbered}
+### Баганыг үлдээх {.unnumbered}
 
-**Select only the columns you want to remain**
+Баганыг үлдээх
 
-Put their names in the `select()` command, with no quotation marks. They will appear in the data frame in the order you provide. Note that if you include a column that does not exist, R will return an error (see use of `any_of()` below if you want no error in this situation).
+**Зөвхөн үлдээх шаардлагатай багануудаа л сонго.**
+
+Шаардлагатай багануудаа `select()`комманд дотор хашилтгүйгээр оруул. Баганууд таны оруулсан дарааллаар хүснэгтэд харагдана. Байхгүй багана `select()`--д бичвэл R алдаа заана. (алдаа заахгүйгээр үргэлжлүүлэх талаар `any_of()`--ын тайлбараас үзнэ үү).
 
 ```{r}
-# linelist dataset is piped through select() command, and names() prints just the column names
+# linelist датаг select() коммандаар цэвэрлээд names() -ээр баганын нэрсийг хэвлэсэн
 linelist %>% 
   select(case_id, date_onset, date_hospitalisation, fever) %>% 
-  names()  # display the column names
+  names()  # баганын нэрсийг хэвлэж харуулах
 ```
 
-### "tidyselect" helper functions {#clean_tidyselect .unnumbered}
+### "tidyselect" туслах функцууд {#clean_tidyselect .unnumbered}
 
-These helper functions exist to make it easy to specify columns to keep, discard, or transform. They are from the package **tidyselect**, which is included in **tidyverse** and underlies how columns are selected in **dplyr** functions.
+Багана үлдээх, хасах эсвэл хувиргах үйлдлүүдийг туслах функцээр хялбарчилж болдог. Туслах функц нь **tidyverse**-ын харьяа **tidyselect** багцад ордог ба **dplyr** -ын багана сонгох үйлдэл дээр суурилдаг.
 
-For example, if you want to re-order the columns, `everything()` is a useful function to signify "all other columns not yet mentioned". The command below moves columns `date_onset` and `date_hospitalisation` to the beginning (left) of the dataset, but keeps all the other columns afterward. Note that `everything()` is written with empty parentheses:
+Тухайлбал баганын дарааллыг өөрчлөхөд "бичигдсэн баганаас бусад баганыг" заадаг `everything()` функц их хэрэг болдог. Доорх код `date_onset` болон `date_hospitalisation` багануудыг хамгийн эхэнд (зүүн талд) авчраад, үлдсэн багануудыг ардаас нь хэвээр нь байлгана.Энд `everything()` хоосон бичигдсэн байгааг анхаар:
 
 ```{r}
-# move date_onset and date_hospitalisation to beginning
+# date_onset болон date_hospitalisation -г хамгийн урд зөөж авчрах
 linelist %>% 
   select(date_onset, date_hospitalisation, everything()) %>% 
   names()
 ```
 
-Here are other "tidyselect" helper functions that also work *within* **dplyr** functions like `select()`, `across()`, and `summarise()`:
+Энд *within* **dplyr** багцын `select()`, `across()`, `summarise()`зэрэг функцуудтай хамтарч ажилладаг **tidyselect** функцуудыг жагсаав :
 
--   `everything()` - all other columns not mentioned\
+-   `everything()` - дурьдсанаас бусад бүх баганууд\
 
--   `last_col()` - the last column\
+-   `last_col()` - сүүлийн багана\
 
--   `where()` - applies a function to all columns and selects those which are TRUE\
+-   `where()` - аливаа функцыг бүх баганад уншуулж үзээд, TRUE тохиодлуудыг\
 
--   `contains()` - columns containing a character string
+-   `contains()` - тодорхой үсэг, тэмдгийг (character) агуулсан багана
 
-    -   example: `select(contains("time"))`\
+    -   жишээ: `select(contains("time"))`\
 
--   `starts_with()` - matches to a specified prefix
+-   `starts_with()` - баганын нэрийн эхлэл хэсгийг тааруулах
 
-    -   example: `select(starts_with("date_"))`\
+    -   жишээ: `select(starts_with("date_"))`\
 
--   `ends_with()` - matches to a specified suffix
+-   `ends_with()` - баганын нэрийн төгсгөл хэсгийг тааруулах
 
-    -   example: `select(ends_with("_post"))`\
+    -   жишээ: `select(ends_with("_post"))`\
 
--   `matches()` - to apply a regular expression (regex)
+-   `matches()` - regular expression (regex) -ийг тааруулах
 
-    -   example: `select(matches("[pt]al"))`\
+    -   жишээ: `select(matches("[pt]al"))`\
 
--   `num_range()` - a numerical range like x01, x02, x03\
+-   `num_range()` - x01, x02, x03 зэргээх тоо, дугаараар тааруулах\
 
--   `any_of()` - matches IF column exists but returns no error if it is not found
+-   `any_of()` - аль нэг багана байхгүй тохиолдолд алдаа заахгүйгээр үйлдлийг гүйцэтгэнэ.
 
-    -   example: `select(any_of(date_onset, date_death, cardiac_arrest))`
+    -   жишээ: `select(any_of(date_onset, date_death, cardiac_arrest))`
 
-In addition, use normal operators such as `c()` to list several columns, `:` for consecutive columns, `!` for opposite, `&` for AND, and `|` for OR.
+Үүнээс гадна ердийн операторуудыг ашигла. Жишээ нь `c()`-аар хэд хэдэн баганыг жагсаах,`:` -аар дарааллаж байрласан багануудыг сонгож болно. Мөн `!`- эсрэг,`&` БА, `|` ЭСВЭЛ зэргийг багана сонгоход ашиглаж болно.
 
-Use `where()` to specify logical criteria for columns. If providing a function inside `where()`, do not include the function's empty parentheses. The command below selects columns that are class Numeric.
+Баганын логик шалгуураар сонгох бол`where()`-ийг хэрэглэ. Хэрэв `where()`-ийг функцын дотор хэрэглэж буй бол хоосон хаалттайгаар хэрэглэж болохгүй. Дорх жишээнд зөвхөн тоон утгатай багануудыг сонгохыг харууллаа.
 
 ```{r}
-# select columns that are class Numeric
+# Тоон утгатай багануудыг сонгох болно
 linelist %>% 
   select(where(is.numeric)) %>% 
   names()
 ```
 
-Use `contains()` to select only columns in which the column name contains a specified character string. `ends_with()` and `starts_with()` provide more nuance.
+Баганын нэрэнд тодорхой үсэг, үг агуулагдсан тохиолдолд тухайн баганыг сонгох бол `contains()` -ыг хэрэглэ. Мөн`ends_with()` болон `starts_with()` -аар арай тодорхой зааж өгч болно.
 
 ```{r}
-# select columns containing certain characters
+# тодорхой үг, үсэг нэрэндээ агуулсан багануудыг сонгох
 linelist %>% 
   select(contains("date")) %>% 
   names()
 ```
 
-The function `matches()` works similarly to `contains()` but can be provided a regular expression (see page on [Characters and strings]), such as multiple strings separated by OR bars within the parentheses:
+`matches()` функц `contains()` -тай төстэй үүрэгтэй ба regular expression ашигладгаараа онцлог ([Characters and strings]) хэсгээс нэмж харна уу. Дорх жишээнд тааруулах үг, үсэгнүүдээ (strings) ЭСВЭЛ босоо зураасаар тусгаарлаж хашилтанд хийсэн буйг харж байна :
 
 ```{r}
-# searched for multiple character matches
+# олон үг, үсэгнүүдийг зэрэг хайж, тааруулах
 linelist %>% 
   select(matches("onset|hosp|fev")) %>%   # note the OR symbol "|"
   names()
 ```
 
-[***CAUTION:*** If a column name that you specifically provide does not exist in the data, it can return an error and stop your code. Consider using `any_of()` to cite columns that may or may not exist, especially useful in negative (remove) selections.]{style="color: orange;"}
+[***БОЛГООМЖИЛ:*** Хэрэв та датанд байхгүй баганын нэрийг функцэд өгсөн бол алдаа зааж үйлдэл тэр дороо зогсох болно. Ийм тохиолдолд `any_of()` -ийг хэрэглэхийг зөвлөж байна. Энэ функц заасан багана байхгүй ч байж магадгүй гэж илэрхийлдэг ба ялангуяа баганыг хасахад их хэрэг болдог.]{style="color: orange;"}
 
-Only one of these columns exists, but no error is produced and the code continues without stopping your cleaning chain.
+Дор жишээнд дурьдсан багануудын нэг нь л оршиж буй боловч дорх код алдаа заахгүйгүээр үргэлжилж, цэвэрлэх холбоосын залгаа үйлдлүүд зогсолтгүйгээр гүйцэтгэлээ хийх болно.
 
 ```{r}
 linelist %>% 
@@ -406,59 +410,59 @@ linelist %>%
   names()
 ```
 
-### Remove columns {.unnumbered}
+### Баганыг хасах {.unnumbered}
 
-**Indicate which columns to remove** by placing a minus symbol "-" in front of the column name (e.g. `select(-outcome)`), or a vector of column names (as below). All other columns will be retained.
+Хасах ("-") тэмдэг (ж:`select(-outcome)`) эсвэл баганын нэрээс бүтсэн вектороор (дор жишээнд үзүүлсэн) **аль баганыг хасахаа зааж өг**. Бусад баганууд хэвээр үлдэх болно.
 
 ```{r}
 linelist %>% 
-  select(-c(date_onset, fever:vomit)) %>% # remove date_onset and all columns from fever to vomit
+  select(-c(date_onset, fever:vomit)) %>% # date_onset болон fever ээс vomit хүртэлх баганыг хасах
   names()
 ```
 
-You can also remove a column using **base** R syntax, by defining it as `NULL`. For example:
+Мөн **base** R -ын синтакс болох `NULL`-ыг ашиглаж баганыг хасч болно. Жишээ нь:
 
 ```{r, eval=F}
-linelist$date_onset <- NULL   # deletes column with base R syntax 
+linelist$date_onset <- NULL   # base R -ын синтаксаар date_onset баганыг хасах
 ```
 
-### Standalone {.unnumbered}
+### Дангаараа үйлдэх коммандууд {.unnumbered}
 
-`select()` can also be used as an independent command (not in a pipe chain). In this case, the first argument is the original dataframe to be operated upon.
+`select()` -ийг дангаар нь мөн хэрэглэж болно (pipe холбоосны залгаа биш). Энэ тохиолдолд эхний аргумент нь тухайн ажиллаж буй хүснэгтийн нэр байдаг.
 
 ```{r}
-# Create a new linelist with id and age-related columns
+#  id болон насыг харуулсан шинэ linelist үүсгэх
 linelist_age <- select(linelist, case_id, contains("age"))
 
-# display the column names
+# үүсгэсэн linelist-ийн баганын нэрсийг харуул
 names(linelist_age)
 ```
 
-#### Add to the pipe chain {.unnumbered}
+#### Pipe холбоосонд нэмж залгах {.unnumbered}
 
-In the `linelist_raw`, there are a few columns we do not need: `row_num`, `merged_header`, and `x28`. We remove them with a `select()` command in the cleaning pipe chain:
+`linelist_raw`-хүснэгтийн дараах баганууд бидэнд шаардлагагүй: `row_num`, `merged_header`, `x28`. Эдгээрийг хасахдаа `select()` коммандыг pipe холбоосонд залгаж хасаж болно:
 
 ```{r}
-# CLEANING 'PIPE' CHAIN (starts with raw data and pipes it through cleaning steps)
+# ЦЭВЭРЛЭХ 'PIPE' ХОЛБООС (түүхий датаг цэвэрлэх үе шатуудаар дамжуулан цэвэрлэдэг холбоос) 
 ##################################################################################
 
-# begin cleaning pipe chain
+# Цэвэрлэх холбоосыг эхлэх
 ###########################
 linelist <- linelist_raw %>%
     
-    # standardize column name syntax
+    # баганын нэрсийг жигдрүүлэх
     janitor::clean_names() %>% 
     
-    # manually re-name columns
-           # NEW name             # OLD name
+    # зарим баганын нэрийг гараар өөрчил
+           # ШИНЭ нэр             # ХУУЧИН нэр
     rename(date_infection       = infection_date,
            date_hospitalisation = hosp_date,
            date_outcome         = date_of_outcome) %>% 
     
-    # ABOVE ARE UPSTREAM CLEANING STEPS ALREADY DISCUSSED
+    # ЭНЭ ХҮРТЭЛХ ҮЙЛДЭЛ ӨМНӨХ ХЭСЭГТТЭЙ АДИЛ
     #####################################################
 
-    # remove column
+    # баганыг хас
     select(-c(row_num, merged_header, x28))
 ```
 
@@ -468,51 +472,51 @@ linelist <- linelist_raw %>%
 
 <!-- ======================================================= -->
 
-## Deduplication
+## Давхардалтыг арилгах
 
-See the handbook page on [De-duplication] for extensive options on how to de-duplicate data. Only a very simple row de-duplication example is presented here.
+Энэхүү номын [De-duplication] хэсгээс давхардалтыг арилгах нэмэлт аргын талаар дэлгэрүүлж үзнэ үү.Энд бид зөвхөн энгийн мөрний давхардалтыг арилгах талаар тайлбах болно.
 
-The package **dplyr** offers the `distinct()` function. This function examines every row and reduce the data frame to only the unique rows. That is, it removes rows that are 100% duplicates.
+**dplyr** багцад `distinct()` гэсэн функц буй. Энэ функц бүх мөрийг шалгаж үзээд датаг зөвхөн өвөрмөц мөрүүдээс бүрдсэн болгож багасгадаг. Энэ үйлдлээр яг 100% адилхан давхар мөрүүдийн давхардалт л арилдаг.
 
-When evaluating duplicate rows, it takes into account a range of columns - by default it considers all columns. As shown in the de-duplication page, you can adjust this column range so that the uniqueness of rows is only evaluated in regards to certain columns.
+Давхардсан мөрүүдийг хайхдаа тодорхой хэмжээний мөрийг хамруулж шалгадаг (default аар бүх мөрийг зэрэг шалгана). Хэдий хэмжээний мөрүүдэд хайгуул хийхээ өөрөө тохируулж болно (давхардалтыг арилгах хэсэгт мөн тайлбарласан). Ингэснээр өвөрмөц мөрүүд зөвхөн тухайн хайлт хийсэн мөрнүүдийн хүрээнд л үүсэх юм.
 
-In this simple example, we just add the empty command `distinct()` to the pipe chain. This ensures there are no rows that are 100% duplicates of other rows (evaluated across all columns).
+Дорх энгийн жишээнд хоосон `distinct()`-ийг цэвэрлэх холбоосондоо залгаж өгсөн. Ингэснээр 100% ижилхэн мөрүүдийн давхардал датанд байхгүй байхаар цэвэрлэгээ хийгдлээ гэсэн үг юм (бүх мөрийг зэрэг шалгана).
 
-We begin with `nrow(linelist)` rows in `linelist`.
+Энд `linelist`-ийн `nrow(linelist)` коммандаас эхлэе.
 
 ```{r}
 linelist <- linelist %>% 
   distinct()
 ```
 
-After de-duplication there are `nrow(linelist)` rows. Any removed rows would have been 100% duplicates of other rows.
+Давхардалтыг арилгасны дараа үлдсэн мөрийн тоог `nrow(linelist)` -ээр уншуулж мэднэ. Хэрэв мөр арилсан бол аль нэг мөрний 100% ижил давхар мөр арилсан гэсэн үг.
 
-Below, the `distinct()` command is added to the cleaning pipe chain:
+Дор `distinct()` коммандыг pipe холбоосонд залгаснаар харууллаа
 
 ```{r}
-# CLEANING 'PIPE' CHAIN (starts with raw data and pipes it through cleaning steps)
+# ЦЭВЭРЛЭХ 'PIPE' ХОЛБООС (түүхий датаг цэвэрлэх үе шатуудаар дамжуулан цэвэрлэдэг холбоос) 
 ##################################################################################
 
-# begin cleaning pipe chain
+# Цэвэрлэх холбоосыг эхлэх
 ###########################
 linelist <- linelist_raw %>%
     
-    # standardize column name syntax
+    # баганын нэрсийг жигдрүүлэх
     janitor::clean_names() %>% 
     
-    # manually re-name columns
-           # NEW name             # OLD name
+    # зарим баганын нэрийг гараар өөрчил
+            # ШИНЭ нэр             # ХУУЧИН нэр
     rename(date_infection       = infection_date,
            date_hospitalisation = hosp_date,
            date_outcome         = date_of_outcome) %>% 
     
-    # remove column
+    # баганыг хас
     select(-c(row_num, merged_header, x28)) %>% 
   
-    # ABOVE ARE UPSTREAM CLEANING STEPS ALREADY DISCUSSED
+    # ЭНЭ ХҮРТЭЛХ ҮЙЛДЭЛ ӨМНӨХ ХЭСЭГТТЭЙ АДИЛ
     #####################################################
     
-    # de-duplicate
+    # давхардлыг арилгах
     distinct()
 ```
 
@@ -522,171 +526,171 @@ linelist <- linelist_raw %>%
 
 <!-- ======================================================= -->
 
-## Column creation and transformation
+## Баганыг үүсгэх ба хувирагх
 
-**We recommend using the dplyr function `mutate()` to add a new column, or to modify an existing one.**
+**Шинэ багана нэмж, хуучин баганыг хувиргах үйлдлийг dplyr багцын `mutate()` функц ашиглан гүйцэтгэхийг зөвлөж байна.**
 
-Below is an example of creating a new column with `mutate()`. The syntax is: `mutate(new_column_name = value or transformation)`
+Дор жишээнд `mutate()`ашиглан шинэ багана нэмэхийг харуулсан. Синтакс нь: `mutate(new_column_name = value or transformation)`
 
-In Stata, this is similar to the command `generate`, but R's `mutate()` can also be used to modify an existing column.
+R'-ын `mutate()` Stata-ын `generate`коммандтай төстэй боловч хуучин баганыг хувиргадагаараа онцлог.
 
-### New columns {.unnumbered}
+### Шинэ багана {.unnumbered}
 
-The most basic `mutate()` command to create a new column might look like this. It creates a new column `new_col` where the value in every row is 10.
+`mutate()` -ээр шинэ багана үүсгэх их энгийн жишээг дор харуулав. Энд бүх мөр нь 10 -ын тоотой энгийн `new_col` баганыг нэмж байна.
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(new_col = 10)
 ```
 
-You can also reference values in other columns, to perform calculations. Below, a new column `bmi` is created to hold the Body Mass Index (BMI) for each case - as calculated using the formula BMI = kg/m\^2, using column `ht_cm` and column `wt_kg`.
+Өөр багануудын утгыг холбож, тооцоолол хийж бас болно. Дор жишээнд `bmi` Биеийн Жингийн Индексийг тооцоолсон (БЖИ = кг/жин\^2) шинэ баганыг `ht_cm`, `wt_kg` гэсэн хуучин багануудыг ашиглан үүсгэсэн.
 
 ```{r}
 linelist <- linelist %>% 
   mutate(bmi = wt_kg / (ht_cm/100)^2)
 ```
 
-If creating multiple new columns, separate each with a comma and new line. Below are examples of new columns, including ones that consist of values from other columns combined using `str_glue()` from the **stringr** package (see page on [Characters and strings].
+Шинэ багана олныг зэрэг үүсгэх бол багана тус бүрийг таслалаар тусгаарлаж шинэ мөрөнд бичнэ. Дор шинэ баганууд нэмэх жишээ харуулсан. Үүнд хуучин багануудыг **stringr** -ын`str_glue()`-ээр нийлүүлж үүсгэсэн багана бас буй. ([Characters and strings] -аас харж болно.
 
 ```{r}
 new_col_demo <- linelist %>%                       
   mutate(
-    new_var_dup    = case_id,             # new column = duplicate/copy another existing column
-    new_var_static = 7,                   # new column = all values the same
-    new_var_static = new_var_static + 5,  # you can overwrite a column, and it can be a calculation using other variables
-    new_var_paste  = stringr::str_glue("{hospital} on ({date_hospitalisation})") # new column = pasting together values from other columns
+    new_var_dup    = case_id,             # шинэ багана = хуучин баганыг хувилах
+    new_var_static = 7,                   # шинэ багана = бүх утга ижилхэн
+    new_var_static = new_var_static + 5,  # хуучин баганын дээр шинэ багана үүсгэж болох ба ингэхдээ өөр баганыг ашиглан тооцоолол хийж болно. 
+    new_var_paste  = stringr::str_glue("{hospital} on ({date_hospitalisation})") # шинэ багана = бусад баганын утгыг хооронд нь нийлүүлж (paste) үүсгэнэ
     ) %>% 
-  select(case_id, hospital, date_hospitalisation, contains("new"))        # show only new columns, for demonstration purposes
+  select(case_id, hospital, date_hospitalisation, contains("new"))        # үзүүлэх зорилгоор зөвхөн шинэ багануудыг харуулна
 ```
 
-Review the new columns. For demonstration purposes, only the new columns and the columns used to create them are shown:
+Шинэ багануудыг шалга. Дор жишээнд та бүхэнд харуулах зорилгоор зөвхөн шинээр үүссэн баганууд болон тэднийг үүсгэхэд оролцсон багануудыг л хэвлэсэн :
 
 ```{r message=FALSE, echo=F}
-# display the linelist data as a table
+# linelist датаг хүснэгтээр харуулах
 DT::datatable(head(new_col_demo,50), rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-[***TIP:*** A variation on `mutate()` is the function `transmute()`. This function adds a new column just like `mutate()`, but also drops/removes all other columns that you do not mention within its parentheses.]{style="color: darkgreen;"}
+[***ЗӨВЛӨГӨӨ:*** `mutate()` -ын өөр нэгэн хувилбар бол `transmute()` юм.Энэ функц яг `mutate()` тай адилаар шинэ багана нэмэхээс гадна функц дотор дурьдаагүй багануудыг бүгдийг хасдаг.]{style="color: darkgreen;"}
 
 ```{r, eval=F}
-# HIDDEN FROM READER
-# removes new demo columns created above
+# УНШИГЧИД ХАРАГДАХГҮЙ
+# дээр үүсгэсэн баганыг хасна
 # linelist <- linelist %>% 
 #   select(-contains("new_var"))
 ```
 
-### Convert column class {.unnumbered}
+### Баганын төрлийг хувиргах {.unnumbered}
 
-Columns containing values that are dates, numbers, or logical values (TRUE/FALSE) will only behave as expected if they are correctly classified. There is a difference between "2" of class character and 2 of class numeric!
+Огноо, тоо, логик (TRUE/FALSE) утгуудыг агуулсан баганын ангиллыг зөв тодорхойлж оруулбал эдгээр баганатай ажиллахад хялбар болдог. Жишээ нь "2" бол character байхад 2 -ыг тоо уншигддаг!
 
-There are ways to set column class during the import commands, but this is often cumbersome. See the [R Basics] section on object classes to learn more about converting the class of objects and columns.
+Импорт хийж байх үед баганын төрлийг тохируулах аргууд буй боловч үйлдэл ихтэй. [R Basics] хэсэгт обьектийн төрлийн талаар, хэрхэн хувиргахыг дэлгэрүүлж уншиж болно.
 
-First, let's run some checks on important columns to see if they are the correct class. We also saw this in the beginning when we ran `skim()`.
+Дор жишээнд эхлээд гол багануудын төрөл зөв танигдсан эсэхийг шалгаж үзэх болно. Үүнийг `skim()` -ийг уншуулахад мөн баганын төрлүүдийг харж болж байсан.
 
-Currently, the class of the `age` column is character. To perform quantitative analyses, we need these numbers to be recognized as numeric!
+Одоо `age` баганын төрөл нь character байна. Энэ баганад тооцоолол хийхийн тулд тухайн баганын утга тоон утга гэж танигдсэн байх шаардлагатай!
 
 ```{r}
 class(linelist$age)
 ```
 
-The class of the `date_onset` column is also character! To perform analyses, these dates must be recognized as dates!
+`date_onset` баганын төрөл нь мөн character! Анализ хийхийн тулд эдгээр багана огноо хэлбэрээр танигдсан байх шаардлагатай!
 
 ```{r}
 class(linelist$date_onset)
 ```
 
-To resolve this, use the ability of `mutate()` to re-define a column with a transformation. We define the column as itself, but converted to a different class. Here is a basic example, converting or ensuring that the column `age` is class Numeric:
+Ийм тохиолдолд `mutate()`-аар баганыг дахин тодорхойлж зөв төрөлд нь хувиргаж болно. Энэ үед баганын утгыг өөрчлөхгүйгээр зөвхөн төрлийг нь хувиргадаг. Дор энгийн жишээгээр `age` баганыг тоон утгатай баганаруу хувиргаж/бататгаж байна:
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(age = as.numeric(age))
 ```
 
-In a similar way, you can use `as.character()` and `as.logical()`. To convert to class Factor, you can use `factor()` from **base** R or `as_factor()` from **forcats**. Read more about this in the [Factors] page.
+Үүнтэй адилаар `as.character()` болон `as.logical()` зэргийг хэрэглэж болно. Factor төрлийг хувиргахын тулд **base** R -ын`factor()` эсвэл **forcats**-ын `as_factor()`-г хэрэглэдэг. Энэ талаар [Factors] хэсгээс нэмж уншна уу.
 
-You must be careful when converting to class Date. Several methods are explained on the page [Working with dates]. Typically, the raw date values must all be in the same format for conversion to work correctly (e.g "MM/DD/YYYY", or "DD MM YYYY"). After converting to class Date, check your data to confirm that each value was converted correctly.
+Огноог болгоомжтой хувиргах шаардлагатай. [Working with dates] хэсэгт хэд хэдэн аргуудыг дурьдсан буй. Боловсруулагдаагүй датаны огноо нь бүгд ижилхэн форматтай байх шаардлагатай ба ингэснээр цаашид зөв хэлбэрт хувиргагдах боломжтой ( "MM/DD/YYYY", эсвэл "DD MM YYYY" гэх мэт). Огноог Date төрөлд хувиргасны дараа зөв хувирсан эсэхийг заавал шалгах шаардлагатай.
 
-### Grouped data {.unnumbered}
+### Бүлэглэсэн дата {.unnumbered}
 
-If your data frame is already *grouped* (see page on [Grouping data]), `mutate()` may behave differently than if the data frame is not grouped. Any summarizing functions, like `mean()`, `median()`, `max()`, etc. will calculate by group, not by all the rows.
+Хэрэв таны дата *бүлэглэгдсэн* бол ( [Grouping data] хэсгийг хар), `mutate()` функц бүлэглэглэгдээгүй датанаас өөрөөр ханддаг. Статистикийн `mean()`, `median()`, `max()` зэрэг функцуудыг бүлгээр тооцоолон бодоход ашигладаг.
 
 ```{r, eval=F}
-# age normalized to mean of ALL rows
+# насыг бүх мөрний дунджаар хуваах
 linelist %>% 
   mutate(age_norm = age / mean(age, na.rm=T))
 
-# age normalized to mean of hospital group
+# насыг эмнэлэгт хэвтсэн бүлгийн дунджаар хуваах
 linelist %>% 
   group_by(hospital) %>% 
   mutate(age_norm = age / mean(age, na.rm=T))
 ```
 
-Read more about using `mutate ()` on grouped dataframes in this [tidyverse mutate documentation](https://dplyr.tidyverse.org/reference/mutate.html).
+Бүлэглэсэн хүснэгт дээр `mutate ()` -г хэрхэн хэрэгдэх талаар [tidyverse mutate documentation](https://dplyr.tidyverse.org/reference/mutate.html) хэсгээс нэмж уншна уу.
 
-### Transform multiple columns {#clean_across .unnumbered}
+### Олон баганыг хувиргах {#clean_across .unnumbered}
 
-Often to write concise code you want to apply the same transformation to multiple columns at once. A transformation can be applied to multiple columns at once using the `across()` function from the package **dplyr** (also contained within **tidyverse** package). `across()` can be used with any **dplyr** function, but is commonly used within `select()`, `mutate()`, `filter()`, or `summarise()`. See how it is applied to `summarise()` in the page on [Descriptive tables].
+Кодын хэмжээг багасгах үүднээс олон баганыг зэрэг хувиргах хэрэг гардаг. Үүнийг **dplyr** багцын ( **tidyverse** багцуудын нэг) `across()`-оор хийдэг . `across()` -ыг **dplyr** -ын аль ч функцэд ажиллуулж болох ч `select()`, `mutate()`, `filter()`, `summarise()`функцын дотор илүү хэрэглэгддэг. [Descriptive tables] хэсгээс `summarise()` -тай хэрхэн хавсарч хэрэглэж болох талаар харна уу.
 
-Specify the columns to the argument `.cols =` and the function(s) to apply to `.fns =`. Any additional arguments to provide to the `.fns` function can be included after a comma, still within `across()`.
+`across()`-ын`.cols =` аргументэд сонгосон багануудаа оруулаад, `.fns =` аргументэд гүйцэтгэх функцуудээ зааж өгнө. Хэрэв `.fns` -д оруулсан функцийн аргументийг мөн оруулах шаардлагатай бол таслал аваад `across()` хаалт дотроо нэмж оруулна.
 
-#### `across()` column selection {.unnumbered}
+#### `across()` багана сонгох {.unnumbered}
 
-Specify the columns to the argument `.cols =`. You can name them individually, or use "tidyselect" helper functions. Specify the function to `.fns =`. Note that using the function mode demonstrated below, the function is written *without* its parentheses ( ).
+`.cols =` -д сонгосон багануудаа зааж өг. Баганыг нэг бүрчлэн нэрлэж оруул. Эсвэл "tidyselect" -ын туслах функцуудыг ашигла. Гүйцэтгэх функцээ`.fns =`-д зааж өг. Оруулсан функц **хаалтгүйгээр** бичигдсэн байгааг дор жишээн дээрээс анзаарна уу.
 
-Here the transformation `as.character()` is applied to specific columns named within `across()`.
+Энд `across()`дотор бичигдсэн багануудад `as.character()` хувигалт зэрэг хийхийг харуулав.
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(across(.cols = c(temp, ht_cm, wt_kg), .fns = as.character))
 ```
 
-The "tidyselect" helper functions are available to assist you in specifying columns. They are detailed above in the section on Selecting and re-ordering columns, and they include: `everything()`, `last_col()`, `where()`, `starts_with()`, `ends_with()`, `contains()`, `matches()`, `num_range()` and `any_of()`.
+"tidyselect" туслах функцуудээр баганын сонголтыг хялбарчилахад ашигладаг. Энэ функцуудын талаар багана сонгох, дэс дарааллах хэсэгт дэлгэрүүлж тайлбарласан. Үүнд : `everything()`, `last_col()`, `where()`, `starts_with()`, `ends_with()`, `contains()`, `matches()`, `num_range()` `any_of()` орно.
 
-Here is an example of how one would change **all columns** to character class:
+Энд **бүх баганыг** хэрхэн зэрэг character төрөлд хувиргахыг харуулсан:
 
 ```{r, eval=F}
-#to change all columns to character class
+#бүх баганыг character болгож хувиргах
 linelist <- linelist %>% 
   mutate(across(.cols = everything(), .fns = as.character))
 ```
 
-Convert to character all columns where the name contains the string "date" (note the placement of commas and parentheses):
+Дор зөвхөн нэрэндээ "date" гэсэн үг агуулсан багануудыг character -руу хувиргахыг харуулав (таслал болон хаалтны байрлалыг ажигла):
 
 ```{r, eval=F}
-#to change all columns to character class
+#"date" -г нэрэндээ агуулсан бүх баганыг character болгож хувиргах
 linelist <- linelist %>% 
   mutate(across(.cols = contains("date"), .fns = as.character))
 ```
 
-Below, an example of mutating the columns that are currently class POSIXct (a raw datetime class that shows timestamps) - in other words, where the function `is.POSIXct()` evaluates to `TRUE`. Then we want to apply the function `as.Date()` to these columns to convert them to a normal class Date.
+Дор POSIXct хэлбэрт (цаг хугацааг харуулсан датаны боловсруулагдаагүй хэлбэрийн нэг) байсан багануудыг хувиргахыг харуулав. Өөрөөр хэлбэл `is.POSIXct()` функцээр багануудыг шалгаад`TRUE` хариу өгсөн багана болгоныг `as.Date()`-руу хувиргаж зөв Date хэлбэрт оруулах юм.
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(across(.cols = where(is.POSIXct), .fns = as.Date))
 ```
 
--   Note that within `across()` we also use the function `where()` as `is.POSIXct` is evaluating to either TRUE or FALSE.\
--   Note that `is.POSIXct()` is from the package **lubridate**. Other similar "is" functions like `is.character()`, `is.numeric()`, and `is.logical()` are from **base R**
+-   Дээр бичсэнээр `across()` доторх `where()` функцээр `is.POSIXct` функц үнэн (TRUE) эсвэл худал (FALSE) эсэхийг шалгаж буй юм.\
+-   Энэхүү`is.POSIXct()` нь **lubridate** багцын функц. Бусад төстэй "is"-ээр эхэлдэг функцууд `is.character()`, `is.numeric()`, `is.logical()` нар **base R** багцад байдаг.
 
-#### `across()` functions {.unnumbered}
+#### `across()` функцууд {.unnumbered}
 
-You can read the documentation with `?across` for details on how to provide functions to `across()`. A few summary points: there are several ways to specify the function(s) to perform on a column and you can even define your own functions:
+`?across` -комманд уншуулж `across()`-ын хэвлэлийг гаргаж ирж функц оруулах талаар нэмж уншиж болно. Функцуудыг багануудад хэрэгжүүлэх хэд хэдэн арга буйг санаж байх хэрэгтэй. Та өөрийн функцыг бас үүсгэж болно:
 
--   You can provide the function name alone (e.g. `mean` or `as.character`)\
+-   Функцын нэрийг дангаар нь өгч болно (ж:`mean` эсвэл `as.character`)\
 
--   You can provide the function in **purrr**-style (e.g. `~ mean(.x, na.rm = TRUE)`) (see [this page][Iteration, loops, and lists])\
+-   Функцыг **purrr**-багцын хэлбэрт оруулж болно (ж:`~ mean(.x, na.rm = TRUE)`) ( [this page][Iteration, loops, and lists]-ээс хар)\
 
--   You can specify multiple functions by providing a list (e.g. `list(mean = mean, n_miss = ~ sum(is.na(.x))`).
+-   Олон функцуудыг list -д жагсааж оруулж болно (ж: `list(mean = mean, n_miss = ~ sum(is.na(.x))`).
 
-    -   If you provide multiple functions, multiple transformed columns will be returned per input column, with unique names in the format `col_fn`. You can adjust how the new columns are named with the `.names =` argument using **glue** syntax (see page on [Characters and strings]) where `{.col}` and `{.fn}` are shorthand for the input column and function.
+    -   Олон функц зэрэг оруулж буй үед , multiple transformed columns will be returned per input column, with unique names in the format `col_fn`. Шинээр үүсэх багануудын нэрийг **glue** синтаксыг ашиглан `.names =` аргументээр тохируулж болно ( [Characters and strings]-ээс нэмж хар) `{.col}` болон `{.fn}` are shorthand for the input column and function.
 
-Here are a few online resources on using `across()`: [creator Hadley Wickham's thoughts/rationale](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)
+`across()`-ын талаарх нэмэлт онлайн эх сурвалжууд: [creator Hadley Wickham's thoughts/rationale](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)
 
 ### `coalesce()` {.unnumbered}
 
-This **dplyr** function finds the first non-missing value at each position. It "fills-in" missing values with the first available value in an order you specify.
+Энэхүү **dplyr** багцын функц хамгийн эхний дутуу биш утгыг байрлал бүрт олж тогтоодог. Ингэснээр дутуу утгуудыг хамгийн эхний боломжит утгаар таны заасны дагуу "бөглөдөг".
 
-Here is an example *outside the context of a data frame*: Let us say you have two vectors, one containing the patient's village of detection and another containing the patient's village of residence. You can use coalesce to pick the first non-missing value for each index:
+Үүнийг *хүснэгтгүй* жишээнд харуулав: Таньд хоёр вектор байна гэж бодъё. Нэг нь өвчтөний оношлогдсон тосгон, нөгөө нь өвчтөний амьдардаг хот байв. Энэ үед coalesce-г ашиглаж эхний дутуу биш утгыг индекс бүрт олж болно:
 
 ```{r}
 village_detection <- c("a", "b", NA,  NA)
@@ -696,128 +700,128 @@ village <- coalesce(village_detection, village_residence)
 village    # print
 ```
 
-This works the same if you provide data frame columns: for each row, the function will assign the new column value with the first non-missing value in the columns you provided (in order provided).
+Хүснэгтийн баганууудад мөн адил үйлчилнэ: энэ функц шинэ баганын утгыг таны зааж өгсөн баганын эхний дутуу биш утганд мөр болгоноор оноож өгнө (дэс дараалалтайгаар).
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(village = coalesce(village_detection, village_residence))
 ```
 
-This is an example of a "row-wise" operation. For more complicated row-wise calculations, see the section below on Row-wise calculations.
+Энд "мөр - дагуу" гүйцэтгэлийг харуулав. Илүү нарийн тооцооллыг мөр дагуу хэрхэн хийх талаар Мөр-дагуу тооцоолол хэсэгт харна уу.
 
-### Cumulative math {.unnumbered}
+### Cumulative математик {.unnumbered}
 
-If you want a column to reflect the cumulative sum/mean/min/max etc as assessed down the rows of a dataframe to that point, use the following functions:
+Хэрэв cumulative нийлбэр/дундаж/min/max зэргийг баганын мөр болгонд өмнөх мөрүүдтэй нь хамт тооцоолон оруулах бол дараах функцыг хэрэглэж болно:
 
-`cumsum()` returns the cumulative sum, as shown below:
+`cumsum()` -аар cumulative нийлбэрийг олно :
 
 ```{r}
-sum(c(2,4,15,10))     # returns only one number
-cumsum(c(2,4,15,10))  # returns the cumulative sum at each step
+sum(c(2,4,15,10))     # зөвхөн нэг тоон утгыг л үр дүнд гаргана
+cumsum(c(2,4,15,10))  # утга болгонд cumulative нийлбэрийг харуулна
 ```
 
-This can be used in a dataframe when making a new column. For example, to calculate the cumulative number of cases per day in an outbreak, consider code like this:
+Хүснэгтийн хувьд мөн адилхан. Өдрийн дэгдэлтийн үед өдрийн cumulative тохиолдлын тоог тооцохдоо дараах кодыг ашигла:
 
 ```{r, warning=F, message=F}
-cumulative_case_counts <- linelist %>%  # begin with case linelist
-  count(date_onset) %>%                 # count of rows per day, as column 'n'   
-  mutate(cumulative_cases = cumsum(n))  # new column, of the cumulative sum at each row
+cumulative_case_counts <- linelist %>%  # linelist-ээс эхэл
+  count(date_onset) %>%                 # Өдар тутамдах мөрийг тоолох ('n')   
+  mutate(cumulative_cases = cumsum(n))  # Мөр болгонд cumulative нийлбэрийг бодсон шинэ багана
 ```
 
-Below are the first 10 rows:
+Ингээд эхний 10 мөрийг харахад:
 
 ```{r}
 head(cumulative_case_counts, 10)
 ```
 
-See the page on [Epidemic curves] for how to plot cumulative incidence with the epicurve.
+[Epidemic curves] хэсгээс cumulative тохиолдлын тоогоор хэрхэн график хийх тухай буйг уншна уу.
 
-See also:\
+Мөн дараах функцуудын талаах хар:\
 `cumsum()`, `cummean()`, `cummin()`, `cummax()`, `cumany()`, `cumall()`
 
-### Using **base** R {.unnumbered}
+### **base** R -г ашиглах {.unnumbered}
 
-To define a new column (or re-define a column) using **base** R, write the name of data frame, connected with `$`, to the *new* column (or the column to be modified). Use the assignment operator `<-` to define the new value(s). Remember that when using **base** R you must specify the data frame name before the column name every time (e.g. `dataframe$column`). Here is an example of creating the `bmi` column using **base** R:
+**base** R-г хэрэглэж шинэ багана үүсгэх (эсвэл хуучин баганыг өөрчлөх) бол, дататай хүснэгтийнхээ нэрийг бичээд `$` тэмдгээр *шинэ* үүсгэх (эсвэл өөрчлөх) баганаа холбож өгнө. оноох операторыг ашиглаж `<-` шинэ утгаа оруулна. **base** R -г хэрэглэж буй үед дататай хүснэгтийнхээ нэрийг баганын өмнө заавал зааж өгөх хэрэгтэй гэдгийг санаарай (ж: `dataframe$column`). Энэ жишээнд `bmi` -г хэрхэн **base** R-р үүсгэх тухай харуулав:
 
 ```{r, eval=F}
 linelist$bmi = linelist$wt_kg / (linelist$ht_cm / 100) ^ 2)
 ```
 
-### Add to pipe chain {.unnumbered}
+### Pipe холбоосонд залгах {.unnumbered}
 
-**Below, a new column is added to the pipe chain and some classes are converted.**
+**Дор жишээнд pipe холбоосонд шинэ мөр үүсгэх болон зарим баганын төрлийг хувиргах үйлдлүүд залгагдсан.**
 
 ```{r }
-# CLEANING 'PIPE' CHAIN (starts with raw data and pipes it through cleaning steps)
+# ЦЭВЭРЛЭХ 'PIPE' ХОЛБООС (түүхий датаг цэвэрлэх үе шатуудаар дамжуулан цэвэрлэдэг холбоос) 
 ##################################################################################
 
-# begin cleaning pipe chain
+# Цэвэрлэх холбоосыг эхлэх
 ###########################
 linelist <- linelist_raw %>%
     
-    # standardize column name syntax
+    # баганын нэрсийг жигдрүүлэх
     janitor::clean_names() %>% 
     
-    # manually re-name columns
-           # NEW name             # OLD name
+    # зарим баганын нэрийг гараар өөрчил
+            # ШИНЭ нэр             # ХУУЧИН нэр
     rename(date_infection       = infection_date,
            date_hospitalisation = hosp_date,
            date_outcome         = date_of_outcome) %>% 
     
-    # remove column
+    # баганыг хас
     select(-c(row_num, merged_header, x28)) %>% 
-  
-    # de-duplicate
+
+    # давхардалтыг арилга
     distinct() %>% 
   
-    # ABOVE ARE UPSTREAM CLEANING STEPS ALREADY DISCUSSED
+    # ЭНЭ ХҮРТЭЛХ ҮЙЛДЭЛ ӨМНӨХ ХЭСЭГТТЭЙ АДИЛ
     ###################################################
-    # add new column
+    # Шинэ багана нэм
     mutate(bmi = wt_kg / (ht_cm/100)^2) %>% 
   
-    # convert class of columns
+    # баганын төрлийг хувирга
     mutate(across(contains("date"), as.Date), 
            generation = as.numeric(generation),
            age        = as.numeric(age)) 
 ```
 
-## Re-code values
+## Утга өөрчлөх
 
-Here are a few scenarios where you need to re-code (change) values:
+Утга өөрчлөх хэд хэдэн тохиолдлуудыг дор дурьдлаа:
 
--   to edit one specific value (e.g. one date with an incorrect year or format)\
--   to reconcile values not spelled the same
--   to create a new column of categorical values\
--   to create a new column of numeric categories (e.g. age categories)
+-   тодорхой нэг утгыг янзлах (ж: нэг огнооны жил нь буруу эсвэл буруу форматтай орсон байх)\
+-   өөр өөрөөр галиглагдаж бичигдсэн утгуудыг жигд болгох
+-   ангилсан утгуудтай шинэ багана үүсгэх\
+-   тоон ангилалтай шинэ багана нэмэх (ж: насны бүлэглэл)
 
-### Specific values {.unnumbered}
+### Өвөрмөц утгууд {.unnumbered}
 
-To change values manually you can use the `recode()` function within the `mutate()` function.
+Утгыг гараар өөрчлөхийн тулд `mutate()` функц дотор`recode()` функцыг оруулж бичнэ.
 
-Imagine there is a nonsensical date in the data (e.g. "2014-14-15"): you could fix the date manually in the raw source data, or, you could write the change into the cleaning pipeline via `mutate()` and `recode()`. The latter is more transparent and reproducible to anyone else seeking to understand or repeat your analysis.
+Жишээ нь дата дотор буруу бичигдсэн огноо байлаа гэж бодъё (ж: "2014-14-15"): боловсруулалт хийгдэхээс өмнө эх дата дээрээ шууд гараар янзалж болно. Эсвэл `mutate()` болон`recode()`-функцуудыг pipe холбоостоо залгаж өгч цэвэрлэж бас болно. Сүүлийн арга илүү нээлттэй, дахин боловсруулалт хийх боломжтой тул таны датаг ойлгож, дахин анализ хийх хүсэлтэй хүмүүст боломж олгодог.
 
 ```{r, eval=F}
-# fix incorrect values                   # old value       # new value
+# алдаатай утгыг засах                   # хуучин утга  # шинж утга
 linelist <- linelist %>% 
   mutate(date_onset = recode(date_onset, "2014-14-15" = "2014-04-15"))
 ```
 
-The `mutate()` line above can be read as: "mutate the column `date_onset` to equal the column `date_onset` re-coded so that OLD VALUE is changed to NEW VALUE". Note that this pattern (OLD = NEW) for `recode()` is the opposite of most R patterns (new = old). The R development community is working on revising this.
+Дээр бичигдсэн `mutate()` үйлдлийг дараах байдлаар уншна: "`date_onset` баганыг шинэчлэгдсэн `date_onset` тай тэнцүү бичих ба ингэснээр ХУУЧИН УТГА нь ШИНЭ УТГА-аар солигдно". `recode()` функцын энэ дараалал (ХУУЧИН = ШИНЭ) R -ын ихэнх функцуудэд эсрэгээрээ бичигддэг (шинэ = хуучин). R хөгжлийн нийгэмлэг үүнийг сайжруулахаар ажиллаж буй юм.
 
-**Here is another example re-coding multiple values within one column.**
+**Нэг багана доторх хэд хэдэн утгыг зэрэг өөрчлөх өөр нэгэн жишээ энд харуулав.**
 
-In `linelist` the values in the column "hospital" must be cleaned. There are several different spellings and many missing values.
+`linelist` -ын "hospital" баганыг цэвэрлэх шаардлагатай боллоо. Учир нь хэд хэдэн газар алдаатай бичигдэж, дутуу утгууд олон орсон байна.
 
 ```{r}
-table(linelist$hospital, useNA = "always")  # print table of all unique values, including missing  
+table(linelist$hospital, useNA = "always")  # дутуу утгуудыг оролцуулан бүх өвөрмөц утгуудыг хэвлэ  
 ```
 
-The `recode()` command below re-defines the column "hospital" as the current column "hospital", but with the specified recode changes. Don't forget commas after each!
+Энэ`recode()` коммандад "hospital" баганыг тухайн "hospital" багана хэвээр боловч дотор нь тодорхой өөрчлөлтүүд оруулахыг зааж өгсөн байна. Тус бүр ардаа таслалтаа байгааг анхаар!
 
 ```{r}
 linelist <- linelist %>% 
   mutate(hospital = recode(hospital,
-                     # for reference: OLD = NEW
+                     # лавлагаа: ХУУЧИН = ШИНЭ
                       "Mitylira Hopital"  = "Military Hospital",
                       "Mitylira Hospital" = "Military Hospital",
                       "Military Hopital"  = "Military Hospital",
@@ -828,88 +832,88 @@ linelist <- linelist %>%
                       ))
 ```
 
-Now we see the spellings in the `hospital` column have been corrected and consolidated:
+Одоо `hospital` баганын галиглал хэрхэн засагдаж жигдэрсэн байгааг хар:
 
 ```{r}
 table(linelist$hospital, useNA = "always")
 ```
 
-[***TIP:*** The number of spaces before and after an equals sign does not matter. Make your code easier to read by aligning the = for all or most rows. Also, consider adding a hashed comment row to clarify for future readers which side is OLD and which side is NEW. ]{style="color: darkgreen;"}
+[***ЗӨВЛӨГӨӨ:*** тэнцүүгийн тэмдгийн ард урд хэр их зай авах нь хамаагүй. Гэвч бичсэн кодоо уншихад хялбар байх үүднээс = тэмдгийг мөр болгонд тэгшхэн тааруулж бичвэл зохимжтой. Мөн хүмүүст уншихад ойлгомжтой болгох үүднээс "хэш" тэмдэгтэй тэмдэглэлээр аль нь хуучин, аль нь шинэ утга болохыг тэмдэглэж болно.]{style="color: darkgreen;"}
 
-[***TIP:*** Sometimes a *blank* character value exists in a dataset (not recognized as R's value for missing - `NA`). You can reference this value with two quotation marks with no space inbetween ("").]{style="color: darkgreen;"}
+[***ЗӨВЛӨГӨӨ:*** заримдаа *хоосон* утга датад орж ирсэн байдаг ( R-ын дутуу утга буюу `NA` болж танигдаагүй). Үүнийг давхар хашилтын тэмдгийн дотор зай авалгүйгээр бичснэрээ энэ хоосон утгыг зааж өгдөг ("").]{style="color: darkgreen;"}
 
-### By logic {.unnumbered}
+### Логик үйлдлүүд {.unnumbered}
 
-Below we demonstrate how to re-code values in a column using logic and conditions:
+Дор logic болон нөхцөл (conditions) ашиглаж хэрхэн баганын утгыг өөрчлөхийг харуулав:
 
--   Using `replace()`, `ifelse()` and `if_else()` for simple logic
--   Using `case_when()` for more complex logic
+-   `replace()`, `ifelse()` болон `if_else()` зэргийг энгийн логик үйлдлүүдэд хэрэглэдэг
+-   `case_when()` -ийг арай нарийн логик үйлдэлд хэрэглэнэ for more complex logic
 
-### Simple logic {.unnumbered}
+### Энгийн логик үйлдэл {.unnumbered}
 
 #### `replace()` {.unnumbered}
 
-To re-code with simple logical criteria, you can use `replace()` within `mutate()`. `replace()` is a function from **base** R. Use a logic condition to specify the rows to change . The general syntax is:
+Энгийн логик шалгуурыг үүсгэхдээ `mutate()` дотор `replace()` -ийг бичдэг. `replace()` нь **base** R-ын функц. Логик нөхцөл ашиглан өөрчлөх мөрөө зааж өгнө. Синтаксын ерөнхий фрмат:
 
-`mutate(col_to_change = replace(col_to_change, criteria for rows, new value))`.
+`mutate(col_to_change = replace(col_to_change, мөрний шалгуур үзүүлэлт, шинэ утга))`.
 
-One common situation to use `replace()` is **changing just one value in one row, using an unique row identifier**. Below, the gender is changed to "Female" in the row where the column `case_id` is "2195".
+`replace()` -ийн өөр нэгэн нийтлэг хэрэглээ бол **өвөрмөц дугаараар нь зөвхөн нэг мөрний нэг утгыг нь өөрчлөх** юм. Дор жишээнд `case_id` баганын 2195 гэсэн мөрний хүйсийг "Female" болгож өөрчилсөн.
 
 ```{r, eval=F}
-# Example: change gender of one specific observation to "Female" 
+# Жишээ: тодорхой нэг ширхэг ажиглалтыг "Female" болгож өөрчлөх
 linelist <- linelist %>% 
   mutate(gender = replace(gender, case_id == "2195", "Female"))
 ```
 
-The equivalent command using **base** R syntax and indexing brackets `[ ]` is below. It reads as "Change the value of the dataframe `linelist`'s column `gender` (for the rows where `linelist`'s column `case_id` has the value '2195') to 'Female' ".
+Үүнтэй ижил үйлдлийг **base** R -ын индекс дөрвөлжин хаалт `[ ]` гүйцэтгэдэг (дор жишээнд харуулав). Доор кодыг дараах байдлаар уншина: "`linelist` хүснэгтийн `gender` баганыг (`case_id` баганадаа '2195' гэсэн утгатай `linelist`) 'Female' болго ".
 
 ```{r, eval=F}
 linelist$gender[linelist$case_id == "2195"] <- "Female"
 ```
 
-#### `ifelse()` and `if_else()` {.unnumbered}
+#### `ifelse()` болон `if_else()` {.unnumbered}
 
-Another tool for simple logic is `ifelse()` and its partner `if_else()`. However, in most cases for re-coding it is more clear to use `case_when()` (detailed below). These "if else" commands are simplified versions of an `if` and `else` programming statement. The general syntax is:\
-`ifelse(condition, value to return if condition evaluates to TRUE, value to return if condition evaluates to FALSE)`
+Өөр нэгэн энгийн логик үйлдлүүдэд `ifelse()` болон `if_else()` орно. Гэхдээ ихэнх утга өөрчлөх үйлдлүүдэд `case_when()` -ийг хэрэглэх нь илүү ойлгомжтой байдаг (дэлгэрэнгүйг доор бичсэн). Эдгээр "if else" коммандууд нь `if` болон `else` программчлалын хялбаршуулсан хэлбэр юм. Синтаксын ерөнхий формат:\
+`ifelse(нөхцөл, хэрэв нөхцөл TRUE бол дуудах утга, нөхцөл FALSE бол дуудах утга)`
 
-Below, the column `source_known` is defined. Its value in a given row is set to "known" if the row's value in column `source` is *not* missing. If the value in `source` *is* missing, then the value in `source_known` is set to "unknown".
+Дор `source_known` баганыг тодорхойлсон байна. Хэрэв `source` баганын аль нэг мөрний утга дутуу утга *биш* бол тухайн мөрний `source_known` баганадах утга "known" гэж бичигднэ. Хэрэв `source` -ын утга дутуу утга *мөн* бол тухайн мөрний `source_known` баганадах утга "unknown" гэж бичигднэ.
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(source_known = ifelse(!is.na(source), "known", "unknown"))
 ```
 
-`if_else()` is a special version from **dplyr** that handles dates. Note that if the 'true' value is a date, the 'false' value must also qualify a date, hence using the special value `NA_real_` instead of just `NA`.
+`if_else()` нь **dplyr** багцын голчлон огноог янзалдаг тусгай функц юм. Хэрэв 'жинхэнэ' утга нь огноо бол 'худал' утга нь мөн адил огноо гэж үзэгдэх тул ердийн `NA`-ын оронд тусгай `NA_real_` хэрэглэнэ.
 
 ```{r, eval=F}
-# Create a date of death column, which is NA if patient has not died.
+# Нас барсан өдрийн баганыг үүсгэ. Өвчтөн нас бараагүй бол `NA`-аар бич.
 linelist <- linelist %>% 
   mutate(date_death = if_else(outcome == "Death", date_outcome, NA_real_))
 ```
 
-**Avoid stringing together many ifelse commands... use `case_when()` instead!** `case_when()` is much easier to read and you'll make fewer errors.
+**олон зэрэг ifelse -ийг бичихэээс зайлсхий. Оронд нь `case_when()` -ийг хэрэглэ!** `case_when()` -хялбар уншигддаг ба алдаа гаргах нь цөөн.
 
 ```{r, fig.align = "center", out.width = "100%", echo=F}
 knitr::include_graphics(here::here("images", "ifelse bad.png"))
 ```
 
-Outside of the context of a data frame, if you want to have an object used in your code switch its value, consider using `switch()` from **base** R.
+код бичихэд хэрэглэдэг обьектийг хүснэгтээс гадуур байлгахыг хүсвэл object used in your code switch its value, consider using `switch()` from **base** R.{style="color: red;"}
 
-### Complex logic {#clean_case_when .unnumbered}
+### Нарийн логик үйлдлүүд {#clean_case_when .unnumbered}
 
-Use **dplyr**'s `case_when()` if you are re-coding into many new groups, or if you need to use complex logic statements to re-code values. This function evaluates every row in the data frame, assess whether the rows meets specified criteria, and assigns the correct new value.
+Хэрэв олон бүлэгт өөрчлөлт оруулах, аливаа утгыг өөрчлөхөд нарийн төвөгтэй логик үйлдлүүд хийх шаардлагтай бол **dplyr** багцын `case_when()` -ыг хэрэглэ. Хүснэгтийн мөр болгоныг шалгаад, тодорхой шалгуурыг хангах эсэхийг үнэлсний дараа зөв утгыг оруулж өгдөг.
 
-`case_when()` commands consist of statements that have a Right-Hand Side (RHS) and a Left-Hand Side (LHS) separated by a "tilde" `~`. The logic criteria are in the left side and the pursuant values are in the right side of each statement. Statements are separated by commas.
+`case_when()` комманд нв Баруун-Тал/Right-Hand Side (RHS) болон Зүүн-Тал/Left-Hand Side (LHS) -ын бичиглэлүүдтэй ба "тилда" `~` тэмдэгээр хуваагддаг. Логик шалгуурууд нь зүүн талд нийцүүлсэн утгууд нь баруун талдаа бичигдэх ба өгөгдөл тус бүр таслал байна.
 
-For example, here we utilize the columns `age` and `age_unit` to create a column `age_years`:
+Жишээ нь, `age` болон `age_unit` баганыг ашиглаж `age_years` баганыг үүсгэсэн:
 
 ```{r}
 linelist <- linelist %>% 
   mutate(age_years = case_when(
-            age_unit == "years"  ~ age,       # if age is given in years
-            age_unit == "months" ~ age/12,    # if age is given in months
-            is.na(age_unit)      ~ age,       # if age unit is missing, assume years
-            TRUE                 ~ NA_real_)) # any other circumstance, assign missing
+            age_unit == "years"  ~ age,       # хэрэв нас жилээр өгөгдсөн бол
+            age_unit == "months" ~ age/12,    # хэрэв нас сараар өгөгдсөн бол
+            is.na(age_unit)      ~ age,       # хэрэв нас баганад дутуу утга байвал (нас жилээр өгөгдсөн)
+            TRUE                 ~ NA_real_)) # бусад бүх тохиолдолд дутуу утгаар авна
 ```
 
 As each row in the data is evaluated, the criteria are applied/evaluated in the order the `case_when()` statements are written - from top-to-bottom. If the top criteria evaluates to `TRUE` for a given row, the RHS value is assigned, and the remaining criteria are not even tested for that row. Thus, it is best to write the most specific criteria first, and the most general last.
