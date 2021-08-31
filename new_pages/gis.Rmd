@@ -391,8 +391,9 @@ case_adm3 <- linelist_adm %>%          # begin with linelist with new admin cols
   as_tibble() %>%                      # convert to tibble for better display
   group_by(admin3pcod, admin3name) %>% # group by admin unit, both by name and pcode 
   summarise(cases = n()) %>%           # summarize and count rows
-  arrange(desc(cases))                     # arrange in descending order
-
+  arrange(desc(cases)) %>%                      # arrange in descending order
+  filter(!is.na(admin3name))
+  
 case_adm3
 ```
 

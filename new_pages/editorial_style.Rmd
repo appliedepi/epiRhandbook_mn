@@ -1,141 +1,132 @@
-# Editorial and technical notes { }
+# Редакцийн болон техникийн тэмдэглэл
 
-In this page we describe the philosophical approach, style, and specific editorial decisions made during the creation of this handbook.  
+Энэ хуудсанд энэхүү гарын авлагыг бүтээх явцад бидний барьсан философийн арга барил, хэв маяг, редакцийн тодорхой шийдвэрүүдийг тайлбарласан болно.
 
+## Арга барил, загвар
 
-## Approach and style
+Энэхүү номын уншигчдын хүрээ маш өргөн байх боломжтой. R-ийг анхлан сурч буй хүмүүс хэрэглэх нь гарцаагүй бөгөөд мөн туршлагатай R хэрэглэгчид ч шилдэг туршлага, зөвлөгөөг хайн унших болно. Тиймээс энэхүү ном ойлгомжтой бөгөөд товч тодорхой байх ёстой. Тийм болохоор бид R анхлан сурж буй хүн кодыг ашиглаж, тухайн код юу хийж буйг ойлгох хэмжээний *дөнгөж хангалттай* бичгэн тайлбар хийхийг зорьсон.
 
-The potential audience for this book is large. It will surely be used by people very new to R, and also by experienced R users looking for best practices and tips. So it must be both accessible and succinct. Therefore, our approach was to provide *just enough* text explanation that someone very new to R can apply the code and follow what the code is doing.  
+Өөр хэдэн зүйл:
 
-A few other points:  
+-   Энэ бол харьцангуй богино жишээтэй кодын лавлагаа ном юм - R эсвэл өгөгдлийн шинжлэх ухааны талаарх гүнзгий сурах бичиг *биш*
+-   Энэ бол хэрэглээний тархвар судлалд хэрэглэгдэх *R гарын авлага* - хэрэглээний тархвар судлалын шинжлэх ухаан эсвэл аргачлалын гарын авлага биш
+-   Энэхүү ном амьд ном байхыг зорьж буй - тодорхой үйлдэл хийхэд хамгийн тохиромжтой R багцууд өөрчлөгдөх нь түгээмэл бөгөөд бид энэхүү гарын авлагад алийг нь тусгах талаар хэлэлцүүлгийг таатай хүлээн авах болно
 
-* This is a code reference book accompanied by relatively brief examples - *not* a thorough textbook on R or data science  
-* This is a *R handbook* for use within applied epidemiology - not a manual on the methods or science of applied epidemiology  
-* This is intended to be a living document - optimal R packages for a given task change often and we welcome discussion about which to emphasize in this handbook  
+### R багцууд {.unnumbered}
 
+**Маш олон сонголтууд**
 
+R сурахад хамгийн төвөгтэй талуудын нэг нь тухайн даалгаварт яг аль R багцыг ашиглахаа мэдэх явдал юм. Нэг даалгавар гүйцэтгэхийн тулд маш их код бичсэний дараа тухайн даалгаврыг ганцхан мөр кодоор хийчихдэг R багц байдгийг мэдэх нь түгээмэл.
 
+Бид энэхүү гарын авлагад даалгавар бүрийг гүйцэтгэх хоёроос доошгүй аргыг санал болгохыг хичээсэн: нэг нь туршиж үзсэн, найдвартай арга (магадгүй **суурь** R эсвэл **tidyverse**), нөгөө нь тухайн даалгаварт тусгайлан зориулж бүтээсэн R багц. Өгөгдсөн багцыг татаж авах боломжгүй эсвэл өөр шалтгаанаар ажиллахгүй байж болох учир бид уншигчдыг хэд хэдэн сонголттой байлгахыг хүссэн.
 
-### R packages {.unnumbered}
+Аль багцыг ашиглахаа сонгохдоо бид олон нийтийн зүгээс туршиж, шалгаж үзсэн, энгийн ажлын үед хэрэглэгддэг багцуудын тоог багасгадаг, тогтвортой (ойр ойрхон өөрчлөгддөггүй), тухайн даалгаврыг энгийн бөгөөд тодорхой гүйцэтгэдэг R багцууд болон арга барилуудыг урьдал болгосон.
 
-**So many choices**  
+Энэхүү гарын авлага ерөнхийдөө **tidyverse**-ийн R багцууд, функцуудыг голчлон хэрэглэсэн болно. Tidyverse бол үндсэн дүрэм, өгөгдлийн бүтцийн хувьд ижил, өгөгдлийн шинжлэх ухаанд зориулагдсан R багцуудын цуглуулга юм. Бүх tidyverse-ийн багцуудыг **tidyverse** багц ашиглан суулгаж эсвэл ачаалж болно. Дэлгэрэнгүйг [tidyverse вэбсайт](https://www.tidyverse.org/) дээрээс уншина уу.
 
-One of the most challenging aspects of learning R is knowing which R package to use for a given task. It is a common occurrence to struggle through a task only later to realize - hey, there's an R package that does all that in one command line!  
+Бид мөн шаардлагатай тохиолдолд ашиглаж болох **суурь** R ашигласан кодын сонголтыг оруулсан. Суурь R (base R) гэдэг нь R суулгах явцад түүнтэй хамт ирдэг багцууд, функцуудыг хэлж буй. Үүний учир нь энэ номын зарим уншигчид нэмэлт багц татаж авах найдвартай интернетгүй байж магадгүй юм.
 
-In this handbook, we try to offer you at least two ways to complete each task: one tried-and-true method (probably in **base** R or **tidyverse**) and one special R package that is custom-built for that purpose. We want you to have a couple options in case you can't download a given package or it otherwise does not work for you.  
+**Функцийг багцтай ил тод холбох нь**
 
-In choosing which packages to use, we prioritized R packages and approaches that have been tested and vetted by the community, minimize the number of packages used in a typical work session, that are stable (not changing very often), and that accomplish the task simply and cleanly  
+R-ийн зарим хичээлүүдийн кодонд нэг функцыг ашиглаж буй боловч тухайн функц ямар багцаас ашиглагдаж буйг харуулдаггүй нь нэлээд төвөгтэй байдаг. Бид ийм нөхцөл байдлаас зайлсхийхийг хичээсэн.
 
-This handbook generally prioritizes R packages and functions from the **tidyverse**. Tidyverse is a collection of R packages designed for data science that share underlying grammar and data structures. All tidyverse packages can be installed or loaded via the **tidyverse** package. Read more at the [tidyverse website](https://www.tidyverse.org/).  
+Номын өгүүлэл текстэнд багцын нэрүүд тодоор (ж.нь **dplyr**) бичигдсэн бөгөөд функцууд дараах байдлаар бичигдсэн: `mutate()`. Ойролцоох текст дэх багцыг дурдах эсвэл кодонд багцыг ийм байдлаар (`dplyr::mutate()`) тодорхой зааж өгөх замаар тухайн функц нь ямар багцаас гаралтай болохыг тодорхой харуулахыг бид хичээсэн. Энэ нь илүү ажил мэт санагдаж болох ч бид үүнийг албаар ингэж харуулж байгаа болно.
 
-When applicable, we also offer code options using **base** R - the packages and functions that come with R at installation. This is because we recognize that some of this book's audience may not have reliable internet to download extra packages.  
+[R-ын суурь] хэсгээс багцууд, функцуудын талаар дэлгэрэнгүй мэдээлэл авч болно.
 
-**Linking functions to packages explicitly**
+### Кодын загвар {.unnumbered}
 
-It is often frustrating in R tutorials when a function is shown in code, but you don't know which package it is from! We try to avoid this situation.  
+Бид гарын авлагадаа "шинэ мөрнүүд"-ийг тогтмол ашигласнаар бидний код "урт" мэт харагдана. Бид үүнийг хэд хэдэн шалтгааны улмаас хийж байна:
 
-In the narrative text, package names are written in bold (e.g. **dplyr**) and functions are written like this: `mutate()`. We strive to be explicit about which package a function comes from, either by referencing the package in nearby text or by specifying the package explicitly in the code like this: `dplyr::mutate()`. It may look redundant, but we are doing it on purpose.  
+-   Бид кодын жижиг хэсэг бүрийн хажууд `#` тэмдэг ашиглан тайлбар бичиж болно\
+-   Ерөнхийдөө урт (босоо) кодыг уншихад илүү амар байдаг\
+-   Нарийхан дэлгэц дээр уншихад илүү амар (хажуу тийш нь гүйлгэх шаардлагагүй)\
+-   Догол мөрөөс харахад ямар аргументууд аль функцэд хамааралтай болохыг мэдэхэд илүү хялбар болно
 
-See the page on [R basics] to learn more about packages and functions.  
-
-
-### Code style {.unnumbered}
-
-In the handbook, we frequently utilize "new lines", making our code appear "long". We do this for a few reasons:  
-
-* We can write explanatory comments with `#` that are adjacent to each little part of the code  
-* Generally, longer (vertical) code is easier to read  
-* It is easier to read on a narrow screen (no sideways scrolling needed)  
-* From the indentations, it can be easier to know which arguments belong to which function  
-
-As a result, code that *could* be written like this:  
+Үүний үр дүнд дараах байдлаар бичигдэж болох код:
 
 ```{r, eval=F}
 linelist %>% 
-  group_by(hospital) %>%  # group rows by hospital
-  slice_max(date, n = 1, with_ties = F) # if there's a tie (of date), take the first row
+  group_by(hospital) %>%  # мөрүүдийг эмнэлгээр бүлэглэх
+  slice_max(date, n = 1, with_ties = F) # хэрвээ (огнооны) давхцал байвал эхний мөрийг нь сонгох
 ```
 
-...is written like this:  
+...ингэж бичигдэнэ:
 
 ```{r, eval=F}
 linelist %>% 
-  group_by(hospital) %>% # group rows by hospital
+  group_by(hospital) %>% # мөрүүдийг эмнэлгээр бүлэглэх
   slice_max(
-    date,                # keep row per group with maximum date value 
-    n = 1,               # keep only the single highest row 
-    with_ties = F)       # if there's a tie (of date), take the first row
+    date,                # бүлэг тус бүрийн хамгийн сүүлийн (өндөр) огноо бүхий мөрийг үлдээх
+    n = 1,               # хамгийн өндөр ганцхан мөрийг үлдээх 
+    with_ties = F)       # хэрвээ (огнооны) давхцал байвал эхний мөрийг нь сонгох
 ```
 
-R code is generally not affected by new lines or indentations. When writing code, if you initiate a new line after a comma it will apply automatic indentation patterns. 
+Шинэ мөр эсвэл догол мөрнүүд ерөнхийдөө R кодод нөлөөлдөггүй. Код бичихдээ таслалын дараа шинэ мөр эхлүүлбэл догол мөрийг автоматаар ашиглах болно.
 
-We also use lots of spaces (e.g. `n = 1` instead of `n=1`) because it is easier to read. Be kind to the people reading your code!  
+Бид мөн уншихад илүү хялбар байдаг тул хоосон зайг ихээр ашигладаг (жишээлбэл `n=1` биш `n = 1`). Таны кодыг уншиж буй хүмүүсээ бодоорой!
 
+### Нэр томъёо {.unnumbered}
 
+Энэхүү гарын авлагад бид "хувьсагч (variables)", "ажиглалт (observations)" гэхийн оронд ерөнхийдөө "багана (columns)" ба "мөр (rows)"-ийг ашигласан. Энэхүү ["цэгцтэй өгөгдөл"](https://tidyr.tidyverse.org/articles/tidy-data.html) гэсэн материалд тайлбарласнаар ихэнх эпидемиологийн статистикийн өгөгдлийн багц нь бүтцийн хувьд мөр, багана, утгуудаас бүрддэг.
 
-### Nomenclature {.unnumbered}  
+Хувьсагч нь ижил үндсэн шинж чанарыг хэмжсэн утгыг агуулдаг (насны бүлэг, үр дүн, эхлэх огноо гэх мэт). Ажиглалт нь нэг нэгжээр хэмжигдэх бүх утгыг агуулдаг (жишээлбэл, хүн, байршил эсвэл лабораторийн сорьц). Тиймээс иймэрхүү шинж чанарыг бодитоор тодорхойлоход төвөгтэй байж магадгүй юм.
 
-In this handbook, we generally reference "columns" and "rows" instead of "variables" and "observations". As explained in this primer on ["tidy data"](https://tidyr.tidyverse.org/articles/tidy-data.html), most epidemiological statistical datasets consist structurally of rows, columns, and values.  
+"Цэгцтэй" өгөгдлийн багцад багана бүр хувьсагч, мөр бүр ажиглалт, нүд бүр нэг утгатай байна. Хэдий тийм боловч таны ашиглаж буй зарим өгөгдлийн багц энэ загварт тохирохгүй байх нь элбэг - жишээ нь "өргөн" форматтай өгөгдлийн багц нь хэд хэдэн баганад хуваагдсан хувьсагчтай байж болно ([Pivoting data] хуудсан дээрх жишээг үзнэ үү). Үүний нэгэн адил ажиглалт мөн хэд хэдэн мөрөнд хуваагдсан байж болдог.
 
-*Variables* contain the values that measure the same underlying attribute (like age group, outcome, or date of onset). *Observations* contain all values measured on the same unit (e.g. a person, site, or lab sample). So these aspects can be more difficult to tangibly define.  
+Энэхүү гарын авлагын ихэнх нь өгөгдлийг удирдах, өөрчлөх тухай байгаа тул хийсвэр ойлголтууд болох ажиглалт, хувьсагчаас илүүтэй тодорхой ойлголтууд болох мөр, баганаар өгөгдлийн бүтцийг дурдах нь илүү ойлгомжтой юм. Үүнд хамаарахгүй зүйлүүд нь голчлон өгөгдлийн дүн шинжилгээний талаарх хуудсуудад гарч ирэх бөгөөд дүн шинжилгээний хувьд та хувьсагч, ажиглалт гэсэн ойлголтуудтай түлхүү тулгарах болно.
 
-In "tidy" datasets, each column is a variable, each row is an observation, and each cell is a single value. However some datasets you encounter will not fit this mold - a "wide" format dataset may have a variable split across several columns (see an example in the [Pivoting data] page). Likewise, observations could be split across several rows.  
+### Тэмдэглэл {.unnumbered}
 
-Most of this handbook is about managing and transforming data, so referring to the concrete data structures of rows and columns is more relevant than the more abstract observations and variables. Exceptions occur primarily in pages on data analysis, where you will see more references to variables and observations.  
+Энэхүү гарын авлагад дурдагдах тэмдэглэлийн төрлүүд энд байна:
 
+[***ТЭМДЭГЛЭЛ:*** Энэ бол тэмдэглэл.]{style="color: black;"}\
+[***ЗӨВЛӨГӨӨ:*** Энэ бол зөвлөгөө.]{style="color: darkgreen;"}\
+[***СЭРЭМЖЛҮҮЛЭГ:*** Энэ бол сэрэмжлүүлэх тэмдэглэл.]{style="color: orange;"}\
+[***АЮУЛ:*** Энэ бол анхааруулга.]{style="color: red;"}
 
+## Редакцийн шийдвэр
 
-### Notes {.unnumbered} 
+Доорх хүснэгтээр бид багц болон функцын сонголтын талаархи редакцийн чухал шийдвэрүүдийг хянан дагаж байна. Хэрэв та санал нийлэхгүй байгаа эсвэл шинэ багц/функц санал болгохыг хүсвэл манай [Github хуудсан](https://github.com/epirhandbook/Epi_R_handbook) дээр нэгдэж харилцан яриа эхлүүлнэ үү.
 
-Here are the types of notes you may encounter in the handbook:  
+**Багц, функц болон бусад редакцийн шийдвэрийн хүснэгт**
 
-<span style="color: black;">**_NOTE:_** This is a note</span>  
-<span style="color: darkgreen;">**_TIP:_** This is a tip.</span>  
-<span style="color: orange;">**_CAUTION:_** This is a cautionary note.</span>  
-<span style="color: red;">**_DANGER:_** This is a warning.</span>  
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Сэдэв                         | Авч үзсэн                                                                       | Үр дүн                                                                                                                                                   | Товч үндэслэл                                                                                        |
++===============================+=================================================================================+==========================================================================================================================================================+======================================================================================================+
+| Ерөнхий кодлох арга барил     | **tidyverse**, **data.table**, **base**                                         | **tidyverse**, with a page on **data.table**-ийн талаар нэг хуудас бүхий, мөн интернетгүй уншигчдад зориулан **base** хувилбаруудын талаар дурдсан болно | **tidyverse** уншигдах байдал, түгээмэл байдал, хамгийн их заагддаг                                  |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Багц ачаалах                  | `library()`,`install.packages()`, `require()`, **pacman**                       | **pacman**                                                                                                                                               | Ихэнх олон багц суулгах/ачаалах тохиолдлын кодыг богиносгож, хялбаршуулдаг                           |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Импорт, экспорт               | **rio**, бусад олон багцууд                                                     | **rio**                                                                                                                                                  | Олон төрлийн файлын хувьд хялбар                                                                     |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Дүгнэлт статистикийг бүлэглэх | **dplyr** `group_by()`, **stats** `aggregate()`                                 | **dplyr** `group_by()`                                                                                                                                   | **tidyverse**-тэй нийцдэг                                                                            |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Пивот хийх                    | **tidyr** (пивот функцууд), **reshape2** (melt/cast), **tidyr** (spread/gather) | **tidyr** (пивот функцууд)                                                                                                                               | **reshape2**-ийн хөгжүүлэлт зогссон, **tidyr**-ийн v1.0.0-ээс эхлээд тусгай пивот функцуудтай болсон |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Баганын нэрүүдийг цэвэрлэх    | **linelist**, **janitor**                                                       | **janitor**                                                                                                                                              | Багцуудын нэгтгэлийг онцлов                                                                          |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Epiweeks                      | **lubridate**, **aweek**, **tsibble**, **zoo**                                  | Голчлон **lubridate**, бусдыг нь онцгой тохиолдлуудад                                                                                                    | **lubridate**-ийн уян хатан байдал, тогтвортой байдал, багцын цаашдын хөгжүүлэлтийн төлөв            |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| ggplot шошгууд                | `labs()`, `ggtitle()`/`ylab()`/`xlab()`                                         | `labs()`                                                                                                                                                 | бүх шошго нэг дор, энгийн байдал                                                                     |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Фактор болгон хөрвүүлэх       | `factor()`, **forcats**                                                         | **forcats**                                                                                                                                              | энэхүү багцын төрөл бүрийн функцууд нь тухайн командын дотор мөн фактор болгон хувиргадаг            |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Эпидемийн муруй               | **incidence**, **ggplot2**, **EpiCurve**                                        | **incidence2** хурднаар, **ggplot2** нарийвчлалтайгаар                                                                                                   | найдвартай байдал                                                                                    |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Холболт (Concatenation)       | `paste()`, `paste0()`, `str_glue()`, `glue()`                                   | `str_glue()`                                                                                                                                             | `paste()` функцээс илүү энгийн синтакстай; **stringr** багцад багтдаг                                |
++-------------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
 
+## Гол өөрчлөлт
 
+| Огноо               | Томоохон өөрчлөлтүүд      |
+|---------------------|---------------------------|
+| 2021 оны 5 сарын 10 | 1.0.0 хувилбарыг гаргасан |
 
-## Editorial decisions  
+## Session мэдээлэл (R, RStudio, багцууд)
 
-Below, we track significant editorial decisions around package and function choice. If you disagree or want to offer a new tool for consideration, please join/start a conversation on our [Github page](https://github.com/epirhandbook/Epi_R_handbook).    
-
-
-**Table of package, function, and other editorial decisions**  
-
-
-Subject           |     Considered      |   Outcome              |    Brief rationale   
------------------ | --------------------|------------------------|-----------------------------------------------
-General coding approach|**tidyverse**, **data.table**, **base**|**tidyverse**, with a page on **data.table**, and mentions of **base** alternatives for readers with no internet|**tidyverse** readability, universality, most-taught  
-Package loading|`library()`,`install.packages()`, `require()`, **pacman**|**pacman**|Shortens and simplifies code for most multi-package install/load use-cases
-Import and export|**rio**, many other packages|**rio**|Ease for many file types
-Grouping for summary statistics|**dplyr** `group_by()`, **stats** `aggregate()`|**dplyr** `group_by()`|Consistent with **tidyverse** emphasis
-Pivoting|**tidyr** (pivot functions), **reshape2** (melt/cast), **tidyr** (spread/gather)|**tidyr** (pivot functions)|**reshape2** is retired, **tidyr** uses pivot functions as of v1.0.0
-Clean column names|**linelist**, **janitor**|**janitor**|Consolidation of packages emphasized
-Epiweeks |**lubridate**, **aweek**, **tsibble**, **zoo**|**lubridate** generally, the others for specific cases| **lubridate's** flexibility, consistency, package maintenance prospects  
-ggplot labels |`labs()`, `ggtitle()`/`ylab()`/`xlab()` |`labs()` |all labels in one place, simplicity  
-Convert to factor |`factor()`, **forcats**|**forcats**|its various functions also convert to factor in same command
-Epidemic curves|**incidence**, **ggplot2**, **EpiCurve**|**incidence2** as quick, **ggplot2** as detailed|dependability
-Concatenation|`paste()`, `paste0()`, `str_glue()`, `glue()`|`str_glue()`|More simple syntax than paste functions; within **stringr**
-
-
-## Major revisions  
-
-
-Date           |Major changes        
----------------| ------------------------------------------    
-10 May 2021    |Release of version 1.0.0    
-
-
-## Session info (R, RStudio, packages)  
-
-Below is the information on the versions of R, RStudio, and R packages used during this rendering of the Handbook.  
-
+Энэхүү гарын авлагыг гаргах явцад ашигласан R, RStudio, R багцын хувилбаруудын талаархи мэдээллийг доор өгөв.
 
 ```{r}
 sessioninfo::session_info()
 ```
-
-
-
-

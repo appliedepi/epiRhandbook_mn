@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 Редакцийн болон техникийн тэмдэглэл | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="Энэ хуудсанд энэхүү гарын авлагыг бүтээх явцад бидний барьсан философийн арга барил, хэв маяг, редакцийн тодорхой шийдвэрүүдийг тайлбарласан болно.  1.1 Арга барил, загвар Энэхүү номын уншигчдын...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="1 Редакцийн болон техникийн тэмдэглэл | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Энэ хуудсанд энэхүү гарын авлагыг бүтээх явцад бидний барьсан философийн арга барил, хэв маяг, редакцийн тодорхой шийдвэрүүдийг тайлбарласан болно.  1.1 Арга барил, загвар Энэхүү номын уншигчдын...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 Редакцийн болон техникийн тэмдэглэл | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="Энэ хуудсанд энэхүү гарын авлагыг бүтээх явцад бидний барьсан философийн арга барил, хэв маяг, редакцийн тодорхой шийдвэрүүдийг тайлбарласан болно.  1.1 Арга барил, загвар Энэхүү номын уншигчдын...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet">
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/d3-4.5.0/d3.min.js"></script><script src="libs/sankey-1/sankey.js"></script><script src="libs/sankeyNetwork-binding-0.4/sankeyNetwork.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/vis-4.20.1/vis.css" rel="stylesheet">
+<script src="libs/vis-4.20.1/vis.min.js"></script><script src="libs/visNetwork-binding-2.0.9/visNetwork.js"></script><link href="libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="libs/plotly-basic-1.57.1/plotly-basic-1.57.1.min.js"></script><script src="libs/plotly-cartesian-1.57.1/plotly-cartesian-1.57.1.min.js"></script><script src="libs/proj4js-2.3.15/proj4.js"></script><link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet">
+<script src="libs/highcharts-8.1.2/highcharts.js"></script><script src="libs/highcharts-8.1.2/highcharts-3d.js"></script><script src="libs/highcharts-8.1.2/highcharts-more.js"></script><script src="libs/highcharts-8.1.2/modules/stock.js"></script><script src="libs/highcharts-8.1.2/modules/map.js"></script><script src="libs/highcharts-8.1.2/modules/annotations.js"></script><script src="libs/highcharts-8.1.2/modules/data.js"></script><script src="libs/highcharts-8.1.2/modules/drilldown.js"></script><script src="libs/highcharts-8.1.2/modules/item-series.js"></script><script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script><script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script><script src="libs/highcharts-8.1.2/modules/exporting.js"></script><script src="libs/highcharts-8.1.2/modules/export-data.js"></script><script src="libs/highcharts-8.1.2/modules/funnel.js"></script><script src="libs/highcharts-8.1.2/modules/heatmap.js"></script><script src="libs/highcharts-8.1.2/modules/treemap.js"></script><script src="libs/highcharts-8.1.2/modules/sankey.js"></script><script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script><script src="libs/highcharts-8.1.2/modules/organization.js"></script><script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script><script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script><script src="libs/highcharts-8.1.2/modules/sunburst.js"></script><script src="libs/highcharts-8.1.2/modules/vector.js"></script><script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script><script src="libs/highcharts-8.1.2/modules/xrange.js"></script><script src="libs/highcharts-8.1.2/modules/tilemap.js"></script><script src="libs/highcharts-8.1.2/modules/venn.js"></script><script src="libs/highcharts-8.1.2/modules/gantt.js"></script><script src="libs/highcharts-8.1.2/modules/timeline.js"></script><script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script><script src="libs/highcharts-8.1.2/modules/bullet.js"></script><script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script><script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script><script src="libs/highcharts-8.1.2/modules/lollipop.js"></script><script src="libs/highcharts-8.1.2/modules/series-label.js"></script><script src="libs/highcharts-8.1.2/plugins/motion.js"></script><script src="libs/highcharts-8.1.2/custom/reset.js"></script><script src="libs/highcharts-8.1.2/modules/boost.js"></script><script src="libs/highchart-binding-0.8.2/highchart.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Энэхүү номны тухай</li>
+<li><a class="active" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li class="book-part">Basics</li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="transition-to-r.html"><span class="header-section-number">4</span> Transition to R</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B7%D3%A9%D3%A9%D0%B6-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D1%85.html"><span class="header-section-number">7</span> Файл зөөж оруулах болон гаргах</a></li>
+<li class="book-part">Data Management</li>
+<li><a class="" href="cleaning-data-and-core-functions.html"><span class="header-section-number">8</span> Cleaning data and core functions</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="characters-and-strings.html"><span class="header-section-number">10</span> Characters and strings</a></li>
+<li><a class="" href="factors.html"><span class="header-section-number">11</span> Factors</a></li>
+<li><a class="" href="pivoting-data.html"><span class="header-section-number">12</span> Pivoting data</a></li>
+<li><a class="" href="grouping-data.html"><span class="header-section-number">13</span> Grouping data</a></li>
+<li><a class="" href="joining-data.html"><span class="header-section-number">14</span> Joining data</a></li>
+<li><a class="" href="de-duplication.html"><span class="header-section-number">15</span> De-duplication</a></li>
+<li><a class="" href="iteration-loops-and-lists.html"><span class="header-section-number">16</span> Iteration, loops, and lists</a></li>
+<li class="book-part">Analysis</li>
+<li><a class="" href="descriptive-tables.html"><span class="header-section-number">17</span> Descriptive tables</a></li>
+<li><a class="" href="simple-statistical-tests.html"><span class="header-section-number">18</span> Simple statistical tests</a></li>
+<li><a class="" href="univariate-and-multivariable-regression.html"><span class="header-section-number">19</span> Univariate and multivariable regression</a></li>
+<li><a class="" href="missing-data.html"><span class="header-section-number">20</span> Missing data</a></li>
+<li><a class="" href="standardised-rates.html"><span class="header-section-number">21</span> Standardised rates</a></li>
+<li><a class="" href="moving-averages.html"><span class="header-section-number">22</span> Moving averages</a></li>
+<li><a class="" href="time-series-and-outbreak-detection.html"><span class="header-section-number">23</span> Time series and outbreak detection</a></li>
+<li><a class="" href="epidemic-modeling.html"><span class="header-section-number">24</span> Epidemic modeling</a></li>
+<li><a class="" href="contact-tracing.html"><span class="header-section-number">25</span> Contact tracing</a></li>
+<li><a class="" href="survey-analysis.html"><span class="header-section-number">26</span> Survey analysis</a></li>
+<li><a class="" href="survival-analysis.html"><span class="header-section-number">27</span> Survival analysis</a></li>
+<li><a class="" href="gis-basics.html"><span class="header-section-number">28</span> GIS basics</a></li>
+<li class="book-part">Data Visualization</li>
+<li><a class="" href="tables-for-presentation.html"><span class="header-section-number">29</span> Tables for presentation</a></li>
+<li><a class="" href="ggplot-basics.html"><span class="header-section-number">30</span> ggplot basics</a></li>
+<li><a class="" href="ggplot-tips.html"><span class="header-section-number">31</span> ggplot tips</a></li>
+<li><a class="" href="epidemic-curves.html"><span class="header-section-number">32</span> Epidemic curves</a></li>
+<li><a class="" href="demographic-pyramids-and-likert-scales.html"><span class="header-section-number">33</span> Demographic pyramids and Likert-scales</a></li>
+<li><a class="" href="heat-plots.html"><span class="header-section-number">34</span> Heat plots</a></li>
+<li><a class="" href="diagrams-and-charts.html"><span class="header-section-number">35</span> Diagrams and charts</a></li>
+<li><a class="" href="combinations-analysis.html"><span class="header-section-number">36</span> Combinations analysis</a></li>
+<li><a class="" href="transmission-chains.html"><span class="header-section-number">37</span> Transmission chains</a></li>
+<li><a class="" href="phylogenetic-trees.html"><span class="header-section-number">38</span> Phylogenetic trees</a></li>
+<li><a class="" href="interactive-plots.html"><span class="header-section-number">39</span> Interactive plots</a></li>
+<li class="book-part">Reports and dashboards</li>
+<li><a class="" href="reports-with-r-markdown.html"><span class="header-section-number">40</span> Reports with R Markdown</a></li>
+<li><a class="" href="organizing-routine-reports.html"><span class="header-section-number">41</span> Organizing routine reports</a></li>
+<li><a class="" href="dashboards-with-r-markdown.html"><span class="header-section-number">42</span> Dashboards with R Markdown</a></li>
+<li><a class="" href="dashboards-with-shiny.html"><span class="header-section-number">43</span> Dashboards with Shiny</a></li>
+<li class="book-part">Miscellaneous</li>
+<li><a class="" href="writing-functions.html"><span class="header-section-number">44</span> Writing functions</a></li>
+<li><a class="" href="directory-interactions.html"><span class="header-section-number">45</span> Directory interactions</a></li>
+<li><a class="" href="version-control-and-collaboration-with-git-and-github.html"><span class="header-section-number">46</span> Version control and collaboration with Git and Github</a></li>
+<li><a class="" href="common-errors.html"><span class="header-section-number">47</span> Common errors</a></li>
+<li><a class="" href="getting-help.html"><span class="header-section-number">48</span> Getting help</a></li>
+<li><a class="" href="r-on-network-drives.html"><span class="header-section-number">49</span> R on network drives</a></li>
+<li><a class="" href="data-table.html"><span class="header-section-number">50</span> Data Table</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="редакцийн-болон-техникийн-тэмдэглэл" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл<a class="anchor" aria-label="anchor" href="#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB"><i class="fas fa-link"></i></a>
+</h1>
+<p>Энэ хуудсанд энэхүү гарын авлагыг бүтээх явцад бидний барьсан философийн арга барил, хэв маяг, редакцийн тодорхой шийдвэрүүдийг тайлбарласан болно.</p>
+<div id="арга-барил-загвар" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Арга барил, загвар<a class="anchor" aria-label="anchor" href="#%D0%B0%D1%80%D0%B3%D0%B0-%D0%B1%D0%B0%D1%80%D0%B8%D0%BB-%D0%B7%D0%B0%D0%B3%D0%B2%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h2>
+<p>Энэхүү номын уншигчдын хүрээ маш өргөн байх боломжтой. R-ийг анхлан сурч буй хүмүүс хэрэглэх нь гарцаагүй бөгөөд мөн туршлагатай R хэрэглэгчид ч шилдэг туршлага, зөвлөгөөг хайн унших болно. Тиймээс энэхүү ном ойлгомжтой бөгөөд товч тодорхой байх ёстой. Тийм болохоор бид R анхлан сурж буй хүн кодыг ашиглаж, тухайн код юу хийж буйг ойлгох хэмжээний <em>дөнгөж хангалттай</em> бичгэн тайлбар хийхийг зорьсон.</p>
+<p>Өөр хэдэн зүйл:</p>
+<ul>
+<li>Энэ бол харьцангуй богино жишээтэй кодын лавлагаа ном юм - R эсвэл өгөгдлийн шинжлэх ухааны талаарх гүнзгий сурах бичиг <em>биш</em>
+</li>
+<li>Энэ бол хэрэглээний тархвар судлалд хэрэглэгдэх <em>R гарын авлага</em> - хэрэглээний тархвар судлалын шинжлэх ухаан эсвэл аргачлалын гарын авлага биш</li>
+<li>Энэхүү ном амьд ном байхыг зорьж буй - тодорхой үйлдэл хийхэд хамгийн тохиромжтой R багцууд өөрчлөгдөх нь түгээмэл бөгөөд бид энэхүү гарын авлагад алийг нь тусгах талаар хэлэлцүүлгийг таатай хүлээн авах болно</li>
+</ul>
+<div id="r-багцууд" class="section level3 unnumbered">
+<h3>R багцууд<a class="anchor" aria-label="anchor" href="#r-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Маш олон сонголтууд</strong></p>
+<p>R сурахад хамгийн төвөгтэй талуудын нэг нь тухайн даалгаварт яг аль R багцыг ашиглахаа мэдэх явдал юм. Нэг даалгавар гүйцэтгэхийн тулд маш их код бичсэний дараа тухайн даалгаврыг ганцхан мөр кодоор хийчихдэг R багц байдгийг мэдэх нь түгээмэл.</p>
+<p>Бид энэхүү гарын авлагад даалгавар бүрийг гүйцэтгэх хоёроос доошгүй аргыг санал болгохыг хичээсэн: нэг нь туршиж үзсэн, найдвартай арга (магадгүй <strong>суурь</strong> R эсвэл <strong>tidyverse</strong>), нөгөө нь тухайн даалгаварт тусгайлан зориулж бүтээсэн R багц. Өгөгдсөн багцыг татаж авах боломжгүй эсвэл өөр шалтгаанаар ажиллахгүй байж болох учир бид уншигчдыг хэд хэдэн сонголттой байлгахыг хүссэн.</p>
+<p>Аль багцыг ашиглахаа сонгохдоо бид олон нийтийн зүгээс туршиж, шалгаж үзсэн, энгийн ажлын үед хэрэглэгддэг багцуудын тоог багасгадаг, тогтвортой (ойр ойрхон өөрчлөгддөггүй), тухайн даалгаврыг энгийн бөгөөд тодорхой гүйцэтгэдэг R багцууд болон арга барилуудыг урьдал болгосон.</p>
+<p>Энэхүү гарын авлага ерөнхийдөө <strong>tidyverse</strong>-ийн R багцууд, функцуудыг голчлон хэрэглэсэн болно. Tidyverse бол үндсэн дүрэм, өгөгдлийн бүтцийн хувьд ижил, өгөгдлийн шинжлэх ухаанд зориулагдсан R багцуудын цуглуулга юм. Бүх tidyverse-ийн багцуудыг <strong>tidyverse</strong> багц ашиглан суулгаж эсвэл ачаалж болно. Дэлгэрэнгүйг <a href="https://www.tidyverse.org/">tidyverse вэбсайт</a> дээрээс уншина уу.</p>
+<p>Бид мөн шаардлагатай тохиолдолд ашиглаж болох <strong>суурь</strong> R ашигласан кодын сонголтыг оруулсан. Суурь R (base R) гэдэг нь R суулгах явцад түүнтэй хамт ирдэг багцууд, функцуудыг хэлж буй. Үүний учир нь энэ номын зарим уншигчид нэмэлт багц татаж авах найдвартай интернетгүй байж магадгүй юм.</p>
+<p><strong>Функцийг багцтай ил тод холбох нь</strong></p>
+<p>R-ийн зарим хичээлүүдийн кодонд нэг функцыг ашиглаж буй боловч тухайн функц ямар багцаас ашиглагдаж буйг харуулдаггүй нь нэлээд төвөгтэй байдаг. Бид ийм нөхцөл байдлаас зайлсхийхийг хичээсэн.</p>
+<p>Номын өгүүлэл текстэнд багцын нэрүүд тодоор (ж.нь <strong>dplyr</strong>) бичигдсэн бөгөөд функцууд дараах байдлаар бичигдсэн: <code>mutate()</code>. Ойролцоох текст дэх багцыг дурдах эсвэл кодонд багцыг ийм байдлаар (<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>) тодорхой зааж өгөх замаар тухайн функц нь ямар багцаас гаралтай болохыг тодорхой харуулахыг бид хичээсэн. Энэ нь илүү ажил мэт санагдаж болох ч бид үүнийг албаар ингэж харуулж байгаа болно.</p>
+<p>[R-ын суурь] хэсгээс багцууд, функцуудын талаар дэлгэрэнгүй мэдээлэл авч болно.</p>
+</div>
+<div id="кодын-загвар" class="section level3 unnumbered">
+<h3>Кодын загвар<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%BE%D0%B4%D1%8B%D0%BD-%D0%B7%D0%B0%D0%B3%D0%B2%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Бид гарын авлагадаа “шинэ мөрнүүд”-ийг тогтмол ашигласнаар бидний код “урт” мэт харагдана. Бид үүнийг хэд хэдэн шалтгааны улмаас хийж байна:</p>
+<ul>
+<li>Бид кодын жижиг хэсэг бүрийн хажууд <code>#</code> тэмдэг ашиглан тайлбар бичиж болно<br>
+</li>
+<li>Ерөнхийдөө урт (босоо) кодыг уншихад илүү амар байдаг<br>
+</li>
+<li>Нарийхан дэлгэц дээр уншихад илүү амар (хажуу тийш нь гүйлгэх шаардлагагүй)<br>
+</li>
+<li>Догол мөрөөс харахад ямар аргументууд аль функцэд хамааралтай болохыг мэдэхэд илүү хялбар болно</li>
+</ul>
+<p>Үүний үр дүнд дараах байдлаар бичигдэж болох код:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># мөрүүдийг эмнэлгээр бүлэглэх</span>
+  <span class="fu">slice_max</span><span class="op">(</span><span class="va">date</span>, n <span class="op">=</span> <span class="fl">1</span>, with_ties <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="co"># хэрвээ (огнооны) давхцал байвал эхний мөрийг нь сонгох</span></code></pre></div>
+<p>…ингэж бичигдэнэ:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># мөрүүдийг эмнэлгээр бүлэглэх</span>
+  <span class="fu">slice_max</span><span class="op">(</span>
+    <span class="va">date</span>,                <span class="co"># бүлэг тус бүрийн хамгийн сүүлийн (өндөр) огноо бүхий мөрийг үлдээх</span>
+    n <span class="op">=</span> <span class="fl">1</span>,               <span class="co"># хамгийн өндөр ганцхан мөрийг үлдээх </span>
+    with_ties <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>       <span class="co"># хэрвээ (огнооны) давхцал байвал эхний мөрийг нь сонгох</span></code></pre></div>
+<p>Шинэ мөр эсвэл догол мөрнүүд ерөнхийдөө R кодод нөлөөлдөггүй. Код бичихдээ таслалын дараа шинэ мөр эхлүүлбэл догол мөрийг автоматаар ашиглах болно.</p>
+<p>Бид мөн уншихад илүү хялбар байдаг тул хоосон зайг ихээр ашигладаг (жишээлбэл <code>n=1</code> биш <code>n = 1</code>). Таны кодыг уншиж буй хүмүүсээ бодоорой!</p>
+</div>
+<div id="нэр-томъёо" class="section level3 unnumbered">
+<h3>Нэр томъёо<a class="anchor" aria-label="anchor" href="#%D0%BD%D1%8D%D1%80-%D1%82%D0%BE%D0%BC%D1%8A%D1%91%D0%BE"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэхүү гарын авлагад бид “хувьсагч (variables)”, “ажиглалт (observations)” гэхийн оронд ерөнхийдөө “багана (columns)” ба “мөр (rows)”-ийг ашигласан. Энэхүү <a href="https://tidyr.tidyverse.org/articles/tidy-data.html">“цэгцтэй өгөгдөл”</a> гэсэн материалд тайлбарласнаар ихэнх эпидемиологийн статистикийн өгөгдлийн багц нь бүтцийн хувьд мөр, багана, утгуудаас бүрддэг.</p>
+<p>Хувьсагч нь ижил үндсэн шинж чанарыг хэмжсэн утгыг агуулдаг (насны бүлэг, үр дүн, эхлэх огноо гэх мэт). Ажиглалт нь нэг нэгжээр хэмжигдэх бүх утгыг агуулдаг (жишээлбэл, хүн, байршил эсвэл лабораторийн сорьц). Тиймээс иймэрхүү шинж чанарыг бодитоор тодорхойлоход төвөгтэй байж магадгүй юм.</p>
+<p>“Цэгцтэй” өгөгдлийн багцад багана бүр хувьсагч, мөр бүр ажиглалт, нүд бүр нэг утгатай байна. Хэдий тийм боловч таны ашиглаж буй зарим өгөгдлийн багц энэ загварт тохирохгүй байх нь элбэг - жишээ нь “өргөн” форматтай өгөгдлийн багц нь хэд хэдэн баганад хуваагдсан хувьсагчтай байж болно (<a href="pivoting-data.html#pivoting-data">Pivoting data</a> хуудсан дээрх жишээг үзнэ үү). Үүний нэгэн адил ажиглалт мөн хэд хэдэн мөрөнд хуваагдсан байж болдог.</p>
+<p>Энэхүү гарын авлагын ихэнх нь өгөгдлийг удирдах, өөрчлөх тухай байгаа тул хийсвэр ойлголтууд болох ажиглалт, хувьсагчаас илүүтэй тодорхой ойлголтууд болох мөр, баганаар өгөгдлийн бүтцийг дурдах нь илүү ойлгомжтой юм. Үүнд хамаарахгүй зүйлүүд нь голчлон өгөгдлийн дүн шинжилгээний талаарх хуудсуудад гарч ирэх бөгөөд дүн шинжилгээний хувьд та хувьсагч, ажиглалт гэсэн ойлголтуудтай түлхүү тулгарах болно.</p>
+</div>
+<div id="тэмдэглэл" class="section level3 unnumbered">
+<h3>Тэмдэглэл<a class="anchor" aria-label="anchor" href="#%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэхүү гарын авлагад дурдагдах тэмдэглэлийн төрлүүд энд байна:</p>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> Энэ бол тэмдэглэл.</span><br><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> Энэ бол зөвлөгөө.</span><br><span style="color: orange;"><strong><em>СЭРЭМЖЛҮҮЛЭГ:</em></strong> Энэ бол сэрэмжлүүлэх тэмдэглэл.</span><br><span style="color: red;"><strong><em>АЮУЛ:</em></strong> Энэ бол анхааруулга.</span></p>
+</div>
+</div>
+<div id="редакцийн-шийдвэр" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Редакцийн шийдвэр<a class="anchor" aria-label="anchor" href="#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D1%88%D0%B8%D0%B9%D0%B4%D0%B2%D1%8D%D1%80"><i class="fas fa-link"></i></a>
+</h2>
+<p>Доорх хүснэгтээр бид багц болон функцын сонголтын талаархи редакцийн чухал шийдвэрүүдийг хянан дагаж байна. Хэрэв та санал нийлэхгүй байгаа эсвэл шинэ багц/функц санал болгохыг хүсвэл манай <a href="https://github.com/epirhandbook/Epi_R_handbook">Github хуудсан</a> дээр нэгдэж харилцан яриа эхлүүлнэ үү.</p>
+<p><strong>Багц, функц болон бусад редакцийн шийдвэрийн хүснэгт</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="8%">
+<col width="22%">
+<col width="41%">
+<col width="27%">
+</colgroup>
+<thead><tr class="header">
+<th>Сэдэв</th>
+<th>Авч үзсэн</th>
+<th>Үр дүн</th>
+<th>Товч үндэслэл</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Ерөнхий кодлох арга барил</td>
+<td>
+<strong>tidyverse</strong>, <strong>data.table</strong>, <strong>base</strong>
+</td>
+<td>
+<strong>tidyverse</strong>, with a page on <strong>data.table</strong>-ийн талаар нэг хуудас бүхий, мөн интернетгүй уншигчдад зориулан <strong>base</strong> хувилбаруудын талаар дурдсан болно</td>
+<td>
+<strong>tidyverse</strong> уншигдах байдал, түгээмэл байдал, хамгийн их заагддаг</td>
+</tr>
+<tr class="even">
+<td>Багц ачаалах</td>
+<td>
+<code><a href="https://rdrr.io/r/base/library.html">library()</a></code>,<code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, <code><a href="https://rdrr.io/r/base/library.html">require()</a></code>, <strong>pacman</strong>
+</td>
+<td><strong>pacman</strong></td>
+<td>Ихэнх олон багц суулгах/ачаалах тохиолдлын кодыг богиносгож, хялбаршуулдаг</td>
+</tr>
+<tr class="odd">
+<td>Импорт, экспорт</td>
+<td>
+<strong>rio</strong>, бусад олон багцууд</td>
+<td><strong>rio</strong></td>
+<td>Олон төрлийн файлын хувьд хялбар</td>
+</tr>
+<tr class="even">
+<td>Дүгнэлт статистикийг бүлэглэх</td>
+<td>
+<strong>dplyr</strong> <code>group_by()</code>, <strong>stats</strong> <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code>
+</td>
+<td>
+<strong>dplyr</strong> <code>group_by()</code>
+</td>
+<td>
+<strong>tidyverse</strong>-тэй нийцдэг</td>
+</tr>
+<tr class="odd">
+<td>Пивот хийх</td>
+<td>
+<strong>tidyr</strong> (пивот функцууд), <strong>reshape2</strong> (melt/cast), <strong>tidyr</strong> (spread/gather)</td>
+<td>
+<strong>tidyr</strong> (пивот функцууд)</td>
+<td>
+<strong>reshape2</strong>-ийн хөгжүүлэлт зогссон, <strong>tidyr</strong>-ийн v1.0.0-ээс эхлээд тусгай пивот функцуудтай болсон</td>
+</tr>
+<tr class="even">
+<td>Баганын нэрүүдийг цэвэрлэх</td>
+<td>
+<strong>linelist</strong>, <strong>janitor</strong>
+</td>
+<td><strong>janitor</strong></td>
+<td>Багцуудын нэгтгэлийг онцлов</td>
+</tr>
+<tr class="odd">
+<td>Epiweeks</td>
+<td>
+<strong>lubridate</strong>, <strong>aweek</strong>, <strong>tsibble</strong>, <strong>zoo</strong>
+</td>
+<td>Голчлон <strong>lubridate</strong>, бусдыг нь онцгой тохиолдлуудад</td>
+<td>
+<strong>lubridate</strong>-ийн уян хатан байдал, тогтвортой байдал, багцын цаашдын хөгжүүлэлтийн төлөв</td>
+</tr>
+<tr class="even">
+<td>ggplot шошгууд</td>
+<td>
+<code>labs()</code>, <code>ggtitle()</code>/<code>ylab()</code>/<code>xlab()</code>
+</td>
+<td><code>labs()</code></td>
+<td>бүх шошго нэг дор, энгийн байдал</td>
+</tr>
+<tr class="odd">
+<td>Фактор болгон хөрвүүлэх</td>
+<td>
+<code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>, <strong>forcats</strong>
+</td>
+<td><strong>forcats</strong></td>
+<td>энэхүү багцын төрөл бүрийн функцууд нь тухайн командын дотор мөн фактор болгон хувиргадаг</td>
+</tr>
+<tr class="even">
+<td>Эпидемийн муруй</td>
+<td>
+<strong>incidence</strong>, <strong>ggplot2</strong>, <strong>EpiCurve</strong>
+</td>
+<td>
+<strong>incidence2</strong> хурднаар, <strong>ggplot2</strong> нарийвчлалтайгаар</td>
+<td>найдвартай байдал</td>
+</tr>
+<tr class="odd">
+<td>Холболт (Concatenation)</td>
+<td>
+<code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>, <code>str_glue()</code>, <code>glue()</code>
+</td>
+<td><code>str_glue()</code></td>
+<td>
+<code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> функцээс илүү энгийн синтакстай; <strong>stringr</strong> багцад багтдаг</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="гол-өөрчлөлт" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Гол өөрчлөлт<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%BE%D0%BB-%D3%A9%D3%A9%D1%80%D1%87%D0%BB%D3%A9%D0%BB%D1%82"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Огноо</th>
+<th>Томоохон өөрчлөлтүүд</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td>2021 оны 5 сарын 10</td>
+<td>1.0.0 хувилбарыг гаргасан</td>
+</tr></tbody>
+</table></div>
+</div>
+<div id="session-мэдээлэл-r-rstudio-багцууд" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Session мэдээлэл (R, RStudio, багцууд)<a class="anchor" aria-label="anchor" href="#session-%D0%BC%D1%8D%D0%B4%D1%8D%D1%8D%D0%BB%D1%8D%D0%BB-r-rstudio-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Энэхүү гарын авлагыг гаргах явцад ашигласан R, RStudio, R багцын хувилбаруудын талаархи мэдээллийг доор өгөв.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## - Session info ----------------------------------------------------------------------------------------------------------------
+##  setting  value                       
+##  version  R version 4.1.1 (2021-08-10)
+##  os       Windows 10 x64              
+##  system   x86_64, mingw32             
+##  ui       RStudio                     
+##  language (EN)                        
+##  collate  Mongolian_Mongolia.1251     
+##  ctype    Mongolian_Mongolia.1251     
+##  tz       Asia/Ulaanbaatar            
+##  date     2021-08-31                  
+## 
+## - Packages --------------------------------------------------------------------------------------------------------------------
+##  ! package              * version     date       lib source                               
+##    abind                * 1.4-5       2016-07-21 [1] CRAN (R 4.1.0)                       
+##    ada                    2.0-5       2016-05-13 [1] CRAN (R 4.1.1)                       
+##    adagio                 0.8.4       2021-04-30 [1] CRAN (R 4.1.0)                       
+##    ade4                   1.7-17      2021-06-17 [1] CRAN (R 4.1.0)                       
+##    anytime                0.3.9       2020-08-27 [1] CRAN (R 4.1.0)                       
+##    ape                  * 5.5         2021-04-25 [1] CRAN (R 4.1.0)                       
+##    aplot                  0.0.6       2020-09-03 [1] CRAN (R 4.1.1)                       
+##    apyramid             * 0.1.2       2020-05-08 [1] CRAN (R 4.1.0)                       
+##    assertive.base         0.0-9       2021-02-08 [1] CRAN (R 4.1.1)                       
+##    assertive.properties   0.0-4       2016-12-30 [1] CRAN (R 4.1.1)                       
+##    assertive.types        0.0-3       2016-12-30 [1] CRAN (R 4.1.1)                       
+##    assertthat             0.2.1       2019-03-21 [1] CRAN (R 4.1.0)                       
+##    aweek                * 1.0.2       2021-01-04 [1] CRAN (R 4.1.0)                       
+##    backports              1.2.1       2020-12-09 [1] CRAN (R 4.1.0)                       
+##    base64enc              0.1-3       2015-07-28 [1] CRAN (R 4.1.0)                       
+##    bayestestR             0.10.5      2021-07-26 [1] CRAN (R 4.1.0)                       
+##    BiocManager            1.30.16     2021-06-15 [1] CRAN (R 4.1.1)                       
+##    bit                  * 4.0.4       2020-08-04 [1] CRAN (R 4.1.0)                       
+##    bit64                  4.0.5       2020-08-30 [1] CRAN (R 4.1.0)                       
+##    blob                   1.2.2       2021-07-23 [1] CRAN (R 4.1.0)                       
+##    bookdown               0.23        2021-08-13 [1] CRAN (R 4.1.0)                       
+##    boot                 * 1.3-28      2021-05-03 [2] CRAN (R 4.1.1)                       
+##    broom                * 0.7.9       2021-07-27 [1] CRAN (R 4.1.0)                       
+##    broom.helpers          1.3.0       2021-04-10 [1] CRAN (R 4.1.0)                       
+##    bslib                  0.2.5.1     2021-05-18 [1] CRAN (R 4.1.0)                       
+##    cachem                 1.0.6       2021-08-19 [1] CRAN (R 4.1.1)                       
+##    callr                  3.7.0       2021-04-20 [1] CRAN (R 4.1.0)                       
+##    car                    3.0-11      2021-06-27 [1] CRAN (R 4.1.0)                       
+##    carData                3.0-4       2020-05-22 [1] CRAN (R 4.1.0)                       
+##    cellranger             1.1.0       2016-07-27 [1] CRAN (R 4.1.0)                       
+##    checkmate              2.0.0       2020-02-06 [1] CRAN (R 4.1.0)                       
+##    class                  7.3-19      2021-05-03 [2] CRAN (R 4.1.1)                       
+##    classInt               0.4-3       2020-04-07 [1] CRAN (R 4.1.0)                       
+##    cli                    3.0.1       2021-07-17 [1] CRAN (R 4.1.0)                       
+##    clock                  0.4.0       2021-07-22 [1] CRAN (R 4.1.0)                       
+##    cmprsk                 2.2-10      2020-06-09 [1] CRAN (R 4.1.1)                       
+##    coarseDataTools        0.6-5       2019-12-06 [1] CRAN (R 4.1.1)                       
+##    coda                   0.19-4      2020-09-30 [1] CRAN (R 4.1.0)                       
+##    codetools              0.2-18      2020-11-04 [2] CRAN (R 4.1.1)                       
+##    colorspace             2.0-2       2021-06-24 [1] CRAN (R 4.1.0)                       
+##    commonmark             1.7         2018-12-01 [1] CRAN (R 4.1.0)                       
+##    conquer                1.0.2       2020-08-27 [1] CRAN (R 4.1.0)                       
+##    corrr                * 0.4.3       2020-11-24 [1] CRAN (R 4.1.1)                       
+##    cowplot              * 1.1.1       2020-12-30 [1] CRAN (R 4.1.0)                       
+##    crayon                 1.4.1       2021-02-08 [1] CRAN (R 4.1.0)                       
+##    crosstalk              1.1.1       2021-01-12 [1] CRAN (R 4.1.0)                       
+##    curl                   4.3.2       2021-06-23 [1] CRAN (R 4.1.0)                       
+##    curry                  0.1.1       2016-09-28 [1] CRAN (R 4.1.0)                       
+##    data.table             1.14.0      2021-02-21 [1] CRAN (R 4.1.0)                       
+##    datawizard             0.2.0       2021-08-17 [1] CRAN (R 4.1.1)                       
+##    DBI                  * 1.1.1       2021-01-15 [1] CRAN (R 4.1.0)                       
+##    dbplyr                 2.1.1       2021-04-06 [1] CRAN (R 4.1.0)                       
+##    deldir                 0.2-10      2021-02-16 [1] CRAN (R 4.1.0)                       
+##    Deriv                  4.1.3       2021-02-24 [1] CRAN (R 4.1.1)                       
+##    desc                   1.3.0       2021-03-05 [1] CRAN (R 4.1.0)                       
+##    devtools               2.4.2       2021-06-07 [1] CRAN (R 4.1.0)                       
+##    DiagrammeR           * 1.0.6.1     2020-05-08 [1] CRAN (R 4.1.0)                       
+##    dichromat              2.0-0       2013-01-24 [1] CRAN (R 4.1.0)                       
+##    digest                 0.6.27      2020-10-24 [1] CRAN (R 4.1.0)                       
+##    distcrete            * 1.0.3       2017-11-23 [1] CRAN (R 4.1.0)                       
+##    distributional         0.2.2       2021-02-02 [1] CRAN (R 4.1.1)                       
+##    doBy                 * 4.6.11      2021-07-13 [1] CRAN (R 4.1.1)                       
+##    doParallel             1.0.16      2020-10-16 [1] CRAN (R 4.1.0)                       
+##    downlit                0.2.1       2020-11-04 [1] CRAN (R 4.1.0)                       
+##    dplyr                * 1.0.7       2021-06-18 [1] CRAN (R 4.1.0)                       
+##    dsr                  * 0.2.2       2019-08-23 [1] CRAN (R 4.1.1)                       
+##    DT                   * 0.18        2021-04-14 [1] CRAN (R 4.1.0)                       
+##    e1071                  1.7-8       2021-07-28 [1] CRAN (R 4.1.0)                       
+##    ecmwfr               * 1.3.0       2020-07-13 [1] CRAN (R 4.1.1)                       
+##    ellipsis               0.3.2       2021-04-29 [1] CRAN (R 4.1.0)                       
+##    Epi                  * 2.44        2021-02-27 [1] CRAN (R 4.1.1)                       
+##    epibuffet              0.0.0.9005  2021-08-31 [1] Github (R4EPI/epibuffet@39cbc7e)     
+##    epicontacts          * 1.2.0       2021-08-31 [1] Github (reconhub/epicontacts@facf491)
+##    epidict                0.0.0.9001  2021-08-31 [1] Github (R4EPI/epidict@1893db0)       
+##    EpiEstim             * 2.2-4       2021-01-07 [1] CRAN (R 4.1.1)                       
+##    epikit               * 0.1.2       2020-09-07 [1] CRAN (R 4.1.0)                       
+##    EpiNow2              * 1.3.2       2020-12-14 [1] CRAN (R 4.1.0)                       
+##    epitrix              * 0.2.2       2019-01-15 [1] CRAN (R 4.1.0)                       
+##    etm                    1.1.1       2020-09-08 [1] CRAN (R 4.1.1)                       
+##    evaluate               0.14        2019-05-28 [1] CRAN (R 4.1.0)                       
+##    evd                    2.3-3       2018-04-25 [1] CRAN (R 4.1.1)                       
+##    expm                   0.999-6     2021-01-13 [1] CRAN (R 4.1.0)                       
+##    fabletools           * 0.3.1       2021-03-16 [1] CRAN (R 4.1.1)                       
+##    FactoClass             1.2.7       2018-10-01 [1] CRAN (R 4.1.0)                       
+##    fansi                  0.5.0       2021-05-25 [1] CRAN (R 4.1.0)                       
+##    farver                 2.1.0       2021-02-28 [1] CRAN (R 4.1.0)                       
+##    fastLink             * 0.6.0       2020-04-29 [1] CRAN (R 4.1.0)                       
+##    fastmap                1.1.0       2021-01-25 [1] CRAN (R 4.1.0)                       
+##    feasts               * 0.2.2       2021-06-03 [1] CRAN (R 4.1.1)                       
+##    ff                   * 4.0.4       2020-10-13 [1] CRAN (R 4.1.1)                       
+##    fitdistrplus           1.1-5       2021-05-28 [1] CRAN (R 4.1.1)                       
+##    flextable            * 0.6.7       2021-07-22 [1] CRAN (R 4.1.0)                       
+##    forcats              * 0.5.1       2021-01-27 [1] CRAN (R 4.1.0)                       
+##    foreach                1.5.1       2020-10-15 [1] CRAN (R 4.1.0)                       
+##    forecast             * 8.15        2021-06-01 [1] CRAN (R 4.1.0)                       
+##    foreign                0.8-81      2020-12-22 [2] CRAN (R 4.1.1)                       
+##    formatR                1.11        2021-06-01 [1] CRAN (R 4.1.0)                       
+##    formattable          * 0.2.1       2021-01-07 [1] CRAN (R 4.1.0)                       
+##    Formula              * 1.2-4       2020-10-16 [1] CRAN (R 4.1.0)                       
+##    fracdiff               1.5-1       2020-01-24 [1] CRAN (R 4.1.0)                       
+##    frailtypack          * 3.4.0       2021-06-16 [1] CRAN (R 4.1.1)                       
+##    fs                   * 1.5.0       2020-07-31 [1] CRAN (R 4.1.0)                       
+##    futile.logger          1.4.3       2016-07-10 [1] CRAN (R 4.1.0)                       
+##    futile.options         1.0.1       2018-04-20 [1] CRAN (R 4.1.0)                       
+##    future                 1.22.1      2021-08-25 [1] CRAN (R 4.1.1)                       
+##    future.apply           1.8.1       2021-08-10 [1] CRAN (R 4.1.0)                       
+##    gdata                  2.18.0      2017-06-06 [1] CRAN (R 4.1.0)                       
+##    gdtools                0.2.3       2021-01-06 [1] CRAN (R 4.1.0)                       
+##    generics               0.1.0       2020-10-31 [1] CRAN (R 4.1.0)                       
+##    ggExtra              * 0.9         2019-08-27 [1] CRAN (R 4.1.0)                       
+##    ggforce              * 0.3.3       2021-03-05 [1] CRAN (R 4.1.1)                       
+##    ggfun                  0.0.3       2021-08-17 [1] CRAN (R 4.1.1)                       
+##    gghighlight          * 0.3.2       2021-06-05 [1] CRAN (R 4.1.0)                       
+##    ggnewscale           * 0.4.5       2021-01-11 [1] CRAN (R 4.1.1)                       
+##    ggplot2              * 3.3.5       2021-06-25 [1] CRAN (R 4.1.0)                       
+##    ggpubr               * 0.4.0       2020-06-27 [1] CRAN (R 4.1.0)                       
+##    ggrepel              * 0.9.1       2021-01-15 [1] CRAN (R 4.1.0)                       
+##    ggsignif               0.6.2       2021-06-14 [1] CRAN (R 4.1.0)                       
+##    ggtext                 0.1.1       2020-12-17 [1] CRAN (R 4.1.0)                       
+##    ggtree               * 3.0.4       2021-08-22 [1] Bioconductor                         
+##    ggupset              * 0.3.0       2020-05-05 [1] CRAN (R 4.1.1)                       
+##    globals                0.14.0      2020-11-22 [1] CRAN (R 4.1.0)                       
+##    glue                   1.4.2       2020-08-27 [1] CRAN (R 4.1.0)                       
+##    gmodels                2.18.1      2018-06-25 [1] CRAN (R 4.1.0)                       
+##    goftest                1.2-2       2019-12-02 [1] CRAN (R 4.1.0)                       
+##    grates                 0.2.0       2021-05-28 [1] CRAN (R 4.1.0)                       
+##    gridExtra              2.3         2017-09-09 [1] CRAN (R 4.1.0)                       
+##    gridtext               0.1.4       2020-12-10 [1] CRAN (R 4.1.0)                       
+##    gt                     0.3.1       2021-08-07 [1] CRAN (R 4.1.0)                       
+##    gtable                 0.3.0       2019-03-25 [1] CRAN (R 4.1.0)                       
+##    gtools                 3.9.2       2021-06-06 [1] CRAN (R 4.1.0)                       
+##    gtsummary            * 1.4.2       2021-07-13 [1] CRAN (R 4.1.0)                       
+##    haven                  2.4.3       2021-08-04 [1] CRAN (R 4.1.0)                       
+##    here                 * 1.0.1       2020-12-13 [1] CRAN (R 4.1.0)                       
+##    highcharter            0.8.2       2020-07-26 [1] CRAN (R 4.1.0)                       
+##    highr                  0.9         2021-04-16 [1] CRAN (R 4.1.0)                       
+##    hms                    1.1.0       2021-05-17 [1] CRAN (R 4.1.0)                       
+##    htmltools              0.5.2       2021-08-25 [1] CRAN (R 4.1.1)                       
+##    htmlwidgets            1.5.3       2020-12-10 [1] CRAN (R 4.1.0)                       
+##    httpuv                 1.6.2       2021-08-18 [1] CRAN (R 4.1.1)                       
+##    httr                   1.4.2       2020-07-20 [1] CRAN (R 4.1.0)                       
+##    i2extras             * 0.1.2       2021-07-08 [1] CRAN (R 4.1.0)                       
+##    igraph                 1.2.6       2020-10-06 [1] CRAN (R 4.1.0)                       
+##    imputeTS             * 3.2         2021-01-16 [1] CRAN (R 4.1.0)                       
+##    incidence              1.7.3       2020-11-04 [1] CRAN (R 4.1.0)                       
+##    incidence2           * 1.2.2       2021-08-23 [1] CRAN (R 4.1.1)                       
+##    inline                 0.3.19      2021-05-31 [1] CRAN (R 4.1.0)                       
+##    insight                0.14.3      2021-08-17 [1] CRAN (R 4.1.1)                       
+##    ipred                  0.9-11      2021-03-12 [1] CRAN (R 4.1.0)                       
+##    isoband                0.2.5       2021-07-13 [1] CRAN (R 4.1.0)                       
+##    iterators              1.0.13      2020-10-15 [1] CRAN (R 4.1.0)                       
+##    janitor              * 2.1.0       2021-01-05 [1] CRAN (R 4.1.0)                       
+##    jpeg                   0.1-9       2021-07-24 [1] CRAN (R 4.1.0)                       
+##    jquerylib              0.1.4       2021-04-26 [1] CRAN (R 4.1.0)                       
+##    jsonlite               1.7.2       2020-12-09 [1] CRAN (R 4.1.0)                       
+##    kableExtra           * 1.3.4       2021-02-20 [1] CRAN (R 4.1.0)                       
+##    KernSmooth             2.23-20     2021-05-03 [2] CRAN (R 4.1.1)                       
+##    km.ci                  0.5-2       2009-08-30 [1] CRAN (R 4.1.0)                       
+##    KMsurv                 0.1-5       2012-12-03 [1] CRAN (R 4.1.0)                       
+##    knitr                  1.33        2021-04-24 [1] CRAN (R 4.1.0)                       
+##    labeling               0.4.2       2020-10-20 [1] CRAN (R 4.1.0)                       
+##    labelled               2.8.0       2021-03-08 [1] CRAN (R 4.1.0)                       
+##    lambda.r               1.2.4       2019-09-18 [1] CRAN (R 4.1.0)                       
+##    later                  1.3.0       2021-08-18 [1] CRAN (R 4.1.1)                       
+##    lattice                0.20-44     2021-05-02 [2] CRAN (R 4.1.1)                       
+##    lava                   1.6.9       2021-03-11 [1] CRAN (R 4.1.0)                       
+##    lazyeval               0.2.2       2019-03-15 [1] CRAN (R 4.1.0)                       
+##    leafem                 0.1.6       2021-05-24 [1] CRAN (R 4.1.1)                       
+##    leaflet                2.0.4.1     2021-01-07 [1] CRAN (R 4.1.1)                       
+##    leaflet.providers      1.9.0       2019-11-09 [1] CRAN (R 4.1.1)                       
+##    leafsync               0.1.0       2019-03-05 [1] CRAN (R 4.1.1)                       
+##    LearnBayes             2.15.1      2018-03-18 [1] CRAN (R 4.1.0)                       
+##    lifecycle              1.0.0       2021-02-15 [1] CRAN (R 4.1.0)                       
+##    linelist             * 0.0.40.9000 2021-08-26 [1] Github (reconhub/linelist@cae034d)   
+##    listenv                0.8.0       2019-12-05 [1] CRAN (R 4.1.0)                       
+##    lmtest               * 0.9-38      2020-09-09 [1] CRAN (R 4.1.0)                       
+##    loo                    2.4.1       2020-12-09 [1] CRAN (R 4.1.0)                       
+##    lpSolve                5.6.15      2020-01-24 [1] CRAN (R 4.1.0)                       
+##    lubridate            * 1.7.10      2021-02-26 [1] CRAN (R 4.1.0)                       
+##    lwgeom                 0.2-7       2021-07-28 [1] CRAN (R 4.1.0)                       
+##    magrittr             * 2.0.1       2020-11-17 [1] CRAN (R 4.1.0)                       
+##    markdown               1.1         2019-08-07 [1] CRAN (R 4.1.0)                       
+##    MASS                 * 7.3-54      2021-05-03 [2] CRAN (R 4.1.1)                       
+##    matchmaker             0.1.1       2020-02-21 [1] CRAN (R 4.1.0)                       
+##    Matrix               * 1.3-4       2021-06-01 [2] CRAN (R 4.1.1)                       
+##    MatrixModels           0.5-0       2021-03-02 [1] CRAN (R 4.1.0)                       
+##    matrixStats            0.60.1      2021-08-23 [1] CRAN (R 4.1.1)                       
+##    mcmc                   0.9-7       2020-03-21 [1] CRAN (R 4.1.1)                       
+##    MCMCpack               1.5-0       2021-01-20 [1] CRAN (R 4.1.1)                       
+##    memoise                2.0.0       2021-01-26 [1] CRAN (R 4.1.0)                       
+##    mgcv                   1.8-36      2021-06-01 [2] CRAN (R 4.1.1)                       
+##    mice                 * 3.13.0      2021-01-27 [1] CRAN (R 4.1.0)                       
+##    microbenchmark         1.4-7       2019-09-24 [1] CRAN (R 4.1.1)                       
+##    mime                   0.11        2021-06-23 [1] CRAN (R 4.1.0)                       
+##    miniUI                 0.1.1.1     2018-05-18 [1] CRAN (R 4.1.0)                       
+##    mitools                2.4         2019-04-26 [1] CRAN (R 4.1.1)                       
+##    modelr                 0.1.8       2020-05-19 [1] CRAN (R 4.1.0)                       
+##    munsell                0.5.0       2018-06-12 [1] CRAN (R 4.1.0)                       
+##    naniar               * 0.6.1       2021-05-14 [1] CRAN (R 4.1.1)                       
+##    networkD3            * 0.4         2017-03-18 [1] CRAN (R 4.1.1)                       
+##    nlme                   3.1-152     2021-02-04 [2] CRAN (R 4.1.1)                       
+##    nnet                   7.3-16      2021-05-03 [2] CRAN (R 4.1.1)                       
+##    numDeriv               2016.8-1.1  2019-06-06 [1] CRAN (R 4.1.0)                       
+##    officer              * 0.3.19      2021-07-21 [1] CRAN (R 4.1.0)                       
+##    OpenStreetMap        * 0.3.4       2019-05-31 [1] CRAN (R 4.1.1)                       
+##    openxlsx               4.2.4       2021-06-16 [1] CRAN (R 4.1.0)                       
+##    pacman                 0.5.1       2019-03-11 [1] CRAN (R 4.1.0)                       
+##    parallelly             1.27.0      2021-07-19 [1] CRAN (R 4.1.0)                       
+##    parameters           * 0.14.0      2021-05-29 [1] CRAN (R 4.1.0)                       
+##    patchwork            * 1.1.1       2020-12-17 [1] CRAN (R 4.1.0)                       
+##    PerformanceAnalytics * 2.0.4       2020-02-06 [1] CRAN (R 4.1.0)                       
+##    PHEindicatormethods  * 1.3.2       2020-06-25 [1] CRAN (R 4.1.0)                       
+##    pillar                 1.6.2       2021-07-29 [1] CRAN (R 4.1.0)                       
+##    pkgbuild               1.2.0       2020-12-15 [1] CRAN (R 4.1.0)                       
+##    pkgconfig              2.0.3       2019-09-22 [1] CRAN (R 4.1.0)                       
+##    pkgload                1.2.1       2021-04-06 [1] CRAN (R 4.1.0)                       
+##    plotly               * 4.9.4.1     2021-06-18 [1] CRAN (R 4.1.0)                       
+##    plotrix                3.8-1       2021-01-21 [1] CRAN (R 4.1.0)                       
+##    plyr                   1.8.6       2020-03-03 [1] CRAN (R 4.1.0)                       
+##    png                    0.1-7       2013-12-03 [1] CRAN (R 4.1.0)                       
+##    polyclip               1.10-0      2019-03-14 [1] CRAN (R 4.1.0)                       
+##    polyCub                0.8.0       2021-01-27 [1] CRAN (R 4.1.1)                       
+##    prettyunits            1.1.1       2020-01-24 [1] CRAN (R 4.1.0)                       
+##    pROC                   1.17.0.1    2021-01-13 [1] CRAN (R 4.1.1)                       
+##    processx               3.5.2       2021-04-30 [1] CRAN (R 4.1.0)                       
+##    prodlim                2019.11.13  2019-11-17 [1] CRAN (R 4.1.0)                       
+##    progressr              0.8.0       2021-06-10 [1] CRAN (R 4.1.0)                       
+##    projections          * 0.5.4       2021-04-22 [1] CRAN (R 4.1.1)                       
+##    promises               1.2.0.1     2021-02-11 [1] CRAN (R 4.1.0)                       
+##    proxy                  0.4-26      2021-06-07 [1] CRAN (R 4.1.0)                       
+##    ps                     1.6.0       2021-02-28 [1] CRAN (R 4.1.0)                       
+##    purrr                * 0.3.4       2020-04-17 [1] CRAN (R 4.1.0)                       
+##    quadprog               1.5-8       2019-11-20 [1] CRAN (R 4.1.0)                       
+##    Quandl                 2.11.0      2021-08-11 [1] CRAN (R 4.1.0)                       
+##    quantmod             * 0.4.18      2020-12-09 [1] CRAN (R 4.1.0)                       
+##    quantreg               5.86        2021-06-06 [1] CRAN (R 4.1.0)                       
+##    R.methodsS3            1.8.1       2020-08-26 [1] CRAN (R 4.1.0)                       
+##    R.oo                   1.24.0      2020-08-26 [1] CRAN (R 4.1.0)                       
+##    R.utils                2.10.1      2020-08-26 [1] CRAN (R 4.1.0)                       
+##    R6                     2.5.1       2021-08-19 [1] CRAN (R 4.1.1)                       
+##    raster                 3.4-13      2021-06-18 [1] CRAN (R 4.1.0)                       
+##    RColorBrewer         * 1.1-2       2014-12-07 [1] CRAN (R 4.1.0)                       
+##    Rcpp                 * 1.0.7       2021-07-07 [1] CRAN (R 4.1.0)                       
+##  D RcppParallel           5.1.4       2021-05-04 [1] CRAN (R 4.1.0)                       
+##    readr                * 2.0.1       2021-08-10 [1] CRAN (R 4.1.0)                       
+##    readxl               * 1.3.1       2019-03-13 [1] CRAN (R 4.1.0)                       
+##    RecordLinkage        * 0.4-12.1    2020-08-25 [1] CRAN (R 4.1.1)                       
+##    remotes                2.4.0       2021-06-02 [1] CRAN (R 4.1.0)                       
+##    repr                   1.1.3       2021-01-21 [1] CRAN (R 4.1.0)                       
+##    reprex                 2.0.1       2021-08-05 [1] CRAN (R 4.1.0)                       
+##    reshape2               1.4.4       2020-04-09 [1] CRAN (R 4.1.1)                       
+##    rgdal                  1.5-23      2021-02-03 [1] CRAN (R 4.1.0)                       
+##    rio                  * 0.5.27      2021-06-21 [1] CRAN (R 4.1.0)                       
+##  D rJava                  1.0-4       2021-04-29 [1] CRAN (R 4.1.0)                       
+##    rlang                  0.4.11      2021-04-30 [1] CRAN (R 4.1.0)                       
+##    rlist                  0.4.6.1     2016-04-04 [1] CRAN (R 4.1.0)                       
+##    rmarkdown              2.10        2021-08-06 [1] CRAN (R 4.1.0)                       
+##    rootSolve              1.8.2.2     2021-07-05 [1] CRAN (R 4.1.0)                       
+##    rpart                  4.1-15      2019-04-12 [2] CRAN (R 4.1.1)                       
+##    rprojroot              2.0.2       2020-11-15 [1] CRAN (R 4.1.0)                       
+##    RSQLite              * 2.2.8       2021-08-21 [1] CRAN (R 4.1.1)                       
+##    rstan                  2.21.2      2020-07-27 [1] CRAN (R 4.1.0)                       
+##    rstatix              * 0.7.0       2021-02-13 [1] CRAN (R 4.1.0)                       
+##    rstudioapi             0.13        2020-11-12 [1] CRAN (R 4.1.0)                       
+##    runner                 0.4.0       2021-04-22 [1] CRAN (R 4.1.0)                       
+##    rvest                  1.0.1       2021-07-26 [1] CRAN (R 4.1.0)                       
+##    s2                     1.0.6       2021-06-17 [1] CRAN (R 4.1.0)                       
+##    sass                   0.4.0       2021-05-12 [1] CRAN (R 4.1.0)                       
+##    scales               * 1.1.1       2020-05-11 [1] CRAN (R 4.1.0)                       
+##    scatterplot3d          0.3-41      2018-03-14 [1] CRAN (R 4.1.0)                       
+##    see                  * 0.6.7       2021-08-23 [1] CRAN (R 4.1.1)                       
+##    SemiCompRisks        * 3.4         2021-02-03 [1] CRAN (R 4.1.1)                       
+##    sessioninfo            1.1.1       2018-11-05 [1] CRAN (R 4.1.0)                       
+##    sf                   * 1.0-2       2021-07-26 [1] CRAN (R 4.1.0)                       
+##    shiny                  1.6.0       2021-01-25 [1] CRAN (R 4.1.0)                       
+##    sitrep               * 0.1.7       2021-08-31 [1] Github (R4EPI/sitrep@9a57f33)        
+##    skimr                * 2.1.3       2021-03-07 [1] CRAN (R 4.1.0)                       
+##    slider               * 0.2.2       2021-07-01 [1] CRAN (R 4.1.0)                       
+##    snakecase              0.11.0      2019-05-25 [1] CRAN (R 4.1.0)                       
+##    sp                   * 1.4-5       2021-01-10 [1] CRAN (R 4.1.0)                       
+##    SparseM                1.81        2021-02-18 [1] CRAN (R 4.1.0)                       
+##    spatstat               2.2-0       2021-06-23 [1] CRAN (R 4.1.1)                       
+##    spatstat.core          2.3-0       2021-07-16 [1] CRAN (R 4.1.1)                       
+##    spatstat.data          2.1-0       2021-03-21 [1] CRAN (R 4.1.1)                       
+##    spatstat.geom          2.2-2       2021-07-12 [1] CRAN (R 4.1.1)                       
+##    spatstat.linnet        2.3-0       2021-07-17 [1] CRAN (R 4.1.1)                       
+##    spatstat.sparse        2.0-0       2021-03-16 [1] CRAN (R 4.1.1)                       
+##    spatstat.utils         2.2-0       2021-06-14 [1] CRAN (R 4.1.1)                       
+##    spData               * 0.3.10      2021-06-18 [1] CRAN (R 4.1.0)                       
+##    spdep                * 1.1-8       2021-05-23 [1] CRAN (R 4.1.0)                       
+##    srvyr                * 1.0.1       2021-03-28 [1] CRAN (R 4.1.1)                       
+##    StanHeaders            2.21.0-7    2020-12-17 [1] CRAN (R 4.1.0)                       
+##    stars                * 0.5-3       2021-06-08 [1] CRAN (R 4.1.0)                       
+##    statmod                1.4.36      2021-05-10 [1] CRAN (R 4.1.1)                       
+##    stinepack              1.4         2018-07-30 [1] CRAN (R 4.1.0)                       
+##    stringdist           * 0.9.7       2021-07-28 [1] CRAN (R 4.1.0)                       
+##    stringi                1.7.4       2021-08-25 [1] CRAN (R 4.1.1)                       
+##    stringr              * 1.4.0       2019-02-10 [1] CRAN (R 4.1.0)                       
+##    survC1               * 1.0-3       2021-02-10 [1] CRAN (R 4.1.1)                       
+##    surveillance         * 1.19.1      2021-03-31 [1] CRAN (R 4.1.1)                       
+##    survey               * 4.1-1       2021-07-19 [1] CRAN (R 4.1.1)                       
+##    survival             * 3.2-11      2021-04-26 [2] CRAN (R 4.1.1)                       
+##    survminer            * 0.4.9       2021-03-09 [1] CRAN (R 4.1.0)                       
+##    survMisc               0.5.5       2018-07-05 [1] CRAN (R 4.1.0)                       
+##    svglite                2.0.0       2021-02-20 [1] CRAN (R 4.1.0)                       
+##    systemfonts            1.0.2       2021-05-11 [1] CRAN (R 4.1.0)                       
+##    tensor                 1.5         2012-05-05 [1] CRAN (R 4.1.0)                       
+##    testthat               3.0.4       2021-07-01 [1] CRAN (R 4.1.0)                       
+##    tibble               * 3.1.4       2021-08-25 [1] CRAN (R 4.1.1)                       
+##    tidyquant            * 1.0.3       2021-03-05 [1] CRAN (R 4.1.0)                       
+##    tidyr                * 1.1.3       2021-03-03 [1] CRAN (R 4.1.0)                       
+##    tidyselect             1.1.1       2021-04-30 [1] CRAN (R 4.1.0)                       
+##    tidytree               0.3.4       2021-05-22 [1] CRAN (R 4.1.1)                       
+##    tidyverse            * 1.3.1       2021-04-15 [1] CRAN (R 4.1.0)                       
+##    timeDate               3043.102    2018-02-21 [1] CRAN (R 4.1.0)                       
+##    tmap                 * 3.3-2       2021-06-16 [1] CRAN (R 4.1.1)                       
+##    tmaptools            * 3.1-1       2021-01-19 [1] CRAN (R 4.1.1)                       
+##    treeio               * 1.16.2      2021-08-17 [1] Bioconductor                         
+##    trending             * 0.0.3       2021-04-19 [1] CRAN (R 4.1.0)                       
+##    truncnorm              1.0-8       2018-02-27 [1] CRAN (R 4.1.0)                       
+##    tseries                0.10-48     2020-12-04 [1] CRAN (R 4.1.0)                       
+##    tsibble              * 1.0.1       2021-04-12 [1] CRAN (R 4.1.0)                       
+##    TTR                  * 0.24.2      2020-09-01 [1] CRAN (R 4.1.0)                       
+##    tweenr                 1.0.2       2021-03-23 [1] CRAN (R 4.1.1)                       
+##    tzdb                   0.1.2       2021-07-20 [1] CRAN (R 4.1.0)                       
+##    units                * 0.7-2       2021-06-08 [1] CRAN (R 4.1.0)                       
+##    UpSetR               * 1.4.0       2019-05-22 [1] CRAN (R 4.1.0)                       
+##    urca                   1.3-0       2016-09-06 [1] CRAN (R 4.1.0)                       
+##    usethis                2.0.1       2021-02-10 [1] CRAN (R 4.1.0)                       
+##    utf8                   1.2.2       2021-07-24 [1] CRAN (R 4.1.0)                       
+##    uuid                   0.1-4       2020-02-26 [1] CRAN (R 4.1.0)                       
+##    V8                     3.4.2       2021-05-01 [1] CRAN (R 4.1.0)                       
+##    vctrs                  0.3.8       2021-04-29 [1] CRAN (R 4.1.0)                       
+##    viridis              * 0.6.1       2021-05-11 [1] CRAN (R 4.1.0)                       
+##    viridisLite          * 0.4.0       2021-04-13 [1] CRAN (R 4.1.0)                       
+##    visdat                 0.5.3       2019-02-15 [1] CRAN (R 4.1.1)                       
+##    visNetwork           * 2.0.9       2019-12-06 [1] CRAN (R 4.1.0)                       
+##    vistime              * 1.2.1       2021-04-10 [1] CRAN (R 4.1.1)                       
+##    warp                   0.2.0       2020-10-21 [1] CRAN (R 4.1.0)                       
+##    webshot              * 0.5.2       2019-11-22 [1] CRAN (R 4.1.0)                       
+##    withr                  2.4.2       2021-04-18 [1] CRAN (R 4.1.0)                       
+##    wk                     0.5.0       2021-07-13 [1] CRAN (R 4.1.0)                       
+##    writexl              * 1.4.0       2021-04-20 [1] CRAN (R 4.1.1)                       
+##    xfun                   0.25        2021-08-06 [1] CRAN (R 4.1.0)                       
+##    XML                    3.99-0.7    2021-08-17 [1] CRAN (R 4.1.1)                       
+##    xml2                   1.3.2       2020-04-23 [1] CRAN (R 4.1.0)                       
+##    xtable               * 1.8-4       2019-04-21 [1] CRAN (R 4.1.0)                       
+##    xts                  * 0.12.1      2020-09-09 [1] CRAN (R 4.1.0)                       
+##    yaml                   2.2.1       2020-02-01 [1] CRAN (R 4.1.0)                       
+##    yardstick            * 0.0.8       2021-03-28 [1] CRAN (R 4.1.1)                       
+##    yulab.utils            0.0.2       2021-08-16 [1] CRAN (R 4.1.1)                       
+##    zip                    2.2.0       2021-05-31 [1] CRAN (R 4.1.0)                       
+##    zoo                  * 1.8-9       2021-03-09 [1] CRAN (R 4.1.0)                       
+## 
+## [1] C:/Users/Temuulen/Documents/R/win-library/4.1
+## [2] C:/Program Files/R/R-4.1.1/library
+## 
+##  D -- DLL MD5 mismatch, broken installation.</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"></a></div>
+<div class="next"><a href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li>
+<a class="nav-link" href="#%D0%B0%D1%80%D0%B3%D0%B0-%D0%B1%D0%B0%D1%80%D0%B8%D0%BB-%D0%B7%D0%B0%D0%B3%D0%B2%D0%B0%D1%80"><span class="header-section-number">1.1</span> Арга барил, загвар</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4">R багцууд</a></li>
+<li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B4%D1%8B%D0%BD-%D0%B7%D0%B0%D0%B3%D0%B2%D0%B0%D1%80">Кодын загвар</a></li>
+<li><a class="nav-link" href="#%D0%BD%D1%8D%D1%80-%D1%82%D0%BE%D0%BC%D1%8A%D1%91%D0%BE">Нэр томъёо</a></li>
+<li><a class="nav-link" href="#%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB">Тэмдэглэл</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D1%88%D0%B8%D0%B9%D0%B4%D0%B2%D1%8D%D1%80"><span class="header-section-number">1.2</span> Редакцийн шийдвэр</a></li>
+<li><a class="nav-link" href="#%D0%B3%D0%BE%D0%BB-%D3%A9%D3%A9%D1%80%D1%87%D0%BB%D3%A9%D0%BB%D1%82"><span class="header-section-number">1.3</span> Гол өөрчлөлт</a></li>
+<li><a class="nav-link" href="#session-%D0%BC%D1%8D%D0%B4%D1%8D%D1%8D%D0%BB%D1%8D%D0%BB-r-rstudio-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><span class="header-section-number">1.4</span> Session мэдээлэл (R, RStudio, багцууд)</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2021-08-31.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

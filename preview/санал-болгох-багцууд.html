@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 Санал болгох багцууд | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="R -дээр тархвар судлалын ажилд өргөн хэрэглэдэг багцуудыг доор жагсаав. Доорх кодыг шууд хуулж аваад уншуулж болно. Уншуулсан код CRAN –аас эдгээр багцуудыг татаж аваад, тухайн нээлттэй R- дээр...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="1 Санал болгох багцууд | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="R -дээр тархвар судлалын ажилд өргөн хэрэглэдэг багцуудыг доор жагсаав. Доорх кодыг шууд хуулж аваад уншуулж болно. Уншуулсан код CRAN –аас эдгээр багцуудыг татаж аваад, тухайн нээлттэй R- дээр...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 Санал болгох багцууд | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="R -дээр тархвар судлалын ажилд өргөн хэрэглэдэг багцуудыг доор жагсаав. Доорх кодыг шууд хуулж аваад уншуулж болно. Уншуулсан код CRAN –аас эдгээр багцуудыг татаж аваад, тухайн нээлттэй R- дээр...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="active" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">1</span> Санал болгох багцууд</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="санал-болгох-багцууд" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Санал болгох багцууд<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h1>
+<p>R -дээр тархвар судлалын ажилд өргөн хэрэглэдэг багцуудыг доор жагсаав. Доорх кодыг шууд хуулж аваад уншуулж болно. Уншуулсан код CRAN –аас эдгээр багцуудыг татаж аваад, тухайн нээлттэй R- дээр шууд ачааллаж өгдөг. Хэрэв өмнө нь татаж авагдсан багц байсан бол зөвхөн ачааллах үйлдэл нь хийгднэ.</p>
+<p>Доорх жагсаалтад ашиглах шаардлагагүй багц буй бол кодны урд нь <code>#</code> тэмдгийг тавьж идэвхигүйжүүлж болно.</p>
+<p>Тэмдэглэл:</p>
+<ul>
+<li>Доор кодыг уншуулахаас өмнө <strong>pacman</strong> багцыг суулга. <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("pacman")</a></code>-кодыг уншуулж татаж авч болно. Энэ багцын <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load()</a></code> функц нь аливаа багцыг шаардлагатай тохиолдолд суулгаад <em>мөн</em> ачааллаад тухайн нээлттэй R дээр шууд ашиглахад бэлэн болгож өгдгөөрөө онцлог. Бид энэ номонд ихэвчлэн <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load()</a></code> -ыг ашиглана. Харин <strong>base</strong> R-ын багцуудыг татаж авах шаардлагагүй ба <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>–ыг шууд уншуулж, ажиллуулж болно.</li>
+<li>Аливаа багцыг суулгахад хамт суулгагдаж/ачааллагддаг багцуудыг догол мөр, болон “хэш” тэмдгээр тэмдэглэсэн. Жишээ нь <strong>ggplot2</strong> багц бол <strong>tidyverse</strong> багцын харьяа юм.</li>
+<li>Хэрэв функцын нэрс олон багцуудад давхардаж орсон бол тухайн функцыг ашиглах үед хамгийн сүүлд ачааллагдсан багцын функц ажиллана. Үүнийг <em>masking</em> гэх ба энэ талаар [R basics] хэсгээс нэмж уншна уу. Мөн <strong>conflicted</strong> багцыг ашиглаж ийм давхардалтыг шийдвэрлэж боломжтой.</li>
+<li>[R basics] хэсгийн <strong>pacman</strong> болон masking гэсэн хэсгүүдийг уншна уу.</li>
+</ul>
+<p>Энэхүү номыг боловсруулахад R, RStudio, болон R багцуудын хэддүгээр хувилбарыг ашигласан талаар [Editorial and technical notes] хэсгээс харна уу.</p>
+<div id="cran--ын-багцууд" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> CRAN -ын багцууд<a class="anchor" aria-label="anchor" href="#cran--%D1%8B%D0%BD-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">##########################################</span>
+<span class="co"># Тархвар судлалын хэрэглээнд тохиромжтой R –ын багцууд</span>
+<span class="co">##########################################</span>
+
+<span class="co"># Энэхүү код pacman багцын p_load() функцыг ашигласан. Энэ нь аливаа кодыг уншуулахад шаардлагатай багц таньд суулгагдаагүй байгаа  тохиолдолд, тухайн багцыг суулгаад, шууд ачааллуулдаг функц.</span>
+
+
+<span class="co"># "pacman" багц суусан эсэхийг шалга!</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/trinker/pacman">"pacman"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span>
+
+
+<span class="co"># CRAN-аас татаж авах боломжтой багцууд</span>
+<span class="co">##############################</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span>
+     
+     <span class="co"># R-ыг сурах</span>
+     <span class="co">############</span>
+     <span class="va">learnr</span>,   <span class="co"># RStudio Tutorial цонхон дээрх интерактив хичээл</span>
+     <span class="va">swirl</span>,    <span class="co"># R console дээрх интерактив хичээл</span>
+        
+     <span class="co"># R төсөл болон файлын менежмент</span>
+     <span class="co">#############################</span>
+     <span class="va">here</span>,     <span class="co"># R төслийн үндсэн хавтастай холбоотой файлын зам</span>
+     <span class="va">rio</span>,      <span class="co"># өгөгдлийн олон янзын хэлбэрийг импортлох/экспортлох </span>
+     <span class="va">openxlsx</span>, <span class="co"># олон хуудастай (sheet) Excel файлыг импортлох/экспортлох </span>
+  
+     <span class="co"># Багц суулгах</span>
+     <span class="co">################################</span>
+     <span class="va">pacman</span>,   <span class="co"># багц суулгаж/ачааллана</span>
+     <span class="va">renv</span>,     <span class="co"># багаар хамтран ажиллахад багцын хувилбаруудыг тохируулна</span>
+     <span class="va">remotes</span>,  <span class="co"># github –аас татаж авч суулгах</span>
+
+     <span class="co"># Өгөгдлийн ерөнхий менежмент  </span>
+     <span class="co">#########################</span>
+     <span class="va">tidyverse</span>,    <span class="co"># өгөгдлийг цэгцтэй (tidy) байдалд оруулж янзлах, танилцуулахад зориулсан олон багцыг агуулсан </span>
+          <span class="co">#dplyr,      # Өгөгдөл янзлах</span>
+          <span class="co">#tidyr,      # Өгөгдөл янзлах</span>
+          <span class="co">#ggplot2,    # График зураглал</span>
+          <span class="co">#stringr,    # string болон character хэлбэрийн өгөгдлийг янзлах</span>
+          <span class="co">#forcats,    # factor хэлбэрийн өгөгдөлтэй ажиллах</span>
+          <span class="co">#lubridate,  # dates хэлбэрийн өгөгдөлтэй ажиллах</span>
+          <span class="co">#purrr       # давтан үйлдэл болон list –тэй ажиллах </span>
+     <span class="va">linelist</span>,     <span class="co"># linelist хэлбэрийн хүснэгтийг цэвэрлэх</span>
+     <span class="va">naniar</span>,       <span class="co"># өгөгдлийн дутуу утгыг шалгаж, үнэлэх </span>
+
+    <span class="co"># Статистик анализ  </span>
+     <span class="co">############</span>
+     <span class="va">janitor</span>,      <span class="co"># хүснэгт болон өгөгдөл цэвэрлэх </span>
+     <span class="va">gtsummary</span>,    <span class="co"># дескрибтив болон статистикийн хүснэгт хийх </span>
+     <span class="va">rstatix</span>,      <span class="co"># статитистикийн тест болон статистикийн хураангуйг түргэн хугацаанд боловсруулна</span>
+     <span class="va">broom</span>,        <span class="co"># регрессийн анализийн үр дүнг цэгцтэй хэлбэрт оруулах</span>
+     <span class="va">lmtest</span>,       <span class="co"># likelihood-ratio тестүүд</span>
+     <span class="va">easystats</span>,
+          <span class="co"># parameters, # регрессийн анализийн үр дүнг цэгцтэй хэлбэрт оруулах (өөр хувилбар)</span>
+          <span class="co"># see,        # forest plots –ыг харуулаh өөр хувилбар</span>
+     
+     <span class="co"># Тархвар судлалын математик загварчлал</span>
+
+     <span class="va">epicontacts</span>,  <span class="co"># Халдварт өвчний тархалтын сүлжээг судлах </span>
+     <span class="va">EpiNow2</span>,      <span class="co"># Rt-г тооцох</span>
+     <span class="va">EpiEstim</span>,     <span class="co"># Rt-г тооцох</span>
+     <span class="va">projections</span>,  <span class="co"># Тохиолдлын тоог урьдчилан тооцоолх</span>
+     <span class="va">incidence2</span>,   <span class="co"># Тархвар судлалын муруйг зурж, тохиолдлын тоог тооцох </span>
+     <span class="va">i2extras</span>,     <span class="co"># incidence2 багцын нэмэлт функцууд</span>
+     <span class="va">epitrix</span>,      <span class="co"># тархвар судлалд хэрэглэгддэг нэмэлт функцууд</span>
+     <span class="va">distcrete</span>,    <span class="co"># Discrete delay тархалт</span>
+     
+    
+     <span class="co"># График зураглал -ерөнхий</span>
+     <span class="co">#################</span>
+     <span class="co">#ggplot2,         # tidyverse багцын харьяа</span>
+     <span class="va">cowplot</span>,          <span class="co"># графикуудыг нэгтгэх  </span>
+     <span class="co"># patchwork,      # графикуудыг нэгтгэх  (өөр хувилбар)     </span>
+     <span class="va">RColorBrewer</span>,     <span class="co"># өнгө сонгох</span>
+     <span class="va">ggnewscale</span>,       <span class="co"># өнгөний нэмэлт тохируулга хийх</span>
+
+    
+     <span class="co"># График зураглал – тусгай зориулалтын</span>
+     <span class="co">########################</span>
+     <span class="va">DiagrammeR</span>,       <span class="co"># DOT хэлийг ашиглах бүдүүвч, диаграмм хийх</span>
+     <span class="va">incidence2</span>,       <span class="co"># тархвар судлалын муруй</span>
+     <span class="va">gghighlight</span>,      <span class="co"># тусгай хэсгийг тодотгож харуулах</span>
+     <span class="va">ggrepel</span>,          <span class="co"># жижиг гарчиг</span>
+     <span class="va">plotly</span>,           <span class="co"># интерактив график</span>
+     <span class="va">gganimate</span>,        <span class="co"># хөдөлгөөнт график </span>
+
+     
+    <span class="co"># ГИС орон зайн анализийн чиглэлээр</span>
+     <span class="co">########################</span>
+     <span class="va">sf</span>,               <span class="co"># Simple Feature хэлбэрийг ашиглан орон зайн мэдээллийг янзлах</span>
+     <span class="va">tmap</span>,             <span class="co"># энгийн газрын зураг боловсруулах (интерактив болон статик газрын зураг)</span>
+     <span class="va">OpenStreetMap</span>,    <span class="co"># ggplot-ын газрын зурагт OSM –ын basemap оруулах </span>
+     <span class="va">spdep</span>,            <span class="co"># орон зайн статистик анализ </span>
+     
+     <span class="co"># Тайлан, бичиг баримт</span>
+     <span class="co">#################</span>
+     <span class="va">rmarkdown</span>,        <span class="co"># PDFs, Word, Powerpoint, HTML -ын файлууд үүсгэх</span>
+     <span class="va">reportfactory</span>,    <span class="co"># R Markdown –ын үр дүнг автоматаар зохицуулах</span>
+     <span class="va">officer</span>,          <span class="co"># powerpoint-ын файлтай ажиллах</span>
+
+     <span class="co"># Хяналтын самбар, аппликэйшн</span>
+     <span class="co">############</span>
+     <span class="va">flexdashboard</span>,    <span class="co"># R Markdown –ын кодыг хяналтын самбар болгож хувиргах</span>
+     <span class="va">shiny</span>,            <span class="co"># интерактив веб аппликейшн хийх</span>
+     
+     <span class="co"># Илтгэл, тайлангийн хүснэгт гаргах</span>
+     <span class="co">#########################</span>
+     <span class="va">knitr</span>,            <span class="co"># R Markdown –ын тайлан болон html-ын хүснэгт үүсгэх</span>
+     <span class="va">flextable</span>,        <span class="co"># HTML –ийн хүснэгтүүд</span>
+     <span class="co">#DT,              # HTML –ийн хүснэгтүүд (өөр хувилбар)</span>
+     <span class="co">#gt,              # HTML –ийн хүснэгтүүд (өөр хувилбар)</span>
+     <span class="co">#huxtable,        # HTML –ийн хүснэгтүүд (өөр хувилбар) </span>
+     
+     <span class="co"># Филогенетикийн анализ</span>
+     <span class="co">###############</span>
+     <span class="va">ggtree</span>,           <span class="co"># модны график зураглал,тэмдэглэгээ хийх</span>
+     <span class="va">ape</span>,              <span class="co"># филогенетикийн болон эволюцийн мэдээлэлтэй ажиллах </span>
+     <span class="va">treeio</span>            <span class="co"># филогенетикийн график зураглал хийх</span>
+ 
+<span class="op">)</span></code></pre></div>
+</div>
+<div id="github-ын-багцууд" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Github-ын багцууд<a class="anchor" aria-label="anchor" href="#github-%D1%8B%D0%BD-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Дор бичсэн кодоор дараах хоёр багцыг Github –ын агуулахаас шууд татаж авна</p>
+<ul>
+<li>Боловсролтын явцдаа буй <strong>epicontacts</strong> багц халдвар тархалтын модыг x-тэнхлэгт хугацаатайгаар харуулж өгдөг.</li>
+<li>Энэхүү номны дасгалд ашиглах бүх өгөгдөл <strong>epirhandbook</strong> багцад буй. Мөн номын pdf хэлбэрийг татаж авч болно.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Github- аас татаж авах багцууд (CRAN-д байхгүй)</span>
+<span class="co">##########################################################</span>
+
+<span class="co"># Боловсролтын явцдаа буй epicontacts багц (халдварын хэлхээг x-тэнхлэгт хугацаатайгаар харуулна)</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_install_gh.html">p_install_gh</a></span><span class="op">(</span><span class="st">"reconhub/epicontacts@timeline"</span><span class="op">)</span>
+
+<span class="co"># Энэхүү номонд зориулсан багц (бүх дасгал, жишээг багтаасан) </span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_install_gh.html">p_install_gh</a></span><span class="op">(</span><span class="st">"appliedepi/epirhandbook"</span><span class="op">)</span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"></a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><span class="header-section-number">1</span> Санал болгох багцууд</a></li>
+<li><a class="nav-link" href="#cran--%D1%8B%D0%BD-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><span class="header-section-number">1.1</span> CRAN -ын багцууд</a></li>
+<li><a class="nav-link" href="#github-%D1%8B%D0%BD-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><span class="header-section-number">1.2</span> Github-ын багцууд</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2021-08-27.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

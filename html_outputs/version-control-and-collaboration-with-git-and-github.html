@@ -4,9 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>46 Version control and collaboration with Git and Github | The Epidemiologist R Handbook</title>
-<meta name="author" content="the handbook team">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>46 Version control and collaboration with Git and Github | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="This chapter presents an overview of using Git to collaborate with others. More extensive tutorials can be found at the bottom in the Resources section.  46.1 What is Git? Git is a version control...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="46 Version control and collaboration with Git and Github | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This chapter presents an overview of using Git to collaborate with others. More extensive tutorials can be found at the bottom in the Resources section.  46.1 What is Git? Git is a version control...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="46 Version control and collaboration with Git and Github | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="This chapter presents an overview of using Git to collaborate with others. More extensive tutorials can be found at the bottom in the Resources section.  46.1 What is Git? Git is a version control...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
@@ -21,11 +29,11 @@
 <script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
 <script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/d3-4.5.0/d3.min.js"></script><script src="libs/sankey-1/sankey.js"></script><script src="libs/sankeyNetwork-binding-0.4/sankeyNetwork.js"></script><script src="libs/plotly-binding-4.9.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/d3-4.5.0/d3.min.js"></script><script src="libs/sankey-1/sankey.js"></script><script src="libs/sankeyNetwork-binding-0.4/sankeyNetwork.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/vis-4.20.1/vis.css" rel="stylesheet">
 <script src="libs/vis-4.20.1/vis.min.js"></script><script src="libs/visNetwork-binding-2.0.9/visNetwork.js"></script><link href="libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="libs/plotly-basic-1.57.1/plotly-basic-1.57.1.min.js"></script><script src="libs/plotly-cartesian-1.57.1/plotly-cartesian-1.57.1.min.js"></script><script src="libs/proj4js-2.3.15/proj4.js"></script><link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet">
-<script src="libs/highcharts-8.1.2/highcharts.js"></script><script src="libs/highcharts-8.1.2/highcharts-3d.js"></script><script src="libs/highcharts-8.1.2/highcharts-more.js"></script><script src="libs/highcharts-8.1.2/modules/stock.js"></script><script src="libs/highcharts-8.1.2/modules/map.js"></script><script src="libs/highcharts-8.1.2/modules/annotations.js"></script><script src="libs/highcharts-8.1.2/modules/data.js"></script><script src="libs/highcharts-8.1.2/modules/drilldown.js"></script><script src="libs/highcharts-8.1.2/modules/item-series.js"></script><script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script><script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script><script src="libs/highcharts-8.1.2/modules/exporting.js"></script><script src="libs/highcharts-8.1.2/modules/export-data.js"></script><script src="libs/highcharts-8.1.2/modules/funnel.js"></script><script src="libs/highcharts-8.1.2/modules/heatmap.js"></script><script src="libs/highcharts-8.1.2/modules/treemap.js"></script><script src="libs/highcharts-8.1.2/modules/sankey.js"></script><script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script><script src="libs/highcharts-8.1.2/modules/organization.js"></script><script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script><script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script><script src="libs/highcharts-8.1.2/modules/sunburst.js"></script><script src="libs/highcharts-8.1.2/modules/vector.js"></script><script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script><script src="libs/highcharts-8.1.2/modules/xrange.js"></script><script src="libs/highcharts-8.1.2/modules/tilemap.js"></script><script src="libs/highcharts-8.1.2/modules/venn.js"></script><script src="libs/highcharts-8.1.2/modules/gantt.js"></script><script src="libs/highcharts-8.1.2/modules/timeline.js"></script><script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script><script src="libs/highcharts-8.1.2/modules/bullet.js"></script><script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script><script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script><script src="libs/highcharts-8.1.2/modules/lollipop.js"></script><script src="libs/highcharts-8.1.2/modules/series-label.js"></script><script src="libs/highcharts-8.1.2/plugins/motion.js"></script><script src="libs/highcharts-8.1.2/custom/reset.js"></script><script src="libs/highcharts-8.1.2/modules/boost.js"></script><script src="libs/highchart-binding-0.8.2/highchart.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+<script src="libs/highcharts-8.1.2/highcharts.js"></script><script src="libs/highcharts-8.1.2/highcharts-3d.js"></script><script src="libs/highcharts-8.1.2/highcharts-more.js"></script><script src="libs/highcharts-8.1.2/modules/stock.js"></script><script src="libs/highcharts-8.1.2/modules/map.js"></script><script src="libs/highcharts-8.1.2/modules/annotations.js"></script><script src="libs/highcharts-8.1.2/modules/data.js"></script><script src="libs/highcharts-8.1.2/modules/drilldown.js"></script><script src="libs/highcharts-8.1.2/modules/item-series.js"></script><script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script><script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script><script src="libs/highcharts-8.1.2/modules/exporting.js"></script><script src="libs/highcharts-8.1.2/modules/export-data.js"></script><script src="libs/highcharts-8.1.2/modules/funnel.js"></script><script src="libs/highcharts-8.1.2/modules/heatmap.js"></script><script src="libs/highcharts-8.1.2/modules/treemap.js"></script><script src="libs/highcharts-8.1.2/modules/sankey.js"></script><script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script><script src="libs/highcharts-8.1.2/modules/organization.js"></script><script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script><script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script><script src="libs/highcharts-8.1.2/modules/sunburst.js"></script><script src="libs/highcharts-8.1.2/modules/vector.js"></script><script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script><script src="libs/highcharts-8.1.2/modules/xrange.js"></script><script src="libs/highcharts-8.1.2/modules/tilemap.js"></script><script src="libs/highcharts-8.1.2/modules/venn.js"></script><script src="libs/highcharts-8.1.2/modules/gantt.js"></script><script src="libs/highcharts-8.1.2/modules/timeline.js"></script><script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script><script src="libs/highcharts-8.1.2/modules/bullet.js"></script><script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script><script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script><script src="libs/highcharts-8.1.2/modules/lollipop.js"></script><script src="libs/highcharts-8.1.2/modules/series-label.js"></script><script src="libs/highcharts-8.1.2/plugins/motion.js"></script><script src="libs/highcharts-8.1.2/custom/reset.js"></script><script src="libs/highcharts-8.1.2/modules/boost.js"></script><script src="libs/highchart-binding-0.8.2/highchart.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -35,7 +43,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">The Epidemiologist R Handbook</a>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -48,18 +56,18 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"></a></li>
-<li class="book-part">About this book</li>
-<li><a class="" href="editorial-and-technical-notes.html"><span class="header-section-number">1</span> Editorial and technical notes</a></li>
-<li><a class="" href="download-handbook-and-data.html"><span class="header-section-number">2</span> Download handbook and data</a></li>
+<li class="book-part">Энэхүү номны тухай</li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
 <li class="book-part">Basics</li>
-<li><a class="" href="r-basics.html"><span class="header-section-number">3</span> R Basics</a></li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
 <li><a class="" href="transition-to-r.html"><span class="header-section-number">4</span> Transition to R</a></li>
-<li><a class="" href="suggested-packages-1.html"><span class="header-section-number">5</span> Suggested packages</a></li>
-<li><a class="" href="r-projects.html"><span class="header-section-number">6</span> R projects</a></li>
-<li><a class="" href="import-and-export.html"><span class="header-section-number">7</span> Import and export</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B7%D3%A9%D3%A9%D0%B6-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D1%85.html"><span class="header-section-number">7</span> Файл зөөж оруулах болон гаргах</a></li>
 <li class="book-part">Data Management</li>
 <li><a class="" href="cleaning-data-and-core-functions.html"><span class="header-section-number">8</span> Cleaning data and core functions</a></li>
-<li><a class="" href="working-with-dates.html"><span class="header-section-number">9</span> Working with dates</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
 <li><a class="" href="characters-and-strings.html"><span class="header-section-number">10</span> Characters and strings</a></li>
 <li><a class="" href="factors.html"><span class="header-section-number">11</span> Factors</a></li>
 <li><a class="" href="pivoting-data.html"><span class="header-section-number">12</span> Pivoting data</a></li>
@@ -76,7 +84,7 @@
 <li><a class="" href="moving-averages.html"><span class="header-section-number">22</span> Moving averages</a></li>
 <li><a class="" href="time-series-and-outbreak-detection.html"><span class="header-section-number">23</span> Time series and outbreak detection</a></li>
 <li><a class="" href="epidemic-modeling.html"><span class="header-section-number">24</span> Epidemic modeling</a></li>
-<li><a class="" href="contact-tracing-1.html"><span class="header-section-number">25</span> Contact tracing</a></li>
+<li><a class="" href="contact-tracing.html"><span class="header-section-number">25</span> Contact tracing</a></li>
 <li><a class="" href="survey-analysis.html"><span class="header-section-number">26</span> Survey analysis</a></li>
 <li><a class="" href="survival-analysis.html"><span class="header-section-number">27</span> Survival analysis</a></li>
 <li><a class="" href="gis-basics.html"><span class="header-section-number">28</span> GIS basics</a></li>
@@ -90,7 +98,7 @@
 <li><a class="" href="diagrams-and-charts.html"><span class="header-section-number">35</span> Diagrams and charts</a></li>
 <li><a class="" href="combinations-analysis.html"><span class="header-section-number">36</span> Combinations analysis</a></li>
 <li><a class="" href="transmission-chains.html"><span class="header-section-number">37</span> Transmission chains</a></li>
-<li><a class="" href="phylogenetic-trees-1.html"><span class="header-section-number">38</span> Phylogenetic trees</a></li>
+<li><a class="" href="phylogenetic-trees.html"><span class="header-section-number">38</span> Phylogenetic trees</a></li>
 <li><a class="" href="interactive-plots.html"><span class="header-section-number">39</span> Interactive plots</a></li>
 <li class="book-part">Reports and dashboards</li>
 <li><a class="" href="reports-with-r-markdown.html"><span class="header-section-number">40</span> Reports with R Markdown</a></li>
@@ -98,7 +106,7 @@
 <li><a class="" href="dashboards-with-r-markdown.html"><span class="header-section-number">42</span> Dashboards with R Markdown</a></li>
 <li><a class="" href="dashboards-with-shiny.html"><span class="header-section-number">43</span> Dashboards with Shiny</a></li>
 <li class="book-part">Miscellaneous</li>
-<li><a class="" href="writing-functions-1.html"><span class="header-section-number">44</span> Writing functions</a></li>
+<li><a class="" href="writing-functions.html"><span class="header-section-number">44</span> Writing functions</a></li>
 <li><a class="" href="directory-interactions.html"><span class="header-section-number">45</span> Directory interactions</a></li>
 <li><a class="active" href="version-control-and-collaboration-with-git-and-github.html"><span class="header-section-number">46</span> Version control and collaboration with Git and Github</a></li>
 <li><a class="" href="common-errors.html"><span class="header-section-number">47</span> Common errors</a></li>
@@ -276,7 +284,7 @@ sub-folders and files for your project (data, code, images, etc.) and
 their revision histories. When you begin tracking changes in the
 repository with it, Git will create a hidden folder that contains
 all tracking information. A typical Git repository is
-your <em>R Project</em> folder (see handbook page on <a href="r-projects.html#r-projects">R projects</a>).</p>
+your <em>R Project</em> folder (see handbook page on [R projects]).</p>
 <p>We will show how to create (<em>initialize</em>) a Git repository
 from Github, Github Desktop or Rstudio in the next
 sections.</p>
@@ -580,9 +588,9 @@ make the new branch appear in the remote repo as well.</p>
 branch with <code>git branch</code>, then go to the branch with
 <code>git checkout</code> (<em>i.e.</em> tell Git that your next commits will occur there).
 From your git repository:</p>
-<div class="sourceCode" id="cb1960"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1960-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch my-new-branch  # Create the new branch branch</span>
-<span id="cb1960-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1960-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout my-new-branch <span class="co"># Go to the branch</span></span>
-<span id="cb1960-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1960-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout -b my-new-branch <span class="co"># Both at once (shortcut)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1957"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1957-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1957-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch my-new-branch  <span class="co"># Create the new branch branch</span></span>
+<span id="cb1957-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1957-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout my-new-branch <span class="co"># Go to the branch</span></span>
+<span id="cb1957-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1957-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> my-new-branch <span class="co"># Both at once (shortcut)</span></span></code></pre></div>
 <p>For more information about using the console, see the section on
 Git commands at the end.</p>
 </div>
@@ -649,13 +657,13 @@ button.</p>
 </h3>
 <p>The two functions used behind the scenes are <code>git add</code> to select/stage
 files and <code>git commit</code> to actually do the commit.</p>
-<div class="sourceCode" id="cb1961"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1961-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="co"># see the changes </span></span>
-<span id="cb1961-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1961-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add new_pages/collaboration.Rmd  # select files to commit (= stage the changes)</span>
-<span id="cb1961-4"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1961-5"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit -m <span class="st">"Describe commit from Github Desktop"</span> <span class="co"># commit the changes with a message</span></span>
-<span id="cb1961-6"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1961-7"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log  # view information on past commits</span></code></pre></div>
+<div class="sourceCode" id="cb1958"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1958-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="co"># see the changes </span></span>
+<span id="cb1958-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1958-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add new_pages/collaboration.Rmd  <span class="co"># select files to commit (= stage the changes)</span></span>
+<span id="cb1958-4"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1958-5"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Describe commit from Github Desktop"</span> <span class="co"># commit the changes with a message</span></span>
+<span id="cb1958-6"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1958-7"><a href="version-control-and-collaboration-with-git-and-github.html#cb1958-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log  <span class="co"># view information on past commits</span></span></code></pre></div>
 </div>
 <div id="amend-a-previous-commit" class="section level3 unnumbered">
 <h3>Amend a previous commit<a class="anchor" aria-label="anchor" href="#amend-a-previous-commit"><i class="fas fa-link"></i></a>
@@ -672,11 +680,11 @@ an “UNDO” button appears just under the COMMIT button. Click on it and
 it will revert your commit (but keep your staged files and your commit message).
 Save your changes, add new files to the commit if necessary and commit again.</p>
 <p>In the console:</p>
-<div class="sourceCode" id="cb1962"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1962-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1962-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add [YOUR FILES] <span class="co"># Stage your new changes</span></span>
-<span id="cb1962-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1962-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1962-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1962-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit --amend  # Amend the previous commit</span>
-<span id="cb1962-4"><a href="version-control-and-collaboration-with-git-and-github.html#cb1962-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1962-5"><a href="version-control-and-collaboration-with-git-and-github.html#cb1962-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit --amend -m <span class="st">"An updated commit message"</span>  # Amend the previous commit AND update the commit message</span></code></pre></div>
+<div class="sourceCode" id="cb1959"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1959-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1959-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add [YOUR FILES] <span class="co"># Stage your new changes</span></span>
+<span id="cb1959-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1959-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1959-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1959-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span>  <span class="co"># Amend the previous commit</span></span>
+<span id="cb1959-4"><a href="version-control-and-collaboration-with-git-and-github.html#cb1959-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1959-5"><a href="version-control-and-collaboration-with-git-and-github.html#cb1959-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"An updated commit message"</span>  <span class="co"># Amend the previous commit AND update the commit message</span></span></code></pre></div>
 <p><em>Note: think before modifying commits that are already public and shared with your collaborators</em>.</p>
 </div>
 </div>
@@ -746,9 +754,9 @@ has been committed, you can push by clicking on the same button.</p>
 <h4>Console<a class="anchor" aria-label="anchor" href="#console"><i class="fas fa-link"></i></a>
 </h4>
 <p>Without surprise, the commands are <em>fetch</em>, <em>pull</em> and <em>push</em>.</p>
-<div class="sourceCode" id="cb1963"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1963-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1963-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch  # are there new commits in the remote directory?</span>
-<span id="cb1963-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1963-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull   # Bring remote commits into your local branch</span>
-<span id="cb1963-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1963-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push   # Puch local commits of this branch to the remote branch</span></code></pre></div>
+<div class="sourceCode" id="cb1960"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1960-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch  <span class="co"># are there new commits in the remote directory?</span></span>
+<span id="cb1960-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1960-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull   <span class="co"># Bring remote commits into your local branch</span></span>
+<span id="cb1960-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1960-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push   <span class="co"># Puch local commits of this branch to the remote branch</span></span></code></pre></div>
 </div>
 <div id="i-want-to-pull-but-i-have-local-work" class="section level3 unnumbered">
 <h3>I want to pull but I have local work<a class="anchor" aria-label="anchor" href="#i-want-to-pull-but-i-have-local-work"><i class="fas fa-link"></i></a>
@@ -794,8 +802,8 @@ want to import from.</p>
 <p>First move back to the branch that will be the recipient of the changes.
 This is usually <em>master</em>, but it could be another branch. Then merge your
 working branch into master.</p>
-<div class="sourceCode" id="cb1964"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1964-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1964-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master  # Go back to master (or to the branch you want to move your )</span>
-<span id="cb1964-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1964-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge this_fancy_new_branch</span></code></pre></div>
+<div class="sourceCode" id="cb1961"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1961-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master  <span class="co"># Go back to master (or to the branch you want to move your )</span></span>
+<span id="cb1961-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1961-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge this_fancy_new_branch</span></code></pre></div>
 <p><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">This
 page</a>
 shows a more advanced example of branching and explains a bit what is
@@ -936,24 +944,24 @@ You mostly need to remember that:
 - <em>origin</em> = your version of the repository on your Github profile</p>
 <p>You can read <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork">this tutorial</a> or follow along below:</p>
 <p>First, type in your Git terminal (inside your repo):</p>
-<div class="sourceCode" id="cb1965"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1965-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1965-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote -v</span></code></pre></div>
+<div class="sourceCode" id="cb1962"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1962-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1962-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre></div>
 <p>If you have not yet configured the upstream repository you should
 see two lines, beginning by <em>origin</em>. They show the remote repo
 that <code>fetch</code> and <code>push</code> point to. Remember, <em>origin</em> is the conventional
 nickname for your own version of the repository on Github. For example:</p>
 <div class="inline-figure"><img src="images/github_fork_2.png" width="100%" height="200%" style="display: block; margin: auto;"></div>
 <p>Now, add a new remote repository:</p>
-<div class="sourceCode" id="cb1966"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1966-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1966-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/epirhandbook/Epi_R_handbook.git</span></code></pre></div>
+<div class="sourceCode" id="cb1963"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1963-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1963-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/epirhandbook/Epi_R_handbook.git</span></code></pre></div>
 <p>Here the address is the address that Github generates when you clone
 a repository (see section on cloning). Now you will have four remote pointers:</p>
 <div class="inline-figure"><img src="images/github_fork_3.png" width="100%" height="200%" style="display: block; margin: auto;"></div>
 <p>Now that the setup is done, whenever you want to get the changes from
 the original (<em>upstream</em>) repository, you just have to go (<em>checkout</em>) to
 the branch you want to update and type:</p>
-<div class="sourceCode" id="cb1967"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1967-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1967-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch upstream <span class="co"># Get the new commits from the remote repository</span></span>
-<span id="cb1967-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1967-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout the_branch_you_want_to_update</span>
-<span id="cb1967-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1967-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge upstream/the_branch_you_want_to_update  # Merge the upstream branch into your branch.</span>
-<span id="cb1967-4"><a href="version-control-and-collaboration-with-git-and-github.html#cb1967-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="co"># Update your own version of the remote repo</span></span></code></pre></div>
+<div class="sourceCode" id="cb1964"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1964-1"><a href="version-control-and-collaboration-with-git-and-github.html#cb1964-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch upstream <span class="co"># Get the new commits from the remote repository</span></span>
+<span id="cb1964-2"><a href="version-control-and-collaboration-with-git-and-github.html#cb1964-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout the_branch_you_want_to_update</span>
+<span id="cb1964-3"><a href="version-control-and-collaboration-with-git-and-github.html#cb1964-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge upstream/the_branch_you_want_to_update  <span class="co"># Merge the upstream branch into your branch.</span></span>
+<span id="cb1964-4"><a href="version-control-and-collaboration-with-git-and-github.html#cb1964-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="co"># Update your own version of the remote repo</span></span></code></pre></div>
 <p>If there are conflicts, you will have to solve them, as explained
 in the Resolving conflicts section.</p>
 <p><strong>Summary</strong>: forking is cloning, but on the Github server side.
@@ -1098,9 +1106,9 @@ commit. <num> represents a number. Do not type the
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="resources-38" class="section level2" number="46.13">
+<div id="resources-37" class="section level2" number="46.13">
 <h2>
-<span class="header-section-number">46.13</span> Resources<a class="anchor" aria-label="anchor" href="#resources-38"><i class="fas fa-link"></i></a>
+<span class="header-section-number">46.13</span> Resources<a class="anchor" aria-label="anchor" href="#resources-37"><i class="fas fa-link"></i></a>
 </h2>
 <p>Much of this page was informed by <a href="https://happygitwithr.com/">this “Happy Git with R”
 website</a> by Jenny Bryan. There is a very helpful
@@ -1207,7 +1215,7 @@ what happens and how to go further.</p>
 <li><a class="nav-link" href="#sample-commands">Sample commands</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#resources-38"><span class="header-section-number">46.13</span> Resources</a></li>
+<li><a class="nav-link" href="#resources-37"><span class="header-section-number">46.13</span> Resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1224,7 +1232,7 @@ what happens and how to go further.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>The Epidemiologist R Handbook</strong>" was written by the handbook team. It was last built on 2021-06-02.</p>
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2021-08-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -1244,6 +1252,22 @@ what happens and how to go further.</p>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

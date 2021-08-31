@@ -16,11 +16,12 @@ bookdown::render_book(
 # Edit which pages to include in "_small_bookdown.yml"
 # To view, navigate to the "preview" folder and open "index.html"
 bookdown::render_book(
-     output_format = 'bookdown::bs4_book',
-     config_file = "_small_bookdown.yml")
+        output_format = 'bookdown::bs4_book', 
+        config_file = "_small_bookdown.yml"
+        )
 
 
-# To print only text with no code or figures, adjust this in the common.R script, also look at top of index.rmd
+ # To print only text with no code or figures, adjust this in the common.R script, also look at top of index.rmd
 # print only text (not code)
 #library(knitr)
 #opts_chunk$set(list(echo = FALSE, eval = FALSE))

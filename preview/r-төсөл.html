@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 R төсөл | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="R төсөл нь таны файлуудын иж бүрдэл болсон зөөвөрлөхөд хялбар, бие даасан хавтас юм. Бүх скрипт код, дата файлууд, зураг/үр дүн, үйлдлийн түүх зэрэг нь R төсөл доторх дэд хавтсанд хадгалагддаг....">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="1 R төсөл | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="R төсөл нь таны файлуудын иж бүрдэл болсон зөөвөрлөхөд хялбар, бие даасан хавтас юм. Бүх скрипт код, дата файлууд, зураг/үр дүн, үйлдлийн түүх зэрэг нь R төсөл доторх дэд хавтсанд хадгалагддаг....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 R төсөл | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="R төсөл нь таны файлуудын иж бүрдэл болсон зөөвөрлөхөд хялбар, бие даасан хавтас юм. Бүх скрипт код, дата файлууд, зураг/үр дүн, үйлдлийн түүх зэрэг нь R төсөл доторх дэд хавтсанд хадгалагддаг....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="active" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">1</span> R төсөл</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-төсөл" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> R төсөл<a class="anchor" aria-label="anchor" href="#r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB"><i class="fas fa-link"></i></a>
+</h1>
+<p>R төсөл нь таны файлуудын иж бүрдэл болсон зөөвөрлөхөд хялбар, бие даасан хавтас юм. Бүх скрипт код, дата файлууд, зураг/үр дүн, үйлдлийн түүх зэрэг нь R төсөл доторх дэд хавтсанд хадгалагддаг. Мөн R төслийн үндсэн хавтас <em>ажлын байрлал (working directory)</em> болж өгдгөөрөө онцлог.</p>
+<div id="санал-болгож-буй-хэрэглээ" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Санал болгож буй хэрэглээ<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%B1%D1%83%D0%B9-%D1%85%D1%8D%D1%80%D1%8D%D0%B3%D0%BB%D1%8D%D1%8D"><i class="fas fa-link"></i></a>
+</h2>
+<p>R-ыг үр өгөөжтэй, амархан, ердийн хэрэглээ болгохын тулд дараах гурван элементийг хавсарч хэрэглэдэг. <em>One discrete work project is hosted within one R project.</em> Элемент тус бүрийг дараах хэсгүүдэд тайлбарлав.</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>R төсөл</strong>
+<ul>
+<li>өгөгдөл, код, үр дүн зэргийг тус бүр дэд хавтсанд агуулсан бие даасан ажлын орчин.</li>
+</ul>
+</li>
+<li>Файлын холбоотой замд зориулсан <strong>here</strong> багц
+<ul>
+<li>Файлын зам R төслийн үндсэн хавтаст холбоотой байдлаар бичигддэг. Энэ талаар [Import and export] хэсэгт илүү дэлгэрүүлж үзнэ үү</li>
+</ul>
+</li>
+<li>Файл импорт/экспорт хийхэд зориулсан <strong>rio</strong> багц
+<ul>
+<li>
+<code>import()</code> болон <code>export()</code> функцууд ямар ч өргөтгөлтэй файлтай ажиллаж чаддаг (.csv, .xlsx, .png г.м).</li>
+</ul>
+</li>
+</ol>
+<!-- ======================================================= -->
+</div>
+<div id="r-төсөл-үүсгэх" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> R төсөл үүсгэх<a class="anchor" aria-label="anchor" href="#r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB-%D2%AF%D2%AF%D1%81%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>R төсөл үүсгэхийн тулд File (файл) цэсний “New Project” (шинэ төсөл) -ыг сонго.</p>
+<ul>
+<li>Тухайн төсөлд зориулж шинэ хавтас нээх бол “New directory” (шинэ байрлал) –ыг сонгож хаана үүсгэхээ зааж өгнө.</li>
+<li>Төслийг хуучин хавтаст хадгалах бол “Existing directory” (хуучин байрлал) –ыг сонгож хадгалах хавтсаа зааж өгнө.</li>
+<li>Github –ын агуулахад файлаа хувилах бол “Version Control”-ыг сонгоод дараа нь “Git”-ыг сонгоно [Version control and collaboration with Git and Github] хэсгээс дэлгэрүүлж харж болно.</li>
+</ul>
+<div class="inline-figure"><img src="images/create_project.png" width="75%" style="display: block; margin: auto;"></div>
+<p>Шинээр үүсгэсэн R төслийн хавтас <em>.Rproj</em> гэсэн өргөтгөлтэй файл агуулсан байна. Энэ файл нь тухайн төслийг нээх шууд холбоос болдог. Төслийг нээх өрр арга бол File цэснээс “Open Project” (төсөл нээх) –ийг сонгож болдог. Мөн RStudio-ын хамгийн баруун дээд буланд байрлах R төслийн лого болон арынх нь цэс дээр дарж болно.</p>
+<p>R төслөөс гарахдаа шинэ төсөл нээ эсвэл тухайн төслийг хаа (File - Close Project).</p>
+<div id="төслүүдийг-сэлгэх" class="section level3 unnumbered">
+<h3>Төслүүдийг сэлгэх<a class="anchor" aria-label="anchor" href="#%D1%82%D3%A9%D1%81%D0%BB%D2%AF%D2%AF%D0%B4%D0%B8%D0%B9%D0%B3-%D1%81%D1%8D%D0%BB%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Төслүүдийн хооронд сэлгэж ажиллахын тулд RStudio-ын хамгийн баруун дээд буланд байрлах R төслийн лого болон арынх нь цэс дээр дар. Цэсийг нээснээр Close Project (төслийг хаах), Open Project (төслийг нээх) болон сүүлд ажиллаж байсан төслүүдийн нэр бүхий сонголтууд гарч ирнэ.</p>
+<div class="inline-figure"><img src="images/Rproject_dropdown.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="тохируулга" class="section level3 unnumbered">
+<h3>Тохируулга<a class="anchor" aria-label="anchor" href="#%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B3%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p>Rstudio-г асаахдаа “цэвэр хуудас” тайгаар эхлүүлэхийг зөвлөж байна. Өөрөөр хэлбэл өмнө нь хийж байсан ажлын код, бичиглэл ажлын талбайд <strong>байхгүй</strong> хоосон байна гэсэн үг. Энэ нь таны өмнө нь үүсгэсэн обьект, гарсан үр дүнгүүд R нээгдэх болгонд гарч ирэхгүй байхгүй байхыг хэлнэ (хэрэв шаардлагатай бол скрипт кодоо уншуулж дахин үүсгэж болно). Ингэснээр чанартай код бичигддэг ба хэтдээ алдаа бага гаргадаг.</p>
+<p>“Цэвэр хуудас”-аас эхлүүлэхийн тулд:</p>
+<ul>
+<li>Tools (багаж) цэснээс “Project Options”-г сонго.</li>
+<li>“General” хэсэгт буй сонголтуудад RStudio-г нээхэд .RData-г ажлын талбайд <em>хадгалахгүй</em>, RStudio-оос гарахад .RData -г ажлын талбайд <em>хадгалахгүй</em> гэж тохируул.</li>
+</ul>
+</div>
+<div id="бүтэц" class="section level3 unnumbered">
+<h3>Бүтэц<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D1%82%D1%8D%D1%86"><i class="fas fa-link"></i></a>
+</h3>
+<p>Төслийн үндсэн хавтас дотор дэд хавтас нээх нь элбэг. Ийм тохиолдолд “дата”, “скрипт/код”, “зураг”, “илтгэл” гэх мэтээр хавтсаа нэрлэх нь тохиромжтой. Шинэ хавтсыг жирийн хавтас нээдэг шигээ үүсгэнэ. R коммандаар хэрхэн шууд шинэ хавтас үүсгэхийг [Directory interactions] хэсгээс харна уу.</p>
+</div>
+<div id="хувилбаруудыг-хянах" class="section level3 unnumbered">
+<h3>Хувилбаруудыг хянах<a class="anchor" aria-label="anchor" href="#%D1%85%D1%83%D0%B2%D0%B8%D0%BB%D0%B1%D0%B0%D1%80%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%85%D1%8F%D0%BD%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Файлын өөр өөр хувилбаруудыг хянах системийг бий болгоорой. Үүний хамгийн энгийн жишээ гэвэл скрипттэй файлдаа огноотой нэр (“transmission_analysis_2020-10-03.R” г.м) өгөөд “архив” дэд хавтаст хадгалах юм. Мөн скриптийн толгой хэсэгт (header) тайлбар, зохиогч, гарчиг, өөрчлөлтийн дугаар, нэр зэргийг оруулж болно.</p>
+<p>Файлын хувилбарыг хянах арай нарийн арга бол Github болон бусад төстэй платформуудыг ашиглах юм. [Version control and collaboration with Git and Github] хэсгээс энэ талаар дэлгэрүүлж уншна уу.</p>
+<p>Edit цэсний “Find in Files” -г сонгож төслийн бүх файлд хайлтыг зэрэг хийж болдог. Энэ үйлдлээр зөвхөн хайгаад зогсохгүй аливаа текстийг олон файлуудад зэрэг өөрчлөх боломжтой.</p>
+</div>
+</div>
+<div id="жишээ" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Жишээ<a class="anchor" aria-label="anchor" href="#%D0%B6%D0%B8%D1%88%D1%8D%D1%8D"><i class="fas fa-link"></i></a>
+</h2>
+<p>Доорх кодонд <code>here()</code> функцээр файл импортлох, экспортлох, хадгалах жишээ харуулав. <strong>here</strong> багцыг хэрхэн ашиглах талаар дэлгэрүүлж [Import and export] хэсгээс харна уу.</p>
+<p><em>R төслийн “data” хавтаснаас <code>linelist_raw.xlsx</code> гэсэн файлыг импортлох</em></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"linelist_raw.xlsx"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><em><code>linelist</code>гэсэн R обьектийг “my_linelist.rds” гэсэн өргөтгөлтэйгээр өөрийн R төсөл доторх “data” хавтсын “clean” хавтаст экспортлох.</em></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">export</span><span class="op">(</span><span class="va">linelist</span>, <span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>,<span class="st">"clean"</span>, <span class="st">"my_linelist.rds"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><em>Хамгийн сүүлд үүсгэсэн графикийг “epicurve_2021-02-15.png” гэсэн нэртэйгээр өөрийн R төсөл доторх “outputs” хавтсын “epicurves” хавтаст хадгалах.</em></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggsave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"outputs"</span>, <span class="st">"epicurves"</span>, <span class="st">"epicurve_2021-02-15.png"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+<p>##Эх сурвалж {}</p>
+<p>RStudio –ын веб хуудсанд буй <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">using R projects</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"></a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB"><span class="header-section-number">1</span> R төсөл</a></li>
+<li><a class="nav-link" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%B1%D1%83%D0%B9-%D1%85%D1%8D%D1%80%D1%8D%D0%B3%D0%BB%D1%8D%D1%8D"><span class="header-section-number">1.1</span> Санал болгож буй хэрэглээ</a></li>
+<li>
+<a class="nav-link" href="#r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB-%D2%AF%D2%AF%D1%81%D0%B3%D1%8D%D1%85"><span class="header-section-number">1.2</span> R төсөл үүсгэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%82%D3%A9%D1%81%D0%BB%D2%AF%D2%AF%D0%B4%D0%B8%D0%B9%D0%B3-%D1%81%D1%8D%D0%BB%D0%B3%D1%8D%D1%85">Төслүүдийг сэлгэх</a></li>
+<li><a class="nav-link" href="#%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B3%D0%B0">Тохируулга</a></li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D1%82%D1%8D%D1%86">Бүтэц</a></li>
+<li><a class="nav-link" href="#%D1%85%D1%83%D0%B2%D0%B8%D0%BB%D0%B1%D0%B0%D1%80%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%85%D1%8F%D0%BD%D0%B0%D1%85">Хувилбаруудыг хянах</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D0%B6%D0%B8%D1%88%D1%8D%D1%8D"><span class="header-section-number">1.3</span> Жишээ</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2021-08-27.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

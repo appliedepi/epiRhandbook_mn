@@ -1,368 +1,461 @@
-# Download handbook and data  
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
+# Гарын авлага, өгөгдлийг татаж авах
 
 <!-- Note to self: If you want to create a download link to Github, right-click the "View Raw" button on Github, copy the address, and use that in the HTML below. -->
 
+## Офлайн гарын авлагыг татаж авах
 
+Та энэ гарын авлагын офлайн хувилбарыг HTML файл хэлбэрээр татаж авах
+боломжтой бөгөөд ингэснээр та интернет холболтгүй болсон ч гэсэн вэб
+хөтөч дээрээ файлыг үзэх боломжтой болно. Хэрэв та Epi R гарын авлагыг
+офлайнаар ашиглах гэж байгаа бол дараах хэдэн зүйлийг анхаарах хэрэгтэй:
 
+-   Файлыг нээхэд зурагнууд болон агуулгын хүснэгтийг ачаалахад ганц
+    хоёр минут шаардагдаж магадгүй
 
-## Download offline handbook  
+-   Офлайн гарын авлага нь арай өөр бүтэцтэй - зүүн талд нь агуулгын
+    хүснэгт бүхий маш урт хуудастай. Тодорхой нэр томъёо хайхын тулд
+    Ctrl+f (Cmd-f) командыг ашиглана уу.
 
-You can download the offline version of this handbook as an HTML file so that you can view the file in your web browser even if you no longer have internet access. If you are considering offline use of the Epi R Handbook here are a few things to consider:  
+-   [Санал болгож буй багцууд] хуудсыг үзээд интернет холболт тасрахаас
+    өмнө тохирох R багцуудыг суулгаж болно
 
-* When you open the file it may take a minute or two for the images and the Table of Contents to load  
-* The offline handbook has a slightly different layout - one very long page with Table of Contents on the left. To search for specific terms use Ctrl+f (Cmd-f)  
-* See the [Suggested packages] page to assist you with installing appropriate R packages before you lose internet connectivity  
-* Install our R package **epirhandbook** that contains all the example data (install process described below)  
+-   Бүх жишээ өгөгдлийг агуулсан манай R багц **epirhandbook**-ийг
+    суулгаарай (суулгах процессыг доор тайлбарласан болно)
 
-**There are two ways you can download the handbook:**  
+**Гарын авлага татаж авах хоёр арга бий::**
 
+### Татаж авах линкийг ашиглах {.unnumbered}
 
+Түргэн хандахын тулд [**энэ
+холбоос**](https://github.com/epirhandbook/Epi_R_handbook/raw/master/offline_long/Epi_R_Handbook_offline.html)
+**дээр хулганы баруун товчийг дараад "Save link as"-г сонгоно уу.**
 
-### Use download link {.unnumbered}  
+Хэрэв Mac дээр бол Cmd+дарна уу. Хэрэв гар утас дээр байгаа бол
+холбоосыг дараад "Save link"-г сонгоно уу. Гарын авлага нь таны
+төхөөрөмжид татагдах болно. Хэрэв raw HTML кодтой дэлгэц гарч ирвэл
+дээрх зааврыг дагаж мөрдсөн эсэхээ шалгах эсвэл 2-р аргыг туршиж
+үзээрэй.
 
-For quick access, **right-click** [this link](https://github.com/epirhandbook/Epi_R_handbook/raw/master/offline_long/Epi_R_Handbook_offline.html) **and select "Save link as"**.  
+### Манай R багцыг ашиглах {.unnumbered}
 
-If on a Mac, use Cmd+click. If on a mobile, press and hold the link and select "Save link". The handbook will download to your device. If a screen with raw HTML code appears, ensure you have followed the above instructions or try Option 2.  
+Бид **epirhandbook** нэртэй R багцыг санал болгож байна. Энэ багц нь
+гарын авлагын файлыг манай Github репозитороос таны компьютерт татаж
+авдаг `download_book()` функцийг агуулдаг.
 
+Мөн энэ багц нь бүх жишээ өгөгдлийг таны компьютерт татаж авдаг
+`get_data()` функцийг агуулдаг.
 
-
-
-### Use our R package {.unnumbered}  
-
-We offer an R package called **epirhandbook**. It includes a function `download_book()` that downloads the handbook file from our Github repository to your computer.  
-
-
-This package also contains a function `get_data()` that downloads all the example data to your computer.  
-
-Run the following code to install our R package **epirhandbook** from the [Github repository *appliedepi*](https://github.com/appliedepi/epirhandbook). This package is not on CRAN, so use the special function `p_install_gh()` to install it from Github.  
-
+[Github репозитори
+*appliedepi*](https://github.com/appliedepi/epirhandbook)-ээс манай R
+багц **epirhandbook**-ийг суулгахын тулд дараах кодыг ажиллуулна уу. Энэ
+багц нь CRAN дээр байдаггүй тул Github-аас суулгахын тулд
+`p_install_gh()` тусгай функцийг ашиглана уу.
 
 ```{r, eval=F}
-# install the latest version of the Epi R Handbook package
+# Epi R Handbook багцын хамгийн сүүлийн хувилбарыг суулга
 pacman::p_install_gh("appliedepi/epirhandbook")
 ```
 
-Now, load the package for use in your current R session:  
+Та одоогийн R session-дээ ашиглахын тулд багцыг ачаална уу:
 
 ```{r, eval=F}
-# load the package for use
+# ашиглахын тулд багцыг ачаал
 pacman::p_load(epirhandbook)
 ```
 
-Next, run the package's function `download_book()` (with empty parentheses) to download the handbook to your computer. Assuming you are in RStudio, a window will appear allowing you to select a save location.  
+Дараа нь гарын авлагыг компьютер дээрээ татаж авахын тулд энэхүү багцын
+`download_book()` (хоосон хаалттай нь) функцийг ажиллуулна уу. Хэрэв та
+RStudio-дээр ажиллаж байгаа бол хадгалагдах байршлыг сонгох боломжтой
+цонх гарч ирнэ.
 
 ```{r, eval=F}
-# download the offline handbook to your computer
+# офлайн гарын авлагыг компьютер дээрээ татаж ав
 download_book()
 ```
 
+## Дагаж ажиллахын тулд өгөгдлийг татаж авах
 
+Гарын авлагын хуудсыг "дагаж ажиллахын" тулд та жишээ өгөгдөл, гаралтыг
+татаж авах боломжтой.
 
+### Манай R багцыг ашиглах {.unnumbered}
 
+Бүх өгөгдлийг татаж авах хамгийн хялбар арга бол манай R багц
+**epirhandbook**-ийг суулгах явдал юм. Энэ багц нь бүх жишээ өгөгдлийг
+таны сонгосон хавтсанд хадгалдаг `get_data()` функцийг агуулдаг.
 
-## Download data to follow along  
-
-To "follow along" with the handbook pages, you can download the example data and outputs.  
-
-### Use our R package {.unnumbered}  
-
-The easiest approach to download all the data is to install our R package **epirhandbook**. It contains a function `get_data()` that saves all the example data to a folder of your choice on your computer.  
-
-To install our R package **epirhandbook**, run the following code. This package is not on CRAN, so use the function `p_install_gh()` to install it. The input is referencing our Github organisation ("*appliedepi*") and the **epirhandbook** package.  
+Манай R багц **epirhandbook**-ийг суулгахын тулд дараах кодыг ажиллуулна
+уу. Энэ багц нь CRAN дээр байдаггүй тул үүнийг суулгахын тулд
+`p_install_gh()` функцийг ашиглана. Оролт нь манай Github байгууллага
+("*appliedepi*") болон **epirhandbook** багцыг харуулж байна.
 
 ```{r, eval=F}
-# install the latest version of the Epi R Handbook package
+# Epi R Handbook багцын хамгийн сүүлийн хувилбарыг суулга
 pacman::p_install_gh("appliedepi/epirhandbook")
 ```
 
-
-Now, load the package for use in your current R session:  
+Та одоогийн R session-дээ ашиглахын тулд багцыг ачаална уу:
 
 ```{r, eval=F}
-# load the package for use
+# ашиглахын тулд багцыг ачаал
 pacman::p_load(epirhandbook)
 ```
 
-Next, use the package's function `get_data()` to download the example data to your computer. Run `get_data("all")` to get *all* the example data, or provide a specific file name and extension within the quotes to retrieve only one file.  
+Үүний дараа нь `get_data()` функцийг ашиглан жишээ өгөгдлийг компьютер
+дээрээ татаж аваарай. *Бүх* жишээ өгөгдлийг авахын тулд
+`get_data("all")`-ийг ажиллуулна эсвэл зөвхөн нэг файлыг авахын тулд
+ишлэл дотор тухайн файлын нэрийг өргөтгөлийн хамт оруулна уу.
 
-The data have already been downloaded with the package, and simply need to be transferred out to a folder on your computer. A pop-up window will appear, allowing you to select a save folder location. We suggest you create a new "data" folder as there are about 30 files (including example data and example outputs).  
+Өгөгдлийг багцтай аль хэдийн татаж авсан бөгөөд үүнийг компьютер дээрх
+хавтас руу шилжүүлэх шаардлагатай. Хадгалах хавтасны байршлыг сонгох
+боломжийг олгодог попап цонх гарч ирнэ. 30 орчим файл (жишээ өгөгдөл,
+жишээ гаралтыг оруулаад) байгаа тул танд шинэ "data" фолдер үүсгэхийг
+санал болгож байна.
 
 ```{r, eval=F}
-# download all the example data into a folder on your computer
+# бүх жишээ өгөгдлийг компьютер дээрх хавтас руу татаж ав
 get_data("all")
 
-# download only the linelist example data into a folder on your computer
+# зөвхөн linelist жишээний өгөгдлийг компьютер дээрх хавтаст татаж ав
 get_data(file = "linelist_cleaned.rds")
 
 ```
 
-
 ```{r, eval=F}
-# download a specific file into a folder on your computer
+# тодорхой файлыг компьютер дээрх хавтас руу татаж ав
 get_data("linelist_cleaned.rds")
 ```
 
-Once you have used `get_data()` to save a file to your computer, you will still need to import it into R. See the [Import and export] page for details.  
+Та `get_data()` функцыг ашиглан файлыг компьютер дээрээ хадгалсан хэдий
+ч үүнийг R руу импортлох шаардлагатай хэвээр байх болно. Дэлгэрэнгүй
+мэдээллийг [Импорт ба экспорт] хуудаснаас үзнэ үү.
 
-If you wish, you can review all the data used in this handbook in the **["data" folder](https://github.com/epirhandbook/Epi_R_handbook/tree/master/data)** of our Github repository.  
+Хэрэв та хүсвэл энэ гарын авлагад ашигласан бүх өгөгдлийг манай Github
+репозиторийн ["data"
+хавтсанд](https://github.com/epirhandbook/Epi_R_handbook/tree/master/data)
+үзэх боломжтой.
 
+### Нэг нэгээр нь татаж авах {.unnumbered}
 
+Энэ сонголт нь манай Github репозитороос тухайн файлд зориулагдсан линк
+эсвэл R командын тусламжтайгаар өгөгдлийг нэг нэгээр нь татаж авах
+боломжийг олгох юм. Зарим файлын төрлүүд татаж авах товчлуурыг
+зөвшөөрдөг бол заримыг нь R командын тусламжтайгаар татаж авах
+боломжтой.
 
-### Download one-by-one {.unnumbered}  
+#### Тохиолдлын linelist {.unnumbered}
 
-This option involves downloading the data file-by-file from our Github repository via either a link or an R command specific to the file. Some file types allow a download button, while others can be downloaded via an R command.  
+Энэ бол **outbreaks** багц дахь дадлагын өгөгдлийн багц болох
+`ebola_sim`-ийг гарын авлагын баг өргөжүүлсэн Эбола вирусын зохиомол
+дэгдэлтийн өгөгдөл юм.
 
+-   <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_raw.xlsx' class='download-button'>"Боловсруулаагүй"
+    linelist (.xlsx) татаж авахын тулд дарна уу</span></a>.
+    "Боловсруулаагүй" linelist нь замбараагүй өгөгдөл бүхий Excel
+    хүснэгт юм. Үүнийг ашиглан [Өгөгдөл цэвэрлэх ба үндсэн функцууд]
+    хуудсыг дагаж ажиллана уу.
 
-#### Case linelist {.unnumbered}
+-   <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>"Цэвэр"
+    linelist (.rds) татаж авахын тулд дарна уу</a>. Энэ гарын авлагын
+    энэхүү linelist-ийг ашиглаж буй бусад бүх хуудсан дээр энэ файлыг
+    ашиглана уу. Энэхүү .rds файл нь баганын төрлүүдийг хадгалдаг R-ын
+    өвөрмөц файлын төрөл юм. Энэ файлыг ашигласнаар өгөгдлийг R руу
+    импортлосны дараа хамгийн бага цэвэрлэгээ хийх болно.
 
-This is a fictional Ebola outbreak, expanded by the handbook team from the `ebola_sim` practice dataset in the **outbreaks** package.  
+*Бусад холбогдох файлууд:*
 
-* <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_raw.xlsx' class='download-button'>Click to download the "raw" linelist (.xlsx)</span></a>. The "raw" case linelist is an Excel spreadsheet with messy data. Use this to follow-along with the [Cleaning data and core functions] page.  
+-   <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.xlsx' class='download-button'>"Цэвэр"
+    linelist-ийг Excel файл болгон татаж авахын тулд дарна уу</a>
 
-* <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>Click to download the "clean" linelist (.rds)</a>. Use this file for all other pages of this handbook that use the linelist. A .rds file is an R-specific file type that preserves column classes. This ensures you will have only minimal cleaning to do after importing the data into R.  
-
-*Other related files:*  
-
-* <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.xlsx' class='download-button'>Click to download the "clean" linelist as an Excel file</a>
-
-* Part of the cleaning page uses a "cleaning dictionary" (.csv file). You can load it directly into R by running the following commands:   
+-   Цэвэрлэх хуудасны нэг хэсэг нь "цэвэрлэх толь бичиг" (.csv файл)
+    ашигладаг. Та дараах командуудыг ажиллуулснаар үүнийг R руу шууд
+    ачаалж болно:
 
 ```{r, eval=F}
-pacman::p_load(rio) # install/load the rio package
+pacman::p_load(rio) # rio багцыг суулгах/ачаалах
 
-# import the file directly from Github
+# файлыг Github-аас шууд импортлох
 cleaning_dict <- import("https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/cleaning_dict.csv")
 ```
 
+#### Хумхаагийн тоон өгөгдөл {#data_malaria .unnumbered}
 
-#### Malaria count data {#data_malaria .unnumbered}  
-
-These data are fictional counts of malaria cases by age group, facility, and day. A .rds file is an R-specific file type that preserves column classes. This ensures you will have only minimal cleaning to do after importing the data into R.  
+Энэхүү өгөгдөл нь хумхаа өвчний тохиолдлыг насны бүлэг, байгууламж,
+өдрөөр нь гаргасан зохиомол тоонууд болно. Энэхүү .rds файл нь баганын
+төрлүүдийг хадгалдаг R-ын өвөрмөц файлын төрөл юм. Энэ файлыг
+ашигласнаар өгөгдлийг R руу импортлосны дараа хамгийн бага цэвэрлэгээ
+хийх болно.
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_facility_count_data.rds' class='download-button'>
-	Click to download
-	<span>the malaria count data (.rds file)</span>
-</a>
+Хумхаа өвчний тоон өгөгдлийг татаж авахын тулд дарна уу (.rds файл) </a>
 
+#### Ликерт-хэмжүүртэй өгөгдөл {.unnumbered}
 
-#### Likert-scale data {.unnumbered}  
-
-These are fictional data from a Likert-style survey, used in the page on [Demographic pyramids and Likert-scales]. You can load these data directly into R by running the following commands:    
+Эдгээр нь [Хүн ам зүйн пирамидууд ба Ликерт-хэмжүүр] хуудсан дээр
+ашиглагдсан Ликерт-загварын судалгааны зохиомол өгөгдөл юм. Та дараах
+командуудыг ажиллуулснаар эдгээр өгөгдлийг R руу шууд ачаалж болно:
 
 ```{r, eval=F}
-pacman::p_load(rio) # install/load the rio package
+pacman::p_load(rio) # rio багцыг суулгах/ачаалах
 
-# import the file directly from Github
+# файлыг Github-аас шууд импортлох
 likert_data <- import("https://raw.githubusercontent.com/nsbatra/Epi_R_handbook/master/data/likert_data.csv")
 ```
 
+#### Flexdashboard {.unnumbered}
 
-#### Flexdashboard {.unnumbered}  
+Доорх нь [R Markdown бүхий хяналтын самбар] хуудастай холбоотой файлын
+линкүүд:
 
-Below are links to the file associated with the page on [Dashboards with R Markdown]:  
+-   Дэгдэлтийн хяналтын самбарын R Markdown-ийг татаж авахын тулд энэ
+    [холбоос](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/flexdashboard/outbreak_dashboard.Rmd)
+    дээр хулганы баруун товчийг дараад (Mac дээр Cmd+дарна уу) "Save
+    link as" сонгоно уу.
 
-* To download the R Markdown for the outbreak dashboard, right-click this [link](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/flexdashboard/outbreak_dashboard.Rmd) (Cmd+click for Mac) and select "Save link as".  
-* To download the HTML dashboard, right-click this [link](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/flexdashboard/outbreak_dashboard_test.html) (Cmd+click for Mac) and select "Save link as".  
+-   HTML хяналтын самбарыг татаж авахын тулд энэ
+    [холбоос](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/flexdashboard/outbreak_dashboard_test.html)
+    дээр хулганы баруун товчийг дараад (Cmd+Mac дээр дарна уу) "Save
+    link as" сонгоно уу.
 
-#### Contact Tracing {.unnumbered} 
+#### Хавьтал мөшгөлт {#хавьтал-мөшгөлт .unnumbered}
 
-The [Contact Tracing] page demonstrated analysis of contact tracing data, using example data from [Go.Data](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting). The data used in the page can be downloaded as .rds files by clicking the following links:  
+[Хавьтал мөшгөлт](#хавьтал-мөшгөлт) хуудас нь
+[Go.Data](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting)-аас
+авсан өгөгдлийн жишээг ашиглан хавьтал мөшгөлтийн мэдээллийн анализыг
+харуулсан. Энэхүү хуудас дээр ашигласан өгөгдлийг дараах холбоосууд дээр
+дарж .rds файл хэлбэрээр татаж авах боломжтой:
 
 <a href='https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/data/cases_clean.rds?raw=true' class='download-button'>
-	Click to download
-	<span>the case investigation data (.rds file)</span>
+Тохиолдлын судалгааны өгөгдлийг татаж авахын тулд дарна уу (.rds файл)
 </a>
 
 <a href='https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/data/contacts_clean.rds?raw=true' class='download-button'>
-	Click to download
-	<span>the contact registration data (.rds file)</span>
+Хавьтлын бүртгэлийн өгөгдлийг татаж авахын тулд дарна уу (.rds файл)
 </a>
 
 <a href='https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/data/followups_clean.rds?raw=true' class='download-button'>
-	Click to download
-	<span>the contact follow-up data (.rds file)</span>
-</a>
+Хавьтлын хяналтын өгөгдлийг татаж авахын тулд дарна уу (.rds файл) </a>
 
+[***ТЭМДЭГЛЭЛ:*** Бусад програм хангамж (жишээ нь KoBo, DHIS2 Tracker,
+CommCare)-аас авсан тогтсон бүтэцтэй хавьтал мөшгөлтийн өгөгдөл өөр
+харагдаж магадгүй юм. Хэрэв та энэ хуудсанд өөр жишээ өгөгдөл эсвэл
+агуулгыг оруулахыг хүсч байвал бидэнтэй [холбоо барина
+уу.](#contact_us)]{style="color: black;"}
 
+[***ЗӨВЛӨГӨӨ:*** Хэрэв та Go.Data ашиглаж байгаа бөгөөд өөрийн API-тай
+холбогдохыг хүсч байвал Импорт, экспортын хуудас ([API
+хэсэг](#import_api)) болон [Go.Data Community of
+Practice](https://community-godata.who.int/)-г үзнэ
+үү.]{style="color: darkgreen;"}
 
-<span style="color: black;">**_NOTE:_** Structured contact tracing data from other software (e.g. KoBo, DHIS2 Tracker, CommCare) may look different. If you would like to contribute alternative sample data or content for this page, please [contact us](#contact_us).</span> 
+#### GIS {.unnumbered}
 
-<span style="color: darkgreen;">**_TIP:_** If you are deploying Go.Data and want to connect to your instance's API, see the Import and export page [(API section)](#import_api) and the [Go.Data Community of Practice](https://community-godata.who.int/).</span>
+Шэйпфайл (shapefile) нь олон дэд файлуудтай бөгөөд эдгээр нь бүгд өөр
+өөр файлын өргөтгөлтэй байдаг. Нэг файл ".shp" өргөтгөлтэй байхад бусад
+нь ".dbf", ".prj" гэх мэт өргөтгөлтэй байж болно.
 
+[GIS-ийн үндсэн ойлголтууд] хуудас дээр байгаа *Хүмүүнлэгийн өгөгдлийн
+солилцооны* вэбсайтын холбоос байгаа бөгөөд та энэхүү вэбсайтаас
+шэйпфайлуудыг зип хэлбэрээр шууд татаж авах боломжтой.
 
-#### GIS {.unnumbered}  
+Жишээлбэл, эрүүл мэндийн байгууллагын онооны өгөгдлийг
+[эндээс](https://data.humdata.org/dataset/hotosm_sierra_leone_health_facilities)
+татаж авах боломжтой.
+"hotosm_sierra_leone_health_facilities_points_shp.zip" файлыг татаж авна
+уу. Энэхүү файл таны компьютерт хадгалагдсаны дараа фолдерыг "задлах"
+(unzip) хэрэгтэй. Та өөр өөр өргөтгөлтэй хэд хэдэн файлыг харах болно
+(жишээ нь ".shp", ".prj", ".shx") - эдгээрийг бүгдийг нь таны компьютер
+дээрх нэг хавтсанд хадгалах ёстой. Дараа нь R руу импортлохын тулд
+файлын зам болон ".shp" файлын нэрийг **sf** багцын `st_read()` функц
+руу оруулна уу ([GIS-ийн үндсэн ойлголтууд] хуудсанд тайлбарласны
+дагуу).
 
-Shapefiles have many sub-component files, each with a different file extention. One file will have the ".shp" extension, but others may have ".dbf", ".prj", etc.  
+Хэрвээ та 1-р сонголтын дагуу бүх жишээ өгөгдлийг татаж авсан бол (манай
+R багц **epirhandbook**-ээр) тэр дотор бүх шэйпфайлууд орсон байгаа.
 
-The [GIS basics] page provides links to the *Humanitarian Data Exchange* website where you can download the shapefiles directly as zipped files.  
-
-For example, the health facility points data can be downloaded [here](https://data.humdata.org/dataset/hotosm_sierra_leone_health_facilities). Download "hotosm_sierra_leone_health_facilities_points_shp.zip". Once saved to your computer, "unzip" the folder. You will see several files with different extensions (e.g. ".shp", ".prj", ".shx") - all these must be saved to the same folder on your computer. Then to import into R, provide the file path and name of the ".shp" file to `st_read()` from the **sf** package (as described in the [GIS basics] page).  
-
-If you follow Option 1 to download all the example data (via our R package **epirhandbook**), all the shapefiles are included.  
-
-
-Alternatively, you can download the shapefiles from the R Handbook Github "data" folder (see the "gis" sub-folder). However, be aware that you will need to download *each* sub-file individually to your computer. In Github, click on each file individually and download them by clicking on the "Download" button. Below, you can see how the shapefile "sle_adm3" consists of many files - each of which would need to be downloaded from Github.  
+Эсвэл та шэйпфайлуудыг R Handbook Github "data" хавтсаас татаж авах
+боломжтой ("gis" дэд хавтсыг үзнэ үү). Ингэж татах үедээ та дэд файл
+бүрийг тус тусад нь компьютер дээрээ татаж авах хэрэгтэй гэдгийг
+санаарай. Github дээр файл тус бүр дээр дарж, "Download" товчийг дарж
+татаж аваарай. Доор "sle_adm3" шэйпфайл нь хэрхэн олон файлаас бүрдэж
+буйг харуулж буй бөгөөд эдгээр файл тус бүрийг Github-аас татаж авах
+шаардлагатай.
 
 ```{r out.height = "50%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "download_shp.png"))
 ```
 
+#### Удмын мод {.unnumbered data-link="Phylogenetic trees"}
 
-#### Phylogenetic trees {.unnumbered}  
+[Удмын мод]-ны талаарх хуудсыг үзнэ үү. Shigella sonnei-ийн 299 сорьцын
+бүтэн геномын дарааллыг тогтоож гаргасан удмын модны Ньюик (Newick) файл
+ба сорьцын бусад холбогдох өгөгдөл (текст файл болгон хөрвүүлсэн).
+Бельгийн Salmonella, Shigella сорьцууд, тэдгээрийн үр дүнгийн өгөгдлийг
+ECDC EUPHEM-ийн суралцагчийн төслийн хүрээнд Бельгийн үндэсний лавлагаа
+лабораториос өгсөн бөгөөд энэхүү судалгааны үр дүн мөн хэвлэгдэх болно.
+Олон улсын өгөгдөл олон нийтийн өгөгдлийн сан (NCBI) дээр нээлттэй
+хэлбэрээр байрладаг бөгөөд өмнө нь хэвлэгдэж байсан.
 
-See the page on [Phylogenetic trees]. Newick file of phylogenetic tree constructed from whole genome sequencing of 299 Shigella sonnei samples and corresponding sample data (converted to a text file). The Belgian samples and resulting data are kindly provided by the Belgian NRC for Salmonella and Shigella in the scope of a project conducted by an ECDC EUPHEM Fellow, and will also be published in a manuscript. The international data are openly available on public databases (ncbi) and have been previously published.  
+-   "Shigella_tree.txt" удмын модны файлыг татаж авахын тулд энэ
+    [линк](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/Shigella_tree.txt)
+    дээр хулганы баруун товчийг дараад (Mac дээр Cmd+дарж) "Save link
+    as" сонгоно уу.
 
-* To download the "Shigella_tree.txt" phylogenetic tree file, right-click this [link](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/Shigella_tree.txt) (Cmd+click for Mac) and select "Save link as".  
-* To download the "sample_data_Shigella_tree.csv" with additional information on each sample, right-click this [link](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/sample_data_Shigella_tree.csv) (Cmd+click for Mac) and select "Save link as".  
-* To see the new, created subset-tree, right-click this [link](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/Shigella_subtree_2.txt) (Cmd+click for Mac) and select "Save link as". The .txt file will download to your computer.  
+-   Сорьц тус бүрийн нэмэлт мэдээллийг агуулсан
+    "sample_data_Shigella_tree.csv" файлыг татаж авахын тулд энэ
+    [линк](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/sample_data_Shigella_tree.csv)
+    дээр хулганы баруун товчийг дараад (Mac дээр Cmd+дарж) "Save link
+    as" сонгоно уу.
 
+-   Шинээр үүсгэсэн дэд модыг харахын тулд энэ
+    [линк](https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/Shigella_subtree_2.txt)
+    дээр хулганы баруун товчийг дараад (Cmd+Mac дээр дарна уу) "Save
+    link as" сонгоно уу. Таны компьютерт .txt файл татагдах болно.
 
-You can then import the .txt files with `read.tree()` from the **ape** package, as explained in the page.
+Та хуудсан дээр тайлбарласны дагуу .txt файлыг **ape** багцын
+`read.tree()` функц ашиглан импортлох боломжтой.
 
 ```{r, eval=F}
 ape::read.tree("Shigella_tree.txt")
 ```
 
+#### Стандартчилал {.unnumbered}
 
-#### Standardization {.unnumbered}  
-
-See the page on [Standardised rates]. You can load the data directly from our Github repository on the internet into your R session with the following commands:  
-
+[Стандартчилсан түвшин]-ий талаарх хуудсыг үзнэ үү. Та дараах
+командуудыг ашиглан интернет дээрх манай Github репозитороос өөрийн R
+session рүү өгөгдлийг шууд ачаалах боломжтой:
 
 ```{r, eval=F}
-# install/load the rio package
+# rio багцыг суулгах/ачаалах
 pacman::p_load(rio) 
 
 ##############
-# Country A
+# A улс
 ##############
-# import demographics for country A directly from Github
+# А улсын хүн ам зүйн мэдээллийг Github-аас шууд импортлох
 A_demo <- import("https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/country_demographics.csv")
 
-# import deaths for country A directly from Github
+# А улсын нас баралтын мэдээллийг Github-аас шууд импортлох
 A_deaths <- import("https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/deaths_countryA.csv")
 
 ##############
-# Country B
+# B улс
 ##############
-# import demographics for country B directly from Github
+# B улсын хүн ам зүйн мэдээллийг Github-аас шууд импортлох
 B_demo <- import("https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/country_demographics_2.csv")
 
-# import deaths for country B directly from Github
+# B улсын нас баралтын мэдээллийг Github-аас шууд импортлох
 B_deaths <- import("https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/deaths_countryB.csv")
 
 
 ###############
-# Reference Pop
+# Лавлагаа хүн ам
 ###############
-# import demographics for country B directly from Github
+# Дэлхийн стандартчилсан хүн ам зүйн мэдээллийг Github-аас шууд импортлох
 standard_pop_data <- import("https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/world_standard_population_by_sex.csv")
 ```
 
+#### Цагийн цуврал (time series) ба дэгдэлт илрүүлэлт {#data_outbreak .unnumbered}
 
-
-#### Time series and outbreak detection {#data_outbreak .unnumbered}  
-
-See the page on [Time series and outbreak detection]. We use campylobacter cases reported in Germany 2002-2011, as available from the **surveillance** R package. (*nb.* this dataset has been adapted from the original, in that 3 months of data have been deleted from the end of 2011 for demonstration purposes)
+[Цагийн цуврал ба дэгдэлт илрүүлэлт](#data_outbreak) хуудсыг үзнэ үү.
+Бид **surveillance** R багцад байдаг Германд 2002-2011 онд бүртгэгдсэн
+Campylobacter-ийн тохиолдлуудыг ашигладаг. (nb. Сургалтын зорилгоор
+энэхүү өгөгдлийн 2011 оны сүүлийн 3 сарын өгөгдлийг устгаж эх
+хувилбараас нь өөрчилсөн болно)
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/campylobacter_germany.xlsx' class='download-button'>
-	Click to download
-	<span> Campylobacter in Germany (.xlsx)</span>
+Герман дахь Campylobacter өгөгдлийг татаж авахын тулд дарна уу (.xlsx)
 </a>
 
-We also use climate data from Germany 2002-2011 (temperature in degrees celsius and rain fail in millimetres) . These were downloaded from the EU Copernicus satellite reanalysis dataset using the **ecmwfr** package. You will need to download all of these and import them with `stars::read_stars()` as explained in the time series page.  
+Бид мөн Германы 2002-2011 оны цаг уурын мэдээллийг ашигладаг (температур
+нь цельсийн градус, борооны хэмжээ нь миллиметрээр). Эдгээрийг Европын
+Холбооны Коперникус хиймэл дагуулын дахин шинжилгээний өгөгдлийн сангаас
+**ecmwfr** багц ашиглан татаж авсан болно. Та эдгээрийг бүгдийг нь татаж
+аваад цагийн цувралын хуудсанд тайлбарласны дагуу `stars::read_stars()`
+функцыг ашиглан импортолж болно.
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2002.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2002 (.nc file)</span>
-</a> 
+2002 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2003.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2003 (.nc file)</span>
-</a> 
+2003 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2004.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2004 (.nc file)</span>
-</a> 
+2004 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2005.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2005 (.nc file)</span>
-</a> 
+2005 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2006.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2006 (.nc file)</span>
-</a> 
+2006 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2007.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2007 (.nc file)</span>
-</a> 
+2007 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2008.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2008 (.nc file)</span>
-</a> 
+2008 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2009.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2009 (.nc file)</span>
-</a> 
+2009 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2010.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2010 (.nc file)</span>
-</a> 
+2010 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2011.nc' class='download-button'>
-	Click to download
-	<span> Germany weather 2011 (.nc file)</span>
-</a>
+2011 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a>
 
+#### Асуумж судалгааны (survey) дүн шинжилгээ {#data_survey .unnumbered}
 
-
-#### Survey analysis {#data_survey .unnumbered}  
-
-For the [survey analysis](https://epirhandbook.com/survey-analysis.html) page we use fictional mortality survey data based off MSF OCA survey templates. This fictional data was generated as part of the ["R4Epis" project](https://r4epis.netlify.app/).
+[Асуумж судалгааны дүн
+шинжилгээ](https://epirhandbook.com/survey-analysis.html) хийх хуудасны
+хувьд бид MSF OCA асуумж судалгааны загвар дээр үндэслэн нас баралтын
+талаархи зохиомол өгөгдлийг ашигласан. Энэхүү зохиомол өгөгдлийг
+["R4Epis" төслийн](https://r4epis.netlify.app/) хүрээнд үүсгэсэн болно.
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/surveys/survey_data.xlsx' class='download-button'>
-	Click to download
-	<span> Fictional survey data (.xlsx)</span>
+Зохиомол асуумж судалгааны өгөгдлийг татаж авахын тулд дарна уу (.xlsx)
 </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/surveys/survey_dict.xlsx' class='download-button'>
-	Click to download
-	<span> Fictional survey data dictionary (.xlsx)</span>
-</a>
+Зохиомол асуумж судалгааны өгөгдлийн толь бичгийг татаж авахын тулд
+дарна уу (.xlsx) </a>
 
 <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/surveys/population.xlsx' class='download-button'>
-	Click to download
-	<span> Fictional survey population data (.xlsx)</span>
-</a>
+Зохиомол асуумж судалгааны хүн амын мэдээллийг татаж авахын тулд дарна
+уу (.xlsx) </a>
 
+#### Shiny {#data_shiny .unnumbered}
 
+[Shiny бүхий хяналтын самбар] дээрх хуудас нь хумхаа өвчний өгөгдлийг
+харуулах энгийн аппликейшн бүтээснийг харуулав.
 
+Shiny аппликейшн үүсгэдэг R файлуудыг татаж авахын тулд:
 
-#### Shiny {#data_shiny .unnumbered}  
+Та
+<a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_app/app.R' class='download-button'>
+энд дараад Shiny аппликейшний UI болон Серверийн кодыг агуулсан app.R
+файлыг татаж авна уу. </a>
 
-The page on [Dashboards with Shiny] demonstrates the construction of a simple app to display malaria data.  
+Та
+<a href='https://github.com/epirhandbook/Epi_R_handbook/blob/master/data/malaria_app/data/facility_count_data.rds' class='download-button'>
+энд дараад facility_count_data.rds файлыг татаж авна уу. <span></a> Энэ
+файл нь Shiny аппликейшний хумхаа өвчний өгөгдлийг агуулж буй. `here()`
+файлын замыг зөв ажиллуулахын тулд та үүнийг "data" хавтсанд хадгалах
+хэрэгтэй байж магадгүй гэдгийг анхаарна уу.
 
-To download the R files that produce the Shiny app:  
+Та
+<a href='https://github.com/epirhandbook/Epi_R_handbook/blob/master/data/malaria_app/global.R' class='download-button'>
+энд дарж global.R файлыг татаж авна уу. <span></a> Хуудсанд тайлбарласны
+дагуу энэ файлыг аппликейшнээ нээхээс өмнө ажиллуулах шаардлагатай.
 
-You can <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_app/app.R' class='download-button'>
-	click here to download the app.R file<span> that contains both the UI and Server code for the Shiny app.</span></a>
-
-You can <a href='https://github.com/epirhandbook/Epi_R_handbook/blob/master/data/malaria_app/data/facility_count_data.rds' class='download-button'>
-	click here to download the facility_count_data.rds file<span></a> that contains malaria data for the Shiny app. Note that you may need to store it within a "data" folder for the here() file paths to work correctly.  
-
-You can <a href='https://github.com/epirhandbook/Epi_R_handbook/blob/master/data/malaria_app/global.R' class='download-button'>
-	click here to download the global.R file<span></a> that should run prior to the app opening, as explained in the page.
-	
-You can <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_app/funcs/plot_epicurve.R' class='download-button'>
-	click here to download the plot_epicurve.R file<span></a> that is sourced by global.R. Note that you may need to store it within a "funcs" folder for the here() file paths to work correctly.
-
-
+Та
+<a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_app/funcs/plot_epicurve.R' class='download-button'>
+энд дарж global.R скриптэд ашиглагддаг plot_epicurve.R файлыг татаж авна
+уу. <span></a> `here()` файлын замыг зөв ажиллуулахын тулд та үүнийг
+"funcs" хавтсанд хадгалах хэрэгтэй байж магадгүй гэдгийг анхаарна уу.

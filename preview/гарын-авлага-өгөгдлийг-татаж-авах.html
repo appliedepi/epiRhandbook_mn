@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 Гарын авлага, өгөгдлийг татаж авах | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="1.1 Офлайн гарын авлагыг татаж авах Та энэ гарын авлагын офлайн хувилбарыг HTML файл хэлбэрээр татаж авах боломжтой бөгөөд ингэснээр та интернет холболтгүй болсон ч гэсэн вэб хөтөч дээрээ файлыг...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="1 Гарын авлага, өгөгдлийг татаж авах | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="1.1 Офлайн гарын авлагыг татаж авах Та энэ гарын авлагын офлайн хувилбарыг HTML файл хэлбэрээр татаж авах боломжтой бөгөөд ингэснээр та интернет холболтгүй болсон ч гэсэн вэб хөтөч дээрээ файлыг...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 Гарын авлага, өгөгдлийг татаж авах | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="1.1 Офлайн гарын авлагыг татаж авах Та энэ гарын авлагын офлайн хувилбарыг HTML файл хэлбэрээр татаж авах боломжтой бөгөөд ингэснээр та интернет холболтгүй болсон ч гэсэн вэб хөтөч дээрээ файлыг...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="active" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">1</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="гарын-авлага-өгөгдлийг-татаж-авах" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Гарын авлага, өгөгдлийг татаж авах<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h1>
+<!-- Note to self: If you want to create a download link to Github, right-click the "View Raw" button on Github, copy the address, and use that in the HTML below. -->
+<div id="офлайн-гарын-авлагыг-татаж-авах" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Офлайн гарын авлагыг татаж авах<a class="anchor" aria-label="anchor" href="#%D0%BE%D1%84%D0%BB%D0%B0%D0%B9%D0%BD-%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D1%8B%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Та энэ гарын авлагын офлайн хувилбарыг HTML файл хэлбэрээр татаж авах
+боломжтой бөгөөд ингэснээр та интернет холболтгүй болсон ч гэсэн вэб
+хөтөч дээрээ файлыг үзэх боломжтой болно. Хэрэв та Epi R гарын авлагыг
+офлайнаар ашиглах гэж байгаа бол дараах хэдэн зүйлийг анхаарах хэрэгтэй:</p>
+<ul>
+<li><p>Файлыг нээхэд зурагнууд болон агуулгын хүснэгтийг ачаалахад ганц
+хоёр минут шаардагдаж магадгүй</p></li>
+<li><p>Офлайн гарын авлага нь арай өөр бүтэцтэй - зүүн талд нь агуулгын
+хүснэгт бүхий маш урт хуудастай. Тодорхой нэр томъёо хайхын тулд
+Ctrl+f (Cmd-f) командыг ашиглана уу.</p></li>
+<li><p>[Санал болгож буй багцууд] хуудсыг үзээд интернет холболт тасрахаас
+өмнө тохирох R багцуудыг суулгаж болно</p></li>
+<li><p>Бүх жишээ өгөгдлийг агуулсан манай R багц <strong>epirhandbook</strong>-ийг
+суулгаарай (суулгах процессыг доор тайлбарласан болно)</p></li>
+</ul>
+<p><strong>Гарын авлага татаж авах хоёр арга бий::</strong></p>
+<div id="татаж-авах-линкийг-ашиглах" class="section level3 unnumbered">
+<h3>Татаж авах линкийг ашиглах<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85-%D0%BB%D0%B8%D0%BD%D0%BA%D0%B8%D0%B9%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Түргэн хандахын тулд <a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/offline_long/Epi_R_Handbook_offline.html"><strong>энэ
+холбоос</strong></a>
+<strong>дээр хулганы баруун товчийг дараад “Save link as”-г сонгоно уу.</strong></p>
+<p>Хэрэв Mac дээр бол Cmd+дарна уу. Хэрэв гар утас дээр байгаа бол
+холбоосыг дараад “Save link”-г сонгоно уу. Гарын авлага нь таны
+төхөөрөмжид татагдах болно. Хэрэв raw HTML кодтой дэлгэц гарч ирвэл
+дээрх зааврыг дагаж мөрдсөн эсэхээ шалгах эсвэл 2-р аргыг туршиж
+үзээрэй.</p>
+</div>
+<div id="манай-r-багцыг-ашиглах" class="section level3 unnumbered">
+<h3>Манай R багцыг ашиглах<a class="anchor" aria-label="anchor" href="#%D0%BC%D0%B0%D0%BD%D0%B0%D0%B9-r-%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Бид <strong>epirhandbook</strong> нэртэй R багцыг санал болгож байна. Энэ багц нь
+гарын авлагын файлыг манай Github репозитороос таны компьютерт татаж
+авдаг <code>download_book()</code> функцийг агуулдаг.</p>
+<p>Мөн энэ багц нь бүх жишээ өгөгдлийг таны компьютерт татаж авдаг
+<code>get_data()</code> функцийг агуулдаг.</p>
+<p><a href="https://github.com/appliedepi/epirhandbook">Github репозитори
+<em>appliedepi</em></a>-ээс манай R
+багц <strong>epirhandbook</strong>-ийг суулгахын тулд дараах кодыг ажиллуулна уу. Энэ
+багц нь CRAN дээр байдаггүй тул Github-аас суулгахын тулд
+<code>p_install_gh()</code> тусгай функцийг ашиглана уу.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Epi R Handbook багцын хамгийн сүүлийн хувилбарыг суулга</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_install_gh.html">p_install_gh</a></span><span class="op">(</span><span class="st">"appliedepi/epirhandbook"</span><span class="op">)</span></code></pre></div>
+<p>Та одоогийн R session-дээ ашиглахын тулд багцыг ачаална уу:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ашиглахын тулд багцыг ачаал</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">epirhandbook</span><span class="op">)</span></code></pre></div>
+<p>Дараа нь гарын авлагыг компьютер дээрээ татаж авахын тулд энэхүү багцын
+<code>download_book()</code> (хоосон хаалттай нь) функцийг ажиллуулна уу. Хэрэв та
+RStudio-дээр ажиллаж байгаа бол хадгалагдах байршлыг сонгох боломжтой
+цонх гарч ирнэ.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># офлайн гарын авлагыг компьютер дээрээ татаж ав</span>
+<span class="fu">download_book</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="дагаж-ажиллахын-тулд-өгөгдлийг-татаж-авах" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Дагаж ажиллахын тулд өгөгдлийг татаж авах<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D0%B3%D0%B0%D0%B6-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85%D1%8B%D0%BD-%D1%82%D1%83%D0%BB%D0%B4-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Гарын авлагын хуудсыг “дагаж ажиллахын” тулд та жишээ өгөгдөл, гаралтыг
+татаж авах боломжтой.</p>
+<div id="манай-r-багцыг-ашиглах-1" class="section level3 unnumbered">
+<h3>Манай R багцыг ашиглах<a class="anchor" aria-label="anchor" href="#%D0%BC%D0%B0%D0%BD%D0%B0%D0%B9-r-%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Бүх өгөгдлийг татаж авах хамгийн хялбар арга бол манай R багц
+<strong>epirhandbook</strong>-ийг суулгах явдал юм. Энэ багц нь бүх жишээ өгөгдлийг
+таны сонгосон хавтсанд хадгалдаг <code>get_data()</code> функцийг агуулдаг.</p>
+<p>Манай R багц <strong>epirhandbook</strong>-ийг суулгахын тулд дараах кодыг ажиллуулна
+уу. Энэ багц нь CRAN дээр байдаггүй тул үүнийг суулгахын тулд
+<code>p_install_gh()</code> функцийг ашиглана. Оролт нь манай Github байгууллага
+(“<em>appliedepi</em>”) болон <strong>epirhandbook</strong> багцыг харуулж байна.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Epi R Handbook багцын хамгийн сүүлийн хувилбарыг суулга</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_install_gh.html">p_install_gh</a></span><span class="op">(</span><span class="st">"appliedepi/epirhandbook"</span><span class="op">)</span></code></pre></div>
+<p>Та одоогийн R session-дээ ашиглахын тулд багцыг ачаална уу:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ашиглахын тулд багцыг ачаал</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">epirhandbook</span><span class="op">)</span></code></pre></div>
+<p>Үүний дараа нь <code>get_data()</code> функцийг ашиглан жишээ өгөгдлийг компьютер
+дээрээ татаж аваарай. <em>Бүх</em> жишээ өгөгдлийг авахын тулд
+<code>get_data("all")</code>-ийг ажиллуулна эсвэл зөвхөн нэг файлыг авахын тулд
+ишлэл дотор тухайн файлын нэрийг өргөтгөлийн хамт оруулна уу.</p>
+<p>Өгөгдлийг багцтай аль хэдийн татаж авсан бөгөөд үүнийг компьютер дээрх
+хавтас руу шилжүүлэх шаардлагатай. Хадгалах хавтасны байршлыг сонгох
+боломжийг олгодог попап цонх гарч ирнэ. 30 орчим файл (жишээ өгөгдөл,
+жишээ гаралтыг оруулаад) байгаа тул танд шинэ “data” фолдер үүсгэхийг
+санал болгож байна.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># бүх жишээ өгөгдлийг компьютер дээрх хавтас руу татаж ав</span>
+<span class="fu">get_data</span><span class="op">(</span><span class="st">"all"</span><span class="op">)</span>
+
+<span class="co"># зөвхөн linelist жишээний өгөгдлийг компьютер дээрх хавтаст татаж ав</span>
+<span class="fu">get_data</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"linelist_cleaned.rds"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># тодорхой файлыг компьютер дээрх хавтас руу татаж ав</span>
+<span class="fu">get_data</span><span class="op">(</span><span class="st">"linelist_cleaned.rds"</span><span class="op">)</span></code></pre></div>
+<p>Та <code>get_data()</code> функцыг ашиглан файлыг компьютер дээрээ хадгалсан хэдий
+ч үүнийг R руу импортлох шаардлагатай хэвээр байх болно. Дэлгэрэнгүй
+мэдээллийг [Импорт ба экспорт] хуудаснаас үзнэ үү.</p>
+<p>Хэрэв та хүсвэл энэ гарын авлагад ашигласан бүх өгөгдлийг манай Github
+репозиторийн <a href="https://github.com/epirhandbook/Epi_R_handbook/tree/master/data">“data”
+хавтсанд</a>
+үзэх боломжтой.</p>
+</div>
+<div id="нэг-нэгээр-нь-татаж-авах" class="section level3 unnumbered">
+<h3>Нэг нэгээр нь татаж авах<a class="anchor" aria-label="anchor" href="#%D0%BD%D1%8D%D0%B3-%D0%BD%D1%8D%D0%B3%D1%8D%D1%8D%D1%80-%D0%BD%D1%8C-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэ сонголт нь манай Github репозитороос тухайн файлд зориулагдсан линк
+эсвэл R командын тусламжтайгаар өгөгдлийг нэг нэгээр нь татаж авах
+боломжийг олгох юм. Зарим файлын төрлүүд татаж авах товчлуурыг
+зөвшөөрдөг бол заримыг нь R командын тусламжтайгаар татаж авах
+боломжтой.</p>
+<div id="тохиолдлын-linelist" class="section level4 unnumbered">
+<h4>Тохиолдлын linelist<a class="anchor" aria-label="anchor" href="#%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%8B%D0%BD-linelist"><i class="fas fa-link"></i></a>
+</h4>
+<p>Энэ бол <strong>outbreaks</strong> багц дахь дадлагын өгөгдлийн багц болох
+<code>ebola_sim</code>-ийг гарын авлагын баг өргөжүүлсэн Эбола вирусын зохиомол
+дэгдэлтийн өгөгдөл юм.</p>
+<ul>
+<li><p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_raw.xlsx" class="download-button">“Боловсруулаагүй”
+linelist (.xlsx) татаж авахын тулд дарна уу</a>.
+“Боловсруулаагүй” linelist нь замбараагүй өгөгдөл бүхий Excel
+хүснэгт юм. Үүнийг ашиглан [Өгөгдөл цэвэрлэх ба үндсэн функцууд]
+хуудсыг дагаж ажиллана уу.</p></li>
+<li><p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds" class="download-button">“Цэвэр”
+linelist (.rds) татаж авахын тулд дарна уу</a>. Энэ гарын авлагын
+энэхүү linelist-ийг ашиглаж буй бусад бүх хуудсан дээр энэ файлыг
+ашиглана уу. Энэхүү .rds файл нь баганын төрлүүдийг хадгалдаг R-ын
+өвөрмөц файлын төрөл юм. Энэ файлыг ашигласнаар өгөгдлийг R руу
+импортлосны дараа хамгийн бага цэвэрлэгээ хийх болно.</p></li>
+</ul>
+<p><em>Бусад холбогдох файлууд:</em></p>
+<ul>
+<li><p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.xlsx" class="download-button">“Цэвэр”
+linelist-ийг Excel файл болгон татаж авахын тулд дарна уу</a></p></li>
+<li><p>Цэвэрлэх хуудасны нэг хэсэг нь “цэвэрлэх толь бичиг” (.csv файл)
+ашигладаг. Та дараах командуудыг ажиллуулснаар үүнийг R руу шууд
+ачаалж болно:</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">rio</span><span class="op">)</span> <span class="co"># rio багцыг суулгах/ачаалах</span>
+
+<span class="co"># файлыг Github-аас шууд импортлох</span>
+<span class="va">cleaning_dict</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/cleaning_dict.csv"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="data_malaria" class="section level4 unnumbered">
+<h4>Хумхаагийн тоон өгөгдөл<a class="anchor" aria-label="anchor" href="#data_malaria"><i class="fas fa-link"></i></a>
+</h4>
+<p>Энэхүү өгөгдөл нь хумхаа өвчний тохиолдлыг насны бүлэг, байгууламж,
+өдрөөр нь гаргасан зохиомол тоонууд болно. Энэхүү .rds файл нь баганын
+төрлүүдийг хадгалдаг R-ын өвөрмөц файлын төрөл юм. Энэ файлыг
+ашигласнаар өгөгдлийг R руу импортлосны дараа хамгийн бага цэвэрлэгээ
+хийх болно.</p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_facility_count_data.rds" class="download-button">
+Хумхаа өвчний тоон өгөгдлийг татаж авахын тулд дарна уу (.rds файл) </a></p>
+</div>
+<div id="ликерт-хэмжүүртэй-өгөгдөл" class="section level4 unnumbered">
+<h4>Ликерт-хэмжүүртэй өгөгдөл<a class="anchor" aria-label="anchor" href="#%D0%BB%D0%B8%D0%BA%D0%B5%D1%80%D1%82-%D1%85%D1%8D%D0%BC%D0%B6%D2%AF%D2%AF%D1%80%D1%82%D1%8D%D0%B9-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D3%A9%D0%BB"><i class="fas fa-link"></i></a>
+</h4>
+<p>Эдгээр нь [Хүн ам зүйн пирамидууд ба Ликерт-хэмжүүр] хуудсан дээр
+ашиглагдсан Ликерт-загварын судалгааны зохиомол өгөгдөл юм. Та дараах
+командуудыг ажиллуулснаар эдгээр өгөгдлийг R руу шууд ачаалж болно:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">rio</span><span class="op">)</span> <span class="co"># rio багцыг суулгах/ачаалах</span>
+
+<span class="co"># файлыг Github-аас шууд импортлох</span>
+<span class="va">likert_data</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nsbatra/Epi_R_handbook/master/data/likert_data.csv"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="flexdashboard" class="section level4 unnumbered">
+<h4>Flexdashboard<a class="anchor" aria-label="anchor" href="#flexdashboard"><i class="fas fa-link"></i></a>
+</h4>
+<p>Доорх нь [R Markdown бүхий хяналтын самбар] хуудастай холбоотой файлын
+линкүүд:</p>
+<ul>
+<li><p>Дэгдэлтийн хяналтын самбарын R Markdown-ийг татаж авахын тулд энэ
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/flexdashboard/outbreak_dashboard.Rmd">холбоос</a>
+дээр хулганы баруун товчийг дараад (Mac дээр Cmd+дарна уу) “Save
+link as” сонгоно уу.</p></li>
+<li><p>HTML хяналтын самбарыг татаж авахын тулд энэ
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/flexdashboard/outbreak_dashboard_test.html">холбоос</a>
+дээр хулганы баруун товчийг дараад (Cmd+Mac дээр дарна уу) “Save
+link as” сонгоно уу.</p></li>
+</ul>
+</div>
+<div id="хавьтал-мөшгөлт" class="section level4 unnumbered">
+<h4>Хавьтал мөшгөлт<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D0%B2%D1%8C%D1%82%D0%B0%D0%BB-%D0%BC%D3%A9%D1%88%D0%B3%D3%A9%D0%BB%D1%82"><i class="fas fa-link"></i></a>
+</h4>
+<p><a href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html#%D1%85%D0%B0%D0%B2%D1%8C%D1%82%D0%B0%D0%BB-%D0%BC%D3%A9%D1%88%D0%B3%D3%A9%D0%BB%D1%82">Хавьтал мөшгөлт</a> хуудас нь
+<a href="https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting">Go.Data</a>-аас
+авсан өгөгдлийн жишээг ашиглан хавьтал мөшгөлтийн мэдээллийн анализыг
+харуулсан. Энэхүү хуудас дээр ашигласан өгөгдлийг дараах холбоосууд дээр
+дарж .rds файл хэлбэрээр татаж авах боломжтой:</p>
+<p><a href="https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/data/cases_clean.rds?raw=true" class="download-button">
+Тохиолдлын судалгааны өгөгдлийг татаж авахын тулд дарна уу (.rds файл)
+</a></p>
+<p><a href="https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/data/contacts_clean.rds?raw=true" class="download-button">
+Хавьтлын бүртгэлийн өгөгдлийг татаж авахын тулд дарна уу (.rds файл)
+</a></p>
+<p><a href="https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/data/followups_clean.rds?raw=true" class="download-button">
+Хавьтлын хяналтын өгөгдлийг татаж авахын тулд дарна уу (.rds файл) </a></p>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> Бусад програм хангамж (жишээ нь KoBo, DHIS2 Tracker,
+CommCare)-аас авсан тогтсон бүтэцтэй хавьтал мөшгөлтийн өгөгдөл өөр
+харагдаж магадгүй юм. Хэрэв та энэ хуудсанд өөр жишээ өгөгдөл эсвэл
+агуулгыг оруулахыг хүсч байвал бидэнтэй <a href="#contact_us">холбоо барина
+уу.</a></span></p>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> Хэрэв та Go.Data ашиглаж байгаа бөгөөд өөрийн API-тай
+холбогдохыг хүсч байвал Импорт, экспортын хуудас (<a href="#import_api">API
+хэсэг</a>) болон <a href="https://community-godata.who.int/">Go.Data Community of
+Practice</a>-г үзнэ
+үү.</span></p>
+</div>
+<div id="gis" class="section level4 unnumbered">
+<h4>GIS<a class="anchor" aria-label="anchor" href="#gis"><i class="fas fa-link"></i></a>
+</h4>
+<p>Шэйпфайл (shapefile) нь олон дэд файлуудтай бөгөөд эдгээр нь бүгд өөр
+өөр файлын өргөтгөлтэй байдаг. Нэг файл “.shp” өргөтгөлтэй байхад бусад
+нь “.dbf”, “.prj” гэх мэт өргөтгөлтэй байж болно.</p>
+<p>[GIS-ийн үндсэн ойлголтууд] хуудас дээр байгаа <em>Хүмүүнлэгийн өгөгдлийн
+солилцооны</em> вэбсайтын холбоос байгаа бөгөөд та энэхүү вэбсайтаас
+шэйпфайлуудыг зип хэлбэрээр шууд татаж авах боломжтой.</p>
+<p>Жишээлбэл, эрүүл мэндийн байгууллагын онооны өгөгдлийг
+<a href="https://data.humdata.org/dataset/hotosm_sierra_leone_health_facilities">эндээс</a>
+татаж авах боломжтой.
+“hotosm_sierra_leone_health_facilities_points_shp.zip” файлыг татаж авна
+уу. Энэхүү файл таны компьютерт хадгалагдсаны дараа фолдерыг “задлах”
+(unzip) хэрэгтэй. Та өөр өөр өргөтгөлтэй хэд хэдэн файлыг харах болно
+(жишээ нь “.shp”, “.prj”, “.shx”) - эдгээрийг бүгдийг нь таны компьютер
+дээрх нэг хавтсанд хадгалах ёстой. Дараа нь R руу импортлохын тулд
+файлын зам болон “.shp” файлын нэрийг <strong>sf</strong> багцын <code>st_read()</code> функц
+руу оруулна уу ([GIS-ийн үндсэн ойлголтууд] хуудсанд тайлбарласны
+дагуу).</p>
+<p>Хэрвээ та 1-р сонголтын дагуу бүх жишээ өгөгдлийг татаж авсан бол (манай
+R багц <strong>epirhandbook</strong>-ээр) тэр дотор бүх шэйпфайлууд орсон байгаа.</p>
+<p>Эсвэл та шэйпфайлуудыг R Handbook Github “data” хавтсаас татаж авах
+боломжтой (“gis” дэд хавтсыг үзнэ үү). Ингэж татах үедээ та дэд файл
+бүрийг тус тусад нь компьютер дээрээ татаж авах хэрэгтэй гэдгийг
+санаарай. Github дээр файл тус бүр дээр дарж, “Download” товчийг дарж
+татаж аваарай. Доор “sle_adm3” шэйпфайл нь хэрхэн олон файлаас бүрдэж
+буйг харуулж буй бөгөөд эдгээр файл тус бүрийг Github-аас татаж авах
+шаардлагатай.</p>
+<div class="inline-figure"><img src="images/download_shp.png" width="918" height="50%" style="display: block; margin: auto;"></div>
+</div>
+<div id="удмын-мод" class="section level4 unnumbered" data-link="Phylogenetic trees">
+<h4>Удмын мод<a class="anchor" aria-label="anchor" href="#%D1%83%D0%B4%D0%BC%D1%8B%D0%BD-%D0%BC%D0%BE%D0%B4"><i class="fas fa-link"></i></a>
+</h4>
+<p><a href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html#%D1%83%D0%B4%D0%BC%D1%8B%D0%BD-%D0%BC%D0%BE%D0%B4">Удмын мод</a>-ны талаарх хуудсыг үзнэ үү. Shigella sonnei-ийн 299 сорьцын
+бүтэн геномын дарааллыг тогтоож гаргасан удмын модны Ньюик (Newick) файл
+ба сорьцын бусад холбогдох өгөгдөл (текст файл болгон хөрвүүлсэн).
+Бельгийн Salmonella, Shigella сорьцууд, тэдгээрийн үр дүнгийн өгөгдлийг
+ECDC EUPHEM-ийн суралцагчийн төслийн хүрээнд Бельгийн үндэсний лавлагаа
+лабораториос өгсөн бөгөөд энэхүү судалгааны үр дүн мөн хэвлэгдэх болно.
+Олон улсын өгөгдөл олон нийтийн өгөгдлийн сан (NCBI) дээр нээлттэй
+хэлбэрээр байрладаг бөгөөд өмнө нь хэвлэгдэж байсан.</p>
+<ul>
+<li><p>“Shigella_tree.txt” удмын модны файлыг татаж авахын тулд энэ
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/Shigella_tree.txt">линк</a>
+дээр хулганы баруун товчийг дараад (Mac дээр Cmd+дарж) “Save link
+as” сонгоно уу.</p></li>
+<li><p>Сорьц тус бүрийн нэмэлт мэдээллийг агуулсан
+“sample_data_Shigella_tree.csv” файлыг татаж авахын тулд энэ
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/sample_data_Shigella_tree.csv">линк</a>
+дээр хулганы баруун товчийг дараад (Mac дээр Cmd+дарж) “Save link
+as” сонгоно уу.</p></li>
+<li><p>Шинээр үүсгэсэн дэд модыг харахын тулд энэ
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/phylo/Shigella_subtree_2.txt">линк</a>
+дээр хулганы баруун товчийг дараад (Cmd+Mac дээр дарна уу) “Save
+link as” сонгоно уу. Таны компьютерт .txt файл татагдах болно.</p></li>
+</ul>
+<p>Та хуудсан дээр тайлбарласны дагуу .txt файлыг <strong>ape</strong> багцын
+<code>read.tree()</code> функц ашиглан импортлох боломжтой.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.tree.html">read.tree</a></span><span class="op">(</span><span class="st">"Shigella_tree.txt"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="стандартчилал" class="section level4 unnumbered">
+<h4>Стандартчилал<a class="anchor" aria-label="anchor" href="#%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D1%87%D0%B8%D0%BB%D0%B0%D0%BB"><i class="fas fa-link"></i></a>
+</h4>
+<p>[Стандартчилсан түвшин]-ий талаарх хуудсыг үзнэ үү. Та дараах
+командуудыг ашиглан интернет дээрх манай Github репозитороос өөрийн R
+session рүү өгөгдлийг шууд ачаалах боломжтой:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># rio багцыг суулгах/ачаалах</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">rio</span><span class="op">)</span> 
+
+<span class="co">##############</span>
+<span class="co"># A улс</span>
+<span class="co">##############</span>
+<span class="co"># А улсын хүн ам зүйн мэдээллийг Github-аас шууд импортлох</span>
+<span class="va">A_demo</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/country_demographics.csv"</span><span class="op">)</span>
+
+<span class="co"># А улсын нас баралтын мэдээллийг Github-аас шууд импортлох</span>
+<span class="va">A_deaths</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/deaths_countryA.csv"</span><span class="op">)</span>
+
+<span class="co">##############</span>
+<span class="co"># B улс</span>
+<span class="co">##############</span>
+<span class="co"># B улсын хүн ам зүйн мэдээллийг Github-аас шууд импортлох</span>
+<span class="va">B_demo</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/country_demographics_2.csv"</span><span class="op">)</span>
+
+<span class="co"># B улсын нас баралтын мэдээллийг Github-аас шууд импортлох</span>
+<span class="va">B_deaths</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/deaths_countryB.csv"</span><span class="op">)</span>
+
+
+<span class="co">###############</span>
+<span class="co"># Лавлагаа хүн ам</span>
+<span class="co">###############</span>
+<span class="co"># Дэлхийн стандартчилсан хүн ам зүйн мэдээллийг Github-аас шууд импортлох</span>
+<span class="va">standard_pop_data</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/standardization/world_standard_population_by_sex.csv"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="data_outbreak" class="section level4 unnumbered">
+<h4>Цагийн цуврал (time series) ба дэгдэлт илрүүлэлт<a class="anchor" aria-label="anchor" href="#data_outbreak"><i class="fas fa-link"></i></a>
+</h4>
+<p><a href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html#data_outbreak">Цагийн цуврал ба дэгдэлт илрүүлэлт</a> хуудсыг үзнэ үү.
+Бид <strong>surveillance</strong> R багцад байдаг Германд 2002-2011 онд бүртгэгдсэн
+Campylobacter-ийн тохиолдлуудыг ашигладаг. (nb. Сургалтын зорилгоор
+энэхүү өгөгдлийн 2011 оны сүүлийн 3 сарын өгөгдлийг устгаж эх
+хувилбараас нь өөрчилсөн болно)</p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/campylobacter_germany.xlsx" class="download-button">
+Герман дахь Campylobacter өгөгдлийг татаж авахын тулд дарна уу (.xlsx)
+</a></p>
+<p>Бид мөн Германы 2002-2011 оны цаг уурын мэдээллийг ашигладаг (температур
+нь цельсийн градус, борооны хэмжээ нь миллиметрээр). Эдгээрийг Европын
+Холбооны Коперникус хиймэл дагуулын дахин шинжилгээний өгөгдлийн сангаас
+<strong>ecmwfr</strong> багц ашиглан татаж авсан болно. Та эдгээрийг бүгдийг нь татаж
+аваад цагийн цувралын хуудсанд тайлбарласны дагуу <code><a href="https://r-spatial.github.io/stars/reference/read_stars.html">stars::read_stars()</a></code>
+функцыг ашиглан импортолж болно.</p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2002.nc" class="download-button">
+2002 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2003.nc" class="download-button">
+2003 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2004.nc" class="download-button">
+2004 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2005.nc" class="download-button">
+2005 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2006.nc" class="download-button">
+2006 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2007.nc" class="download-button">
+2007 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2008.nc" class="download-button">
+2008 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2009.nc" class="download-button">
+2009 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2010.nc" class="download-button">
+2010 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/time_series/weather/germany_weather2011.nc" class="download-button">
+2011 оны Германы цаг агаарыг татаж авахын тулд дарна уу (.nc файл) </a></p>
+</div>
+<div id="data_survey" class="section level4 unnumbered">
+<h4>Асуумж судалгааны (survey) дүн шинжилгээ<a class="anchor" aria-label="anchor" href="#data_survey"><i class="fas fa-link"></i></a>
+</h4>
+<p><a href="https://epirhandbook.com/survey-analysis.html">Асуумж судалгааны дүн
+шинжилгээ</a> хийх хуудасны
+хувьд бид MSF OCA асуумж судалгааны загвар дээр үндэслэн нас баралтын
+талаархи зохиомол өгөгдлийг ашигласан. Энэхүү зохиомол өгөгдлийг
+<a href="https://r4epis.netlify.app/">“R4Epis” төслийн</a> хүрээнд үүсгэсэн болно.</p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/surveys/survey_data.xlsx" class="download-button">
+Зохиомол асуумж судалгааны өгөгдлийг татаж авахын тулд дарна уу (.xlsx)
+</a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/surveys/survey_dict.xlsx" class="download-button">
+Зохиомол асуумж судалгааны өгөгдлийн толь бичгийг татаж авахын тулд
+дарна уу (.xlsx) </a></p>
+<p><a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/surveys/population.xlsx" class="download-button">
+Зохиомол асуумж судалгааны хүн амын мэдээллийг татаж авахын тулд дарна
+уу (.xlsx) </a></p>
+</div>
+<div id="data_shiny" class="section level4 unnumbered">
+<h4>Shiny<a class="anchor" aria-label="anchor" href="#data_shiny"><i class="fas fa-link"></i></a>
+</h4>
+<p>[Shiny бүхий хяналтын самбар] дээрх хуудас нь хумхаа өвчний өгөгдлийг
+харуулах энгийн аппликейшн бүтээснийг харуулав.</p>
+<p>Shiny аппликейшн үүсгэдэг R файлуудыг татаж авахын тулд:</p>
+<p>Та
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_app/app.R" class="download-button">
+энд дараад Shiny аппликейшний UI болон Серверийн кодыг агуулсан app.R
+файлыг татаж авна уу. </a></p>
+<p>Та
+<a href="https://github.com/epirhandbook/Epi_R_handbook/blob/master/data/malaria_app/data/facility_count_data.rds" class="download-button">
+энд дараад facility_count_data.rds файлыг татаж авна уу. <span></span></a> Энэ
+файл нь Shiny аппликейшний хумхаа өвчний өгөгдлийг агуулж буй. <code>here()</code>
+файлын замыг зөв ажиллуулахын тулд та үүнийг “data” хавтсанд хадгалах
+хэрэгтэй байж магадгүй гэдгийг анхаарна уу.</p>
+<p>Та
+<a href="https://github.com/epirhandbook/Epi_R_handbook/blob/master/data/malaria_app/global.R" class="download-button">
+энд дарж global.R файлыг татаж авна уу. <span></span></a> Хуудсанд тайлбарласны
+дагуу энэ файлыг аппликейшнээ нээхээс өмнө ажиллуулах шаардлагатай.</p>
+<p>Та
+<a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_app/funcs/plot_epicurve.R" class="download-button">
+энд дарж global.R скриптэд ашиглагддаг plot_epicurve.R файлыг татаж авна
+уу. <span></span></a> <code>here()</code> файлын замыг зөв ажиллуулахын тулд та үүнийг
+“funcs” хавтсанд хадгалах хэрэгтэй байж магадгүй гэдгийг анхаарна уу.</p>
+
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"></a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><span class="header-section-number">1</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li>
+<a class="nav-link" href="#%D0%BE%D1%84%D0%BB%D0%B0%D0%B9%D0%BD-%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D1%8B%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><span class="header-section-number">1.1</span> Офлайн гарын авлагыг татаж авах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85-%D0%BB%D0%B8%D0%BD%D0%BA%D0%B8%D0%B9%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85">Татаж авах линкийг ашиглах</a></li>
+<li><a class="nav-link" href="#%D0%BC%D0%B0%D0%BD%D0%B0%D0%B9-r-%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85">Манай R багцыг ашиглах</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B4%D0%B0%D0%B3%D0%B0%D0%B6-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85%D1%8B%D0%BD-%D1%82%D1%83%D0%BB%D0%B4-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><span class="header-section-number">1.2</span> Дагаж ажиллахын тулд өгөгдлийг татаж авах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BC%D0%B0%D0%BD%D0%B0%D0%B9-r-%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85-1">Манай R багцыг ашиглах</a></li>
+<li><a class="nav-link" href="#%D0%BD%D1%8D%D0%B3-%D0%BD%D1%8D%D0%B3%D1%8D%D1%8D%D1%80-%D0%BD%D1%8C-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85">Нэг нэгээр нь татаж авах</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2021-08-27.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
