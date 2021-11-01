@@ -1,144 +1,136 @@
-
-# Characters and strings { }  
+# Карактер ба стрингс
 
 ```{r, out.width=c('100%'), echo=F, message=F}
 knitr::include_graphics(here::here("images", "Characters_Strings_1500x500.png"))
 ```
 
+Энэхүү хэсэгт карактер болон стрингс утгыг (залгаа карактерүүд) **stringr** багц ашиглаж шалгаж, янзлах талаар үзэх болно ("strings").
 
+1.  Нэгтгэх, эрэмбэлэх,хуваах, дараалал солих - `str_c()`, `str_glue()`, `str_order()`, `str_split()`\
 
-This page demonstrates use of the **stringr** package to evaluate and handle character values ("strings").  
+2.  Цэвэрлэх болон жигдрүүлэх
 
-1. Combine, order, split, arrange - `str_c()`, `str_glue()`, `str_order()`, `str_split()`  
-2. Clean and standardise  
-    * Adjust length - `str_pad()`, `str_trunc()`, `str_wrap()`  
-    * Change case - `str_to_upper()`, `str_to_title()`, `str_to_lower()`, `str_to_sentence()`  
-3. Evaluate and extract by position - `str_length()`, `str_sub()`, `word()`  
-4. Patterns  
-    * Detect and locate - `str_detect()`, `str_subset()`, `str_match()`, `str_extract()`  
-    * Modify and replace - `str_sub()`, `str_replace_all()`  
-7. Regular expressions ("regex")
+    -   Уртыг тохируул - `str_pad()`, `str_trunc()`, `str_wrap()`\
+    -   Үсэгний том жижигийг өөрчлөх - `str_to_upper()`, `str_to_title()`, `str_to_lower()`, `str_to_sentence()`\
 
+3.  Байрлалыг тогтоож, орлуулах - `str_length()`, `str_sub()`, `word()`\
 
-For ease of display most examples are shown acting on a short defined character vector, however they can easily be adapted to a column within a data frame.  
+4.  Бүтэц, хэв маяг
 
-This [stringr vignette](
-https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html) provided much of the inspiration for this page.  
+    -   Илрүүлж, байрлалыг олох - `str_detect()`, `str_subset()`, `str_match()`, `str_extract()`\
+    -   Хувиргаж, солих - `str_sub()`, `str_replace_all()`\
 
+5.  Regular expressions ("regex")
 
+Тайлбарлахад хялбар болгохын тулд ихэнх жишээг карактерийн богино векторууд дээр харуулсан. Гэсэн хэдий ч эдгээр жишээг хүснэгт, баганад дээр хэрэгжүүлэх боломжтой юм.
+
+Энэхүү хэсгийг боловсруулахад [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html) дэх материалаас их ашигласан.
 
 <!-- ======================================================= -->
-## Preparation { }
 
-### Load packages {.unnumbered}  
+## Бэлтгэл
 
-Install or load the **stringr** and other **tidyverse** packages.  
+### Багцыг ачааллах {.unnumbered}
+
+**stringr** болон бусад **tidyverse** багцыг татаж авч, ачааллана.
 
 ```{r}
-# install/load packages
+# Багцыг татаж ав/ачаалла
 pacman::p_load(
-  stringr,    # many functions for handling strings
-  tidyverse,  # for optional data manipulation
-  tools)      # alternative for converting to title case
+  stringr,    # стрингс дээр ажиллах функцуудын иж бүрдэл
+  tidyverse,  # дата янзлахад хэрэгтэй
+  tools)      # гарчигийг хувиргахад хэрэглэнэ
 
 ```
 
+### Дата импортлох {.unnumbered}
 
-### Import data  {.unnumbered}  
-
-
-In this page we will occassionally reference the cleaned `linelist` of cases from a simulated Ebola epidemic. If you want to follow along, <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>click to download the "clean" linelist</a> (as .rds file). Import data with the `import()` function from the **rio** package (it handles many file types like .xlsx, .csv, .rds - see the [Import and export] page for details).  
+Энэ хэсгийн дасгалд Эболагийн дэгдэлтийг загварчилсан дата `linelist` -ын цэвэрлэгдсэн хэлбэрийг ашиглах болно. Дасгалуудыг дагаж хийхийг хүсвэл <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>линк дээр дарж, "clean" гэсэн linelist дээр дарж татаж авна уу</a> (.rds файл хэлбэрээр буй). Датаг импортлохдоо **rio** багцын `import()` функцыг хэрэглэ ( .xlsx, .csv, .rds зэрэг олон өргөтгөлтэй ажиллаж чаддаг - [Import and export] хэсгээс нэмж уншна уу).
 
 ```{r, echo=F}
-# import the linelist into R
+# linelist -ийг R - луу оруул
 linelist <- rio::import(here::here("data", "case_linelists", "linelist_cleaned.rds"))
 ```
 
 ```{r, eval=F}
-# import case linelist 
+# case linelist -ийг импортло
 linelist <- import("linelist_cleaned.rds")
 ```
 
-The first 50 rows of the linelist are displayed below.
+linelist -ийн эхний 50 мөрийг дор харуулав.
 
 ```{r, message=FALSE, echo=F}
-# display the linelist data as a table
+# linelist -ийг хүснэгт хэлбэрээр харуул
 DT::datatable(head(linelist, 50), rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
+<!-- ======================================================= -->
 
+## Нэгтгэх, хуваах, эрэмбэлэх
 
+Энэхүү хэсгийн агуулга:
+
+-   `str_c()`, `str_glue()`, `unite()` -аар стрингсийг нэгтгэх\
+-   `str_order()` стрингсийг эрэмбэлэн байрлуулах\
+-   `str_split()`, `separate()` стрингсийг хуваах
 
 <!-- ======================================================= -->
-## Unite, split, and arrange { }
 
+### Стрингсийг нэгтгэх {.unnumbered}
 
-This section covers:  
-
-* Using `str_c()`, `str_glue()`, and `unite()` to combine strings  
-* Using `str_order()` to arrange strings  
-* Using `str_split()` and `separate()` to split strings  
-
-
-
-<!-- ======================================================= -->
-### Combine strings {.unnumbered}
-
-To combine or concatenate multiple strings into one string, we suggest using `str_c` from **stringr**. If you have distinct character values to combine, simply provide them as unique arguments, separated by commas.     
+Олон стрингсийг нэгтгэж, залгахдаа **stringr** -ийн `str_c` -ийг ашиглахыг зөвлөж байна. Хэрэв таны нэтгэх гэж буй карактерууд салангид утгууд бол тусдаа аргументууд болгон оруулж таслалаар зааглаж өгнө.
 
 ```{r}
 str_c("String1", "String2", "String3")
 ```
 
-The argument `sep = ` inserts a character value between each of the arguments you provided (e.g. inserting a comma, space, or newline `"\n"`)  
+Оруулж буй аргументуудын дунд зааглах тэмдэгтийг `sep =` ээр тохиуруулж болно (таслал, зай, шинэ мөр `"\n"` гэх мэт)
 
 ```{r}
 str_c("String1", "String2", "String3", sep = ", ")
 ```
 
-The argument `collapse = ` is relevant if you are inputting multiple *vectors* as arguments to `str_c()`. It is used to separate the elements of what would be an *output* vector, such that the output vector only has one long character element.   
+`str_c()` -д олон *вектор* аргумент оруулах үед `collapse =` аргумент хэрэг болнд. Ингэснээр үүсэх векторууд хоорондоо зааглагдсан нэг урт элемент болно.
 
-The example below shows the combination of two vectors into one (first names and last names). Another similar example might be jurisdictions and their case counts. In this example:  
+Доорхи жишээ хоёр векторыг (овог, нэр) хэрхэн нэг болгож нэгтгэхийг харуулсан. Мөн нутаг дэвсгэрийн нэр болон тохиолдлын тоог энэ мэтээр нэгтгэж бас болно. Жишээнд:
 
-* The `sep = ` value appears between each first and last name  
-* The `collapse = ` value appears between each person  
-
+-   `sep =` тэмдэгт нэр, овог болгоны дунд гарч ирнэ\
+-   `collapse =` тэмдэгт хүн тус бүрийн дунд гарч ирнэ
 
 ```{r}
 first_names <- c("abdul", "fahruk", "janice") 
 last_names  <- c("hussein", "akinleye", "okeke")
 
-# sep displays between the respective input strings, while collapse displays between the elements produced
+# оруулсан аргумент болгоны дунд sep -ийн тэмдэг гарч ирж, элементү болгоны дунд collapse -ын тэмдэгт гарч ирж байна
 str_c(first_names, last_names, sep = " ", collapse = ";  ")
 ```
 
-Note: Depending on your desired display context, when printing such a combined string with newlines, you may need to wrap the whole phrase in `cat()` for the newlines to print properly:  
+Тэмдэглэл: Хэрэв дээрхи шиг стрингсүүд хавсарч, шинэ мөр үүсгэн харуулах бол өгүүлбэрээ бүтнээр нь `cat()` хийснээр зөв хэвлэгдэж харагдна.
 
 ```{r}
-# For newlines to print correctly, the phrase may need to be wrapped in cat()
+# шинэ мөрөнд зөв хэвлэхийн тулд өгүүлбэрээ бүтнээр нь cat()-д хийнэ үү
 cat(str_c(first_names, last_names, sep = " ", collapse = ";\n"))
 ```
 
-
-
 <!-- ======================================================= -->
-### Dynamic strings {.unnumbered}
 
-Use `str_glue()` to insert dynamic R code into a string. This is a very useful function for creating dynamic plot captions, as demonstrated below.  
+### Динамик стрингс {.unnumbered}
 
-* All content goes between double quotation marks `str_glue("")`  
-* Any dynamic code or references to pre-defined values are placed within curly brackets `{}` within the double quotation marks. There can be many curly brackets in the same `str_glue()` command.  
-* To display character quotes '', use *single* quotes within the surrounding double quotes (e.g. when providing date format - see example below)  
-* Tip: You can use `\n` to force a new line  
-* Tip: You use `format()` to adjust date display, and use `Sys.Date()` to display the current date  
+Стрингст динамик R код оруулах тохиолдолд `str_glue()` -ийг хэрэглэдэг. Графикт динамик тайлбар хийхэд энэ функцыг ашиглах нь их тохиромжтой. Үүнийг дор харуулав:
 
-A simple example, of a dynamic plot caption:  
+-   Доторх бүх агуулга нь давхар хашилтад бичигднэ `str_glue("")`\
+-   Аливаа динамик код эсвэл урьдчилан тодорхойлсон утгуудыг `{}` хээтэй хаалтын доторх давхар хашилтын дотор байрлуулна. Нэг `str_glue()` коммандад олон хээтэй хаалт `{}` хийж болно.\
+-   Хашилт '' -ыг тэмдэгтэн утганд оруулж харуулахын тулд *дан* хашилтыг давхар хашилтанд дотор оруулж бичнэ (жишээ болгож огноог хэрхэн бичихийг дор харуулсан)\
+-   Зөвлөгөө: `\n` шинэ мөр эхлүүлдэг болно\
+-   Зөвлөгөө: огнооны харагдах байдлыг `format()` -аар тохируулж, `Sys.Date()` -аар одоогийн огноог харуулдаг.
+
+Графикт динамик тайлбар хийх жишээ:
 
 ```{r}
 str_glue("Data include {nrow(linelist)} cases and are current to {format(Sys.Date(), '%d %b %Y')}.")
 ```
 
-An alternative format is to use placeholders within the brackets and define the code in separate arguments at the end of the `str_glue()` function, as below. This can improve code readability if the text is long.
+Мөн `str_glue()` -дотор стрингс дундаа хээтэй хаалтан дотор орлуулагч оруулаад, кодыг нь тусдаа `str_glue()` аргумент байдлаар араас нь бичиж болно (доор жишээнд харуулсан). Ингэж бичих нь урт текстийг уншихад ойлгомжтой болгож өгдөг.
 
 ```{r}
 str_glue("Linelist as of {current_date}.\nLast case hospitalized on {last_hospital}.\n{n_missing_onset} cases are missing date of onset and not shown",
@@ -149,13 +141,12 @@ str_glue("Linelist as of {current_date}.\nLast case hospitalized on {last_hospit
 
 ```
 
+**Дата хүснэгтээс гаргаж авах**
 
-**Pulling from a data frame**  
-
-Sometimes, it is useful to pull data from a data frame and have it pasted together in sequence. Below is an example data frame. We will use it to to make a summary statement about the jurisdictions and the new and total case counts.  
+Заримдаа хүснэгт доторх датаг гаргаад дарааллуулан өрж тавих шаардлага гардаг. Нутаг дэвсгэр, шинэ тохиолдол, нийт тохиолдлын талаарх мэдэгдллийг хүснэгтээс хэрхэн гаргаж авах талаар жишээг дор харуулав.
 
 ```{r}
-# make case data frame
+# тохиолдолдтой хүснэгт үүсгэ
 case_table <- data.frame(
   zone        = c("Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"),
   new_cases   = c(3, 0, 7, 0, 15),
@@ -167,219 +158,198 @@ case_table <- data.frame(
 DT::datatable(case_table, rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-Use `str_glue_data()`, which is specially made for taking data from data frame rows:  
+Хүснэгтийн мөрөнд буй датаг `str_glue_data()` -аар гаргаж авдаг.
 
 ```{r}
 case_table %>% 
   str_glue_data("{zone}: {new_cases} ({total_cases} total cases)")
 ```
 
+**Стрингсийг мөр дагуулж нэгтгэх**
 
-**Combine strings across rows**  
+Хүснэгтийн багана дах утгыг "хуйлах" буюу олон мөрүүдийг нэгтгэж нэг мөрд багтаагаад доторх утгыг нь тусгаарлагчаар тусгаарлах шаардлагатай бол ["rolling-up" values](#str_rollup) хуудасны [De-duplication] хэсгийг уншна уу.
 
-If you are trying to "roll-up" values in a data frame column, e.g. combine values from multiple rows into just one row by pasting them together with a separator, see the section of the [De-duplication] page on ["rolling-up" values](#str_rollup).  
+**Хүснэгтийг нэг шугаманд багтаах**
 
-**Data frame to one line**  
-
-You can make the statement appear in one line using `str_c()` (specifying the data frame and column names), and providing `sep = ` and `collapse = ` arguments.  
+Үүсгэсэн текстээ `str_c()` -ээр нэг шугаманд багтаахдаа (хүснэгт, баганын нэрсийг зааж өгнө) `sep =` болон `collapse =` аргументийг нэмж тохируулна.
 
 ```{r}
 str_c(case_table$zone, case_table$new_cases, sep = " = ", collapse = ";  ")
 ```
 
-You could add the pre-fix text "New Cases:" to the beginning of the statement by wrapping with a separate `str_c()` (if "New Cases:" was within the original `str_c()` it would appear multiple times).  
+pre-fix -ээр "Шинэ Тохиролдол:" гэсэн үгийг текстийнхээ өмнө автоматаар гардаг болгож болно. Ингэхдээ `str_c()` функц дотор оруулж бичнэ ("Шинэ Тохиолдол:" анхны `str_c()` дотор оруулчихвад олон дахин бичигдчихдэг.
 
 ```{r}
 str_c("New Cases: ", str_c(case_table$zone, case_table$new_cases, sep = " = ", collapse = ";  "))
 ```
 
+### Баганыг нэтгэх {#str_unite .unnumbered}
 
+Багануудын карактер утгыг **tidyr**-ын `unite()` функцээр нэгтгэдэг. Энэ нь `separate()` функцын эсрэг үйлдэл.
 
+Шинээр үүсгэх баганын нэрийг оруулаад, нэтгэх багануудын нэрийг оруулна.
 
+-   Нэтгэсэн багана дах утгын default тусгаарлагч нь доогуур зураас `_`. Үүнийг `sep =` аргументэд тохируулга өгснөөр өөрчилж болно.\
+-   `remove =` Хүснэгтээс нэгтгэлд оруулсан багануудыг хасна (default -аар TRUE)\
+-   `na.rm =` нэтгэж байх явцдаа дутуу утгыг хасна (default -аар FALSE)
 
-### Unite columns  {#str_unite .unnumbered}
-
-Within a data frame, bringing together character values from multiple columns can be achieved with `unite()` from **tidyr**. This is the opposite of `separate()`.  
-
-Provide the name of the new united column. Then provide the names of the columns you wish to unite.  
-
-* By default, the separator used in the united column is underscore `_`, but this can be changed with the `sep = ` argument.  
-* `remove = ` removes the input columns from the data frame (TRUE by default)  
-* `na.rm = ` removes missing values while uniting (FALSE by default)  
-
-Below, we define a mini-data frame to demonstrate with:  
+Эдгээрийг богино жишээгээр тайлбарлав:
 
 ```{r, message = F, warning=F}
 df <- data.frame(
   case_ID = c(1:6),
-  symptoms  = c("jaundice, fever, chills",     # patient 1
-                "chills, aches, pains",        # patient 2 
-                "fever",                       # patient 3
-                "vomiting, diarrhoea",         # patient 4
-                "bleeding from gums, fever",   # patient 5
-                "rapid pulse, headache"),      # patient 6
+  symptoms  = c("jaundice, fever, chills",     # 1-р өвчтөн
+                "chills, aches, pains",        # 2-р өвчтөн
+                "fever",                       # 3-р өвчтөн
+                "vomiting, diarrhoea",         # 4-р өвчтөн
+                "bleeding from gums, fever",   # 5-р өвчтөн
+                "rapid pulse, headache"),      # 6-р өвчтөн
   outcome = c("Recover", "Death", "Death", "Recover", "Recover", "Recover"))
 ```
-
 
 ```{r}
 df_split <- separate(df, symptoms, into = c("sym_1", "sym_2", "sym_3"), extra = "merge")
 ```
 
-Here is the example data frame:  
+Жишээ хүснэгт:
 
 ```{r, echo=F}
 DT::datatable(df_split, rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-Below, we unite the three symptom columns:  
+Доор жишээнд шинж тэмдэг бичсэн гурван баганыг нэгтгэв:
 
 ```{r}
 df_split %>% 
   unite(
-    col = "all_symptoms",         # name of the new united column
-    c("sym_1", "sym_2", "sym_3"), # columns to unite
-    sep = ", ",                   # separator to use in united column
-    remove = TRUE,                # if TRUE, removes input cols from the data frame
-    na.rm = TRUE                  # if TRUE, missing values are removed before uniting
+    col = "all_symptoms",         # Шинээр нэгтгэж үүсгэх баганын нэр
+    c("sym_1", "sym_2", "sym_3"), # Нэтгэх баганууд
+    sep = ", ",                   # Нэтгэсэн баганад хэрэглэх тусгаарлагч
+    remove = TRUE,                # TRUE гэж өгснөөр нэгтгэлд оруулсан багануудыг хүснэгтээс хасах
+    na.rm = TRUE                  # TRUE гэж өгснөөр нэтгэх явцад дутуу утгууд хасагдна
   )
 ```
 
-
-
-
-
-
-
 <!-- ======================================================= -->
-### Split {.unnumbered}  
 
-To split a string based on a pattern, use `str_split()`. It evaluates the string(s) and returns a `list` of character vectors consisting of the newly-split values.
+### Хуваах {.unnumbered}
 
-The simple example below evaluates one string and splits it into three. By default it returns an object of class `list` with one element (a character vector) for each string initially provided. If `simplify = TRUE` it returns a character matrix.  
+Ямар нэг хэв шинжид үндэслэн стрингсийг хуваах бол `str_split()`-ийг хэрэглэдэг. Энэ функц стрингсийг заасны дагуу шалгаж, хуваагаад шинээр хуваагдсан утгуудаас бүрдсэн карактер вектортой `list` -ийг үүсгэдэг.
 
-In this example, one string is provided, and the function returns a list with one element - a character vector with three values.  
+Доорхи энгийн жишээгээр нэг стрингсийг хэрхэн гурав хуваахыг харуулав. Хуваагдсан дата `list` хэлбэртэй үүсдэг ба анх өгөгдсөн стрингс тус бүрт нэг элэмент (карактер вектор) үүсгэсэн байдаг. Хэрэв `simplify = TRUE` гэж өгвөл карактер матрикс үүсгэдэг.
+
+Энэхүү жишээнд нэг стрингсийг `str_split()`-д өгөгдхөд нэг элементтэй list үүсч байна. Энэ элэмент гурван карактер утгаас бүртдсэн вектор байна.
 
 ```{r}
 str_split(string = "jaundice, fever, chills",
           pattern = ",")
 ```
 
-If the output is saved, you can then access the nth split value with bracket syntax. To access a specific value you can use syntax like this: `the_returned_object[[1]][2]`, which would access the second value from the first evaluated string ("fever"). See the [R basics] page for more detail on accessing elements.    
+Үүссэн обьектийг хадгалчихвал цаашид дөрвөлжин хаалтыг ашиглан хүссэн n-дэх утгаа сугалж гаргах боломжтой болно. Ийм синтаксыг дараахь байдлаар бичдэг: `the_returned_object[[1]][2]` комманд эхний элементийн стрингс утгуудын хоёрдах утгыг гаргаж ирнэ ("fever"). [R basics] -ээс элэментэд орох гэсэн хэсгийг нэмж уншна уу.
 
 ```{r}
 pt1_symptoms <- str_split("jaundice, fever, chills", ",")
 
-pt1_symptoms[[1]][2]  # extracts 2nd value from 1st (and only) element of the list
+pt1_symptoms[[1]][2]  # list-ийн эхний элэментийн 2 дах утгыг гаргаж ирэх 
 ```
 
-If multiple strings are provided by `str_split()`, there will be more than one element in the returned list.  
+`str_split()` -д стрингсийг олноор нь өгч буй тохиолдолд үүсэх листний элэментийн тоо мөн олон болдог.
 
 ```{r}
-symptoms <- c("jaundice, fever, chills",     # patient 1
-              "chills, aches, pains",        # patient 2 
-              "fever",                       # patient 3
-              "vomiting, diarrhoea",         # patient 4
-              "bleeding from gums, fever",   # patient 5
-              "rapid pulse, headache")       # patient 6
+symptoms <- c("jaundice, fever, chills",     # 1-р өвчтөн 
+              "chills, aches, pains",        # 2-р өвчтөн
+              "fever",                       # 3-р өвчтөн
+              "vomiting, diarrhoea",         # 4-р өвчтөн
+              "bleeding from gums, fever",   # 5-р өвчтөн
+              "rapid pulse, headache")       # 6-р өвчтөн
 
-str_split(symptoms, ",")                     # split each patient's symptoms
+str_split(symptoms, ",")                     # өвчтөн болгоны шинж тэмдгийг хуваах
 ```
 
-
-To return a "character matrix" instead, which may be useful if creating data frame columns, set the argument `simplify = TRUE` as shown below:  
+"Карактер матрикс" үүсгэх шаардалгатай бол `simplify = TRUE` гэж тохируулна. Матрикс байгуулах нь цаашид багана бий болгоход хэрэгтэй байдаг.
 
 ```{r}
 str_split(symptoms, ",", simplify = TRUE)
 ```
 
-You can also adjust the number of splits to create with the `n = ` argument. For example, this restricts the number of splits to 2. Any further commas remain within the second values. 
+Мөн `n =` аргументээр хэдэн хэсэг болгож хуваахаа зааж өгч болно. Доорхи жишээнд хуваагдах тоог 2-оор хязгаарласан байна. Энэ заасан тооноос хойшхи таслалууд хоёр дах утганд хамрах болно.
 
 ```{r}
 str_split(symptoms, ",", simplify = TRUE, n = 2)
 ```
 
-*Note - the same outputs can be achieved with `str_split_fixed()`, in which you do not give the `simplify` argument, but must instead designate the number of columns (`n`).* 
+*Тэмдэглэл -дээрхитэй ижил үр дүнг `str_split_fixed()` функцээр үйлдэж болно. Энэ функцэд `simplify` аргументийг өгөх шаардлагагүй харин баганын тоог заавал зааж өгөх шаардлагатай (`n`).*
 
 ```{r, eval=F}
 str_split_fixed(symptoms, ",", n = 2)
 ```
 
+### Баганыг хуваах {.unnumbered}
 
+Хүснэгтийн баганыг **dplyr**-ын `separate()`-ээр хуваавал илүү хялбар. Энэ функц карактер баганыг олон багана болгож хэсэглэн хуваадаг.
 
-
-### Split columns {.unnumbered}  
-
-If you are trying to split data frame column, it is best to use the `separate()` function from **dplyr**. It is used to split one character column into other columns.  
-
-Let's say we have a simple data frame `df` (defined and united in the [unite section](#str_unite)) containing a `case_ID` column, one character column with many symptoms, and one outcome column. Our goal is to separate the `symptoms` column into many columns - each one containing one symptom.  
-
+Жишээ нь энгийн нэгэн хүснэгт `df` байна гэж бодьё ( [unite section](#str_unite) хэсэгт нэгтгэгдсэн). Үүнд `case_ID`, болон өвчний шинж тэмдэг (`symptoms`) болон эмчилгээний үр дүн тус тус бичсэн баганууд байв. Бид `symptoms` баганын утгыг задалж нэг шинж тэмдэг нэг багана болж задарсан олон баганууд үүсгэх хэрэгтэй болов.
 
 ```{r, echo=F}
 DT::datatable(df, rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-Assuming the data are piped into `separate()`, first provide the column to be separated. Then provide `into = ` as a vector `c( )` containing the *new* columns names, as shown below.  
+`separate()`хэрвээ pipe холбоосонд залгаатай бол эхлээд хуваагдах баганыг зааж өгнө. Үүний дөраа `into =` аргументнд *шинээр* үүсгэх баганын нэрсийг вектор хэлбэрээр `c( )` дотор оруулж бичнэ. Доор үзүүлсэн жишээнд харуулсан.
 
-* `sep = ` the separator, can be a character, or a number (interpreted as the character position to split at) 
-* `remove = ` FALSE by default, removes the input column  
-* `convert = ` FALSE by default, will cause string "NA"s to become `NA`  
-* `extra = ` this controls what happens if there are more values created by the separation than new columns named.  
-     * `extra = "warn"` means you will see a warning but it will drop excess values (**the default**)  
-     * `extra = "drop"` means the excess values will be dropped with no warning  
-     * **`extra = "merge"` will only split to the number of new columns listed in `into` - *this setting will preserve all your data***  
+-   `sep =` зааглагч, тэмдэгт эсвэл тоо байж болно (interpreted as the character position to split at)
 
+-   `remove =` default нь FALSE, ашиглагдаж орсон баганыг устгана\
 
-An example with `extra = "merge"` is below - no data is lost. Two new columns are defined but any third symptoms are left in the second new column:  
+-   `convert =` default нь FALSE, карактер хэлбэрт буй "NA"-г `NA` -руу хувиргана\
+
+-   `extra =` шинээр багана үүсгэсний дараа багана болж ороогүй утга илүү гарвал дараахь нөхцлүүдээр тохируулдаг.
+
+    -   `extra = "warn"` анхааруулга гарч ирэх боловч илүү утгууд устгагдна (**default**)\
+    -   `extra = "drop"` анхааруулга гарч ирэхгүйгээр илүү утгууд устгагдна\
+    -   **`extra = "merge"into`-д зааж өгсөн баганын тоонд хуваах болно - *гэхдээ бүх датаг хадгалж үлднэ***
+
+Доорхи жишээнд `extra = "merge"` -ийг хэрэглэхэд ямар ч дата устгагдаагүй байна. Хоёр шинэ багана үүссэн ба үүнээс илүү гарсан хэсэг нь хоёр дах баганадаа үлдсэн байна:
 
 ```{r}
-# third symptoms combined into second new column
+# гурав дах шинж тэмдэг хоёр дах утганд нэгтгэгдсэн
 df %>% 
   separate(symptoms, into = c("sym_1", "sym_2"), sep=",", extra = "merge")
 ```
 
-When the default `extra = "drop"` is used below, a warning is given but the third symptoms are lost:  
+When the default `extra = "drop"` is used below, a warning is given but the third symptoms are lost:
 
 ```{r}
-# third symptoms are lost
+# гуравдах шинж тэмдэг алдагдсан байна
 df %>% 
   separate(symptoms, into = c("sym_1", "sym_2"), sep=",")
 ```
 
-
-<span style="color: orange;">**_CAUTION:_** If you do not provide enough `into` values for the new columns, your data may be truncated.</span>  
-
-
-
-
-
+[***АНХААРУУЛГА:*** Хэрэв `into` -д хангалттай тоог оруулахгүй бол дата тайрагдаж болохыг анхаар.]{style="color: orange;"}
 
 <!-- ======================================================= -->
-### Arrange alphabetically {.unnumbered} 
 
-Several strings can be sorted by alphabetical order. `str_order()` returns the order, while `str_sort()` returns the strings in that order.  
+### Цагаан толгойн дарааллаар эрэмбэлэх {.unnumbered}
+
+Олон стрингсүүдийг цагаан толгойн дарааллаар эрэмбэлж болно. `str_order()` функц дарааллын дугаарыг үүсгэж, `str_sort()` дарааллаар нь эрэмбэлж байрлуулдаг.
 
 ```{r}
-# strings
+# стрингс
 health_zones <- c("Alba", "Takota", "Delta")
 
-# return the alphabetical order
+# цагаан толгойгоор дарааллаар дугаарлана
 str_order(health_zones)
 
-# return the strings in alphabetical order
+# цагаан толгойн дарааллаар эрэмбэлэн байрлуулна
 str_sort(health_zones)
 ```
 
-To use a different alphabet, add the argument `locale = `. See the full list of locales by entering `stringi::stri_locale_list()` in the R console.  
-
-
-
-
+Өөр хэлний цагаан толгой хэрэглэх бол `locale =` аргументээр тохируулдаг. `locale =`-д орох жагсаалтыг R console-д `stringi::stri_locale_list()` гэж бичиж гаргаж ирнэ.
 
 <!-- ======================================================= -->
-### base R functions {.unnumbered}
 
-It is common to see **base** R functions `paste()` and `paste0()`, which concatenate vectors after converting all parts to character. They act similarly to `str_c()` but the syntax is arguably more complicated - in the parentheses each part is separated by a comma. The parts are either character text (in quotes) or pre-defined code objects (no quotes). For example:
+### base R -ын функцууд {.unnumbered}
+
+Векторуудыг бүхэлд нь карактерлуу хувиргаад, нэгтгэдэг `paste()`, `paste0()` гэсэн функцууд **base** R-т бий. Эдгээр нь `str_c()`-тэй төстэй боловч бичигдэх синтаксаараа арай өөр - хаалтан дотор, хэсэг тус бүрийн дунд таслал оруулах хэрэгтэй болдог. Эдгээр хэсгүүд нэг бол карактер текст (хашилтанд бичигдна) эсвэл тодорхой кодын обьектууд байна (хашилтгүй бичигднэ). Жишээ нь:
 
 ```{r}
 n_beds <- 10
@@ -388,20 +358,15 @@ n_masks <- 20
 paste0("Regional hospital needs ", n_beds, " beds and ", n_masks, " masks.")
 ```
 
-`sep = ` and `collapse = ` arguments can be specified. `paste()` is simply `paste0()` with a default `sep = " "` (one space).  
+`sep =` болон `collapse =` аргументыг тохируулж болно. `paste()` бол `sep = " "` гэсэн аргументтэй `paste0()` (зай авахгүй) гэсэн үг .
 
-
-
-
-
-
-## Clean and standardise  
-
+## Цэвэрлэх болон жигдрүүлэх
 
 <!-- ======================================================= -->
-### Change case {.unnumbered}
 
-Often one must alter the case/capitalization of a string value, for example names of jursidictions. Use `str_to_upper()`, `str_to_lower()`, and `str_to_title()`, from **stringr**, as shown below:  
+### Үсгийн том жижигийг өөрчлөх {.unnumbered}
+
+Стрингс дата янзалж байхад үсгийн том жижигийг тохируулах шаадрдлага их гардаг. Ийм стрингсүүдийн жишээнд нутаг дэвсгэрийн нэрс ордог. Үүнд **stringr**-ын `str_to_upper()`, `str_to_lower()`, `str_to_title()` нарыг дор жишээнд харуулсан шиг хэрэглэнэ.
 
 ```{r}
 str_to_upper("California")
@@ -409,121 +374,111 @@ str_to_upper("California")
 str_to_lower("California")
 ```
 
-Using *base** R, the above can also be achieved with `toupper()`, `tolower()`.  
+Мөн \*base\*\* R-ын `toupper()`, `tolower()`-аар адил үр дүнд хүрч болно.
 
+**Гарчигны үсгийн том жижиг**
 
-**Title case**  
-
-Transforming the string so each word is capitalized can be achieved with `str_to_title()`:  
+Бүх үгсийн эхний үсгийг томоор бичих бол `str_to_title()`-ийг хэрэглэнэ:
 
 ```{r}
 str_to_title("go to the US state of california ")
 ```
 
-Use `toTitleCase()` from the **tools** package to achieve more nuanced capitalization (words like "to", "the", and "of" are not capitalized).  
+**tools** багцын `toTitleCase()` -ыг хэрэглэвэл дээрх үйлдлийг арай боловсронгуй гүйцэтгэдэг ("to", "the", "of" зэрэг зарим туслах үгс том болж хувирахгүй).
 
 ```{r}
 tools::toTitleCase("This is the US state of california")
 ```
 
-You can also use `str_to_sentence()`, which capitalizes only the first letter of the string.
+`str_to_sentence()` -ээр стрингийн зөвхөн эхний үсгийг том болгоход хэрэглэнэ.
 
 ```{r}
 str_to_sentence("the patient must be transported")
 ```
 
+### Уртыг тааруулах {#str_pad .unnumbered}
 
-
-### Pad length  {#str_pad .unnumbered}
-
-Use `str_pad()` to add characters to a string, to a minimum length. By default spaces are added, but you can also pad with other characters using the `pad = ` argument.  
-
+Стрингст доод уртын хэмжээг хэд байхыг зааж өгч болох ба үүнийг `str_pad()` -аар гүйцэтгэнэ. Уртыг заасан хэмжээнд хүргэхийн тулд нэмдэг default тэмдэгт нь хоосон зай (space) боловч `pad =` аргументэд үүнийг сольж өгч болно.
 
 ```{r}
-# ICD codes of differing length
+# өөр өөр урттай ICD  кодын стрингсүүд
 ICD_codes <- c("R10.13",
                "R10.819",
                "R17")
 
-# ICD codes padded to 7 characters on the right side
+# ICD кодын баруун талд 7 карактер нэмж стрингсүүдийн уртыг тэнцүүлнэ
 str_pad(ICD_codes, 7, "right")
 
-# Pad with periods instead of spaces
+# зай авахын оронд цэг нэм
 str_pad(ICD_codes, 7, "right", pad = ".")
 ```
 
-For example, to pad numbers with leading zeros (such as for hours or minutes), you can pad the number to minimum length of 2 with `pad = "0"`.
+Доорхи жишээнд 0 -оор эхэлдэг (минут цаг гэх мэт) тоон утгуудыг дор хаяж 2 оронтой байлгахын тулд урд талдаа `pad = "0"` -гэж тохируулсан.
 
 ```{r}
-# Add leading zeros to two digits (e.g. for times minutes/hours)
+# 2 орон болтол нь урд нь 0-ыг нэмнэ (цаг/минут)
 str_pad("4", 2, pad = "0") 
 
-# example using a numeric column named "hours"
+# "цаг" гэсэн тоон багана нэм
 # hours <- str_pad(hours, 2, pad = "0")
 ```
 
+### Огтлох {.unnumbered}
 
-### Truncate {.unnumbered} 
-
-`str_trunc()` sets a maximum length for each string. If a string exceeds this length, it is truncated (shortened) and an ellipsis (...) is included to indicate that the string was previously longer. Note that the ellipsis *is* counted in the length. The ellipsis characters can be changed with the argument `ellipsis = `.  The optional `side = ` argument specifies which where the ellipsis will appear within the truncated string ("left", "right", or "center").  
+`str_trunc()` -ээр стрингсийн дээд уртыг зааж өгнө. Хэрэв стрингс энэнээс урт бол огтлогддог (богиносно). Гэхдээ анхны утга урт байсныг сануулж эллипсис буюу гурван цэг (...) ард нь нэмж өгдөг. Гурван цэг нь өөрөө уртад тоологдох болохыг анхаар. Гурван цэгийн оронд өөр тэмдэг оруулахдаа `ellipsis =` аргументийг ашиглана. `side =` аргументээр гурван цэг огтлогдсон стрингсийн аль талд байрлахыг зааж өгнө ("зүүн", "баруун", "төв").
 
 ```{r}
 original <- "Symptom onset on 4/3/2020 with vomiting"
 str_trunc(original, 10, "center")
 ```
 
+### Уртыг жигдрүүлэх {.unnumbered}
 
-### Standardize length {.unnumbered}
-
-Use `str_trunc()` to set a maximum length, and then use `str_pad()` to expand the very short strings to that truncated length. In the example below, 6 is set as the maximum length (one value is truncated), and then one very short value is padded to achieve length of 6.    
+Уртын дээд хэмжээг `str_trunc()` -аар зааж өгдөг бол хэт богино стрингсийг `str_pad()`-аар заасан цэг хүртэл сунгаж болдог. Доорх жишээнд уртын дээд хэмжээг 6 гэж заасан (ингэснээр нэг утга огтлогдсон). Үүний дараа их богино хэмжээтэй нэг стрингс байгааг 6 болгож уртасгасан.
 
 ```{r}
-# ICD codes of differing length
+# Өөр урттай бичигдсэн ICD код
 ICD_codes   <- c("R10.13",
                  "R10.819",
                  "R17")
 
-# truncate to maximum length of 6
+# уртын дээд хязгаарыг 6 болгох
 ICD_codes_2 <- str_trunc(ICD_codes, 6)
 ICD_codes_2
 
-# expand to minimum length of 6
+# доод хязгаарыг 6 болгож уртасга
 ICD_codes_3 <- str_pad(ICD_codes_2, 6, "right")
 ICD_codes_3
 ```
 
+### Илүү гарсан хоосон зайг арилгах {.unnumbered}
 
-### Remove leading/trailing whitespace {.unnumbered}  
-
-Use `str_trim()` to remove spaces, newlines (`\n`) or tabs (`\t`) on sides of a string input. Add `"right"` `"left"`, or `"both"` to the command to specify which side to trim (e.g. `str_trim(x, "right")`. 
+Стрингc утганд нэмэлт хоосон зай, шинэ мөр (`\n`), таб (`\t`) зэрэг илүүдлээр орсон бол эдгээрийг `str_trim()` - ээр тайрч болно. Тайрах талын байрлалыг `"right"` `"left"`, `"both"` гэж зааж өгч болно ( жишээ нь `str_trim(x, "right")`.
 
 ```{r}
-# ID numbers with excess spaces on right
-IDs <- c("provA_1852  ", # two excess spaces
-         "provA_2345",   # zero excess spaces
-         "provA_9460 ")  # one excess space
+# ID дугааруудын баруун талд илүү зай байна
+IDs <- c("provA_1852  ", # 2 орон илүү зай
+         "provA_2345",   # илүү зай байхгүй
+         "provA_9460 ")  # 1 орон илүү зай 
 
-# IDs trimmed to remove excess spaces on right side only
+# ID дугаартай стрингсийн зөвхөн баруун талын илүү зайг тайрах
 str_trim(IDs)
 ```
 
+### Давтагдсан хоосон зайг арилгах {.unnumbered}
 
-### Remove repeated whitespace within {.unnumbered}  
-
-Use `str_squish()` to remove repeated spaces that appear *inside* a string. For example, to convert double spaces into single spaces. It also removes spaces, newlines, or tabs on the outside of the string like `str_trim()`.  
-
+Стрингсийн *завсар* хоосон зай давтагдсан бол `str_squish()`-ээр үүнийг янзалж болно. Давхар хоосон зай нэг хоосон зай болдог. Стрингсийн хажуугийн хоосон зай, шинэ мөр, таб -ыг `str_trim()` -ээр янзалж болно.
 
 ```{r}
-# original contains excess spaces within string
+# Эх текстийн завсарт хэт их зай авсагдсан байна
 str_squish("  Pt requires   IV saline\n") 
 ```
 
-Enter `?str_trim`, `?str_pad` in your R console to see further details.  
+Эдгээр функцын талаарх нэмэлт мэдээллийг R console -д `?str_trim`, `?str_pad` гэсэн комманд уншуулж авна уу.
 
+### Параграф болгож нэгтгэх {.unnumbered}
 
-### Wrap into paragraphs {.unnumbered}  
-
-Use `str_wrap()` to wrap a long unstructured text into a structured paragraph with fixed line length. Provide the ideal character length for each line, and it applies an algorithm to insert newlines (`\n`) within the paragraph, as seen in the example below.   
+Ямар ч бүтэц, хэвгүй үргэлжилсэн текстийг нэтгэж, бүтэцжүүлж, мөрийн уртыг зааж өгөн параграф хэвлбэрт оруулах бол `str_wrap()` -ыг хэрэглэ. Мөрний хэр урт байхыг зааж өгснөөр текст дундуур мөрүүд алгоритмын дагуу бий болж параграф хэлбэрт орно (жишээ дор харуулсан).
 
 ```{r}
 pt_course <- "Symptom onset 1/4/2020 vomiting chills fever. Pt saw traditional healer in home village on 2/4/2020. On 5/4/2020 pt symptoms worsened and was admitted to Lumta clinic. Sample was taken and pt was transported to regional hospital on 6/4/2020. Pt died at regional hospital on 7/4/2020."
@@ -531,155 +486,131 @@ pt_course <- "Symptom onset 1/4/2020 vomiting chills fever. Pt saw traditional h
 str_wrap(pt_course, 40)
 ```
 
-The **base** function `cat()` can be wrapped around the above command in order to print the output, displaying the new lines added.  
+Дээрх коммандын үр дүнг хэвлэх бол **base** -ын `cat()` -д функц дотор коммандаа уншуулна уу.
 
 ```{r}
 cat(str_wrap(pt_course, 40))
 ```
 
-
-
-
-
-
-
-
-
-
-
-
 <!-- ======================================================= -->
-## Handle by position { }
 
+## Байрлалаар нь янзлах
 
-### Extract by character position {.unnumbered}  
+### Карактерийг байрлалаар гаргаж ирэх {.unnumbered}
 
-Use `str_sub()` to return only a part of a string. The function takes three main arguments:  
+Стрингсийг хэсэглэж гаргаж авах шаардлагтай үед `str_sub()` -ийг хэрэглэдэг. Энэхүү функц гурван үндсэн аргумент авдаг:
 
-1) the character vector(s)  
-2) start position  
-3) end position  
+1)  карактер вектор(-ууд)\
+2)  эхлэх байрлал\
+3)  дуусах байрлал
 
-A few notes on position numbers:  
+Байрлалын дугаарлах талаар:
 
-* If a position number is positive, the position is counted starting from the left end of the string.  
-* If a position number is negative, it is counted starting from the right end of the string.  
-* Position numbers are inclusive.  
-* Positions extending beyond the string will be truncated (removed).  
+-   Хэрэв байрлал эерэг бол стрингсийн зүүн үзүүрээс эхэлж тоологдсон гэсэн үг\
+-   Хэрэв байрлал сөрөг бол стрингсийн баруун үзүүрээс эхэлж тоологдсон гэсэн үг\
+-   Байрлалын дугаар нь нээлттэй (inclusive)\
+-   Стрингсээс гадуур байрлал огтлогддог (устгагдна).
 
-Below are some examples applied to the string "pneumonia":  
+Дор "pneumonia" гэсэн стрингсийг жишээ болгож үзүүлэв:
 
 ```{r}
-# start and end third from left (3rd letter from left)
+# зүүн талын үзүүрээс тоолж гуравдах орноос эхэлж гурав дах орон дээр дуусна (зүүн талаас гурав дах үсэг)
 str_sub("pneumonia", 3, 3)
 
-# 0 is not present
+# 0 гэсэн байрлал байхгүй 
 str_sub("pneumonia", 0, 0)
 
-# 6th from left, to the 1st from right
+# зүүн талаас 6 даха орноос баруун талаас 1 дэх хүртэл
 str_sub("pneumonia", 6, -1)
 
-# 5th from right, to the 2nd from right
+# баруун талаас 5 дахаас орноос баруун талаас 2 дах хүртэл 
 str_sub("pneumonia", -5, -2)
 
-# 4th from left to a position outside the string
+# зүүн талаасаа 4 дэх орноос стрингсийн гадна давж гартал
 str_sub("pneumonia", 4, 15)
 ```
 
+### Үгийн байрлалаар гаргаж ирэх {.unnumbered}
 
+Стрингсээс n-дүгээр 'үгийг' гаргаж авахдаа мөн **stringr**-ийн `word()`функцыг хэрэглэдэг. Эхлээд шүүлт хийх стрингсээ оруулна. Үүнээс тасалж авах хэсгийн эхлэх үгийн байрлал, төгсгөл үгийн байрлалыг зааж өгнө.
 
-### Extract by word position {.unnumbered} 
-
-To extract the nth 'word', use `word()`, also from **stringr**. Provide the string(s), then the first word position to extract, and the last word position to extract.  
-
-By default, the separator between 'words' is assumed to be a space, unless otherwise indicated with `sep = ` (e.g. `sep = "_"` when words are separated by underscores.  
-
+Үүссэн стрингст үг хоорондын завсар орох default тэмдэгт нь хоосон зай боловч `sep =` -д үүнийг сольж болно (жишээ нь `sep = "_"` доогуур зураасыг оруулахаар зааж өгч болно).
 
 ```{r}
-# strings to evaluate
+# Шүүлт хийх стрингс
 chief_complaints <- c("I just got out of the hospital 2 days ago, but still can barely breathe.",
                       "My stomach hurts",
                       "Severe ear pain")
 
-# extract 1st to 3rd words of each string
+# Стрингс тус бүрийн 1 дэхээс 3д ах үгийг гаргаж ирэх
 word(chief_complaints, start = 1, end = 3, sep = " ")
 ```
 
+### Карактерийн байрлалаар орлуулах {.unnumbered}
 
-### Replace by character position {.unnumbered} 
-
-`str_sub()` paired with the assignment operator (`<-`) can be used to modify a part of a string: 
+Стрингсийн нэг хэсэгт өөрчлөлт оруулах шаардлагтай бол `str_sub()` болон (`<-`) оноогч операторыг хамтарч хэрэглэнэ.
 
 ```{r}
 word <- "pneumonia"
 
-# convert the third and fourth characters to X 
+# 3,4 дүгээр карактерийг X -ээр орлуул
 str_sub(word, 3, 4) <- "XX"
 
-# print
+# Хэвлэ
 word
 ```
 
-An example applied to multiple strings (e.g. a column). Note the expansion in length of "HIV".  
+Дээрхи жишээг стрингсийн векторт хэрэглэж үзье (эсвэл багана). "HIV"-ийн хэмжээ уртасч байгааг анзаарна уу.
 
 ```{r}
 words <- c("pneumonia", "tubercolosis", "HIV")
 
-# convert the third and fourth characters to X 
+# 3,4 дүгээр карактерийг X -ээр орлуул
 str_sub(words, 3, 4) <- "XX"
 
 words
 ```
 
-
-
-### Evaluate length  {.unnumbered}
-
+### Уртыг шалга {.unnumbered}
 
 ```{r}
 str_length("abc")
 ```
 
-Alternatively, use `nchar()` from **base** R
-
-
-
-
-
-
+**base** R-ын `nchar()` -ыг бас хэрэглэж болно.
 
 <!-- ======================================================= -->
-## Patterns { }
 
-Many **stringr** functions work to detect, locate, extract, match, replace, and split based on a specified *pattern*.  
+## Хэв маяг
 
-
+Аливаа *хэв маягт* тааруулан илрүүлэх, байрлуулах, гаргаж авах, тааруулах, орлуулах, хуваах үйлдлйиг хийдэг функцууд **stringr** багцад буй .
 
 <!-- ======================================================= -->
-### Detect a pattern {.unnumbered}
 
-Use `str_detect()` as below to detect presence/absence of a pattern within a string. First provide the string or vector to search in (`string = `), and then the pattern to look for (`pattern = `). Note that by default the search *is case sensitive*!
+### Хэв маягийг илрүүлэх {.unnumbered}
+
+Стрингс доторх аливаа хэв маягийг `str_detect()` -ээр хайж, илрүүлдэг. Эхлээд шүүлт явуулах стрингс эсвэл вектороо оруулаад (`string =`), дараа нь хайж буй хэв маягийг зааж өгнө (`pattern =`). Default -аар *үсгийн том жижиг хамаатай* !
 
 ```{r}
 str_detect(string = "primary school teacher", pattern = "teach")
 ```
 
-The argument `negate = ` can be included and set to `TRUE` if you want to know if the pattern is NOT present.  
- 
+Хэрэв `negate =` аргументийг нэмж `TRUE` гэж тохируулбал тухайн заасан хэв маяг БАЙХГҮЙ эсэхийг шалгадаг.
+
 ```{r}
 str_detect(string = "primary school teacher", pattern = "teach", negate = TRUE)
 ```
 
-To ignore case/capitalization, wrap the pattern within `regex()`, and *within* `regex()` add the argument `ignore_case = TRUE` (or `T` as shorthand).  
+Хэрэв үсгийн том жижигийг хамаарахгүй болгохын тулд хайлт хийх хэв маягаа `regex()` функцэд оруулаад `regex()` *дотор* `ignore_case = TRUE` гэсэн тохиргоо хийдэг (эсвэл `T` гэж товчилж болно).
 
 ```{r}
 str_detect(string = "Teacher", pattern = regex("teach", ignore_case = T))
 ```
 
-When `str_detect()` is applied to a character vector or a data frame column, it will return TRUE or FALSE for each of the values. 
+Карактер вектор эсвэл хүснэгтийн баганад `str_detect()` функцыг уншуулбал TRUE эсвэл FALSE гэсэн логик утгатай вектор үүснэ.
 
 ```{r}
-# a vector/column of occupations 
+# мэргэжил бүртгэсэн вектор/хүснэгтийн багана
 occupations <- c("field laborer",
                  "university professor",
                  "primary school teacher & tutor",
@@ -691,26 +622,26 @@ occupations <- c("field laborer",
                  "office worker",
                  "food service")
 
-# Detect presence of pattern "teach" in each string - output is vector of TRUE/FALSE
+# стрингс тус бүрт "teach" гэсэн хэв маяг/үг байгаа эсэхийг шалгаж үр дүнг TRUE/FALSE-оор харуулна
 str_detect(occupations, "teach")
 ```
 
-If you need to count the `TRUE`s, simply `sum()` the output. This counts the number `TRUE`.  
+Үүнийг `sum()` -ын дотор оруулж нийт хэдэн `TRUE`- байгааг тоолж болно.
 
 ```{r}
 sum(str_detect(occupations, "teach"))
 ```
 
-To search inclusive of multiple terms, include them separated by OR bars (`|`) within the `pattern = ` argument, as shown below:  
+Олон янзын хэв маяг хайх бол тэдгээгийг жагсаан ЭСВЭЛ (`|`) тэмдэгтээр тусгаарлаж бичээд `pattern =` аргументэд дор харуулсан шиг бичнэ:
 
 ```{r}
 sum(str_detect(string = occupations, pattern = "teach|professor|tutor"))
 ```
 
-If you need to build a long list of search terms, you can combine them using `str_c()` and `sep = |`, then define this is a character object, and then reference the vector later more succinctly. The example below includes possible occupation search terms for front-line medical providers.     
+Хайлт хийх хэв маягийн жагсаалт их урт тохиолдолд эхлээд `str_c()` болон `sep = |`-ийг хавсарч хэрэглээд, карактер гэдгийг нь зааж өгвөл цаашид хайлтаа арай товч болгож болно. Доорх жишээнд эрүүл мэндийн ажилтнуудын тэргүүн шугаманд ажилладаг мэргэжлийн нэрсээр хайлт хийж байна.
 
 ```{r}
-# search terms
+# олон янзын хэв маягийг хайх
 occupation_med_frontline <- str_c("medical", "medicine", "hcw", "healthcare", "home care", "home health",
                                 "surgeon", "doctor", "doc", "physician", "surgery", "peds", "pediatrician",
                                "intensivist", "cardiologist", "coroner", "nurse", "nursing", "rn", "lpn",
@@ -724,44 +655,37 @@ occupation_med_frontline <- str_c("medical", "medicine", "hcw", "healthcare", "h
 occupation_med_frontline
 ```
 
-This command returns the number of occupations which contain any one of the search terms for front-line medical providers (`occupation_med_frontline`):  
+Дараах коммандыг уншуулснаар occupations бүртгэлд дээрх жагсаалттай (`occupation_med_frontline`) тохирсон мэргэжлүүд хэд байгааг харуулна:
 
 ```{r}
 sum(str_detect(string = occupations, pattern = occupation_med_frontline))
 ```
 
+**Base R -ын стрингс хайх функцууд**
 
+**base** -ын функц болох `grepl()` нь `str_detect()` -тэй төстэй үйлдэлтэй. Энэ функц таарсан бүтцийг хайж логик вектор үүсгэдэг. Үндсэн синтакс нь `grepl(бүтэц, хайх_стрингс, ignore.case = FALSE, ...)`. Давуу тал нь `ignore.case` аргументийг бичихэд хялбар ( `regex()` функцтэй хавсарч хэрэглэх шаардлагагүй).
 
-**Base R string search functions**  
+Мөн **base** -ын функц болох `sub()`, `gsub()` нар нь `str_replace()`-тэй төстэй үйлдэлтэй. Үндсэн синтакс нь: `gsub(бүтэц, орлуулалт, хайх_стрингс, ignore.case = FALSE)`. `sub()` функц уншуулахад өгөгдсөн хэв маягт таарсан эхний тохиолдлыг орлуулдаг бол `gsub()` функцыг уншуулахад өгөгдсөн бүтэцтэй таарсан бүх тохиолдлуудыг орлуулна.
 
-The **base** function `grepl()` works similarly to `str_detect()`, in that it searches for matches to a pattern and returns a logical vector. The basic syntax is `grepl(pattern, strings_to_search, ignore.case = FALSE, ...)`. One advantage is that the `ignore.case` argument is easier to write (there is no need to involve the `regex()` function).  
+#### Таслалыг цэгээр солих {.unnumbered}
 
-Likewise, the **base** functions `sub()` and `gsub()` act similarly to `str_replace()`. Their basic syntax is: `gsub(pattern, replacement, strings_to_search, ignore.case = FALSE)`. `sub()` will replace the first instance of the pattern, whereas `gsub()` will replace all instances of the pattern.  
+Тоон векторуудад буй таслалуудыг `gsub()` ашиглаж цэгээр хэрхэн солихыг харуулав. Ингэж цэгээр солих үйлдлйиг АНУ, Их Британийн бус гаралтай датанд их хийдэг.
 
-
-#### Convert commas to periods {.unnumbered}  
-
-Here is an example of using `gsub()` to convert commas to periods in a vector of numbers. This could be useful if your data come from parts of the world other than the United States or Great Britain.  
-
-The inner `gsub()` which acts first on `lengths` is converting any periods to no space "". The period character  "." has to be "escaped" with two slashes to actually signify a period, because "." in regex means "any character". Then, the result (with only commas) is passed to the outer `gsub()` in which commas are replaced by periods.   
+Доорх жишээнд эхлээд дотор талд буй `gsub()` нь `lengths` баганыг уншиж, үүнд агуулагдаж бүх цэгийг "" (зайгүй хоосон) болгож хувиргаж байна. Ингэхдээ "." гэсэн тэмдэгтийг алгасахын тулд хоёр ташуу зураас оруулж өгнө. Учир нь regex -т "." нь "бүх тэмдэгт" ( "any character")-ийг илэрхийлдэг. Үүссэн (зөвхөн таслалтай) үр дүн гаднах `gsub()` -д уншигдах ба ингэснээр бүх таслалууд цэг болж хувирна.
 
 ```{r, eval=F}
 lengths <- c("2.454,56", "1,2", "6.096,5")
 
-as.numeric(gsub(pattern = ",",                # find commas     
-                replacement = ".",            # replace with periods
-                x = gsub("\\.", "", lengths)  # vector with other periods removed (periods escaped)
+as.numeric(gsub(pattern = ",",                # бүх таслалыг  
+                replacement = ".",            # цэгээр солих
+                x = gsub("\\.", "", lengths)  # цэг агуулсан бусад векторуудыг арилгах (цэг ())
                 )
-           )                                  # convert outcome to numeric
+           )                                  # үр дүнг тоон утга болго
 ```
 
+### Бүгдийг зэрэг солих {.unnumbered}
 
-
-
-
-### Replace all {.unnumbered}  
-
-Use `str_replace_all()` as a "find and replace" tool. First, provide the strings to be evaluated to `string = `, then the pattern to be replaced to `pattern = `, and then the replacement value to `replacement = `. The example below replaces all instances of "dead" with "deceased". Note, this IS case sensitive.  
+`str_replace_all()` -ыг "олоод ёоль" гэсэн үйлдэл хийхэд ашигладаг. Эхлээд шүүлт хийх стрингсээ `string =`-нд, хайлт хийх бүтцээ `pattern =`-нд, сольж тавих утгаа `replacement =`-нд тус тус зааж өгнө. Доорхи жишээгээр бүх "dead" гэсэн утгыг "deceased" болгож солих болно. Үсгийн том жижиг хамаатай болохыг анхаарна уу.
 
 ```{r}
 outcome <- c("Karl: dead",
@@ -771,46 +695,41 @@ outcome <- c("Karl: dead",
 str_replace_all(string = outcome, pattern = "dead", replacement = "deceased")
 ```
 
-Notes:  
+Тэмдэглэл:
 
-* To replace a pattern with `NA`, use `str_replace_na()`.  
-* The function `str_replace()` replaces only the first instance of the pattern within each evaluated string.  
-
-
-
-
+-   Аливаа хэв маягийг `NA`-аар солиход `str_replace_na()` функцыг хэрэглэдэг.\
+-   `str_replace()` функц шалгагдаж буй стрингс тус бүрийн зөвхөн эхний тохиолдлыг л сольдог.
 
 <!-- ======================================================= -->
-### Detect within logic {.unnumbered}
 
+### Логик дотор илрүүлэх {.unnumbered}
 
-**Within `case_when()`**  
+**`case_when()` дотор**
 
-`str_detect()` is often used within `case_when()` (from **dplyr**). Let's say `occupations` is a column in the linelist. The `mutate()` below creates a new column called `is_educator` by using conditional logic via `case_when()`. See the page on data cleaning to learn more about `case_when()`.  
-
+`str_detect()` -ийг (**dplyr**-ын) `case_when()`-ын дотор хэрэглэх нь их. Жишээнд linelist -д `occupations` хэмээх баганыг авч үзье. Энэхүү баганад логик нөхцлийг `case_when()` -ээр оруулж, үүнийгээ `mutate()` дотор оруулсгнаар `is_educator` гэсэн шинэ багана үүсгэж байна. `case_when()`-ийн талаар дата цэвэрлэгээг тайлбарласан хэсгээс лавшруулж уншиж болно.
 
 ```{r, eval=F}
 df <- df %>% 
   mutate(is_educator = case_when(
-    # term search within occupation, not case sensitive
+    # occupation дотор хийгдэж буй хайлтад үсгийн жижиг том хамаагүй
     str_detect(occupations,
                regex("teach|prof|tutor|university",
                      ignore_case = TRUE))              ~ "Educator",
-    # all others
+    # бусад бүх
     TRUE                                               ~ "Not an educator"))
 ```
 
-As a reminder, it may be important to add exclusion criteria to the conditional logic (`negate = F`):  
+Оруулахгүй хэв маягийг логик нөхцөлд зааж өгч болно (`negate = F`):
 
 ```{r, eval=F}
 df <- df %>% 
-  # value in new column is_educator is based on conditional logic
+  # шинээр үүсгэсэн is_educator багана дах утгыг логик нөхцлөөр үүсгэсэн 
   mutate(is_educator = case_when(
     
-    # occupation column must meet 2 criteria to be assigned "Educator":
+    # occupation баганын утга хоёр шалгуурт нийцэж байж "Educator" баганын утга болж чадна:
     # it must have a search term AND NOT any exclusion term
     
-    # Must have a search term
+    # Хайлт хийх хэв маягууд
     str_detect(occupations,
                regex("teach|prof|tutor|university", ignore_case = T)) &              
     
@@ -819,280 +738,233 @@ df <- df %>%
                regex("admin", ignore_case = T),
                negate = TRUE                        ~ "Educator"
     
-    # All rows not meeting above criteria
+    # Дээрх шалгуурт нийцэхгүй бусад бүх нөхцлүүд
     TRUE                                            ~ "Not an educator"))
 ```
 
-
-
-
-
 <!-- ======================================================= -->
-### Locate pattern position {.unnumbered}  
 
-To locate the *first* position of a pattern, use `str_locate()`. It outputs a start and end position.   
+### Хэв маягийн байрлалыг тогтоох {.unnumbered}
+
+Хайлт хийж буй хэв маягийн эхний байрлалыг тогтоохын тулд `str_locate()`-ыг хэрэглэ. Эхлэл болон төгсгөл хэсгээр нь хайдаг.
 
 ```{r}
 str_locate("I wish", "sh")
 ```
 
-Like other `str` functions, there is an "_all" version (`str_locate_all()`) which will return the positions of *all* instances of the pattern within each string. This outputs as a `list`.  
+Бусад `str` функцын адил дээрх функцэд хэв маяг таарч буй *бүх* тохиолдлуудыг (стрингс тус бүрээс) гаргаж ирдэг "\_all" хувилбар (`str_locate_all()`) бас байна. Үүний хайлтын үр дүн `list` -ээр үүсдэг.
 
 ```{r}
 phrases <- c("I wish", "I hope", "he hopes", "He hopes")
 
-str_locate(phrases, "h" )     # position of *first* instance of the pattern
-str_locate_all(phrases, "h" ) # position of *every* instance of the pattern
+str_locate(phrases, "h" )     # Хайлт хийж буй хэв маягтай тохирох *эхний* тохиолдлыг олох
+str_locate_all(phrases, "h" ) # Хайлт хийх хэв маягтай тохирсон *бүх* тохиолдлыг олох
 ```
 
-
-
-
-
 <!-- ======================================================= -->
-### Extract a match {.unnumbered}  
 
-`str_extract_all()` returns the matching patterns themselves, which is most useful when you have offered several patterns via "OR" conditions. For example, looking in the string vector of occupations (see previous tab) for *either* "teach", "prof", or "tutor".
+### Хэв маягийг тааруулж сугалж гаргах  {.unnumbered}
 
-`str_extract_all()` returns a `list` which contains *all matches* for each evaluated string. See below how occupation 3 has two pattern matches within it.  
+Олон хэв маягийг зэрэг ЭСВЭЛ (`|`) нөхцөлтэйгээр зэрэг хайж буй үед `str_extract_all()` -ийг хэрэглэснээр тохирох хэв маягууд тэр хэвээрээ гарч ирдэг давуу талтай. Жишээ нь occupations гэсэн стрингс векторт (дээр бичигдсэн табд буй) "teach", "prof", "tutor" гэсэн хэв маяг/үгийн *аль нэгийг* хайя.
+
+Энэ үед `str_extract_all()` функ стрингс бүрийн *таарсан* хэв маяг/үгсийг ялгаж цуглуулсан `list` үүсдэг. Доорх жишээнд бичсэн 3 мэргэжлийн 2 бүтэц occupations датанд таарч байна.
 
 ```{r}
 str_extract_all(occupations, "teach|prof|tutor")
 ```
 
-
-`str_extract()` extracts *only the first match* in each evaluated string, producing a character vector with one element for each evaluated string. It returns `NA` where there was no match. The `NA`s can be removed by wrapping the returned vector with `na.exclude()`. Note how the second of occupation 3's matches is not shown.  
+`str_extract()` функц стрингс тус бүрийн *зөвхөн эхний таарсан хэв маяг/үгийг* гаргаж ирдэг. Ингэснээр стрингс тус бүрт нэг элэменттэй карактер вектор үүсдэг. Тохироо таараагүй утгуудад `NA` үүсдэг. Үүссэн векторыг `na.exclude()`-д оруулснаар `NA`-г арилгаж болно. occupation 3-ын хоёрдах тохироо харагдахгүй байгааг анзаарна уу.
 
 ```{r}
 str_extract(occupations, "teach|prof|tutor")
 ```
 
 <!-- ======================================================= -->
-### Subset and count {.unnumbered}  
 
-Aligned functions include `str_subset()` and `str_count()`.  
+### Хэсэгчлэх ба тоолох {.unnumbered}
 
-`str_subset()` returns the actual values which contained the pattern: 
+Эдгээр үйлдлийг `str_subset()`, `str_count()` гүйцэтгэдэг.
+
+Аливаа хэв маягийг `str_subset()` -ээр хайснаар таарсан хэв маягийг агуулж буй утга анхны хэлбэрээр гарч ирдэг.
 
 ```{r}
 str_subset(occupations, "teach|prof|tutor")
 ```
 
-`str_count()` returns a vector of numbers: the **number of times** a search term appears in each evaluated value.  
+`str_count()` -ээр тоон вектор үүсдэг: шалгагдсан утга бүрт хайгдаж буй хэв маяг **хэдэн ширхэг** байгаа нь гарч ирдэг.
 
 ```{r}
 str_count(occupations, regex("teach|prof|tutor", ignore_case = TRUE))
 ```
 
+<!-- ======================================================= -->
 
+### Regex-ийн группууд {.unnumbered}
 
-
-
-
-
-
-
-
-
+ХИЙГДЭЖ БУЙ
 
 <!-- ======================================================= -->
-### Regex groups {.unnumbered}
 
-UNDER CONSTRUCTION
+## Өвөрмөц карактерүүд
 
+**Арагшаа ташуу зураас `\` бол "алгасах тэмдэг"**
 
+Арагшаа ташуу зураасыг `\` арынх нь карактер утгыг "алгасах" зориулалтаар хэрэглэдэг. Тиймээс арагшаа ташуу зураасыг хашилтан *доторх* хашилттай хамт хэрэглэдэг (`"\""`) - дундах хашилт хоёр захын хашилтуудыг *эвдлэхгүй*.
 
+Тэмдэглэл - хэрэв арагшаа ташуу зураасыг *хэвлэх* бол, *дахин нэг* арагшаа ташуу зураас бичих шаардлагатай болдог. Өөрөөр хэлбэл нэг арагшаа ташуу зураас бичихийн тулд хоёр ташуу зураастай код бичнэ (`\\`).
 
+**Өвөрмөц карактерүүд**
 
+| Өвөрмөц карактерүүд                                                               | Зориулалт                            |
+|-----------------------------------------------------------------------------------|--------------------------------------|
+| `"\\"`                                                                            | Арагшаа ташуу зураас                 |
+| `"\n"`                                                                            | шинэ мөр (newline)                   |
+| `"\""`                                                                            | давхар хашилт *доторх* давхар хашилт |
+| `'\''`                                                                            | дан хашилт *доторх* дан хашилт       |
+| `"\`"`| grave accent`"\r"`| carriage return`"\t"`| tab`"\v"`| vertical tab`"\b"\` | backspace                            |
 
-<!-- ======================================================= -->
-## Special characters  
-
-**Backslash `\` as escape**  
-
-The backslash `\` is used to "escape" the meaning of the next character. This way, a backslash can be used to have a quote mark display *within* other quote marks (`\"`) - the middle quote mark will not "break" the surrounding quote marks.  
-
-Note - thus, if you want to *display* a backslash, you must escape it's meaning with *another* backslash. So you must write two backslashes `\\` to display one.  
-
-**Special characters**  
-
-Special character | Represents  
------------------ | --------------------------------------------------------------    
-`"\\"` | backslash  
-`"\n"` | a new line (newline)   
-`"\""` | double-quote *within* double quotes  
-`'\''` | single-quote *within* single quotes  
-`"\`"` | grave accent  
-`"\r"` | carriage return  
-`"\t"` | tab  
-`"\v"` | vertical tab 
-`"\b"` | backspace  
-
-
-Run `?"'"` in the R Console to display a complete list of these special characters (it will appear in the RStudio Help pane). 
-
-
+Эдгээр өвөрмөц карактерүүдийн бүрэн жагсаалтыг R Console -д `?"'"` гэж уншуулж гаргаж ирнэ ( RStudio -ын Help цонхонд харагдна).
 
 <!-- ======================================================= -->
-## Regular expressions (regex) 
 
+## Regular expressions (regex)
 
 <!-- ======================================================= -->
-## Regex and special characters { } 
 
-Regular expressions, or "regex", is a concise language for describing patterns in strings. If you are not familiar with it, a regular expression can look like an alien language. Here we try to de-mystify this language a little bit.  
+## Regex болон өвөрмөц карактерүүд
 
-*Much of this section is adapted from [this tutorial](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432) and [this cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)*. We selectively adapt here knowing that this handbook might be viewed by people without internet access to view the other tutorials.    
+Regular expressions, буюу "regex" бол стрингсийн доторх хэв маяг, бүтцийг дүрсэлж хураангуйлсан хэл юм. Regular expressions-ыг сайн мэдэхгүй хүнд харь гаригийн бичиг шиг харагддаг. Энэхүү хэсэгт энэ хэлийн тайллыг тайлбарлахыг зорилоо.
 
+*Энэ хэсгийн ихэнх агуулгыг [this tutorial](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432) болон [this cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf) линкүүдээс авсан*. Энэхүү линкийн хичээлийг интернетгүй газар хэрэглэх боломжгүй тул бид энэхүү номондоо сонгож шилээд заримыг нь оруулсан.
 
-A regular expression is often applied to extract specific patterns from "unstructured" text - for example medical notes, chief complaints, patient history, or other free text columns in a data frame  
+regular expression -ыг "бүтэцгүй" текстнээс бүтэц хайж илрүүлэхэд хэрэглэдэг - үүний жишээнд өвчний түүх, өргөдөл, гомдол, эмнэлэгийн тэмдэглэл болоэ хүснэгтэлсэн сул текстүүд ордог.
 
-There are four basic tools one can use to create a basic regular expression:  
+regular expression -ын үндсэн хэсгийг дараах дөрвөн аргаар бүтээдэг:
 
-1) Character sets  
-2) Meta characters  
-3) Quantifiers  
-4) Groups  
+1)  Карактер багц\
+2)  Мета карактер\
+3)  Тоон үзүүлэлт\
+4)  Бүлэг
 
+**Карактер багц**
 
-**Character sets**  
+Карактерийн сонголтуудыг жагсаалтаар илэрхийлж, хаалтанд дотор багцлах арга юм. Аливаа стрингст хайлт хийж буй карактерүүдийн аль нэг нь олдвол тохироо үүслээ гэж үзнэ. Жишээ нь эгшиг үсгүүдийг хайхын тулд "[aeiou]" гэсэн карактер багцыг хэрэглэдэг. Нийтлэг хэрэглэгддэг карактер багцуудыг дор жагсаав:
 
-Character sets, are a way of expressing listing options for a character match, within brackets. So any a match will be triggered if any of the characters within the brackets are found in the string. For example, to look for vowels one could use this character set: "[aeiou]". Some other common character sets are:  
+| Карактер багц | Илэрхийлэх утга                 |
+|---------------|---------------------------------|
+| `"[A-Z]"`     | томоор бичсэн бүх үсэг          |
+| `"[a-z]"`     | жижигээр бичсэн бүх үсэг        |
+| `"[0-9]"`     | бүх цифр                        |
+| `[:alnum:]`   | тоон болон үсгэн бүх тэмдэгтүүд |
+| `[:digit:]`   | бүх тоон цифр                   |
+| `[:alpha:]`   | бүх үсэг (том болон жижиг үсэг) |
+| `[:upper:]`   | томоор бичсэн бүх үсэг          |
+| `[:lower:]`   | жижигээр бисэн бүх үсэг         |
 
-Character set | Matches for  
------------------ | --------------------------------------------------------------    
-`"[A-Z]"` | any single capital letter  
-`"[a-z]"` | any single lowercase letter  
-`"[0-9]"` | any digit  
-`[:alnum:]` | any alphanumeric character  
-`[:digit:]` | any numeric digit  
-`[:alpha:]` | any letter (upper or lowercase)  
-`[:upper:]` | any uppercase letter  
-`[:lower:]` | any lowercase letter  
+Карактер багцуудыг хамтад нь зэрэг нэг хаалтанд бичиж болно (зай авахгүй!). Жишээ нь `"[A-Za-z]"` (том болон жижиг бүх үсгүүд), `"[t-z0-5]"` (жижиг t-ээс z хүртэл ЭСВЭЛ 0-оос 5 хүртэл) гэх мэтээр бичиж болно.
 
+**Мета карактер**
 
-Character sets can be combined within one bracket (no spaces!), such as `"[A-Za-z]"` (any upper or lowercase letter), or another example `"[t-z0-5]"` (lowercase t through z OR number 0 through 5).  
+Мета карактер нь карактер багцын товчилсон хэлбэр. Нийтлэг хэрэглэгддэг мета карактерүүдийг дор жагсаав:
 
+| Мета карактерүүд | Илэрхийлэх утга                                        |
+|------------------|--------------------------------------------------------|
+| `"\\s"`          | нэг хоосон зай                                         |
+| `"\\w"`          | нэг ширхэг тоон болон үсгэн тэмдэгт (A-Z, a-z, or 0-9) |
+| `"\\d"`          | нэг ширхэг тоон цифр (0-9)                             |
 
+**Олшруулагч**
 
-**Meta characters**  
+Зөвхөн нэг карактер хайх тохиолдол бараг гардаггүй. Иймээс олшруулагч ашиглаж урт хэмжээний үсэг/тоон хайлт хийдэг .
 
-Meta characters are shorthand for character sets. Some of the important ones are listed below:  
+Олшуурах гэж буй карактерийн *ард* олшруулах тоог `{ }` хаалтанд дотор бичдэг,
 
-Meta character | Represents  
------------------ | --------------------------------------------------------------    
-`"\\s"` | a single space  
-`"\\w"` | any single alphanumeric character (A-Z, a-z, or 0-9)  
-`"\\d"` | any single numeric digit (0-9)  
+-   `"A{2}"` нь **хоёр** том A үсэг илэрхийлнэ.\
+-   `"A{2,4}"` нь **2 оос 4 -н** том A үсгийг илэрхийлнэ *(зай авч болохгүй!)*.\
+-   `"A{2,}"` **2 болон түүнээс дээш** тооны том А үсгийг илэрхийлнэ.\
+-   `"A+"` **нэг болон түүнээс дээш** тооны том А үсгийг илэрхийлнэ (өөр карактер гарч иртэл энэ бүлэг үргэлжлэх болно).\
+-   Хэрэв од `*` тэмдэг урд нь тавьбал **0 болон түүнээс дээш** тохироо буй эсэхийг харуулна (тухайн хэв маяг байгаа эсэх нь эргэлзээтэй үед байгаа хэрэг болдог).
 
-
-**Quantifiers**  
-
-Typically you do not want to search for a match on only one character. Quantifiers allow you to designate the length of letters/numbers to allow for the match.  
-
-Quantifiers are numbers written within curly brackets `{ }` *after* the character they are quantifying, for example,  
-
-* `"A{2}"` will return instances of **two** capital A letters.  
-* `"A{2,4}"` will return instances of **between two and four** capital A letters *(do not put spaces!)*.  
-* `"A{2,}"` will return instances of **two or more** capital A letters.  
-* `"A+"` will return instances of **one or more** capital A letters (group extended until a different character is encountered).  
-* Precede with an `*` asterisk to return **zero or more** matches (useful if you are not sure the pattern is present)  
-
-
-Using the `+` plus symbol as a quantifier, the match will occur until a different character is encountered. For example, this expression will return all *words* (alpha characters: `"[A-Za-z]+"`  
-
+Нэмэх `+` тэмдгийг олшуулагчаар өгвөл таарсан хэв маягийг дараачийн карактер гарч иртэл хайх болно. Жишээ нь `"[A-Za-z]+"` (цагаан толгойн карактерүүд) -ээр бүх *үгсийг* илэрхийлнэ:
 
 ```{r}
-# test string for quantifiers
+# олшруулагчийг шалгах тест стринг
 test <- "A-AA-AAA-AAAA"
 ```
 
-When a quantifier of {2} is used, only pairs of consecutive A's are returned. Two pairs are identified within `AAAA`.  
+Олшруулагчийг {2} гэж өгвөл зөвхөн дараалласан A -г л гаргаж ирнэ. Жишээ нь `AAAA`-д хоёр хос дараалласан А байна.
 
 ```{r}
 str_extract_all(test, "A{2}")
 ```
 
-When a quantifier of {2,4} is used, groups of consecutive A's that are two to four in length are returned.  
+Хэрэв олшруулагч {2,4} бол 2 -оос 4 удаа дараалласан A байх тохиолдлуудыг гаргаж ирнэ.
 
 ```{r}
 str_extract_all(test, "A{2,4}")
 ```
 
-With the quantifier `+`, groups of **one or more** are returned:  
+Хэрэв олшруулагч `+` бол **нэг болон түүнээс дээш** тооны А байх тохиолдлууд гарч ирнэ:
 
 ```{r}
 str_extract_all(test, "A+")
 ```
 
-**Relative position**  
+**Харьцангуй байрлал**
 
-These express requirements for what precedes or follows a pattern. For example, to extract sentences, "two numbers that are followed by a period" (`""`).  (?<=\\.)\\s(?=[A-Z]) 
+Эдгээр нөхцлүүд хайж буй хэв маягийн өмнө болон хойно нь юу байгаа вэ гэдгээр илэрхийлэгддэг. Жишээ нь "хоёр тооны ардах цэг" (`""`). (?\<=\\.)\\s(?=[A-Z])
 
 ```{r}
 str_extract_all(test, "")
 ```
 
-Position statement | Matches to  
------------------ | --------------------------------------------------------------    
-`"(?<=b)a"` | "a" that **is preceded** by a "b"  
-`"(?<!b)a"` | "a" that **is NOT preceded** by a "b"  
-`"a(?=b)"` | "a" that **is followed** by a "b"  
-`"a(?!b)"` | "a" that **is NOT followed** by a "b"  
+| Байрлын илэрхийлэл | Илэрхийлэх утга               |
+|--------------------|-------------------------------|
+| `"(?<=b)a"`        | **урдаа** "b" тэй "a"         |
+| `"(?<!b)a"`        | **урдаа** "b" **БАЙХГҮЙ** "a" |
+| `"a(?=b)"`         | **ардаа** "b" тэй "a"         |
+| `"a(?!b)"`         | **урдаа** "b" **БАЙХГҮЙ** "a" |
 
+**Бүлгүүд**
 
+regular expression ийг бүлэглэснээр үр дүн илүү зохион байгуулалттайгаар гарч ирдэг.
 
+**Regex -ын жишээ**
 
-
-**Groups**  
-
-Capturing groups in your regular expression is a way to have a more organized output upon extraction.  
-
-
-
-
-**Regex examples**  
-
-Below is a free text for the examples. We will try to extract useful information from it using a regular expression search term.  
+Сул текст дээр хэрхэн ажиллах талаар жишээ дор харуулав. Үүнээс бид regular expression-ийн хайлтын дүрмээр хэрэгтэй мэдээллээ гаргаж авах болно.
 
 ```{r}
 pt_note <- "Patient arrived at Broward Hospital emergency ward at 18:00 on 6/12/2005. Patient presented with radiating abdominal pain from LR quadrant. Patient skin was pale, cool, and clammy. Patient temperature was 99.8 degrees farinheit. Patient pulse rate was 100 bpm and thready. Respiratory rate was 29 per minute."
 ```
 
-This expression matches to all words (any character until hitting non-character such as a space):  
+Энэхүү илэрхийлэл нь бүх үгтэй тохирч байна (тохироо нь бүх карактертэй тохирох ба хоосон зай гэх мэт үсэг биш карактер гарч иртэл үргэлжилнэ):
 
 ```{r}
 str_extract_all(pt_note, "[A-Za-z]+")
 ```
 
-The expression `"[0-9]{1,2}"` matches to consecutive numbers that are 1 or 2 digits in length. It could also be written `"\\d{1,2}"`, or `"[:digit:]{1,2}"`.  
+`"[0-9]{1,2}"` бол үргэлжилсэн, 1 ээс 2 орон тоог илэрхийлэл. Үүнийг мөн `"\\d{1,2}"`, эсвэл `"[:digit:]{1,2}"` гэж бичиж болно.
 
 ```{r}
 str_extract_all(pt_note, "[0-9]{1,2}")
 ```
 
-<!-- This expression will extract all sentences (assuming first letter is capitalized, and the sentence ends with a period). The pattern reads in English as: "A capital letter followed by some lowercase letters, a space, some letters, a space,     -->
+<!-- нь бүх өгүүлбэрийг илэрхийлнэ (ингэхдээ өгүүлбэрийн эхний үсэг томоор, бичигдсэн ба өгүүлбэр төгсөхөд цэг тавигдсан гэж үзнэ). Илэрхийлсэн бүтэц Англи хэлээр уншигдахдаа: "Ардаасаа жижиг үсэгнүүд, хоосон зай, хэдэн үсэг, зай гэх мэтээр дагуулсан том үсэг     -->
 
 <!-- ```{r} -->
+
 <!-- str_extract_all(pt_note, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*") -->
+
 <!-- ``` -->
 
+Дараах линкийн 2 дугаар хуудаснаас чухал regex expressions-үүд, хэрэгтэй зөвлөгөөнүүдтэй танилцаж болно [this cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
 
-You can view a useful list of regex expressions and tips on page 2 of [this cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)  
-
-Also see this [tutorial](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432).  
-
-
-
+Мөн [tutorial](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432) линкээс нэмэлт мэдээлэл авна уу.
 
 <!-- ======================================================= -->
-## Resources { }
 
-A reference sheet for **stringr** functions can be found [here](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
+## Эх сурвалж материалууд
 
+**stringr** функцын лавлагаа хуудсыг дараах линкээс үзэж болно: [here](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
 
-A vignette on **stringr** can be found [here](
-https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
-
-
-
+**stringr** -ын винньетийг дараах линкээс үзэж болно: [here](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
