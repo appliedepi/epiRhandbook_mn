@@ -1,70 +1,72 @@
-# Factors {}
+# Фактор {}
 
 
 ```{r, out.width=c('100%'), echo=F, message=F}
 knitr::include_graphics(here::here("images", "Factors_1500x500.png"))
 ```
 
-In R, *factors* are a class of data that allow for ordered categories with a fixed set of acceptable values.  
+Боломжит утгууд тодорхой байдлаар багцлагдан, эрэмбэлэн ангилагдсан датаг R дээр *фактор* дата гэнэ.
 
-Typically, you would convert a column from character or numeric class to a factor if you want to set an intrinsic order to the values ("*levels*") so they can be displayed non-alphabetically in plots and tables. Another common use of factors is to standardise the legends of plots so they do not fluctuate if certain values are temporarily absent from the data.   
+График, хүснэгт байгуулахад default-аар цагаан толгойн дарааллаар, багаас ихрүү чиглэлтэй (alpha-numeric) гарч ирдэг. Харин баганын утгад эрэмбэ (*шатлал*) тогтоосноор болиулж болдог. Үүний тулд карактер, тоон багануудыг фактор хэлбэрт хувиргах ашаардлагатй. Фактор датаны өөр ач холбогдол бол графикт стандарт легендийг байгуулж өгдөг. Энэ нь датанд аль нэг утга байхгүйгээс легендийн байрлал график янз бүр болж өөрчлөгдөөд байдаг асуудлыг шийдэж өгдө.
 
-This page demonstrates use of functions from the package **forcats** (a short name for "**For** **cat**egorical variables") and some **base** R functions. We also touch upon the use of **lubridate** and **aweek** for special factor cases related to epidemiological weeks.  
 
-A complete list of **forcats** functions can be found online [here](https://forcats.tidyverse.org/reference/index.html). Below we demonstrate some of the most common ones.  
+Энэ хэсэгт **forcats** багцын функцууд ( “**For** "**cat**egorical variables”-гэсэн үгийн товчлол) болон **base** R- зарим функцыг тайлбарлана. Мөн тархварзүйн долоо хоногтой (epiweeks) хэсэгт **lubridate**, **aweek** гэсэн багцуудаас цухас яригдах болно. 
+
+
+**forcats** багц дах функцуудын бүрэн жагсаалтыг [here](https://forcats.tidyverse.org/reference/index.html) –ээс үзэж болно. Энд Энд зөвхөн чухал хэрэглэгддэг функцуудыг тайлбарласан.
 
 
 <!-- ======================================================= -->
-## Preparation  
+## Бэлтгэл  
 
-### Load packages {.unnumbered}  
+### Багцыг ачааллах {.unnumbered}  
 
-This code chunk shows the loading of packages required for the analyses. In this handbook we emphasize `p_load()` from **pacman**, which installs the package if necessary *and* loads it for use. You can also load installed packages with  `library()` from **base** R. See the page on [R basics] for more information on R packages.  
+Энэ хэсэгт анализ хийхэд шаардлагатай багцуудыг доорхи кодоор ачааллана.**pacman** багцын `p_load()` функцээр шаардлагатай багцыг татаж аваад ачааллана уу. Өмнө татаж авсан багцуудаа **base** R -ын `library()`-аар ачааллаж болно. Багцын талаарх нэмэлт мэдээллийг [R basics] хэсгээс харна уу.
 
 ```{r}
 pacman::p_load(
-  rio,           # import/export
-  here,          # filepaths
-  lubridate,     # working with dates
-  forcats,       # factors
-  aweek,         # create epiweeks with automatic factor levels
-  janitor,       # tables
-  tidyverse      # data mgmt and viz
+  rio,           # импорт/экспорт
+  here,          # файлын зам
+  lubridate,     # огноог янзлана
+  forcats,       # факторыг янзлана
+  aweek,         # автоматаар фактор үүсгэж тархварзүйн долоо хоног (epiweeks) үүсгэнэ
+  janitor,       # хүснэгт
+  tidyverse      # дата менежмент, график
   )
 ```
 
 
 
-### Import data {.unnumbered}  
+### Дата импортлох{.unnumbered}  
 
-We import the dataset of cases from a simulated Ebola epidemic. If you want to follow along, <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>click to download the "clean" linelist</a> (as .rds file). Import your data with the `import()` function from the **rio** package (it accepts many file types like .xlsx, .rds, .csv - see the [Import and export] page for details).  
+Жишээ дасгалуудад Эбола дэгдэлтийн үеийн зохиомол дата ашиглах болно. Эдгээр дасгалуудыг дагаж хийхийг хүсвэл <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>линкийн "clean" linelist дээ дарж татаж авна уу </a> (as .rds file). Датагаа **rio**-ын `import()`функцээр импортлож болно (энэ нь.xlsx, .rds, .csv - зэрэг олон дата төрөлтэй ажиллаж чадна. [Import and export] хэсэгт илүү тайлбарласан).  
 
 ```{r, echo=F}
-# import the linelist into R
+# linelist -ийг R луу импортлох
 linelist <- rio::import(here::here("data", "case_linelists", "linelist_cleaned.rds"))
 ```
 
 
 ```{r, eval=F}
-# import your dataset
+# датаг импортлох
 linelist <- import("linelist_cleaned.rds")
 ```
 
 
-### New categorical variable {#fct_newcat .unnumbered}  
+### Шинээр ангилагдсан (categorical) хувьсагч үүсгэх {#fct_newcat .unnumbered}  
 
-For demonstration in this page we will use a common scenario - the creation of a new categorical variable.
+Ойлгомжтой тайлбарлах үүднээс хамгийн нийтлэг хэрэглэгддэг үйлдэл болох ангилагдсан хувьсагч шинээр хэрхэн үүсгэхийг үзэх болно.
 
-Note that if you convert a numeric column to class factor, you will not be able to calculate numeric statistics on it.  
+Тоон баганыг фактор хэлбэрт хувиргаснаар статистик бодолт хийх боломжгүй өолдог гэдгийг санаарай.
 
-#### Create column {.unnumbered}  
+#### Багана үүсгэх{.unnumbered}  
 
-We use the existing column `days_onset_hosp` (days from symptom onset to hospital admission) and create a new column `delay_cat` by classifying each row into one of several categories. We do this with the **dplyr** function `case_when()`, which sequentially applies logical criteria (right-side) to each row and returns the corresponding left-side value for the new column `delay_cat`. Read more about `case_when()` in [Cleaning data and core functions].  
+Жишээгээр `days_onset_hosp` (өвчний шинж эхэлснээс эмнэлэгт хэвтэх хүртэл хугацаа) баганын мөрүүдийг ангилан ялгаж `delay_cat` гэсэн шинэ багана үүсгэх болно. Үүнийг  **dplyr** -ын `case_when()` функцээр хйинэ. `case_when()` функцын логик шалгуур (баруун тал) дэс дарааллан мөр болгонд үйлчилж, үүссэн утга нь `delay_cat` шинэ баганын (зүүн тал) тохирох мөрөнд ордог. `case_when()` функцын талаар [Cleaning data and core functions] хэсэгт дэлгэрэнгүй тайлбарласан.  
 
 ```{r}
 linelist <- linelist %>% 
   mutate(delay_cat = case_when(
-    # criteria                                   # new value if TRUE
+    # шалгуур                                   # TRUE байвал орох шинэ утга 
     days_onset_hosp < 2                        ~ "<2 days",
     days_onset_hosp >= 2 & days_onset_hosp < 5 ~ "2-5 days",
     days_onset_hosp >= 5                       ~ ">5 days",
@@ -73,15 +75,15 @@ linelist <- linelist %>%
 ```
 
 
-#### Default value order {.unnumbered}  
+#### Утгын default эрэмбэ {.unnumbered}  
 
-As created with `case_when()`, the new column `delay_cat` is a categorical column of class Character - *not* yet a factor. Thus, in a frequency table, we see that the unique values appear in a default alpha-numeric order - an order that does not make much intuitive sense:  
+`case_when()`-ээр үүсгэдсэн `delay_cat` багана карактер утгатай ангилагдсан багана байдаг. Өөрөөр хэлбэл фактор болж *амжаагүй* байдаг. Тийм ч учраас давтамж харуулсан хүснэгт дээр ангилалын жагсаалт цагаан толгойн дарааллаар эрэмбэлэгдсэн байдаг. Гэтэл энэ дараалал тухайн датаг ойлгоход учир дутагдалтай байдаг:  
 
 ```{r}
 table(linelist$delay_cat, useNA = "always")
 ```
 
-Likewise, if we make a bar plot, the values also appear in this order on the x-axis (see the [ggplot basics] page for more on **ggplot2** - the most common visualization package in R).  
+Barplot байгуулахад x-тэнхлэгийн дараалал автомат тохируулгатай байдаг ( R график байгуулахын тулд хамгийн их хэрэглэгддэг  **ggplot2** багцын талаар [ggplot basics] хуудасанд дэлгэрэнгүй тайлбарласан).  
 
 ```{r, warning=F, message=F}
 ggplot(data = linelist)+
@@ -90,39 +92,39 @@ ggplot(data = linelist)+
 
 
 
-## Convert to factor  
+## Фактор болгож хувиргах  
 
-To convert a character or numeric column to class *factor*, you can use any function from the **forcats** package (many are detailed [below](#fct_adjust)). They will convert to class factor and then also perform or allow certain ordering of the levels - for example using `fct_relevel()` lets you manually specify the level order. The function `as_factor()` simply converts the class without any further capabilities.  
+Карактер эсвэл тоон баганыг *фактор* болгож хувиргахад  **forcats** -ын аль ч функцыг хэрэглэж болно (дэлгэрэнгүй мэдээлэл  [below](#fct_adjust) -д орсон). Эдгээр функц нь датаг юуны түрүүнд фактор болгож хувиргадаг тул цаашид шатлалтай ангилал үүсгэх боломжтой болдог. Тухайлбал шатлалын эрэмбийг `fct_relevel()` -ээр зааж өгч болно. Гэтэл `as_factor()` функц зөвхөн факторт хувиргахаас өөр үйлдэл нэмж хийдэггүй. 
 
-The **base** R function `factor()` converts a column to factor and allows you to manually specify the order of the levels, as a character vector to its `levels = ` argument.  
+**base** R -ын `factor()` функц мөн баганыг факторлуу хувиргадаг ба шатлалын эрэмбийг `levels = ` аргументэд нь та өөрөө зааж өгөх болно. 
 
-Below we use `mutate()` and `fct_relevel()` to convert the column `delay_cat` from class character to class factor. The column `delay_cat` is created in the [Preparation](#fct_newcat) section above. 
+Дор жишээнд `mutate()` болон `fct_relevel()` -ээр `delay_cat` баганыг карактерээс фактор болгож хувиргахыг харуулав. `delay_cat` багана үүсэх талаар өмнөх [Preparation](#fct_newcat) хэсэгт тайлбарласан. 
 
 ```{r}
 linelist <- linelist %>%
   mutate(delay_cat = fct_relevel(delay_cat))
 ```
 
-*The unique "values" in this column are now considered "levels" of the factor.*  The levels have an *order*, which can be printed with the **base** R function `levels()`, or alternatively viewed in a count table via `table()` from **base** R or `tabyl()` from **janitor**. By default, the order of the levels will be alpha-numeric, as before. Note that `NA` is not a factor level.  
+*Одоо энэхүү баганын "утгууд" фактор "түвшингүүд" боллоо гэсэн үг.*  Энэхүү үүсгэсэн түвшний жагсаалтыг *эрэмбийг* **base** R-ын  `levels()` функц эсвэл `table()` эсвэл **janitor** -ын `tabyl()` функцуудээр харж болно. Түвшний эрэмбэ нь default-аар цагаан толгойн болон багаас ихсэх (alpha-numeric) дарааллар гарч ирдэг. `NA` бол факторын түвшинд тооцогдохгүй болохыг анхаарна уу.   
 
 ```{r}
 levels(linelist$delay_cat)
 ```
 
-The function `fct_relevel()` has the additional utility of allowing you to manually specify the level order. Simply write the level values in order, in quotation marks, separated by commas, as shown below. Note that the spelling must exactly match the values. If you want to create levels that do not exist in the data, use [`fct_expand()` instead](#fct_add)).  
+Үүнээс гадна `fct_relevel()` -ээр түвшний эрэмбийг гараар зааж өгч болно. Ингэхдээ доор үзүүлсний дагуу түвшин заасан утгуудаа таслалаар тусгаарлаж, хашилтанд уагсааж бичнэ. Датан дах утгаасаа үг үсгийн зөрөөгүй бичхийг анхаар. Хэрэв датанд байхгүй түвшин үүсгэх хэрэгтэй бол [`fct_expand()` instead](#fct_add))-ыг хэрэглэ.  
 
 ```{r}
 linelist <- linelist %>%
   mutate(delay_cat = fct_relevel(delay_cat, "<2 days", "2-5 days", ">5 days"))
 ```
 
-We can now see that the levels are ordered, as specified in the previous command, in a sensible order.  
+Дээрх коммандаар зааж өгсний үр дүнд түвшний эрэмбэ илүү ойлгомжтой болно байна. 
 
 ```{r}
 levels(linelist$delay_cat)
 ```
 
-Now the plot order makes more intuitive sense as well.  
+График дээр хэвлэгдэх дараалал ч гэсэн илүү ойлгомжтой болж байна.  
 
 ```{r, warning=F, message=F}
 ggplot(data = linelist)+
@@ -130,24 +132,24 @@ ggplot(data = linelist)+
 ```
 
 
-## Add or drop levels  
+## Түвшин нэмэх, хасах 
 
-### Add {#fct_add .unnumbered}
-If you need to add levels to a factor, you can do this with `fct_expand()`. Just write the column name followed by the new levels (separated by commas). By tabulating the values, we can see the new levels and the zero counts. You can use `table()` from **base** R, or `tabyl()` from **janitor**:  
+### Нэмэх {#fct_add .unnumbered}
+Фактортоо нэмж түвшин оруулах бол `fct_expand()`-ыг хэрэглэ. Багана болон нэмэгдэж буй түвшний нэрийг (таслалаар тусгаарлаж) функцэл оруулдаг. Баганын нийт утгыг хүснэгтэлж харвал шинээр үүсгэсэн түвшин 0 давтамжтай харагддаг. **base** R-ын `table()` эсвэл **janitor**-ын `tabyl()` -аар хүснэгт болгож хараарай:  
 
 ```{r}
 linelist %>% 
   mutate(delay_cat = fct_expand(delay_cat, "Not admitted to hospital", "Transfer to other jurisdiction")) %>% 
-  tabyl(delay_cat)   # print table
+  tabyl(delay_cat)   # хүснэгт хэвлэ
 ```
 
 
-Note: there is a special **forcats** function to easily add missing values (`NA`) as a level. See the section on [Missing values](#fct_missing) below.  
+Тэмдэглэл: **forcats** -д дутуу утгыг (`NA`) хялбар аргаар түвшин болгож хувиргах тусгай функц байдаг. [Missing values](#fct_missing) хэсгийг нэмж үзнэ үү.  
 
 
-### Drop {.unnumbered}  
+### Хасах {.unnumbered}  
 
-If you use `fct_drop()`, the "unused" levels with zero counts will be dropped from the set of levels. The levels we added above ("Not admitted to a hospital") exists as a level but no rows actually have those values. So they will be dropped by applying `fct_drop()` to our factor column:  
+`fct_drop()`-ээр "ашиглагдаагүй", 0 давтамжтай түвшинг хасдаг.  Өмнөх жишээний нэг түвшин ("эмнэлэгт хэвтээгүй тохиолдлууд") 0 давтамжтай байна. Фактортай баганаа `fct_drop()`-д оруулснаар энэхүү 0 давтамжтай түвшин хасагдна:  
 
 ```{r}
 linelist %>% 
@@ -158,38 +160,38 @@ linelist %>%
 
 
 
-## Adjust level order {#fct_adjust} 
+## Түвшний эрэмбийг тохируулах {#fct_adjust} 
 
-The package **forcats** offers useful functions to easily adjust the order of a factor's levels (after a column been defined as class factor): 
+**forcats** -ын функцуудээр түвшний эрэмбийг тохируулахад хялбар (багана фактор хэлбэрт хувирсан байх шаардлагатай): 
 
-These functions can be applied to a factor column in two contexts:  
+Ингэхдээ фактор баганад хоёр янзаар үйлчилнэ:  
 
-1) To the column in the data frame, as usual, so the transformation is available for any subsequent use of the data  
-2) *Inside of a plot*, so that the change is applied only within the plot  
+1) Хүснэгтийн багана: датанд өөрчлөлт хийгдсэн тул цаашид хийгдэх үйлдэлд нөлөөлнө.  
+2) *График дотор*: өөрчлөлт зөвхөн график дотор хийгдэх болно.  
 
 
 
-### Manually {.unnumbered} 
+### Гараар гүйцэтгэх {.unnumbered} 
 
-This function is used to manually order the factor levels. If used on a non-factor column, the column will first be converted to class factor.  
+Фактор дах түвшний эрэмбийг гараар янзалж болно. Фактор бус баганыг функцэд оруулбал багана эхлээд фактор хэлбэрт хувирдаг.  
 
-Within the parentheses first provide the factor column name, then provide either:  
+Хаалтан дотор баганын нэрийг оруулаад араас нь дараахь хоёрын аль нэгийг оруул:  
 
-* All the levels in the desired order (as a character vector `c()`), or  
-* One level and it's corrected placement using the `after = ` argument  
+* Түвшнүүдийг бүгдийг хүссэн дарааллын дагуу жагсааж оруулна (карактер вектор хэлбэрээр `c()`) эсвэл  
+* Засагдах шаардлагатай нэг ширхэг түвшний нэрийг оруулаад түүний шинэ эрэмбийн байрлалыг `after = ` аргументэд зааж өгнө.  
 
-Here is an example of redefining the column `delay_cat` (which is already class Factor) and specifying all the desired order of levels.  
+Энэхүү жишээнд `delay_cat` баганын түвний эрэмбийг дахин зааж өгч (өмнө нь фактор байсан) хүссэн дарааллалдаа хэрхэн оруулахыг харуулав. 
 
 ```{r}
-# re-define level order
+# түвшний эрэмбийг дахин зааж өгөх
 linelist <- linelist %>% 
   mutate(delay_cat = fct_relevel(delay_cat, c("<2 days", "2-5 days", ">5 days")))
 ```
 
-If you only want to move one level, you can specify it to `fct_relevel()` alone and give a number to the `after = ` argument to indicate where in the order it should be. For example, the command below shifts "<2 days" to the second position: 
+Зөвхөн нэг л түвшинг зөөх шаардлагатй үед `fct_relevel()` -ыг дангаар нь хэрэглэж,  засагдах эрэмбийн байрлалыг `after = ` аргументэд зааж өг. Жишээ нь дараахь коммандаар "<2 days" гэсэн түвшин хоёрдугаар байрлалруу зөөгдөж байна: 
 
 ```{r, eval=F}
-# re-define level order
+# түвшний эрэмбийг дахин зааж өгч
 linelist %>% 
   mutate(delay_cat = fct_relevel(delay_cat, "<2 days", after = 1)) %>% 
   tabyl(delay_cat)
@@ -198,11 +200,11 @@ linelist %>%
 
 
 
-### Within a plot {.unnumbered}  
+### График дотор {.unnumbered}  
 
-The **forcats** commands can be used to set the level order in the data frame, or only within a plot. By using the command to "wrap around" the column name *within* the `ggplot()` plotting command, you can reverse/relevel/etc. the transformation will only apply within that plot.  
+Хүснэгтээс гадна график доторх түвшний эрэмбийг **forcats** -аар зааж өгдөг. Эдгээр функцыг график байгуулдаг `ggplot()` дотор оруулаад түвшнийг эрэмбэлж, урвуулж (reverse) болно. Ингэснээр өөрчлөлт зөвхөн графикт л хийгдэх болно. 
 
-Below, two plots are created with `ggplot()` (see the [ggplot basics] page). In the first, the `delay_cat` column is mapped to the x-axis of the plot, with it's default level order as in the data `linelist`. In the second example it is wrapped within `fct_relevel()` and the order is changed in the plot.  
+Доор жишээнд хоёр графикийг`ggplot()` -ээр байгуулав ( [ggplot basics] хуудсаас лавлаж болно). Эхний графикт `delay_cat` баганыг x-тэнхлэгт байрлуулж,  түвшний эрэмбэ нь default хэлбэрээр байна. Хоёр дах графикийн кодонд баганын нэр, түвшний дарааллыг `fct_relevel()`-т оруулснаас график дээрх эрэмбэ өөрчлөгдсөн байна. 
 
 ```{r, echo =F}
 linelist <- linelist %>% 
@@ -213,43 +215,43 @@ linelist <- linelist %>%
 
 
 ```{r, warning=F, message=F, out.width = c('50%', '50%'), fig.show='hold'}
-# Alpha-numeric default order - no adjustment within ggplot
+# ggplot дотор тохируулга хийж өгөөгүй учир эрэбмэ default буюу цагаан толгойн, багаас ихсэх дараалалтай байна 
 ggplot(data = linelist)+
     geom_bar(mapping = aes(x = delay_cat))
 
-# Factor level order adjusted within ggplot
+# фактор лах түвшний эрэмбийг ggplot дотор тохируулж өгсөн
 ggplot(data = linelist)+
   geom_bar(mapping = aes(x = fct_relevel(delay_cat, c("<2 days", "2-5 days", ">5 days"))))
 ```
 
-Note that default x-axis title is now quite complicated - you can overwrite this title with the **ggplot2** `labs()` argument.  
+графикийн түвшинд ингэж өөрчлөлт хийхэд x- тэнхлэг дээрх default гарчигны утга алдагддаг. Иймээс гарчигийг **ggplot2**-ын  `labs()` аргументээр дахин нэрлэх хэрэгтэй. 
 
 
 
 
-### Reverse {.unnumbered}  
+### Урвуулах {.unnumbered}  
 
-It is rather common that you want to reverse the level order. Simply wrap the factor with `fct_rev()`.  
+Түвшний эрэмбийг урвуугаар нь эрэмбэлэх хэрэгцээ их байдаг. Энэ үед факторыг `fct_rev()`-т оруулж бичихэд хангалттай.  
 
-Note that if you want to reverse *only* a plot legend but not the actual factor levels, you can do that with `guides()` (see [ggplot tips]).  
-
-
+Дата доторх факторын эрэмбэ нь хэвээр боловч графикт харагдах эрэмбэд өөрчлөлт оруулах гэж буй бол `guides()` функцыг хэрэглэж болно ([ggplot tips] хэсгээс харна уу).  
 
 
-### By frequency {.unnumbered}  
 
-To order by frequency that the value appears in the data, use `fct_infreq()`. Any missing values (`NA`) will automatically be included at the end, unless they are converted to an explicit level (see [this section](#fct_missing)). You can reverse the order by further wrapping with `fct_rev()`.  
 
-This function can be used within a `ggplot()`, as shown below.  
+### Давтамжаар {.unnumbered}  
+
+Датаны давтамжийн тоогоор эрэмбэлэхдээ `fct_infreq()`-ийг хэрэглэдэг. Дутуу утгад (`NA`) тодорхой түвшин зааж өгөөгүй тохиолдолд автоматаар хамгийн төгсгөлд эрэмбэлэгддэг ([this section](#fct_missing) -ээс харна уу). Давтамжийн урвуу дараалалд оруулах бол `fct_rev()`-т давхар оруулж эрэмбэлдэг.   
+
+Энэ функцыг доор үзүүлсэнчлэн `ggplot()`дотор хэрэглэж болно.  
 
 ```{r, out.width = c('50%', '50%', '50%'), fig.show='hold', warning=F, message=F}
-# ordered by frequency
+# давтамжаар нь эрэмбэлэх
 ggplot(data = linelist, aes(x = fct_infreq(delay_cat)))+
   geom_bar()+
   labs(x = "Delay onset to admission (days)",
        title = "Ordered by frequency")
 
-# reversed frequency
+# урвуу давтамжаар эрэмбэлэх
 ggplot(data = linelist, aes(x = fct_rev(fct_infreq(delay_cat))))+
   geom_bar()+
   labs(x = "Delay onset to admission (days)",
@@ -257,23 +259,23 @@ ggplot(data = linelist, aes(x = fct_rev(fct_infreq(delay_cat))))+
 ```
 
 
-### By appearance {.unnumbered}  
+### Харагдах байдлаар {.unnumbered}  
 
-Use `fct_inorder()` to set the level order to match the order of appearance in the data, starting from the first row. This can be useful if you first carefully `arrange()` the data in the data frame, and then use this to set the factor order.  
-
-
+Датанд эхэлж гарч ирэх дарааллаар (эхний мөрөөс эхэлж тооцно) эрэмбэлэхийн тулд `fct_inorder()`-ийг хэрэглэ. Датаг `arrange()` функцээр эхэлж эрэмбэлээд, факторт хувиргаж буй үед `fct_inorder()`  функц илүү хэрэг болдог. 
 
 
-### By summary statistic of another column {.unnumbered}  
 
-You can use `fct_reorder()` to order the levels of one column *by a summary statistic of another column*. Visually, this can result in pleasing plots where the bars/points ascend or descend steadily across the plot.  
 
-In the examples below, the x-axis is `delay_cat`, and the y-axis is numeric column `ct_blood` (cycle-threshold value). Box plots show the CT value distribution by `delay_cat` group. We want to order the box plots in ascending order by the group median CT value. 
+### Өөр баган дах статистикийн тооцооллоор {.unnumbered}  
 
-In the first example below, the default order alpha-numeric level order is used. You can see the box plot heights are jumbled and not in any particular order. In the second example, the `delay_cat` column (mapped to the x-axis) has been wrapped in `fct_reorder()`, the column `ct_blood` is given as the second argument, and "median" is given as the third argument (you could also use "max", "mean", "min", etc). Thus, the order of the levels of `delay_cat` will now reflect ascending median CT values of each `delay_cat` group's median CT value. This is reflected in the second plot - the box plots have been re-arranged to ascend. Note how `NA` (missing) will appear at the end, unless converted to an explicit level.  
+Сонгосон баганын түвшинг *өөр баганын статистикийн тооцооллын* дагуу эрэмбэлэхдээ `fct_reorder()`-ыг ашигладаг. Ингэж эрэмбэлэхэд аажмаар өгсөж, буурсан bars/цэгэн график байгуулагдаж харахад илүү ойлгомжтой болдог. 
+
+Жишээнд x-тэнхлэгт `delay_cat` гэсэн фактор багана y-тэнхлэгт `ct_blood` гэсэн тоон багана байрлуулав (босго утга). `delay_cat` -ын бүлэг тус бүрт boxplot-оор CT -ыг дүнг байна. Жишээнд үүнийг CT үр дүнгийн медиан дүнгийн өгсөх дарааллаар эрэмбэлэгдсэн boxplots болгож хувиргав.
+
+Эхний графикт түвшингүүд цагаан толгойн, багаас ихсэх тоон дарааллаар (alpha-numeric) эрэмбэлэгдсэн. Тиймээс boxplot -ын өндөр янз бүр холилдсон, тодорхой дараалалгүй харагдаж байна. Хоёрдах жишээнд  `delay_cat` баганыг  (x-тэнхлэгдэх)  `fct_reorder()` дотор оруулж, `ct_blood` баганыг араас нь хоёр дах аргументээр зааж өгч, "median" -ийг гуравдах аргументээр өгсөн байна (мөн "max", "mean", "min" зэргийг хэрэглэж болно). Тиймээс `delay_cat` түвшний дараалал нь `delay_cat` бүлэг бүрийн дундаж CT утгын өсөх дундаж CT утгыг тусгах болно. Үүнийг хоёр дах график дээрээс харж болно. Boxplot -ууд  өгсөх дарааллаар эрэмбэлэгдсэн байна. Хэрэв `NA` -г (дутуу утга) тодорхой түвшинд хуваарилаагүй болавтоматаар хамгийн сүүлд эрэмбэлэгддэг.  
 
 ```{r, fig.show='hold', message=FALSE, warning=FALSE, out.width=c('50%', '50%')}
-# boxplots ordered by original factor levels
+# анхны дарааллаар эрэмбэлэгдсэн boxplots 
 ggplot(data = linelist)+
   geom_boxplot(
     aes(x = delay_cat,
@@ -285,7 +287,7 @@ ggplot(data = linelist)+
   theme(legend.position = "none")
 
 
-# boxplots ordered by median CT value
+# CT баганын median утгаар эрэмбэлэгдсэн boxplots
 ggplot(data = linelist)+
   geom_boxplot(
     aes(x = fct_reorder(delay_cat, ct_blood, "median"),
@@ -297,42 +299,41 @@ ggplot(data = linelist)+
   theme(legend.position = "none")
 ```
 
-Note in this example above there are no steps required prior to the `ggplot()` call - the grouping and calculations are all done internally to the ggplot command.  
+Энэ үйлдлийг хийхэд `ggplot()` коммандын өмнө ямар нэгэн нэмэлт үйлдлэл хийгдэх шаардлагагүй. Бүлэглэж, тооцоолол хийх үйлдлүүд бүгд ggplot комманд дотроо хийгддэг. 
 
 
-### By "end" value {.unnumbered}  
+### "Сүүлийн" утгаар {.unnumbered}  
 
-Use `fct_reorder2()` for grouped line plots. It orders the levels (and therefore the *legend*) to align with the vertical ordering of the lines at the "end" of the plot. Technically speaking, it "orders by the y-values associated with the largest x values."  
+Бүлэглэсэн шугаман графикт `fct_reorder2()` -ыг хэрэглэж болно. Энэ функц график дах шугамын "төгсгөлийн" хэсгийн түвшингүүдийг (мөн *легенд*) босоо тэнхлэгийн дагуу эрэмбэлдэг. Өөрөөр хэлбэл x-тэнхлэг дэх утгын хамгийн ихтэй хамааралтай y-утгыг эрэмбэлнэ гэсэн үг.
 
-For example, if you have lines showing case counts by hospital over time, you can apply `fct_reorder2()` to the `color = ` argument within `aes()`, such that the vertical order of hospitals appearing in the legend aligns with the order of lines at the terminal end of the plot. Read more in the [online documentation](https://forcats.tidyverse.org/reference/fct_reorder.html).  
+Жишээ нь өвчлөлийн бодит тоог эмнэлг тус бүрээр бүлэглэж цаг хугацаагаар харуулсан график байгуулахаар болов. Ингэхдээ `aes()` доторх `color = ` аргументэд `fct_reorder2()`-тай синтаксаа оруулбал легендийн босоо тэнхлэгийн эрэмбэ графикийн төгсгөлийн босоо тэнхлэгт харагдах эрэмбэтэй ижил болдог. Энэ талаар [online documentation](https://forcats.tidyverse.org/reference/fct_reorder.html) материалаас уншна уу.  
 
 ```{r, warning=F, message=F}
-epidemic_data <- linelist %>%         # begin with the linelist   
-    filter(date_onset < as.Date("2014-09-21")) %>%    # cut-off date, for visual clarity
-    count(                                            # get case counts per week and by hospital
+epidemic_data <- linelist %>%         # linelist-ээр эхэл
+    filter(date_onset < as.Date("2014-09-21")) %>%    # харахад ойлгомжтой болхын тулд босго огноо өг
+    count(                                            # долоо хоног тутам, эмнэлэг тус бүрээр харуулах
       epiweek = lubridate::floor_date(date_onset, "week"),  
       hospital                                            
     ) 
   
-ggplot(data = epidemic_data)+                       # start plot
-  geom_line(                                        # make lines
+ggplot(data = epidemic_data)+                       # график байгуулж эхлэх
+  geom_line(                                        # шугам хийх
     aes(
-      x = epiweek,                                  # x-axis epiweek
-      y = n,                                        # height is number of cases per week
-      color = fct_reorder2(hospital, epiweek, n)))+ # data grouped and colored by hospital, with factor order by height at end of plot
+      x = epiweek,                                  # тархварзүйн долоо хоногийн х-тэнхлэг
+      y = n,                                        # өндрөөр долоо хоног тутам дах бодит тоог илэрхийлнэ
+      color = fct_reorder2(hospital, epiweek, n)))+ # эмнэлэг тус бүрээр датаг бүлэглэж өнгөөр ялгана. Графикийн төгсгөлийн тооны эрэмбээр факторын эрэмбийг тодорхойлно
   labs(title = "Factor levels (and legend display) by line height at end of plot",
-       color = "Hospital")                          # change legend title
+       color = "Hospital")                          # легендийн гарчигийг өөрчлөх
 ```
 
 
 
 
-## Missing values {#fct_missing}  
+## Дутуу утга {#fct_missing}  
 
-If you have `NA` values in your factor column, you can easily convert them to a named level such as "Missing" with `fct_explicit_na()`. The `NA` values are converted to "(Missing)" at the end of the level order by default. You can adjust the level name with the argument `na_level = `.  
+фактор багана дутуу утгатай (`NA`) бол `fct_explicit_na()`-аар `NA`-г түвшин болгож нэр ("Missing" ) өгч болно. Default-аар хамгийн ард орж эрэмбэлэгддэг. Нэрийг нь  `na_level = ` аргументээр өөрчилж болно.  
 
-Below, this opertation is performed on the column `delay_cat` and a table is printed with `tabyl()` with `NA` converted to "Missing delay".  
-
+Дээрх үйлдлийг `delay_cat` дээр туршиж, `tabyl()` -аар хүснэгтлэн хэвлэхэд `NA` "Missing delay" гэж нэрлэгдсэн буйг харж байна. 
 ```{r}
 linelist %>% 
   mutate(delay_cat = fct_explicit_na(delay_cat, na_level = "Missing delay")) %>% 
@@ -343,18 +344,18 @@ linelist %>%
 
 
 
-## Combine levels  
+## Түвшнүүдийг нэгтгэх  
 
 
-### Manually {.unnumbered}  
+### Гар аргаар {.unnumbered}  
 
-You can adjust the level displays manually manually with `fct_recode()`. This is like the **dplyr** function `recode()` (see [Cleaning data and core functions]), but it allows the creation of new factor levels. If you use the simple `recode()` on a factor, new re-coded values will be rejected unless they have already been set as permissible levels. 
+Түвшний харагдах байдлыг `fct_recode()`-ыг ашиглаж гараар янзалдаг. Энэ нь **dplyr** -ын `recode()` функцтэй адил ([Cleaning data and core functions]-ээс хар) боловч `fct_recode()` -ыг хэрэглэснээр шинэ фактор түвшин үүсгэх боломжтой байдгаараа ач холбогдолтой. Ердийн `recode()`-ийг хэрэглэхэд шинэ утгыг хүлээж авдгүй ба нэмэлт тохируулга хийж байж боломжтой болдог.  
 
-This tool can also be used to "combine" levels, by assigning multiple levels the same re-coded value. Just be careful to not lose information! Consider doing these combining steps in a new column (not over-writing the existing column).  
+Энэхүү функцээр олон түвшинд ижил утга оруулж түвшнүүдийг "нэгтгэж" болно. Ингэхдээ хэрэгтэй мэдээлэл санамсаргүй утгагдхаас болгоомжил! Шинэ багана үүсгэн түвшнүүдийг нэгтгэвэл эрсдэл багатай (хуучих багана дээрээс бичигдэхгүй).  
 
-`fct_recode()` has a different syntax than `recode()`. `recode()` uses `OLD = NEW`, whereas `fct_recode()` uses `NEW = OLD`.     
+`fct_recode()` -ын синтакс `recode()`-оос өөр. `recode()` -оор `ХУУЧИН = ШИНЭ`гэсэн дараалалтай бол `fct_recode()` нь `ШИНЭ = ХУУЧИН` гэсэн дараалалтай.     
 
-The current levels of `delay_cat` are:  
+Эхлээд `delay_cat` -ын түвшин дараах байдалтай байна:  
 ```{r, echo=F}
 linelist <- linelist %>% 
   mutate(delay_cat = fct_relevel(delay_cat, "<2 days", after = 0))
@@ -365,7 +366,7 @@ linelist <- linelist %>%
 levels(linelist$delay_cat)
 ```
 
-The new levels are created using syntax `fct_recode(column, "new" = "old", "new" = "old", "new" = "old")` and printed:  
+Шинэ түвшинг `fct_recode(column, "new" = "old", "new" = "old", "new" = "old")` гэсэн синтаксаар үүсгэж хэвлэв:  
 
 ```{r}
 linelist %>% 
@@ -377,7 +378,7 @@ linelist %>%
   tabyl(delay_cat)
 ```
 
-Here they are manually combined with `fct_recode()`. Note there is no error raised at the creation of a new level "Less than 5 days".  
+Энд дээрх түвшнийг `fct_recode()` -оор нэгтгэв. "Less than 5 days" түвшинг шинээр нэмхэд алдаа гарч анхааруулж байна.
 
 
 ```{r, warning=F, message=F}
@@ -394,41 +395,42 @@ linelist %>%
 
 
 
-### Reduce into "Other" {.unnumbered}  
+### "Бусад" болгож хумих {.unnumbered}  
 
-You can use `fct_other()` to manually assign factor levels to an "Other" level. Below, all levels in the column `hospital`, aside from "Port Hospital" and "Central Hospital", are combined into "Other". You can provide a vector to either `keep = `, or `drop = `. You can change the display of the "Other" level with `other_level = `.  
+Гараар "Бусад" гэсэн түвшин үүсгэх бол `fct_other()` функцыг хэрэглэж болно. Дор жишээнд `hospital` баганын "Port Hospital" болон "Central Hospital" түвшнээс бусад түвшингүүд "Other" болж нэтггэдсэн байна. Энэ үед хасах, нэмэх шаардлагатай утгаа `keep = ` эсвэл `drop = `-аргументэд вектор хэлбэрээр зааж өгч болно. "Бусад" гэсэн түвшний харагдах байдлыг `other_level = `гэсэн аргументээр өөрчилж болно.  
 
 ```{r}
 linelist %>%    
-  mutate(hospital = fct_other(                      # adjust levels
+  mutate(hospital = fct_other(                      # түвшнүүдийг тохируул
     hospital,
-    keep = c("Port Hospital", "Central Hospital"),  # keep these separate
-    other_level = "Other Hospital")) %>%            # All others as "Other Hospital"
-  tabyl(hospital)                                   # print table
+    keep = c("Port Hospital", "Central Hospital"),  # тусдаа утгуудыг оруул
+    other_level = "Other Hospital")) %>%            # Бусад бүх утгыг "Other Hospital" болго
+  tabyl(hospital)                                   # хүснэгтийг хэвлэ
 
 ```
 
 
 
 
-### Reduce by frequency {.unnumbered}
+### Давтамжаар нь хумих {.unnumbered}
 
-You can combine the least-frequent factor levels automatically using `fct_lump()`.  
+Хамгийн бага давтамжтай түвшнүүдийг `fct_lump()`-ээр зэрэг нэгтгэж болдог.  
 
-To "lump" together many low-frequency levels into an "Other" group, do one of the following:  
+Бага давтамжтай бүлгүүдийг зэрэг "бөөндөж" нэгтгэн "Other" түвшин үүсгэхийн тулд дараах үйлдлүүдээс сонгож хийнэ үү:  
 
-* Set `n = ` as the number of groups you want to keep. The n most-frequent levels will be kept, and all others will combine into "Other".  
-* Set `prop = ` as the threshold frequency proportion for levels above which you want to keep. All other values will combine into "Other".  
+* `n = ` -ээр хэдэн бүлэг үүсгэхээ зааж өгнө. Ингэснээр хамгийн их давтамжтай n бүлэг үлдэж, үлдсэн хэсэг нь "Other" бүлэгт нэтгэгднэ
+.  
+* `prop = ` -ыг тохируул. Үлдээх гэж буй түвшний давтамжид босго хувь зааж өг. Энэхүү босго хувиас бага утгууд "Other" болж нэгтгэгднэ.
 
-You can change the display of the "Other" level with `other_level = `. Below, all but the two most-frequent hospitals are combined into "Other Hospital".  
+"Other" түвшний харагдах байдлыг `other_level = ` аргументээр тохируулж өөрчилж болно. Доорх жишээнд хамгийн их давтамжтай хоёр эмнэлэгээс бусад нь "Other Hospital" болж нэтгэгдсэн.
 
 ```{r, warning=F, message=F}
 linelist %>%    
-  mutate(hospital = fct_lump(                      # adjust levels
+  mutate(hospital = fct_lump(                      # түвшнүүдийг тохируул
     hospital,
-    n = 2,                                          # keep top 2 levels
-    other_level = "Other Hospital")) %>%            # all others as "Other Hospital"
-  tabyl(hospital)                                   # print table
+    n = 2,                                          # дээрээсээ эхний хоёр түвшинг үлдээ
+    other_level = "Other Hospital")) %>%            # бусдыг нь "Other Hospital"-т нэгтгэ
+  tabyl(hospital)                                   # хүснэгтийг хэвлэ
 
 ```
 
@@ -436,79 +438,77 @@ linelist %>%
 
 
 , warn
-## Show all levels  
+## Бүх түвшнийг харуул  
 
-One benefit of using factors is to standardise the appearance of plot legends and tables, regardless of which values are actually present in a dataset. 
+Фактор хэрэглэхийн бас нэг ач холбогдол нь датанд ямар утга байгаагаас үл хамааран графикийн легенд болон тайлангийн хүснэгтийг жигд, стандарт болгож өгдөг. 
 
-If you are preparing many figures (e.g. for multiple jurisdictions) you will want the legends and tables to appear identically even with varying levels of data completion or data composition.  
+Олон график, зураг зэрэг бэлдэж буй үед (графикийг газар нутгаар нь ялгаж харуулах гэх мэт) легенд, тайлангийн хүснэгтийг яг адилхан байлгах шаардлагатй болдог (датанд зарим утгы нь өөр байсан ч гэсэн).  
 
-### In plots {.unnumbered}  
+### Графикт {.unnumbered}  
 
-In a `ggplot()` figure, simply add the argument `drop = FALSE` in the relevant `scale_xxxx()` function. All factor levels will be displayed, regardless of whether they are present in the data. If your factor column levels are displayed using `fill = `, then in scale_fill_discrete() you include `drop = FALSE`, as shown below. If your levels are displayed with `x = ` (to the x-axis) `color = ` or `size = ` you would provide this to `scale_color_discrete()` or `scale_size_discrete()` accordingly.  
+Үүний тулд `ggplot()`-ын тохируулгын нэг `scale_xxxx()` функцуудэд `drop = FALSE` гэсэн аргументийг нэмдэг. Ингэснээр датанд байхгүй ч гэсэн факторын бүх түвшин графикт гарч ирдэг. Фактор баганын түвшин `fill = ` аргументэд орсон үед scale_fill_discrete() дотор `drop = FALSE` гэж өгнө (доор харуулсан). Түвшингүүдийг `x = `(x-тэнхлэг) ,`color = `, `size = `-нарт оруулсан үед `drop = FALSE`-ыг `scale_color_discrete()` эсвэл `scale_size_discrete()` -д оруулна.  
 
-This example is a stacked bar plot of age category, by hospital. Adding `scale_fill_discrete(drop = FALSE)` ensures that all age groups appear in the legend, even if not present in the data. 
+Жишээнд насны ангиллыг эмнэлэг тус бүрээр давхар bar plot -д оруулж харуулсан. Үүн дээр `scale_fill_discrete(drop = FALSE)` гэж нэмснээр бүх насны бүлэг легенд дээр харагдаж байна (зарим нь датанд байхгүй ч гэсэн).
 
 ```{r}
 ggplot(data = linelist)+
   geom_bar(mapping = aes(x = hospital, fill = age_cat)) +
-  scale_fill_discrete(drop = FALSE)+                        # show all age groups in the legend, even those not present
+  scale_fill_discrete(drop = FALSE)+                        # датанд байхгүй ч гэсэн легенд дээр бүх насны ангилал харагдна
   labs(
     title = "All age groups will appear in legend, even if not present in data")
 ```
 
-### In tables {.unnumbered}  
+### Хүснэгтэнд {.unnumbered}  
 
-Both the **base** R `table()` and `tabyl()` from **janitor** will show all factor levels (even unused levels).  
+**base** R-ын `table()`болон **janitor**-ын `tabyl()` -ыг хэрэглэж бүх фактор түвшинг харуулдаг (хэрэглэгдээгүй түвшин ч гэсэн).  
 
-If you use `count()` or `summarise()` from **dplyr** to make a table, add the argument `.drop = FALSE` to include counts for all factor levels even those unused.  
+Хэрэв хүснэгтийг **dplyr**-ын `count()` эсвэл `summarise()`-аар байгуулж буй бол `.drop = FALSE` гэсэн аргумент нэмж хэрэглэгдээгүй ч гэсэн бүх фактор түвшинг гарч ирэх болно.
 
-Read more in the [Descriptive tables] page, or at the [scale_discrete documentation](https://ggplot2.tidyverse.org/reference/scale_discrete.html), or the [count() documentation](https://dplyr.tidyverse.org/reference/count.html). You can see another example in the [Contact tracing] page.  
-
-
-## Epiweeks  
-
-Please see the extensive discussion of how to create epidemiological weeks in the [Grouping data] page.  
-Please also see the [Working with dates] page for tips on how to create and format epidemiological weeks.  
+[Descriptive tables] хуудас эсвэл [scale_discrete documentation](https://ggplot2.tidyverse.org/reference/scale_discrete.html), or the [count() documentation](https://dplyr.tidyverse.org/reference/count.html) линкээс нэмж уншна уу. [Contact tracing] хуудасны жишээг нэмж үзэж болно.  
 
 
-### Epiweeks in a plot {.unnumbered}  
+## Тархвар зүйн долоо хоног  
 
-If your goal is to create epiweeks to display in a plot, you can do this simply with **lubridate**'s `floor_date()`, as explained in the [Grouping data] page. The values returned will be of class Date with format YYYY-MM-DD. If you use this column in a plot, the dates will naturally order correctly, and you do not need to worry about levels or converting to class Factor. See the `ggplot()` histogram of onset dates below.  
+Тархварзүйн долоо хоногийг хэрхэн байгуулах талаар [Grouping data] хуудаснт дэлгэрэнгүй бичсэн. Мөн [Working with dates] хуудаст тархварзүйн долоо хоногийг үүсгэж, хэлбэржүүлэх талаар оруулсан.
 
-In this approach, you can adjust the *display* of the dates on an axis with `scale_x_date()`. See the page on [Epidemic curves] for more information. You can specify a "strptime" display format to the `date_labels = ` argument of `scale_x_date()`. These formats use "%" placeholders and are covered in the [Working with dates] page. Use "%Y" to represent a 4-digit year, and either "%W" or "%U" to represent the week number (Monday or Sunday weeks respectively).  
+
+### График дээрх тархварзүйн долоо хоног  {.unnumbered}  
+
+Тархварзүйн долоо хоногийг графикт харуулахдаа **lubridate**-ын `floor_date()` функцыг ([Grouping data] хуудаст тайлбарласан) хэрэглэж болно. Ингэснээр YYYY-MM-DD форматтай, огноо төрлийн дата үүсдэг. Ийм огноотой баганаар график байгуулвал эрэмбэ нь автоматаар зөв гарч ирдэг бөгөөд факторт хувиргаж, түвшинг эрэмбэлэх шаардлагагүй. Жишээнд өвчний эхэлсэн огноог `ggplot()` гистограммаар харуулав.  
+
+Огнооны харагдах байдлыг `scale_x_date()` -ээр тохируулж болно. Энэ талаар [Epidemic curves] хуудаст дэлгэрүүлж бичсэн. `scale_x_date()` функцын `date_labels = ` аргументэд "strptime" гэсэн форматыг зааж өгдөг. Энэхүү формат "%" тэмдэгтийг огноог илэрхийлэх тэмдэг болгодог ( дэлгэрэнгүй мэдээллийг [Working with dates] хуудаст оруулсан). Тухайлбал "%Y" гэж бичвэл жилийг 4 цифрээр бичихийг, "%W" эсвэл "%U" -аар хэддүгээр долоо хоног болохыг зааж өгдөг (нэгдэх, бүтэнсайнаар эхэлдэг долоо хоног).  
 
 ```{r, warning=F, message=F}
 linelist %>% 
-  mutate(epiweek_date = floor_date(date_onset, "week")) %>%  # create week column
-  ggplot()+                                                  # begin ggplot
-  geom_histogram(mapping = aes(x = epiweek_date))+           # histogram of date of onset
-  scale_x_date(date_labels = "%Y-W%W")                       # adjust disply of dates to be YYYY-WWw
+  mutate(epiweek_date = floor_date(date_onset, "week")) %>%  # долоо хоногийн багана
+  ggplot()+                                                  # ggplot-ыг эхэл
+  geom_histogram(mapping = aes(x = epiweek_date))+           # өвчний эхлэлийн гистограмм
+  scale_x_date(date_labels = "%Y-W%W")                       # огнооны форматыг YYYY-WWw болгоно
 ```
 
 
-### Epiweeks in the data {.unnumbered}  
+### Датандах тархварзүйн долоо хоног  {.unnumbered}  
 
-However, if your purpose in factoring is *not* to plot, you can approach this one of two ways:  
+Хэрэв таны гол зорилго график бүтээх *биш* бол дараах хоёр аргыг хэрэглэж болох юм:
 
 1) *For fine control over the display*, convert the **lubridate** epiweek column (YYYY-MM-DD) to the desired display format (YYYY-WWw) *within the data frame itself*, and then convert it to class Factor.  
 
-First, use `format()` from **base** R to convert the date display from YYYY-MM-DD to YYYY-Www display (see the [Working with dates] page). In this process the class will be converted to character. Then, convert from character to class Factor with `factor()`.  
+Эхлээд **base** R -ын `format()` -аар огнооны YYYY-MM-DD форматыг YYYY-Www болгож хувирга ([Working with dates] хуудсаас харна уу). Ингэснээр карактер төрлийн багана болж хувирна. Үүнийг `factor()`-аар фактор болгож хувирга.  
 
 
 ```{r}
 linelist <- linelist %>% 
-  mutate(epiweek_date = floor_date(date_onset, "week"),       # create epiweeks (YYYY-MM-DD)
-         epiweek_formatted = format(epiweek_date, "%Y-W%W"),  # Convert to display (YYYY-WWw)
-         epiweek_formatted = factor(epiweek_formatted))       # Convert to factor
+  mutate(epiweek_date = floor_date(date_onset, "week"),       # тархварзүйн долоо хоног үүсгэ (YYYY-MM-DD)
+         epiweek_formatted = format(epiweek_date, "%Y-W%W"),  # Хувирга (YYYY-WWw)
+         epiweek_formatted = factor(epiweek_formatted))       # Факторт хувирга
 
-# Display levels
+# Түвшнүүдийг харуул
 levels(linelist$epiweek_formatted)
 ```
 
-<span style="color: red;">**_DANGER:_** If you place the weeks ahead of the years ("Www-YYYY") ("%W-%Y"), the default alpha-numeric level ordering will be incorrect (e.g. 01-2015 will be before 35-2014). You could need to manually adjust the order, which would be a long painful process.</span>  
+<span style="color: red;">**_АЮУЛТАЙ:_** Хэрэв та долоо хоногийн дугаарыг жилийн урд талд нь оруулбал  ("Www-YYYY") ("%W-%Y") default тохируулгаар (alpha-numeric) буруу эрэмбэлэгднэ (жишээ нь 01-2015 нь 35-2014 -ын урд талд бичигднэ). Үүнийг зөвхөн гараар янзалж болдог бөгөөд энэ нь маш их ажиллагаатай.</span>  
 
-2) *For fast default display*, use the **aweek** package and it's function `date2week()`. You can set the `week_start = ` day, and if you set `factor = TRUE` then the output column is an ordered factor. As a bonus, the factor includes levels for *all* possible weeks in the span - even if there are no cases that week.  
-
+2) *For fast default display*, use the **aweek** package and it's function `date2week()`. Долоо хоногийн эхлэх өдрийг `week_start = ` аргументээр тохируулж болдог. Хэрэв `factor = TRUE` гэж тохируулбал үүсэх багана нь фактор болдог. Ингэснээр байж болох *бүх* долоо хоногийг оруулж болдог (тухайн долоо хоногт тохиолдол гараагүй байсан ч гэсэн ).
 ```{r, eval=F}
 df <- linelist %>% 
   mutate(epiweek = date2week(date_onset, week_start = "Monday", factor = TRUE))
@@ -516,12 +516,12 @@ df <- linelist %>%
 levels(df$epiweek)
 ```
 
-See the [Working with dates] page for more information about **aweek**. It also offers the reverse function `week2date()`.  
+[Working with dates] хуудаснаас  **aweek**-ийн талаар нэмж үзэж болно. Энэ багцад бас урвуу функц `week2date()` байдаг.  
 
 
 
 <!-- ======================================================= -->
-## Resources {} 
+## Эх сурвалж {} 
 
-R for Data Science page on [factors](https://r4ds.had.co.nz/factors.html)  
-[aweek package vignette](https://cran.r-project.org/web/packages/aweek/vignettes/introduction.html)
+R for Data Science номын  [factors](https://r4ds.had.co.nz/factors.html) хуудас 
+[aweek package vignette](https://cran.r-project.org/web/packages/aweek/vignettes/introduction.html).
