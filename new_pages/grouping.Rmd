@@ -1,5 +1,5 @@
 
-# Grouping data { }  
+# Датаг бүлэглэх { }  
 
 
 ```{r, out.width=c('100%'), echo=F, message=F}
@@ -7,48 +7,47 @@ knitr::include_graphics(here::here("images", "Grouping_1500x500.png"))
 ```
 
 
-This page covers how to group and aggregate data for descriptive analysis. It makes use of the **tidyverse** family of packages for common and easy-to-use functions. 
+Энэ хуудсанд дескриптив анализэд зориулж өгөгдлийг хэрхэн бүлэглэх, нэгтгэх талаар тусгасан болно. Үүнийг гүйцэтгэхэд энгийн, хэрэглэхэд хялбар функцуудтэй **tidyverse** багцуудыг ашигладх болно.
 
 
-Grouping data is a core component of data management and analysis. Grouped data statistically summarised by group, and can be plotted by group. Functions from the **dplyr** package (part of the **tidyverse**) make grouping and subsequent operations quite easy.  
+Датаг бүлэглэх үйлдэл бол дата менежмент, дата дүн шинжилгээний үндсэн элэмент мөн. Датаг статистикийн үзүүлэлтээр бүлэглэн шинжилж, график зураглалыг бүлгээр нь тус бүр харуулдаг.**dplyr**  багцын (**tidyverse** харьяа ) функцууд бүлэглэх болон үүнтэй холбоотой бусад үйлдлүүдийг гүйцэтгэхэд хялбар болгодог.  
 
-This page will address the following topics:  
+Энэхүү хуудаст дараах сэдвүүдийн талаар оруулсан:  
 
-* Group data with the `group_by()` function  
-* Un-group data  
-* `summarise()` grouped data with statistics  
-* The difference between `count()` and `tally()`  
-* `arrange()` applied to grouped data  
-* `filter()` applied to grouped data  
-* `mutate()` applied to grouped data  
-* `select()` applied to grouped data  
-* The **base** R `aggregate()` command as an alternative  
-
+* `group_by()` функцээр бүлэглэгдсэн дата 
+* Датандах бүлгийг задлах 
+* бүлэглэсэн датаг функцээр `summarise()` статистикийн үзүүлэлтүүдийг харуулах  
+* `count()` болон `tally()` функцуудын ялгаа
+* Бүлэглэсэн датанд `arrange()` -ыг хэрэглэх 
+*  Бүлэглэсэн датанд `filter()` -ыг хэрэглэх  
+*  Бүлэглэсэн датанд `mutate()` -ыг хэрэглэх 
+*  Бүлэглэсэн датанд `select()` -ыг хэрэглэх  
+* **base** R -ын `aggregate()` коммандыг хэрэглэх
 
 
 
 <!-- ======================================================= -->
-## Preparation {  }
+## Бэтгэл {  }
      
-### Load packages {.unnumbered}  
+### Багцыг ачааллах {.unnumbered}  
      
-This code chunk shows the loading of packages required for the analyses. In this handbook we emphasize `p_load()` from **pacman**, which installs the package if necessary *and* loads it for use. You can also load installed packages with  `library()` from **base** R. See the page on [R basics] for more information on R packages.  
+Энэ хэсэгт анализ хийхэд шаардлагатай багцуудыг доорхи кодоор ачааллана.**pacman** багцын `p_load()` функцээр шаардлагатай багцыг татаж аваад ачааллана уу. Өмнө татаж авсан багцуудаа **base** R -ын `library()`-аар ачааллаж болно. Багцын талаарх нэмэлт мэдээллийг [R basics] хэсгээс харна уу.  
 
 
 ```{r}
 pacman::p_load(
-  rio,       # to import data
-  here,      # to locate files
-  tidyverse, # to clean, handle, and plot the data (includes dplyr)
-  janitor)   # adding total rows and columns
+  rio,       # Файлыг импортлох
+  here,      # Файлыг байрлуулах
+  tidyverse, # датаг цэвэрлэх, янзлах, график байгуулах (dplyr-г орно)
+  janitor)   # мөр, баганын нийт дүнг нэмнэ
 ```
 
 
 
 
-### Import data {.unnumbered}
+### Импорт дата {.unnumbered}
 
-We import the dataset of cases from a simulated Ebola epidemic. If you want to follow along, <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>click to download the "clean" linelist</a> (as .rds file). The dataset is imported using the `import()` function from the **rio** package. See the page on [Import and export] for various ways to import data.
+Энэ хэсэгт Эболагийн дэгдэлтийн үеийн зохиомол датаг ашиглах болно. Дагаж дасгалыг ажиллах бол <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>линк дээр дарж "цэвэр" linelist татаж авна уу </a> (as .rds file). Датагаа  **rio** багцын `import()` функцээр импортло (энэ функц .xlsx, .csv, .rds зэрэг олон өргөтгөлтэй ажиллаж чаддаг [Import and export] хуудаст нэмж тайлбарласан). 
 
 ```{r, echo=F}
 linelist <- rio::import(here("data", "case_linelists", "linelist_cleaned.rds"))
@@ -59,7 +58,7 @@ linelist <- import("linelist_cleaned.rds")
 ```
 
 
-The first 50 rows of `linelist`:  
+Эхний 50 мөр `linelist`:  
 
 ```{r message=FALSE, echo=F}
 DT::datatable(head(linelist,50), rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
@@ -68,34 +67,34 @@ DT::datatable(head(linelist,50), rownames = FALSE, filter="top", options = list(
 
 
 <!-- ======================================================= -->
-## Grouping {  }
+## Бүлэглэх {  }
      
-The function `group_by()` from **dplyr** groups the rows by the unique values in the column specified to it. If multiple columns are specified, rows are grouped by the unique combinations of values across the columns. Each unique value (or combination of values) constitutes a group. Subsequent changes to the dataset or calculations can then be performed within the context of each group.  
+**dplyr** -ын `group_by()` функц зааж өгсөн багана дах өвөрмөц утгын дагуу мөрүүдийг бүлэглэх болно. Ингэхдээ олон багана зааж өгвөл, мөрүүд эдгээр багануудын хооронд үүссэн өвөрмөц комбинацын дагуу бүлэглэгдэх болно.  Өвөрмөц утга болгон (комбинац болгон) бүлэг бий болгоно. Ингэсний датанд хийгдэх аливаа өөрчлөлт, тооцоо зэрэг нь бүлэг тус бүрээр хийгдэх болно. 
 
-For example, the command below takes the `linelist` and groups the rows by unique values in the column `outcome`, saving the output as a new data frame `ll_by_outcome`. The grouping column(s) are placed inside the parentheses of the function `group_by()`.  
+Жишээлбэл дараах коммандаар `linelist` хүснэгтийн  `outcome` баганын утгуудаар мөрүүдийг бүлэглэсэн байна. Үүний дүнд үүсэх хүснэгтийг`ll_by_outcome`-д хадгалсан. Бүлэглэх багануудыг  `group_by()` функцэд хаалтан дотор бичнэ.  
 
 ```{r}
 ll_by_outcome <- linelist %>% 
   group_by(outcome)
 ```
 
-**Note that there is no perceptible change to the dataset** after running `group_by()`, *until* another **dplyr** verb such as `mutate()`, `summarise()`, or `arrange()` is applied on the "grouped" data frame.  
+`group_by()`коммандыг өгснөөр **датанд мэдэгдэхүйц өөрчлөлт гарахгүй**. Харин энэхүү бүлэглэсэн датанд `mutate()`, `summarise()`, `arrange()` зэрэг **dplyr**-ын бусад функцыг уншуулсны *дараа* өөрчлөлт хийгдэж эхэлдэг болохыг анхаар.
 
-You can however "see" the groupings by printing the data frame. When you print a grouped data frame, you will see it has been transformed into a [`tibble` class object](https://tibble.tidyverse.org/) which, when printed, displays which groupings have been applied and how many groups there are - written just above the header row.  
+Гэхдээ хүснэгтийг хэвлэснээр бүлэглэсэн датаг *харж* болно. Хэвлээд үзвэл хүснэгт tibble хэлбэрт орсон байх ба [`tibble` class object](https://tibble.tidyverse.org/) ямар бүлгүүд, хэд бүлэглэгдсэн зэрэг мэдээлэл толгой мөрний дээр бичигдсэн байдаг.  
 
 ```{r}
-# print to see which groups are active
+# идвэхитэй ямар бүлгүүд байгааг хэвлэж хар
 ll_by_outcome
 ```
 
 
-### Unique groups {.unnumbered}  
+### Өвөрмөц бүлгүүд {.unnumbered}  
 
-**The groups created reflect each unique combination of values across the grouping columns.** 
+**Бүлэг үүсгэж багануудын утгууд солбиж нэгдэн бүрдүүлсэн өвөрмөц комбинац болгон бүлэг юм**.
 
-To see the groups *and the number of rows in each group*, pass the grouped data to `tally()`. To see just the unique groups without counts you can pass to `group_keys()`.  
+Үүссэн бүлэг *болон бүлэг тус бүрт хамрах мөрийн тоог * харахдаа  `tally()`функцэд баганыг оруул. Хэрэв зөвхөн үүссэн өвөрмөц бүлгүүдийн нэрсийг харах бол `group_keys()` коммандыг өг.  
 
-See below that there are **three** unique values in the grouping column `outcome`: "Death", "Recover", and `NA`. See that there were ` nrow(linelist %>% filter(outcome == "Death"))` deaths, ` nrow(linelist %>% filter(outcome == "Recover"))` recoveries, and ` nrow(linelist %>% filter(is.na(outcome)))` with no outcome recorded.
+Доорх жишээнд бүлэг үүсгэж буй `outcome` баганад **гурван** өвөрмөц утга байна: "Death", "Recover", `NA`. Нийт мөрийн тоо нас баралтад (deaths)` nrow(linelist %>% filter(outcome == "Death"))`, эдгэрэлтэд (recoveries)` nrow(linelist %>% filter(outcome == "Recover"))` , эмчилгээний үр дүн бичигдээгүй мөр ` nrow(linelist %>% filter(is.na(outcome)))` байсан.
 
 ```{r}
 linelist %>% 
@@ -104,7 +103,7 @@ linelist %>%
 ```
 
 
-You can group by more than one column. Below, the data frame is grouped by `outcome` and `gender`, and then tallied. Note how each unique combination of `outcome` and `gender` is registered as its own group - including missing values for either column.   
+Нэгээс дээш тооны баганыг ашиглаж бүлэглэж болно. Доор жишээнд хүснэгтийг `outcome` болон `gender` баганын дагуу бүлэглээд бүртгэлийг tally() -аар харуулсан байна. Үүнээс `outcome` болон `gender` багануудын утгууд нийлж хичнээн бүлэг үүсгэж буйг хараарай (хоёр баганын дутуу утгуудын комбинацаар үүссэн бүлгүүд мөн орно).
 
 ```{r}
 linelist %>% 
@@ -112,41 +111,41 @@ linelist %>%
   tally()
 ```
 
-### New columns {.unnumbered} 
+### Шинэ багана {.unnumbered} 
 
-You can also create a new grouping column *within* the `group_by()` statement. This is equivalent to calling `mutate()` before the `group_by()`. For a quick tabulation this style can be handy, but for more clarity in your code consider creating this column in its own `mutate()` step and then piping to `group_by()`.
+Мөн `group_by()` *дотор* бүлэглэх шинэ баганыг оруулж бичиж болно. Энэ нь `group_by()`хийхийн өмнө `mutate()` хийхьэй адил үйлдэл юм. Богино хугацаанд бүлэглэсэн хүснэгт үүсгэх үед энэ аргыг хэрэглэх нь хялбар боловч кодоо илүү тодорхой болгох үүднээс шинээр үүсгэх баганаа тусдаа `mutate()` -аар үүсгэж араас нь `group_by()`-ыг pipe хийх нь илүү оновчтой байх болно.
 
 ```{r}
-# group dat based on a binary column created *within* the group_by() command
+# group_by() комманд дотор үүсгэсэн binary баганын дагуу датаг бүлэглэсэн
 linelist %>% 
   group_by(
     age_class = ifelse(age >= 18, "adult", "child")) %>% 
   tally(sort = T)
 ```
 
-### Add/drop grouping columns {.unnumbered}  
+### Бүлэглэх баганыг нэмж/хасах {.unnumbered}  
 
-By default, if you run `group_by()` on data that are already grouped, the old groups will be removed and the new one(s) will apply. If you want to add new groups to the existing ones, include the argument `.add = TRUE`.  
+Хэрэв өмнө нь бүлэглэсэн байсан датанд `group_by()` коммандыг уншуулахад хуучин бүлэг арилж шинэ бүлэг үүсдэг. Хэрэв хуучин бүлэг дээр нэмж бүлэг оруулах бол `.add = TRUE` аргументэд нэмж зааж өг.  
 
 ````{r, eval=F}
-# Grouped by outcome
+# outcome баганын дагуу бүлэглэгдсэн
 by_outcome <- linelist %>% 
   group_by(outcome)
 
-# Add grouping by gender in addition
+# gender  баганын дагуу нэмж бүлэглэ
 by_outcome_gender <- by_outcome %>% 
   group_by(gender, .add = TRUE)
 ```
 
 
-** Keep all groups**  
+** Бүх бүлгийг үлдээх**  
 
-If you group on a column of class factor there may be levels of the factor that are not currently present in the data. If you group on this column, by default those non-present levels are dropped and not included as groups. To change this so that all levels appear as groups (even if not present in the data), set `.drop = FALSE` in your `group_by()` command.  
+Хэрэв фактор ангилалтай баганаар бүлэг үүсгэж байх явцад тухайн ангиллын аль нэг түвшинд хамрах утга датанд байхгүй байж болно. Энэ үед энэхүү хоосон түвшин хасагдаж, энэ түвшинд бүлэг үүсэхгүй. Хэрэв тухайн утга датанд байхгүй байсан ч гэсэн бүлэг болж орох шаардлагатай бол `.drop = FALSE` гэж `group_by()`-ын аргументийг тохируул. 
 
 
-## Un-group  
+## Бүлгийг задлах  
 
-Data that have been grouped will remain grouped until specifically ungrouped via `ungroup()`. If you forget to ungroup, it can lead to incorrect calculations! Below is an example of removing all groupings:  
+Тусгайлан `ungroup()` гэсэн коммандаар задлахаас нааш бүлэг датанд оршсоор байх болно. Хэрэв бүлгийг буцааж задлахаа мартвал буруу тооцоололд хүрэх аюултай ! Доор жишээнд хэрхэн бүх бүлгийг задлахыг харуулав:  
 
 ```{r, eval=F}
 linelist %>% 
@@ -155,32 +154,32 @@ linelist %>%
   ungroup()
 ```
 
-You can also remove grouping for only specific columns, by placing the column name inside `ungroup()`.  
+Мөн тодорхой нэг баганыг `ungroup()` дотор оруулж комманд өгснөөр зөвхөн тухайн баганын бүлгийг л арилгаж болно.
 
 ```{r, eval=F}
 linelist %>% 
   group_by(outcome, gender) %>% 
   tally() %>% 
-  ungroup(gender) # remove the grouping by gender, leave grouping by outcome
+  ungroup(gender) # gender-ын бүлгийг арилгаж, outcome-ын бүлэгүүдийг үлдээ
 ```
 
 
-<span style="color: black;">**_NOTE:_** The verb `count()` automatically ungroups the data after counting.</span>
+<span style="color: black;">**_ТЭМДЭГЛЭЛ:_**  `count()` функцыг уншуулсны дараа бүлгүүд автоматаар буцаж задардаг .</span>
 
 
 
-## Summarise {#group_summarise} 
+## Нэгтгэх {#group_summarise} 
 
-See the **dplyr** section of the [Descriptive tables] page for a detailed description of how to produce summary tables with `summarise()`. Here we briefly address how its behavior changes when applied to grouped data.  
+[Descriptive tables] хуудсын **dplyr** -ын талаар бичсэн хэсэгт `summarise()` функцээр хэрхэн хураангуй хүснэгт үүсгэх талаар илүү тайлбарласан. Энд гол тайлбарлах зүйл бол бүлэг үүсгэснээр энэ үйлдлйин хэв шинж нь хэрхэн өөрчлөгдөхийг товчхон харуулна.
 
-The **dplyr** function `summarise()` (or `summarize()`) takes a data frame and converts it into a *new* summary data frame, with columns containing summary statistics that you define. On an ungrouped data frame, the summary statistics will be calculated from all rows. Applying `summarise()` to grouped data produces those summary statistics *for each group*.  
+**dplyr** -ын `summarise()` (эсвэл `summarize()`) функц хүснэгтэндэх датаг янзалж баганууддаа статистик дүнтэй хураагуй хүснэгтийг *шинээр* үүсгэдэг. Бүлэглээгүй датанп статистикийн дүн бүх мөрөнд тооцоолсны дүнд тавигддаг. Харин бүлэглэсэн датанд `summarise()`-ыг оруулбал статистикийн тооцоо *бүлэг тус бүрт* бодогддог.  
 
-The syntax of `summarise()` is such that you provide the name(s) of the **new** summary column(s), an equals sign, and then a statistical function to apply to the data, as shown below. For example, `min()`, `max()`, `median()`, or `sd()`. Within the statistical function, list the column to be operated on and any relevant argument (e.g. `na.rm = TRUE`). You can use `sum()` to count the number of rows that meet a logical criteria (with double equals `==`).   
+`summarise()` -ын синтаксыг бичихдээ эхлээд **шинэ** үүсгэх тооцооны дүнтэй баганын нэрс, тэнцүүгийн тэмдэг, датанд хийх статистикийн бодолт хийх функцыг бичнэ.Жишээ нь `min()`, `max()`, `median()`, `sd()` зэрэг статистик функцууд байж болно. Статистикийн функцууд дотор бодолтод оролцох баганууд болон бусад нэмэнлт аргументуудыг (`na.rm = TRUE` гэх мэт) бичнэ. Мөн `sum()` -ыг хэрэглэж логик шалгуурт тэнцсэн мөрийн тоог гаргаж болно  (давхар тэнцүүгийн тэмдэгтэйгээр `==`).   
 
-Below is an example of `summarise()` applied *without grouped data*. The statistics returned are produced from the entire dataset.     
+Дор жишээнд `summarise()` -ыг  *бүлэглээгүй датанд* хэрэглэсэн байна. Статистикийн дүн нь нийт бүх мөрөнд тооцоолол хийсний дүнд гарсан.
 
 ```{r}
-# summary statistics on ungrouped linelist
+# бүлэглээгүй linelist дээр статистикийн хураангуй бодож гаргах
 linelist %>% 
   summarise(
     n_cases  = n(),
@@ -190,10 +189,10 @@ linelist %>%
     n_males  = sum(gender == "m", na.rm=T))
 ```
 
-In contrast, below is the same `summarise()` statement applied to grouped data. The statistics are calculated for each `outcome` group. Note how grouping columns will carry over into the new data frame.    
+Харин удаах жишээнд `summarise()` -ыг бүлэглэсэн дата дээр ашиглаж байна. `outcome` баганын бүлэг тус бүрт статистикийн бодолт хийгдсэн. Note how grouping columns will carry over into the new data frame.    
 
 ```{r}
-# summary statistics on grouped linelist
+# бүлэглэсэн linelist дээр статистикийн хураангуй бодож гаргах
 linelist %>% 
   group_by(outcome) %>% 
   summarise(
@@ -204,18 +203,18 @@ linelist %>%
     n_males    = sum(gender == "m", na.rm=T))
 ```
 
-<span style="color: darkgreen;">**_TIP:_** The summarise function works with both UK and US spelling - `summarise()` and `summarize()` call the same function.</span>
+<span style="color: darkgreen;">**_ЗӨВЛӨГӨӨ:_** summarise функцын UK (`summarise()`) болон US (`summarize()`) хувилбарууд ижил. </span>
 
 
 
 
-## Counts and tallies  
+## Тоолж, бүртгэх  
 
-`count()` and `tally()` provide similar functionality but are different. Read more about the distinction between `tally()` and `count()` [here](https://dplyr.tidyverse.org/reference/tally.html)    
+`count()` болон `tally()` төстэй үйлдэл хийдэг боловч өөр. `tally()` болон `count()`-н лгааны талаар [here](https://dplyr.tidyverse.org/reference/tally.html)-ээс олж уншна уу.    
 
 ### `tally()` {.unnumbered}  
 
-`tally()` is shorthand for `summarise(n = n())`, and *does not* group data. Thus, to achieve grouped tallys it must follow a `group_by()` command. You can add `sort = TRUE` to see the largest groups first.    
+`tally()` бол `summarise(n = n())`коммандын богино хувилбар ба датаг *бүлэглэдэггүй*. Тиймээс бүлэглэсэн датанд хэрэглэх бол `group_by()` -ын араас залгуулж хэрэглэдэг. Мөн үүн дээр `sort = TRUE` гэж аргументийг тохируулснаар хамгийн том бүлгийг эхэнд жагсааж болно.   
 
 ```{r}
 linelist %>% 
@@ -232,18 +231,18 @@ linelist %>%
 
 ### `count()`  {.unnumbered}  
 
-In contrast, `count()` does the following:  
+Харин `count()` функц дараах үйлдлүүдийг хийдэг:  
 
-1) applies `group_by()` on the specified column(s)  
-2) applies `summarise()` and returns column `n` with the number of rows per group  
-3) applies `ungroup()`  
+1)  тодорхой заасан багануудад `group_by()`-г хэрэглэдэг.
+2) `summarise()` хэрэглэсний дүнд `n` баганад бүлэг тус бүр хэдэн мөр агуулагдаж буйг тоолж гаргадаг.
+3) мөн `ungroup()` хийгддэг. 
 
 ```{r}
 linelist %>% 
   count(outcome)
 ```
 
-Just like with `group_by()` you can create a new column within the `count()` command:  
+`group_by()` -ийн адил  `count()` комманд бас шинэ багана үүсгэдэг:  
 
 ```{r}
 linelist %>% 
@@ -251,135 +250,136 @@ linelist %>%
 ```
 
 
-`count()` can be called multiple times, with the functionality "rolling up". For example, to summarise the number of hospitals present for each gender, run the following. Note, the name of the final column is changed from default "n" for clarity (with `name  = `).  
+`count()` функцыг олон дахин дуудаж болно (өнхрүүлэх байдлаар). Жишээ нь хүйс тус бүрт ноогдох эмнэлэгийн тоог гаргахдаа доорх коммандыг өгнө.  Хамгийн арын багана нь автоматаар "n" гэж нэрлэгдсэн байснаа ( `name  = ` аргументээр) өөрчлөгдөж илүү тодорхой нэртэй болсон байна.  
 
 ```{r}
 linelist %>% 
-  # produce counts by unique outcome-gender groups
+  # outcome-gender -ын хавсарч үүссэн бүлгүүдэд ноогдох мөрийг тоолох
   count(gender, hospital) %>% 
   # gather rows by gender (3) and count number of hospitals per gender (6)
   count(gender, name = "hospitals per gender" ) 
 ```
 
 
-### Add counts {.unnumbered}  
+### Тооллого нэмэх{.unnumbered}  
 
-In contrast to `count()` and `summarise()`, you can use `add_count()` to *add* a new column `n` with the counts of rows per group *while retaining all the other data frame columns*.   
+Мөн `add_count()`-ээр тооллого хийж болох боловч `count()` болон`summarise()`-ээс ялгаатай. Энэ функцыг хэрэглэснээр *хуучин хүснэгт бүхлээрээ өөрчлөгдөхгүй* хэвээр байх ба бүлэг бүрийн тоог гаргасан шинэ `n` гэсэн багана нэмэгддэг. 
 
-This means that a group's count number, in the new column `n`, will be printed in each row of the group. For demonstration purposes, we add this column and then re-arrange the columns for easier viewing. See the section below on [filter on group size](#group_filter_grp_size) for another example.  
+Өөрөөр хэлбэл шинэ `n` баганадах бүлэг тус бүрт агуулагдах мөрийн тоо тухайн бүлэгт хамаарах мөр болгонд бичигдэх болно гэсэн үг. Доор жишээнд ойлгомжтой харуулах үүднээс баганыг нэмээд дараа нь эрэмбэнд өөрчлөлт оруулсан болно. Мөн [filter on group size](#group_filter_grp_size) хэсэгт өөр нэгэн жишээ харуулсаныг олж үзнэ үү. 
 
 
 ```{r}
 linelist %>% 
-  as_tibble() %>%                   # convert to tibble for nicer printing 
-  add_count(hospital) %>%           # add column n with counts by hospital
-  select(hospital, n, everything()) # re-arrange for demo purposes
+  as_tibble() %>%                   # tibble болгож харагдах байдлыг сайжруулна
+  add_count(hospital) %>%           # эмнэлэгийн тоотой n баганыг нэм 
+  select(hospital, n, everything()) # харахад хялбар болгох үүднээс дахин эрэмбэл
 ```
 
 
 
-### Add totals {.unnumbered} 
+### Нийт дүнг нэм {.unnumbered} 
 
-To easily add total *sum* rows or columns after using `tally()` or `count()`, see the **janitor** section of the [Descriptive tables](#tbl_janitor) page. This package offers functions like `adorn_totals()` and `adorn_percentages()` to add totals and convert to show percentages. Below is a brief example:  
+Нийт дүнг хялбар нэмэх арга бол `tally()` эсвэл `count()` хэрэглэсний дараа мөр, баганын *нийлбэрийг* гаргах хэрэгтэй. Үүнийг  [Descriptive tables](#tbl_janitor) хуудасны **janitor** багцыг тайлбарласн хэсгээс үзнэ үү. Энэ багцад `adorn_totals()`, `adorn_percentages()` зэрэг нийт дүнг нэмж, хувь болгох гэх мэт олон функцууд агуулагддаг. Доор товч жишээ харуулья: 
 
 ```{r}
 linelist %>%                                  # case linelist
-  tabyl(age_cat, gender) %>%                  # cross-tabulate counts of two columns
-  adorn_totals(where = "row") %>%             # add a total row
-  adorn_percentages(denominator = "col") %>%  # convert to proportions with column denominator
-  adorn_pct_formatting() %>%                  # convert proportions to percents
-  adorn_ns(position = "front") %>%            # display as: "count (percent)"
-  adorn_title(                                # adjust titles
+  tabyl(age_cat, gender) %>%                  # хоёр баганыг солбиж-хүснэгтлэн тоолох 
+  adorn_totals(where = "row") %>%             # нийт мөрийн нийлбэр
+  adorn_percentages(denominator = "col") %>%  # баганын нийлбэрийг деноминатор (хуваариар) тооцож хувийг гаргах
+  adorn_pct_formatting() %>%                  # пропорцыг хувь болгож хувиргах
+  adorn_ns(position = "front") %>%            # : "тоо (хувь)" гэж харуулах
+  adorn_title(                                # гарчигийг янзлах
     row_name = "Age Category",
     col_name = "Gender")
 ```
 
 
-To add more complex totals rows that involve summary statistics other than *sums*, see [this section of the Descriptive Tables page](#tbl_dplyr_totals).  
+*Нийлбэрээс* өөр нарийн статистикийн бодолтыг мөр дагуу бодож гаргах бол  [this section of the Descriptive Tables page](#tbl_dplyr_totals) хэсгээс харна уу.  
 
 
 
-## Grouping by date  
+## Он сараар бүлэглэх  
 
-When grouping data by date, you must have (or create) a column for the date unit of interest - for example "day", "epiweek", "month", etc. You can make this column using `floor_date()` from **lubridate**, as explained in the [Epidemiological weeks section](#dates_epi_wks) of the [Working with dates] page. Once you have this column, you can use `count()` from **dplyr** to group the rows by those unique date values and achieve aggregate counts. 
+Огноогоор бүлэглэхдээ огнооны нэгжийг (өдөр, тархварзүйн долоо хоног, сар гэх мэт) бичих нэг илүү багана байлгах (үүсгэх) хэрэг гардаг. Үүнийг [Working with dates] хуудасны [Epidemiological weeks section](#dates_epi_wks) хэсэгт заасны дагуу **lubridate**-ын `floor_date()` -аар үүсгэж болно. Энэ баганыг үүсгэсний дараа **dplyr**-ын `count()` -аар мөрүүдийг огноогоор бүлэглэж, нэгтгэсэн тоог гаргаж болно.
 
-One additional step common for date situations, is to "fill-in" any dates in the sequence that are not present in the data. Use `complete()` from **tidyr** so that the aggregated date series is *complete* including *all possible date units* within the range. Without this step, a week with no cases reported might not appear in your data!  
+Огноотой ажиллаж байхад нэмэлтээр хийгддэг өөр нэгэн нийтлэг алхам бол датанд байхгүй ямар нэг огноог дарааллын дагуу "бөглөх" юм.
+Нэгтгэгдсэн огнооны дараалалд **tidyr**-ын `complete()` -ыг хэрэглэвэл *тухайн хүрээнд байж болох бүх нэгжийг оруулан* огнооны дараалал*гүйцэд* болддог. Энэ алхмыг хийгэгүй тохиолдолд өвчин илрээгүй долоо хоногууд датанд харагдахгүй!  
 
-Within `complete()` you *re-define* your date column as a *sequence* of dates `seq.Date()` from the minimum to the maximum  - thus the dates are expanded. By default, the case count values in any new "expanded" rows will be `NA`. You can set them to 0 using the `fill = ` argument of `complete()`, which expects a named list (if your counts column is named `n`, provide `fill = list(n = 0)`. See `?complete` for details and the [Working with dates](#dates_epi_wks) page for an example.  
+Ингэхдээ `complete()` дотор огноотой баганаа `seq.Date()`-ийн багаас ихсэх *дарааллаар* *дахин зааж өгөх* хэрэгтэй бөгөөд, улмаар огнооны дараалал өргөжих болно. Энэхүү өргөжиж нэмэгдсэн шинэ огноонд тохиолдлын тоо `NA` гэж гарч ирдэг. Үүнийг `complete()`-ын  `fill = ` аргументэд 0 гэж зааж өгч засаж болно.  which expects a named list (хэрэв тохиолдлын тоотой баганын нэр `n` гэж нэрлэгдсэн байгаа бол `fill = list(n = 0)` гэж зааж өгнө. Энэ аргументийн өгөдөл нэртэй list байдаг. Энэ талаар `?complete` хуудас болон  [Working with dates](#dates_epi_wks) хуудасны жишээнүүдэд илүү тайлбарласан ).
 
 
 
-### Linelist cases into days  {.unnumbered}  
+### Linelist тохиолдлуудыг өдөр бүрээр бүлэглэх {.unnumbered}  
 
-Here is an example of grouping cases into days *without* using `complete()`. Note the first rows skip over dates with no cases.  
+Энд`complete()`функцыг *хэрэглээгүй* байдлаар тохиолдлын тоог өдрөөр бүлэглэх коммандыг харуулав. Тохиолдол илрээгүй эхний өдрүүдийг алгасч харуулсан байгааг анзаарна уу. 
 
 ```{r}
 daily_counts <- linelist %>% 
-  drop_na(date_onset) %>%        # remove that were missing date_onset
-  count(date_onset)              # count number of rows per unique date
+  drop_na(date_onset) %>%        # date_onset бичигдээгүй тохиолдлуудыг арилгана
+  count(date_onset)              # огноо бүрт ноогдох тохиолдлын тоог тоол
 ```
 
 ```{r message=FALSE, echo=F}
 DT::datatable(daily_counts, rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-Below we add the `complete()` command to ensure every day in the range is represented.
+Энд `complete()` коммандыг ашиглаж тодорхой хугацаандах бүх өдрүүдийг гарч ирдэг болгоё.
 
 ```{r, eval=F}
 daily_counts <- linelist %>% 
-  drop_na(date_onset) %>%                 # remove case missing date_onset
-  count(date_onset) %>%                   # count number of rows per unique date
-  complete(                               # ensure all days appear even if no cases
-    date_onset = seq.Date(                # re-define date colume as daily sequence of dates
+  drop_na(date_onset) %>%                 # date_onset бичигдээгүй тохиолдлуудыг арилгана
+  count(date_onset) %>%                   # огноо бүрт ноогдох тохиолдлын тоог тоол
+  complete(                               # тохиолдол илрээгүй ч бүх өдөр харагдах болно
+    date_onset = seq.Date(                # огноотой баганыг өдөр тутмыг харуулсан байдлаар зааж өгнө.
       from = min(date_onset, na.rm=T), 
       to = max(date_onset, na.rm=T),
       by = "day"),
-    fill = list(n = 0))                   # set new filled-in rows to display 0 in column n (not NA as default) 
+    fill = list(n = 0))                   # n баганын 0 тохиолдолтой мөрүүдийг бөглөх  ( автоматаар гарах NA-ын оронд) 
 ```
 
 ```{r message=FALSE, echo=F}
 DT::datatable(daily_counts, rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-### Linelist cases into weeks {.unnumbered}  
+### Linelist тохиолдлуудыг долоо хоног бүрээр бүлэглэх {.unnumbered}  
 
 
-The same principle can be applied for weeks. First create a new column that is the week of the case using `floor_date()` with `unit = "week"`. Then, use `count()` as above to achieve weekly case counts. Finish with `complete()` to ensure that all weeks are represented, even if they contain no cases.
+Долоо хоног бүрийн тоог мөн дээрхитэй адил зарчмаар хийнэ. Эхлээд `floor_date()` -ын нэгжийг `unit = "week"`хэмээн тохируулж тохиолдол бүрийн илэрсэн дотоо хоногийн дугаарыг тавьна. Дараа нь`count()` -аар дээрхийн адил долоо хоног бүрт ноогдох тохиолдлын тоог харуулна. Энэ комманд дээрээ `complete()` -ыг нэмбэл тохиолдол илрээгүй ч гэсэн бүх долоо хоног харуулах болно.
 
 ```{r}
-# Make dataset of weekly case counts
+# Тохиолдлын тоог долоо хоног бүрээр харуулсан хүснэгт байгуул
 weekly_counts <- linelist %>% 
-  drop_na(date_onset) %>%                 # remove cases missing date_onset
-  mutate(week = lubridate::floor_date(date_onset, unit = "week")) %>%  # new column of week of onset
-  count(week) %>%                         # group data by week and count rows per group
-  complete(                               # ensure all days appear even if no cases
-    week = seq.Date(                      # re-define date colume as daily sequence of dates
+  drop_na(date_onset) %>%                 # date_onset бичигдээгүй тохиолдлуудыг арилгана
+  mutate(week = lubridate::floor_date(date_onset, unit = "week")) %>%  # өвчин эхлэл бүртгэгдсэн долоо хоногийн дугаартай багана
+  count(week) %>%                         # долоо хоног бүрээр датаг бүлэглэж, бүлэг бүрт ноогдох мөрийн тоог тоол
+  complete(                               # тохиолдол илрээгүй ч гэсэн бүх долоо хоногууд гарч ирдэг болго 
+    week = seq.Date(                      # огноотой баганыг өдөр тутмыг харуулсан байдлаар зааж өгнө.
       from = min(week, na.rm=T), 
       to = max(week, na.rm=T),
       by = "week"),
-    fill = list(n = 0))                   # set new filled-in rows to display 0 in column n (not NA as default) 
+    fill = list(n = 0))                   # n баганын 0 тохиолдолтой мөрүүдийг бөглөх  ( автоматаар гарах NA-ын оронд)  
 ```
 
-Here are the first 50 rows of the resulting data frame:  
+Шинээр байгуулсан хүснэгтийн эхний 50 мөрийг дор харуулав:  
 
 ```{r message=FALSE, echo=F}
 DT::datatable(weekly_counts, rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-### Linelist cases into months {.unnumbered}
+### Linelist тохиолдлуудыг сар бүрээр бүлэглэх {.unnumbered}
 
-To aggregate cases into months, again use `floor_date()` from the **lubridate** package, but with the argument `unit = "months"`. This rounds each date down to the 1st of its month. The output will be class Date. Note that in the `complete()` step we also use `by = "months"`.  
+Тохиолдлыг сар бүрээр харуулахад мөн **lubridate**  багцын `floor_date()` -ыг хэрэглэнэ. Гэхдээ нэгжийн аргументэд `unit = "months"` гэж тохируулна. Ингэснээр огноо бүр тухайн сарынхаа эхний өдөрт хураагддаг. Үүний үр дүнд огноо хэлбэрийн дататай багана үүснэ. Энэ үед `complete()` алхмыг хийхдээ `by = "months"` гэж аргументээ тохируулна гэдгийг анхаарна уу.  
 
 
 ```{r}
-# Make dataset of monthly case counts
+# Тохиолдлын тоог сар бүрээр харуулсан хүснэгт байгуул
 monthly_counts <- linelist %>% 
   drop_na(date_onset) %>% 
-  mutate(month = lubridate::floor_date(date_onset, unit = "months")) %>%  # new column, 1st of month of onset
-  count(month) %>%                          # count cases by month
+  mutate(month = lubridate::floor_date(date_onset, unit = "months")) %>%  # шинэ багана, өвчин эхэлсэн сарын эхний өдөр
+  count(month) %>%                          # сар бүрт ноогдох тохиолдлын тоо
   complete(
     month = seq.Date(
-      min(month, na.rm=T),     # include all months with no cases reported
+      min(month, na.rm=T),     # тохиолдол илрээгүй ч гэсэн бүх саруудыг гарч ирдэг болго
       max(month, na.rm=T),
       by="month"),
     fill = list(n = 0))
@@ -390,79 +390,78 @@ DT::datatable(monthly_counts, rownames = FALSE, options = list(pageLength = 5, s
 ```
 
 
-### Daily counts into weeks {.unnumbered}
+### Өдөр тутмын тооллогыг долоо хоногт шилжүүлэх {.unnumbered}
 
-To aggregate daily counts into weekly counts, use `floor_date()` as above. However, use `group_by()` and `summarize()` instead of `count()` because you need to `sum()` daily case counts instead of just counting the number of rows per week.
-
-
-
-#### Daily counts into months {.unnumbered}
-
-To aggregate daily counts into months counts, use `floor_date()` with `unit = "month"` as above. However, use `group_by()` and `summarize()` instead of `count()` because you need to `sum()` daily case counts instead of just counting the number of rows per month.  
+Өдөр тутмын тооллогыг долоо хоног бүрт шилжүүлэхдээ `floor_date()` -ыг дээрхийн адил ашиглана. Харин энэ удаад долоо хоногт ноогдох мөрийн тоо биш харин өдөр тутамд илэрсэн тохиолдлын тооны нийлбэрийг (`sum()`) тогтоох хэрэгтэй учраас `count()`биш оронд`group_by()`, `summarize()` функцуудыг хавсарч хэрэглэх шаардлагатай.
 
 
 
+#### Өдөр тутмын тооллогыг сард шилжүүлэх {.unnumbered}
 
-## Arranging grouped data
-
-Using the **dplyr** verb `arrange()` to order the rows in a data frame behaves the same when the data are grouped, *unless* you set the argument `.by_group =TRUE`. In this case the rows are ordered first by the grouping columns and then by any other columns you specify to `arrange()`.   
-
+Өдөр тутмын тооллогыг сар бүрт шилжүүлэхдээ `floor_date()` -ыг `unit = "month"` нэгжтэйгээр дээрхийн адил ашиглана. Харин энэ удаад сар бүрт ноогдох мөрийн тоо биш харин өдөр тутамд илэрсэн тохиолдлын тооны нийлбэрийг (`sum()`) тогтоох хэрэгтэй учраас `count()`биш оронд`group_by()`, `summarize()` функцуудыг хавсарч хэрэглэх шаардлагатай. 
 
 
-## Filter on grouped data
+
+## Бүлэглэсэн датаг эрэмбэлэх
+
+Бүлэглэсэн датаг **dplyr** -ын `arrange()` -аар эрэмбэлэх явц бүлэглээгүй linelist хүснэгтийг эрэмбэлэхтэй адил. Харин энэ үед аргументийг тохируулбал `.by_group =TRUE` эхлээд бүлэглэсэн баганууд эрэмбэлэгдэж, дараа нь `arrange()` оруулсан бусад баганууд эрэмбэлэгддэг. 
+
+
+
+## Бүлэглэсэн датаг шүүх
 
 ### `filter()` {.unnumbered}
 
-When applied in conjunction with functions that evaluate the data frame (like `max()`, `min()`, `mean()`), these functions will now be applied to the groups. For example, if you want to filter and keep rows where patients are above the median age, this will now apply per group - filtering to keep rows above the *group's* median age. 
+Дата хүснэгтийг шүүхдээ (filter) бусад функцтэй (`max()`, `min()`, `mean()`зэрэг ) хавсарч хэрэглэдэг ба бүлэглэсэн хүснэгтэд мөн адил хамт хэрэглэж болно. Жишээ нь медианаас дээш настан агуулсан мөрүүдийг үлдээх үйлдлийг бүлэглэсэн хүснэгтэд хийж болно. Өөрөөр хэлбэл бүлгүүдийн медиан наснаас дээш нас агуулсан мөрийг үлдээнэ гэсэн үг. 
 
 
 
 
-### Slice rows per group {.unnumbered} 
+### Бүлгээр хуваах {.unnumbered} 
 
-The **dplyr** function `slice()`, which [filters rows based on their position](https://dplyr.tidyverse.org/reference/slice.html) in the data, can also be applied per group. Remember to account for sorting the data within each group to get the desired "slice".  
+Хуваахдаа **dplyr** -ын `slice()`-ыг ашиглаж болно. Энэ нь мөрийг байрлалын дагуу шүүгдэг ба бүлэглэсэн датанд адилхан үйлчилнэ [filters rows based on their position](https://dplyr.tidyverse.org/reference/slice.html). Хүссэн хэсгүүдэд хуваахын тулд бүлэг тус бүрийг эхлээд дотор нь эрэмбэлэх хэрэгэтй гэдгийг анхаар.
 
-For example, to retrieve only the latest 5 admissions from each hospital:  
+Жишээ нь эмнэлэг тус бүрд хэвтэгсдийн дундаас хамгйин сүүлийн 5-ыг сугалж авахын тулд:
 
-1) Group the linelist by column `hospital`  
-2) Arrange the records from latest to earliest `date_hospitalisation` *within each hospital group*  
-3) Slice to retrieve the first 5 rows from each hospital  
+1) linelist -ыг `hospital` баганын дугуу бүлэглэ
+2) *Эмнэлэг/бүлэг тус бүр доторх* эмнэлэгт хэвтсэн огноог  хамгийн сүүлчээс хамгийн эртрүү чиглэлтэйгээр эрэмбэл
+3) Эмнэлэг тус бүрийн хамгийн эхний 5 мөрийг сугалж гаргаж ирнэ 
 
 ```{r,}
 linelist %>%
   group_by(hospital) %>%
   arrange(hospital, date_hospitalisation) %>%
   slice_head(n = 5) %>% 
-  arrange(hospital) %>%                            # for display
-  select(case_id, hospital, date_hospitalisation)  # for display
+  arrange(hospital) %>%                            # харуулах
+  select(case_id, hospital, date_hospitalisation)  # харуулах
 ```
 
-`slice_head()` - selects n rows from the top  
-`slice_tail()` - selects n rows from the end  
-`slice_sample()` - randomly selects n rows  
-`slice_min()` - selects n rows with highest values in `order_by = ` column, use `with_ties = TRUE` to keep ties  
-`slice_max()` - selects n rows with lowest values in `order_by = ` column, use `with_ties = TRUE` to keep ties  
+`slice_head()` - n мөрийг дээрээс тоолж сонгоно  
+`slice_tail()` - n мөрийг доороос тоолж сонгоно 
+`slice_sample()` - n мөрийг санамсаргүй байдлаар сонгоно  
+`slice_min()` - `order_by = ` баганадах хамгийн их утгатай n мөрийг сонгоно (`with_ties = TRUE`гэж тохируул) 
+`slice_max()` - `order_by = ` баганадах хамгийн бага утгатай n мөрийг сонгоно (`with_ties = TRUE`гэж тохируул)   
 
-See the [De-duplication] page for more examples and detail on `slice()`.  
-
-
+[De-duplication] хуудаснаас `slice()`-ын талаар тайлбарласныг уншна уу.  
 
 
-### Filter on group size {#group_filter_grp_size .unnumbered} 
 
-The function `add_count()` adds a column `n` to the original data giving the number of rows in that row's group. 
 
-Shown below, `add_count()` is applied to the column `hospital`, so the values in the new column `n` reflect the number of rows in that row's hospital group. Note how values in column `n` are repeated. In the example below, the column name `n` could be changed using `name = ` within `add_count()`. For demonstration purposes we re-arrange the columns with `select()`.  
+### Бүлгийн том жижигээр нь шүүх {#group_filter_grp_size .unnumbered} 
+
+`add_count()` функц эх хүснэгтэд шинээр `n` гэсэн баганыг нэмдэг. Энэ баганын утга нь датандах мөр болгоны харьяалах бүлгийн хамрах хэмжээг зааж өгсөн байдаг. 
+
+Доор уишээнд `add_count()` функцыг `hospital` багана дээр хэрэглэсэн байна. Тиймээс `n` багана дах утга бол тухайн мөрөнд бичигдсэн эмнэлэгийн бүлэгт ноогдох мөрний тоо юм. Тиймээс `n` баганын утгууд олон давтагдсан байна. Баганын нэр `n` -ийг  `add_count()`-ын `name = `аргументээр өөрчилж болно. Харуулахад ойлгомжтой болгох үүднээс багануудыг `select()`-ээр эрэмбэлсэн.  
 
 
 ```{r}
 linelist %>% 
   as_tibble() %>% 
-  add_count(hospital) %>%          # add "number of rows admitted to same hospital as this row" 
+  add_count(hospital) %>%          # "энэ эмнэлэгтэй адилхан эмнэлэгт хэвтсэн мөрийн тоог" нэм 
   select(hospital, n, everything())
 ```
 
-It then becomes easy to filter for case rows who were hospitalized at a "small" hospital, say, a hospital that admitted fewer than 500 patients:  
+Ийм багана нэмэхэд жижиг (жишээ нь 500 аас доош хүн хэвтсэн) эмнэлэгт хэвтсэн тохиолдлуудыг шүүж гаргаж ирэхэд амар боллоо.
 
 ```{r, eval=F}
 linelist %>% 
@@ -474,42 +473,42 @@ linelist %>%
 
 
 
-## Mutate on grouped data  
+##Бүлэглэсэн датаг хувиргах  
 
-To retain all columns and rows (not summarise) and *add a new column containing group statistics*, use `mutate()` after `group_by()` instead of `summarise()`. 
+Бүх багана мөрийг хэвээр нь байхад (нэгтгэхгүй) *бүлгийн статистикийн тооцоо агуулсан шинэ багана* нэмэх бол `summarise()`-ын оронд `mutate()`-ыг `group_by()` угсруулж хэрэглэ.
 
-This is useful if you want group statistics in the original dataset *with all other columns present* - e.g. for calculations that compare one row to its group.  
+Ингэснээр эх дата дээрээ бүлгийн статистикийг *бусад баганын хамтаар* харах боложмтой юм. Тухайлбал нэг мөрний утгыг бүлгийн утгатай нь харьцуулж болно. 
 
-For example, this code below calculates the difference between a row's delay-to-admission and the median delay for their hospital. The steps are:  
+Доор жишээ код эмнэлэгт хожуу хэвтэлттэй мөрүүд болон хожуу хэвтэлтийн медиан үзүүлэлтүүдийг харьцуулж ялгааг харуулсан. Үүнийг хийх алхмууд нь: 
 
-1) Group the data by hospital  
-2) Use the column `days_onset_hosp` (delay to hospitalisation) to create a new column containing the mean delay at the hospital of *that row*  
-3) Calculate the difference between the two columns  
+1) Датаг эмнэлэг тус бүрээр бүлэглэ  
+2) `days_onset_hosp` (эмнэлэгт хожуу хэвтэх) баганыг ашиглан *тухайн мөрөн дэх* эмнэлэгийн хожуу хэвтэлийн дундаж үзүүлэлтийг тооцож бодсон шинэ багана үүсгэ. 
+3) Хоёр баганын ялгааг тооц 
 
-We `select()` only certain columns to display, for demonstration purposes.  
+Ойлгомжтой байлгахын тулд зөвхөн тодорхой багануудыг `select()` -ээр сонгож харуулав. 
 
 ```{r}
 linelist %>% 
-  # group data by hospital (no change to linelist yet)
+  # Датаг эмнэлэг тус бүрээр бүлэглэ (linelist -д өөрчлөлт гарахгүй)
   group_by(hospital) %>% 
   
-  # new columns
+  # Шинэ баганууд
   mutate(
-    # mean days to admission per hospital (rounded to 1 decimal)
+    # Эмнэлэгт хэвтэх хүртэлх өдрийн дундаж (таслалтын ард нэг орон байхаар хураа)
     group_delay_admit = round(mean(days_onset_hosp, na.rm=T), 1),
     
-    # difference between row's delay and mean delay at their hospital (rounded to 1 decimal)
+    # Тухайн мөрний хожуу хэвтэлт болон яг тэр мөрний эмнэлэгийн хожуу хэвтэлтийн дундаж хоёрын ялгаа (таслалтын ард нэг орон байхаар хураа)
     diff_to_group     = round(days_onset_hosp - group_delay_admit, 1)) %>%
   
-  # select certain rows only - for demonstration/viewing purposes
+  # Ойлгомжтой байлгахын тулд зөвхөн тодорхой багануудыг л сонго
   select(case_id, hospital, days_onset_hosp, group_delay_admit, diff_to_group)
 ```
 
 
 
-## Select on grouped data  
+## Бүлэглэсэн дата  
 
-The verb `select()` works on grouped data, but the grouping columns are always included (even if not mentioned in `select()`). If you do not want these grouping columns, use `ungroup()` first.  
+`select()` функц мөн бүлэглэсэн датанд үйлчилдэг. Гэхдээ бүлэг үүссэн багана нь үргэлж сонгогдох болно (`select()` дотор зааж өгөөгүй байсан ч гэсэн). Бүлэг үүссэн баганыг оруулахгүй байхын тулд эхлээд `ungroup()` хийнэ.  
 
 
 
@@ -521,16 +520,16 @@ The verb `select()` works on grouped data, but the grouping columns are always i
 
 
 <!-- ======================================================= -->
-## Resources {  }
+## Нэмэлт материал {  }
 
-Here are some useful resources for more information:  
+Нэмэлт хэрэгтэй мэдээллүүдийг дараах линкуудээс үзнэ үү:  
 
-You can perform any summary function on grouped data; see the [RStudio data transformation cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)  
+Ямар ч нэгтгэж дүгнэсэн функцыг бүлэглэсэн датанд хийж болно; [RStudio data transformation cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf) ээс харна уу.  
 
-The Data Carpentry page on [**dplyr**](https://datacarpentry.org/R-genomics/04-dplyr.html)  
-The **tidyverse** reference pages on [group_by()](https://dplyr.tidyverse.org/reference/group_by.html) and [grouping](https://dplyr.tidyverse.org/articles/grouping.html)  
+[**dplyr**](https://datacarpentry.org/R-genomics/04-dplyr.html)  
+The **tidyverse** reference pages on [group_by()](https://dplyr.tidyverse.org/reference/group_by.html) хуудасны The Data Carpentry хэсэг болон [grouping](https://dplyr.tidyverse.org/articles/grouping.html)  
 
-This page on [Data manipulation](https://itsalocke.com/files/DataManipulationinR.pdf)  
+[Data manipulation](https://itsalocke.com/files/DataManipulationinR.pdf) хуудас
 
 [Summarize with conditions in dplyr](https://stackoverflow.com/questions/23528862/summarize-with-conditions-in-dplyr)  
 
