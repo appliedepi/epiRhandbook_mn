@@ -2,7 +2,7 @@
 <!-- ======================================================= -->
 <!-- ======================================================= -->
 <!-- ======================================================= -->
-# Pivoting data {}
+# Датаг пивот хийх  {}
 
 ```{r, warning=F, message=F, out.height = c('50%'), fig.align="center", fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "pivoting", "Pivoting_500x500.png"))
@@ -14,40 +14,40 @@ knitr::include_graphics(here::here("images", "pivoting", "Pivoting_500x500.png")
 
 
 
-When managing data, *pivoting* can be understood to refer to one of two processes:  
+Дата менежментийн үед *пивот*-ыг дараах хоёр тохиолдолд хэрэглэдэг:  
 
-1. The creation of *pivot tables*, which are tables of statistics that summarise the data of a more extensive table  
-2. The conversion of a table from **long** to **wide** format, or vice versa. 
+1. *Пивот хүснэгт*-ийг байгуулахад хэрэглэнэ. Пивот гэдэг нь датаны статистик үзүүлэлтүүдийг хүснэгтэлж, дүгнэж харуулахыг хэлдэг.
+2. Дата хүснэгтийг **урт** -аас **өргөн** эсвэл **өргөн** -өөс **урт** формат болгож хувиргахад хэрэглэнэ.
 
-**In this page, we will focus on the latter definition.** The former is a crucial step in data analysis, and is covered elsewhere in the [Grouping data] and [Descriptive tables] pages. 
+**Энэхүү хуудаст хоёрдугаар хэрэглээг голчилж үзэх болно.** Эхний хэрэглээ нь дата анализийн маш чухал хэсэг тул [Grouping data] болон [Descriptive tables] хуудсуудад дэлгэрэнгүйгээр тайлбарлагдна. 
+ 
 
-This page discusses the formats of data. It is useful to be aware of the idea of "tidy data", in which each variable has it's own column, each observation has it's own row, and each value has it's own cell. More about this topic can be found [at this online chapter in R for Data Science](https://r4ds.had.co.nz/tidy-data.html). 
-
-
-
+Энэ хуудсанд ихэвчлэн датаны форматыг янзлах талаар үзэх болно. "Цэгцтэй дата" буюу хувьсагч болгон өөрийн баганатай, ажиглалт бүр өөрийн мөртэй, утга бүр өөрийн гэсэн нүдэнд оршдог талаар санаж байх хэрэгтэй.Энэ талаар илүү дэлгэрэнгүйгээр  [at this online chapter in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) -д тайлбарласан байдаг. 
 
 
-## Preparation  
 
-### Load packages {.unnumbered}  
 
-This code chunk shows the loading of packages required for the analyses. In this handbook we emphasize `p_load()` from **pacman**, which installs the package if necessary *and* loads it for use. You can also load installed packages with  `library()` from **base** R. See the page on [R basics] for more information on R packages.  
+## Бэлтгэл   
+
+### Багцуудыг ачааллах  {.unnumbered}  
+
+Энэ хэсэгт анализ хийхэд шаардлагатай багцуудыг доорхи кодоор ачааллана.**pacman** багцын `p_load()` функцээр шаардлагатай багцыг татаж аваад ачааллана уу. Өмнө татаж авсан багцуудаа **base** R -ын `library()`-аар ачааллаж болно. Багцын талаарх нэмэлт мэдээллийг [R basics] хэсгээс харна уу.  
 
 ```{r}
 pacman::p_load(
-  rio,          # File import
-  here,         # File locator
-  tidyverse)    # data management + ggplot2 graphics
+  rio,          # Файлыг импортлох
+  here,         # Файлыг байрлуулах
+  tidyverse)    # дата менежмент + ggplot2 графикууд
 ```
 
 
 
-### Import data {.unnumbered}
+### Датаг импортлох  {.unnumbered}
 
 
-### Malaria count data {-}  
+### Хумхаагийн бодит тоон дата  {-}  
 
-In this page, we will use a fictional dataset of daily malaria cases, by facility and age group. If you want to follow along, <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_facility_count_data.rds' class='download-button'>click here to download (as .rds file)<span></a>. Import data with the `import()` function from the **rio** package (it handles many file types like .xlsx, .csv, .rds - see the [Import and export] page for details).  
+Энэ хуудасны жишээ дасгалд хумхаагийн өдөр тутмын тохиоллдолтой зохиомол датаг ашиглах болно. Дагаж дасгалыг ажиллах бол <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/malaria_facility_count_data.rds' class='download-button'>линк дээр дарж татаж авна уу (as .rds file)<span></a>. Датагаа  **rio** багцын `import()` функцээр импортло (энэ функц .xlsx, .csv, .rds зэрэг олон өргөтгөлтэй ажиллаж чаддаг [Import and export] хуудаст нэмж тайлбарласан).  
 
 ```{r, echo=F}
 count_data <- rio::import(here::here("data", "malaria_facility_count_data.rds")) %>% 
@@ -55,30 +55,30 @@ count_data <- rio::import(here::here("data", "malaria_facility_count_data.rds"))
 ```
 
 ```{r, eval=F}
-# Import data
+# Дата импортлох
 count_data <- import("malaria_facility_count_data.rds")
 ```
 
-The first 50 rows are displayed below.
+Эхний 50 мөрийг дор хэвлэж харуулав.
 
 ```{r, message=FALSE, echo=F}
-# display the linelist data as a table
+# linelist датаг хүснэгт хэлбэрээр харуул
 DT::datatable(head(count_data, 50), rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
 
-### Linelist case data {-}  
+### Linelist бодит тоон дата  {-}  
 
-In the later part of this page, we will also use the dataset of cases from a simulated Ebola epidemic. If you want to follow along, <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>click to download the "clean" linelist</a> (as .rds file). Import your data with the `import()` function from the **rio** package (it accepts many file types like .xlsx, .rds, .csv - see the [Import and export] page for details).  
+Энэ хуудасны сүүлийн хэсэгт Эболагийн дэгдэлтийн зохиомол датаг ашиглах болно. Дагаж дасгалыг ажиллах бол  <a href='https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds' class='download-button'>линкинй "clean" linelist дээр дарж татаж авна уу</a> (as .rds file). Датагаа  **rio** багцын `import()` функцээр импортло (энэ функц .xlsx, .csv, .rds зэрэг олон өргөтгөлтэй ажиллаж чаддаг [Import and export] хуудаст нэмж тайлбарласан).  
 
 ```{r, echo=F}
-# import the linelist into R
+# linelist -ийг R -т импортло
 linelist <- rio::import(here::here("data", "case_linelists", "linelist_cleaned.rds"))
 ```
 
 
 ```{r, eval=F}
-# import your dataset
+# Датасетээ импортло
 linelist <- import("linelist_cleaned.xlsx")
 ```
 
@@ -89,7 +89,7 @@ linelist <- import("linelist_cleaned.xlsx")
 
 
 <!-- ======================================================= -->
-## Wide-to-long {}
+## Өргөнөөс уртруу хувиргах  {}
 
 ```{r, warning=F, message=F, echo=F}
 knitr::include_graphics(here::here("images", "pivoting", "pivot_longer_new.png"))
@@ -97,52 +97,49 @@ knitr::include_graphics(here::here("images", "pivoting", "pivot_longer_new.png")
 
 
 <!-- ======================================================= -->
-### "Wide" format {.unnumbered}
+### "Өргөн" формат  {.unnumbered}
 
-Data are often entered and stored in a "wide" format - where a subject's characteristics or responses are stored in a single row. While this may be useful for presentation, it is not ideal for some types of analysis.  
+Ихэнх дата "өргөн" форматтай байдаг. Өргөн формат гэдэг нь тухайн субьекттэ хамаатай хэв шинж, хариултууд бүгд нэг мөрөнд хадгадагдсан байхыг хэлнэ. Ингэж харуулах нь ойгомжтой боловч анализ хийхэд тохиромжгүй байдаг.  
 
-Let us take the `count_data` dataset imported in the Preparation section above as an example. You can see that each row represents a "facility-day". The actual case counts (the right-most columns) are stored in a "wide" format such that the information for every age group on a given facility-day is stored in a single row.  
+Өмнөх Бэлтгэл хэсэгт импортлож оруулсан `count_data` датаг авч үзье. Датаг харахад мөр болгон байгууллага тус бүрийн өдөр тутмын байдлыг ( "facility-day")-г харуулж байна. Яг жинхэнэ тохиолдлын тоо (хамгийн баруун талын багана) нь "өргөн" форматаар хадгалагдаж нас насан дах тохиолдлын тоо нь дан мөрөнд хадгалагдсан байна. 
 
 ```{r, echo=F}
 DT::datatable(count_data, rownames = FALSE, options = list(pageLength = 5, scrollX=T) )
 ```
 
-Each observation in this dataset refers to the malaria counts at one of 65 facilities on a given date, ranging from ` count_data$data_date %>% min()` to ` count_data$data_date %>% max()`. These facilities are located in one `Province` (North) and four `District`s (Spring, Bolo, Dingo, and Barnard). The dataset provides the overall counts of malaria, as well as age-specific counts in each of three age groups - <4 years, 5-14 years, and 15 years and older.
+Энэхүү датасетийн ажиглалт бүр эдгээр 65 байгууллагын нэгэнд тухайн өдөр гарсан хумхаагийн тоог илтгэж байна. Огноо нь ranging ` count_data$data_date %>% min()` -ээс ` count_data$data_date %>% max()` хүртэл үргэлжилнэ. Эдгээр байгууллагууд Хойд `Аймаг`-ын  (Spring, Bolo, Dingo, Barnard) гэсэн дөрвөн `Дүүрэгт` тарж байрласан. Энэхүү дата хумхаагийн тоог нийт болон гурван насны ангиллаар (<4 нас, 5-14 нас, 15 -аас дээр нас) тус бүр харуулсан. 
 
-"Wide" data like this are not adhering to "tidy data" standards, because the column headers do not actually represent "variables" - they represent *values* of a hypothetical "age group" variable. 
+Иим "Өргөн" хэлбэрийн формат нь  "цэгцтэй дата" байж чаддаггүй.  Учир нь энэхүү баганын толгойнууд "хувьсагчийг" биш харин "насны бүлэглэл" хэмээх хувьсагийн *утгыг* илтгэж байдаг.
 
+Энэ формат нь мэдээллийг хүснэгтээр үзүүлэх эсвэл тохиолдлын тоотой тайлангийн маягтаас өгөгдөл оруулахад (жишээ нь Excel дээр) хэрэгтэй байж болно. Харин анализ хийхийн өмнө энэ датаг "урт" фомартруу шилжүүлж "цэгцтэй дата" -ны стандартад нийцүүлэх хэрэгтэй байдаг. R -ын график байгуулдаг **ggplot2** багц "урт" форматтай дататай илүү зохицдог.  
 
-This format can be useful for presenting the information in a table, or for entering data (e.g. in Excel) from case report forms. However, in the analysis stage, these data typically should be transformed to a "longer" format more aligned with "tidy data" standards. The plotting R package **ggplot2** in particular works best when data are in a "long" format.  
-
-
-Visualising the *total* malaria counts over time poses no difficulty with the data in it's current format:
+Одоогийн форматад хумхаагийн *нийт* тоог цаг хугацааны хувьд тооцоход асуудалгүй:
 
 ```{r, warning=F, message=F}
 ggplot(count_data) +
   geom_col(aes(x = data_date, y = malaria_tot), width = 1)
 ```
 
-However, what if we wanted to display the relative contributions of each age group to this total count? In this case, we need to ensure that the variable of interest (age group), appears in the dataset in a single column that can be passed to `{ggplot2}`'s "mapping aesthetics" `aes()` argument.
-
+Харин энэхүү нийт тохиолдлын тоонд насны ангилал хэрхэн нөлөөлж буйг хэрхэн тооцоолж харуулах вэ? Үүний тулд сонирхож буй хувьсагч болох (насны ангилал)-ыг датанд нэг баганад оруулах хэрэгтэй ба ингэснээр `{ggplot2}`-ын "mapping aesthetics" `aes()` аргументэд өгөгдөл болж орох боломжтой болно.
 
 
 
 <!-- ======================================================= -->
 ### `pivot_longer()` {.unnumbered}
 
-The **tidyr** function `pivot_longer()` makes data "longer". **tidyr** is part of the **tidyverse** of R packages.  
+Датаг **tidyr** багцын `pivot_longer()` функцээр "урт" болгож болно. **tidyr** нь **tidyverse** -ын харьяа багцуудын нэг.  
 
-It accepts a range of columns to transform (specified to `cols = `). Therefore, it can operate on only a part of a dataset. This is useful for the malaria data, as we only want to pivot the case count columns.  
+Энэхүү функцээр хэсэг багануудыг зэрэг өгөгдлөөр (`cols = ` аргументэд) оруулж, хувиргах боломжтой. Тиймээс энэ нь датаны зөвхөн тодорхой хэсэгт үйлчилдэг. Энэ онцлог нь хумхаагийн датаг хувиргахад их тохиромэтой. Учир нь бид зөвхөн тохиолдлын тоотой багануудыг л хувиргах шаардлагтай. 
 
-In this process, you will end up with two "new" columns - one with the categories (the former column names), and one with the corresponding values (e.g. case counts). You can accept the default names for these new columns, or you can specify your own to `names_to = ` and `values_to = ` respectively.  
+Энэхүү процессийн эцэст хоёр төрлийн багануудтай болдог. Үүний нэг нь шинээр үүссэн ангиллын нэрийг бичсэн (энэ ангиллууд хуучин хүснэгтийн баганын нэр байсан) багана, нөгөө нь эдгээр ангилалд тохирох утгууд (тохиолдлын тоо)-тай багана юм. Шинээр үүссэн хоёр баганын автоматаар үүссэн нэрийг хэрэглэж болно. Эсвэл `names_to = ` болон `values_to = ` аргументуудэд тусгай нэр өгч автомат нэрийг өөрчилж болно. 
 
-Let's see `pivot_longer()` in action... 
+`pivot_longer()` -ийг хэрхэн ашиглахыг харцгаая... 
 
 
 
-### Standard pivoting {.unnumbered}  
+### Стандарт пивот {.unnumbered}  
 
-We want to use **tidyr**'s `pivot_longer()` function to convert the "wide" data to a "long" format. Specifically, to convert the four numeric columns with data on malaria counts to two new columns: one which holds the *age groups* and one which holds the corresponding *values*.  
+**tidyr** багцын `pivot_longer()` функцээр "өргөн" датаг "урт" формат болгох болно. Ялангуяа хумхаагийн тоог харуулсан дөрвөн тоон баганыг *насны ангиллууд*-ыг агуулсан нэг багана, үүнд тохирсон тоон үзүүлэлттэй утгыг агуулсан өөр нэг багана болгож хувиргах хэрэгэтэй.  
 
 ```{r, eval=F}
 df_long <- count_data %>% 
@@ -153,34 +150,34 @@ df_long <- count_data %>%
 df_long
 ```
 
-Notice that the newly created data frame (`df_long`) has more rows (12,152 vs 3,038); it has become *longer*. In fact, it is precisely four times as long, because each row in the original dataset now represents four rows in df_long, one for each of the malaria count observations (<4y, 5-14y, 15y+, and total).
+Шинээр үүссэн хүснэгтийн (`df_long`) мөрийн тоо илүү  байгааг анхаар (12,152 -г 3,038 тэй харьцуул); Хүснэгт *урт* болсон. Өөрөөр хэлбэл яг дөрөв дахин урт болсон гэсэн үг. Учир нь хуучин хүснэгтийн нэг мөр  df_long хүснэгтийн дөрвөн мөр болж өөрчлөгдсөн ба хумхаагийн дөрвөн төрлийн (<4 нас, 5-14 нас, 15y+, нийт) тоон үзүүлэлт тус бүрт нэг мөр үүссэн гэсэн үг юм .
 
-In addition to becoming longer, the new dataset has fewer columns (8 vs 10), as the data previously stored in four columns (those beginning with the prefix `malaria_`) is now stored in two. 
+Шинэ хүснэгт урт болохоос гадна цөөн баганатай (8 -г 10-тэй харьцуулах) болсон байна. Учир нь өмнөх дөрвөн багана дах мэдээлэл ( `malaria_` гэж эхэлсэн баганууд) хоёр баганад хадгалагдах болсон. 
 
-Since the names of these four columns all begin with the prefix `malaria_`, we could have made use of the handy "tidyselect" function `starts_with()` to achieve the same result (see the page [Cleaning data and core functions] for more of these helper functions).  
+Эдгээр дөрвөн багана `malaria_`гэж эхэлж буй тул "tidyselect"-ын `starts_with()` функцыг ашиглаж хувиргалтаа хийж бас болно (эдгээр туслах функцуудын талаар[Cleaning data and core functions] хэсэгт дэлгэрэнгүй оруулсан).  
 
 ```{r}
-# provide column with a tidyselect helper function
+# tidyselect-ын туслах функцуудээр өөрчлөх хүснэгтийг сонго
 count_data %>% 
   pivot_longer(
     cols = starts_with("malaria_")
   )
 ```
 
-or by position: 
+эсвэл байрлалаар нь сонго: 
 
 ```{r, eval=F}
-# provide columns by position
+# байрлалаар нь сонго
 count_data %>% 
   pivot_longer(
     cols = 6:9
   )
 ```
 
-or by named range:
+эсвэл хэсэг дараалласан багануудыг сонго:
 
 ```{r, eval=F}
-# provide range of consecutive columns
+# нэг хэсэг дарааллаасан багануудыг сонгох
 count_data %>% 
   pivot_longer(
     cols = `malaria_rdt_0-4`:malaria_tot
@@ -189,7 +186,7 @@ count_data %>%
 
 
 
-These two new columns are given the default names of `name` and `value`, but we can override these defaults to provide more meaningful names, which can help remember what is stored within, using the `names_to` and `values_to` arguments. Let's use the names `age_group` and `counts`:
+Энэхүү шинээр үүсэх хоёр баганууд `name` болон `value` гэж автоматаар нэрлэгддэг боловч доторх утгыг ойлгомжтой болгох үүднээс `names_to` болон `values_to` аргументүүдэд илүү тодорхой нэр өгч болно. Жишээ болгож `age_group` болон `counts` гэсэн нэр өгье:
 
 ```{r}
 df_long <- 
@@ -203,7 +200,7 @@ df_long <-
 df_long
 ```
 
-We can now pass this new dataset to `{ggplot2}`, and map the new column `count` to the y-axis and new column `age_group` to the `fill = ` argument (the column internal color). This will display the malaria counts in a stacked bar chart, by age group:
+Шинээр үүсгэсэн датагаа `{ggplot2}`-д оруулж шинэ үүссэн `count` баганыг y-тэнхлэгт байрлуулж, шинэ үүссэн `age_group` баганыг `fill = ` аргументэд (өнгөөр ялгана) өгч болох боломжтой боллоо. Ингэснээр bar графикт хумхаагийн тохиолдлын тоо насны бүлгүүдээр даврхаласан байдлаар харуулсна.
 
 ```{r, warning=F, message=F}
 ggplot(data = df_long) +
@@ -213,11 +210,11 @@ ggplot(data = df_long) +
   )
 ```
 
-Examine this new plot, and compare it with the plot we created earlier - *what has gone wrong?*  
+Дараахь шинэ графикийг өмнөх графиктай харьцуулж *буруу хийгдсэн зүйлсийг?* тодруулцгаая.  
 
-We have encountered a common problem when wrangling surveillance data - we have also included the total counts from the `malaria_tot` column, so the magnitude of each bar in the plot is twice as high as it should be. 
+Тандалтын датаг янзалж байхад нийтлэг тохиолддог бэрхшээлтэй бид учирсан байна. Мөн `malaria_tot` баганын нийт тоог оруулснаас bar -ын өндөр байх ёстой хэмжээнээс хоёр дахин өндөр болж харагдаж байна. 
 
-We can handle this in a number of ways. We could simply filter these totals from the dataset before we pass it to `ggplot()`:
+Үүнийг хэд хэдэн аргаар шийдвэрлэж болно. Энгийн арга бол `ggplot()`-д оруулахаас өмнө энэхүү нийт (`malaria_tot`)-ийг шүүж хасч болно:
 
 ```{r, warning=F, message=F}
 df_long %>% 
@@ -229,12 +226,12 @@ df_long %>%
   )
 ```
 
-Alternatively, we could have excluded this variable when we ran `pivot_longer()`, thereby maintaining it in the dataset as a separate variable. See how its values "expand" to fill the new rows. 
+Эсвэл `pivot_longer()` коммандыг өгч байхдаа энэ хувьсагчийг хасч болно. Ингэснээр хүснэгтэд тусдаа хувьсагч хэвээр байх болно. Шинэ үүссэн мөрүүд ямар утгууд орж "өргөжсөн" -ийг харна уу.
 
 ```{r, warning=F, message=F}
 count_data %>% 
   pivot_longer(
-    cols = `malaria_rdt_0-4`:malaria_rdt_15,   # does not include the totals column
+    cols = `malaria_rdt_0-4`:malaria_rdt_15,   # нийт тоон үзүүлэлттэй баганыг оруулаагүй
     names_to = "age_group",
     values_to = "counts"
   )
@@ -244,15 +241,16 @@ count_data %>%
 
 
 
-### Pivoting data of multiple classes {.unnumbered}
+### Олон ангилалтай датаг пивот хийх {.unnumbered}
 
-The above example works well in situations in which all the columns you want to "pivot longer" are of the same class (character, numeric, logical...). 
 
-However, there will be many cases when, as a field epidemiologist, you will be working with data that was prepared by non-specialists and which follow their own non-standard logic - as Hadley Wickham noted (referencing Tolstoy) in his [seminal article](https://vita.had.co.nz/papers/tidy-data.pdf) on **Tidy Data** principles: "Like families, tidy datasets are all alike but every messy dataset is messy in its own way."
+Дээрх жишээний коммандыг "pivot longer" болгож хувиргах баганууд бүгд нэг төрлийн утгатай (карактер, тоон, логик г.м)  байх нөхцөлд илүү тохиромжтой.
 
-One particularly common problem you will encounter will be the need to pivot columns that contain different classes of data. This pivot will result in storing these different data types in a single column, which is not a good situation. There are various approaches one can take to separate out the mess this creates, but there is an important step you can take using `pivot_longer()` to avoid creating such a situation yourself.
+Харин талбарын тархвар зүйчээр ажиллаж байхад ихэвчлэн датаг мэргэжлийн бус хүмүүс оруулсан байдгаас стандарт бус логикоор шивэгдсэн олон төрлийн дататай олон учрах болно. Хадлей Викхам **Цэгцтэй датан** -ны зарчмыг [seminal article](https://vita.had.co.nz/papers/tidy-data.pdf) -тайлбарлахдаа Толстойн үгтэй зүйрлэн "Цэгцтэй дата болгон адил ч бүх гэр бүлд байдагчлан замбараагүй дата болгон өөрийн жамаараа замбараагүй байдаг" гэж тайлбарлажээ.
 
-Take a situation in which there have been a series of observations at different time steps for each of three items A, B and C. Examples of such items could be individuals (e.g. contacts of an Ebola case being traced each day for 21 days) or remote village health posts being monitored once per year to ensure they are still functional. Let's use the contact tracing example. Imagine that the data are stored as follows:
+Хамгийн элбэг тохиолддог бэрхшээлүүдийн нэг бол өөр өөр төрлийн дататай багануудыг пивот хийх юм. Ийм датаг пивот хийхэд янз бүрийн дата төрлүүд нэг баганад ордог. Энэ бол сайн арга биш. Энэ үүссэн замбараагүй байдлыг янзлах олон арга буй боловч  `pivot_longer()` -ыг хэрэглэж ийм байдал үүсэхээс та өөрөө сэргийлж болно.
+
+А, В, С гурван зүйл тус бүрийг өөр цаг хугацаануудад хэд хэдэн ажиглалт хийсэн нөхцөл байдлыг авч үзье. Ийм нөхцлүүдээс дурьдвал Эболагийн тохиолдлуудад 21 хоног тутамд ажиглах, эсвэл алслгадсан тосгоны эрүүл мэндийн цэгийн үйл ажиллагааг жилд нэг удаа хянаr зэрэг байж болно. Эхний жишээ дээр ажиллаж үзье. Дата дараах байдлаар хадагалгдсан байв:
 
 
 ```{r, message=FALSE, echo=F}
@@ -269,11 +267,11 @@ DT::datatable(df, rownames = FALSE)
 
 ```
 
-As can be seen, the data are a bit complicated. Each row stores information about one item, but with the time series running further and further away to the right as time progresses. Moreover, the column classes alternate between date and character values.  
+Энэ хүснэгт төвөгтэй байдлаар бичигдсэн байна. Мөр болгон нэг зүйлийн талаарх мэдээллийг бичсэн боловч цаг хугацааны дараалал нь хойшоогоо улам л холдоод байна.  Мөн карактер болон огноон баганууд ээлжл орсон байна. 
 
-One particularly bad example of this encountered by this author involved cholera surveillance data, in which 8 new columns of observations were added *each day* over the course of __4 years__. Simply opening the Excel file in which these data were stored took >10 minuntes on my laptop!
+Зохиогч миний бие өөр нэгэн их хэцүү байдалтай холерийн тандалтын дататай учирч байлаа. Энэ датанд 4 жилийн турш "өдөр бүр" 8 шинэ ажиглалт нэмэгдэж байсан ба компьютер дээрээ  Excel файлыг нь нээх бүрт 10-аас дээш минут зарцуулагддаг байсан!
 
-In order to work with these data, we need to transform the data frame to long format, but keeping the separation between a `date` column and a `character` (status) column, for each observation for each item. If we don't, we might end up with a mixture of variable types in a single column (a very big "no-no" when it comes to data management and tidy data):
+Ийм байдалтай датанууд ажиллахын тулд "урт" форматруу хувиргах хэрэгтэй боловч ажиглалт тус бүрийн `огноо`, `карактер` (эрүүл мэндийн байдал) багануудын салангид хэвээр байлгах хэрэгэтэй. Тэгж чадахгүй бол олон хувьсагчуудын холимог нэг баганатай болж хоцрох аюултай (цэгцтэй дата болон дата менежментийн хувьд хамгийн болохгүй зүйл):
 
 ```{r}
 df %>% 
@@ -284,16 +282,17 @@ df %>%
 
 ```
 
-Above, our pivot has merged *dates* and *characters* into a single `value` column. R will react by converting the entire column to class character, and the utility of the dates is lost.  
+Өмнөх жишээнд пивот маань *огноо* болон *карактерүүд* нэгдэж нэг төрлийн `утга` агуулсан багана болж орсон. Үүнийг R автоматаар карактер багана болгож хувиргах ба агуулагдах датаг хэрэглэх боломжгүй болдог.  
 
-To prevent this situation, we can take advantage of the syntax structure of the original column names. There is a common naming structure, with the observation number, an underscore, and then either "status" or "date". We can leverage this syntax to keep these two data types in separate columns after the pivot. 
 
-We do this by:  
+Баганын анхны нэрний синтакс бүтцийг ашиглаж ийм байдлаас сэргийлж болно. Баганыг нэрлэх нийтлэг бүтэц байдаг. Үүнд ажиглалтын дугаар, доогуур зураас, "статус" болон "огноо" араас нь бичигдсэн байдаг.  Энэ синтаксыг ашиглаж пивот хийсний дараа энэ хоёр төрлийн датаг салангид багана хэвээр байлгаж болно. 
 
-* Providing a character vector to the `names_to = ` argument, with the second item being (`".value"` ). This special term indicates that the pivoted columns will be split based on a character in their name...  
-* You must also provide the "splitting" character to the `names_sep = ` argument. In this case, it is the underscore "_".  
+Үүнийг хийхдээ:  
 
-Thus, the naming and split of new columns is based around the underscore in the existing variable names.  
+* Карактер векторуудыг `names_to = ` аргументэд өгөөд, хоёрдугаарт нь `".value"` гэж оруулна. Энэхүү тусгай тэмдэглэгээ нь пивот хийгдэж буй баганын нэрэн дэх карактер дээр үндэслэж хуваагдах болно гэдгийг зааж өгч буй. 
+* Мөн "хуваах" карактерийг `names_sep = ` аргументэд зааж өгнө. Доор жишнээд доогуур зураасыг "_" сонгосон. 
+
+Ингэснээр шинээр үүсэх баганыг нэрлэж, хуваах үйлдэл анхны хувьсагчийн нэрэн дэх доогуур зураасыг тойрч хийгднэ гэсэн үг. 
 
 ```{r}
 
@@ -309,11 +308,11 @@ df_long
 
 ```
 
-__Finishing touches__:
+__Сүүлийн засвар__:
 
-Note that the `date` column is currently in *character* class - we can easily convert this into it's proper date class using the `mutate()` and `as_date()` functions described in the [Working with dates] page.  
+`date` багана  *карактер* хэлбэрт байгааг анхаараарай. Үүнийг `mutate()` болон `as_date()` функцуудээр тохирсон огноо хэлбэрийн баганад хувиргахад хялбар ([Working with dates] хуудаст заасны дагуу ).  
 
-We may also want to convert the `observation` column to a `numeric` format by dropping the "obs" prefix and converting to numeric. We cando this with `str_remove_all()` from the **stringr** package (see the [Characters and strings] page).  
+Мөн `observation` баганын "obs" гэсэн бичиглэлийг нь хасч `тоон` форматад оруулна.  Үүнийг **stringr** багцын `str_remove_all()` функцээр хийж болно ([Characters and strings] хуудаст тайлбарласан).  
 
 ```{r}
 
@@ -331,7 +330,7 @@ df_long
 
 ```
 
-And now, we can start to work with the data in this format, e.g. by plotting a descriptive heat tile:  
+Ингээд бид энэхүү дата дээр ажиллаж болохоор боллоо. Жишээ нь дор коммандад heat хавтангаар дескриптив график байгуулж болж байна.
 
 ```{r}
 ggplot(data = df_long, mapping = aes(x = date, y = id, fill = status)) +
@@ -350,30 +349,30 @@ ggplot(data = df_long, mapping = aes(x = date, y = id, fill = status)) +
 
 
 <!-- ======================================================= -->
-## Long-to-wide {}
+## Уртаас өргөнрүү {}
 
 ```{r, warning=F, message=F, echo=F}
 knitr::include_graphics(here::here("images", "pivoting", "pivot_wider_new.png"))
 ```
 
 
-In some instances, we may wish to convert a dataset to a wider format. For this, we can use the `pivot_wider()` function.
+Зарим тохиолдолд дата хүснэгтийг өргөн хэлбэрт шилжүүлэх хэрэгцээ гардаг. Энэ үйлдэлд `pivot_wider()` функцыг ашиглаж болно.
 
-A typical use-case is when we want to transform the results of an analysis into a format which is more digestible for the reader (such as a [Table for presentation][Tables for presentation]). Usually, this involves transforming a dataset in which information for one subject is are spread over multiple rows into a format in which that information is stored in a single row.
+Жишээ нь анализийн үр дүнг уншигчдад ойлгомжтой хүснэгтээр харуулах үүднээс хүснэгтийг өргөн хэлбэрт хувиргах хэрэгцээ цөөнгүй гардаг (жишээ нь [Table for presentation][Tables for presentation]). Энэ үед олон мөрүүдэд тархан хадгалагдсан нэг субьектийн мэдээллийг нэг мөрөнд болгож харуулах үйлдэл ихэвчлэн хийгддэг.
 
-### Data {.unnumbered}
+### Дата {.unnumbered}
 
-For this section of the page, we will use the case linelist (see the [Preparation](#pivot_prep) section), which contains one row per case.  
+Энэ хэсэгт тохиолдол бүрт нэг мөртэй linelist датаг ашиглана ([Preparation](#pivot_prep) хэсэгт тайлбарласан).
 
-Here are the first 50 rows:  
+Эхний 50 мөр:  
 
 ```{r, message=FALSE, echo=F}
-# display the linelist data as a table
+# linelist-ыг хүснэгтээр харуул
 DT::datatable(head(linelist, 50), rownames = FALSE, options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
 
-Suppose that we want to know the counts of individuals in the different age groups, by gender:
+Насны ангилал, хүйсээр нь тохиолдлын тоог харуулахаар бол:
 
 ```{r}
 df_wide <- 
@@ -383,18 +382,18 @@ df_wide <-
 df_wide
 ```
 
-This gives us a long dataset that is great for producing visualisations in **ggplot2**, but not ideal for presentation in a table:
+Энэхүү хүснэгтээр бид **ggplot2** ашиглаж графикаар датаг харуулахад тохиромжтой боловч хүснэгтээр датаг тайлбарлахад тохирмжгүй болж байна.
 
 ```{r}
 ggplot(df_wide) +
   geom_col(aes(x = age_cat, y = n, fill = gender))
 ```
 
-### Pivot wider {.unnumbered}  
+### Өргөн хэлбэрт пивот хийх {.unnumbered}  
 
-Therefore, we can use `pivot_wider()` to transform the data into a better format for inclusion as tables in our reports.  
+Тиймээс `pivot_wider()` -аар датаг хувиргаж, датаг илүү оновчтой байдлаар харуулсан хүснэгтийг тайланд хавсаргах боломжтой юм. 
 
-The argument `names_from` specifies the column *from* which to generate the new column *names*, while the argument `values_from` specifies the column *from* which to take the *values* to populate the cells. The argument `id_cols = ` is optional, but can be provided a vector of column names that should not be pivoted, and will thus identify each row.  
+`names_from` аргументээр *аль* баганыг ашиглаж шинээр үүсэх баганын *нэрсийг* үүсгэхийг зааж өгдөг бол `values_from` аргументээр *ямар* баганын *утгуудыг* авч шинэ нүднүүдэд хуваарилахыг зааж өгдөг. Мөн нэмэлтээр `id_cols = ` аргумент байдаг ба үүнд пивот хийхгүй багануудын нэрстэй векторыг зааж өгдөг. 
 
 ```{r}
 table_wide <- 
@@ -408,7 +407,7 @@ table_wide <-
 table_wide
 ```
 
-This table is much more reader-friendly, and therefore better for inclusion in our reports. You can convert into a pretty table with several packages including **flextable** and **knitr**. This process is elaborated in the page [Tables for presentation].  
+Энэ хүснэгт уншихад ойлгомжтой тул тайлан мэдээнд хавсаргахад их тохиромжтой харагдаж байна. Хүснэгтийн өнгө үзэмжийг  **flextable**,  **knitr** зэрэг багцуудаар янзалж болно. Энэ талаар [Tables for presentation] хэсэгт илүү тайлбарласан.  
 
 ```{r}
 table_wide %>% 
@@ -422,14 +421,14 @@ table_wide %>%
 
 
 <!-- ======================================================= -->
-## Fill 
+## Нөхөх 
 
-In some situations after a `pivot`, and more commonly after a `bind`, we are left with gaps in some cells that we would like to fill.  
+`pivot` хийгээд дараа нь `bind` хийсний дараа зарим тохиолдолд хэдэн нүднүүд хоосон үлдэж, нөхөх шаардлага гардаг.
 
 <!-- ======================================================= -->
-### Data {.unnumbered}
+### Дата {.unnumbered}
 
-For example, take two datasets, each with observations for the measurement number, the name of the facility, and the case count at that time. However, the second dataset also has a variable `Year`. 
+Жишээ болгож дараах хоёр датасетийг авч үзье. Хоёул хэмжилтийн дугаар, байгууллагын нэр, тохиолдлын тоо агуулсан боловч хоёр дах нь үүн дээр нэмээнд `Year` гэсэн хувьсагчтай.
 
 ```{r}
 df1 <- 
@@ -460,7 +459,7 @@ df2
 ```
 
 
-When we perform a `bind_rows()` to join the two datasets together, the `Year` variable is filled with `NA` for those rows where there was no prior information (i.e. the first dataset):
+Хэрэв бид `bind_rows()` -аар хоёр датаг нэгтгэвэл `Year` хувьсагчийн (эхний дата дах) мэдээлэлгүй нүднүүд `NA` болж хувирна.
 
 
 ```{r}
@@ -475,14 +474,14 @@ df_combined
 <!-- ======================================================= -->
 ### `fill()` {.unnumbered}
 
-In this case, `Year` is a useful variable to include, particularly if we want to explore trends over time. Therefore, we use `fill()` to *fill* in those empty cells, by specifying the column to fill and the direction (in this case **up**):
+Энэ тохиолдолд `Year` бол цаг хугацааны явцыг харуулдаг хэрэгтэй хувьсагч тул байлгаж байх нь чухал. Ингэхдээ `fill()` функцын аргументэд нөхөх шаардлагатай баганууд болно чиглэлийг (энэ тохиолдолд дээш/**up**) зааж өгч тэдгээр хоосон нүднүүдийг *нөхөж* болно :
 
 ```{r}
 df_combined %>% 
   fill(Year, .direction = "up")
 ```
 
-Alternatively, we can rearrange the data so that we would need to fill in a downward direction:
+Мөн датаг дахин эрэмбэлсний дараа нөхөх чиглэлийг доош чиглэлтэй болгож болно:
 
 ```{r}
 df_combined <- 
@@ -498,7 +497,7 @@ df_combined <-
 df_combined
 ```
 
-We now have a useful dataset for plotting:
+Одоо бид энэхүү хүснэгтийг ашиглан график байгуулах боломжтой боллоо:
 
 ```{r}
 ggplot(df_combined) +
@@ -506,7 +505,7 @@ ggplot(df_combined) +
   geom_col()
 ```
 
-But less useful for presenting in a table, so let's practice converting this long, untidy dataframe into a wider, tidy dataframe:
+Харин энэ хүснэгтээр датаг танилцуулахад тийм ч тохиромжтой биш тул урт, цэгцгүй датаг өргөн цэгцтэй хэлбэрт хүснэгтлэн харуулья: 
 
 ```{r}
 df_combined %>% 
@@ -522,7 +521,7 @@ df_combined %>%
   kableExtra::column_spec(column = 5, bold = TRUE) 
 ```
 
-N.B. In this case, we had to specify to only include the three variables `Facility`, `Year`, and `Cases` as the additional variable `Measurement` would interfere with the creation of the table:
+Энэ тохиолдолд бид зөвхөн `Facility`, `Year`, `Cases` гэсэн гурван хувьсагчийг л оруулахыг зааж өгсөн ба хүснэгтийн бүтцэд таарахгүй учраас `Measurement` хувьсагчийг нэмж оруулаагүй: 
 
 ```{r}
 df_combined %>% 
@@ -533,7 +532,7 @@ df_combined %>%
   knitr::kable()
 ```
 
-## Resources  
+## Нэмэлт мэдээллүүд
 
-Here is a helpful [tutorial](https://datacarpentry.org/r-socialsci/03-dplyr-tidyr/index.html)
+Энд хэрэгтэй хичээлүүд буй [tutorial](https://datacarpentry.org/r-socialsci/03-dplyr-tidyr/index.html)
 
