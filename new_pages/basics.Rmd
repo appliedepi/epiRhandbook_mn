@@ -10,7 +10,7 @@ knitr::include_graphics(here::here("images", "basics_header_close.png"))
 
 Энэ хуудасны зарим хэсгийг [R4Epis төслийн](https://r4epis.netlify.app/) зөвшөөрлөөр бага зэрэг өөрчлөн авч ашигласан.
 
-STATA, SAS, эсвэл Excel-ээс R руу шилжих зөвлөмжийг [R руу шилжих] хуудаснаас үзнэ үү.
+STATA, SAS, эсвэл Excel-ээс R руу шилжих зөвлөмжийг \[R руу шилжих\] хуудаснаас үзнэ үү.
 
 ```{r, echo=F}
 # цэвэрлэсэн Эбола лайнлистийг импортлох
@@ -111,7 +111,7 @@ R нь маш идэвхтэй жиргээчдийн хамт олонтой б
 
 Мөн:
 
-**\#epitwitter** болон **\#rstats**
+**#epitwitter** болон **#rstats**
 
 ### Үнэгүй онлайн материалууд {.unnumbered}
 
@@ -140,7 +140,7 @@ Hadley Wickham, Garrett Grolemund нарын бичсэн [Дата шинжлэ
 <https://rstudio.com/products/rstudio/download/> вэбсайт руу орж өөрийн компьютерт тохирсон RStudio-гийн хамгийн сүүлийн үеийн үнэгүй хувилбарыг татаж авна уу.
 
 **Зөвшөөрлүүд**\
-Та R ба RStudio-г өөрийн унших (read), бичих (write) зөвшөөрөлтэй драйвт суулгах ёстойг анхаарна уу. Тэгэхгүй бол таны R багцуудыг суулгах явцад (түгээмэл тохиолддог) сөргөөр нөлөөлөх болно. Хэрэв танд асуудал тулгарвал RStudio нээх лого дээр хулганы баруун товчийг дараад "Run as administrator" сонгон нээхийг оролдоно уу. Бусад зөвлөмжийг [Сүлжээний драйв дээрх R] хуудаснаас олж болно.
+Та R ба RStudio-г өөрийн унших (read), бичих (write) зөвшөөрөлтэй драйвт суулгах ёстойг анхаарна уу. Тэгэхгүй бол таны R багцуудыг суулгах явцад (түгээмэл тохиолддог) сөргөөр нөлөөлөх болно. Хэрэв танд асуудал тулгарвал RStudio нээх лого дээр хулганы баруун товчийг дараад "Run as administrator" сонгон нээхийг оролдоно уу. Бусад зөвлөмжийг \[Сүлжээний драйв дээрх R\] хуудаснаас олж болно.
 
 **R болон RStudio-г хэрхэн шинэчлэх вэ**
 
@@ -148,11 +148,11 @@ R-ийг эхлүүлэх үед консол дээр таны R програм
 
 R-г шинэчлэхийн тулд дээр дурдсан вэбсайт руу орж R-г дахин суулгаарай. Өөрөөр **installr** багцын (Windows дээр) `installr::updateR()` функцыг ажиллуулснаар шинэчилж болно. Энэ функц нь танд хамгийн сүүлийн үеийн R хувилбарыг татаж авах, багцуудаа шинэ R хувилбар болгон шинэчлэхэд туслах харилцах цонхыг нээх болно. Дэлгэрэнгүй мэдээллийг **installr** [баримт бичгээс](https://www.r-project.org/nosvn/pandoc/installr.html) олж болно.
 
-Ингэж суулгасны дараа R-ын хуучин хувилбар таны компьютер дээр байсаар байх болно гэдгийг анхаарна уу. Та RStudio дээрх "Tools" -\> "Global Options" дээр дарж R хувилбарыг сонгож R-ын хуучин хувилбарыг (хуучин "суулгац") түр ажиллуулж болно. Энэ үйлдэл нь та R-ын хамгийн сүүлийн хувилбарт зориулан шинэчлэгдээгүй байгаа багцыг ашиглах шаардлагатай үед хэрэг болдог.
+Ингэж суулгасны дараа R-ын хуучин хувилбар таны компьютер дээр байсаар байх болно гэдгийг анхаарна уу. Та RStudio дээрх "Tools" -> "Global Options" дээр дарж R хувилбарыг сонгож R-ын хуучин хувилбарыг (хуучин "суулгац") түр ажиллуулж болно. Энэ үйлдэл нь та R-ын хамгийн сүүлийн хувилбарт зориулан шинэчлэгдээгүй байгаа багцыг ашиглах шаардлагатай үед хэрэг болдог.
 
-RStudio-г шинэчлэхийн тулд та дээрх вэбсайт руу орж RStudio-г дахин татаж авах боломжтой. Өөр нэг сонголт нь RStudio дотор "Help" -\> "Check for Updates" дээр дарах бөгөөд гэвч энэ нь хамгийн сүүлийн үеийн шинэчлэлтийг харуулахгүй байж магадгүй.
+RStudio-г шинэчлэхийн тулд та дээрх вэбсайт руу орж RStudio-г дахин татаж авах боломжтой. Өөр нэг сонголт нь RStudio дотор "Help" -> "Check for Updates" дээр дарах бөгөөд гэвч энэ нь хамгийн сүүлийн үеийн шинэчлэлтийг харуулахгүй байж магадгүй.
 
-Энэхүү гарын авлагыг бүтээхэд R, RStudio эсвэл багцуудын аль хувилбарыг ашигласан болохыг харахын тулд [Редакцийн болон техникийн тэмдэглэл] хуудсыг үзнэ үү.
+Энэхүү гарын авлагыг бүтээхэд R, RStudio эсвэл багцуудын аль хувилбарыг ашигласан болохыг харахын тулд \[Редакцийн болон техникийн тэмдэглэл\] хуудсыг үзнэ үү.
 
 ### Суулгах шаардлагатай болж магадгүй бусад програм хангамж {.unnumbered}
 
@@ -480,227 +480,238 @@ ggplot(case_incidence, aes(x = dates))+
 
 <!-- ======================================================= -->
 
-## Packages {#packages}
+## Багцууд {#packages}
 
-**Packages contain functions.**
+**Багцууд нь функцуудээс бүрддэг.**
 
-An R package is a shareable bundle of code and documentation that contains pre-defined functions. Users in the R community develop packages all the time catered to specific problems, it is likely that one can help with your work! You will install and use hundreds of packages in your use of R.
+R багц гэдэг нь урьдчилан тодорхойлсон функцуудыг агуулсан код, баримт бичгийн нэгдэл юм. R-ын хэрэглэгчид тодорхой асуудлуудад зориулагдсан багцуудыг үргэлж хөгжүүлж байдаг бөгөөд таны ажилд тусалж чадах багц байгаа нь ч эргэлзээгүй! Та R ашиглах явцдаа хэдэн зуун багцыг суулгаж ашиглах болно.
 
-On installation, R contains **"base"** packages and functions that perform common elementary tasks. But many R users create specialized functions, which are verified by the R community and which you can download as a **package** for your own use. In this handbook, package names are written in **bold**. One of the more challenging aspects of R is that there are often many functions or packages to choose from to complete a given task.
+Анх R суулгахад түгээмэл, энгийн даалгавруудыг гүйцэтгэх чадвартай "**base**" багцууд болон функцууд хамт ирдэг. Гэвч олон R хэрэглэгчид өөрсдийн тусгай функцууд зохион **багц** болгосноор бусад хэрэглэгчид хэрэглэн функцуудын үйл ажиллагааг шалгах боломжтой болдог. Энэхүү гарын авлагад багцын нэрийг **тодоор** бичсэн. R -ын бага зэрэг төвөгтэй талуудын нэг нь тодорхой даалгаврыг биелүүлэхийн тулд олон функц, багцуудаас сонгох явдал байдаг.
 
-### Install and load {.unnumbered}
+### Суулгах, ачаалах {.unnumbered}
 
-*Functions* are contained within **packages** which can be downloaded ("installed") to your computer from the internet. Once a package is downloaded, it is stored in your "library". You can then access the functions it contains during your current R session by "loading" the package.
+Интернетээс компьютер дээрээ татаж авдаг ("суулгадаг") **багцуудад** *функцууд* агуулагдсан байдаг. Багцыг татаж авсны дараа таны "library"-д хадгалагдах болно. Дараа нь та багцаа "ачаалах" замаар тухайн багцын агуулж буй функцыг R ашиглах үедээ хэрэглэх боломжтой.
 
-*Think of R as your personal library*: When you download a package, your library gains a new book of functions, but each time you want to use a function in that book, you must borrow ("load") that book from your library.
+*Та R-г өөрийн хувийн номын сан гэж бод:* Та багц татаж авахад таны номын сан тухайн багцын функцүүд бүхий шинэ номтой болж байна гэсэн үг, улмаар та тухайн номны функц ашиглахыг хүсэх болгондоо тэр номыг номын сангаасаа зээлэх ("ачаалах") ёстой.
 
-In summary: to use the functions available in an R package, 2 steps must be implemented:
+Дүгнээд хэлэхэд: R багцад байгаа функцийг ашиглахын тулд 2 алхамыг хэрэгжүүлэх ёстой:
 
-1)  The package must be **installed** (once), *and*\
-2)  The package must be **loaded** (each R session)
+1.  Багцыг (нэг удаа) **суулгасан (installed)** байх ёстой
 
-#### Your library {.unnumbered}
+2.  Багцыг **ачаалах (load)** ёстой (R ашиглах бүртээ)
 
-Your "library" is actually a folder on your computer, containing a folder for each package that has been installed. Find out where R is installed in your computer, and look for a folder called "win-library". For example: `R\win-library\4.0` (the 4.0 is the R version - you'll have a different library for each R version you've downloaded).
+#### Таны номын сан (library) {.unnumbered}
 
-You can print the file path to your library by entering `.libPaths()` (empty parentheses). This becomes especially important if working with [R on network drives].
+Таны "номын сан" нь үнэндээ таны компьютер дээр суулгагдсан багц бүрийн хавтсыг агуулсан хавтас юм. R таны компьютерт хаана суусан болохыг олж мэдээд "win-library" нэртэй хавтас хайж олоорой. Жишээ нь: `R\win-library\4.0` (4.0 бол R-ын хувилбар юм. Таны татаж авсан R-ын хувилбар бүр өөрийн номын сантай).
 
-#### Install from CRAN {.unnumbered}
+Та `.libPaths()` (хоосон хаалттай) функцыг R консол дээр ажиллуулснаар таны номын сангийн файлын байршлыг харах боломжтой. Ялангуяа \[сүлжээний хөтчүүд дээр R\]-тай ажиллахад энэ нь онцгой ач холбогдолтой.
 
-Most often, R users download packages from CRAN. CRAN (Comprehensive R Archive Network) is an online public warehouse of R packages that have been published by R community members.
+#### CRAN-аас суулгах {.unnumbered}
 
-Are you worried about viruses and security when downloading a package from CRAN? Read [this article](https://support.rstudio.com/hc/en-us/articles/360042593974-R-and-R-Package-Security) on the topic.
+Ихэнх тохиолдолд R хэрэглэгчид CRAN-аас багц татаж авдаг. CRAN (Comprehensive R Archive Network - R-ын цогц архивын сүлжээ) нь R хэрэглэгчдийн нийтэлсэн R багцын олон нийтийн, онлайн агуулах юм.
 
-#### How to install and load {.unnumbered}
+CRAN-аас багц татаж авахдаа вирус, аюулгүй байдлын талаар санаа зовж байна уу? Энэ сэдвээр [энэ нийтлэлийг](https://support.rstudio.com/hc/en-us/articles/360042593974-R-and-R-Package-Security) уншина уу.
 
-In this handbook, we suggest using the **pacman** package (short for "package manager"). It offers a convenient function `p_load()` which will install a package if necessary *and* load it for use in the current R session.
+#### Хэрхэн суулгаж, ачаалах вэ? {.unnumbered}
 
-The syntax quite simple. Just list the names of the packages within the `p_load()` parentheses, separated by commas. This command will install the **rio**, **tidyverse**, and **here** packages if they are not yet installed, and will load them for use. This makes the `p_load()` approach convenient and concise if sharing scripts with others. Note that package names are case-sensitive.
+Энэхүү гарын авлагад бид **pacman** багцыг ашиглахыг санал болгож байна ("package manager" гэсэн үгийн товчлол). Энэхүү багц нь хэрэглэхэд хялбар `p_load()` хэмээх функцтэй бөгөөд энэхүү функц нь шаардлагатай бол багцыг суулгаж, одоогийн R сесст ачаалдаг.
+
+Синтакс нь маш энгийн. Хэрэглэх багцуудын нэрийг таслалаар тусгаарлан `p_load()` функцын хаалтанд жагсаан бичнэ. Доорх команд нь **rio**, **tidyverse** болон **here** багцуудыг хараахан суулгаагүй байвал суулгаж, ашиглахаар ачаалах болно. Ингэснээр `p_load()` ашиглах арга нь скриптээ бусадтай хуваалцахыг хялбар, тодорхой болгодог. Багцын нэрүүдийн үсгийн том, жижгийн хэмжээ чухал гэдгийг анхаарна уу.
 
 ```{r}
-# Install (if necessary) and load packages for use
+# Хэрэглэх багцуудыг (хэрэв шаардлагатай бол) суулгаад ачаалах
 pacman::p_load(rio, tidyverse, here)
 ```
 
-Note that we have used the syntax `pacman::p_load()` which explicitly writes the package name (**pacman**) prior to the function name (`p_load()`), connected by two colons `::`. This syntax is useful because it also loads the **pacman** package (assuming it is already installed).
+Бид функцийн нэр (`p_load()`)-ийн өмнө багцын нэрийг (**pacman**) хоёр цэгээр `::` холбон бичдэг `pacman::p_load()` синтаксыг ашигласан болохыг анхаарна уу. Энэ синтаксыг ашигласнаар **pacman** багцыг (өмнө нь суулгасан үед) шууд ачаалж байгаа тул амар байдаг.
 
-There are alternative **base** R functions that you will see often. The **base** R function for installing a package is `install.packages()`. The name of the package to install must be provided in the parentheses *in quotes*. If you want to install multiple packages in one command, they must be listed within a character vector `c()`.
+Та мөн **base** R-ын алтернатив функцуудыг түгээмэл харах болно. Багц суулгах **base** R функц нь `install.packages()` юм. Суулгах багцын нэрийг хаалтнд *ишлэл* доторбичих ёстой. Хэрэв та нэг командаар олон багц суулгахыг хүсвэл тэдгээрийг `c()` тэмдэгтийн вектор дотор жагсаан бичнэ.
 
-Note: this command *installs* a package, but does *not* load it for use in the current session.
+Тэмдэглэл: энэ команд нь багцыг *суулгадаг* боловч одоогийн сешн дээр ашиглахаар ачаалдаггүй.
 
 ```{r, eval=F}
-# install a single package with base R
+# base R ашиглан нэг багц суулгах
 install.packages("tidyverse")
 
-# install multiple packages with base R
+# base R ашиглан олон багц суулгах
 install.packages(c("tidyverse", "rio", "here"))
 ```
 
-Installation can also be accomplished point-and-click by going to the RStudio "Packages" pane and clicking "Install" and searching for the desired package name.
+Мөн point-and-click замаар багц суулгая гэвэл RStudio-ийн "Packages" таб дээр очоод "Install" дээр дарж хүссэн багцын нэрийг хайж олон суулгаж болдог.
 
-The **base** R function to **load** a package for use (after it has been installed) is `library()`. It can load only one package at a time (another reason to use `p_load()`). You can provide the package name with or without quotes.
+Суулгасны дараа багцыг ашиглахаар **ачаалах base** R функц нь `library()` юм. Энэ функц нь нэг удаад зөвхөн нэг багцыг ачаалах боломжтой (`p_load()` ашиглах өөр нэг шалтгаан). Та багцын нэрийг ишлэлтэй эсвэл ишлэлгүйгээр өгөх боломжтой.
 
 ```{r, eval=F}
-# load packages for use, with base R
+# base R ашиглан багц ачаалах
 library(tidyverse)
 library(rio)
 library(here)
 ```
 
-To check whether a package in installed and/or loaded, you can view the Packages pane in RStudio. If the package is installed, it is shown there with version number. If its box is checked, it is loaded for the current session.
+Багц суулгасан ба/эсвэл ачаалагдсан эсэхийг шалгахын тулд RStudio дахь Packages табыг үзэх боломжтой. Хэрэв багцыг суулгасан бол хувилбарын дугаараар тэнд харуулна. Хэрэв багцын өмнөх хайрцаг тэмдэглэгдсэн байвал тухайн багц нь одоогийн сешнд ачаалагдсан байна гэсэн үг.
 
-**Install from Github**
+**Github-аас суулгах**
 
-Sometimes, you need to install a package that is not yet available from CRAN. Or perhaps the package is available on CRAN but you want the *development version* with new features not yet offered in the more stable published CRAN version. These are often hosted on the website [github.com](https://github.com/) in a free, public-facing code "repository". Read more about Github in the handbook page on [Version control and collaboration with Git and Github].
+Зарим тохиолдолд CRAN-д хараахан байхгүй байгаа багцыг суулгах шаардлагатай болдог. Эсвэл тодорхой багц CRAN дээр байгаа боловч тэрхүү илүү тогтвортой CRAN дээрх хувилбарт хараахан орж ирээгүй байгаа шинэ боломжуудтай *хөгжлийн хувилбарыг* хэрэглэх шаардлага гарч магад юм. Эдгээр нь ихэвчлэн [github.com](https://github.com/) вэбсайт дээр олон нийтэд нээлттэй, үнэгүй кодын "репозитор"-д байршиж байдаг. Github-ын талаар дэлгэрэнгүйг гарын авлагын \[Хувилбарын хяналт ба Git, Github ашиглан хамтран ажиллах\] хуудаснаас уншина уу.
 
-To download R packages from Github, you can use the function `p_load_gh()` from **pacman**, which will install the package if necessary, and load it for use in your current R session. Alternatives to install include using the **remotes** or **devtools** packages. Read more about all the **pacman** functions in the [package documentation](https://cran.r-project.org/web/packages/pacman/pacman.pdf).
+Github-аас R багц татаж авахын тулд та **pacman** багцын `p_load_gh()` функцийг ашиглаж болох бөгөөд энэ функц нь шаардлагатай бол багцыг суулгаж, одоогийн R сешнд ашиглах боломжтой болгон ачаалах болно. Өөрөөр **remotes** эсвэл **devtools** багцыг ашиглан Github-аас багц суулгах боломжтой. **pacman** багцын бүх функцын талаар [багцын баримт бичгээс](https://cran.r-project.org/web/packages/pacman/pacman.pdf) уншина уу.
 
-To install from Github, you have to provide more information. You must provide:
+Github-аас багц суулгахын тулд та дараах мэдээлэлтэй байх шаардлагатай:
 
-1)  The Github ID of the repository owner
-2)  The name of the repository that contains the package\
-3)  *(optional) The name of the "branch" (specific development version) you want to download*
+1.  Репозитор эзэмшигчийн Github ID
 
-In the examples below, the first word in the quotation marks is the Github ID of the repository owner, after the slash is the name of the repository (the name of the package).
+2.  Багцыг агуулсан репозиторын нэр
+
+3.  *(заавал биш) Татаж авахыг хүсч буй "салбар"-ын нэр (хөгжлийн тусгай хувилбар)*
+
+Доорх жишээнүүдэд ишлэл дэх эхний үг бол репозитор эзэмшигчийн Github ID бөгөөд ташуу зураасны дараа репозиторын нэр (багцын нэр) байгаа болно.
 
 ```{r, eval=F}
-# install/load the epicontacts package from its Github repository
+# epicontacts багцыг Github репозитороос нь суулгах/ачаалах
 p_load_gh("reconhub/epicontacts")
 ```
 
-If you want to install from a "branch" (version) other than the main branch, add the branch name after an "\@", after the repository name.
+Хэрэв та үндсэн салбараас өөр "салбар" (хувилбар) суулгахыг хүсвэл репозиторын нэрний ард "\@" тэмдгийн дараа салбарын нэрийг нэмнэ үү.
 
 ```{r, eval=F}
-# install the "timeline" branch of the epicontacts package from Github
+# epicontacts багцын "timeline" салбарыг Github-аас суулгах/ачаалах
 p_load_gh("reconhub/epicontacts@timeline")
 ```
 
-If there is no difference between the Github version and the version on your computer, no action will be taken. You can "force" a re-install by instead using `p_load_current_gh()` with the argument `update = TRUE`. Read more about **pacman** in this [online vignette](http://trinker.github.io/pacman/vignettes/Introduction_to_pacman.html)
+Хэрэв Github хувилбар болон таны компьютер дээрх хувилбаруудын хооронд ялгаа байхгүй бол ямар ч үйлдэл явагдахгүй. Та `p_load_current_gh()` функцыг `update = TRUE` аргументтэй ашиглан "хүчээр" дахин суулгаж болно. **pacman** тухай нэмэлтээр энэхүү [онлайн винетээс](http://trinker.github.io/pacman/vignettes/Introduction_to_pacman.html) уншина уу.
 
-**Install from ZIP or TAR**
+**ZIP эсвэл TAR файлаас суулгах**
 
-You could install the package from a URL:
+Та URL ашиглан багцыг суулгаж болно:
 
 ```{r, eval=F}
 packageurl <- "https://cran.r-project.org/src/contrib/Archive/dsr/dsr_0.2.2.tar.gz"
 install.packages(packageurl, repos=NULL, type="source")
 ```
 
-Or, download it to your computer in a zipped file:
+Эсвэл үүнийг зип файл хэлбэрээр компьютер дээрээ татаж аваад:
 
-Option 1: using `install_local()` from the **remotes** package
+Сонголт 1: **remotes** багцын `install_local()` функц ашиглан
 
 ```{r, eval=F}
 remotes::install_local("~/Downloads/dplyr-master.zip")
 ```
 
-Option 2: using `install.packages()` from **base** R, providing the file path to the ZIP file and setting `type = "source` and `repos = NULL`.
+Сонголт 2: **base** R-ын `install.packages()` ашиглан, `type = "source"`, `repos = NULL` хэмээн зааж файлын байршлыг ZIP файлд өгнө.
 
 ```{r, eval=F}
-install.packages("~/Downloads/dplyr-master.zip", repos=NULL, type="source")
+install.packages("~/Downloads/dplyr-master.zip", repos = NULL, type = "source")
 ```
 
-### Code syntax {.unnumbered}
+### Кодын синтакс {.unnumbered}
 
-For clarity in this handbook, functions are sometimes preceded by the name of their package using the `::` symbol in the following way: `package_name::function_name()`
+Энэхүү гарын авлагад ойлгомжтой болгох үүднээс зарим тохиолдолд функцүүдийн өмнө `::` тэмдгийг ашиглан багцынх нь нэрийг дараах байдлаар бичсэн: `package_name::function_name()`
 
-Once a package is loaded for a session, this explicit style is not necessary. One can just use `function_name()`. However writing the package name is useful when a function name is common and may exist in multiple packages (e.g. `plot()`). Writing the package name will also load the package if it is not already loaded.
+Багцыг тухайн сешнд ачаалсны дараа багцыг ингэж зааж өгөх шаардлагагүй байдаг. Та зүгээр л `function_name()` ашиглаж болно. Гэсэн хэдий ч нэг функцын нэр нийтлэг хэлбэрээр олон багцад байж болдог бөгөөд энэ тохиолдолд багцын нэрийг бичиж дуудах нь тустай байдаг (жишээ нь `plot()`). Мөн багцын нэрийг ингэж бичихэд хэрэв тухайн багц ачаалагдаагүй байгаа бол багцыг ачаалах болно.
 
 ```{r eval=FALSE}
-# This command uses the package "rio" and its function "import()" to import a dataset
+# Энэ команд "rio" багцыг ашиглан түүний "import()" функцыг ашиглан датасет импорт хийж байна
 linelist <- rio::import("linelist.xlsx", which = "Sheet1")
 ```
 
-### Function help {.unnumbered}
+### Функцын тусламж {.unnumbered}
 
-To read more about a function, you can search for it in the Help tab of the lower-right RStudio. You can also run a command like `?thefunctionname` (put the name of the function after a question mark) and the Help page will appear in the Help pane. Finally, try searching online for resources.
+Тодорхой функцийн талаар дэлгэрэнгүй уншихын тулд та RStudio-ийн баруун доод хэсэгт байрлах Help таб дээрээс хайх боломжтой. Та мөн `?thefunctionname` (асуултын тэмдгийн дараа функцийн нэрийг оруулна) гэсэн командыг ажиллуулснаар тухайн функцын тусламжийн хуудас нь Help таб дээр гарч ирнэ. Мөн онлайнаар тусламж хайж үзээрэй.
 
-### Update packages {.unnumbered}
+### Багц шинэчлэх {.unnumbered}
 
-You can update packages by re-installing them. You can also click the green "Update" button in your RStudio Packages pane to see which packages have new versions to install. Be aware that your old code may need to be updated if there is a major revision to how a function works!
+Та багцыг дахин суулгах замаар шинэчлэх боломжтой. Та мөн RStudio-ийн Packages таб дээрх ногоон "Update" товчийг дарж аль багцууд шинэ хувилбартай болсныг харж болно. Багц шинэчлэх үед тодорхой функц хэрхэн ажилладаг талаар томоохон өөрчлөлт орсон тохиолдолд хуучин кодоо шинэчлэх шаардлагатай болж магадгүйг анхаарна уу!
 
-### Delete packages {.unnumbered}
+### Багц устгах {.unnumbered}
 
-Use `p_delete()` from **pacman**, or `remove.packages()` from **base** R. Alternatively, go find the folder which contains your library and manually delete the folder.
+**pacman** багцын `p_delete()` эсвэл **base** R-ын `remove.packages()` функц ашиглана уу. Эсвэл өөрийн library агуулсан хавтсыг компьютер дээрээ олоод багцын хавтсыг гараар устгаж болно.
 
-### Dependencies {.unnumbered}
+### Хамааралт багц {.unnumbered}
 
-Packages often depend on other packages to work. These are called dependencies. If a dependency fails to install, then the package depending on it may also fail to install.
+Багцууд нь ажиллахын тулд ихэвчлэн бусад багцуудыг ашигладаг. Эдгээрийг хамааралт багц (dependencies) гэж нэрлэдэг. Хэрэв хамааралт багцыг суулгаж чадахгүй бол үүнээс хамаарсан багцыг мөн суулгаж чадахгүй байж магадгүй юм.
 
-See the dependencies of a package with `p_depends()`, and see which packages depend on it with `p_depends_reverse()`
+Тухайн багцын хамааралт багцуудыг `p_depends()` функц ашиглан харах ба `p_depends_reverse()` ашиглан тухайн багцад ямар багцууд хамааралтай болохыг харж болно.
 
-### Masked functions {.unnumbered}
+### Далдлах функцууд {.unnumbered}
 
-It is not uncommon that two or more packages contain the same function name. For example, the package **dplyr** has a `filter()` function, but so does the package **stats**. The default `filter()` function depends on the order these packages are first loaded in the R session - the later one will be the default for the command `filter()`.
+Хоёр ба түүнээс дээш багц ижил нэртэй функц агуулах нь түгээмэл тохиолддог. Жишээлбэл, **dplyr** багц нь `filter()` функцтэй байхад **stats** багц ч мөн ижил нэртэй функцтэй. Өгөгдмөл (default) `filter()` функц нь эдгээр багцыг R сешнд ачаалах дарааллаас хамаарна - хамгийн сүүлд ачаалагдсан `filter()` өгөгдмөл болох болно.
 
-You can check the order in your Environment pane of R Studio - click the drop-down for "Global Environment" and see the order of the packages. Functions from packages *lower* on that drop-down list will mask functions of the same name in packages that appear higher in the drop-down list. When first loading a package, R will warn you in the console if masking is occurring, but this can be easy to miss.
+Та энэхүү дарааллыг R Studio-ийн Environment табаас шалгаж болно - "Global Environment" гэсэн цэсийг дарж, багцын дарааллыг харна уу. Энэ жагсаалтын *доод хэсэгт* байгаа багцын функцууд нь жагсаалтын дээд хэсэгт байгаа багцуудын ижил нэртэй функцийг далдлах болно. Тодорхой багцыг анх ачаалах үед тухайн багцын функц өөр багцын функцийг далдалж байгаа тохиолдолд R консол дээр танд анхааруулах боловч үүнийг анзаарахгүй өнгөрөх нь элбэг байдаг.
 
 ```{r out.width = "50%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "masking_functions.png"))
 ```
 
-Here are ways you can fix masking:
+Далдлалтыг засах дараах аргууд байна:
 
-1)  Specify the package name in the command. For example, use `dplyr::filter()`\
-2)  Re-arrange the order in which the packages are loaded (e.g. within `p_load()`), and **start a new R session**
+1.  Командад багцын нэрийг зааж өгнө. Жишээлбэл, `dplyr::filter()` ашиглах.
 
-### Detach / unload {.unnumbered}
+2.  Багцыг ачаалах дарааллыг өөрчлөөд (жишээ нь `p_load()` дотор), **шинэ R сешн эхлүүлнэ**.
 
-To detach (unload) a package, use this command, with the correct package name and only one colon. Note that this may not resolve masking.
+### Салгах/буулгах {.unnumbered}
+
+Багцыг салгахын (буулгахын) тулд багцын нэрийг зөвөөр, зөвхөн нэг тодорхойлох цэгтэйгээр энэ командыг бичнэ. Энэ нь далдлах асуудлыг шийдэж чадахгүй байж болохыг анхаарна уу.
 
 ```{r, eval=F}
 detach(package:PACKAGE_NAME_HERE, unload=TRUE)
 ```
 
-### Install older version {.unnumbered}
+### Хуучин хувилбар суулгах {.unnumbered}
 
-See this [guide](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages) to install an older version of a particular package.
+Тодорхой багцын хуучин хувилбарыг суулгахын тулд энэ [зааврыг](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages) үзнэ үү.
 
-### Suggested packages {.unnumbered}
+### Санал болгож буй багцууд {.unnumbered data-link="Suggested packages"}
 
-See the page on [Suggested packages] for a listing of packages we recommend for everyday epidemiology.
+Өдөр тутмын тархвар судлалын ажилд санал болгож буй багцуудын жагсаалтыг \[Санал болгож буй багцуудын\] хуудаснаас үзнэ үү.
 
 <!-- ======================================================= -->
 
-## Scripts {#scripts}
+## Скриптүүд {#scripts}
 
-Scripts are a fundamental part of programming. They are documents that hold your commands (e.g. functions to create and modify datasets, print visualizations, etc). You can save a script and run it again later. There are many advantages to storing and running your commands from a script (vs. typing commands one-by-one into the R console "command line"):
+Скрипт бол програмчлалын үндсэн хэсэг юм. Скрипт гэдэг нь таны командуудыг (жишээ нь датасет үүсгэх, өөрчлөх, дүрслэлийг харуулах функцууд гэх мэт) хадгалдаг баримт бичиг юм. Та скриптийг хадгалаад дараа нь дахин ажиллуулж болно. Скриптэд командуудаа хадгалаад дараа нь скриптээсээ шууд ажиллуулах нь олон давуу талтай байдаг (командуудаа R консол "command line" дээр нэг нэгээр нь бичихийн оронд).
 
--   Portability - you can share your work with others by sending them your scripts\
--   Reproducibility - so that you and others know exactly what you did\
--   Version control - so you can track changes made by yourself or colleagues\
--   Commenting/annotation - to explain to your colleagues what you have done
+-   Зөөвөрлөх чадвар - та скриптүүдээ илгээх замаар бусадтай хуваалцах боломжтой
 
-### Commenting {.unnumbered}
+-   Давтагдах чадвар - ингэснээр та болон бусад хүмүүс таны яг юу хийснийг мэдэх боломжтой
 
-In a script you can also annotate ("comment") around your R code. Commenting is helpful to explain to yourself and other readers what you are doing. You can add a comment by typing the hash symbol (\#) and writing your comment after it. The commented text will appear in a different color than the R code.
+-   Хувилбарын хяналт - ингэснээр та өөрийн эсвэл хамтран ажиллагсдын хийсэн өөрчлөлтийг хянах боломжтой
 
-Any code written after the \# will not be run. Therefore, placing a \# before code is also a useful way to temporarily block a line of code ("comment out") if you do not want to delete it). You can comment out/in multiple lines at once by highlighting them and pressing Ctrl+Shift+c (Cmd+Shift+c in Mac).
+-   Тайлбар/тэмдэглэл - хийсэн зүйлээ хамтран ажиллагсаддаа тайлбарлах
+
+### Тайлбар бичих {.unnumbered}
+
+Скрипт дээр та R кодынхоо эргэн тойронд тэмдэглэл ("тайлбар") оруулах боломжтой. Тайлбар бичих нь юу хийж байгаагаа ирээдүйн өөртөө болон бусад кодыг тань хэрэглэгчдэд тайлбарлахад тустай. Та чагт тэмдгийг (#) бичээд дараа нь тайлбараа бичиж болно. Тайлбарласан текст нь R кодоос өөр өнгөөр харагдах болно.
+
+#-тэмдгээс хойш бичигдсэн аливаа код ажиллахгүй. Тиймээс кодын өмнө \# оруулах нь та устгахыг хүсэхгүй байгаа кодын мөрийг түр хаахад ("comment out") ашигладаг арга юм. Та олон кодын мөрийг нэг дор тодруулж Ctrl+Shift+c (Mac дээр Cmd+Shift+c) товчийг дарснаар түр хааж/нээж болно.
 
 ```{r, eval = F}
-# A comment can be on a line by itself
-# import data
-linelist <- import("linelist_raw.xlsx") %>%   # a comment can also come after code
-# filter(age > 50)                          # It can also be used to deactivate / remove a line of code
+# Тайлбар нь нэг мөрөнд дангаараа байж болно
+# дата импортлох
+linelist <- import("linelist_raw.xlsx") %>%   # тайлбар кодын дараа бас орж болно
+# filter(age > 50)                          # Үүнийг мөн тодорхой кодын мөрийг идэвхгүй болгох/хасахад ашиглаж болно 
   count()
 
 ```
 
--   Comment on *what* you are doing *and on **why** you are doing it*.\
--   Break your code into logical sections\
--   Accompany your code with a text step-by-step description of what you are doing (e.g. numbered steps)
+-   *Юу* хийж байгаагаа, **яагаад** хийж байгаагаа тайлбарлах.
 
-### Style {.unnumbered}
+-   Кодыг логиктой хэсгүүдэд хуваах
 
-It is important to be conscious of your coding style - especially if working on a team. We advocate for the **tidyverse** [style guide](https://style.tidyverse.org/). There are also packages such as **styler** and **lintr** which help you conform to this style.
+-   Өөрийн хийж буй зүйлийн алхам тус бүрийн тайлбарыг кодтойгоо дагалдуулах (жишээлбэл дугаарласан алхамууд)
 
-A few very basic points to make your code readable to others:\
-\* When naming objects, use only lowercase letters, numbers, and underscores `_`, e.g. `my_data`\
-\* Use frequent spaces, including around operators, e.g. `n = 1` and `age_new <- age_old + 3`
+### Загвар {.unnumbered}
 
-### Example Script {.unnumbered}
+Кодлох загварынхаа талаар тодорхой бодолтой байх нь чухал, ялангуяа багаар ажиллаж байгаа бол. Бид **tidyverse** [загварын зааврын](https://style.tidyverse.org/) дагуу кодоо бичихийг зөвлөж байна. Мөн энэ загварт нийцэхэд тань туслах **styler**, **lintr** гэх мэт багцууд байдаг.
 
-Below is an example of a short R script. Remember, the better you succinctly explain your code in comments, the more your colleagues will like you!
+Таны кодыг бусад хүн уншихад хялбар болгох цөөн хэдэн зөвлөмж:
+
+-   Объектуудыг нэрлэхдээ зөвхөн жижиг үсэг, тоо, доогуур зураас `_` ашиглах, жишээ нь `my_data`
+
+-   Space буюу зайг сайн ашиглах, операторуудыг тойруулаад `n = 1` ба `age_new <- age_old + 3` гэх мэт
+
+### Жишээ скрипт {.unnumbered}
+
+Богино R скриптийн жишээг доор харуулав. Та кодоо товч, ойлгомжтой тайлбарлах тусам хамтран ажиллагсад тань танд талархах болно гэдгийг санаарай!
 
 ```{r out.width = "100%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "example_script.png"))
@@ -710,48 +721,50 @@ knitr::include_graphics(here::here("images", "example_script.png"))
 
 ### R markdown {.unnumbered}
 
-An R markdown script is a type of R script in which the script itself *becomes* an output document (PDF, Word, HTML, Powerpoint, etc.). These are incredibly useful and versatile tools often used to create dynamic and automated reports. Even this website and handbook is produced with R markdown scripts!
+R markdown скрипт бол тухайн скрипт нь өөрөө гаралтын баримт бичиг (PDF, Word, HTML, Powerpoint гэх мэт) болдог R скриптийн төрөл юм. Эдгээр нь динамик, автомат тайланг гаргахад ихэвчлэн хэрэглэгддэг маш хэрэгцээтэй, олон талын хэрэгсэл юм. Энэ вэбсайт, гарын авлагыг хүртэл R markdown скриптээр хийдэг!
 
-It is worth noting that beginner R users can also use R Markdown - do not be intimidated! To learn more, see the handbook page on [Reports with R Markdown] documents.
+R анхлан сурж буй хэрэглэгчид ч R Markdown-ийг ашиглаж болно гэдгийг хэлэх нь зүйтэй - сүрдэх зүйл байхгүй! Нэмж суралцахын тулд \[R Markdown тайлан\] хэмээх гарын авлагын хуудсыг үзнэ үү.
 
 <!-- ======================================================= -->
 
-### R notebooks {.unnumbered}
+### R notebook {.unnumbered}
 
-There is no difference between writing in a Rmarkdown vs an R notebook. However the execution of the document differs slightly. See this [site](http://uc-r.github.io/r_notebook) for more details.
+R markdown болон R notebook бичих хоёрын хооронд ялгаа байхгүй. Гэсэн хэдий ч ажиллагааны хувьд бага зэрэг ялгаатай байдаг. Дэлгэрэнгүй мэдээллийг энэ [сайтаас](http://uc-r.github.io/r_notebook) үзнэ үү.
 
 <!-- ======================================================= -->
 
 ### Shiny {.unnumbered}
 
-Shiny apps/websites are contained within one script, which must be named `app.R`. This file has three components:
+Shiny апп/вэбсайтууд нь `app.R` гэсэн нэртэй нэг скрипт дотор агуулагддаг. Энэ файл нь гурван бүрэлдэхүүн хэсэгтэй:
 
-1)  A user interface (ui)\
-2)  A server function\
-3)  A call to the `shinyApp` function
+-   Хэрэглэгчийн интерфэйс (ui)
 
-See the handbook page on [Dashboards with Shiny], or this online tutorial: [Shiny tutorial](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
+-   Серверийн функц
 
-*In older times, the above file was split into two files (`ui.R` and `server.R`)*
+-   `shinyApp` функцын дуудлага
 
-### Code folding {.unnumbered}
+\[Shiny хяналтын самбар\] хэмээх гарын авлагын хуудсыг эсвэл энэ онлайн хичээлийг үзнэ үү: [Shiny хичээл](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
 
-You can collapse portions of code to make your script easier to read.
+*Өмнө нь дээрх файлыг хоёр файл болгон хуваадаг байсан (`ui.R` ба `server.R`).*
 
-To do this, create a text header with \#, write your header, and follow it with at least 4 of either dashes (-), hashes (\#) or equals (=). When you have done this, a small arrow will appear in the "gutter" to the left (by the row number). You can click this arrow and the code below until the next header will collapse and a dual-arrow icon will appear in its place.
+### Код эвхэх {.unnumbered}
 
-To expand the code, either click the arrow in the gutter again, or the dual-arrow icon. There are also keyboard shortcuts as explained in the [RStudio section](#rstudio) of this page.
+Та өөрийн скриптийг уншихад хялбар болгохын тулд кодын хэсгийг эвхэж болно.
 
-By creating headers with \#, you will also activate the Table of Contents at the bottom of your script (see below) that you can use to navigate your script. You can create sub-headers by adding more \# symbols, for example \# for primary, \#\# for seconary, and \#\#\# for tertiary headers.
+Үүнийг хийхийн тулд \# ашиглан текстийн гарчиг үүсгэж, гарчгаа бичээд зураас (-), чагт ( #) эсвэл тэнцүү (=) гэсэн тэмдгийг 4-ээс доошгүйг бичнэ. Ингэхэд зүүн талын "суваг" хэсэгт жижиг сум гарч ирнэ (мөрний дугаарын хажууд). Та энэ сум дээр дарахад гарчгийн доорх кодоос дараагийн гарчиг хүртэл эвхэгдэж оронд нь хоёр толгойтой сум гарч ирэх болно.
 
-Below are two versions of an example script. On the left is the original with commented headers. On the right, four dashes have been written after each header, making them collapsible. Two of them have been collapsed, and you can see that the Table of Contents at the bottom now shows each section.
+Кодыг дэлгэхийн тулд суваг дээрх сум эсвэл хоёр толгойтой сумны дүрс дээр дахин дарна. Энэ хуудасны [RStudio хэсэгт](#rstudio) тайлбарласан шиг гарын товчлолууд бас байдаг.
+
+Чагт (#) ашиглан гарчиг үүсгэснээр та скриптийнхээ доод хэсэгт Агуулгын хүснэгтийг идэвхжүүлэх болно (доороос үзнэ үү). Та \# тэмдгийг нэмж дэд гарчгууд үүсгэж болно, жишээ нь \# нэгдүгээр шатны, ## хоёрдугаар шатны, ##\# гуравдугаар шатны гарчиг гэх мэт.
+
+Жишээ скриптийн хоёр хувилбарыг доор харуулав. Зүүн талд тайлбарласан гарчгууд бүхий эх хувь байна. Баруун талд гарчиг тус бүрийн ард дөрвөн зураас бичин тэдгээрийг эвхэгддэг болгосон. Тэдгээрийн хоёр нь эвхэгдсэн байгаа бөгөөд та доорх Агуулгын хүснэгтэд хэсэг бүрийг харуулсныг харж болно.
 
 ```{r, out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "code_folding1.png"))
 knitr::include_graphics(here::here("images", "code_folding2.png"))
 ```
 
-Other areas of code that are automatically eligible for folding include "braced" regions with brackets `{ }` such as function definitions or conditional blocks (if else statements). You can read more about code folding at the RStudio [site](https://support.rstudio.com/hc/en-us/articles/200484568-Code-Folding-and-Sections).
+Автоматаар эвхэх боломжтой кодын бусад хэсэгт функцүүдийн тодорхойлолт зэрэг `{ }` хаалт бүхий "braced" бүсүүд эсвэл нөхцөлт блокууд (if else statements) орно. Та код эвхэх тухай дэлгэрэнгүй мэдээллийг RStudio [сайтаас](https://support.rstudio.com/hc/en-us/articles/200484568-Code-Folding-and-Sections) уншиж болно.
 
 <!-- ======================================================= -->
 
@@ -759,412 +772,424 @@ Other areas of code that are automatically eligible for folding include "braced"
 
 <!-- ======================================================= -->
 
-## Working directory
+## Ажлын директор
 
-The working directory is the root folder location used by R for your work - where R looks for and saves files by default. By default, it will save new files and outputs to this location, and will look for files to import (e.g. datasets) here as well.
+Ажлын директор нь R таны ажилд ашигладаг үндсэн хавтасны байршил бөгөөд R нь энэ хавтас дотор файлуудыг хайж, хадгалдаг. Зориудаар өөрчлөөгүй үед шинэ файлууд болон үр дүнг энэ байршилд шууд хадгалах бөгөөд эндээс импортлох файлуудыг (жишээ нь, датасет) мөн хайх болно.
 
-The working directory appears in grey text at the top of the RStudio Console pane. You can also print the current working directory by running `getwd()` (leave the parentheses empty).
+Ажлын директор нь RStudio Console самбарын дээд талд саарал текстээр харагдана. Та мөн `getwd()` функцыг (хашилтыг хоосон орхи) ажиллуулснаар одоогийн ашиглаж байгаа директорийг харж болно .
 
 ```{r out.width = "100%", fig.align = "center", echo=F}
 knitr::include_graphics(here::here("images", "working_directory_1.png"))
 ```
 
-### Recommended approach {.unnumbered}
+### Санал болгож буй арга {.unnumbered}
 
-**See the page on [R projects] for details on our recommended approach to managing your working directory.**\
-A common, efficient, and trouble-free way to manage your working directory and file paths is to combine these 3 elements in an [R project][R projects]-oriented workflow:
+**Та ажлын директорио хэрхэн ашиглах талаар бидний санал болгож буй аргын дэлгэрэнгүйг \[R төслүүд\] хуудаснаас үзнэ үү.**\
+Өөрийн ажлын директор болон файлын замыг удирдах нийтлэг, үр дүнтэй, асуудалгүй арга бол эдгээр 3 элементийг \[R project\]\[R projects\]-д чиглэсэн ажлын урсгалд нэгтгэх явдал юм.
 
-1)  An R Project to store all your files (see page on [R projects])\
-2)  The **here** package to locate files (see page on [Import and export])\
-3)  The **rio** package to import/export files (see page on [Import and export])
+1.  Таны бүх файлыг хадгалах R төсөл (\[R төслүүд\] дээрх хуудсыг үзнэ үү)
+
+2.  Файлуудыг олох **here** багц (\[Импорт, экспорт\] дээрх хуудсыг үзнэ үү)
+
+3.  Файлуудыг импортлох/экспортлох **rio** багц (\[Импорт, экспорт\] дээрх хуудсыг үзнэ үү)
 
 <!-- ======================================================= -->
 
-### Set by command {.unnumbered}
+### Командаар тохируулах {.unnumbered}
 
-Until recently, many people learning R were taught to begin their scripts with a `setwd()` command. Please instead consider using an [R project][R projects]-oriented workflow and read the [reasons for not using `setwd()`](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/). In brief, your work becomes specific to your computer, file paths used to import and export files become "brittle", and this severely hinders collaboration and use of your code on any other computer. There are easy alternatives!
+Саяхныг хүртэл R сурч буй олон хүмүүст `setwd()` командаар скриптээ эхлүүлэхийг заадаг байсан. Оронд нь \[R project\]\[R projects\]-д чиглэсэн ажлын урсгалыг ашиглах талаар бодож үзээд [`setwd()`-г ашиглахгүй байгаа шалтгааныг](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) уншина уу. Товчхондоо, таны ажил таны хэрэглэж буй компьютертэй хамааралтай болж, файлуудыг импортлох, экспортлоход ашигладаг файлын замууд "хэврэг" болж, бусад компьютер дээр таны кодыг ашиглах, хамтран ажиллахад ихээхэн саад учруулдаг. Үүнээс зайлсхийх өөр хялбар аргууд байна!
 
-As noted above, although we do not recommend this approach in most circumstances, you can use the command `setwd()` with the desired folder file path in quotations, for example:
+Дээр дурдсанчлан бид ихэнх тохиолдолд ийм аргыг хэрэглэхийг зөвлөдөггүй ч та `setwd()` командыг хүссэн хавтасныхаа файлын замыг ишлэл дотор бичсэнээр ашиглаж болно, жишээлбэл:
 
 ```{r, eval=F}
 setwd("C:/Documents/R Files/My analysis")
 ```
 
-[***DANGER:*** Setting a working directory with `setwd()` *can* be "brittle" if the file path is specific to one computer. Instead, use file paths relative to an R Project root directory (with the **here** package).]{style="color: red;"}
+[***АЮУЛ:*** Хэрэв файлын зам нь нэг компьютерт зориулагдсан бол `setwd()`-аар ажлын директор тохируулах нь "хэврэг" *байж болно*. Үүний оронд R Project-ийн үндсэн директортой харьцангуй холбоотой файлын замуудыг ашиглана уу (**here** багцтай).]{style="color: red;"}
 
 <!-- ======================================================= -->
 
-### Set manually {.unnumbered}
+### Гараар тохируулах {.unnumbered}
 
-To set the working directory manually (the point-and-click equivalent of `setwd()`), click the Session drop-down menu and go to "Set Working Directory" and then "Choose Directory". This will set the working directory for that specific R session. Note: if using this approach, you will have to do this manually each time you open RStudio.
-
-<!-- ======================================================= -->
-
-### Within an R project {.unnumbered}
-
-If using an R project, the working directory will default to the R project root folder that contains the ".rproj" file. This will apply if you open RStudio by clicking open the R Project (the file with ".rproj" extension).
+Ажлын директорийг гараар тохируулахын тулд (`setwd()`-ийн товч дарахтай дүйцэхүйц) Session унадаг цэсийг товшиж "Set Working Directory", дараа нь "Choose Directory" руу очно уу. Энэ нь тухайн R сессийн ажлын директорийг тохируулах болно. Тэмдэглэл: Хэрэв энэ аргыг хэрэглэж байгаа бол RStudio-г нээх болгондоо үүнийг гараар хийх шаардлагатай болно.
 
 <!-- ======================================================= -->
 
-### Working directory in an R markdown {.unnumbered}
+### R төслийн дотор {.unnumbered}
 
-In an R markdown script, the default working directory is the folder the Rmarkdown file (`.Rmd`) is saved within. If using an R project and **here** package, this does not apply and the working directory will be `here()` as explained in the [R projects] page.
+Хэрэв R төслийг ашиглаж байгаа бол ажлын директор нь ".rproj" файлыг агуулсан R төслийн үндсэн хавтсыг ашиглах болно. Та R Project (".rproj" өргөтгөлтэй файл) дээр дарж RStudio-г нээвэл энэ нь хэрэгжинэ.
 
-If you want to change the working directory of a stand-alone R markdown (not in an R project), if you use `setwd()` this will only apply to that specific code chunk. To make the change for all code chunks in an R markdown, edit the setup chunk to add the `root.dir =` parameter, such as below:
+<!-- ======================================================= -->
+
+### R markdown-ы ажлын директор {.unnumbered}
+
+R markdown скриптийн үндсэн ажлын директор нь Rmarkdown файлын (.Rmd) хадгалагдаж буй хавтас юм. Хэрэв R төсөл болон **here** багцыг ашиглаж байгаа бол энэ нь хамаарахгүй бөгөөд \[R төслүүд\] хуудсанд тайлбарласны дагуу ажлын директор `here()` байх болно.
+
+Хэрэв та бие даасан (R төсөл дотор биш) R markdown-ы ажлын директорийг `setwd()` ашиглан өөрчлөх гэж байвал энэ нь зөвхөн тухайн кодын хэсэгт хамаарна. R markdown дах бүх кодын хэсгүүдэд өөрчлөлт оруулахын тулд тохиргооны хэсгийг засварлаж `root.dir =` параметрийг доорх жишээ шиг нэмж оруулаарай:
 
 ```{r, eval=F}
 knitr::opts_knit$set(root.dir = 'desired/directorypath')
 ```
 
-It is much easier to just use the R markdown within an R project and use the **here** package.
+R markdown-ыг R төслийн дотор **here** багцтай хамт ашиглах нь хамаагүй хялбар юм.
 
 <!-- ======================================================= -->
 
-### Providing file paths {.unnumbered}
+### Файлын замууд бичих {.unnumbered}
 
-Perhaps the most common source of frustration for an R beginner (at least on a Windows machine) is typing in a file path to import or export data. There is a thorough explanation of how to best input file paths in the [Import and export] page, but here are a few key points:
+R эхлэн суралцагчдын бухимдлын хамгийн түгээмэл эх үүсвэр (наад зах нь Windows машин дээр) бол магадгүй дата импортлох, экспортлох файлын замыг бичих явдал юм. \[Импорт, экспорт\] хуудсанд файлын замыг хэрхэн хамгийн сайн оруулах талаар дэлгэрэнгүй тайлбар байгаа боловч энд цөөн хэдэн гол санааг дурдав:
 
-**Broken paths**
+**Эвдэрсэн замууд**
 
-Below is an example of an "absolute" or "full address" file path. These will likely break if used by another computer. One exception is if you are using a shared/network drive.
+Доорх нь "үнэмлэхүй" эсвэл "бүтэн хаяг" файлын замын жишээ юм. Хэрэв өөр компьютер ашиглавал эдгээр нь эвдрэх магадлалтай. Хэрэв та дундын/сүлжээний драйв ашиглаж байгаа бол үүнд хамаарахгүй.
 
     C:/Users/Name/Document/Analytic Software/R/Projects/Analysis2019/data/March2019.csv  
 
-**Slash direction**
+**Налуу зураасны чиглэл**
 
-*If typing in a file path, be aware the direction of the slashes.* Use *forward slashes* (`/`) to separate the components ("data/provincial.csv"). For Windows users, the default way that file paths are displayed is with *back slashes* (\\) - so you will need to change the direction of each slash. If you use the **here** package as described in the [R projects] page the slash direction is not an issue.
+*Хэрэв ташуу зураас файлын замд бичиж байгаа бол түүний чиглэлийг анхаараарай.* Бүрэлдэхүүн хэсгүүдийг ("data/provincial.csv") салгахын тулд *урагшаа налуу зураасыг* (`/`) ашиглана уу. Windows хэрэглэгчдийн хувьд файлын замыг *арагшаа налуу зураасаар* (\\) харуулдаг тул та налуу зураас бүрийн чиглэлийг өөрчлөх шаардлагатай болно. Хэрэв та \[R төслүүд\] хуудсанд тайлбарласны дагуу **here** багцыг ашиглавал налуу зураасны чиглэл асуудал болохгүй.
 
-**Relative file paths**
+**Харьцангуй файлын замууд**
 
-We generally recommend providing "relative" filepaths instead - that is, the path *relative to* the root of your R Project. You can do this using the **here** package as explained in the [R projects] page. A relativel filepath might look like this:
+Бид ерөнхийдөө "харьцангуй" файлын замууд ашиглахыг зөвлөж байна, өөрөөр хэлбэл таны R төслийн үндсэн хавтастай *харьцангуй* холбоотой зам. Та үүнийг \[R төслүүд\] хуудсанд тайлбарласны дагуу **here** багцыг ашиглан хийж болно. Харьцангуй файлын зам дараах байдлаар харагдаж болно:
 
 ```{r, eval=F}
-# Import csv linelist from the data/linelist/clean/ sub-folders of an R project
+# R төслийн data/linelist/clean/ дэд хавтаснаас csv лайнлист импортлох
 linelist <- import(here("data", "clean", "linelists", "marin_country.csv"))
 ```
 
-Even if using relative file paths within an R project, you can still use absolute paths to import/export data outside your R project.
+R төсөл дотор харьцангуй файлын замыг ашиглаж байсан ч та R төслөөс гадуур байгаа датаг үнэмлэхүй зам ашиглан импортолж/экспортолж болно.
 
 <!-- ======================================================= -->
 
-## Objects {#objects}
+## Объектууд {#objects}
 
-Everything in R is an object, and R is an "object-oriented" language. These sections will explain:
+R-д байгаа бүх зүйл нь объект бөгөөд R нь "объект-чиглэлтэй" (object-oriented) хэл юм. Доорх хэсгүүд дараах зүйлсийг тайлбарлах болно:
 
--   How to create objects (`<-`)
--   Types of objects (e.g. data frames, vectors..)\
--   How to access subparts of objects (e.g. variables in a dataset)\
--   Classes of objects (e.g. numeric, logical, integer, double, character, factor)
+-   Хэрхэн объект үүсгэх вэ (`<-`)
 
-<!-- ======================================================= -->
+-   Объектуудын төрлүүд (жишээ нь, датафрэймүүд, векторууд..)
 
-### Everything is an object {.unnumbered}
+-   Объектуудын дэд хэсгүүдэд (жишээ нь, датасетийн хувьсагчид) хэрхэн хандах вэ
 
-*This section is adapted from the [R4Epis project](https://r4epis.netlify.app/training/r_basics/objects/).*\
-Everything you store in R - datasets, variables, a list of village names, a total population number, even outputs such as graphs - are **objects** which are **assigned a name** and **can be referenced** in later commands.
-
-An object exists when you have assigned it a value (see the assignment section below). When it is assigned a value, the object appears in the Environment (see the upper right pane of RStudio). It can then be operated upon, manipulated, changed, and re-defined.
+-   Объектуудын ангилал (жишээлбэл, тоон, логик, бүхэл тоо, давхар тоо, тэмдэгт, фактор)
 
 <!-- ======================================================= -->
 
-### Defining objects (`<-`) {.unnumbered}
+### Бүх зүйл объект {.unnumbered}
 
-**Create objects *by assigning them a value* with the \<- operator.**\
-You can think of the assignment operator `<-` as the words "is defined as". Assignment commands generally follow a standard order:
+*Энэ хэсгийг [R4Epis төслөөс](https://r4epis.netlify.app/training/r_basics/objects/) ашигласан.*
 
-**object_name** \<- **value** (or process/calculation that produce a value)
+R-д хадгалагдаж буй бүх зүйл - датасет, хувьсагч, тосгоны нэрсийн жагсаалт, нийт хүн амын тоо, тэр ч байтугай график гэх мэт гаралтууд нь **нэр оноогдсон** **объектууд** бөгөөд эдгээрийг дараагийн командуудад **ашиглаж болдог**.
 
-For example, you may want to record the current epidemiological reporting week as an object for reference in later code. In this example, the object `current_week` is created when it is assigned the value `"2018-W10"` (the quote marks make this a character value). The object `current_week` will then appear in the RStudio Environment pane (upper-right) and can be referenced in later commands.
+Тухайн объектод утга оноох үед объект бий болдог (доорх оноолтын хэсгийг үзнэ үү). Түүнд утга оноох үед тухайн объект Environment хэсэгт гарч ирнэ (RStudio-ийн баруун дээд хэсгийг харна уу). Ингэснээр түүнийг ажиллуулж, удирдаж, өөрчилж, дахин тодорхойлж болно.
 
-See the R commands and their output in the boxes below.
+<!-- ======================================================= -->
+
+### Объектуудыг тодорхойлох (`<-`) {.unnumbered}
+
+**Объектуудад \<- операторын тусламжтайгаар тодорхой утгыг оноож үүсгэнэ.**
+
+Та оноох оператор `<-` -ыг "гэж тодорхойлсон" гэсэн үг гэж бодож болно. Оноолтын командууд нь ерөнхийдөө дараах стандарт дараалалтай байдаг:
+
+**объектын_нэр \<- утга** (эсвэл тодорхой утга үүсгэдэг процесс/тооцоолол)
+
+Жишээлбэл, та одоогийн эпидемиологийн тайлангийн долоо хоногийг дараагийн кодын лавлагааны объект болгон тэмдэглэхийг хүсч байж болох юм. Энэ жишээнд `"2018-W10"` гэсэн утгыг оноох үед `current_week` объект үүсч байна (ишлэл нь үүнийг тэмдэгтийн утга болгодог). Ингэснээр `current_week` объект RStudio Environment хэсэгт (баруун дээд талд) гарч ирэх ба дараагийн командуудад ашиглаж болно.
+
+R командууд болон тэдгээрийн гаралтыг доор харна уу.
 
 ```{r basics_objects_assignment}
-current_week <- "2018-W10"   # this command creates the object current_week by assigning it a value
-current_week                 # this command prints the current value of current_week object in the console
+current_week <- "2018-W10"   # Энэ команд нь утга оноосноор current_week объект үүсгэнэ
+current_week                 # Энэ команд нь консол дахь current_week объектын одоогийн утгыг хэвлэнэ 
 ```
 
-[***NOTE:*** Note the `[1]` in the R console output is simply indicating that you are viewing the first item of the output]{style="color: black;"}
+[***ТЭМДЭГЛЭЛ:*** R консолын гаралт дахь \[1\] нь ердөө л таныг гаралтын эхний зүйлийг харж байгааг илэрхийлж байгаа болно.]{style="color: black;"}
 
-[***CAUTION:*** **An object's value can be over-written** at any time by running an assignment command to re-define its value. Thus, the **order of the commands run is very important**.]{style="color: orange;"}
+[***АНХААРУУЛГА:*** Объектын утгыг дахин тодорхойлох оноолтын командыг ажиллуулснаар ямар ч үед тухайн **объектын өмнөх утгыг дарж шинэ утга оноож болно**. Тиймээс **командуудыг гүйцэтгэх дараалал нь маш чухал** юм. ]{style="color: orange;"}
 
-The following command will re-define the value of `current_week`:
+Дараах команд нь `current_week` утгыг дахин тодорхойлох болно:
 
 ```{r basics_objects_reassignment}
-current_week <- "2018-W51"   # assigns a NEW value to the object current_week
-current_week                 # prints the current value of current_week in the console
+current_week <- "2018-W51"   # current_week объектод ШИНЭ утгыг онооно 
+current_week                 # current_week утгыг консол дээр хэвлэнэ
 ```
 
-**Equals signs `=`**
+**Тэнцүүгийн тэмдэг `=`**
 
-You will also see equals signs in R code:
+Та R код дотор тэнцүүгийн тэмдэгтэй олон таарах болно:
 
--   A double equals sign `==` between two objects or values asks a logical *question*: "is this equal to that?".\
--   You will also see equals signs within functions used to specify values of function arguments (read about these in sections below), for example `max(age, na.rm = TRUE)`.\
--   You *can* use a single equals sign `=` in place of `<-` to create and define objects, but this is discouraged. You can read about why this is discouraged [here](https://renkun.me/2014/01/28/difference-between-assignment-operators-in-r/).
+-   Хоёр объект эсвэл утгын хоорондох давхар тэнцүүгийн тэмдэг `==` "энэ нь үүнтэй тэнцүү юу?" гэсэн логик *асуултыг* тавьдаг.
 
-**Datasets**
+-   Та мөн функц дотор функцийн аргументуудын утгыг тодорхойлоход ашигладаг тэнцүүгийн тэмдгийг харах болно (үүний талаар дараагийн хэсгүүдээс уншина уу), жишээ нь `max(age, na.rm = TRUE)`.
 
-Datasets are also objects (typically "dataframes") and must be assigned names when they are imported. In the code below, the object `linelist` is created and assigned the value of a CSV file imported with the **rio** package and its `import()` function.
+-   Мөн та объект үүсгэж, тодорхойлохын тулд `<-`ын оронд `=` нэг тэнцүү тэмдгийг ашиглаж болох боловч энэ үйлдлийг хийхийг бид зөвлөдөггүй. Үүнийг яагаад зөвлөдөггүй талаар [эндээс](https://renkun.me/2014/01/28/difference-between-assignment-operators-in-r/) уншиж болно.
+
+**Датасетүүд**
+
+Датасет нь мөн объект (ихэвчлэн "датафрэйм") бөгөөд тэдгээрийг импортлохдоо нэр өгөх ёстой. Доорх кодонд **rio** багцын `import()` функц ашиглан импортолсон CSV файлын утгыг `linelist` гэсэн объект руу оноож шинээр үүсгэж байна.
 
 ```{r basics_objects_dataframes, eval=FALSE}
-# linelist is created and assigned the value of the imported CSV file
+# linelist-ийг үүсгэж, импортолсон CSV файлын утгыг оноож өгч байна
 linelist <- import("my_linelist.csv")
 ```
 
-You can read more about importing and exporting datasets with the section on [Import and export].
+Та \[Импорт, экспорт\] хэсгээс датасет импортлох, экспортлох талаар дэлгэрэнгүй унших боломжтой.
 
-[***CAUTION:*** A quick note on naming of objects:]{style="color: orange;"}
+[***АНХААРУУЛГА:*** Объектуудыг нэрлэх тухай товч тэмдэглэл:]{style="color: orange;"}
 
--   Object names must not contain spaces, but you should use underscore (\_) or a period (.) instead of a space.\
--   Object names are case-sensitive (meaning that Dataset_A is different from dataset_A).
--   Object names must begin with a letter (cannot begin with a number like 1, 2 or 3).
+-   Объектын нэрэнд хоосон зай байх ёсгүй, гэхдээ зайны оронд доогуур зураас (\_) эсвэл цэг (.) ашиглаж болно.
 
-**Outputs**
+-   Объектын нэр нь үсгийн том жижгээр ялгагддаг (Dataset_A нь dataset_A-аас өөр гэсэн үг).
 
-Outputs like tables and plots provide an example of how outputs can be saved as objects, or just be printed without being saved. A cross-tabulation of gender and outcome using the **base** R function `table()` can be printed directly to the R console (*without* being saved).
+-   Объектын нэр үсгээр эхлэх ёстой (1, 2, 3 гэх мэт тоогоор эхэлж болохгүй).
+
+**Гаралтууд**
+
+Хүснэгт, график гэх мэт гаралтууд нь гаралтыг хэрхэн объект болгон хадгалах, эсвэл хадгалахгүйгээр хэвлэх боломжтой жишээг харуулдаг. **base** R функц болох `table()` ашиглан хүйс, үр дүнгийн хүснэгтийг R консол дээр шууд хэвлэх боломжтой (*хадгалахгүйгээр*).
 
 ```{r}
-# printed to R console only
+# зөвхөн R консол дээр хэвлэнэ
 table(linelist$gender, linelist$outcome)
 ```
 
-But the same table can be saved as a named object. Then, optionally, it can be printed.
+Гэхдээ яг ижил хүснэгтийг нэрлэсэн объект болгон хадгалах боломжтой. Дараа нь хүсвэл үүнийг хэвлэж болно.
 
 ```{r}
-# save
+# хадгал
 gen_out_table <- table(linelist$gender, linelist$outcome)
 
-# print
+# хэвлэ
 gen_out_table
 ```
 
-**Columns**
+**Баганууд**
 
-Columns in a dataset are also objects and can be defined, over-written, and created as described below in the section on Columns.
+Датасетийн баганууд нь мөн объектууд бөгөөд "Баганууд" хэсэгт доор тайлбарласны дагуу тодорхойлж, дахин бичиж, шинээр үүсгэж болно.
 
-You can use the assignment operator from **base** R to create a new column. Below, the new column `bmi` (Body Mass Index) is created, and for each row the new value is result of a mathematical operation on the row's value in the `wt_kg` and `ht_cm` columns.
+Та шинэ багана үүсгэхийн тулд **base** R-ын оноолтын операторыг ашиглаж болно. Доорх кодонд мөр бүрийн хувьд `wt_kg` болон `ht_cm` багана дахь мөрийн утгуудыг ашиглан математик үйлдлийн үр дүнд шинэ утга гарган түүнийг шинэ багана `bmi` (Биеийн жингийн индекс) дотор хадгалж байна.
 
 ```{r, eval=F}
-# create new "bmi" column using base R syntax
+# base R синтакс ашиглан шинэ "bmi" багана үүсгэнэ
 linelist$bmi <- linelist$wt_kg / (linelist$ht_cm/100)^2
 ```
 
-However, in this handbook, we emphasize a different approach to defining columns, which uses the function `mutate()` from the **dplyr** package and *piping* with the pipe operator (`%>%`). The syntax is easier to read and there are other advantages explained in the page on [Cleaning data and core functions]. You can read more about *piping* in the Piping section below.
+Хэдий ингэж болох боловч энэхүү гарын авлагад бид багануудыг тодорхойлох өөр арга болох **dplyr** багцын `mutate()` функц болон пайп оператораар (`%>%`) дамжуулан пайплахыг санал болгож байна. Ингэснээр синтаксийг уншихад хялбар бөгөөд \[Дата цэвэрлэх болон үндсэн функцууд\] хуудсанд тайлбарласан бусад давуу талууд байдаг. Та *пайпын* талаар дэлгэрэнгүй мэдээллийг дараах "Пайплах" хэсгээс уншиж болно.
 
 ```{r, eval=F}
-# create new "bmi" column using dplyr syntax
+# dplyr синтакс ашиглан шинэ "bmi" багана үүсгэнэ
 linelist <- linelist %>% 
   mutate(bmi = wt_kg / (ht_cm/100)^2)
 ```
 
 <!-- ======================================================= -->
 
-### Object structure {.unnumbered}
+### Объектын бүтэц {.unnumbered}
 
-**Objects can be a single piece of data (e.g. `my_number <- 24`), or they can consist of structured data.**
+**Объектууд нь зөвхөн нэг ширхэг дата байж болно (жишээ нь, `my_number <- 24`) эсвэл тодорхой бүтэцтэй датанаас бүрдэж болно.**
 
-The graphic below is borrowed from [this online R tutorial](http://venus.ifca.unican.es/Rintro/dataStruct.html). It shows some common data structures and their names. Not included in this image is spatial data, which is discussed in the [GIS basics] page.
+Доорх графикийг [энэхүү онлайн R хичээлээс](http://venus.ifca.unican.es/Rintro/dataStruct.html) авсан болно. Энэ нь зарим нийтлэг дата бүтэц, тэдгээрийн нэрийг харуулж байна. Энэ зурагт орон зайн мэдээлэл ороогүй бөгөөд үүнийг \[GIS-ын суурь\] хуудсанд авч үзсэн болно.
 
 ```{r basics_objects_structures, echo=F, out.width = "75%", out.height="50%", fig.align = "center"}
 knitr::include_graphics(here::here("images", "R_data_structures.png"))
 ```
 
-In epidemiology (and particularly field epidemiology), you will *most commonly* encounter data frames and vectors:
+Эпидемиологт (ялангуяа талбарын эпидемиологт) та датафрэймүүд ба векторуудтай хамгийн их тулгарах болно:
 
-+------------------+--------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
-| Common structure | Explanation                                                                                      | Example                                                                             |
-+==================+==================================================================================================+=====================================================================================+
-| Vectors          | A container for a sequence of singular objects, all of the same class (e.g. numeric, character). | **"Variables" (columns) in data frames are vectors** (e.g. the column `age_years`). |
-+------------------+--------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
-| Data Frames      | Vectors (e.g. columns) that are bound together that all have the same number of rows.            | `linelist` is a data frame.                                                         |
-+------------------+--------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
++----------------------------+----------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Нийтлэг бүтэц              | Тайлбар                                                                                      | Жишээ                                                                                       |
++============================+==============================================================================================+=============================================================================================+
+| Векторууд                  | Бүгд ижил ангиллын ганц бие объектуудын дараалалд зориулсан агуулах (жишээ нь тоо, тэмдэгт). | **Датафрэймүүдийн "Хувьсагчид" (баганууд) нь векторууд юм** (жишээ нь: `age_years` багана). |
++----------------------------+----------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Датафрэймүүд               | Бүгд ижил тооны мөртэй, хоорондоо холбогдсон векторууд (жишээ нь багана).                    | `linelist` бол датафрэйм                                                                    |
++----------------------------+----------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
 
-Note that to create a vector that "stands alone" (is not part of a data frame) the function `c()` is used to combine the different elements. For example, if creating a vector of colors plot's color scale: `vector_of_colors <- c("blue", "red2", "orange", "grey")`
+Датафрэймийн нэг хэсэг биш "дан" вектор үүсгэхийн тулд `c()` функцийг өөр өөр элементүүдийг нэгтгэхэд ашигладаг болохыг анхаарна уу. Жишээлбэл, графикийн өнгөний хуваарь болгон ашиглах өнгөний вектор үүсгэх тохиолдолд : `vector_of_colors <- c("blue", "red2", "orange", "grey")`
 
 <!-- ======================================================= -->
 
-### Object classes {.unnumbered}
+### Объектын ангиуд {.unnumbered}
 
-All the objects stored in R have a *class* which tells R how to handle the object. There are many possible classes, but common ones include:
+R-д хадгалагдсан бүх объектууд R-д тухайн объектыг хэрхэн зохицуулахыг хэлдэг ангитай байдаг. Олон боломжит ангиуд байдаг боловч нийтлэг байдаг нь:
 
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| Class      | Explanation                                                                                                                                                                             | Examples                                                                                              |
-+============+=========================================================================================================================================================================================+=======================================================================================================+
-| Character  | These are text/words/sentences **"within quotation marks"**. Math cannot be done on these objects.                                                                                      | "Character objects are in quotation marks"                                                            |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| Integer    | Numbers that are **whole only** (no decimals)                                                                                                                                           | -5, 14, or 2000                                                                                       |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| Numeric    | These are numbers and **can include decimals**. If within quotation marks they will be considered character class.                                                                      | 23.1 or 14                                                                                            |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| Factor     | These are vectors that have a **specified order** or hierarchy of values                                                                                                                | An variable of economic status with ordered values                                                    |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| Date       | **Once R is told that certain data are Dates**, these data can be manipulated and displayed in special ways. See the page on [Working with dates] for more information.                 | 2018-04-12 or 15/3/1954 or Wed 4 Jan 1980                                                             |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| Logical    | Values must be one of the two special values TRUE or FALSE (note these are **not** "TRUE" and "FALSE" in quotation marks)                                                               | TRUE or FALSE                                                                                         |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| data.frame | A data frame is how R stores a **typical dataset**. It consists of vectors (columns) of data bound together, that all have the same number of observations (rows).                      | The example AJS dataset named `linelist_raw` contains 68 variables with 300 observations (rows) each. |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| tibble     | tibbles are a variation on data frame, the main operational difference being that they print more nicely to the console (display first 10 rows and only columns that fit on the screen) | Any data frame, list, or matrix can be converted to a tibble with `as_tibble()`                       |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| list       | A list is like vector, but holds other objects that can be other different classes                                                                                                      | A list could hold a single number, and a dataframe, and a vector, and even another list within it!    |
-+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Анги                | Тайлбар                                                                                                                                                                      | Жишээ                                                                                               |
++=====================+==============================================================================================================================================================================+=====================================================================================================+
+| Тэмдэгт (character) | Эдгээр нь **"ишлэлийн доторх"** текст/үг/өгүүлбэр юм. Эдгээр объектууд дээр математик үйлдэл хийх боломжгүй.                                                                 | "Тэмдэгтийн объектууд ишлэл дотор байна"                                                            |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Бүхэл тоо           | Зөвхөн **бүхэл тоо** (аравтын бутархай байхгүй)                                                                                                                              | -5, 14, эсвэл 2000                                                                                  |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Тоо                 | Эдгээр нь тоо бөгөөд **аравтын бутархайг агуулж болно**. Хэрэв ишлэл дотор байвал тэдгээрийг тэмдэгтийн ангилалд тооцно.                                                     | 23.1 эсвэл 14                                                                                       |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Фактор              | Эдгээр нь **тодорхой дараалал** эсвэл утгуудын шатлалтай векторууд юм.                                                                                                       | Орлогын түвшний дараалалт утга бүхий хувьсагч                                                       |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Огноо               | **R-д тодорхой дата нь огноо гэж мэдэгдсэний дараа** эдгээр датаг тусгай аргаар удирдаж, харуулах боломжтой. Дэлгэрэнгүй мэдээллийг \[Огноотой ажиллах\] хуудаснаас үзнэ үү. | 2018-04-12 эсвэл 15/3/1954 эсвэл Wed 4 Jan 1980                                                     |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Логик               | Утга нь TRUE эсвэл FALSE гэсэн хоёр тусгай утгын нэг байх ёстой (эдгээр нь ишлэл доторх "TRUE" ба "FALSE" биш гэдгийг анхаарна уу)                                           | TRUE эсвэл FALSE                                                                                    |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| data.frame          | Датафрэйм нь R **ердийн датасетийг** хадгалдаг арга юм. Энэ нь бүгд ижил тооны ажиглалттай (мөр) хоорондоо холбогдсон дата векторуудаас (баганууд) бүрдэнэ.                  | `linelist_raw` нэртэй AJS жишээ датасет нь тус бүр 300 ажиглалт (мөр) бүхий 68 хувьсагчийг агуулна. |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| tibble              | tibble нь датафрэймийн хувилбар бөгөөд үйл ажиллагааны гол ялгаа нь консол дээр илүү сайн хэвлэдэг (эхний 10 мөр, зөвхөн дэлгэцэн дээр багтах багануудыг харуулна)           | Ямар ч датафрэйм, лист эсвэл матрицыг `as_tibble()` ашиглан tibble болгон хувиргаж болно.           |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| лист                | Лист нь вектор шиг боловч өөр өөр ангийн объектуудыг агуулж чаддагаараа ялгаатай.                                                                                            | Листэд нэг тоо, датафрэйм, вектор, тэр ч байтугай дотор нь өөр лист ч байж болно!                   |
++---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 
-**You can test the class of an object by providing its name to the function `class()`**. Note: you can reference a specific column within a dataset using the `$` notation to separate the name of the dataset and the name of the column.
+**Та `class()` функцад нэрийг нь оруулснаар тухайн объектын ангийг шалгаж болно.** Тэмдэглэл: Та `$` тэмдэглэгээг ашиглан датасетийн нэр болон баганын нэрийг тусгаарласнаар тухайн датасет доторх тодорхой баганыг ашиглаж болно.
 
 ```{r, echo=TRUE,}
-class(linelist)         # class should be a data frame or tibble
+class(linelist)         # анги нь датафрэйм эсвэл tibble байх ёстой
 
-class(linelist$age)     # class should be numeric
+class(linelist$age)     # анги тоон байх ёстой
 
-class(linelist$gender)  # class should be character
+class(linelist$gender)  # анги тэмдэгт байх ёстой
 ```
 
-Sometimes, a column will be converted to a different class automatically by R. Watch out for this! For example, if you have a vector or column of numbers, but a character value is inserted... the entire column will change to class character.
+Заримдаа R баганыг автоматаар өөр анги руу хөрвүүлдэг. Үүнээс болгоомжил! Жишээлбэл, хэрэв танд тоонуудын вектор эсвэл багана байгаа боловч тэмдэгтийн утга оруулсан бол... багана бүхэлдээ тэмдэгт ангитай болж өөрчлөгдөнө.
 
 ```{r}
-num_vector <- c(1,2,3,4,5) # define vector as all numbers
-class(num_vector)          # vector is numeric class
-num_vector[3] <- "three"   # convert the third element to a character
-class(num_vector)          # vector is now character class
+num_vector <- c(1,2,3,4,5) # векторыг дан тоогоор тодорхойлно
+class(num_vector)          # вектор нь тоон анги
+num_vector[3] <- "three"   # гурав дахь элементийг тэмдэгт болгон хувиргана
+class(num_vector)          # вектор нь одоо тэмдэгтийн анги болжээ
 ```
 
-One common example of this is when manipulating a data frame in order to print a table - if you make a total row and try to paste/glue together percents in the same cell as numbers (e.g. `23 (40%)`), the entire numeric column above will convert to character and can no longer be used for mathematical calculations.**Sometimes, you will need to convert objects or columns to another class.**
+Үүний нэг нийтлэг жишээ бол хүснэгтийг хэвлэхийн тулд датафрэймтэй ажиллах үед - хэрэв та нийт гэсэн мөр гаргаж, тоонуудтай нэг нүдэнд хувийг буулгах/наах (жишээ нь `23 (40%)`) гэж оролдвол дээрх тоон багана нь тэмдэгт болж хувирах бөгөөд цаашид математик тооцоололд ашиглагдах боломжгүй болно. **Тиймээс заримдаа та объект эсвэл баганыг өөр анги руу хөрвүүлэх шаардлагатай болдог.**
 
-+------------------+---------------------------------------------------------------------------------------+
-| Function         | Action                                                                                |
-+==================+=======================================================================================+
-| `as.character()` | Converts to character class                                                           |
-+------------------+---------------------------------------------------------------------------------------+
-| `as.numeric()`   | Converts to numeric class                                                             |
-+------------------+---------------------------------------------------------------------------------------+
-| `as.integer()`   | Converts to integer class                                                             |
-+------------------+---------------------------------------------------------------------------------------+
-| `as.Date()`      | Converts to Date class - Note: see section on [dates](#dates) for details             |
-+------------------+---------------------------------------------------------------------------------------+
-| `factor()`       | Converts to factor - Note: re-defining order of value levels requires extra arguments |
-+------------------+---------------------------------------------------------------------------------------+
++-------------------------+---------------------------------------------------------------------------------------------------------------+
+| Функц                   | Үйлдэл                                                                                                        |
++=========================+===============================================================================================================+
+| `as.character()`        | Тэмдэгт анги руу хөрвүүлдэг                                                                                   |
++-------------------------+---------------------------------------------------------------------------------------------------------------+
+| `as.numeric()`          | Тоон анги руу хөрвүүлдэг                                                                                      |
++-------------------------+---------------------------------------------------------------------------------------------------------------+
+| `as.integer()`          | Бүхэл тоон анги руу хөрвүүлдэг                                                                                |
++-------------------------+---------------------------------------------------------------------------------------------------------------+
+| `as.Date()`             | Огноо анги руу хөрвүүлдэг - Тэмдэглэл: дэлгэрэнгүй мэдээллийг [огнооны](#dates) хэсгээс үзнэ үү               |
++-------------------------+---------------------------------------------------------------------------------------------------------------+
+| `factor()`              | Фактор анги руу хөрвүүлдэг - Тэмдэглэл: утгын түвшний дарааллыг дахин тодорхойлох нь нэмэлт аргумент шаарддаг |
++-------------------------+---------------------------------------------------------------------------------------------------------------+
 
-Likewise, there are **base** R functions to check whether an object IS of a specific class, such as `is.numeric()`, `is.character()`, `is.double()`, `is.factor()`, `is.integer()`
+Үүний нэгэн адил `is.numeric()`, `is.character()`, `is.double()`, `is.factor()`, `is.integer()` зэрэг тодорхой ангиллын объект МӨН эсэхийг шалгах **base** R функцууд байдаг.
 
-Here is [more online material on classes and data structures in R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/).
+[R хэл дээрх анги, датаны бүтцийн талаархи онлайн материалыг](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/) эндээс үзнэ үү.
 
 <!-- ======================================================= -->
 
-### Columns/Variables (`$`) {.unnumbered}
+### Баганууд/Хувьсагчид (`$`) {.unnumbered}
 
-**A column in a data frame is technically a "vector" (see table above)** - a series of values that must all be the same class (either character, numeric, logical, etc).
+**Датафрэйм дэх багана нь техникийн хувьд "вектор" (дээрх хүснэгтийг харна уу)** - бүгд ижил ангитай (тэмдэгт, тоон, логик гэх мэт) байх ёстой утгуудын цуврал юм.
 
-A vector can exist independent of a data frame, for example a vector of column names that you want to include as explanatory variables in a model. To create a "stand alone" vector, use the `c()` function as below:
+Вектор нь датафрэймээс хамааралгүй оршиж болно, жишээ нь моделд тайлбарлах хувьсагч болгон оруулахыг хүссэн баганын нэрнүүдийн вектор. "Бие даасан" вектор үүсгэхийн тулд дараах байдлаар `c()` функцийг ашиглана уу:
 
 ```{r, warning=F, message=F}
-# define the stand-alone vector of character values
+# тэмдэгтийн утгууд бүхий бие даасан векторыг тодорхойлно
 explanatory_vars <- c("gender", "fever", "chills", "cough", "aches", "vomit")
 
-# print the values in this named vector
+# энэ нэрлэсэн вектор дахь утгуудыг хэвлэх
 explanatory_vars
 ```
 
-**Columns in a data frame are also vectors and can be called, referenced, extracted, or created using the `$` symbol.** The `$` symbol connects the name of the column to the name of its data frame. In this handbook, we try to use the word "column" instead of "variable".
+**Датафрэймийн баганууд нь мөн векторууд бөгөөд `$` тэмдэг ашиглан дуудаж, лавлаж, задалж эсвэл шинээр үүсгэж болно.** `$` тэмдэг нь баганын нэрийг датафрэймийн нэртэй холбодог. Энэхүү гарын авлагад бид "хувьсагч" гэхийн оронд "багана" гэсэн үгийг ашиглахыг хичээсэн.
 
 ```{r basics_objects_call, eval=F}
-# Retrieve the length of the vector age_years
-length(linelist$age) # (age is a column in the linelist data frame)
+# age_years векторын уртыг ол 
+length(linelist$age) # (age нь linelist датафрэймийн нэг багана юм)
 
 ```
 
-By typing the name of the dataframe followed by `$` you will also see a drop-down menu of all columns in the data frame. You can scroll through them using your arrow key, select one with your Enter key, and avoid spelling mistakes!
+Датафреймийн нэрийн дараа `$` тэмдэг оруулснаар та тухайн датафрэйм дэх бүх баганын унадаг цэсийг харах болно. Та сумны товчийг ашиглан тэдгээрийг гүйлгэж, Enter товчлуураар нэгийг нь сонгосноор зөв бичгийн алдаа гаргахаас зайлсхийх боломжтой!
 
 ```{r echo=F, out.width = "100%", fig.align = "center"}
 knitr::include_graphics(here::here("images", "Calling_Names.gif"))
 ```
 
-[***ADVANCED TIP:*** Some more complex objects (e.g. a list, or an `epicontacts` object) may have multiple levels which can be accessed through multiple dollar signs. For example `epicontacts$linelist$date_onset`]{style="color: darkgreen;"}
+[***АХИСАН ТҮВШНИЙ ЗӨВЛӨМЖ:*** Зарим илүү комплекс объектууд (жишээ нь лист, эсвэл `epicontacts` объект) олон доллар тэмдэгтээр хандах боломжтой олон түвшинтэй байж болно. Жишээлбэл, `epicontacts$linelist$date_onset` ]{style="color: darkgreen;"}
 
 <!-- ======================================================= -->
 
-### Access/index with brackets (`[ ]`) {.unnumbered}
+### Хаалт ашиглан хандах/индекслэх (`[ ]`) {.unnumbered}
 
-You may need to view parts of objects, also called "indexing", which is often done using the square brackets `[ ]`. Using `$` on a dataframe to access a column is also a type of indexing.
+Та объектын хэсгүүдийг харах, өөрөөр "индекслэх" гэж нэрлэгддэг, шаардлагатай байж болох бөгөөд үүнийг ихэвчлэн дөрвөлжин хаалт `[ ]` ашиглан хийдэг. Баганад хандахын тулд датафрэйм дээр `$`-г ашиглах нь мөн индекслэлтийн нэг төрөл юм.
 
 ```{r}
-my_vector <- c("a", "b", "c", "d", "e", "f")  # define the vector
-my_vector[5]                                  # print the 5th element
+my_vector <- c("a", "b", "c", "d", "e", "f")  # векторыг тодорхойлно
+my_vector[5]                                  # 5-р элементийг хэвлэх
 ```
 
-Square brackets also work to return specific parts of an returned output, such as the output of a `summary()` function:
+Дөрвөлжин хаалт нь `summary()` функцийн гаралт гэх мэт гарч ирсэн гаралтын тодорхой хэсгийг харуулахад ашиглагддаг:
 
 ```{r}
-# All of the summary
+# Бүх хураангуй
 summary(linelist$age)
 
-# Just the second element of the summary, with name (using only single brackets)
+# Нэр бүхий, хураангуйн хоёр дахь элемент (зөвхөн ганц хаалт ашиглан) 
 summary(linelist$age)[2]
 
-# Just the second element, without name (using double brackets)
+# Нэргүй, хураангуйн хоёр дахь элемент (давхар хаалт ашиглан)
 summary(linelist$age)[[2]]
 
-# Extract an element by name, without showing the name
+# Нэрийг харуулахгүйгээр элементийг нэрээр нь задлах
 summary(linelist$age)[["Median"]]
 
 ```
 
-Brackets also work on data frames to view specific rows and columns. You can do this using the syntax `dataframe[rows, columns]`:
+Хаалт нь тодорхой мөр, баганыг харахын тулд датафрэйм дээр ажилладаг. Та үүнийг `датафрэйм[мөр, багана]` синтакс ашиглан хийж болно:
 
 ```{r basics_objects_access, eval=F}
-# View a specific row (2) from dataset, with all columns (don't forget the comma!)
+# Датасетийн тодорхой мөрийг (2) бүх баганын хамт харах (таслалыг бүү март!) 
 linelist[2,]
 
-# View all rows, but just one column
+# Бүх мөрүүдийг харах, гэхдээ зөвхөн нэг баганатай
 linelist[, "date_onset"]
 
-# View values from row 2 and columns 5 through 10
+# 2-р мөр болон 5-аас 10-р багана хүртэлх утгыг харах 
 linelist[2, 5:10] 
 
-# View values from row 2 and columns 5 through 10 and 18
+# 2-р мөр болон 5-аас 10, 18-р багануудын утгыг харах
 linelist[2, c(5:10, 18)] 
 
-# View rows 2 through 20, and specific columns
+# 2-оос 20 хүртэлх мөр, тодорхой багануудыг харах
 linelist[2:20, c("date_onset", "outcome", "age")]
 
-# View rows and columns based on criteria
-# *** Note the dataframe must still be named in the criteria!
+# Тодорхой шалгуурт үндэслэн мөр, баганыг харах 
+# *** Датафрэймийг шалгуурт нэрлэсэн хэвээр байх ёстойг анхаарна уу! 
 linelist[linelist$age > 25 , c("date_onset", "outcome", "age")]
 
-# Use View() to see the outputs in the RStudio Viewer pane (easier to read) 
-# *** Note the capital "V" in View() function
+# RStudio Viewer самбар дээрх гаралтыг харахын тулд View()-г ашиглана уу (уншихад хялбар) 
+# *** View() функцийн том "V" үсгийг анхаарна уу 
 View(linelist[2:20, "date_onset"])
 
-# Save as a new object
+# Шинэ объект болгон хадгалах
 new_table <- linelist[2:20, c("date_onset")] 
 ```
 
-Note that you can also achieve the above row/column indexing on data frames and tibbles using **dplyr** syntax (functions `filter()` for rows, and `select()` for columns). Read more about these core functions in the [Cleaning data and core functions] page.
+Та мөн **dplyr** синтакс (мөрүүдэд `filter()` функц, багананд `select()` функцийг) ашиглан датафрэйм болон тибл дээр дээрхтэй ижлээр мөр/баганыг индексжүүлэх боломжтойг анхаарна уу. Эдгээр үндсэн функцуудын талаар \[Дата цэвэрлэх ба үндсэн функцууд\] хуудаснаас дэлгэрэнгүй уншина уу.
 
-To filter based on "row number", you can use the **dplyr** function `row_number()` with open parentheses as part of a logical filtering statement. Often you will use the `%in%` operator and a range of numbers as part of that logical statement, as shown below. To see the *first* N rows, you can also use the special **dplyr** function `head()`.
+"Мөрийн дугаар" дээр үндэслэн шүүх бол та **dplyr**-ын`row_number()` функцийг хоосон хаалттайгаар логик шүүлтийн хэсэг болгон ашиглаж болно. Доор үзүүлсэн шиг ихэнх тохиолдолд та `%in%` оператор болон тооны хүрээг логик хэллэгийн нэг хэсэг болгож болдог. *Эхний* N мөрийг харахын тулд та тусгай **dplyr** функц `head()` ашиглах боломжтой.
 
 ```{r, eval=F}
-# View first 100 rows
+# Эхний 100 мөрийг харах
 linelist %>% head(100)
 
-# Show row 5 only
+# Зөвхөн 5-р мөрийг харуулах
 linelist %>% filter(row_number() == 5)
 
-# View rows 2 through 20, and three specific columns (note no quotes necessary on column names)
+# 2-оос 20 хүртэлх мөр, гурван тодорхой баганыг харах (баганын нэр дээр ишлэл хэрэггүй гэдгийг анхаарна уу) 
 linelist %>% filter(row_number() %in% 2:20) %>% select(date_onset, outcome, age)
 ```
 
-When indexing an object of class **list**, single brackets always return with class list, even if only a single object is returned. Double brackets, however, can be used to access a single element and return a different class than list.\
-Brackets can also be written after one another, as demonstrated below.
+**Лист** ангийн объектыг индекслэх үед зөвхөн ганц объектыг буцаасан ч гэсэн ганц дөрвөлжин хаалт нь лист ангийг буцаана. Харин давхар хаалт нь нэг элементэд хандаж, листээс өөр анги буцаахад ашиглагдаж болно.
 
-This [visual explanation of lists indexing, with pepper shakers](https://r4ds.had.co.nz/vectors.html#lists-of-condiments) is humorous and helpful.
+Доор үзүүлсэн шиг хаалтуудыг ар араас нь бичиж болно.
+
+[Чинжүү сэгсрэгч ашиглан лист индекслэлтийн талаар тайлбарласан энэхүү дүрсэт тайлбар](https://r4ds.had.co.nz/vectors.html#lists-of-condiments) хошин бөгөөд ойлгоход тустай.
 
 ```{r}
-# define demo list
+# Демо лист тодорхойлох
 my_list <- list(
-  # First element in the list is a character vector
+  # Листийн эхний элемент нь тэмдэгтийн вектор
   hospitals = c("Central", "Empire", "Santa Anna"),
   
-  # second element in the list is a data frame of addresses
+  # Листийн хоёр дахь элемент нь хаягуудын датафрэйм
   addresses   = data.frame(
     street = c("145 Medical Way", "1048 Brown Ave", "999 El Camino"),
     city   = c("Andover", "Hamilton", "El Paso")
@@ -1172,41 +1197,42 @@ my_list <- list(
   )
 ```
 
-Here is how the list looks when printed to the console. See how there are two named elements:
+Листийг консол дээр хэвлэх үед хэрхэн харагдахыг энд харуулав. Нэрлэгдсэн хоёр элемент байгааг хараарай:
 
--   `hospitals`, a character vector\
--   `addresses`, a data frame of addresses
+-   `hospitals`, тэмдэгтийн вектор
+
+-   `addresses`, хаягуудын датафрэйм
 
 ```{r}
 my_list
 ```
 
-Now we extract, using various methods:
+Одоо бид янз бүрийн аргыг ашиглан задалж байна:
 
 ```{r}
-my_list[1] # this returns the element in class "list" - the element name is still displayed
+my_list[1] # энэ нь "лист" анги дахь элементийг буцаана - элементийн нэр харагдсан хэвээр байна 
 
-my_list[[1]] # this returns only the (unnamed) character vector
+my_list[[1]] # энэ нь зөвхөн (нэргүй) тэмдэгтийн векторыг буцаана 
 
-my_list[["hospitals"]] # you can also index by name of the list element
+my_list[["hospitals"]] # Та мөн листийн элементийн нэрээр индекслэж болно
 
-my_list[[1]][3] # this returns the third element of the "hospitals" character vector
+my_list[[1]][3] # энэ нь "hospitals" тэмдэгтийн векторын гурав дахь элементийг буцаана 
 
-my_list[[2]][1] # This returns the first column ("street") of the address data frame
+my_list[[2]][1] # Энэ нь хаягийн датафрэймийн эхний баганыг ("street") буцаана
 
 ```
 
 <!-- ======================================================= -->
 
-### Remove objects {.unnumbered}
+### Объектуудыг устгах {.unnumbered}
 
-You can remove individual objects from your R environment by putting the name in the `rm()` function (no quote marks):
+Та `rm()` функцэд нэрийг оруулснаар R орчноосоо бие даасан объектуудыг устгаж болно (ишлэлгүй):
 
 ```{r, eval=F}
 rm(object_name)
 ```
 
-You can remove all objects (clear your workspace) by running:
+Та бүх объектыг дараах байдлаар устгаж болно (ажлын талбайгаа цэвэрлэх):
 
 ```{r, eval=F}
 rm(list = ls(all = TRUE))
@@ -1218,65 +1244,70 @@ rm(list = ls(all = TRUE))
 
 <!-- ======================================================= -->
 
-## Piping (`%>%`)
+## Пайплах (`%>%`)
 
-**Two general approaches to working with objects are:**
+**Объектуудтай ажиллах хоёр ерөнхий арга нь:**
 
-1)  **Pipes/tidyverse** - pipes send an object from function to function - emphasis is on the *action*, not the object\
-2)  **Define intermediate objects** - an object is re-defined again and again - emphasis is on the object
+1.  **Pipes/tidyverse** - пайп нь функцээс функц рүү объектыг илгээдэг - объект биш харин үйлдлийг онцолдог.
+
+2.  **Завсрын объектуудыг тодорхойлох** - объект дахин дахин тодорхойлогддог - объект дээр анхаарлаа хандуулдаг
 
 <!-- ======================================================= -->
 
-### **Pipes** {.unnumbered}
+### **Пайп** {.unnumbered}
 
-**Simply explained, the pipe operator (`%>%`) passes an intermediate output from one function to the next.**\
-You can think of it as saying "then". Many functions can be linked together with `%>%`.
+**Энгийнээр тайлбарлавал пайп оператор (`%>%`) нь завсрын гаралтыг нэг функцээс нөгөө функц рүү дамжуулдаг.**
 
--   **Piping emphasizes a sequence of actions, not the object the actions are being performed on**\
--   Pipes are best when a sequence of actions must be performed on one object\
--   Pipes come from the package **magrittr**, which is automatically included in packages **dplyr** and **tidyverse**
--   Pipes can make code more clean and easier to read, more intuitive
+Та үүнийг "дараа нь" гэж хэлж байна гэж бодож болно. Олон функцийг `%>%` ашиглан холбож болно.
 
-Read more on this approach in the tidyverse [style guide](https://style.tidyverse.org/pipes.html)
+-   **Пайплах нь үйлдлүүдийг гүйцэтгэж буй объектыг бус харин дараалсан үйлдлүүдийг онцолдог**
 
-Here is a fake example for comparison, using fictional functions to "bake a cake". First, the pipe method:
+-   Нэг объект дээр дараалсан үйлдлүүдийг хийх шаардлагатай үед пайп нь хамгийн тохиромжтой
+
+-   Пайп нь **magrittr** багцаас ашиглагддаг бөгөөд **dplyr** болон **tidyverse** багцад автоматаар ордог
+
+-   Пайп нь кодыг илүү цэвэрхэн, уншихад хялбар, ойлгомжтой болгох боломжтой
+
+Tidyverse [загварын гарын авлагаас](https://style.tidyverse.org/pipes.html) энэ аргын талаар дэлгэрэнгүй уншина уу.
+
+"Бялуу жигнэх" зохиомол функцийг ашиглан харьцуулах хуурамч жишээ энд байна. Эхлээд, пайп арга:
 
 ```{r piping_example_pipe, eval=F}
-# A fake example of how to bake a cake using piping syntax
+# Пайп синтакс ашиглан бялууг хэрхэн жигнэх тухай хуурамч жишээ 
 
-cake <- flour %>%       # to define cake, start with flour, and then...
-  add(eggs) %>%   # add eggs
-  add(oil) %>%    # add oil
-  add(water) %>%  # add water
-  mix_together(         # mix together
+cake <- flour %>%       # бялууг тодорхойлохдоо гурилаар эхэлж, дараа нь...
+  add(eggs) %>%   # өндөг нэмнэ
+  add(oil) %>%    # тос нэмнэ
+  add(water) %>%  # ус нэмнэ
+  mix_together(         # хооронд нь холино
     utensil = spoon,
     minutes = 2) %>%    
-  bake(degrees = 350,   # bake
+  bake(degrees = 350,   # жигнэнэ
        system = "fahrenheit",
        minutes = 35) %>%  
-  let_cool()            # let it cool down
+  let_cool()            # хөргөнө
 ```
 
-Here is another [link](https://cfss.uchicago.edu/notes/pipes/#:~:text=Pipes%20are%20an%20extremely%20useful,code%20and%20combine%20multiple%20operations) describing the utility of pipes.
+Пайп ашиглалтыг тайлбарласан өөр нэг [холбоос](https://cfss.uchicago.edu/notes/pipes/#:~:text=Pipes%20are%20an%20extremely%20useful,code%20and%20combine%20multiple%20operations) энд байна.
 
-Piping is not a **base** function. To use piping, the **magrittr** package must be installed and loaded (this is typically done by loading **tidyverse** or **dplyr** package which include it). You can [read more about piping in the magrittr documentation](https://magrittr.tidyverse.org/).
+Пайп нь **base** функц биш юм. Пайп ашиглахын тулд **magrittr** багцыг суулгаж, ачаалах ёстой (энэ нь ихэвчлэн үүнийг багтаасан **tidyverse** эсвэл **dplyr** багцыг ачаалах замаар хийгддэг). Та [**magrittr** багцын баримт бичигт пайпын талаар илүү ихийг уншиж](https://magrittr.tidyverse.org/) болно.
 
-Note that just like other R commands, pipes can be used to just display the result, or to save/re-save an object, depending on whether the assignment operator `<-` is involved. See both below:
+Бусад R командуудын нэгэн адил пайп нь `<-` оноох оператор оролцож байгаа эсэхээс хамаарч зөвхөн үр дүнг харуулах, объектыг хадгалах/дахин хадгалахад ашиглагдаж болно гэдгийг анхаарна уу. Доор хоёуланг нь харна уу:
 
 ```{r, eval=F}
-# Create or overwrite object, defining as aggregate counts by age category (not printed)
+# Насны ангиллаар нийлбэр тоо болгон тодорхойлох объект үүсгэх буюу дарж бичих (хэвлэсэнгүй) 
 linelist_summary <- linelist %>% 
   count(age_cat)
 ```
 
 ```{r}
-# Print the table of counts in the console, but don't save it
+# Тооллогын хүснэгтийг консол дээр хэвлээрэй, гэхдээ үүнийг бүү хадгал
 linelist %>% 
   count(age_cat)
 ```
 
 **`%<>%`**\
-This is an "assignment pipe" from the **magrittr** package, which *pipes an object forward and also re-defines the object*. It must be the first pipe operator in the chain. It is shorthand. The below two commands are equivalent:
+Энэ бол **magrittr** багцын "оноолтын пайп" бөгөөд энэ нь *объектыг урагш нь зөөж, мөн объектыг дахин тодорхойлдог*. Энэ нь гинжин хэлхээний анхны пайп оператор байх ёстой. Энэ нь доор буй хоорондоо ижил утгатай хоёр жишээн дээр үзүүлсэн шиг товчлол юм:
 
 ```{r, eval=F}
 linelist <- linelist %>%
@@ -1287,25 +1318,28 @@ linelist %<>% filter(age > 50)
 
 <!-- ======================================================= -->
 
-### Define intermediate objects {.unnumbered}
+### Завсрын объектуудыг тодорхойлох {.unnumbered}
 
-This approach to changing objects/dataframes may be better if:
+Объект/датафрэйм өөрчлөх энэ арга нь дараах тохиолдолд илүү дээр байж болох юм:
 
--   You need to manipulate multiple objects\
--   There are intermediate steps that are meaningful and deserve separate object names
+-   Та олон объектыг өөрчлөх хэрэгтэй
 
-**Risks:**
+-   Завсрын шатууд нь утга учиртай бөгөөд тусдаа объектын нэрийг авах ёстой
 
--   Creating new objects for each step means creating lots of objects. If you use the wrong one you might not realize it!\
--   Naming all the objects can be confusing\
--   Errors may not be easily detectable
+**Эрсдэл:**
 
-Either name each intermediate object, or overwrite the original, or combine all the functions together. All come with their own risks.
+-   Алхам бүрт шинэ объект бий болгоно гэдэг нь маш олон объект бий болгоно гэсэн үг. Хэрэв та буруу объект ашиглавал түүнийгээ мэдэхгүй байж магадгүй юм!
 
-Below is the same fake "cake" example as above, but using this style:
+-   Бүх объектыг нэрлэх нь төөрөгдөл үүсгэдэг
+
+-   Алдаа илрүүлэхэд амаргүй байж магадгүй
+
+Нэг бол завсрын объект бүрийг нэрлэх эсвэл эх хувийг дарж бичих эсвэл бүх функцийг нэгтгэх. Бүгд өөрийн гэсэн эрсдэлтэй байдаг.
+
+Доорх код нь дээрхтэй адил хуурамч "бялуу" жишээ юм, гэхдээ энэ загварыг ашиглаж байна:
 
 ```{r piping_example_redefine, eval=F}
-# a fake example of how to bake a cake using this method (defining intermediate objects)
+# Энэ аргыг ашиглан бялууг хэрхэн жигнэх тухай хуурамч жишээ (завсрын объектыг тодорхойлох) 
 batter_1 <- left_join(flour, eggs)
 batter_2 <- left_join(batter_1, oil)
 batter_3 <- left_join(batter_2, water)
@@ -1317,50 +1351,55 @@ cake <- bake(batter_4, degrees = 350, system = "fahrenheit", minutes = 35)
 cake <- let_cool(cake)
 ```
 
-Combine all functions together - this is difficult to read:
+Бүх функцийг нэгтгэх - үүнийг уншихад хэцүү:
 
 ```{r eval=F}
-# an example of combining/nesting mutliple functions together - difficult to read
+# олон функцийг хослуулах/нэгтгэх жишээ - уншихад хэцүү 
 cake <- let_cool(bake(mix_together(batter_3, utensil = spoon, minutes = 2), degrees = 350, system = "fahrenheit", minutes = 35))
 ```
 
 <!-- ======================================================= -->
 
-## Key operators and functions {#operators}
+## Гол операторууд болон функцууд {#operators}
 
-This section details operators in R, such as:
+Энэ хэсэгт R хэлний гол операторуудыг дэлгэрэнгүй тайлбарлаж байна, тухайлбал:
 
--   Definitional operators\
--   Relational operators (less than, equal too..)\
--   Logical operators (and, or...)\
--   Handling missing values\
--   Mathematical operators and functions (+/-, \>, sum(), median(), ...)\
--   The `%in%` operator
+-   Тодорхойлогч операторууд
+
+-   Харьцааны операторууд (бага, тэнцүү..)
+
+-   Логик операторууд (ба, эсвэл ...)
+
+-   Хоосон утгатай ажиллах
+
+-   Математикийн операторууд болон функцууд (+/-, >, `sum()`, `median()`, ...)
+
+-   `%in%` оператор
 
 <!-- ======================================================= -->
 
-### Assignment operators {.unnumbered}
+### Оноолтын операторууд {.unnumbered}
 
 **`<-`**
 
-The basic assignment operator in R is `<-`. Such that `object_name <- value`.\
-This assignment operator can also be written as `=`. We advise use of `<-` for general R use.\
-We also advise surrounding such operators with spaces, for readability.
+R хэлний үндсэн оноолтын оператор нь `<-`. `объектын_нэр <- утга` гэж ашиглагддаг. Энэхүү оноолтын операторыг мөн `=` ашиглан бичиж болно. Бид ерөнхий R хэрэглээнд `<-`-г ашиглахыг зөвлөж байна. Мөн уншихад хялбар байх үүднээс ийм операторуудыг зайгаар хүрээлэхийг зөвлөж байна.
 
 **`<<-`**
 
-If [Writing functions], or using R in an interactive way with sourced scripts, then you may need to use this assignment operator `<<-` (from **base** R). This operator is used to define an object in a higher 'parent' R Environment. See this [online reference](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html).
+Хэрэв \[Функц бичих\] эсвэл R-г үүсвэртэй скриптүүдтэй интерактив байдлаар ашиглаж байгаа бол та оноолтын оператор `<<-` (**base** R-аас) ашиглах шаардлагатай болж магадгүй юм. Энэ операторыг дээд түвшний "толгой" R орчин дахь объектыг тодорхойлоход ашигладаг. Үүний талаар энэхүү [онлайн лавлагааг](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html) үзнэ үү.
 
 **`%<>%`**
 
-This is an "assignment pipe" from the **magrittr** package, which pipes an object forward and *also re-defines the object*. It must be the first pipe operator in the chain. It is shorthand, as shown below in two equivalent examples:
+Энэ бол **magrittr** багцын "оноолтын пайп" бөгөөд энэ нь *объектыг урагш нь зөөж, мөн объектыг дахин тодорхойлдог*. Энэ нь гинжин хэлхээний анхны пайп оператор байх ёстой бөгөөд товчлолын нэг хэлбэр юм. Доорх хоёр команд нь яг ижил үйлдэл хийж байна:
+
+Энэ бол **magrittr** багцын "оноолтын пайп" бөгөөд энэ нь объектыг урагш зөөж, мөн объектыг дахин тодорхойлдог. Энэ нь гинжин хэлхээний анхны хоолойн оператор байх ёстой. Энэ нь доор буй хоорондоо ижил утгатай хоёр жишээн дээр үзүүлсэн шиг товчлол юм:
 
 ```{r, eval=F}
 linelist <- linelist %>% 
   mutate(age_months = age_years * 12)
 ```
 
-The above is equivalent to the below:
+Дээрх код нь доорх кодтой яг ижил үйлдэл хийж байна.
 
 ```{r, eval=F}
 linelist %<>% mutate(age_months = age_years * 12)
@@ -1368,47 +1407,49 @@ linelist %<>% mutate(age_months = age_years * 12)
 
 **`%<+%`**
 
-This is used to add data to phylogenetic trees with the **ggtree** package. See the page on [Phylogenetic trees] or this online [resource book](https://yulab-smu.top/treedata-book/).
+Энэ нь **ggtree** багц ашиглан филогенетик модонд дата нэмэхэд хэрэглэгддэг. \[Филогенетик мод\] дээрх хуудас эсвэл энэ [онлайн номыг](https://yulab-smu.top/treedata-book/) үзнэ үү.
 
 <!-- ======================================================= -->
 
-### Relational and logical operators {.unnumbered}
+### Харьцааны болон логик операторууд {.unnumbered}
 
-Relational operators compare values and are often used when defining new variables and subsets of datasets. Here are the common relational operators in R:
+Харьцааны операторууд утгыг хооронд нь харьцуулах, шинэ хувьсагч болон датасетийн доторх хэсгийг тодорхойлоход ихэвчлэн ашиглагддаг. R хэл дээрх нийтлэг харьцааны операторууд энд байна:
 
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Meaning                  | Operator   | Example      | Example Result                                                                                                                                         |
-+==========================+============+==============+========================================================================================================================================================+
-| Equal to                 | `==`       | `"A" == "a"` | `FALSE` (because R is case sensitive) *Note that == (double equals) is different from = (single equals), which acts like the assignment operator `<-`* |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Not equal to             | `!=`       | `2 != 0`     | `TRUE`                                                                                                                                                 |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Greater than             | `>`        | `4 > 2`      | `TRUE`                                                                                                                                                 |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Less than                | `<`        | `4 < 2`      | `FALSE`                                                                                                                                                |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Greater than or equal to | `>=`       | `6 >= 4`     | `TRUE`                                                                                                                                                 |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Less than or equal to    | `<=`       | `6 <= 4`     | `FALSE`                                                                                                                                                |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Value is missing         | `is.na()`  | `is.na(7)`   | `FALSE` (see page on [Missing data])                                                                                                                   |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Value is not missing     | `!is.na()` | `!is.na(7)`  | `TRUE`                                                                                                                                                 |
-+--------------------------+------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Илэрхийлэл            | Оператор         | Жишээ            | Жишээний үр дүн                                                                                                                                                     |
++=======================+==================+==================+=====================================================================================================================================================================+
+| Тэнцүү                | `==`             | `"A" == "a"`     | `FALSE` (Учир нь R нь үсгийн том, жижигт мэдрэг) == (*давхар тэнцүү*) нь *`<-`* оноолтын оператор шиг ажилладаг = (*ганц тэнцүү*)-ээс ялгаатай гэдгийг анхаарна уу. |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Тэнцүү биш            | `!=`             | `2 != 0`         | `TRUE`                                                                                                                                                              |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -аас их               | `>`              | `4 > 2`          | `TRUE`                                                                                                                                                              |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -аас бага             | `<`              | `4 < 2`          | `FALSE`                                                                                                                                                             |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -аас их буюу тэнцүү   | `>=`             | `6 >= 4`         | `TRUE`                                                                                                                                                              |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -аас бага буюу тэнцүү | `<=`             | `6 <= 4`         | `FALSE`                                                                                                                                                             |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Утга байхгүй          | `is.na()`        | `is.na(7)`       | `FALSE` (\[Хоосон дата\] хуудсыг үзнэ үү)                                                                                                                           |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Утга байгаа           | `!is.na()`       | `!is.na(7)`      | `TRUE`                                                                                                                                                              |
++-----------------------+------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+AND ба OR гэх мэт логик операторуудыг ихэвчлэн харьцааны операторуудыг холбож, илүү комплекс шалгууруудыг бий болгоход ашигладаг. Нарийн комплекс мэдэгдлүүд бүлэглэх болон үйлдлийн дарааллыг хадгалахын тулд бөөрөнхий хаалт ( ) ашиглах шаардлагатай байж болно.
 
 Logical operators, such as AND and OR, are often used to connect relational operators and create more complicated criteria. Complex statements might require parentheses ( ) for grouping and order of application.
 
-+-------------+-----------------------------------------------------------------------+
-| Meaning     | Operator                                                              |
-+=============+=======================================================================+
-| AND         | `&`                                                                   |
-+-------------+-----------------------------------------------------------------------+
-| OR          | `|` (vertical bar)                                                    |
-+-------------+-----------------------------------------------------------------------+
-| Parentheses | `( )` Used to group criteria together and clarify order of operations |
-+-------------+-----------------------------------------------------------------------+
++-------------------+-----------------------------------------------------------------------------+
+| Утга              | Оператор                                                                    |
++===================+=============================================================================+
+| AND               | `&`                                                                         |
++-------------------+-----------------------------------------------------------------------------+
+| OR                | `|` (босоо шугам)                                                           |
++-------------------+-----------------------------------------------------------------------------+
+| Бөөрөнхий хаалт   | `( )` Шалгууруудыг нэгтгэж, үйл ажиллагааны дарааллыг тодруулахад ашигладаг |
++-------------------+-----------------------------------------------------------------------------+
 
-For example, below, we have a linelist with two variables we want to use to create our case definition, `hep_e_rdt`, a test result and `other_cases_in_hh`, which will tell us if there are other cases in the household. The command below uses the function `case_when()` to create the new variable `case_def` such that:
+Жишээ нь, доор бидэнд тохиолдлын тодорхойлолтыг бий болгохдоо ашиглахыг хүсэж буй хоёр хувьсагч бүхий лайнлист байна: тестийн үр дүн `hep_e_rdt` болон тухайн өрхөд өөр тохиолдол байгаа эсэхийг илтгэх `other_cases_in_hh`. Дараах команд нь `case_when()` функцийг ашиглан `case_def` гэсэн шинэ хувьсагчийг үүсгэнэ.
 
 ```{r eval=FALSE}
 linelist_cleaned <- linelist %>%
@@ -1420,144 +1461,144 @@ linelist_cleaned <- linelist %>%
   ))
 ```
 
-+------------------------------------------------------------------------------------------------+--------------------------------------------+
-| Criteria in example above                                                                      | Resulting value in new variable "case_def" |
-+================================================================================================+============================================+
-| If the value for variables `rdt_result` and `other_cases_in_home` are missing                  | `NA` (missing)                             |
-+------------------------------------------------------------------------------------------------+--------------------------------------------+
-| If the value in `rdt_result` is "Positive"                                                     | "Confirmed"                                |
-+------------------------------------------------------------------------------------------------+--------------------------------------------+
-| If the value in `rdt_result` is NOT "Positive" AND the value in `other_cases_in_home` is "Yes" | "Probable"                                 |
-+------------------------------------------------------------------------------------------------+--------------------------------------------+
-| If one of the above criteria are not met                                                       | "Suspected"                                |
-+------------------------------------------------------------------------------------------------+--------------------------------------------+
++----------------------------------------------------------------------------------------------+---------------------------------------------+
+| Дээрх жишээн дээрх шалгуурууд                                                                | "case_def" шинэ хувьсагчийн үр дүнгийн утга |
++==============================================================================================+=============================================+
+| Хэрэв `rdt_result` болон `other_cases_in_home` хувьсагчийн утга байхгүй бол                  | `NA` (хоосон)                               |
++----------------------------------------------------------------------------------------------+---------------------------------------------+
+| Хэрэв `rdt_result` дахь утга "Positive" бол                                                  | "Confirmed"                                 |
++----------------------------------------------------------------------------------------------+---------------------------------------------+
+| Хэрэв `rdt_result` дахь утга "Positive" БИШ БӨГӨӨД `other_cases_in_home` дахь утга "Yes" бол | "Probable"                                  |
++----------------------------------------------------------------------------------------------+---------------------------------------------+
+| Дээрх шалгууруудын аль нэгийг хангаагүй бол                                                  | "Suspected"                                 |
++----------------------------------------------------------------------------------------------+---------------------------------------------+
 
-*Note that R is case-sensitive, so "Positive" is different than "positive"...*
+*R хэл нь үсэгний том, жижигт мэдрэг тул "Positive" нь "positive"-ээс өөр гэдгийг анхаарна уу...*
 
 <!-- ======================================================= -->
 
-### Missing values {.unnumbered}
+### Хоосон утгууд {.unnumbered}
 
-In R, missing values are represented by the special value `NA` (a "reserved" value) (capital letters N and A - not in quotation marks). If you import data that records missing data in another way (e.g. 99, "Missing", or .), you may want to re-code those values to `NA`. How to do this is addressed in the [Import and export] page.
+R-д хоосон утгыг `NA` ("нөөцлөгдсөн" утга) гэсэн тусгай утгаар илэрхийлнэ (N ба A том үсэг- ишлэл дотор биш). Хэрэв та хоосон датаг өөр аргаар (жишээ нь 99, "Missing" эсвэл .) бүртгэсэн дата импортлох юм бол эдгээр утгыг `NA` руу дахин кодлохыг хүсэж болох юм. Үүнийг хэрхэн хийх талаар \[Импорт, экспорт\] хуудаснаас үзнэ үү.
 
-**To test whether a value is `NA`, use the special function `is.na()`**, which returns `TRUE` or `FALSE`.
+**Утга нь `NA` эсэхийг шалгахын тулд `TRUE` эсвэл `FALSE` буцаадаг `is.na()` тусгай функцийг ашиглана.**
 
 ```{r basics_operators_missing}
-rdt_result <- c("Positive", "Suspected", "Positive", NA)   # two positive cases, one suspected, and one unknown
-is.na(rdt_result)  # Tests whether the value of rdt_result is NA
+rdt_result <- c("Positive", "Suspected", "Positive", NA)   # хоёр эерэг тохиолдол, нэг сэжигтэй, нэг нь тодорхойгүй байна 
+is.na(rdt_result)  # rdt_result-ийн утга NA эсэхийг шалгана
 ```
 
-Read more about missing, infinite, `NULL`, and impossible values in the page on [Missing data]. Learn how to convert missing values when importing data in the page on [Import and export].
+Хоосон, хязгааргүй (infinite), `NULL` болон боломжгүй утгуудын талаар дэлгэрэнгүйг \[Хоосон дата\] хэсгээс уншина уу. \[Импорт, экспорт\] хуудсан дээр дата импортлохдоо хоосон утгыг хэрхэн хөрвүүлэх талаар олж мэдээрэй.
 
 <!-- ======================================================= -->
 
-### Mathematics and statistics {.unnumbered}
+### Математик, статистик {.unnumbered}
 
-All the operators and functions in this page are automatically available using **base** R.
+Энэ хуудасны бүх операторууд болон функцууд нь **base** R-д ашиглахад бэлэн бий.
 
-#### Mathematical operators {.unnumbered}
+#### Математик операторууд {.unnumbered}
 
-These are often used to perform addition, division, to create new columns, etc. Below are common mathematical operators in R. Whether you put spaces around the operators is not important.
+Эдгээрийг ихэвчлэн нэмэх, хуваах, шинэ багана үүсгэх гэх мэт үйлдлүүдэд ашигладаг. Доорх нь R хэл дээрх нийтлэг математик операторууд юм. Операторуудын эргэн тойронд хоосон зай тавих эсэх нь чухал биш.
 
-| Purpose             | Example in R |
-|---------------------|--------------|
-| addition            | 2 + 3        |
-| subtraction         | 2 - 3        |
-| multiplication      | 2 \* 3       |
-| division            | 30 / 5       |
-| exponent            | 2\^3         |
-| order of operations | ( )          |
+| Зорилго              | R дээрх жишээ |
+|----------------------|---------------|
+| нэмэх                | 2 + 3         |
+| хасах                | 2 - 3         |
+| үржүүлэх             | 2 \* 3        |
+| хуваах               | 30 / 5        |
+| зэрэг дэвшүүлэх      | 2\^3          |
+| үйлдлүүдийн дараалал | ( )           |
 
-#### Mathematical functions {.unnumbered}
+#### Математик функцууд {.unnumbered}
 
-| Purpose            | Function                              |
-|--------------------|---------------------------------------|
-| rounding           | round(x, digits = n)                  |
-| rounding           | janitor::round_half_up(x, digits = n) |
-| ceiling (round up) | ceiling(x)                            |
-| floor (round down) | floor(x)                              |
-| absolute value     | abs(x)                                |
-| square root        | sqrt(x)                               |
-| exponent           | exponent(x)                           |
-| natural logarithm  | log(x)                                |
-| log base 10        | log10(x)                              |
-| log base 2         | log2(x)                               |
+| Зорилго              | Функц                                 |
+|----------------------|---------------------------------------|
+| бүхэлдэх             | round(x, digits = n)                  |
+| бүхэлдэх             | janitor::round_half_up(x, digits = n) |
+| тааз (round up)      | ceiling(x)                            |
+| шал (round down)     | floor(x)                              |
+| үнэмлэхүй утга       | abs(x)                                |
+| квадрат язгуур       | sqrt(x)                               |
+| илтгэгч              | exponent(x)                           |
+| натурал логарифм     | log(x)                                |
+| 10 суурьтай логарифм | log10(x)                              |
+| 2 суурьтай логарифм  | log2(x)                               |
 
-Note: for `round()` the `digits =` specifies the number of decimal placed. Use `signif()` to round to a number of significant figures.
+Тэмдэглэл: `round()` функцын `digits =` аргумент нь аравтын бутархайн тоог заана. `signif()` функцыг ашиглан хэд хэдэн чухал тоо болгон бүхэлдэнэ үү.
 
-#### Scientific notation {.unnumbered}
+#### Шинжлэх ухааны тэмдэглэгээ {.unnumbered}
 
-The likelihood of scientific notation being used depends on the value of the `scipen` option.
+Шинжлэх ухааны тэмдэглэгээг ашиглах магадлал нь `scipen` тохируулгын утгаас хамаарна.
 
-From the documentation of `?options`: scipen is a penalty to be applied when deciding to print numeric values in fixed or exponential notation. Positive values bias towards fixed and negative towards scientific notation: fixed notation will be preferred unless it is more than 'scipen' digits wider.
+`?options` хуудаснаас: `scipen` нь тоон утгыг тогтмол эсвэл экспоненциал тэмдэглэгээгээр хэвлэх шийдвэр гаргахад хэрэглэх шийтгэл юм. Эерэг утгууд нь тогтмол, сөрөг утгууд нь шинжлэх ухааны тэмдэглэгээ рүү хазайдаг: "scipen" цифрээс илүү өргөн биш л бол тогтмол тэмдэглэгээг илүүд үзнэ.
 
-If it is set to a low number (e.g. 0) it will be "turned on" always. To "turn off" scientific notation in your R session, set it to a very high number, for example:
+Хэрэв үүн дээр бага тоо (жишээ нь 0) тавьсан бол үргэлж "асаалттай" байх болно. R сессийн шинжлэх ухааны тэмдэглэгээг "унтраахын" тулд үүнийг маш өндөр тоонд тохируулна уу, жишээлбэл:
 
 ```{r, eval=F}
-# turn off scientific notation
+# шинжлэх ухааны тэмдэглэгээг унтраа
 options(scipen=999)
 ```
 
-#### Rounding {.unnumbered}
+#### Бүхэлдэх {.unnumbered}
 
-[***DANGER:*** `round()` uses "banker's rounding" which rounds up from a .5 only if the upper number is even. Use `round_half_up()` from **janitor** to consistently round halves up to the nearest whole number. See [this explanation](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#explore-records-with-duplicated-values-for-specific-combinations-of-variables-with-get_dupes)]{style="color: red;"}
+[***АЮУЛ:*** `round()` функц нь зөвхөн дээд тоо нь тэгш байвал .5-аас дээшээ бүхэлддэг "банкны бүхэлдэх" аргыг ашигладаг. Хагасыг хамгийн ойрын бүхэл тоо хүртэл тогтмол бүхэлдэхийн тулд **janitor** багцын `round_half_up()`-г ашиглана уу. [Энэ тайлбарыг](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#explore-records-with-duplicated-values-for-specific-combinations-of-variables-with-get_dupes) үзнэ үү. ]{style="color: red;"}
 
 ```{r}
-# use the appropriate rounding function for your work
+# өөрийн ажилд тохирох бүхэлдэх функцийг ашиглана уу 
 round(c(2.5, 3.5))
 
 janitor::round_half_up(c(2.5, 3.5))
 ```
 
-#### Statistical functions {.unnumbered}
+#### Статистикийн функцууд {.unnumbered}
 
-[***CAUTION:*** The functions below will by default include missing values in calculations. Missing values will result in an output of `NA`, unless the argument `na.rm = TRUE` is specified. This can be written shorthand as `na.rm = T`.]{style="color: orange;"}
+[***АНХААРУУЛГА:*** Доорх функцууд нь тооцоололдоо хоосон утгуудыг өгөгдмөлөөр оруулдаг. `na.rm = TRUE` аргументыг заагаагүй бол хоосон утгууд нь `NA` үүсгэнэ. Үүнийг товчоор `na.rm = T` гэж бичиж болно.]{style="color: orange;"}
 
-| Objective               | Function           |
-|-------------------------|--------------------|
-| mean (average)          | mean(x, na.rm=T)   |
-| median                  | median(x, na.rm=T) |
-| standard deviation      | sd(x, na.rm=T)     |
-| quantiles\*             | quantile(x, probs) |
-| sum                     | sum(x, na.rm=T)    |
-| minimum value           | min(x, na.rm=T)    |
-| maximum value           | max(x, na.rm=T)    |
-| range of numeric values | range(x, na.rm=T)  |
-| summary\*\*             | summary(x)         |
+| Зорилго             | Функц              |
+|---------------------|--------------------|
+| дундаж (average)    | mean(x, na.rm=T)   |
+| голч                | median(x, na.rm=T) |
+| стандарт хазайлт    | sd(x, na.rm=T)     |
+| квантилүүд\*        | quantile(x, probs) |
+| нийлбэр             | sum(x, na.rm=T)    |
+| хамгийн бага утга   | min(x, na.rm=T)    |
+| хамгийн их утга     | max(x, na.rm=T)    |
+| тоон утгуудын хүрээ | range(x, na.rm=T)  |
+| хураангуй\*\*       | summary(x)         |
 
-Notes:
+Тэмдэглэл:
 
--   `*quantile()`: `x` is the numeric vector to examine, and `probs =` is a numeric vector with probabilities within 0 and 1.0, e.g `c(0.5, 0.8, 0.85)`
--   `**summary()`: gives a summary on a numeric vector including mean, median, and common percentiles
+-   `*quantile()`: `x` нь шалгах тоон вектор, `probs =` нь 0-ээс 1.0 хоорондахь магадлал бүхий тоон вектор, жишээлбэл `c(0.5, 0.8, 0.85)`
+-   `**summary()`: дундаж, голч, нийтлэг персентилүүд зэрэг тоон векторын хураангуйг өгдөг
 
-[***DANGER:*** If providing a vector of numbers to one of the above functions, be sure to wrap the numbers within `c()` .]{style="color: red;"}
+[***АЮУЛ:*** Хэрэв дээрх функцүүдийн аль нэгэнд тоон вектор өгвөл `c()` дотор тоонуудыг нийлүүлж оруулахаа мартуузай. ]{style="color: red;"}
 
 ```{r}
-# If supplying raw numbers to a function, wrap them in c()
-mean(1, 6, 12, 10, 5, 0)    # !!! INCORRECT !!!  
+# Хэрэв функцэд тоонууд өгч байгаа бол тэдгээрийг c()-д боож өгнө үү. 
+mean(1, 6, 12, 10, 5, 0)    # !!! БУРУУ !!!  
 
-mean(c(1, 6, 12, 10, 5, 0)) # CORRECT
+mean(c(1, 6, 12, 10, 5, 0)) # ЗӨВ
 ```
 
-#### Other useful functions {.unnumbered}
+#### Бусад хэрэгтэй функцууд {.unnumbered}
 
-+----------------------------+-------------------+-------------------------------------------------+
-| Objective                  | Function          | Example                                         |
-+============================+===================+=================================================+
-| create a sequence          | seq(from, to, by) | `seq(1, 10, 2)`                                 |
-+----------------------------+-------------------+-------------------------------------------------+
-| repeat x, n times          | rep(x, ntimes)    | `rep(1:3, 2)` or `rep(c("a", "b", "c"), 3)`     |
-+----------------------------+-------------------+-------------------------------------------------+
-| subdivide a numeric vector | cut(x, n)         | `cut(linelist$age, 5)`                          |
-+----------------------------+-------------------+-------------------------------------------------+
-| take a random sample       | sample(x, size)   | `sample(linelist$id, size = 5, replace = TRUE)` |
-+----------------------------+-------------------+-------------------------------------------------+
++-------------------------+-------------------+-------------------------------------------------+
+| Зорилго                 | Функц             | Жишээ                                           |
++=========================+===================+=================================================+
+| дараалал үүсгэх         | seq(from, to, by) | `seq(1, 10, 2)`                                 |
++-------------------------+-------------------+-------------------------------------------------+
+| x-ийг n удаа давтах     | rep(x, ntimes)    | `rep(1:3, 2)` or `rep(c("a", "b", "c"), 3)`     |
++-------------------------+-------------------+-------------------------------------------------+
+| тоон векторыг хуваах    | cut(x, n)         | `cut(linelist$age, 5)`                          |
++-------------------------+-------------------+-------------------------------------------------+
+| санамсаргүй түүвэр авах | sample(x, size)   | `sample(linelist$id, size = 5, replace = TRUE)` |
++-------------------------+-------------------+-------------------------------------------------+
 
 <!-- ======================================================= -->
 
 ### `%in%` {.unnumbered}
 
-A very useful operator for matching values, and for quickly assessing if a value is within a vector or dataframe.
+Утгыг тааруулах, утгыг вектор эсвэл датафрэйм дотор байгаа эсэхийг хурдан үнэлэхэд маш хэрэгтэй оператор.
 
 ```{r}
 my_vector <- c("a", "b", "c", "d")
@@ -1568,15 +1609,15 @@ my_vector <- c("a", "b", "c", "d")
 "h" %in% my_vector
 ```
 
-To ask if a value is **not** `%in%` a vector, put an exclamation mark (!) **in front** of the logic statement:
+Утга нь вектор `%in%` (%дотор%) байхгүй эсэхийг шалгахын тулд логик хэллэгийн **өмнө** анхаарлын тэмдэг (!) тавина:
 
 ```{r}
-# to negate, put an exclamation in front
+# үгүйсгэхэд өмнө нь анхаарлын тэмдэг тавина
 !"a" %in% my_vector
 !"h" %in% my_vector
 ```
 
-`%in%` is very useful when using the **dplyr** function `case_when()`. You can define a vector previously, and then reference it later. For example:
+**dplyr** багцын `case_when()` функцийг ашиглахад `%in%` маш хэрэгтэй. Та векторыг өмнө нь тодорхойлж, дараа нь лавлаж болно. Жишээлбэл:
 
 ```{r eval=F}
 affirmative <- c("1", "Yes", "YES", "yes", "y", "Y", "oui", "Oui", "Si")
@@ -1587,17 +1628,17 @@ linelist <- linelist %>%
     TRUE                                      ~ "Not"))
 ```
 
-Note: If you want to detect a partial string, perhaps using `str_detect()` from **stringr**, it will not accept a character vector like `c("1", "Yes", "yes", "y")`. Instead, it must be given a *regular expression* - one condensed string with OR bars, such as "1\|Yes\|yes\|y". For example, `str_detect(hospitalized, "1|Yes|yes|y")`. See the page on [Characters and strings] for more information.
+Тэмдэглэл: Хэрэв та **stringr** багцын `str_detect()` ашиглан стрингийн хэсгийг илрүүлэхийг хүсвэл энэ нь `c("1", "Yes", "yes", "y")` гэх мэт тэмдэгтийн векторыг хүлээн авдаггүй. Үүний оронд "1\|Yes\|yes\|y" гэх мэт OR босоо шугам бүхий нэг хураангуй стринг бүхий *ердийн* *илэрхийлэл (regular expression)* өгөх ёстой. Жишээлбэл, `str_detect(hospitalized, "1|Yes|yes|y")`. Дэлгэрэнгүй мэдээллийг \[Тэмдэгт болон стринг\] хуудаснаас үзнэ үү.
 
-You can convert a character vector to a named regular expression with this command:
+Та энэ командыг ашиглан тэмдэгтийн векторыг нэрлэсэн ердийн илэрхийлэл болгон хувиргаж болно:
 
 ```{r}
 affirmative <- c("1", "Yes", "YES", "yes", "y", "Y", "oui", "Oui", "Si")
 affirmative
 
-# condense to 
-affirmative_str_search <- paste0(affirmative, collapse = "|")  # option with base R
-affirmative_str_search <- str_c(affirmative, collapse = "|")   # option with stringr package
+# багасгах 
+affirmative_str_search <- paste0(affirmative, collapse = "|")  # base R
+affirmative_str_search <- str_c(affirmative, collapse = "|")   # stringr багц
 
 affirmative_str_search
 ```
@@ -1608,47 +1649,52 @@ affirmative_str_search
 
 <!-- ======================================================= -->
 
-## Errors & warnings
+## Алдаа болон анхааруулга
 
-This section explains:
+Энэ хэсэгт дараахь зүйлийг тайлбарласан:
 
--   The difference between errors and warnings\
--   General syntax tips for writing R code\
--   Code assists
+-   Алдаа болон анхааруулгын ялгаа
 
-Common errors and warnings and troubleshooting tips can be found in the page on [Errors and help].
+-   R код бичих ерөнхий синтакс зөвлөмжүүд
 
-<!-- ======================================================= -->
+-   Кодын туслахууд
 
-### Error versus Warning {.unnumbered}
-
-When a command is run, the R Console may show you warning or error messages in red text.
-
--   A **warning** means that R has completed your command, but had to take additional steps or produced unusual output that you should be aware of.
-
--   An **error** means that R was not able to complete your command.
-
-Look for clues:
-
--   The error/warning message will often include a line number for the problem.
-
--   If an object "is unknown" or "not found", perhaps you spelled it incorrectly, forgot to call a package with library(), or forgot to re-run your script after making changes.
-
-If all else fails, copy the error message into Google along with some key terms - chances are that someone else has worked through this already!
+Нийтлэг алдаа, анхааруулга, алдааг олж засварлах зөвлөмжийг \[Алдаа болон тусламж\] хуудаснаас олж болно.
 
 <!-- ======================================================= -->
 
-### General syntax tips {.unnumbered}
+### Алдаа versus анхааруулга {.unnumbered}
 
-A few things to remember when writing commands in R, to avoid errors and warnings:
+Заримдаа команд ажиллуулах үед R консол танд анхааруулга эсвэл алдааны мэдэгдлийг улаан бичвэрээр харуулах болно.
 
--   Always close parentheses - tip: count the number of opening "(" and closing parentheses ")" for each code chunk
--   Avoid spaces in column and object names. Use underscore ( \_ ) or periods ( . ) instead
--   Keep track of and remember to separate a function's arguments with commas
--   R is case-sensitive, meaning `Variable_A` is *different* from `variable_A`
+-   **Анхааруулга** нь R таны командыг гүйцэтгэсэн боловч нэмэлт алхмуудыг хийх хэрэгтэй болсон эсвэл таны мэдэж байх ёстой хэвийн бус гаралт гаргасан гэсэн үг юм.
+
+-   **Алдаа** нь R таны командыг гүйцээж чадаагүй гэсэн үг.
+
+Сэжүүр хайх:
+
+-   Алдаа/анхааруулах мессеж нь ихэвчлэн асуудлын мөрийн дугаарыг агуулна.
+
+-   Хэрэв объект "үл мэдэгдэх" эсвэл "олдохгүй" бол та буруу бичсэн, library() функцээр багц ачааллахаа мартсан эсвэл өөрчлөлт хийсний дараа скриптийг дахин ажиллуулахаа мартсан байж магадгүй юм.
+
+Хэрэв эдгээрийн аль нь ч биш байвал алдааны мессежийг зарим үндсэн нэр томъёоны хамт Google рүү хуулна уу - өөр хэн нэгэн үүнийг аль хэдийн даван туулсан байх магадлал өндөр!
 
 <!-- ======================================================= -->
 
-### Code assists {.unnumbered}
+### Синтаксийн ерөнхий зөвлөмжүүд {.unnumbered}
 
-Any script (RMarkdown or otherwise) will give clues when you have made a mistake. For example, if you forgot to write a comma where it is needed, or to close a parentheses, RStudio will raise a flag on that line, on the right side of the script, to warn you.
+R дээр команд бичихдээ алдаа, анхааруулгаас зайлсхийхийн тулд хэд хэдэн зүйлийг санах хэрэгтэй:
+
+-   Үргэлж хаалт хаах - зөвлөгөө: кодын хэсэг бүрийн нээх "(" ба хаах хаалтуудын ")" тоог тоол.
+
+-   Багана болон объектын нэрэнд хоосон зай оруулахаас зайлсхий. Оронд нь доогуур зураас ( \_ ) эсвэл цэг ( . ) ашиглана уу
+
+-   Функцийн аргументуудыг таслалаар салгахаа бүү мартаарай
+
+-   R нь үсгийн том, жижигт мэдрэг бөгөөд `Variable_A` нь `variable_A`-аас ялгаатай гэсэн үг
+
+<!-- ======================================================= -->
+
+### Кодын туслахууд {.unnumbered}
+
+Аливаа скрипт (RMarkdown эсвэл бусад) нь таныг алдаа гаргасан үед сэжүүр өгөх болно. Жишээлбэл, хэрэв та шаардлагатай газар таслал бичих, эсвэл хаалт хаахаа мартсан бол RStudio танд анхааруулахын тулд тухайн мөрөнд, скриптийн баруун талд туг өргөх болно.
