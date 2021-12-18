@@ -1,271 +1,297 @@
+<!-- ======================================================= -->
 
 <!-- ======================================================= -->
+
 <!-- ======================================================= -->
-<!-- ======================================================= -->
-# Transition to R { }  
 
-Below, we provide some advice and resources if you are transitioning to R.  
+# R руу шилжих
 
-R was introduced in the late 1990s and has since grown dramatically in scope. Its capabilities are so extensive that commercial alternatives have reacted to R developments in order to stay competitive! ([read this article comparing R, SPSS, SAS, STATA, and Python](https://www.inwt-statistics.com/read-blog/comparison-of-r-python-sas-spss-and-stata.html)).  
+Хэрэв та R руу өөр программаас шилжиж байгаа бол бид доор зарим зөвлөгөө, материалыг танд өгөх болно.
 
-Moreover, R is much easier to learn than it was 10 years ago. Previously, R had a reputation of being difficult for beginners. It is now much easier with friendly user-interfaces like RStudio, intuitive code like the **tidyverse**, and many tutorial resources.  
+R нь 1990-ээд оны сүүлээр гарч ирсэн бөгөөд түүнээс хойш хамрах хүрээ нь эрс нэмэгдсэн. R маш өргөн хүрээний чадавхитай тул арилжааны статитистик программууд өрсөлдөх чадвартай хэвээр үлдэхийн тулд R хөгжүүлэлтэд хариу үйлдэл үзүүлсэн! ([R, SPSS, SAS, STATA, Python-г харьцуулсан энэ нийтлэлийг уншина уу](https://www.inwt-statistics.com/read-blog/comparison-of-r-python-sas-spss-and-stata.html)).
 
-<span style="color: darkgreen;">**Do not be intimidated - come discover the world of R!**</span>  
+Үүний зэрэгцээ R-ыг 10 жилийн өмнөхтэй харьцуулахад сурахад илүү хялбар болсон. Өмнө нь R эхлэн суралцагчдад их хэцүү гэсэн ойлголттой байсан бол RStudio зэрэг хэрэглэгчид ээлтэй интерфэйс, **tidyverse** гэх мэт ойлгомжтой код, сургалтын олон материалын тусламжтайгаар энэ нь илүү хялбар болсон.
 
-  
+[**Та бүү сүрдээрэй- бидэнтэй нийлж R-ын ертөнцтэй танилцаарай!**]{style="color: darkgreen;"}
 
 ```{r, echo=F, out.width = "75%", out.height="75%", fig.align = "center"}
 knitr::include_graphics(here::here("images", "transition_door.png"))
 ```
 
+## Excel-ээс
 
+Excel-ээс R руу шууд шилжих нь тун хүрч болохуйц зорилго юм. Энэ нь эхэндээ сүрдэм мэт санагдаж болох ч та үүнийг хийж чадна!
 
+Excel-ийн өндөр ур чадвартай хүн VBA гэх мэт скрипт хэрэгслийг ашиглан Excel дээр маш ахисан түвшний үйлдлүүдийг хийж чаддаг. Excel програмыг дэлхий даяар ашигладаг бөгөөд тархвар судлаачийн зайлшгүй шаардлагатай хэрэгсэл юм. Гэсэн хэдий ч үүнийг R-аар орлуулах нь таны ажлын урсгалыг эрс сайжруулж, өргөжүүлэх боломжтой.
 
-## From Excel  
+### Ашиг тус {.unnumbered}
 
-Transitioning from Excel directly to R is a very achievable goal. It may seem daunting, but you can do it!  
+R-ийг ашиглах нь цаг хугацаа хэмнэсэн, илүү тогтвортой, үнэн зөв дүн шинжилгээ хийх, дахин давтагдах, хуваалцах боломжтой, алдааг хурдан засах зэрэг асар их ашиг тусыг өгдөг гэдгийг та олж мэдэх болно. Аливаа шинэ программ сурахын нэгэн адил та сайн ашиглаж сурахын тулд цаг хугацааны хөрөнгө оруулалт хийх ёстой суралцах "муруй" байдаг. Үүний үр дүнд ирэх ашиг нь мэдэгдэхүйц байх бөгөөд R танд олон шинэ боломжуудыг нээх болно.
 
-It is true that someone with strong Excel skills can do very advanced activities in Excel alone - even using scripting tools like VBA. Excel is used across the world and is an essential tool for an epidemiologist. However, complementing it with R can dramatically improve and expand your work flows.  
+Excel бол анхлан суралцагчдад "point-and-click" буюу чиглүүлээд товших замаар энгийн дүн шинжилгээ хийх, дүрслэн харуулахад хялбар байдаг алдартай програм хангамж. Үүнтэй харьцуулахад, R функц болон интерфэйстэй дасахад хэдэн долоо хоног шаардлагатай. Гэсэн хэдий ч R сүүлийн жилүүдэд анхлан суралцагчдад илүү ээлтэй болж хөгжсөн.
 
-### Benefits {.unnumbered}  
+Excel-ийн олон ажлын урсгал нь санах ой болон давталт дээр тулгуурладаг тул алдаа гаргах боломж их байдаг. Цаашилбал, ерөнхийдөө дата цэвэрлэх, дүн шинжилгээ хийх арга зүй, ашигласан тэгшитгэлүүд нь нүднээс далд байдаг. Үүний улмаас шинээр ажилд орсон хүн өмнөх Excel-ийн ажлын дэвтэр юу хийж байгааг болон алдааг хэрхэн олж засварлах талаар сурахад ихээхэн цаг хугацаа шаарддаг. Харин R дээр бүх алхмуудыг скрипт дээр тодорхой бичсэн бөгөөд хялбархан харж, засварлаж, засч, бусад датасетэд хэрэглэж болно.
 
-You will find that using R offers immense benefits in time saved, more consistent and accurate analysis, reproducibility, shareability, and faster error-correction. Like any new software there is a learning "curve" of time you must invest to become familiar. The dividends will be significant and immense scope of new possibilities will open to you with R.  
+**Excel-ээс R руу шилжихийн тулд та хэд хэдэн чухал замаар сэтгэлгээгээ өөрчлөх шаардлагатай:**
 
-Excel is a well-known software that can be easy for a beginner to use to produce simple analysis and visualizations with "point-and-click". In comparison, it can take a couple weeks to become comfortable with R functions and interface. However, R has evolved in recent years to become much more friendly to beginners.  
+### Цэгцтэй дата (Tidy data) {.unnumbered}
 
-Many Excel workflows rely on memory and on repetition - thus, there is much opportunity for error. Furthermore, generally the data cleaning, analysis methodology, and equations used are hidden from view. It can require substantial time for a new colleague to learn what an Excel workbook is doing and how to troubleshoot it. With R, all the steps are explicitly written in the script and can be easily viewed, edited, corrected, and applied to other datasets.   
+"Хүн уншдаг" замбараагүй датаны оронд машинаар уншигдахуйц "цэгцтэй" датаг ашигла. [R хэл дээрх "цэгцтэй" датаны](https://r4ds.had.co.nz/tidy-data.html) талаарх энэхүү зааварт тайлбарласны дагуу эдгээр нь "цэгцтэй" датанд тавигдах гурван үндсэн шаардлага юм:
 
+-   Хувьсагч бүр өөрийн гэсэн баганатай байх ёстой
 
-**To begin your transition from Excel to R you must adjust your mindset in a few important ways:**  
+-   Ажиглалт бүр өөрийн гэсэн мөртэй байх ёстой
 
+-   Утга бүр өөрийн нүдтэй байх ёстой
 
-### Tidy data {.unnumbered}  
+Excel-ийн хэрэглэгчдэд - [Excel-ийн "хүснэгтүүд"](https://exceljet.net/excel-tables) датаг стандартчилах, форматыг урьдчилан таамаглах боломжтой болгоход ямар үүрэг гүйцэтгэдэг талаар бодож үзээрэй.
 
-Use machine-readable "tidy" data instead of messy "human-readable" data. These are the three main requirements for "tidy" data, as explained in this tutorial on ["tidy" data in R](https://r4ds.had.co.nz/tidy-data.html):  
-
-* Each variable must have its own column  
-* Each observation must have its own row  
-* Each value must have its own cell  
-
-To Excel users - think of the role that [Excel "tables"](https://exceljet.net/excel-tables) play in standardizing data and making the format more predictable.  
-
-An example of "tidy" data would be the case linelist used throughout this handbook - each variable is contained within one column, each observation (one case) has it's own row, and every value is in just one cell. Below you can view the first 50 rows of the linelist:  
+"Цэгцтэй" датаны жишээ бол энэ гарын авлагад ашигласан тохиолдлын лайнлист байж болно - хувьсагч бүр нэг баганад агуулагддаг, ажиглалт (нэг тохиолдол) бүр өөрийн гэсэн мөртэй, утга бүр нь зөвхөн нэг нүдэнд байна. Та лайнлистийн эхний 50 мөрийг доороос харж болно:
 
 ```{r, echo=F}
-# import the linelist into R
+# лайнлистийг R руу импортлох
 linelist <- rio::import(here::here("data", "case_linelists", "linelist_cleaned.rds"))
 ```
 
 ```{r, message=FALSE, echo=F}
-# display the linelist data as a table
+# лайнлистийг хүснэгт хэлбэрээр харуулах
 DT::datatable(head(linelist, 50), rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T), class = 'white-space: nowrap' )
 ```
 
-*The main reason one encounters non-tidy data is because many Excel spreadsheets are designed to prioritize easy reading by humans, not easy reading by machines/software.*  
+*Эмх цэгцгүй дататай тулгардаг гол шалтгаан нь Excel-ийн олон хүснэгтүүд нь машин/програм хангамжаар уншихад хялбар биш, харин хүн уншихад хялбар болгох зорилгоор бүтээгдсэн байдаг.*
 
-To help you see the difference, below are some fictional examples of **non-tidy data** that prioritize *human*-readability over *machine*-readability:  
+Ялгааг олж харахад тань туслахын тулд *машинд* унших чадвараас илүү *хүний* унших чадварыг чухалчилдаг **эмх цэгцгүй датаны** зарим зохиомол жишээг доор харуулав:
 
 ```{r, echo=F, out.width = "100%", out.height="75%", fig.align = "center"}
 knitr::include_graphics(here::here("images", "Excel_nonTidy_1.png"))
 ```
 
-
-*Problems:* In the spreadsheet above, there are *merged cells* which are not easily digested by R. Which row should be considered the "header" is not clear. A color-based dictionary is to the right side and cell values are represented by colors - which is also not easily interpreted by R (nor by humans with color-blindness!). Furthermore, different pieces of information are combined into one cell (multiple partner organizations working in one area, or the status "TBC" in the same cell as "Partner D").  
-
+*Асуудлууд*: Дээрх хүснэгтэд R-д амархан илэрхийлэгдэггүй, нэгтгэсэн нүднүүд байна. Аль мөрийг "толгой" гэж үзэх нь тодорхойгүй байна. Өнгөнд суурилсан толь бичиг баруун талд байгаа бөгөөд нүдний утгуудыг өнгөөр дүрсэлсэн байдаг нь R-д мөн амар уншигддаггүй (өнгө харалган хүмүүст ч бас!). Цаашилбал, өөр өөр мэдээллийг нэг нүдэнд нэгтгэсэн (нэг хэсэгт ажилладаг олон түнш байгууллагууд, эсвэл "Partner D"-тэй нэг нүдэнд "TBC" статус).
 
 ```{r, echo=F, out.width = "100%", out.height="100%", fig.align = "center"}
 knitr::include_graphics(here::here("images", "Excel_nonTidy_2.png"))
 ```
 
+*Асуудлууд*: Дээрх хүснэгтэд датасет дотор олон тооны нэмэлт хоосон мөр, багана байна - энэ нь R-д цэвэрлэхэд хүндрэл үүсгэдэг. Цаашилбал, GPS-ийн координатууд нь тодорхой эмчилгээний төв бүрт хоёр мөрөнд дамнаж бичигдсэн байна. Мөн дээрээс нь GPS-ийн координатууд нь хоёр өөр форматтай байна!
 
-*Problems:* In the spreadsheet above, there are numerous extra empty rows and columns within the dataset - this will cause cleaning headaches in R. Furthermore, the GPS coordinates are spread across two rows for a given treatment center. As a side note - the GPS coordinates are in two different formats!  
+"Цэгцтэй" датасет нь хүний нүдээр уншихад хялбар биш байж болох ч дата цэвэрлэх, дүн шинжилгээ хийхэд илүү хялбар болгодог! Цэгцтэй датаг "урт" эсвэл "өргөн" гэх мэт янз бүрийн форматаар хадгалах боломжтой (\[Датаг пивот хийх\] хуудсыг үзнэ үү), гэхдээ дээрх зарчмууд хэвээр байна.
 
-"Tidy" datasets may not be as readable to a human eye, but they make data cleaning and analysis much easier! Tidy data can be stored in various formats, for example "long" or "wide""(see page on [Pivoting data]), but the principles above are still observed.
+### Функцууд {.unnumbered}
 
+"Функц" гэсэн R үг нь шинэ байж болох ч Excel-д энэ ойлголт томьёо хэлбэрээр байдаг. Excel-ийн томьёо нь мөн нарийн синтакс шаарддаг (жишээ нь, цэг таслал, хаалт байрлуулах). Таны хийх ёстой зүйл бол ердөө л R-н хэдэн шинэ функц болон тэдгээр нь хэрхэн хамтран ажилладаг талаар сурах явдал юм.
 
-### Functions {.unnumbered}  
+### Скриптүүд {.unnumbered}
 
-The R word "function" might be new, but the concept exists in Excel too as *formulas*. Formulas in Excel also require precise syntax (e.g. placement of semicolons and parentheses). All you need to do is learn a few new functions and how they work together in R.  
+Товчлуур дээр дарж, нүдийг чирэхийн оронд та алхам, процедур *бүрийг* "скрипт" болгон бичих болно. Зарим Excel-ийн хэрэглэгчид скрипт бичих аргыг ашигладаг "VBA макро"-г мэддэг байх.
 
+*R скрипт нь алхам бүрийн зааварчилгаанаас бүрдэнэ.* Энэ нь ямар ч хамтрагчдад скриптийг уншиж, таны хийсэн алхмуудыг хялбархан харах боломжийг олгоно. Ингэснээр алдаа эсвэл буруу тооцооллыг засахад тусалдаг. Жишээнүүдийг \[R суурь ойлголтууд\] бүлгийн скриптүүд хэсгээс үзнэ үү.
 
-
-### Scripts {.unnumbered}  
-
-Instead of clicking buttons and dragging cells you will be writing *every* step and procedure into a "script". 
-Excel users may be familiar with "VBA macros" which also employ a scripting approach.  
-
-*The R script consists of step-by-step instructions.* This allows any colleague to read the script and easily see the steps you took. This also helps de-bug errors or inaccurate calculations. See the [R basics] section on scripts for examples.  
-
-Here is an example of an R script:  
+R скриптийн нэг жишээ:
 
 ```{r, echo=F, out.width = "75%", out.height="75%", fig.align = "center"}
 knitr::include_graphics(here::here("images", "example_script.png"))
 ```
 
+### Excel-ээс-R шилжих материалууд {.unnumbered}
 
+Excel-ээс R руу шилжихэд туслах хэдэн хичээлийг эндээс үзнэ үү:
 
+-   [R vs Excel](https://www.northeastern.edu/graduate/blog/r-vs-excel/)
 
+-   [Excel хэрэглэгчдэд зориулсан R хэл дээрх RStudio курс](https://rstudio-conf-2020.github.io/r-for-excel/)
 
+### R-Excel-ийн харилцан үйлчлэл {.unnumbered}
 
+R нь Excel-ийн ажлын номыг импортлох, дататай ажиллах, Excel файлуудыг экспортлох/хадгалах, Excel хуудасны нарийн ширийн зүйлстэй ажиллах найдвартай аргуудтай.
 
-### Excel-to-R resources {.unnumbered}
+Зарим илүү гоо зүйн Excel форматыг оруулах үед (жишээ нь налуу текст, босоо текст гэх мэт) алдагдаж болдог. Хэрэв таны ажлын урсгал Excel-ийн анхны форматыг хадгалахын зэрэгцээ R болон Excel хооронд бичиг баримтыг хооронд нь дамжуулах шаардлагатай бол **openxlsx** зэрэг багцуудыг ашиглаж үзээрэй.
 
-Here are some links to tutorials to help you transition to R from Excel:  
+## Stata-гаас
 
-* [R vs. Excel](https://www.northeastern.edu/graduate/blog/r-vs-excel/)  
-* [RStudio course in R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/)  
-
-
-### R-Excel interaction {.unnumbered}  
-
-R has robust ways to import Excel workbooks, work with the data, export/save Excel files, and work with the nuances of Excel sheets.  
-
-It is true that some of the more aesthetic Excel formatting can get lost in translation (e.g. italics, sideways text, etc.). If your work flow requires passing documents back-and-forth between R and Excel while retaining the original Excel formatting, try packages such as **openxlsx**.  
-
-
-
-
-
-
-
-## From Stata  
 <!-- ======================================================= -->
 
-**Coming to R from Stata**  
+**Stata-гаас R-д ирэх**
 
-Many epidemiologists are first taught how to use Stata, and it can seem daunting to move into R. However, if you are a comfortable Stata user then the jump into R is certainly more manageable than you might think. While there are some key differences between Stata and R in how data can be created and modified, as well as how analysis functions are implemented – after learning these key differences you will be able to translate your skills.
+Олон тархвар судлаачдад эхлээд Stata-г хэрхэн ашиглахыг заадаг бөгөөд R-д шилжих нь хэцүү юм шиг санагддаг. Гэсэн хэдий ч, хэрэв та Stata-г сайн хэрэглэж сурсан бол R руу шилжих нь таны бодож байгаагаас илүү хялбар байх болно. Дата хэрхэн үүсгэх, өөрчлөх, дүн шинжилгээ хийх функцууд хэрхэн хэрэгжих зэрэгт Stata болон R хоёрын хооронд зарим нэг гол ялгаа байдаг ч эдгээр гол ялгааг сурсны дараа та ур чадвараа хөрвүүлэх боломжтой болно.
 
-Below are some key translations between Stata and R, which may be handy as your review this guide.
+Stata болон R-ын хоорондох зарим үндсэн хөрвүүлгийг доор харуулав, энэ нь танд энэхүү гарын авлагыг унших явцад хэрэг болж магадгүй.
 
+**Ерөнхий тэмдэглэл**
 
-**General notes**
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **STATA**                                                                                                                                                  | **R**                                                                                                                                                                                                              |
++============================================================================================================================================================+====================================================================================================================================================================================================================+
+| Та нэг удаад зөвхөн нэг датасет харж, удирдах боломжтой                                                                                                    | Та олон датасетийг нэгэн зэрэг харж, удирдах боломжтой тул код дотор датасетээ байнга зааж өгөх шаардлагатай болдог.                                                                                               |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Онлайн тусламжийг <https://www.statalist.org/> вэбсайтаар дамжуулан авах боломжтой                                                                         | Онлайн тусламжийг [RStudio](https://community.rstudio.com/), [StackOverFlow](https://stackoverflow.com/questions/tagged/r), болон [R-bloggers](https://www.r-bloggers.com/) вэбсайтуудаар дамжуулан авах боломжтой |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Чиглүүлээд товших (point-and-click) функц байгаа                                                                                                           | Маш бага чиглүүлээд товших функцтэй                                                                                                                                                                                |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Командуудын тусламжийг `help [command]` командаар авч болно                                                                                                | Тусламжийг `[function]?` командаар дуудна эсвэл Тусламж хэсэгт хайлт хийнэ                                                                                                                                         |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Кодод дараах тэмдгүүдийг ашиглан тайлбар бичиж болно: \* эсвэл /// эсвэл /\* TEXT \*/                                                                      | Чагт тэмдэг (#) ашиглан тайлбар бичнэ                                                                                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Бараг бүх командууд Stata-д суурилагдсан байдаг. Шинэ/хэрэглэгчийн бичсэн функцуудыг **ssc install** \[багц\] ашиглан **ado** файл байдлаар суулгаж болно. | R нь **base** функцуудтэй суудаг боловч ердийн хэрэглээний үед CRAN-аас бусад багцуудыг суулгах нь хэвийн үзэгдэл (\[R суурь ойлголтууд\] хуудсыг үзнэ үү)                                                         |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Дүн шинжилгээг ихэвчлэн **do** файлд бичдэг                                                                                                                | Дүн шинжилгээ RStudio үүсвэр хэсэгт R скриптэнд ихэвчлэн бичигддэг. Мөн R markdown скрипт ашиглаж болно.                                                                                                           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**STATA**                    | **R**  
----------------------------- | ---------------------------------------------    
-You can only view and manipulate one dataset at a time | You can view and manipulate multiple datasets at the same time, therefore you will frequently have to specify your dataset within the code
-Online community available through [https://www.statalist.org/](https://www.statalist.org/) | Online community available through [RStudio](https://community.rstudio.com/), [StackOverFlow](https://stackoverflow.com/questions/tagged/r), and [R-bloggers](https://www.r-bloggers.com/)
-Point and click functionality as an option | Minimal point and click functionality
-Help for commands available by `help [command]` | Help available by `[function]?` or search in the Help pane
-Comment code using * or /// or  /* TEXT */ | Comment code using #
-Almost all commands are built-in to Stata. New/user-written functions can be installed as **ado** files using **ssc install** [package] | R installs with **base** functions, but typical use involves installing other packages from CRAN (see page on [R basics])
-Analysis is usually written in a **do** file | Analysis written in an R script in the RStudio source pane. R markdown scripts are an alternative.
+**Ажлын директор**
 
++------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **STATA**                                                                                            | **R**                                                                                                                                          |
++======================================================================================================+================================================================================================================================================+
+| Ажлын директор нь үнэмлэхүй файлын замыг агуулдаг (жишээ нь: "C:/username/documents/projects/data/") | Ажлын директор нь үнэмлэхүй эсвэл **here** багцыг ашиглан төслийн үндсэн хавтастай холбоотой байж болно (\[Импорт, экспорт\] хэсгийг үзнэ үү). |
++------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **pwd** ашиглан одоогийн ажиллаж буй директорийг харна                                               | `getwd()` эсвэл `here()` (хэрэв **here** багцыг ашиглаж байгаа бол) функцуудыг хоосон хаалттай ашиглана                                        |
++------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **cd** "хавтасны байршил" ашиглан ажлын директорийг тохируулна                                       | `setwd(“хавтасны байршил”)` эсвэл `set_here("хавтасны байршил)` (хэрэв **here** багцыг ашиглаж байгаа бол) ашиглана                            |
++------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Working directory**  
+**Дата импортлох, харах**
 
-**STATA**                        | **R**  
--------------------------------- | ---------------------------------------------
-Working directories involve absolute filepaths (e.g. "C:/usename/documents/projects/data/")| Working directories can be either absolute, or relative to a project root folder by using the **here** package (see [Import and export]) 
-See current working directory with **pwd** | Use `getwd()` or `here()` (if using the **here** package), with empty parentheses 
-Set working directory with **cd** “folder location” | Use `setwd(“folder location”)`, or `set_here("folder location)` (if using **here** package)
++---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **STATA**                                                                                                                 | **R**                                                                                                                                                                                                                                 |
++===========================================================================================================================+=======================================================================================================================================================================================================================================+
+| Файлын төрөл тус бүрд тусгай командууд                                                                                    | Бараг бүх файлын төрөлд **rio** багцын `import()` функцыг ашиглаж болно. Өөр тусгай функцуудын сонголтууд бий (\[Импорт, экспорт\] хэсгийг үзнэ үү).                                                                                  |
++---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| csv файлуудыг унших нь **import delimited** "filename.csv" командаар хийгддэг.                                            | `import("filename.csv")` ашиглана                                                                                                                                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| xslx файлуудыг унших нь **import excel** "filename.xlsx" командаар хийгддэг                                               | `import("filename.xlsx")` ашиглана                                                                                                                                                                                                    |
++---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **browse** командыг ашиглан датагаа шинэ цонхонд харна                                                                    | `View(dataset)` ашиглан RStudio үүсвэр хэсэгт датасетийг харах боломжтой. *Олон датасетийг нэгэн зэрэг хадгалж болдог тул та R-ын функцэд тухайн датасетийнхээ нэрийг зааж өгөх хэрэгтэй. Дээрх функцийн том "V" үсгийг анхаараарай.* |
++---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Хувьсагчийн нэр болон үндсэн мэдээллийг харуулдаг **summarize** командыг ашиглан датасетийнхээ дээд түвшний тоймыг харна. | `summary(dataset)` ашиглан датасетийнхээ дээд түвшний тоймыг харна.                                                                                                                                                                   |
++---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Importing and viewing data**  
+**Дататай ажиллах үндсэн командууд**
 
-**STATA**                    | **R**  
--------------------------------- | ---------------------------------------------
-Specific commands per file type | Use `import()` from **rio** package for almost all filetypes. Specific functions exist as alternatives (see [Import and export])
-Reading in csv files is done by **import delimited** “filename.csv” | Use `import("filename.csv")`
-Reading in xslx files is done by **import excel** “filename.xlsx” | Use `import("filename.xlsx")`
-Browse your data in a new window using the command **browse** | View a dataset in the RStudio source pane using `View(dataset)`. *You need to specify your dataset name to the function in R because multiple datasets can be held at the same time. Note capital "V" in this function*
-Get a high-level overview of your dataset using **summarize**, which provides the variable names and basic information | Get a high-level overview of your dataset using `summary(dataset)`
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **STATA**                                                                              | **R**                                                                                                                                                                         |
++========================================================================================+===============================================================================================================================================================================+
+| Датасетийн багануудыг ихэвчлэн "хувьсагч" гэж нэрлэдэг.                                | Ихэнхдээ "багана" эсвэл заримдаа "вектор" эсвэл "хувьсагч" гэж нэрлэдэг.                                                                                                      |
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Датасетийг зааж өгөх шаардлагагүй                                                      | Доорх команд бүрт та датасетийг зааж өгөх хэрэгтэй - жишээнүүдийг \[Дата цэвэрлэх болон үндсэн функцууд\] хуудаснаас үзнэ үү.                                                 |
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **generate** *varname* = командыг ашиглан шинэ хувьсагчдыг үүсгэнэ                     | `mutate(varname = )` функцийг ашиглан шинэ хувьсагч үүсгэнэ. Доорх бүх **dplyr**-ынфункцуудын талаар дэлгэрэнгүйг \[Дата цэвэрлэх болон үндсэн функцууд\] хуудаснаас үзнэ үү. |
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **rename** *old_name new_name* командаар хувьсагчдын нэрийг өөрчилдөг                  | `rename(new_name = old_name)` функцийг ашиглан хувьсагчдын нэрийг өөрчилж болно                                                                                               |
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Хувьсагчдыг **drop** varname ашиглан хасдаг                                            | Хаалтанд хасах тэмдгийн дараа баганын нэрийг бичсэн `select()` функцийг ашиглан багануудыг хасаж болно                                                                        |
+|                                                                                        |                                                                                                                                                                               |
+| Variables are dropped using **drop** *varname*                                         |                                                                                                                                                                               |
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Фактор хувьсагчдыг **label define** гэх мэт хэд хэдэн командыг ашиглан шошголож болно. | Баганыг Фактор анги руу хөрвүүлж, түвшинг зааж өгснөөр утгуудыг нь шошголж болно. \[Фактор\] хуудаснаас харна уу. Ихэнх тохиолдолд баганын нэрийг Stata шиг шошголдоггүй.     |
++----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Basic data manipulation**  
+**Дескриптив дүн шинжилгээ**
 
-**STATA**                    | **R**  
--------------------------------- | ---------------------------------------------
-Dataset columns are often referred to as "variables" | More often referred to as "columns" or sometimes as "vectors" or "variables"
-No need to specify the dataset | In each of the below commands, you need to specify the dataset - see the page on [Cleaning data and core functions] for examples
-New variables are created using the command **generate** *varname* =  | Generate new variables using the function `mutate(varname = )`. See page on [Cleaning data and core functions] for details on all the below **dplyr** functions.
-Variables are renamed using **rename** *old_name new_name* | Columns can be renamed using the function `rename(new_name = old_name)`
-Variables are dropped using **drop** *varname* | Columns can be removed using the function `select()` with the column name in the parentheses following a minus sign
-Factor variables can be labeled using a series of commands such as **label define** | Labeling values can done by converting the column to Factor class and specifying levels. See page on [Factors]. Column names are not typically labeled as they are in Stata.
++------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **STATA**                                                                                                  | **R**                                                                                                                                                                                            |
++============================================================================================================+==================================================================================================================================================================================================+
+| **tab** *varname* ашиглан хувьсагчийн тоог хүснэгтэлдэг.                                                   | `table(dataset$colname)` гэх мэтээр `table()` функцэд датасет болон баганын нэрийг оруулна. Эсвэл \[Дата бүлэглэх\] хэсэгт тайлбарласны дагуу **dplyr** багцын `count(varname)`-г ашиглаж болно. |
++------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2х2 хүснэгтээр хоёр хувьсагчийн хөндлөн хүснэгтийг харуулахад **tab** *varname1 varname2* команд ашиглана. | `table(dataset$varname1, dataset$varname2` эсвэл `count(varname1, varname2)` ашиглана.                                                                                                           |
++------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Descriptive analysis**  
+Хэдийгээр энэ жагсаалт нь Stata командуудыг R руу хөрвүүлэх үндсэн зарчмуудын тоймыг өгч буй боловч энэ нь бүрэн гүйцэд биш юм. R руу шилжиж байгаа Stata хэрэглэгчдэд сонирхолтой байж болох өөр олон эх сурвалжууд байдаг:
 
-**STATA**                    | **R**  
--------------------------------- | ---------------------------------------------
-Tabulate counts of a variable using **tab** *varname* | Provide the dataset and column name to `table()` such as `table(dataset$colname)`. Alternatively, use `count(varname)` from the **dplyr** package, as explained in [Grouping data]
-Cross-tabulaton of two variables in a 2x2 table is done with **tab** *varname1 varname2* | Use `table(dataset$varname1, dataset$varname2` or `count(varname1, varname2)`
+-   <https://dss.princeton.edu/training/RStata.pdf>\
+-   <https://clanfear.github.io/Stata_R_Equivalency/docs/r_stata_commands.html>\
+-   <http://r4stats.com/books/r4stata/>
 
+## SAS-аас
 
-While this list gives an overview of the basics in translating Stata commands into R, it is not exhaustive. There are many other great resources for Stata users transitioning to R that could be of interest:  
-
-* https://dss.princeton.edu/training/RStata.pdf  
-* https://clanfear.github.io/Stata_R_Equivalency/docs/r_stata_commands.html  
-* http://r4stats.com/books/r4stata/  
-
-
-
-
-## From SAS  
 <!-- ======================================================= -->
 
-**Coming from SAS to R**  
+**SAS-аас R-д ирэх**
 
-SAS is commonly used at public health agencies and academic research fields. Although transitioning to a new language is rarely a simple process, understanding key differences between SAS and R may help you start to navigate the new language using your native language. 
-Below outlines the key translations in data management and descriptive analysis between SAS and R.   
+SAS нь нийгмийн эрүүл мэндийн агентлагууд болон эрдэм шинжилгээ, судалгааны салбарт түгээмэл хэрэглэгддэг. Хэдийгээр шинэ программ руу шилжих нь тийм ч хялбар биш боловч SAS, R хоёрын гол ялгааг ойлгох нь таныг одоогийн программаа ашиглан шинэ программ руу шилжихэд тусална. SAS болон R-ын дата менежмент болон дескриптив дүн шинжилгээний үндсэн хөрвүүлгүүдийг доор харуулав.
 
-**General notes**  
+**Ерөнхий тэмдэглэл**
 
-**SAS**                          | **R**  
--------------------------------- | ---------------------------------------------
-Online community available through [SAS Customer Support](https://support.sas.com/en/support-home.html)|Online community available through RStudio, StackOverFlow, and R-bloggers
-Help for commands available by `help [command]`|Help available by [function]? or search in the Help pane
-Comment code using `* TEXT ;` or `/* TEXT */`|Comment code using #
-Almost all commands are built-in.  Users can write new functions using SAS macro, SAS/IML, SAS Component Language (SCL), and most recently, procedures `Proc Fcmp` and `Proc Proto`|R installs with **base** functions, but typical use involves installing other packages from CRAN (see page on [R basics])
-Analysis is usually conducted by writing a SAS program in the Editor window.|Analysis written in an R script in the RStudio source pane. R markdown scripts are an alternative.
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **SAS**                                                                                                                                                                                              | **R**                                                                                                                                                                                                              |
++======================================================================================================================================================================================================+====================================================================================================================================================================================================================+
+| Онлайн тусламж [SAS хэрэглэгчийн тусламжаар](https://support.sas.com/en/support-home.html) дамжуулан авах боломжтой                                                                                  | Онлайн тусламжийг [RStudio](https://community.rstudio.com/), [StackOverFlow](https://stackoverflow.com/questions/tagged/r), болон [R-bloggers](https://www.r-bloggers.com/) вэбсайтуудаар дамжуулан авах боломжтой |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Командуудын тусламжийг `help [command]` командаар авч болно                                                                                                                                          | Тусламжийг `[function]?` командаар дуудна эсвэл Тусламж хэсэгт хайлт хийнэ                                                                                                                                         |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `* TEXT ;` эсвэл `/* TEXT */` ашиглан кодын тайлбар бичнэ                                                                                                                                            | Чагт тэмдэг (#) ашиглан тайлбар бичнэ                                                                                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Бараг бүх командууд нь суурин байдаг. Хэрэглэгчид SAS macro, SAS/IML, SAS Component Language (SCL) болон хамгийн сүүлд `Proc Fcmp` болон `Proc Proto` процедурыг ашиглан шинэ функц бичих боломжтой. | R нь **base** функцуудтэй суудаг боловч ердийн хэрэглээний үед CRAN-аас бусад багцуудыг суулгах нь хэвийн үзэгдэл (\[R суурь ойлголтууд\] хуудсыг үзнэ үү)                                                         |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Дүн шинжилгээг ихэвчлэн Editor цонхонд SAS программ бичих замаар хийдэг.                                                                                                                             | Дүн шинжилгээ RStudio үүсвэр хэсэгт R скриптэнд ихэвчлэн бичигддэг. Мөн R markdown скрипт ашиглаж болно.                                                                                                           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Working directory**  
+**Ажлын директор**
 
-**SAS**                          | **R**  
--------------------------------- | ---------------------------------------------
-Working directories can be either absolute, or relative to a project root folder by defining the root folder using `%let rootdir=/root path; %include “&rootdir/subfoldername/filename”`|Working directories can be either absolute, or relative to a project root folder by using the **here** package (see [Import and export])
-See current working directory with `%put %sysfunc(getoption(work));`|Use `getwd()` or `here()` (if using the **here** package), with empty parentheses
-Set working directory with `libname “folder location”`|Use `setwd(“folder location”)`, or `set_here("folder location)` if using **here** package
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **SAS**                                                                                                                                                                                   | **R**                                                                                                                                          |
++===========================================================================================================================================================================================+================================================================================================================================================+
+| Ажлын директор нь үнэмлэхүй эсвэл `%let rootdir=/root path; %include “&rootdir/subfoldername/filename”` ашиглан үндсэн хавтсыг тодорхойлсноор төслийн эх хавтастай харьцангуй байж болно. | Ажлын директор нь үнэмлэхүй эсвэл **here** багцыг ашиглан төслийн үндсэн хавтастай холбоотой байж болно (\[Импорт, экспорт\] хэсгийг үзнэ үү). |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| `%put %sysfunc(getoption(work));` ашиглан одоогийн ажлын директорийг харна                                                                                                                | `getwd()` эсвэл `here()` (хэрэв **here** багцыг ашиглаж байгаа бол) функцуудыг хоосон хаалттай ашиглана                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| `libname “хавтасны байршил”` ашиглан ажлын директорийг тохируулна                                                                                                                         | `setwd(“хавтасны байршил”)` эсвэл `set_here("хавтасны байршил)` (хэрэв **here** багцыг ашиглаж байгаа бол) ашиглана                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
 
+**Дата импортлох, харах**
 
-**Importing and viewing data**  
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **SAS**                                                                                                                                                                                                                                           | **R**                                                                                                                                                                                                                                 |
++===================================================================================================================================================================================================================================================+=======================================================================================================================================================================================================================================+
+| `Proc Import` процедурыг эсвэл `Data Step Infile` мэдэгдлийг ашиглана.                                                                                                                                                                            | Бараг бүх файлын төрөлд **rio** багцын `import()` функцыг ашиглаж болно. Өөр тусгай функцуудын сонголтууд бий (\[Импорт, экспорт\] хэсгийг үзнэ үү).                                                                                  |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| csv файлуудыг уншихдаа `Proc Import datafile=”filename.csv” out=work.filename dbms=CSV; run;`; ЭСВЭЛ [Data Step Infile мэдэгдлийг](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/lestmtsref/n1rill4udj0tfun1fvce3j401plo.htm) ашиглана   | `import("filename.csv")` ашиглана                                                                                                                                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| xslx файлуудыг уншихдаа `Proc Import datafile=”filename.xlsx” out=work.filename dbms=xlsx; run;` ЭСВЭЛ [Data Step Infile мэдэгдлийг](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/lestmtsref/n1rill4udj0tfun1fvce3j401plo.htm) ашиглана | `import("filename.xlsx")` ашиглана                                                                                                                                                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Explorer цонхыг нээж, хүссэн library болон датасетээ сонгосноор шинэ цонхонд датагаа харна                                                                                                                                                        | `View(dataset)` ашиглан RStudio үүсвэр хэсэгт датасетийг харах боломжтой. *Олон датасетийг нэгэн зэрэг хадгалж болдог тул та R-ын функцэд тухайн датасетийнхээ нэрийг зааж өгөх хэрэгтэй. Дээрх функцийн том "V" үсгийг анхаараарай.* |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**SAS**                          | **R**  
--------------------------------- | ---------------------------------------------
-Use `Proc Import` procedure or using `Data Step Infile` statement.|Use `import()` from **rio** package for almost all filetypes. Specific functions exist as alternatives (see [Import and export])
-Reading in csv files is done by using `Proc Import datafile=”filename.csv” out=work.filename dbms=CSV; run;` OR using [Data Step Infile statement](http://support.sas.com/techsup/technote/ts673.pdf)|Use `import("filename.csv")`
-Reading in xslx files is done by using `Proc Import datafile=”filename.xlsx” out=work.filename dbms=xlsx; run;` OR using [Data Step Infile statement](http://support.sas.com/techsup/technote/ts673.pdf)|Use import("filename.xlsx")
-Browse your data in a new window by opening the Explorer window and select desired library and the dataset|View a dataset in the RStudio source pane using View(dataset). You need to specify your dataset name to the function in R because multiple datasets can be held at the same time. Note capital “V” in this function
+**Дататай ажиллах үндсэн командууд**
 
-**Basic data manipulation**  
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **SAS**                                                                                                                                                              | **R**                                                                                                                                                                         |
++======================================================================================================================================================================+===============================================================================================================================================================================+
+| Датасетийн багануудыг ихэвчлэн "хувьсагчид" гэж нэрлэдэг.                                                                                                            | Ихэнхдээ "багана" эсвэл заримдаа "вектор" эсвэл "хувьсагч" гэж нэрлэдэг.                                                                                                      |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Хувьсагч үүсгэхийн тулд тусгай процедур шаардлагагүй. Шинэ хувьсагчийн нэр, дараа нь тэнцүү тэмдэг, дараа нь утгын илэрхийлэл бичих замаар шинэ хувьсагчийг үүсгэнэ. | `mutate(varname = )` функцийг ашиглан шинэ хувьсагч үүсгэнэ. Доорх бүх **dplyr**-ынфункцуудын талаар дэлгэрэнгүйг \[Дата цэвэрлэх болон үндсэн функцууд\] хуудаснаас үзнэ үү. |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `rename *old_name=new_name*` ашиглан хувьсагчдын нэрийг өөрчилнө                                                                                                     | `rename(new_name = old_name)` функцийг ашиглан хувьсагчдын нэрийг өөрчилж болно                                                                                               |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `**keep**=varname` ашиглан хувьсагчдыг үлдээнэ                                                                                                                       | `select()` функцийг ашиглан хаалтан дотор багануудын нэрийг бичин сонгож болно                                                                                                |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `**drop**=varname` ашиглан хувьсагчдыг хасна                                                                                                                         | Хаалтанд хасах тэмдгийн дараа баганын нэрийг бичсэн `select()` функцийг ашиглан багануудыг хасаж болно                                                                        |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Фактор хувьсагчдыг `Label` мэдэгдлийг ашиглан Data Step-д шошголж болно                                                                                              | Баганыг Фактор анги руу хөрвүүлж, түвшинг зааж өгснөөр утгуудыг нь шошголж болно. \[Фактор\] хуудаснаас харна уу. Ихэнх тохиолдолд баганын нэрийг Stata шиг шошголдоггүй.     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Data Step-д `Where` эсвэл `If` командыг ашиглан бичлэгүүдийг сонгоно. Олон сонголтын нөхцлийг "and" командыг ашиглан тусгаарлана.                                    | Бичлэгүүдийг AND оператор (&) эсвэл таслалаар тусгаарлагдсан олон сонголтын нөхцөл бүхий `filter()` функцийг ашиглан сонгоно.                                                 |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Data Step-д `Merge` мэдэгдлийг ашиглан датасетүүдийг нэгтгэдэг. Нэгтгэх датасетүүдийг эхлээд `Proc Sort` процедурыг ашиглан сортлох шаардлагатай.                    | **dplyr** багц нь датасетүүдийг нэгтгэх хэд хэдэн функцийг санал болгодог. Дэлгэрэнгүйг \[Дата нэгтгэх\] хуудаснаас үзнэ үү.                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**SAS**                          | **R**  
--------------------------------- | ---------------------------------------------
-Dataset columns are often referred to as “variables”|More often referred to as “columns” or sometimes as “vectors” or “variables”
-No special procedures are needed to create a variable. New variables are created simply by typing the new variable name, followed by an equal sign, and then an expression for the value|Generate new variables using the function `mutate()`. See page on [Cleaning data and core functions] for details on all the below **dplyr** functions.
-Variables are renamed using `rename *old_name=new_name*`|Columns can be renamed using the function `rename(new_name = old_name)`
-Variables are kept using `**keep**=varname`|Columns can be selected using the function `select()` with the column name in the parentheses
-Variables are dropped using `**drop**=varname`|Columns can be removed using the function `select()` with the column name in the parentheses following a minus sign
-Factor variables can be labeled in the Data Step using `Label` statement|Labeling values can done by converting the column to Factor class and specifying levels. See page on [Factors]. Column names are not typically labeled.
-Records are selected using `Where` or `If` statement in the Data Step. Multiple selection conditions are separated using “and” command.|Records are selected using the function `filter()` with multiple selection conditions separated either by an AND operator (&) or a comma  
-Datasets are combined using `Merge` statement in the Data Step. The datasets to be merged need to be sorted first using `Proc Sort` procedure.|**dplyr** package offers a few functions for merging datasets. See page [Joining Data] for details.
+**Дескриптив дүн шинжилгээ**
 
-**Descriptive analysis**  
++-----------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **SAS**                                                                                                                           | **R**                                                                                                                                                                                                                                       |
++===================================================================================================================================+=============================================================================================================================================================================================================================================+
+| Хувьсагчийн нэр болон дескриптив статистикийг харуулдаг `Proc Summary` процедурыг ашиглан датасетийнхээ дээд түвшний тоймыг авна. | `summary(dataset)` эсвэл **skimr** багцын `skim(dataset)` ашиглан датасетийнхээ дээд түвшний тоймыг авна.                                                                                                                                   |
++-----------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `proc freq data=Dataset; Tables varname; Run;` ашиглан хувьсагчийн тоон хүснэгтийг гаргана                                        | \[Дескриптив хүснэгт\] хуудсыг үзнэ үү. Сонголтууд нь **base** R-ын `table()` болон **janitor** багцын `tabyl()` зэрэг функцууд юм. R нь олон датасет агуулж болох тул та датасет болон баганын нэрийг зааж өгөх шаардлагатайг анхаарна уу. |
++-----------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `proc freq data=Dataset; Tables rowvar*colvar; Run;` ашиглан 2 хувьсагчийн 2х2 хөндлөн хүснэгт гаргаж авна                        | Та \[Дескриптив хүснэгт\] хуудсанд тайлбарласны дагуу `table()`, `tabyl()` эсвэл бусад сонголтыг ашиглаж болно.                                                                                                                             |
++-----------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**SAS**                          | **R**  
--------------------------------- | ---------------------------------------------
-Get a high-level overview of your dataset using `Proc Summary` procedure, which provides the variable names and descriptive statistics|Get a high-level overview of your dataset using `summary(dataset)` or `skim(dataset)` from the **skimr** package
-Tabulate counts of a variable using `proc freq data=Dataset; Tables varname; Run;`|See the page on [Descriptive tables]. Options include `table()` from **base** R, and `tabyl()` from **janitor** package, among others. Note you will need to specify the dataset and column name as R holds multiple datasets.
-Cross-tabulation of two variables in a 2x2 table is done with `proc freq data=Dataset; Tables rowvar*colvar; Run;`|Again, you can use `table()`, `tabyl()` or other options as described in the [Descriptive tables] page.  
-
-**Some useful resources:**  
+**Зарим хэрэгтэй нэмэлт материалууд:**
 
 [R for SAS and SPSS Users (2011)](https://www.amazon.com/SAS-SPSS-Users-Statistics-Computing/dp/1461406846/ref=sr_1_1?dchild=1&gclid=EAIaIQobChMIoqLOvf6u7wIVAhLnCh1c9w_DEAMYASAAEgJLIfD_BwE&hvadid=241675955927&hvdev=c&hvlocphy=9032185&hvnetw=g&hvqmt=e&hvrand=16854847287059617468&hvtargid=kwd-44746119007&hydadcr=16374_10302157&keywords=r+for+sas+users&qid=1615698213&sr=8-1)
 
 [SAS and R, Second Edition (2014)](https://www.amazon.com/SAS-Management-Statistical-Analysis-Graphics-dp-1466584491/dp/1466584491/ref=dp_ob_title_bk)
 
+## Датаны харилцан ажиллах чадвар
 
-
-## Data interoperability  
 <!-- ======================================================= -->
 
-See the [Import and export] page for details on how the R package **rio** can import and export files such as STATA .dta files, SAS .xpt and.sas7bdat files, SPSS .por and.sav files, and many others.  
-
-
-
+R багц **rio** нь STATA-ын .dta файл, SAS-ын .xpt, .sas7bdat файлууд, SPSS-ийн .por, .sav файлууд болон бусад олон файлуудыг хэрхэн импортлох, экспортлох боломжтой талаар дэлгэрэнгүйг \[Импорт, экспорт\] хуудаснаас үзнэ үү.
