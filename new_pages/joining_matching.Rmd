@@ -1,28 +1,28 @@
 
-# Joining data { }  
+# Датаг холбох { }  
 
 ```{r out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "left-join.gif"))
 ```
 
-*Above: an animated example of a left join ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))*  
+*Зурагт зүүн холболтыг жишээгээр дүрсэлж харуулав ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))*  
 
 
-This page describes ways to "join", "match", "link" "bind", and otherwise combine data frames.  
+Энэ хуудаст датаг хэрхэн хооронд нь "холбох (join)", "хослуулах (match)", "угсрах (link)" "залгах (bind)" талаар тайлбарлах болно.
 
-It is uncommon that your epidemiological analysis or workflow does not involve multiple sources of data, and the linkage of multiple datasets. Perhaps you need to connect laboratory data to patient clinical outcomes, or Google mobility data to infectious disease trends, or even a dataset at one stage of analysis to a transformed version of itself.
+Тархвар судлалд дата анализ олон янзын датаг нэтгэж, цуглуулахгүй явагдах нь цөөн.  явцад янз бүрийн эх үүсвэрээс гаралтай датаг нэгтгэж, холбохгүй байх нь бараг үгүй тул эдгээрийг хооронд нь холболт хийх шаардлага байнга гарч байдаг. Үүнд лабораторийнн хариуг өвчтний эмчилгээтэй, Google -ийн шилжих хөдөлгөөнийг халдварт өвчний трендтэй, эсвэл аливаа датаг өөрийнх нь хувирсан хэлбэртэй холбох зэрэг жишээг дурьдаж болно.  
 
-In this page we demonstrate code to:  
+Энэ хуудасны код дараах үйлдлүүдийг хийж үзүүлэх болно:  
 
-* Conduct *joins* of two data frames such that rows are matched based on common values in identifier columns  
-* Join two data frames based on *probabilistic* (likely) matches between values  
-* Expand a data frame by directly *binding* or ("appending") rows or columns from another data frame  
+* хоёр хүснэгтийн тодорхойлогч (ID) багануудад агуулагдах ижил утгуудыг хослуулж *холбох*
+* хослох *магадлал* дээр үндэслэж хоёр хүснэгтийг нэгтгэх  
+* аливаа хүснэгтийн мөр, багана дээр өөр нэг хүснэгтийн мөр баганаас шууд *залгах* ("хавсаргах")
 
 
 <!-- ======================================================= -->
-## Preparation { }
+## Бэлтгэл { }
 
-### Load packages {.unnumbered}
+### Багцыг ачааллах {.unnumbered}
 
 This code chunk shows the loading of packages required for the analyses. In this handbook we emphasize `p_load()` from **pacman**, which installs the package if necessary *and* loads it for use. You can also load installed packages with  `library()` from **base** R. See the page on [R basics] for more information on R packages.  
 
@@ -63,26 +63,25 @@ DT::datatable(head(linelist, 50), rownames = FALSE, filter="top", options = list
 
 
 <!-- ======================================================= -->
-### Example datasets {.unnumbered}
-
-In the joining section below, we will use the following datasets:  
-
-1) A "miniature" version of the case `linelist`, containing only the columns `case_id`, `date_onset`, and `hospital`, and only the first 10 rows  
-2) A separate data frame named `hosp_info`, which contains more details about each hospital  
-
-In the section on probabilistic matching, we will use two different small datasets. The code to create those datasets is given in that section.  
+### Жишээ дата {.unnumbered}
 
 
+Дата холбох үйлдэлд хэрэглэх жишээ датанууд:  
+
+1) `linelist` хүснэгтийн богино хэлбэр `case_id`, `date_onset`, `hospital` багануудын эхний 10 мөртэй хүснэгт
+2) Эмнэлэгүүдийн талаар мэдээлэлтэй `hosp_info` хүснэгт 
+
+Магадлалаар холболт хийх хэсэгт богино хэмжээний хоёр жишээ хүснэгтийг ашиглах болно. Эдгээр хүснэгтийг байгуулах кодыг тухайн хэсгээс харна уу.
 
 
-#### "Miniature" case linelist {#joins_llmini .unnumbered}  
+#### linelist -ын "богино" хэлбэр {#joins_llmini .unnumbered}  
 
-Below is the the miniature case linelist, which contains only 10 rows and only columns `case_id`, `date_onset`, and `hospital`.  
+linelist -ын `case_id`, `date_onset`, `hospital` багануудын эхний 10 мөртэй богино хувилбарыг дор харуулав.  
 
 ```{r}
-linelist_mini <- linelist %>%                 # start with original linelist
-  select(case_id, date_onset, hospital) %>%   # select columns
-  head(10)                                    # only take the first 10 rows
+linelist_mini <- linelist %>%                 # linelist-ийн эхний хувилбар
+  select(case_id, date_onset, hospital) %>%   # багануудыг сонгох
+  head(10)                                    # зөвхөн эхний 10 мөрүүдийг салгаж авах
 ```
 
 ```{r message=FALSE, echo=F}
@@ -92,12 +91,12 @@ DT::datatable(linelist_mini, rownames = FALSE, options = list(pageLength = nrow(
 
 
 
-#### Hospital information data frame {#joins_hosp_info .unnumbered}  
+#### Эмнэлэгүүдийн мэдээлэлтэй дата {#joins_hosp_info .unnumbered}  
 
-Below is the code to create a separate data frame with additional information about seven hospitals (the catchment population, and the level of care available). Note that the name "Military Hospital" belongs to two different hospitals - one a primary level serving 10000 residents and the other a secondary level serving 50280 residents.  
+Дараах жишээнд долоон эмнэлэгийн мэдээллийг агуулсан хүсэнгт байгуулах кодыг бичсэн (хамрах хүн ам, үзүүлэх тусламж үйлчилгээний түвшин). Үүнд "Армийн эмнэлэг" гэсэн хоёр эмнэлэг байгааг анхаарна уу: эхнийх нь 10000 хүн амыг хамрах анхан шатны эмнэлэг бол хоёр дах нь 50280 хүнийг хамрах хоёрдугаар шатны эмнэлэг юм. 
 
 ```{r}
-# Make the hospital information data frame
+# эмнэлэгүүдийн мэдээлэлтэй хүснэгтийг байгуул
 hosp_info = data.frame(
   hosp_name     = c("central hospital", "military", "military", "port", "St. Mark's", "ignace", "sisters"),
   catchment_pop = c(1950280, 40500, 10000, 50280, 12000, 5000, 4200),
@@ -105,10 +104,10 @@ hosp_info = data.frame(
 )
 ```
 
-Here is this data frame:  
+Хүснэгтын харагдах байдал:  
 
 ```{r message=FALSE, echo=F}
-# display the hospital data as a table
+# эмнэлэгүүдийн датаг хүснэгтээр харуул
 DT::datatable(hosp_info, rownames = FALSE, options = list(pageLength = nrow(hosp_info)))
 ```
 
@@ -117,41 +116,41 @@ DT::datatable(hosp_info, rownames = FALSE, options = list(pageLength = nrow(hosp
 
 
 <!-- ======================================================= -->
-### Pre-cleaning {.unnumbered}
+### Цэвэрлэгээний өмнөх шат {.unnumbered}
 
-Traditional joins (non-probabilistic) are case-sensitive and require exact character matches between values in the two data frames. To demonstrate some of the cleaning steps you might need to do before initiating a join, we will clean and align the `linelist_mini` and `hosp_info` datasets now.  
+Уламжлалт аргаар холболт хийхэд (магадлалаар бус) үсгийн жижиг том хамаатай байдаг. Холбож буй хүснэгтүүдийн утга яг ижил тооны тэмдэгттэй байх ёстой. Холболт хийхээс өмнөх цэвэрлэгээг `linelist_mini` болон `hosp_info` хүснэгтүүдийн жишээгээр харуулав. 
 
-**Identify differences**  
+**Зөрүүг олох**  
 
-We need the values of the `hosp_name` column in the `hosp_info` data frame to match the values of the `hospital` column in the `linelist_mini` data frame.  
+`linelist_mini`-ын `hospital` баганыг `hosp_info` хүснэгтийн `hosp_name` баганатай холбох болно. 
 
-Here are the values in the `linelist_mini` data frame, printed with the **base** R function `unique()`:  
+Энд `linelist_mini` хүснэгтийн утгыг **base** R дах `unique()`функцээр хэвлэж харуулав:  
 
 ```{r}
 unique(linelist_mini$hospital)
 ```
 
-and here are the values in the `hosp_info` data frame:  
+Харин энд `hosp_info` хүснэгтийн утгыг харуулав:  
 
 ```{r}
 unique(hosp_info$hosp_name)
 ```
 
-You can see that while some of the hospitals exist in both data frames, there are many differences in spelling.  
+Эмнэлэгүүдийн нэр хоёр хүснэгтэд хоёуланд нь буй боловч бичиглэлийн хувьд янз бүр байгаа харагдаж байна.
 
 
 
-**Align values**  
+**Утгуудыг ижилсүүлэх**  
 
-We begin by cleaning the values in the `hosp_info` data frame. As explained in the [Cleaning data and core functions] page, we can re-code values with logical criteria using **dplyr**'s `case_when()` function. For the four hospitals that exist in both data frames we change the values to align with the values in `linelist_mini`. The other hospitals we leave the values as they are (`TRUE ~ hosp_name`).   
+Эхлээд `hosp_info` хүснэгт дэх утгыг цэвэрлэе. Ингэхдээ **dplyr** багцдах `case_when()` функцын логик шалгуураар ([Cleaning data and core functions] хуудаст тайлбарласны дагуу) багана дах утгыг өөрчлөх болно. Хоёр хүснэгтэд буй дөрвөн эмнэлэгийн нэрийг `linelist_mini` хүснэгтэд бичигдсэнтэй ижилсүүлээд бусад эмнэлэгийн нэрсийг хэвээр (`TRUE ~ hosp_name`) үлдээе. 
 
-<span style="color: orange;">**_CAUTION:_** Typically when cleaning one should create a new column (e.g. `hosp_name_clean`), but for ease of demonstration we show modification of the old column</span>
+<span style="color: orange;">**_БОЛГООМЖЛОЛ:_** Цэвэрлэгээний үед шинэ багана үүсгэх хэрэгтэй боловч жишээг хялбарчлах үүднээс хуучин багана дээр өөрчлөлт хийлээ.  </span>
 
 ```{r}
 hosp_info <- hosp_info %>% 
   mutate(
     hosp_name = case_when(
-      # criteria                         # new value
+      # шалгуур                        # шинэ утга
       hosp_name == "military"          ~ "Military Hospital",
       hosp_name == "port"              ~ "Port Hospital",
       hosp_name == "St. Mark's"        ~ "St. Mark's Maternity Hospital (SMMH)",
@@ -161,13 +160,13 @@ hosp_info <- hosp_info %>%
     )
 ```
 
-The hospital names that appear in both data frames are aligned. There are two hospitals in `hosp_info` that are not present in `linelist_mini` - we will deal with these later, in the join.  
+Эмнэлэгийн нэрс хоёр хүснэгтэд ижил бичлэгтэй боллоо. `linelist_mini` -ын дахиад хоёр эмнэлэг `hosp_info`-д байхгүй байна. Үүнийг дараа нь холболт хийхдээ янзална.  
 
 ```{r}
 unique(hosp_info$hosp_name)
 ```
 
-Prior to a join, it is often easiest to convert a column to all lowercase or all uppercase. If you need to convert all values in a column to UPPER or lower case, use `mutate()` and wrap the column with one of these functions from **stringr**, as shown in the page on [Characters and strings].  
+Холболт хийхийн өмнө үсгийн том жижигийг жигдрүүлснээр дараагийн үйлдэл хялбарчлагддаг. Аль нэг баганын утгыг бүгдийг томоор эсвэл жижигээр бичих гэж буй тохиолдолд эхлээд `mutate()` -ыг уншуулж, араас нь **stringr** багцын дараах функцуудын аль нэгэнд өөрчлөх баганын нэрийг бичнэ ([Characters and strings] хуудаст тайлбарласан).  
 
 `str_to_upper()`  
 `str_to_upper()`  
@@ -177,94 +176,94 @@ Prior to a join, it is often easiest to convert a column to all lowercase or all
 
 
 <!-- ======================================================= -->
-## **dplyr** joins { }
+## **dplyr** -ын холболт хийх (join) функцууд { }
 
-The **dplyr** package offers several different join functions. **dplyr** is included in the **tidyverse** package. These join functions are described below, with simple use cases.  
+**dplyr** багцад хэд хэдэн холболт хийдэг функцууд байдаг. **dplyr** нь **tidyverse** -ын харьяа багц. Эдгээр холболт хийх функц тус бүрийг энгийн жишээгээр дор тайлбарлалаа.  
 
-Many thanks to [https://github.com/gadenbuie](https://github.com/gadenbuie/tidyexplain/tree/master/images) for the informative gifs!  
+Ойлгомжтой gif дүрслэл хэрэглэхийг зөвшөөрсөн [https://github.com/gadenbuie](https://github.com/gadenbuie/tidyexplain/tree/master/images)-д талархаж байна !  
 
 
 
 
 <!-- ======================================================= -->
-### General syntax {.unnumbered}
+### Ерөнхий синтакс {.unnumbered}
 
-The join commands can be run as standalone commands to join two data frames into a new object, or they can be used within a pipe chain (`%>%`) to merge one data frame into another as it is being cleaned or otherwise modified.  
+Хоёр хүснэгт холбоход холболтын функцуудыг дангаар нь хэрэглэж болно. Эсвэл pipe холбоост (`%>%`) шууд залгаж цэвэрлэгээ хийж байх явцдаа холболт хийж бас болно.
 
-In the example below, the function `left_join()` is used as a standalone command to create the a new `joined_data` data frame. The inputs are data frames 1 and 2 (`df1` and `df2`). The first data frame listed is the baseline data frame, and the second one listed is joined *to* it.  
+Доор `left_join()` (зүүн холболт) -ыг дангаар нь хэрэглэж `joined_data` хүснэгт үүсгэх жишээг харуулсан. Ингэхдээ хүснэгт 1, хүснэгт 2 (`df1` ба `df2`)-ыг ашигласан. Эхлээд үндсэн хүснэгт, дараа нь туслах буюу үндсэн хүснэгтэд холбогдож буй хүснэгтийг бичнэ.
 
-The third argument `by = ` is where you specify the columns in each data frame that will be used to aligns the rows in the two data frames. If the names of these columns are different, provide them within a `c()` vector as shown below, where the rows are matched on the basis of common values between the column `ID` in `df1` and the column `identifier` in `df2`.   
+Хоёр хүснэгтийн ижилсүүлэх гэж буй баганыг дараагийн аргумент `by = ` -д бичнэ.  Хэрэв баганын нэрс хүснэгт тус бүрт өөрөөр бичигдсэн байвал вектор хэлбэрээр жагсааж `c()`дотор (дор жишээнд харуулсны дагуу) оруулж бичнэ. Доорхиос харахад `df1`-ын `ID` болон `df2`-ын `identifier` багануудыг сонгож эдгээрт агуулагдах ижил утгатай мөрүүдийг хослуулсан байна.   
 
 ```{r, eval=F}
-# Join based on common values between column "ID" (first data frame) and column "identifier" (second data frame)
+# "ID" (үндсэн хүснэгтийн) болон "identifier" (туслах дах хүснэгтийн) баганууддах ижил утгуудыг хослуулж холболт хийх
 joined_data <- left_join(df1, df2, by = c("ID" = "identifier"))
 ```
 
-If the `by` columns in both data frames have the exact same name, you can just provide this one name, within quotes.  
+Хослуулах баганын нэрс хоёр хүснэгтэд ижил бичигдсэн бол `by` аргументэд зөвхөн энэ нэрийг хашилттайгаар өгөхөд хангалттай.  
 
 ```{r, eval=F}
-# Joint based on common values in column "ID" in both data frames
+# Хоёр хүснэгтийн "ID" багануудын ижил утгуудыг хослуулж холболт хийх
 joined_data <- left_join(df1, df2, by = "ID")
 ```
 
-If you are joining the data frames based on common values across multiple fields, list these fields within the `c()` vector. This example joins rows if the values in three columns in each dataset align exactly.  
+Хэрэв олон баганыг ижилсүүлж холболт хийх гэж буй бол `c()` дотор вектор хэлбэрээр баганын нэрсийг жагсааж болно. Доорх жишээнд гурван баганадах утгууд хосолсон мөрүүдээр холболт хийж байна. 
 
 ```{r, eval=F}
-# join based on same first name, last name, and age
+# Нэр, овог, нас хосолсон тохиолдолд холбоно. 
 joined_data <- left_join(df1, df2, by = c("name" = "firstname", "surname" = "lastname", "Age" = "age"))
 ```
 
 
-The join commands can also be run within a pipe chain. This will modify the data frame being piped. 
+Мөн холбох (join) коммандуудыг pipe холбоосонд залгаж болно. Ингэснээр pipe -аар дамжиж буй хүснгтийг шууд өөрчилж болно. 
 
-In the example below, `df1` is is passed through the pipes, `df2` is joined to it, and `df` is thus modified and re-defined.  
+Доорх жишээнд `df1` хүснэгт pipe -аар дамжиж буй бөгөөд үүн дээр `df2` хүснэгтийг холбож байна. ТҮр дүнд `df` хувирах болно.
 
 ```{r eval=F}
 df1 <- df1 %>%
-  filter(date_onset < as.Date("2020-03-05")) %>% # miscellaneous cleaning 
-  left_join(df2, by = c("ID" = "identifier"))    # join df2 to df1
+  filter(date_onset < as.Date("2020-03-05")) %>% # цэвэрлэгээний хэсэг
+  left_join(df2, by = c("ID" = "identifier"))    # df2 -ыг df1 -т залга
 ```
 
 
-<span style="color: orange;">**_CAUTION:_** Joins are case-specific! Therefore it is useful to convert all values to lowercase or uppercase prior to joining. See the page on characters/strings.</span>
+<span style="color: orange;">**_АНХААРУУЛГА:_** Холболт хийх (join) коммандуудад үсгийн том жижиг хамаатай! Тиймээс нэгтгэхийн өмнө бүх үсгийг жижиг эсвэл том болгож жигдрүүлэх хэрэгтэй. Энэ талаар characters/strings хэсэгт илүү тайлбарласан.</span>
 
 
 
 
 
 <!-- ======================================================= -->
-### Left and right joins {.unnumbered}  
+### Зүүн болон баруун холболт {.unnumbered}  
 
-**A left or right join is commonly used to add information to a data frame** - new information is added only to rows that already existed in the baseline data frame. These are common joins in epidemiological work as they are used to add information from one dataset into another. 
+**хүснэгтэд дата нэмэхэд зүүн (left join) болон баруун холболтыг (right join) нийтлэг ашигладаг** -Үүгээр зөвхөн үндсэн датаны мөрүүдэд шинэ мэдээлэл ордог гэсэн үг юм. Ингэж нэг хүснэгтийн мэдээллийг нөгөөд нэмж оруулах шаардлага ялангуяа тархварзүйн ажилд өдөр тутам тулгарч байдаг тул нэн элбэг хэрэглэдэг үйлдэл юм. 
 
-In using these joins, the written order of the data frames in the command is important*.  
+Холболт хийх коммандуудад хүснэгтийн дараалал чухал *.  
 
-* In a *left join*, the *first* data frame written is the baseline  
-* In a *right join*, the *second* data frame written is the baseline  
+* *зүүн холболт* -д үндсэн хүснэгтийг *эхэлж* бичнэ.
+* *баруун холболт* -д үндсэн хүснэгтийг *хоёрдугаарт* бичнэ.
 
-**All rows of the baseline data frame are kept.** Information in the other (secondary) data frame is joined to the baseline data frame *only if there is a match via the identifier column(s)*. In addition:  
+**Үндсэн датаны бүх мэдээлэл хэвээр үлдэх болно.** Харин туслах (хоёрдогч) хүснэгтийн *зөвхөн үндсэн хүснэгтийн тодорхойлогч баганатай хосолсон* мөрүүдийн мэдээлэл л орох болно. Анхаарах зүйлс:  
 
-* Rows in the secondary data frame that do not match are dropped.  
-* If there are many baseline rows that match to one row in the secondary data frame (many-to-one), the secondary information is added to *each matching baseline row*.  
-* If a baseline row matches to multiple rows in the secondary data frame (one-to-many), all combinations are given, meaning *new rows may be added to your returned data frame!*  
+* Туслах (хоёрдогч) хүснэгтээс үндсэн хүснэгттэй хослоогүй мөрүүд устгагдах болно.
+* Туслах хүснэгтийн нэг мөр үндсэн хүснэгтийн олон мөртэй хосолж таарвал (many-to-one) *үндсэн хүснэгтийн мөр болгонд* туслах хүснэгтийн мэдээлэл нэмэгдэж орно. 
+* Туслах хүснэгтийн олон мөр үндсэн хүснэгтийн нэг мөртэй таарвал (one-to-many) хосолж болох бүх хувилбарууд нэмэлт мөр болж ордог. Улмаар үндсэн хүснэгтийн мөрийн тоо нэмэгдэх магадлалтй!* 
 
-Animated examples of left and right joins ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
+Зүүн, баруун холболтын жишээг энимэйшнээр харуулав ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images)).
 
 ```{r out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "left-join.gif"))
 knitr::include_graphics(here::here("images", "right-join.gif"))
 ```
 
-**Example**  
+**Жишээ**  
 
-Below is the output of a `left_join()` of `hosp_info` (secondary data frame, [view here](#joins_hosp_info))  *into* `linelist_mini` (baseline data frame, [view here](#joins_llmini)). The original `linelist_mini` has ` nrow(linelist_mini)` rows. The modified `linelist_mini` is displayed. Note the following:  
+Дараах жишээнд `left_join()` -ыг ашиглаж `hosp_info`-г (туслах хүснэгт, [view here](#joins_hosp_info)) `linelist_mini` (үндсэн хүснэгт, [view here](#joins_llmini))-д хэрхэн нэгтгэхийг харуулав. Эхлээд `linelist_mini` хүснэгт` nrow(linelist_mini)` тэй байсан.   `linelist_mini` -д хувиргалт хийсний дараа дараах байдлаар харагдаж байна. Анхаарах зүйлс:  
 
-* Two new columns, `catchment_pop` and `level` have been added on the left side of `linelist_mini`  
-* All original rows of the baseline data frame `linelist_mini` are kept  
-* Any original rows of `linelist_mini` for "Military Hospital" are duplicated because it matched to *two* rows in the secondary data frame, so both combinations are returned  
-* The join identifier column of the secondary dataset (`hosp_name`) has disappeared because it is redundant with the identifier column in the primary dataset (`hospital`)  
-* When a baseline row did not match to any secondary row (e.g. when `hospital` is "Other" or "Missing"), `NA` (blank) fills in the columns from the secondary data frame  
-* Rows in the secondary data frame with no match to the baseline data frame ("sisters" and "ignace" hospitals) were dropped  
+* `linelist_mini` хүснэгтийн зүүн талд `catchment_pop`, `level` гэсэн хоёр багана шинээр нэмэгдсэн. 
+* `linelist_mini` хүснэгтийн анхны мөрүүд бүгд байна. 
+* `linelist_mini` хүснэгтийн "Military Hospital" -ын мөрүүд хоёр хувилагдсан. Учир нь туслах хүснэгтэд *хоёр* мөр байсан тул хоёр хувилбар үүсч, хоёулаа нэмэгдэж орсон гэсэн үг.
+* Үүссэн шинэ хүснэгтэд үндсэн хүснэгтийн тодорхойлогч (identifier) багана (`hospital`) үлдэж, туслах хүснэгтийн тодорхойлогч багана (`hosp_name`) ороогүй байна. 
+* Үндсэн хүснэгтийн мөрүүдээс туслах хүснэгтийн мөртэй таараагүй тохиолдлуудад (жишээ нь `hospital`-ын "Other" эсвэл "Missing" утгууд) туслах хүснэгтээс нэмэгдэн багануудын зай `NA`(хоосон) -аар бөглөгдөх болно.
+* Хэрэв туслах хүснэгтэд үндсэн хүснэгттэй таарахгүй мөр буй бол шууд гээгдэх болно ( жишээ нь "sisters" болон "ignace" эмнэлэгийн мөрүүд).  
 
 
 ```{r, eval=F}
@@ -282,59 +281,59 @@ linelist_mini %>%
 
 
 
-#### "Should I use a right join, or a left join?" {.unnumbered}  
+#### "Баруун уу зүүнийг үү?" {.unnumbered}  
 
-To answer the above question, ask yourself "which data frame should retain all of its rows?" - use this one as the baseline. A *left join* keep all the rows in the first data frame written in the command, whereas a *right join* keeps all the rows in the second data frame.  
+Энэ асуултанд хариулахын тулд "аль хүснэгтийн мэдээллийг бүтнээр нь үлдээх шаардлагатай вэ" гэж эхлээд асуух хэрэгтэй ба энэ нь үндсэн хүснэгт болно. Ингээд *left join* -г хэрэглэх гэж буй бол үндсэн хүснэгтийг коммандын эхэнд,  *right join* -ыг хэрэглэх бол хоёрдугаарт жагсааж бичих хэрэгтэй.  
 
-The two commands below achieve the same output - 10 rows of `hosp_info` joined *into* a `linelist_mini` baseline, but they use different joins. The result is that the column order will differ based on whether `hosp_info` arrives from the right (in the left join) or arrives from the left (in the right join). The order of the rows may also shift accordingly. But both of these consequences can be subsequently addressed, using `select()` to re-order columns or `arrange()` to sort rows.  
+Доор бичсэн хоёр комманд ижил үр дүнтэй. Хоёр өөр комманд хэрэглэсэн ч эцсийн үр дүнд `hosp_info` -ын 10 мөр `linelist_mini` -дээр нэмэгдсэн байна. `hosp_info` -ын баганууд үндсэн хүснэгт дээр аль талаасаа нэмэгдэж (зүүн холболт хийхэд баруун талд, баруун холболт хийхэд зүүн талд нэмэгддэг) орж байгаагаас хамаараад эцсийн хүснэгтэд баганын дараалал ялгаатай байдаг. Мөн мөрүүдйин дараалалд өөрчлөлт орж болно. Үүнийг `select()` (баганын дараалал) эсвэл `arrange()` (мөрийн дараалал) функцуудээр янзалж болно.  
 
 ```{r, eval=F}
-# The two commands below achieve the same data, but with differently ordered rows and columns
+# Доорх хоёр коммнадаар ижил мэдээлэл үүсэх боловч мөр, баганын дараалал ялгаатай байна.
 left_join(linelist_mini, hosp_info, by = c("hospital" = "hosp_name"))
 right_join(hosp_info, linelist_mini, by = c("hosp_name" = "hospital"))
 ```
 
-Here is the result of `hosp_info` into `linelist_mini` via a left join (new columns incoming from the right)
+Зүүн холболтоор `hosp_info` -г нэмэхэд `linelist_mini` -д нэмэх (шинэ багана баруун талаас нэмэгднэ) :
 
 ```{r message=FALSE, echo=F}
 left_join(linelist_mini, hosp_info, by = c("hospital" = "hosp_name")) %>% 
   DT::datatable(rownames = FALSE, options = list(pageLength = 11))
 ```
 
-Here is the result of `hosp_info` into  `linelist_mini` via a right join (new columns incoming from the left)  
+Баруун холболтоор `hosp_info` -г нэмэхэд `linelist_mini` -д нэмэх (шинэ багана зүүн талаас нэмэгднэ) :
 
 ```{r message=FALSE, echo=F}
 right_join(hosp_info, linelist_mini, by = c("hosp_name" = "hospital")) %>% 
   DT::datatable(rownames = FALSE, options = list(pageLength = 11))
 ```
 
-Also consider whether your use-case is within a pipe chain (`%>%`). If the dataset in the pipes is the baseline, you will likely use a left join to add data to it.
+Харин pipe дотор (`%>%`) холболт (join) хийж буй үед аль коммандын сонголт чухал. Үндсэн хүснэгт pipe -аар дамжиж цэвэрлэгдэж байгаа бол ихэвчлэн зүүн холболтоор дата нэмдэг. 
 
 
 <!-- ======================================================= -->
-### Full join {.unnumbered} 
+### Бүтэн холболт (full join) {.unnumbered} 
 
-**A full join is the most *inclusive* of the joins** - it returns all rows from both data frames.  
+**Холбох коммандуудаас мэдээллийг хамгийн их *хамруулдаг* нь бүтэн холболт (full join) юм**. Учир нь холбогдож буй хоёр хүснэгтийн бүх мөрийг хамруулдаг.  
 
-If there are any rows present in one and not the other (where no match was found), the data frame will include them and become longer. `NA` missing values are used to fill-in any gaps created. As you join, watch the number of columns and rows carefully to troubleshoot case-sensitivity and exact character matches. 
+Нэг хүснэгтийн мөр нөгөө хүснэгтийн ямар ч мөртэй тохироогүй (хослох мөр олдоогүй) тохиолдолд шинээр үүсэх хүснэгтэд шинэ мөр болж нэмэгдэж ордог ба ингэснээр хүснэгт уртасдаг. Ингэж холбогдход үүссэн хоосон нүднүүдэд  `NA`  бичигддэг. Холбож байх явцад мөр, баганын тоог watch the number of columns and rows carefully to troubleshoot case-sensitivity and exact character matches. 
 
-The "baseline" data frame is the one written first in the command. Adjustment of this will not impact which records are returned by the join, but it can impact the resulting column order, row order, and which identifier columns are retained.  
+Коммандын эхэнд бичигдсэн хүснэгт бол "үндсэн" хүснэгт юм.  Энэ дарааллыг өөрчилснөөр шинэ үүсэх хүснэгтийн мөрөнд нөлөө гарахгүй, зөвхөн баганын дараалалд өөрчлөлт ордог. Мөн үндсэн хүснэгтийг зааж өгснөөр хоёр хүснэгтийн алиных нь тодорхойлогч баганыг үлдээхийг тогтоож өгдөг.
 
 ```{r out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "full-join.gif"))
 ```
 
-Animated example of a full join ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
+Бүтэн холболтын жишээг дүрсэлж харуулав  ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
 
-**Example**  
+**Жишээ**  
 
-Below is the output of a `full_join()` of `hosp_info` (originally ` nrow(hosp_info)`, [view here](#joins_hosp_info))  *into* `linelist_mini` (originally ` nrow(linelist_mini)`, [view here](#joins_llmini)). Note the following:  
+Жишээнд `hosp_info` (анхны мөрийн тоо ` nrow(hosp_info)`, [view here](#joins_hosp_info)) -г `linelist_mini` -д (анхны мөрийн тоо ` nrow(linelist_mini)`, [view here](#joins_llmini)) нэгтгэхдээ `full_join()` -г ашигласан:  
 
-* All baseline rows are kept (`linelist_mini`)  
-* Rows in the secondary that do not match to the baseline are kept ("ignace" and "sisters"), with values in the corresponding baseline columns  `case_id` and `onset` filled in with missing values  
-* Likewise, rows in the baseline data frame that do not match to the secondary ("Other" and "Missing") are kept, with secondary columns ` catchment_pop` and `level` filled-in with missing values  
-* In the case of one-to-many or many-to-one matches (e.g. rows for "Military Hospital"), all possible combinations are returned (lengthening the final data frame)  
-* Only the identifier column from the baseline is kept (`hospital`)  
+* Үндсэн хүснэгтийн (`linelist_mini`) бүх мөрүүд хэвээр үлдсэн.   
+* Туслах (хоёрдох) хүснэгтийн хос мөр олдоогүй мөрүүд ("ignace" болон "sisters") шинээр үүсэх хүснэгтэд нэмэгдэж орох ба тухайн мөрний харалдаах үндсэн хүснэгтийн багануудад ( `case_id` болон `onset`) дутуу утга (missing) болж бичигдэх болно.
+* Үндсэн хүснэгтэд хос мөр олдоогүй мөрүүд ("Other" and "Missing") шинээр үүсэх хүснэтгэд нэмэгдэж орох ба тухайн мөрний харалдаах туслах хүснэгтийн багануудад ( ` catchment_pop`, `level`) дутуу утга (missing) болж бичигдэх болно.
+* Нэг мөр олон мөртэй (one-to-many), эсвэл олон мөр нэг мөртэй (many-to-one) тохирч байгаа бол бол (тухайлбал "Military Hospital") боломжит бүх тохироонууд үүсч шинэ мөр болж орно (ингэснээр шинээр үүсэх хүснэгтийн хэмжээ урт болдог).
+* Зөвхөн үндсэн хүснэгтийн тодорхойлогч багана шинэ хүснэгтэд үлднэ (`hospital`).
 
 
 ```{r, eval=F}
@@ -353,26 +352,24 @@ linelist_mini %>%
 
 
 <!-- ======================================================= -->
-### Inner join {.unnumbered} 
+### Дотоод холболт (inner join) {.unnumbered} 
 
-**An inner join is the most *restrictive* of the joins** - it returns only rows with matches across both data frames.  
-This means that the number of rows in the baseline data frame may actually *reduce*. Adjustment of which data frame is the "baseline" (written first in the function) will not impact which rows are returned, but it will impact the column order, row order, and which identifier columns are retained.   
-
+**Дотоод холболт бол хамгийн *хязгаардагдмал* холболт**. Холбогдож буй Хоёр хүснэгтийн зөвхөн хоёуланд нь таарч буй мөрүүд л шинэ хүснэгтэд үлддэг. Тиймээс шинэ хүснэгтийн мөрийн тоо өмнөхөөс *багасах* магадлалтай. Үндсэн хүснэгтийн сонголт (функц дотор эхэнд бичигдэж буй) хүснэгтийн уртад нөлөөлөлхгүй. Харин мөр, баганын дараалал болон тодорхойлогч баганын сонголтод нөлөөтэй. 
 
 ```{r out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "inner-join.gif"))
 ```
 
-Animated example of an inner join ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
+Дотоод холболтын жишээг дүрсээр харуулав ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
 
 
-**Example**  
+**Жишээ**  
 
-Below is the output of an `inner_join()` of `linelist_mini` (baseline) with `hosp_info` (secondary). Note the following:  
+Жишээнд `linelist_mini` (baseline) -г `hosp_info` (secondary)-тэй  `inner_join()` -оор хэрхэн холбохыг харуулав. Үүнд анхаарах зүйлс:  
 
-* Baseline rows with no match to the secondary data are removed (rows where `hospital` is "Missing" or "Other")  
-* Likewise, rows from the secondary data frame that had no match in the baseline are removed (rows where `hosp_name` is "sisters" or "ignace")  
-* Only the identifier column from the baseline is kept (`hospital`)  
+* Үндсэн хүснэгтийн туслах хүснэгттэй тохироогүй мөрүүд хасагдсан байна (`hospital` баганын "Missing" болон "Other" мөрүүд)  
+* Туслах хүснэгтийн үндсэн хүснэгттэй тохироогүй мөрүүд хасагдсан байна (`hosp_name`  баганын "sisters", "ignace" мөрүүд)
+* Зөвхөн үндсэн хүснэгтийн тодорхойлогч багана шинэ хүснэгтэд орсон (`hospital`)  
 
 
 ```{r, eval=F}
@@ -393,19 +390,19 @@ linelist_mini %>%
 
 
 <!-- ======================================================= -->
-### Semi join {.unnumbered} 
+### Хагас холболт (semi join) {.unnumbered} 
 
-A semi join is a "filtering join" which uses another dataset *not to add rows or columns, but to perform filtering*.  
+Хагас холболтыг "шүүлтүүр холболт" гэж болно. Учир нь энэ функцээр мөр нэмж хасах биш харин *өөр хүснэгтийн утгыг ашиглан шүүлтүүр үүсгэдэг*.
 
-A **semi-join keeps all observations in the baseline data frame that have a match in the secondary data frame** (but does not add new columns nor duplicate any rows for multiple matches). Read more about these "filtering" joins [here](https://towardsdatascience.com/level-up-with-semi-joins-in-r-a068426096e0).  
+**Хагас холболтоор үндсэн хүснэгтийн туслах хүснэгттэй хосолсон мөрүүд үлддэг ** (давхардалт байвал шинээр мөр нэмэгддэггүй). Энэхүү "шүүлтүүр" холболтын талаар [here](https://towardsdatascience.com/level-up-with-semi-joins-in-r-a068426096e0) -линкээс нэмж уншна уу.  
 
 ```{r out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "semi-join.gif"))
 ```
 
-Animated example of a semi join ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
+Хагас холболтын жишээг дүрсээр харуулав ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
 
-As an example, the below code returns rows from the `hosp_info` data frame that have matches in `linelist_mini` based on hospital name.  
+Доорх жишээнд `hosp_info` хүснэгтийн мөрүүдээс `linelist_mini` хүснэгтийн hospital name баганын мөрүүдтэй тохирсон мөрүүд шүүгдэж байна. 
 
 ```{r}
 hosp_info %>% 
@@ -415,26 +412,26 @@ hosp_info %>%
 
 
 <!-- ======================================================= -->
-### Anti join {.unnumbered} 
+### Эсрэг холболт (anti join) {.unnumbered} 
 
-**The anti join is another "filtering join" that returns rows in the baseline data frame that *do not* have a match in the secondary data frame.**  
+**Эсрэг холболтыг мөн "шүүлтүүр холболт" гэж болох бөгөөд үндсэн хүснэгтийн мөрүүдээс туслах хүснэгттэй зөвхөн *тохироогүйг* нь үлдээж тохирсныг арилгадаг**  
 
-Read more about filtering joins [here](https://towardsdatascience.com/level-up-with-semi-joins-in-r-a068426096e0).  
+Шүүлтүүр холболтуудын талаар [here](https://towardsdatascience.com/level-up-with-semi-joins-in-r-a068426096e0)-линкээс нэмж уншна уу.  
 
-Common scenarios for an anti-join include identifying records not present in another data frame, troubleshooting spelling in a join (reviewing records that *should have* matched), and examining records that were excluded after another join.  
+Энэ функцыг аливаа хүснэгтэнд байхгүй тохиолдлыг илрүүлэх, холболт хийж байх үеийн үг үсгийн алдааг олох (тохирч *байх ёстой* тохиолдлууд), холболт хийх явцад хасагдсан тохиолдлыг шалгах зэрэг үйлдлүүдэд хэрэглэхэд тохиромжтой. 
 
-**As with `right_join()` and `left_join()`, the *baseline* data frame (listed first) is important**. The returned rows are from the baseline data frame only. Notice in the gif below that row in the secondary data frame (purple row 4) is not returned even though it does not match with the baseline.  
+**Үндсэн* хүснэгтийн (эхэнд бичигдих) коммандад бичигдэх байрлал чухал (`right_join()` болон `left_join()`-ын адил)** . Учир нь шинэ хүснэгтийн мөрүүд зөвхөн үндсэн хүснэгтээс гаралтай байх болно. Доорх gif -д харуулснаар туслах хүснэгтийн мөр (хөх ягаан мөр 4) үндсэн хүснэгтийн мөртэй тохироогүй ч гэсэн шинэ хүснэгтэд бичигдээгүй байна.
 
 ```{r out.width = c('50%'), fig.show='hold', echo=F}
 knitr::include_graphics(here::here("images", "anti-join.gif"))
 ```
 
-Animated example of an anti join ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
+Эсрэг холболтыг жишээгээр дүрсэлж харуулав ([image source](https://github.com/gadenbuie/tidyexplain/tree/master/images))
 
 
-#### Simple `anti_join()` example {.unnumbered}  
+#### `anti_join()` -ын энгийн жишээ {.unnumbered}  
 
-For a simple example, let's find the `hosp_info` hospitals that do not have any cases present in `linelist_mini`. We list `hosp_info` first, as the baseline data frame. The hospitals which are not present in `linelist_mini` are returned.  
+Дараах жишээнд `hosp_info`-оос `linelist_mini`-д байхгүй эмнэлэгүүийг олох болно. Эхлээд үндсэн хүснэгтээр `hosp_info`-г сонгоно. Ингэсний үр дүнд `linelist_mini` хүснэгтээс олдоогүй эмнэлэгийн тохиолдлууд гарч ирэх болно.  
 
 ```{r, eval=F}
 hosp_info %>% 
@@ -448,9 +445,9 @@ hosp_info %>%
 ```
 
 
-#### Complex `anti_join()` example {.unnumbered}  
+#### `anti_join()` -ын комплекс жишээ {.unnumbered}  
 
-For another example, let us say we ran an `inner_join()` between `linelist_mini` and `hosp_info`. This returns only a subset of the original `linelist_mini` records, as some are not present in `hosp_info`.  
+Энд `linelist_mini` болон `hosp_info` хүснэгтүүдийг `inner_join()` -оор нэтгэх болно. `linelist_mini` -ын зарим тохиолдол  `hosp_info`-д байхгүй тул `linelist_mini`-ын нэг хэсгээр л хүснэгт үүссэн байна. 
 
 ```{r, eval=F}
 linelist_mini %>% 
@@ -463,7 +460,7 @@ linelist_mini %>%
   DT::datatable(rownames = FALSE, options = list(pageLength = 8))
 ```
 
-To review the `linelist_mini` records that were excluded during the inner join, we can run an anti-join with the same settings (`linelist_mini` as the baseline).  
+Энэхүү `linelist_mini`гээгдсэн мөрүүдийг шалгахад эсрэг холболтыг ашиглах боломжтой (`linelist_mini` -г үндсэн хүснэгт болгоно).  
 
 ```{r, eval = F}
 linelist_mini %>% 
@@ -477,32 +474,32 @@ linelist_mini %>%
 ```
 
 
-To see the `hosp_info` records that were excluded in the inner join, we could also run an anti-join with `hosp_info` as the baseline data frame.  
+Дотоод холболт хийж байхад гээгдсэн `hosp_info` -ын мөрүүдийг шалгахдаа эсрэг холболт функцэд `hosp_info` -г үндсэн хүснэгтээр өгч шалгах боломжтой.
 
 
 
 <!-- ======================================================= -->
-## Probabalistic matching { }
+## Магадлалаар холбох (probabilistic join) { }
 
-If you do not have a unique identifier common across datasets to join on, consider using a probabilistic matching algorithm. This would find matches between records based on similarity (e.g. Jaro–Winkler string distance, or numeric distance).  Below is a simple example using the package **fastLink** .  
+Хэрэв тодорхойлогч багана агуулаагүй хүснэгтүүдийг холбох шаардлагатай бол магадлалт алгоритм ашиглаж холбох боломжтой. Өөрөөр хэлбэл төстэй тохиолдлуудыг олно гэсэн үг юм.  (тухайлбал Jaro–Winkler -ын стринг зай (string distance), эсвэл тоон зай (numeric distance)).  Доор  **fastLink** багцыг энгийн жишээн дээр тайлбарлаж харуулав .  
 
-**Load packages**  
+**Багцыг ачааллах**  
 
 ```{r}
 pacman::p_load(
-  tidyverse,      # data manipulation and visualization
-  fastLink        # record matching
+  tidyverse,      # Дата янзлах, график байгуулах
+  fastLink        # тохиолдлуудыг тохируулах
   )
 ```
 
 
-Here are two small example datasets that we will use to demonstrate the probabilistic matching (`cases` and `test_results`):  
+Магадлалаар холболт хийх дасгалд хоёр жижиг хүснэгтийг ашиглана (`cases` болон `test_results`):  
 
-Here is the code used to make the datasets:  
+Эдгээр хүснэгтийг үүсгэх код:  
 
 
 ```{r}
-# make datasets
+# Датаг үүсгэ
 
 cases <- tribble(
   ~gender, ~first,      ~middle,     ~last,        ~yr,   ~mon, ~day, ~district,
@@ -538,38 +535,38 @@ results <- tribble(
 ```
 
 
-**The `cases` dataset has 9 records** of patients who are awaiting test results.  
+**`cases` гэсэн датанд 9 тохиолдол байна**. Эдгээр нь шинжилгээний хариу хүлээж буй өвчтөнүүдийн тохиолдол.
 
 ```{r message=FALSE, echo=F}
-# display the hospital data as a table
+# Эмнэлэгийн датаг хүснэгтээр харуулах
 DT::datatable(cases, rownames = FALSE, options = list(pageLength = nrow(cases), scrollX=T), class = 'white-space: nowrap')
 ```
 
 
 
-**The `test_results` dataset** has 14 records and contains the column `result`, which we want to add to the records in `cases` based on probabilistic matching of records.  
+**`test_results` дата нь 14 тохиолдолтой** ба үүний `result`гэсэн баганыг `cases` -ын тохиолдлууд дээр магадлал ашиглаж нэмэх болно.  
 
 ```{r message=FALSE, echo=F}
-# display the hospital data as a table
+# Эмнэлэгийн датаг хүснэгтээр харуул
 DT::datatable(results, rownames = FALSE, options = list(pageLength = nrow(results), scrollX=T), class = 'white-space: nowrap')
 ```
 
-### Probabilistic matching {.unnumbered}  
+### Магадлалаар ижилсүүлэх {.unnumbered}  
 
-The `fastLink()` function from the **fastLink** package can be used to apply a matching algorithm. Here is the basic information. You can read more detail by entering `?fastLink` in your console.  
+**fastLink** багцын `fastLink()` функцыг ашиглаж ижилсүүлэх алгоритмыг тохируулж болно. Энд зөвхөн ерөнхий байдлаар харуулсан. Илүү дэлгэрэнгүй мэдээлэл `?fastLink` коммандыг уншуулахад гарч ирнэ. 
 
-* Define the two data frames for comparison to arguments `dfA = ` and `dfB = `  
-* In `varnames = ` give all column names to be used for matching. They must all exist in both `dfA` and `dfB`.  
-* In `stringdist.match = ` give columns from those in `varnames` to be evaluated on string "distance".  
-* In `numeric.match = ` give columns from those in `varnames` to be evaluated on numeric distance.  
-* Missing values are ignored  
-* By default, each row in either data frame is matched to at most one row in the other data frame. If you want to see all the evaluated matches, set `dedupe.matches = FALSE`. The deduplication is done using Winkler's linear assignment solution.  
+* `dfA = ` болон `dfB = `  аргументүүдэд харьцуулах хоёр хүснэгтийг тус тус зааж өгнө.
+* `varnames = ` аргументэд ижилсүүлэх баганын нэрсийг жагсаана. Энд заасан баганууд `dfA`, `dfB`-д заасан хүснэгтүүдэд бас агуулагдаж байх ёстой.
+* `stringdist.match = ` аргументэд `varnames`аргументэд оруулсан багануудын стринг "зайг" (string distance) ижилсүүлэх баганыг сонгож оруулна. 
+* `numeric.match = ` аргументэд `varnames` аргументэд оруулсан багануудын тоон зайгаар (numeric distance) шалгах багануудыг сонгож оруулна.
+* Дутуу утгуудыг үл тооцно.
+* Дефаултаар хүснэгт тус бүрийн мөр болгон нөгөө хүснэгтийн дор хаяж нэг мөртэй хослох болно. Таарсан бүх хослолыг харах бол  `dedupe.matches = FALSE` гэж тохируулна. Winkler-ын шугаман оноох аргачлалаар (Winkler`s linear assignment) давхардалт засч болно.
 
-*Tip: split one date column into three separate numeric columns using `day()`, `month()`, and `year()` from **lubridate** package*  
+*Зөвлөгөө: огноотой нэг баганыг **lubridate** багцын `day()`, `month()`, `year()` функцуудээр гурван тусдаа тоон багана болгодж болно.
 
-The default threshold for matches is 0.94 (`threshold.match = `) but you can adjust it higher or lower. If you define the threshold, consider that higher thresholds could yield more false-negatives (rows that do not match which actually should match) and likewise a lower threshold could yield more false-positive matches.  
+Ижилсүүлэх босго оноо 0.94 (`threshold.match = `) дээр тохируулагдсан байдаг. Үүнийг багасгаж, ихэсгэх зэргээр тохируулга хийж болно. Хэрэв хэт өндөр босго оноо өгвөл false-иegative (хос болох ёстой мөрүүд хосолж орохгүй) гарах магадлал, хэт багасгавал false-positive хос үүсэх магадлал нэмэгдэж ирдэг.  
 
-Below, the data are matched on string distance across the name and district columns, and on numeric distance for year, month, and day of birth. A match threshold of 95% probability is set.  
+Доор жишээнд нэр, дүүрэг багануудад стрингс зайны дагуу, төрсөн өдрийн жил, сар, өдөр багануудад тоон зайны дагуу ижилсүүлэх үйлдэл хийж харуулав. Магадалын босгыг 95% -дээр тохируулсан.
 
 
 ```{r, message=F, warning=F}
@@ -582,86 +579,87 @@ fl_output <- fastLink::fastLink(
   threshold.match = 0.95)
 ```
 
-**Review matches**  
+**Хослолыг шалгах**  
 
-We defined the object returned from `fastLink()` as `fl_output`. It is of class `list`, and it actually contains several data frames within it, detailing the results of the matching. One of these data frames is `matches`, which contains the most likely matches across `cases` and `results`. You can access this "matches" data frame with `fl_output$matches`. Below, it is saved as `my_matches` for ease of accessing later.    
+Дараах жишээнд `fastLink()` коммандаар үүссэн обьектийг `fl_output` гэж нэрлэсэн. Үүний дата төрөл нь `list` буюу ижилсэлтийг харуулсан олон хүснэгттэй list юм. Эдгээрийн дунд `matches` гэх хүснэгт бол `cases`,`results` хүснэгтүүдийг харьцуулахад хамгийн олон хос мөр үүссэн хүснэгт юм. Үүнийг `fl_output$matches` коммандаар харж болно. Энэ жишээнд дахин дуудахад хялбар болгох үүднээс `my_matches` гэж хадгалав.
 
-When `my_matches` is printed, you see two column vectors: the pairs of row numbers/indices (also called "rownames") in `cases` ("inds.a") and in `results` ("inds.b") representing the best matches. If a row number from a datafrane is missing, then no match was found in the other data frame at the specified match threshold.    
+`my_matches`-ийг дуудаж үзвэл хоёр вектор багана агуулсан байгааг харж байна: `cases`  болон `results`  хүснэгтүүдийн хамгийн сайн хослолыг харуулсан мөрийн дугаарууд (индекс) "inds.a" болон "inds.b" баганад тус тус жагссан байх болно (өөрөөр "rownames" гэж нэрлэж болно). Хэрэв дугаар дутуу байвал тухайн мөрөнд нөгөө хүснэгтээс ттухайн мөрөнд аарсан хос олдоогүй (босго онооны стандартад нийцсэн) гэсэн үг. 
 
 ```{r}
-# print matches
+# Хослолуудыг хэвлэ
 my_matches <- fl_output$matches
 my_matches
 ```
 
-Things to note:  
+Тэмдэглэх зүйлс:  
 
-* Matches occurred despite slight differences in name spelling and dates of birth:  
-  * "Tony B. Smith" matched to "Anthony B Smith"  
-  * "Maria Rodriguez" matched to "Marialisa Rodrigues"  
-  * "Betty Chase" matched to "Elizabeth Chase"  
-  * "Olivier Laurent De Bordeaux" matched to "Oliver Laurent De Bordow" (missing date of birth ignored)  
-* One row from `cases` (for "Blessing Adebayo", row 9) had no good match in `results`, so it is not present in `my_matches`.  
-
-
+* Нэр болон төрсөн өдөрт бага зэрэг ялгаа бий боловч тохироо үүсч, хос болсон зарим тохиолдлууд:  
+  * "Tony B. Smith"  нь "Anthony B Smith"  -той тохирсон
+  * "Maria Rodriguez" нь "Marialisa Rodrigues"- той тохирсон  
+  * "Betty Chase" нь "Elizabeth Chase"  -той тохирсон
+  * "Olivier Laurent De Bordeaux" нь "Oliver Laurent De Bordow" (төрсөн өдөр дутуу байсныг үл тооцсон) - той тохирсон
+*  `cases` -ийн нэг мөр ("Blessing Adebayo", мөрийн дугаар 9 ) -д `results` хүснэгтэд таарах мөр олдоогүй тул `my_matches` хүснэгтэд гарч ирээгүй.  
 
 
-**Join based on the probabilistic matches**  
 
-To use these matches to join `results` to `cases`, one strategy is:  
 
-1) Use `left_join()` to join `my_matches` to `cases` (matching rownames in `cases` to "inds.a" in `my_matches`)  
-2) Then use another `left_join()` to join `results` to `cases` (matching the newly-acquired "inds.b" in `cases` to rownames in `results`)  
+**Магадлалаар үүссэн хос мөрүүдэд холболт хийх**  
 
-Before the joins, we should clean the three data frames:  
+Үүссэн хос мөрүүдийг ашиглаж `results`, `cases` хүснэгтүүдийг холбохын тулд дараах дарааллаар үйлдлийг гүйцэтгэнэ: 
 
-* Both `dfA` and `dfB` should have their row numbers ("rowname") converted to a proper column.  
-* Both the columns in `my_matches` are converted to class character, so they can be joined to the character rownames  
+1) `left_join()` -оор `my_matches`-ыг `cases`-д холбо (`cases` -ын rownames (мөрийн дугаар)-ыг `my_matches`-ийн "inds.a"-тэй хослуулна)  
+2) Үүний дараа дахин `left_join()` -оор `results` -ыг `cases` -тэй холбо (`cases` -д шинээр нэмэгдсэн  "inds.b" -ыг `results` -ын rownames-тэй хослуулна)  
+
+
+Дээрх холболтуудыг хийхийн өмнө гурван хүснэгтээ цэвэрлэх хэрэгтэй :  
+
+* `dfA` болон `dfB` хүснэгтүүдийн мөр болгон ("rownames") дугаартай байх ба биеэ даасан багана болж орсон байх шаардлагатай. 
+* `my_matches`-ын хоёр багана карактер хэлбэрт хувирсан байх шаардлагатай. Ингэснээр карактер rownames -тэй холбогдож чадна.
 
 ```{r}
-# Clean data prior to joining
+# Холболтын өмнөх датаг цэвэрлэгээ
 #############################
 
-# convert cases rownames to a column 
+# cases хүснэгтийн мөрийн дугаарыг багана болгох
 cases_clean <- cases %>% rownames_to_column()
 
-# convert test_results rownames to a column
+# test_results хүснэгтийн мөрийн дугаарыг багана болго
 results_clean <- results %>% rownames_to_column()  
 
-# convert all columns in matches dataset to character, so they can be joined to the rownames
+# matches датаны бүх баганыг карактер болго. Ингэснээр мөрийн дугаарт холбогдох боломжтой.
 matches_clean <- my_matches %>%
   mutate(across(everything(), as.character))
 
 
 
-# Join matches to dfA, then add dfB
+# matches-ыг dfA-д нэгтгээд, дараа нь dfB-д нэгтгэх
 ###################################
-# column "inds.b" is added to dfA
+# "inds.b" баганыг dfA-д нэмэх
 complete <- left_join(cases_clean, matches_clean, by = c("rowname" = "inds.a"))
 
-# column(s) from dfB are added 
+# dfB -ын багана нэмэх
 complete <- left_join(complete, results_clean, by = c("inds.b" = "rowname"))
 ```
 
-As performed using the code above, the resulting data frame `complete` will contain *all* columns from both `cases` and `results`. Many will be appended with suffixes ".x" and ".y", because the column names would otherwise be duplicated.  
+Дээрх кодны үр дүнд үүсэх `complete` хүснэгт `cases`, `results` хоёрын *бүх* мөрийг агуулна. Нэрний давхардалт үүсэхээс сэргийлж ихэнх баганын нэрс".x" эсвэл ".y" гэсэн өргөтгөлтэй болсон байна.
 
 ```{r message=FALSE, echo=F}
 DT::datatable(complete, rownames = FALSE, options = list(pageLength = nrow(complete), scrollX=T), class = 'white-space: nowrap')
 ```
 
-Alternatively, to achieve only the "original" 9 records in `cases` with the new column(s) from `results`, use `select()` on `results` before the joins, so that it contains only rownames and the columns that you want to add to `cases` (e.g. the column `result`).  
+Хэрэв `cases` -ын зөвхөн анхны 9 тохиолдлыг `results`-ын баганатайгаар гаргаж ирэхийг хүсвэл холболт хийхийн өмнө `select()` -ийг `results` хүснэгтэд хэрэглэж болно. Ингэхдээ `cases` дээр нэмэхийг хүссэн мөрийн дугаар, баганыг `results` хүснэгтээс `select()` ээр сонгох юм (`result` багана гэх мэт).  
 
 ```{r}
 cases_clean <- cases %>% rownames_to_column()
 
 results_clean <- results %>%
   rownames_to_column() %>% 
-  select(rowname, result)    # select only certain columns 
+  select(rowname, result)    # тодорхой багануудыг л сонгох 
 
 matches_clean <- my_matches %>%
   mutate(across(everything(), as.character))
 
-# joins
+# холбох
 complete <- left_join(cases_clean, matches_clean, by = c("rowname" = "inds.a"))
 complete <- left_join(complete, results_clean, by = c("inds.b" = "rowname"))
 ```
@@ -671,31 +669,29 @@ complete <- left_join(complete, results_clean, by = c("inds.b" = "rowname"))
 DT::datatable(complete, rownames = FALSE, options = list(pageLength = nrow(complete), scrollX=T), class = 'white-space: nowrap')
 ```
 
-
-If you want to subset either dataset to only the rows that matched, you can use the codes below:  
-
-```{r}
-cases_matched <- cases[my_matches$inds.a,]  # Rows in cases that matched to a row in results
-results_matched <- results[my_matches$inds.b,]  # Rows in results that matched to a row in cases
-```
-
-Or, to see only the rows that did **not** match:  
+Хэрэв хоёр хүснэгтийн зөвхөн хосолсон мөрүүдийг авч үлдэхийг хүсвэл дараах кодыг хэрэглэж болно: 
 
 ```{r}
-cases_not_matched <- cases[!rownames(cases) %in% my_matches$inds.a,]  # Rows in cases that did NOT match to a row in results
-results_not_matched <- results[!rownames(results) %in% my_matches$inds.b,]  # Rows in results that did NOT match to a row in cases
+cases_matched <- cases[my_matches$inds.a,]  # results-ын мөртэй хосолсон cases-ийн мөрүүд
+results_matched <- results[my_matches$inds.b,]  # cases -ын мөртэй хосолсон results-ийн мөрүүд
+```
+
+Эсвэл зөвхөн хослол **болоогүй** мөрүүдийг харж бас болно:  
+
+```{r}
+cases_not_matched <- cases[!rownames(cases) %in% my_matches$inds.a,]  # results-ын мөрүүдтэй тохироогүй cases -ын мөрүүд 
+results_not_matched <- results[!rownames(results) %in% my_matches$inds.b,]  # cases-ын мөрүүдтэй тохироогүй results-ын мөрүүд
 ```
 
 
-### Probabilistic deduplication {.unnumbered}  
+### Магадлалаар давхардалтыг арилгах {.unnumbered}  
 
-Probabilistic matching can be used to deduplicate a dataset as well. See the page on deduplication for other methods of deduplication.  
-
-Here we began with the `cases` dataset, but are now calling it `cases_dup`, as it has 2 additional rows that could be duplicates of previous rows:
-See "Tony" with "Anthony", and "Marialisa Rodrigues" with "Maria Rodriguez".  
+Магадлалаар ижилсүүлсж давхардалт арилгаж бас болно. Давхардалтыг арилгах бусад аргуудын талаар deduplication хэсгээс нэмж уншна уу.
+Өмнө нь `cases`гэсэн хүснэгт дээр ажиллаж байсан бол одоо `cases_dup` гэсэн хүснэгттэй ажиллах болно. Үүнд өмнөх хүснэгтээс гаралтай хоёр мөр давхардаж орсноос хоёр мөр илүү бичигдсэн:
+"Tony" -г "Anthony"-тай "Marialisa Rodrigues" -г "Maria Rodriguez"-тэй харьцуулж харна уу.  
 
 ```{r, echo=F}
-## Add duplicates
+## Давхардалдсан мөрүүдийг нэм
 #cases_dup <- rbind(cases, cases[sample(1:nrow(cases), 3, replace = FALSE),])
 
 cases_dup <- tribble(
@@ -720,10 +716,10 @@ DT::datatable(cases_dup, rownames = FALSE, options = list(pageLength = nrow(case
 ```
 
 
-Run `fastLink()` like before, but compare the `cases_dup` data frame to itself. When the two data frames provided are identical, the function assumes you want to de-duplicate. Note we do not specify `stringdist.match = ` or `numeric.match = ` as we did previously.  
+Өмнөх жишээний адил `fastLink()` -ийг уншуул. Харин энэ удаа `cases_dup` хүснэгтийг өөртэй нь эргүүлээд харьцуулаарай. Хэрэв хоёр хүснэгт яг адилхан байвал `fastLink()` функц давхардалтыг арилгах ёстой гэж ойлгоно. Нэмж анхааруулахад өмнөх жишээнд `stringdist.match = `,  `numeric.match = ` зэрэг аргументүүдийг хэрэглэж байсан бол энэ удаа хэрэглэхгүй.  
 
 ```{r, message = F, warning = F}
-## Run fastLink on the same dataset
+## fastlink -ыг ижилхэн хүснэгт дээр дахин уншуул
 dedupe_output <- fastLink(
   dfA = cases_dup,
   dfB = cases_dup,
@@ -731,24 +727,24 @@ dedupe_output <- fastLink(
 )
 ```
 
-Now, you can review the potential duplicates with `getMatches()`. Provide the data frame as both `dfA = ` and `dfB = `, and provide the output of the `fastLink()` function as `fl.out = `.  `fl.out` must be of class `fastLink.dedupe`, or in other words, the result of `fastLink()`.  
+Үүний дараа давхардалт байх магадлалуудыг `getMatches()`-аар шалгаж болно. Хүснэгтээ `dfA = ` болон `dfB = `-д хоёуланд нь оноогоод `fastLink()` -ээс гарах үр дүнг `fl.out = ` аргументэд оруулж өг.  `fl.out` нь `fastLink.dedupe` төрөл буюу `fastLink()` -ын үр дүн байх юм.  
 
 
 ```{r}
-## Run getMatches()
+## getMatches() -ыг уншуул
 cases_dedupe <- getMatches(
   dfA = cases_dup,
   dfB = cases_dup,
   fl.out = dedupe_output)
 ```
 
-See the right-most column, which indicates the duplicate IDs - the final two rows are identified as being likely duplicates of rows 2 and 3.  
+Үүнээс хамгийн баруун баганыг харвал ID -ын давхардалтыг олох болно. Энд сүүлийн хоёр мөр 2,3 дугаар мөрний давхардалт байх магадлалтай. 
 
 ```{r message=FALSE, echo=F}
 DT::datatable(cases_dedupe, rownames = FALSE, options = list(pageLength = nrow(cases_dedupe)))
 ```
 
-To return the row numbers of rows which are likely duplicates, you can count the number of rows per unique value in the `dedupe.ids` column, and then filter to keep only those with more than one row. In this case this leaves rows 2 and 3.  
+Үүний дараа `dedupe.ids` баганад бичигдсэн мөрийн дугаар бүрт ноогдох мөрийн тоог шалгаж давхардалттай мөрүүдийн дугаарыг илрүүлж болно. Ингэхдээ нэгээс их тоотой мөрийг шүүж үзнэ. Жишээнд 2 болон 3 дугаар мөр шүүлтээр гарч ирж байна.  
 
 ```{r}
 cases_dedupe %>% 
@@ -756,96 +752,96 @@ cases_dedupe %>%
   filter(n > 1)
 ```
 
-To inspect the whole rows of the likely duplicates, put the row number in this command:  
+Аль нэг мөртэй давхардсан байж болох мөрүүдийг бүгдийг харах бол дараах командад шалгах мөрийн дугаарыг зааж өгнө:  
 
 ```{r}
-# displays row 2 and all likely duplicates of it
+# 2 дугаар мөрт болон давхардсан байж болох бүх мөрүүүдийг харуулна
 cases_dedupe[cases_dedupe$dedupe.ids == 2,]   
 ```
 
 
 
-## Binding and aligning  
+## Залгах ба зэрэгцүүлэх 
 
-Another method of combining two data frames is "binding" them together. You can also think of this as "appending" or "adding" rows or columns.  
+Хүснэгтүүдийг мөн "залгаж/bind" болно. Үүнийг аливаа хүснэгтэд нэмэлтээр мөр, багана "хавсаргах" гэж ойлгож болно.
 
-This section will also discuss how to "align" the order of rows of one data frame to the order in another data frame. This topic is discussed below in the section on Binding columns.  
+Залгахыг тайлбарласны дараа мөрний эрэмбийг өөр нэг хүснэгтийн мөрний эрэмбэтэй "зэрэгцүүлэх" талаар бас энэ  хэсэгт тайлбарлах болно. 
 
 
 
-### Bind rows {.unnumbered}
+### Мөрийг залгах {.unnumbered}
 
-To bind rows of one data frame to the bottom of another data frame, use `bind_rows()` from **dplyr**. It is very inclusive, so any column present in either data frame will be included in the output. A few notes:  
+Нэг хүснэгтийн мөрийг өөр нэг хүснэгтийн доороос залгахдаа **dplyr**-ын `bind_rows()`-ыг хэрэглэж болно. Үүний үр дүнд шинээр үүсэх хүснэгтэд хоёр хүснэгтийн бүх багана орсон байдаг онцлогтой. Анхааруулах зүйлс: 
 
-* Unlike the **base** R version `row.bind()`, **dplyr**'s `bind_rows()` does not require that the order of columns be the same in both data frames. As long as the column names are spelled identically, it will align them correctly.  
-* You can optionally specify the argument `.id = `. Provide a character column name. This will produce a new column that serves to identify which data frame each row originally came from.  
-* You can use `bind_rows()` on a `list` of similarly-structured data frames to combine them into one data frame. See an example in the [Iteration, loops, and lists] page involving the import of multiple linelists with **purrr**.  
+* **dplyr**-ын `bind_rows()` -ын base R-ын `row.bind()` функцээс гол ялгаагдах онцлог бол залгаж буй хүснэгтүүдийн баганын дараалал ижил байх шаардлагагүй явдал юм. Баганын нэр адилхан нэрлэгдсэн л бол зөв таньж залгаж чаддаг онцлогтой. 
+* Мөн `.id = `аргументэд шинэ баганын нэр (карактер нэр) зааж өгснөөр мөр болгонд аль хүснэгтээс гаралтайг харуулсан шинэ багана үүсдэг.
+* `bind_rows()` on a `list` of similarly-structured data frames to combine them into one data frame. See an example in the [Iteration, loops, and lists] page involving the import of multiple linelists with **purrr**.  
 
-One common example of row binding is to bind a "total" row onto a descriptive table made with **dplyr**'s `summarise()` function. Below we create a table of case counts and median CT values by hospital with a total row.  
+Мөн  **dplyr**-ын `summarise()`-аар бүтсэн хураангуй хүснэгтэд *нийт* гэсэн мөр залгахад энэ функцыг элбэг хэрэглэдэг.  Дараах жишээнд  тохиодлын тоо болон CT шинжилгээний медиан утгуудыг эмнэлэг тус бүрээр харуулсан хураангуй хүснэгтийг *нийт* гэсэн мөртэйгээр хэрхэн бүтээхийг харуулав.  
 
-The function `summarise()` is used on data grouped by hospital to return a summary data frame by hospital. But the function `summarise()` does not automatically produce a "totals" row, so we create it by summarising the data *again*, but with the data not grouped by hospital. This produces a second data frame of just one row. We can then bind these data frames together to achieve the final table.  
+Датаг эмнэлэг тус бүрээр бүлэглэж харахын тулд `summarise()` функц ашиглаж хураангуй хүснэгт үүсгэнэ. Энэ үед `summarise()` функц нийт гэсэн мөрийг үүсгэдэхгүй тул датаг дахин `summarise()` коммандад бүлэглэхгүйгээр өгнө. Ингэснээр зөвхөн нэг мөртэй хоёрдах хүснэгт үүснэ. Энэхүү шинээр үүсгэсэн хоёр хүснэгтийг хооронд нь залгаж эцсийн үр дүнд хүрнэ. 
 
-See other worked examples like this in the [Descriptive tables] and [Tables for presentation] pages.  
+Дээрхитэй төстэй жишээг [Descriptive tables] болон [Tables for presentation] хуудсуудаас үзэж болно.
 
 
 ```{r}
-# Create core table
+# Үндсэн хүснэгтийг байгуул
 ###################
 hosp_summary <- linelist %>% 
-  group_by(hospital) %>%                        # Group data by hospital
-  summarise(                                    # Create new summary columns of indicators of interest
-    cases = n(),                                  # Number of rows per hospital-outcome group     
-    ct_value_med = median(ct_blood, na.rm=T))     # median CT value per group
+  group_by(hospital) %>%                        # Датаг эмнэлэг тус бүрээр бүлэглэх
+  summarise(                                    # Сонирхсон индикаторуудаар нэтгэсэн хүснэгт байгуул
+    cases = n(),                                  # эмнэлэг тус бүрт ноогдох мөрийн тоо     
+    ct_value_med = median(ct_blood, na.rm=T))     # бүлэг тус бүрийн CT -ийн медиан утга
 ```
 
-Here is the `hosp_summary` data frame:  
+`hosp_summary` хураангуй хүснэгт:  
 
 ```{r message=FALSE, echo=F}
 DT::datatable(hosp_summary, rownames = FALSE, options = list(pageLength = nrow(10)))
 ```
 
-Create a data frame with the "total" statistics (*not grouped by hospital*). This will return just one row.  
+*totals* гэсэн хүснэгт байгуул (*эмнэлэг тус бүрээр бүлэглээгүй*). Үүний үр дүнд зөвхөн нэг мөрөөс бүтсэн хүснэгт үүснэ.  
 
 ```{r}
-# create totals
+# Нийт дүнг бодож гарга
 ###############
 totals <- linelist %>% 
   summarise(
-    cases = n(),                               # Number of rows for whole dataset     
-    ct_value_med = median(ct_blood, na.rm=T))  # Median CT for whole dataset
+    cases = n(),                               # Нийт датан дах мөрийн тоо    
+    ct_value_med = median(ct_blood, na.rm=T))  # Нийт датаны CT шинжилгээний медиан утга 
 ```
 
-And below is that `totals` data frame. Note how there are only two columns. These columns are also in `hosp_summary`, but there is one column in `hosp_summary` that is not in `totals` (`hospital`).  
+Доор `totals` мөртэй хүснэгтийг харуулав. Энд зөвхөн хоёр багана байна. Энэ баганууд `hosp_summary` хүснэгтэд мөн байгаа. Харин `totals`-д байхгүй нэг багана `hosp_summary` -д байна (`hospital` багана).  
 
 ```{r message=FALSE, echo=F}
 DT::datatable(totals, rownames = FALSE, options = list(pageLength = nrow(10)))
 ```
 
-Now we can bind the rows together with `bind_rows()`.  
+Одоо хүснэгтүүдийг `bind_rows()`-аар залгаж болохоор боллоо.  
 
 ```{r}
-# Bind data frames together
+# Хүснэгтүүдийг залга
 combined <- bind_rows(hosp_summary, totals)
 ```
 
-Now we can view the result. See how in the final row, an empty `NA` value fills in for the column `hospital` that was not in `hosp_summary`. As explained in the [Tables for presentation] page, you could "fill-in" this cell with "Total" using `replace_na()`.  
+Үр дүнг харцгаая. `hosp_summary` -д байгаагүй багана болох `hospital` -ын сүүлийн хоосон нүднүүдэд `NA` утга орсон байгааг анзаараарай.  [Tables for presentation] хуудаст тайлбарсанчлан, энэ нүднүүдийг `replace_na()`-г ашиглаж "Нийт" дүнгээр "бөглөх" боломжтой.
 
 ```{r message=FALSE, echo=F}
 DT::datatable(combined, rownames = FALSE, options = list(pageLength = nrow(10)))
 ```
 
 
-### Bind columns {.unnumbered}
+### Баганыг залгах {.unnumbered}
 
-There is a similar **dplyr** function `bind_cols()` which you can use to combine two data frames sideways. Note that rows are matched to each other *by position* (not like a *join* above) - for example the 12th row in each data frame will be aligned.  
+Хоёр хүснэгтийг хажуу талаас нь залгадаг **dplyr** - ын өөр нэг функцыг `bind_cols()` гэдэг. Мөрүүд зөвхөн *байрлалын дагуу* ( *join* -аас ялгаатай) залгагдах болно. Жишээ нь нэг хүснэгтийн 12 дугаар мөр нөгөө хүснэгтийн 12 дугаар мөртэй зэрэгцэж залгагдна. 
 
-For an example, we bind several summary tables together. In order to do this, we also demonstrate how to re-arrange the order of rows in one data frame to match the order in another data frame, with `match()`.    
+Олон хураангуй хүснэгтүүдийг хооронд нь залгахыг жишээгээр дор харууллаа. Юуны түрүүнд зэрэгцэж залгагдах мөрүүдийг зөв тааруулах үүднээс `match()` функцыг хэрхэн ашиглахыг тайлбарлая.    
 
-Here we define `case_info` as a summary data frame of linelist cases, by hospital, with the number of cases and the number of deaths.
+Доор linelist хүснэгтийн нас баралт, тохиолдлын тоог эмнэлэг тус бүрээр бүлэглэж  `case_info` гэсэн хураангуй хүснэгт болгосон байна.
 
 
 ```{r}
-# Case information
+# Тохиолдлын мэдээлэл
 case_info <- linelist %>% 
   group_by(hospital) %>% 
   summarise(
@@ -858,7 +854,7 @@ case_info <- linelist %>%
 DT::datatable(case_info, rownames = FALSE, options = list(pageLength = nrow(10)))
 ```
 
-And let's say that here is a different data frame `contact_fu` containing information on the percent of exposed contacts investigated and "followed-up", again by hospital. 
+Харин халдварт өртсөн хавьтлуудын шалгагдсан хувийг эмнэлэг тус бүрээр бүлэглэж `contact_fu` гэсэн хураангуй хүснэгт үүсгэсэн. 
 
 ```{r}
 contact_fu <- data.frame(
@@ -872,19 +868,19 @@ contact_fu <- data.frame(
 DT::datatable(contact_fu, rownames = FALSE, options = list(pageLength = nrow(10)))
 ```
 
-Note that the hospitals are the same, but are in different orders in each data frame. The easiest solution would be to use a `left_join()` on the `hospital` column, but you could also use `bind_cols()` with one extra step.  
+Энд хоёр хүснэгтийн эмнэлэгийн нэрс ижил боловч эрэмбэ, дараалал өөр байгааг анхаарах хэрэгтэй. Хамгийн хялбар арга бол `hospital` баганыг ашиглаж `left_join()` хийх явдал юм. Харин `bind_cols()` -ыг ашиглах бол нэмэлт нэг алхам хийх шаардлагатай. 
 
-#### Use `match()` to align ordering {.unnumbered}  
+#### `match()`-аар эрэмбийг зэрэгцүүлэх {.unnumbered}  
 
-Because the row orders are different, a simple `bind_cols()` command would result in a mis-match of data. To fix this we can use `match()` from **base** R to align the rows of a data frame in the same order as in another. We assume for this approach that there are no duplicate values in either data frame.  
+Мөрийн дараалал ялгаатай тул хүснэгтүүдийг шууд `bind_cols()` к-аар залгавал мөрийн үл тохироо (mismatch) үүснэ. Тиймээс **base** R -ын `match()` функцээр мөрүүдийг ижил дараалалд эхлээд оруулах хэрэгтэй. Ингэхдээ хоёр хүснэгтэд давхардсан мөр байхгүй гэж тооцно.  
 
-When we use `match()`, the syntax is `match(TARGET ORDER VECTOR, DATA FRAME COLUMN TO CHANGE)`, where the first argument is the desired order (either a stand-alone vector, or in this case a column in a data frame), and the second argument is the data frame column in the data frame that will be re-ordered. The output of `match()` is a vector of numbers representing the correct position ordering. You can read more with `?match`.  
+`match()`-ын синтакс нь `match(TARGET ORDER VECTOR, DATA FRAME COLUMN TO CHANGE)` юм. Эхний аргументээр зорилтот дараалал (дан вектор, эсвэл хүснэгтийн багана), хоёр дах аргументээр эрэмбийг өөрчлөхөөр сонгосон хүснэгтийн багана байх болно. Үүний үр дүнд зөв эрэмбийн байрлалыг заасан тоон вектор үүсдэг. Энэ талаар `?match` комманд өгч илүү танилцаж болно.  
 
 ```{r}
 match(case_info$hospital, contact_fu$hospital)
 ```
 
-You can use this numeric vector to re-order the data frame - place it within subset brackets `[ ]` *before the comma*. Read more about **base** R bracket subset syntax in the [R basics] page. The command below creates a new data frame, defined as the old one in which the rows are ordered in the numeric vector above.  
+Энэхүү тоон векторын дугаарыг ашиглан эрэмбийг өөрчилж болно. Ингэхдээ `[ ]` хаалтанд векторыг оруулж,*таслал* ард нь тавьна.  Үүний нэмэлт тайлбарыг **base** R -ын таслалаар хэрхэн датаг тасалж авах [R basics] хуудаст тайлбарласнаас харна уу. The command below creates a new data frame, defined as the old one in which the rows are ordered in the numeric vector above.  
 
 ```{r}
 contact_fu_aligned <- contact_fu[match(case_info$hospital, contact_fu$hospital),]
@@ -895,31 +891,30 @@ contact_fu_aligned <- contact_fu[match(case_info$hospital, contact_fu$hospital),
 DT::datatable(contact_fu_aligned, rownames = FALSE, options = list(pageLength = nrow(10)))
 ```
 
-Now we can bind the data frame columns together, with the correct row order. Note that some columns are duplicated and will require cleaning with `rename()`. Read more aboout `bind_rows()` [here](https://dplyr.tidyverse.org/reference/bind.html).  
+Одоо хүснэгтүүдийн эрэмбэ тохирч буй тул хооронд нь залгахад бэлэн боллоо. Зарим багана давхарддаг тул `rename()`-ээр цэвэрлэх шаардлага гарч болно. `bind_rows()`-ын талаар [here](https://dplyr.tidyverse.org/reference/bind.html) -т илүү нарийн тайлбарласан.  
 
 ```{r}
 bind_cols(case_info, contact_fu)
 ```
 
-A **base** R alternative to `bind_cols` is `cbind()`, which performs the same operation.  
-
+Үүнээс гадна `bind_cols` тэй ижил үйлдэлтэй **base** R функц `cbind()` -ыг хэрэглэж болно.
 
 
 
 <!-- ======================================================= -->
-## Resources { }
+## Эх сурвалж материалууд { }
 
-The [tidyverse page on joins](https://dplyr.tidyverse.org/reference/join.html)  
+[tidyverse page on joins](https://dplyr.tidyverse.org/reference/join.html)  
 
-The [R for Data Science page on relational data](https://r4ds.had.co.nz/relational-data.html)  
+[R for Data Science page on relational data](https://r4ds.had.co.nz/relational-data.html)  
 
-Th [tidyverse page on dplyr](https://dplyr.tidyverse.org/reference/bind.html) on binding  
+[tidyverse page on dplyr](https://dplyr.tidyverse.org/reference/bind.html) -аас холбох талаарх мэдээлэл
 
-A vignette on [fastLink](https://github.com/kosukeimai/fastLink) at the package's Github page  
+[fastLink](https://github.com/kosukeimai/fastLink) -ын виннетийг Github хуудаснаас 
 
-Publication describing methodology of [fastLink](https://imai.fas.harvard.edu/research/files/linkage.pdf)  
+[fastLink](https://imai.fas.harvard.edu/research/files/linkage.pdf) -ын аргачлалын талаарх эрдэм шинжилгээний өгүүлэл
 
-Publication describing [RecordLinkage package](https://journal.r-project.org/archive/2010/RJ-2010-017/RJ-2010-017.pdf)
+[RecordLinkage package](https://journal.r-project.org/archive/2010/RJ-2010-017/RJ-2010-017.pdf)-ын аргачлалын талаарх эрдэм шинжилгээний өгүүлэл
 
 
 
