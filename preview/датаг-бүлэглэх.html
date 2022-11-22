@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>13 Датаг бүлэглэх | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="Энэ хуудсанд дескриптив анализэд зориулж өгөгдлийг хэрхэн бүлэглэх, нэгтгэх талаар тусгасан болно. Үүнийг гүйцэтгэхэд энгийн, хэрэглэхэд хялбар функцуудтэй tidyverse багцуудыг ашигладх болно....">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="13 Датаг бүлэглэх | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Энэ хуудсанд дескриптив анализэд зориулж өгөгдлийг хэрхэн бүлэглэх, нэгтгэх талаар тусгасан болно. Үүнийг гүйцэтгэхэд энгийн, хэрэглэхэд хялбар функцуудтэй tidyverse багцуудыг ашигладх болно....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="13 Датаг бүлэглэх | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="Энэ хуудсанд дескриптив анализэд зориулж өгөгдлийг хэрхэн бүлэглэх, нэгтгэх талаар тусгасан болно. Үүнийг гүйцэтгэхэд энгийн, хэрэглэхэд хялбар функцуудтэй tidyverse багцуудыг ашигладх болно....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></li>
+<li><a class="active" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="датаг-бүлэглэх" class="section level1" number="13">
+<h1>
+<span class="header-section-number">13</span> Датаг бүлэглэх<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h1>
+<div class="inline-figure"><img src="images/Grouping_1500x500.png" width="100%"></div>
+<p>Энэ хуудсанд дескриптив анализэд зориулж өгөгдлийг хэрхэн бүлэглэх, нэгтгэх талаар тусгасан болно. Үүнийг гүйцэтгэхэд энгийн, хэрэглэхэд хялбар функцуудтэй <strong>tidyverse</strong> багцуудыг ашигладх болно.</p>
+<p>Датаг бүлэглэх үйлдэл бол дата менежмент, дата дүн шинжилгээний үндсэн элэмент мөн. Датаг статистикийн үзүүлэлтээр бүлэглэн шинжилж, график зураглалыг бүлгээр нь тус бүр харуулдаг.<strong>dplyr</strong> багцын (<strong>tidyverse</strong> харьяа ) функцууд бүлэглэх болон үүнтэй холбоотой бусад үйлдлүүдийг гүйцэтгэхэд хялбар болгодог.</p>
+<p>Энэхүү хуудаст дараах сэдвүүдийн талаар оруулсан:</p>
+<ul>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> функцээр бүлэглэгдсэн дата</li>
+<li>Датандах бүлгийг задлах</li>
+<li>бүлэглэсэн датаг функцээр <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> статистикийн үзүүлэлтүүдийг харуулах<br>
+</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> болон <code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code> функцуудын ялгаа</li>
+<li>Бүлэглэсэн датанд <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> -ыг хэрэглэх</li>
+<li>Бүлэглэсэн датанд <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> -ыг хэрэглэх<br>
+</li>
+<li>Бүлэглэсэн датанд <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> -ыг хэрэглэх</li>
+<li>Бүлэглэсэн датанд <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> -ыг хэрэглэх<br>
+</li>
+<li>
+<strong>base</strong> R -ын <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> коммандыг хэрэглэх</li>
+</ul>
+<!-- ======================================================= --><div id="бэлтгэл-4" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> Бэлтгэл<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB-4"><i class="fas fa-link"></i></a>
+</h2>
+<div id="багцыг-ачааллах-2" class="section level3 unnumbered">
+<h3>Багцыг ачааллах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D1%85-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэ хэсэгт анализ хийхэд шаардлагатай багцуудыг доорхи кодоор ачааллана.<strong>pacman</strong> багцын <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load()</a></code> функцээр шаардлагатай багцыг татаж аваад ачааллана уу. Өмнө татаж авсан багцуудаа <strong>base</strong> R -ын <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>-аар ачааллаж болно. Багцын талаарх нэмэлт мэдээллийг [R basics] хэсгээс харна уу.</p>
+<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span>
+  <span class="va">rio</span>,       <span class="co"># Файлыг импортлох</span>
+  <span class="va">here</span>,      <span class="co"># Файлыг байрлуулах</span>
+  <span class="va">tidyverse</span>, <span class="co"># датаг цэвэрлэх, янзлах, график байгуулах (dplyr-г орно)</span>
+  <span class="va">janitor</span><span class="op">)</span>   <span class="co"># мөр, баганын нийт дүнг нэмнэ</span></code></pre></div>
+</div>
+<div id="импорт-дата" class="section level3 unnumbered">
+<h3>Импорт дата<a class="anchor" aria-label="anchor" href="#%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D0%B4%D0%B0%D1%82%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэ хэсэгт Эболагийн дэгдэлтийн үеийн зохиомол датаг ашиглах болно. Дагаж дасгалыг ажиллах бол <a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds" class="download-button">линк дээр дарж “цэвэр” linelist татаж авна уу </a> (as .rds file). Датагаа <strong>rio</strong> багцын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функцээр импортло (энэ функц .xlsx, .csv, .rds зэрэг олон өргөтгөлтэй ажиллаж чаддаг [Import and export] хуудаст нэмж тайлбарласан).</p>
+<div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_cleaned.rds"</span><span class="op">)</span></code></pre></div>
+<p>Эхний 50 мөр <code>linelist</code>:</p>
+<div id="htmlwidget-97fde009a79c4c9597a6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-97fde009a79c4c9597a6">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2\" data-max=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1399075200000\" data-max=\"1406419200000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1399939200000\" data-max=\"1407024000000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1400025600000\" data-max=\"1407110400000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1400371200000\" data-max=\"1410566400000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"67\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"67\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;0-4&quot;,&quot;5-9&quot;,&quot;10-14&quot;,&quot;15-19&quot;,&quot;20-29&quot;,&quot;30-49&quot;,&quot;50-69&quot;,&quot;70+&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;0-4&quot;,&quot;5-9&quot;,&quot;10-14&quot;,&quot;15-19&quot;,&quot;20-24&quot;,&quot;25-29&quot;,&quot;30-34&quot;,&quot;35-39&quot;,&quot;40-44&quot;,&quot;45-49&quot;,&quot;50-54&quot;,&quot;55-59&quot;,&quot;60-64&quot;,&quot;65-69&quot;,&quot;70-74&quot;,&quot;75-79&quot;,&quot;80-84&quot;,&quot;85+&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-13.2697246824573\" data-max=\"-13.209391925612\" data-scale=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"8.45171855856465\" data-max=\"8.48802917129884\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"100\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"11\" data-max=\"241\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"20\" data-max=\"24\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"35.9\" data-max=\"38\" data-scale=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"428.994082840237\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["5fe599","8689b7","11f8ea","b8812a","893f25","be99c8","07e3e8","369449","f393b4","1389ca","2978ac","57a565","fc15ef","2eaa9a","bbfa93","c97dd9","f50e8a","3a7673","7f5a01","ddddee","99e8fa","567136","9371a9","bc2adf","403057","8bd1e8","f327be","42e1a9","90e5fe","959170","8ebf6e","e56412","6d788e","a47529","67be4e","da8ecb","148f18","2cb9a5","f5c142","70a9fe","3ad520","062638","c76676","baacc1","497372","23e499","38cc4a","3789ee","c71dcd","6b70f0"],[4,4,2,3,3,3,4,4,4,4,4,4,6,5,6,9,10,8,7,6,7,6,8,6,10,8,6,12,5,8,7,9,11,5,8,5,6,11,7,9,7,8,9,12,13,9,8,10,8,7],["2014-05-08",null,null,"2014-05-04","2014-05-18","2014-05-03","2014-05-22","2014-05-28",null,null,"2014-05-30","2014-05-28","2014-06-14","2014-06-07","2014-06-09",null,null,null,"2014-06-23","2014-06-18","2014-06-24",null,null,"2014-07-03",null,"2014-07-10","2014-06-14",null,"2014-06-18","2014-06-29","2014-07-02","2014-07-12","2014-07-12","2014-06-13","2014-07-15","2014-06-20",null,null,"2014-07-20",null,"2014-07-12","2014-07-19","2014-07-18","2014-07-18","2014-07-27",null,"2014-07-19","2014-07-26","2014-07-24",null],["2014-05-13","2014-05-13","2014-05-16","2014-05-18","2014-05-21","2014-05-22","2014-05-27","2014-06-02","2014-06-05","2014-06-05","2014-06-06","2014-06-13","2014-06-16","2014-06-17","2014-06-18","2014-06-19","2014-06-22","2014-06-23","2014-06-25","2014-06-26","2014-06-28","2014-07-02","2014-07-08","2014-07-09","2014-07-09","2014-07-10","2014-07-12","2014-07-12","2014-07-13","2014-07-13","2014-07-14","2014-07-15","2014-07-16","2014-07-17","2014-07-17","2014-07-18","2014-07-19","2014-07-22","2014-07-22","2014-07-24","2014-07-24","2014-07-25","2014-07-25","2014-07-27","2014-07-29","2014-07-30",null,"2014-08-01","2014-08-02","2014-08-03"],["2014-05-15","2014-05-14","2014-05-18","2014-05-20","2014-05-22","2014-05-23","2014-05-29","2014-06-03","2014-06-06","2014-06-07","2014-06-08","2014-06-15","2014-06-17","2014-06-17","2014-06-20","2014-06-19","2014-06-23","2014-06-24","2014-06-27","2014-06-28","2014-06-29","2014-07-03","2014-07-09","2014-07-09","2014-07-11","2014-07-11","2014-07-13","2014-07-14","2014-07-14","2014-07-13","2014-07-14","2014-07-17","2014-07-17","2014-07-18","2014-07-19","2014-07-20","2014-07-20","2014-07-22","2014-07-24","2014-07-26","2014-07-24","2014-07-27","2014-07-25","2014-07-27","2014-07-31","2014-08-01","2014-08-03","2014-08-02","2014-08-02","2014-08-04"],[null,"2014-05-18","2014-05-30",null,"2014-05-29","2014-05-24","2014-06-01","2014-06-07","2014-06-18","2014-06-09","2014-06-15",null,"2014-07-09",null,"2014-06-30","2014-07-11","2014-07-01","2014-06-25","2014-07-06","2014-07-02","2014-07-09","2014-07-07","2014-07-20",null,"2014-07-22","2014-07-16","2014-07-14","2014-07-20","2014-07-16","2014-07-19","2014-07-27","2014-07-19",null,"2014-07-26","2014-08-14","2014-08-01","2014-07-23","2014-08-28","2014-07-28","2014-07-19",null,"2014-08-03",null,null,null,"2014-08-06","2014-08-21","2014-09-13","2014-08-04",null],[null,"Recover","Recover",null,"Recover","Recover","Recover","Death","Recover","Death","Death","Death","Recover","Recover",null,"Recover",null,null,"Death","Death","Recover",null,null,null,"Death",null,"Death","Death",null,"Death","Recover","Death","Recover","Death","Recover",null,"Death","Recover","Recover","Death",null,null,"Death","Death","Death","Death","Recover",null,"Death","Death"],["m","f","m","f","m","f","f","f","m","f","m","m","m","f","f","m","f","f","f","f","m","m","f","m","f","m","m","f","m","f","f","f","m","m","f","m","f","f","f","m","f","m","f","m","m","f","m","f","m","m"],[2,3,56,18,3,16,16,0,61,27,12,42,19,7,7,13,35,17,11,11,19,54,14,28,6,3,31,6,67,14,10,21,20,45,1,12,3,15,20,36,7,13,14,3,10,1,0,20,26,14],["years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years"],[2,3,56,18,3,16,16,0,61,27,12,42,19,7,7,13,35,17,11,11,19,54,14,28,6,3,31,6,67,14,10,21,20,45,1,12,3,15,20,36,7,13,14,3,10,1,0,20,26,14],["0-4","0-4","50-69","15-19","0-4","15-19","15-19","0-4","50-69","20-29","10-14","30-49","15-19","5-9","5-9","10-14","30-49","15-19","10-14","10-14","15-19","50-69","10-14","20-29","5-9","0-4","30-49","5-9","50-69","10-14","10-14","20-29","20-29","30-49","0-4","10-14","0-4","15-19","20-29","30-49","5-9","10-14","10-14","0-4","10-14","0-4","0-4","20-29","20-29","10-14"],["0-4","0-4","55-59","15-19","0-4","15-19","15-19","0-4","60-64","25-29","10-14","40-44","15-19","5-9","5-9","10-14","35-39","15-19","10-14","10-14","15-19","50-54","10-14","25-29","5-9","0-4","30-34","5-9","65-69","10-14","10-14","20-24","20-24","45-49","0-4","10-14","0-4","15-19","20-24","35-39","5-9","10-14","10-14","0-4","10-14","0-4","0-4","20-24","25-29","10-14"],["Other","Missing","St. Mark's Maternity Hospital (SMMH)","Port Hospital","Military Hospital","Port Hospital","Missing","Missing","Missing","Missing","Port Hospital","Military Hospital","Missing","Missing","Other","Port Hospital","Port Hospital","Port Hospital","Missing","Other","Port Hospital","Port Hospital","St. Mark's Maternity Hospital (SMMH)","Missing","Other","Missing","St. Mark's Maternity Hospital (SMMH)","Military Hospital","Port Hospital","Central Hospital","Military Hospital","Central Hospital","Missing","Military Hospital","Other","Missing","Missing","Port Hospital","Port Hospital","Port Hospital","Missing","Central Hospital","Military Hospital","Other","Other","Other","Missing","St. Mark's Maternity Hospital (SMMH)","St. Mark's Maternity Hospital (SMMH)","Missing"],[-13.2157351064963,-13.2152339775486,-13.212910703914,-13.2363711169728,-13.2228638912441,-13.222625321098,-13.2331547837254,-13.2320975453153,-13.2225511595637,-13.2572163655863,-13.2206286746001,-13.253989309478,-13.2385127873491,-13.209391925612,-13.2157278814899,-13.2243437095992,-13.2336087079551,-13.21422143145,-13.2339681355349,-13.2535640411465,-13.2250089377786,-13.2160657166043,-13.2680671272333,-13.2266742923612,-13.2160179088168,-13.2482584611565,-13.2156319199566,-13.2142410663192,-13.2614879104088,-13.2452992638476,-13.2630592726116,-13.2343341712241,-13.2199077448676,-13.2227293309912,-13.2343062806506,-13.218781651651,-13.2483677722899,-13.2097478342339,-13.2680867723786,-13.2587535457526,-13.262635786914,-13.2697246824573,-13.2209026809759,-13.2330734719715,-13.2680923666905,-13.2547212675054,-13.2573683214693,-13.2137356012883,-13.2175973322257,-13.2486407324245],[8.46897295100924,8.45171855856465,8.46481700596819,8.4754761613651,8.46082377490923,8.46183062600728,8.46272931462646,8.46144367534271,8.46191259217774,8.47292327643506,8.48401630165138,8.45837125340844,8.47761705512509,8.47570184950483,8.47779946878972,8.47145134147474,8.47804840685363,8.48528034195779,8.46957530395867,8.45957352078114,8.47404889511544,8.48802917129884,8.473437335922,8.48408263734462,8.46242233645879,8.47026822126572,8.46398447480533,8.4641347894342,8.45623094629607,8.48334624336805,8.47493999153642,8.47832062438022,8.4693933891765,8.48480589906514,8.47121232619015,8.48438437371817,8.48466158574339,8.47714159984428,8.46238127010609,8.45568597813113,8.4632880274758,8.47940722413856,8.46353857052336,8.46178968158864,8.47508713872833,8.45825808128071,8.4532568143863,8.4732571907655,8.47911586641933,8.48480340615605],["f547d6",null,null,"f90f5f","11f8ea","aec8ec","893f25","133ee7",null,null,"996f3a","133ee7","37a6f6","9f6884","4802b1",null,null,null,"a75c7f","8e104d","ab634e",null,null,"b799eb",null,"5d9e4d","a15e13",null,"ea3740","beb26e","567136","894024","36e2e7","a2086d","7baf73","eb2277",null,null,"d6584f",null,"312ecf","52ea64","cfd79c","d145b7","174288",null,"53608c","3b096b","f5c142",null],["other",null,null,"other","other","other","other","other",null,null,"other","other","other","other","other",null,null,null,"other","other","other",null,null,"other",null,"other","other",null,"other","funeral","other","funeral","other","other","other","funeral",null,null,"other",null,"other","other","other","other","other",null,"funeral","other","other",null],[27,25,91,41,36,56,47,0,86,69,67,84,68,44,34,66,78,47,53,47,71,86,53,69,38,46,68,37,100,56,50,57,65,72,29,69,37,48,54,71,47,61,47,35,53,16,13,59,69,67],[48,59,238,135,71,116,87,11,226,174,112,186,174,90,91,152,214,137,117,131,150,241,131,161,80,69,188,66,233,142,110,182,164,214,26,157,39,154,133,168,100,125,123,67,134,31,36,125,183,169],[22,22,21,23,23,21,21,22,22,22,22,22,22,21,23,22,23,21,22,23,21,23,21,24,23,22,24,23,20,24,24,20,24,21,22,21,23,22,23,23,23,22,23,22,22,22,23,22,22,22],["no",null,null,"no","no","no",null,"no","no","no","no","no","no","no","no","no","no","no",null,"no","no","no","no","no",null,"no","no","no",null,null,"no","no",null,"no","no",null,null,"no","no",null,"no","no",null,"no","no","no","no","no","no",null],["no",null,null,"no","no","no",null,"no","no","no","no","no","no","no","no","no","yes","no",null,"no","no","no","yes","no",null,"no","no","yes",null,null,"no","no",null,"no","no",null,null,"no","no",null,"no","no",null,"no","yes","no","no","no","no",null],["yes",null,null,"no","yes","yes",null,"yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes",null,"yes","yes","yes","yes","yes",null,"yes","yes","yes",null,null,"yes","yes",null,"yes","yes",null,null,"yes","yes",null,"yes","yes",null,"yes","yes","yes","yes","yes","no",null],["no",null,null,"no","no","no",null,"no","no","no","no","no","no","no","no","yes","no","no",null,"no","no","no","no","no",null,"no","no","no",null,null,"no","no",null,"no","no",null,null,"yes","yes",null,"no","no",null,"no","no","no","no","no","no",null],["yes",null,null,"no","yes","yes",null,"yes","yes","no","yes","no","no","no","yes","no","no","no",null,"no","yes","no","no","no",null,"no","no","no",null,null,"no","yes",null,"yes","yes",null,null,"yes","yes",null,"yes","yes",null,"yes","yes","no","yes","yes","yes",null],[36.8,36.9,36.9,36.8,36.9,37.6,37.3,37,36.4,35.9,36.5,36.9,36.5,37.1,36.5,37.3,37,38,38,36,37,36.7,36.9,36.5,37,36.5,37.6,36.6,36.6,36.2,36.4,37.1,37.5,37.5,37.4,36.9,36.4,37.3,37,37.8,36.5,37.5,36.7,37,37.3,36.6,36.5,36.6,37.6,36.8],[null,"09:36","16:48","11:22","12:60","14:13","14:33","09:25","11:16","10:55","16:03","11:14","12:42","11:06","09:10","08:45",null,"15:41","13:34","18:58","12:43","16:33","14:29","07:18","08:11","16:32","16:17","07:32","17:45",null,"13:24","14:43","02:33","11:36","17:28","16:27",null,"20:49",null,"11:38","14:25","13:42","21:22","13:33","19:06","17:14","20:09",null,"10:23","09:09"],[117.1875,71.8184429761563,16.0652496292635,22.4965706447188,71.4144019043841,41.6171224732461,62.0953890870657,0,16.8376536925366,22.7903289734443,53.4119897959184,24.2802636142907,22.4600343506408,54.320987654321,41.0578432556455,28.5664819944598,17.0320552013276,25.0412914912888,38.7172182043977,27.3876813705495,31.5555555555556,14.8069075945662,30.8839811199813,26.6193433895297,59.375,96.6183574879227,19.2394748755093,84.9403122130395,18.4199377406104,27.7722674072605,41.3223140495868,17.2080666586161,24.1671624033314,15.7218971089178,428.994082840237,27.9930220292912,243.261012491782,20.2395007589813,30.527446435638,25.15589569161,47,39.04,31.0661643201798,77.9683671196257,29.5165961238583,166.493236212279,100.308641975309,37.76,20.6037803457852,23.458562375267],[2,1,2,2,1,1,2,1,1,2,2,2,1,0,2,0,1,1,2,2,1,1,1,0,2,1,1,2,1,0,0,2,1,1,2,2,1,0,2,2,0,2,0,0,2,2,null,1,0,1]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>case_id<\/th>\n      <th>generation<\/th>\n      <th>date_infection<\/th>\n      <th>date_onset<\/th>\n      <th>date_hospitalisation<\/th>\n      <th>date_outcome<\/th>\n      <th>outcome<\/th>\n      <th>gender<\/th>\n      <th>age<\/th>\n      <th>age_unit<\/th>\n      <th>age_years<\/th>\n      <th>age_cat<\/th>\n      <th>age_cat5<\/th>\n      <th>hospital<\/th>\n      <th>lon<\/th>\n      <th>lat<\/th>\n      <th>infector<\/th>\n      <th>source<\/th>\n      <th>wt_kg<\/th>\n      <th>ht_cm<\/th>\n      <th>ct_blood<\/th>\n      <th>fever<\/th>\n      <th>chills<\/th>\n      <th>cough<\/th>\n      <th>aches<\/th>\n      <th>vomit<\/th>\n      <th>temp<\/th>\n      <th>time_admission<\/th>\n      <th>bmi<\/th>\n      <th>days_onset_hosp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,8,10,14,15,18,19,20,26,28,29]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><!-- ======================================================= -->
+</div>
+</div>
+<div id="бүлэглэх" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Бүлэглэх<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> функц зааж өгсөн багана дах өвөрмөц утгын дагуу мөрүүдийг бүлэглэх болно. Ингэхдээ олон багана зааж өгвөл, мөрүүд эдгээр багануудын хооронд үүссэн өвөрмөц комбинацын дагуу бүлэглэгдэх болно. Өвөрмөц утга болгон (комбинац болгон) бүлэг бий болгоно. Ингэсний датанд хийгдэх аливаа өөрчлөлт, тооцоо зэрэг нь бүлэг тус бүрээр хийгдэх болно.</p>
+<p>Жишээлбэл дараах коммандаар <code>linelist</code> хүснэгтийн <code>outcome</code> баганын утгуудаар мөрүүдийг бүлэглэсэн байна. Үүний дүнд үүсэх хүснэгтийг<code>ll_by_outcome</code>-д хадгалсан. Бүлэглэх багануудыг <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> функцэд хаалтан дотор бичнэ.</p>
+<div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ll_by_outcome</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span></code></pre></div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>коммандыг өгснөөр <strong>датанд мэдэгдэхүйц өөрчлөлт гарахгүй</strong>. Харин энэхүү бүлэглэсэн датанд <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> зэрэг <strong>dplyr</strong>-ын бусад функцыг уншуулсны <em>дараа</em> өөрчлөлт хийгдэж эхэлдэг болохыг анхаар.</p>
+<p>Гэхдээ хүснэгтийг хэвлэснээр бүлэглэсэн датаг <em>харж</em> болно. Хэвлээд үзвэл хүснэгт tibble хэлбэрт орсон байх ба <a href="https://tibble.tidyverse.org/"><code>tibble</code> class object</a> ямар бүлгүүд, хэд бүлэглэгдсэн зэрэг мэдээлэл толгой мөрний дээр бичигдсэн байдаг.</p>
+<div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># идвэхитэй ямар бүлгүүд байгааг хэвлэж хар</span>
+<span class="va">ll_by_outcome</span></code></pre></div>
+<pre><code>## # A tibble: 5,888 x 30
+## # Groups:   outcome [3]
+##    case_id generation date_infection date_onset date_hospitalisation
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;date&gt;         &lt;date&gt;     &lt;date&gt;              
+##  1 5fe599           4 2014-05-08     2014-05-13 2014-05-15          
+##  2 8689b7           4 NA             2014-05-13 2014-05-14          
+##  3 11f8ea           2 NA             2014-05-16 2014-05-18          
+##  4 b8812a           3 2014-05-04     2014-05-18 2014-05-20          
+##  5 893f25           3 2014-05-18     2014-05-21 2014-05-22          
+##  6 be99c8           3 2014-05-03     2014-05-22 2014-05-23          
+##  7 07e3e8           4 2014-05-22     2014-05-27 2014-05-29          
+##  8 369449           4 2014-05-28     2014-06-02 2014-06-03          
+##  9 f393b4           4 NA             2014-06-05 2014-06-06          
+## 10 1389ca           4 NA             2014-06-05 2014-06-07          
+## # ... with 5,878 more rows, and 25 more variables: date_outcome &lt;date&gt;,
+## #   outcome &lt;chr&gt;, gender &lt;chr&gt;, age &lt;dbl&gt;, age_unit &lt;chr&gt;,
+## #   age_years &lt;dbl&gt;, age_cat &lt;fct&gt;, age_cat5 &lt;fct&gt;, hospital &lt;chr&gt;,
+## #   lon &lt;dbl&gt;, lat &lt;dbl&gt;, infector &lt;chr&gt;, source &lt;chr&gt;, wt_kg &lt;dbl&gt;,
+## #   ht_cm &lt;dbl&gt;, ct_blood &lt;dbl&gt;, fever &lt;chr&gt;, chills &lt;chr&gt;, cough &lt;chr&gt;,
+## #   aches &lt;chr&gt;, vomit &lt;chr&gt;, temp &lt;dbl&gt;, time_admission &lt;chr&gt;, bmi &lt;dbl&gt;,
+## #   days_onset_hosp &lt;dbl&gt;</code></pre>
+<div id="өвөрмөц-бүлгүүд" class="section level3 unnumbered">
+<h3>Өвөрмөц бүлгүүд<a class="anchor" aria-label="anchor" href="#%D3%A9%D0%B2%D3%A9%D1%80%D0%BC%D3%A9%D1%86-%D0%B1%D2%AF%D0%BB%D0%B3%D2%AF%D2%AF%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Бүлэг үүсгэж багануудын утгууд солбиж нэгдэн бүрдүүлсэн өвөрмөц комбинац болгон бүлэг юм</strong>.</p>
+<p>Үүссэн бүлэг <em>болон бүлэг тус бүрт хамрах мөрийн тоог </em> харахдаа <code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code>функцэд баганыг оруул. Хэрэв зөвхөн үүссэн өвөрмөц бүлгүүдийн нэрсийг харах бол <code><a href="https://dplyr.tidyverse.org/reference/group_data.html">group_keys()</a></code> коммандыг өг.</p>
+<p>Доорх жишээнд бүлэг үүсгэж буй <code>outcome</code> баганад <strong>гурван</strong> өвөрмөц утга байна: “Death”, “Recover”, <code>NA</code>. Нийт мөрийн тоо нас баралтад (deaths)<code>nrow(linelist %&gt;% filter(outcome == "Death"))</code>, эдгэрэлтэд (recoveries)<code>nrow(linelist %&gt;% filter(outcome == "Recover"))</code> , эмчилгээний үр дүн бичигдээгүй мөр <code>nrow(linelist %&gt;% filter(is.na(outcome)))</code> байсан.</p>
+<div class="sourceCode" id="cb634"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   outcome     n
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 Death    2582
+## 2 Recover  1983
+## 3 &lt;NA&gt;     1323</code></pre>
+<p>Нэгээс дээш тооны баганыг ашиглаж бүлэглэж болно. Доор жишээнд хүснэгтийг <code>outcome</code> болон <code>gender</code> баганын дагуу бүлэглээд бүртгэлийг tally() -аар харуулсан байна. Үүнээс <code>outcome</code> болон <code>gender</code> багануудын утгууд нийлж хичнээн бүлэг үүсгэж буйг хараарай (хоёр баганын дутуу утгуудын комбинацаар үүссэн бүлгүүд мөн орно).</p>
+<div class="sourceCode" id="cb636"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span>, <span class="va">gender</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 9 x 3
+## # Groups:   outcome [3]
+##   outcome gender     n
+##   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;
+## 1 Death   f       1227
+## 2 Death   m       1228
+## 3 Death   &lt;NA&gt;     127
+## 4 Recover f        953
+## 5 Recover m        950
+## 6 Recover &lt;NA&gt;      80
+## 7 &lt;NA&gt;    f        627
+## 8 &lt;NA&gt;    m        625
+## 9 &lt;NA&gt;    &lt;NA&gt;      71</code></pre>
+</div>
+<div id="шинэ-багана-1" class="section level3 unnumbered">
+<h3>Шинэ багана<a class="anchor" aria-label="anchor" href="#%D1%88%D0%B8%D0%BD%D1%8D-%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Мөн <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> <em>дотор</em> бүлэглэх шинэ баганыг оруулж бичиж болно. Энэ нь <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>хийхийн өмнө <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> хийхьэй адил үйлдэл юм. Богино хугацаанд бүлэглэсэн хүснэгт үүсгэх үед энэ аргыг хэрэглэх нь хялбар боловч кодоо илүү тодорхой болгох үүднээс шинээр үүсгэх баганаа тусдаа <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> -аар үүсгэж араас нь <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>-ыг pipe хийх нь илүү оновчтой байх болно.</p>
+<div class="sourceCode" id="cb638"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># group_by() комманд дотор үүсгэсэн binary баганын дагуу датаг бүлэглэсэн</span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>
+    age_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span>, <span class="st">"adult"</span>, <span class="st">"child"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span>sort <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   age_class     n
+##   &lt;chr&gt;     &lt;int&gt;
+## 1 child      3618
+## 2 adult      2184
+## 3 &lt;NA&gt;         86</code></pre>
+</div>
+<div id="бүлэглэх-баганыг-нэмжхасах" class="section level3 unnumbered">
+<h3>Бүлэглэх баганыг нэмж/хасах<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85-%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%8B%D0%B3-%D0%BD%D1%8D%D0%BC%D0%B6%D1%85%D0%B0%D1%81%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хэрэв өмнө нь бүлэглэсэн байсан датанд <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> коммандыг уншуулахад хуучин бүлэг арилж шинэ бүлэг үүсдэг. Хэрэв хуучин бүлэг дээр нэмж бүлэг оруулах бол <code>.add = TRUE</code> аргументэд нэмж зааж өг.</p>
+<div class="sourceCode" id="cb640"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># outcome баганын дагуу бүлэглэгдсэн</span>
+<span class="va">by_outcome</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span>
+
+<span class="co"># gender  баганын дагуу нэмж бүлэглэ</span>
+<span class="va">by_outcome_gender</span> <span class="op">&lt;-</span> <span class="va">by_outcome</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">gender</span>, .add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>** Бүх бүлгийг үлдээх**</p>
+<p>Хэрэв фактор ангилалтай баганаар бүлэг үүсгэж байх явцад тухайн ангиллын аль нэг түвшинд хамрах утга датанд байхгүй байж болно. Энэ үед энэхүү хоосон түвшин хасагдаж, энэ түвшинд бүлэг үүсэхгүй. Хэрэв тухайн утга датанд байхгүй байсан ч гэсэн бүлэг болж орох шаардлагатай бол <code>.drop = FALSE</code> гэж <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>-ын аргументийг тохируул.</p>
+</div>
+</div>
+<div id="бүлгийг-задлах" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> Бүлгийг задлах<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D0%B3%D0%B8%D0%B9%D0%B3-%D0%B7%D0%B0%D0%B4%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Тусгайлан <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> гэсэн коммандаар задлахаас нааш бүлэг датанд оршсоор байх болно. Хэрэв бүлгийг буцааж задлахаа мартвал буруу тооцоололд хүрэх аюултай ! Доор жишээнд хэрхэн бүх бүлгийг задлахыг харуулав:</p>
+<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span>, <span class="va">gender</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Мөн тодорхой нэг баганыг <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> дотор оруулж комманд өгснөөр зөвхөн тухайн баганын бүлгийг л арилгаж болно.</p>
+<div class="sourceCode" id="cb642"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span>, <span class="va">gender</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span> <span class="co"># gender-ын бүлгийг арилгаж, outcome-ын бүлэгүүдийг үлдээ</span></code></pre></div>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> функцыг уншуулсны дараа бүлгүүд автоматаар буцаж задардаг .</span></p>
+</div>
+<div id="group_summarise" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> Нэгтгэх<a class="anchor" aria-label="anchor" href="#group_summarise"><i class="fas fa-link"></i></a>
+</h2>
+<p>[Descriptive tables] хуудсын <strong>dplyr</strong> -ын талаар бичсэн хэсэгт <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> функцээр хэрхэн хураангуй хүснэгт үүсгэх талаар илүү тайлбарласан. Энд гол тайлбарлах зүйл бол бүлэг үүсгэснээр энэ үйлдлйин хэв шинж нь хэрхэн өөрчлөгдөхийг товчхон харуулна.</p>
+<p><strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> (эсвэл <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>) функц хүснэгтэндэх датаг янзалж баганууддаа статистик дүнтэй хураагуй хүснэгтийг <em>шинээр</em> үүсгэдэг. Бүлэглээгүй датанп статистикийн дүн бүх мөрөнд тооцоолсны дүнд тавигддаг. Харин бүлэглэсэн датанд <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>-ыг оруулбал статистикийн тооцоо <em>бүлэг тус бүрт</em> бодогддог.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> -ын синтаксыг бичихдээ эхлээд <strong>шинэ</strong> үүсгэх тооцооны дүнтэй баганын нэрс, тэнцүүгийн тэмдэг, датанд хийх статистикийн бодолт хийх функцыг бичнэ.Жишээ нь <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>, <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code> зэрэг статистик функцууд байж болно. Статистикийн функцууд дотор бодолтод оролцох баганууд болон бусад нэмэнлт аргументуудыг (<code>na.rm = TRUE</code> гэх мэт) бичнэ. Мөн <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> -ыг хэрэглэж логик шалгуурт тэнцсэн мөрийн тоог гаргаж болно (давхар тэнцүүгийн тэмдэгтэйгээр <code>==</code>).</p>
+<p>Дор жишээнд <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> -ыг <em>бүлэглээгүй датанд</em> хэрэглэсэн байна. Статистикийн дүн нь нийт бүх мөрөнд тооцоолол хийсний дүнд гарсан.</p>
+<div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># бүлэглээгүй linelist дээр статистикийн хураангуй бодож гаргах</span>
+<span class="va">linelist</span> |&gt; 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
+    n_cases  <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+    mean_age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age_years</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+    max_age  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">age_years</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+    min_age  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">age_years</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+    n_males  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">gender</span> <span class="op">==</span> <span class="st">"m"</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##   n_cases mean_age max_age min_age n_males
+## 1    5888 16.01831      84       0    2803</code></pre>
+<p>Харин удаах жишээнд <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> функцийг бүлэглэсэн дата дээр ашиглаж байна. <code>outcome</code> баганын бүлэг тус бүрт статистикийн бодолт хийгдсэн. Бүлэглэсэн баганууд шинэ датафрэйм рүү хэрхэн шилжиж буйг анхаарна уу.</p>
+<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># бүлэглэсэн linelist дээр статистикийн хураангуй бодож гаргах</span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
+    n_cases  <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+    mean_age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age_years</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+    max_age  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">age_years</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+    min_age  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">age_years</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+    n_males    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">gender</span> <span class="op">==</span> <span class="st">"m"</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 6
+##   outcome n_cases mean_age max_age min_age n_males
+##   &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+## 1 Death      2582     15.9      76       0    1228
+## 2 Recover    1983     16.1      84       0     950
+## 3 &lt;NA&gt;       1323     16.2      69       0     625</code></pre>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> summarise функцын UK (<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>) болон US (<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>) хувилбарууд ижил. </span></p>
+</div>
+<div id="тоолж-бүртгэх" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> Тоолж, бүртгэх<a class="anchor" aria-label="anchor" href="#%D1%82%D0%BE%D0%BE%D0%BB%D0%B6-%D0%B1%D2%AF%D1%80%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> болон <code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code> төстэй үйлдэл хийдэг боловч өөр. <code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code> болон <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>-н лгааны талаар <a href="https://dplyr.tidyverse.org/reference/tally.html">here</a>-ээс олж уншна уу.</p>
+<div id="tally" class="section level3 unnumbered">
+<h3>
+<code>tally()</code><a class="anchor" aria-label="anchor" href="#tally"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code> бол <code>summarise(n = n())</code>коммандын богино хувилбар ба датаг <em>бүлэглэдэггүй</em>. Тиймээс бүлэглэсэн датанд хэрэглэх бол <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> -ын араас залгуулж хэрэглэдэг. Мөн үүн дээр <code>sort = TRUE</code> гэж аргументийг тохируулснаар хамгийн том бүлгийг эхэнд жагсааж болно.</p>
+<div class="sourceCode" id="cb647"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>##      n
+## 1 5888</code></pre>
+<div class="sourceCode" id="cb649"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span>sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   outcome     n
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 Death    2582
+## 2 Recover  1983
+## 3 &lt;NA&gt;     1323</code></pre>
+</div>
+<div id="count" class="section level3 unnumbered">
+<h3>
+<code>count()</code><a class="anchor" aria-label="anchor" href="#count"><i class="fas fa-link"></i></a>
+</h3>
+<p>Харин <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> функц дараах үйлдлүүдийг хийдэг:</p>
+<ol style="list-style-type: decimal">
+<li>тодорхой заасан багануудад <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>-г хэрэглэдэг.</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> хэрэглэсний дүнд <code>n</code> баганад бүлэг тус бүр хэдэн мөр агуулагдаж буйг тоолж гаргадаг.</li>
+<li>мөн <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> хийгддэг.</li>
+</ol>
+<div class="sourceCode" id="cb651"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span></code></pre></div>
+<pre><code>##   outcome    n
+## 1   Death 2582
+## 2 Recover 1983
+## 3    &lt;NA&gt; 1323</code></pre>
+<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> -ийн адил <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> комманд бас шинэ багана үүсгэдэг:</p>
+<div class="sourceCode" id="cb653"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span>age_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span>, <span class="st">"adult"</span>, <span class="st">"child"</span><span class="op">)</span>, sort <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<pre><code>##   age_class    n
+## 1     child 3618
+## 2     adult 2184
+## 3      &lt;NA&gt;   86</code></pre>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> функцыг олон дахин дуудаж болно (өнхрүүлэх байдлаар). Жишээ нь хүйс тус бүрт ноогдох эмнэлэгийн тоог гаргахдаа доорх коммандыг өгнө. Хамгийн арын багана нь автоматаар “n” гэж нэрлэгдсэн байснаа ( <code>name  =</code> аргументээр) өөрчлөгдөж илүү тодорхой нэртэй болсон байна.</p>
+<div class="sourceCode" id="cb655"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># outcome-gender -ын хавсарч үүссэн бүлгүүдэд ноогдох мөрийг тоолох</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">gender</span>, <span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># gather rows by gender (3) and count number of hospitals per gender (6)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">gender</span>, name <span class="op">=</span> <span class="st">"hospitals per gender"</span> <span class="op">)</span> </code></pre></div>
+<pre><code>##   gender hospitals per gender
+## 1      f                    6
+## 2      m                    6
+## 3   &lt;NA&gt;                    6</code></pre>
+</div>
+<div id="тооллого-нэмэх" class="section level3 unnumbered">
+<h3>Тооллого нэмэх<a class="anchor" aria-label="anchor" href="#%D1%82%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%B3%D0%BE-%D0%BD%D1%8D%D0%BC%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Мөн <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code>-ээр тооллого хийж болох боловч <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> болон<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>-ээс ялгаатай. Энэ функцыг хэрэглэснээр <em>хуучин хүснэгт бүхлээрээ өөрчлөгдөхгүй</em> хэвээр байх ба бүлэг бүрийн тоог гаргасан шинэ <code>n</code> гэсэн багана нэмэгддэг.</p>
+<p>Өөрөөр хэлбэл шинэ <code>n</code> баганадах бүлэг тус бүрт агуулагдах мөрийн тоо тухайн бүлэгт хамаарах мөр болгонд бичигдэх болно гэсэн үг. Доор жишээнд ойлгомжтой харуулах үүднээс баганыг нэмээд дараа нь эрэмбэнд өөрчлөлт оруулсан болно. Мөн <a href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html#group_filter_grp_size">filter on group size</a> хэсэгт өөр нэгэн жишээ харуулсаныг олж үзнэ үү.</p>
+<div class="sourceCode" id="cb657"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                   <span class="co"># tibble болгож харагдах байдлыг сайжруулна</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">add_count</a></span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>           <span class="co"># эмнэлэгийн тоотой n баганыг нэм </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">hospital</span>, <span class="va">n</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># харахад хялбар болгох үүднээс дахин эрэмбэл</span></code></pre></div>
+<pre><code>## # A tibble: 5,888 x 31
+##    hospital                   n case_id generation date_infection date_onset
+##    &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;date&gt;         &lt;date&gt;    
+##  1 Other                    885 5fe599           4 2014-05-08     2014-05-13
+##  2 Missing                 1469 8689b7           4 NA             2014-05-13
+##  3 St. Mark's Maternity ~   422 11f8ea           2 NA             2014-05-16
+##  4 Port Hospital           1762 b8812a           3 2014-05-04     2014-05-18
+##  5 Military Hospital        896 893f25           3 2014-05-18     2014-05-21
+##  6 Port Hospital           1762 be99c8           3 2014-05-03     2014-05-22
+##  7 Missing                 1469 07e3e8           4 2014-05-22     2014-05-27
+##  8 Missing                 1469 369449           4 2014-05-28     2014-06-02
+##  9 Missing                 1469 f393b4           4 NA             2014-06-05
+## 10 Missing                 1469 1389ca           4 NA             2014-06-05
+## # ... with 5,878 more rows, and 25 more variables:
+## #   date_hospitalisation &lt;date&gt;, date_outcome &lt;date&gt;, outcome &lt;chr&gt;,
+## #   gender &lt;chr&gt;, age &lt;dbl&gt;, age_unit &lt;chr&gt;, age_years &lt;dbl&gt;,
+## #   age_cat &lt;fct&gt;, age_cat5 &lt;fct&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;, infector &lt;chr&gt;,
+## #   source &lt;chr&gt;, wt_kg &lt;dbl&gt;, ht_cm &lt;dbl&gt;, ct_blood &lt;dbl&gt;, fever &lt;chr&gt;,
+## #   chills &lt;chr&gt;, cough &lt;chr&gt;, aches &lt;chr&gt;, vomit &lt;chr&gt;, temp &lt;dbl&gt;,
+## #   time_admission &lt;chr&gt;, bmi &lt;dbl&gt;, days_onset_hosp &lt;dbl&gt;</code></pre>
+</div>
+<div id="нийт-дүнг-нэм" class="section level3 unnumbered">
+<h3>Нийт дүнг нэм<a class="anchor" aria-label="anchor" href="#%D0%BD%D0%B8%D0%B9%D1%82-%D0%B4%D2%AF%D0%BD%D0%B3-%D0%BD%D1%8D%D0%BC"><i class="fas fa-link"></i></a>
+</h3>
+<p>Нийт дүнг хялбар нэмэх арга бол <code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code> эсвэл <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> хэрэглэсний дараа мөр, баганын <em>нийлбэрийг</em> гаргах хэрэгтэй. Үүнийг <a href="#tbl_janitor">Descriptive tables</a> хуудасны <strong>janitor</strong> багцыг тайлбарласн хэсгээс үзнэ үү. Энэ багцад <code>adorn_totals()</code>, <code>adorn_percentages()</code> зэрэг нийт дүнг нэмж, хувь болгох гэх мэт олон функцууд агуулагддаг. Доор товч жишээ харуулья:</p>
+<div class="sourceCode" id="cb659"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                                  <span class="co"># case linelist</span>
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">age_cat</span>, <span class="va">gender</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                  <span class="co"># хоёр баганыг солбиж-хүснэгтлэн тоолох </span>
+  <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>             <span class="co"># нийт мөрийн нийлбэр</span>
+  <span class="fu">adorn_percentages</span><span class="op">(</span>denominator <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># баганын нийлбэрийг деноминатор (хуваариар) тооцож хувийг гаргах</span>
+  <span class="fu">adorn_pct_formatting</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                  <span class="co"># пропорцыг хувь болгож хувиргах</span>
+  <span class="fu">adorn_ns</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"front"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>            <span class="co"># : "тоо (хувь)" гэж харуулах</span>
+  <span class="fu">adorn_title</span><span class="op">(</span>                                <span class="co"># гарчигийг янзлах</span>
+    row_name <span class="op">=</span> <span class="st">"Age Category"</span>,
+    col_name <span class="op">=</span> <span class="st">"Gender"</span><span class="op">)</span></code></pre></div>
+<pre><code>##                      Gender                           
+##  Age Category             f             m          NA_
+##           0-4  640  (22.8%)  416  (14.8%)  39  (14.0%)
+##           5-9  641  (22.8%)  412  (14.7%)  42  (15.1%)
+##         10-14  518  (18.5%)  383  (13.7%)  40  (14.4%)
+##         15-19  359  (12.8%)  364  (13.0%)  20   (7.2%)
+##         20-29  468  (16.7%)  575  (20.5%)  30  (10.8%)
+##         30-49  179   (6.4%)  557  (19.9%)  18   (6.5%)
+##         50-69    2   (0.1%)   91   (3.2%)   2   (0.7%)
+##           70+    0   (0.0%)    5   (0.2%)   1   (0.4%)
+##          &lt;NA&gt;    0   (0.0%)    0   (0.0%)  86  (30.9%)
+##         Total 2807 (100.0%) 2803 (100.0%) 278 (100.0%)</code></pre>
+<p><em>Нийлбэрээс</em> өөр нарийн статистикийн бодолтыг мөр дагуу бодож гаргах бол <a href="#tbl_dplyr_totals">this section of the Descriptive Tables page</a> хэсгээс харна уу.</p>
+</div>
+</div>
+<div id="он-сараар-бүлэглэх" class="section level2" number="13.6">
+<h2>
+<span class="header-section-number">13.6</span> Он сараар бүлэглэх<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%BD-%D1%81%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Огноогоор бүлэглэхдээ огнооны нэгжийг (өдөр, тархварзүйн долоо хоног, сар гэх мэт) бичих нэг илүү багана байлгах (үүсгэх) хэрэг гардаг. Үүнийг [Working with dates] хуудасны <a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#dates_epi_wks">Epidemiological weeks section</a> хэсэгт заасны дагуу <strong>lubridate</strong>-ын <code>floor_date()</code> -аар үүсгэж болно. Энэ баганыг үүсгэсний дараа <strong>dplyr</strong>-ын <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> -аар мөрүүдийг огноогоор бүлэглэж, нэгтгэсэн тоог гаргаж болно.</p>
+<p>Огноотой ажиллаж байхад нэмэлтээр хийгддэг өөр нэгэн нийтлэг алхам бол датанд байхгүй ямар нэг огноог дарааллын дагуу “бөглөх” юм.
+Нэгтгэгдсэн огнооны дараалалд <strong>tidyr</strong>-ын <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> -ыг хэрэглэвэл <em>тухайн хүрээнд байж болох бүх нэгжийг оруулан</em> огнооны дараалал<em>гүйцэд</em> болддог. Энэ алхмыг хийгэгүй тохиолдолд өвчин илрээгүй долоо хоногууд датанд харагдахгүй!</p>
+<p>Ингэхдээ <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> дотор огноотой баганаа <code><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date()</a></code>-ийн багаас ихсэх <em>дарааллаар</em> <em>дахин зааж өгөх</em> хэрэгтэй бөгөөд, улмаар огнооны дараалал өргөжих болно. Энэхүү өргөжиж нэмэгдсэн шинэ огноонд тохиолдлын тоо <code>NA</code> гэж гарч ирдэг. Үүнийг <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code>-ын <code>fill =</code> аргументэд 0 гэж зааж өгч засаж болно. which expects a named list (хэрэв тохиолдлын тоотой баганын нэр <code>n</code> гэж нэрлэгдсэн байгаа бол <code>fill = list(n = 0)</code> гэж зааж өгнө. Энэ аргументийн өгөдөл нэртэй list байдаг. Энэ талаар <code><a href="https://tidyr.tidyverse.org/reference/complete.html">?complete</a></code> хуудас болон <a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#dates_epi_wks">Working with dates</a> хуудасны жишээнүүдэд илүү тайлбарласан ).</p>
+<div id="linelist-тохиолдлуудыг-өдөр-бүрээр-бүлэглэх" class="section level3 unnumbered">
+<h3>Linelist тохиолдлуудыг өдөр бүрээр бүлэглэх<a class="anchor" aria-label="anchor" href="#linelist-%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D3%A9%D0%B4%D3%A9%D1%80-%D0%B1%D2%AF%D1%80%D1%8D%D1%8D%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энд<code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code>функцыг <em>хэрэглээгүй</em> байдлаар тохиолдлын тоог өдрөөр бүлэглэх коммандыг харуулав. Тохиолдол илрээгүй эхний өдрүүдийг алгасч харуулсан байгааг анзаарна уу.</p>
+<div class="sourceCode" id="cb661"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">daily_counts</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>        <span class="co"># date_onset бичигдээгүй тохиолдлуудыг арилгана</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span>              <span class="co"># огноо бүрт ноогдох тохиолдлын тоог тоол</span></code></pre></div>
+<div id="htmlwidget-a51ddb45e57291ffcbb3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a51ddb45e57291ffcbb3">{"x":{"filter":"none","vertical":false,"data":[["2014-04-07","2014-04-15","2014-04-21","2014-04-25","2014-04-26","2014-04-27","2014-05-01","2014-05-03","2014-05-04","2014-05-05","2014-05-06","2014-05-07","2014-05-08","2014-05-09","2014-05-10","2014-05-11","2014-05-12","2014-05-13","2014-05-14","2014-05-16","2014-05-17","2014-05-18","2014-05-19","2014-05-20","2014-05-21","2014-05-22","2014-05-23","2014-05-24","2014-05-25","2014-05-26","2014-05-27","2014-05-28","2014-05-29","2014-05-30","2014-05-31","2014-06-02","2014-06-03","2014-06-05","2014-06-06","2014-06-07","2014-06-08","2014-06-09","2014-06-10","2014-06-11","2014-06-12","2014-06-13","2014-06-14","2014-06-15","2014-06-16","2014-06-17","2014-06-18","2014-06-19","2014-06-20","2014-06-21","2014-06-22","2014-06-23","2014-06-24","2014-06-25","2014-06-26","2014-06-27","2014-06-28","2014-06-29","2014-06-30","2014-07-01","2014-07-02","2014-07-03","2014-07-04","2014-07-05","2014-07-06","2014-07-07","2014-07-08","2014-07-09","2014-07-10","2014-07-11","2014-07-12","2014-07-13","2014-07-14","2014-07-15","2014-07-16","2014-07-17","2014-07-18","2014-07-19","2014-07-20","2014-07-21","2014-07-22","2014-07-23","2014-07-24","2014-07-25","2014-07-26","2014-07-27","2014-07-28","2014-07-29","2014-07-30","2014-07-31","2014-08-01","2014-08-02","2014-08-03","2014-08-04","2014-08-05","2014-08-06","2014-08-07","2014-08-08","2014-08-09","2014-08-10","2014-08-11","2014-08-12","2014-08-13","2014-08-14","2014-08-15","2014-08-16","2014-08-17","2014-08-18","2014-08-19","2014-08-20","2014-08-21","2014-08-22","2014-08-23","2014-08-24","2014-08-25","2014-08-26","2014-08-27","2014-08-28","2014-08-29","2014-08-30","2014-08-31","2014-09-01","2014-09-02","2014-09-03","2014-09-04","2014-09-05","2014-09-06","2014-09-07","2014-09-08","2014-09-09","2014-09-10","2014-09-11","2014-09-12","2014-09-13","2014-09-14","2014-09-15","2014-09-16","2014-09-17","2014-09-18","2014-09-19","2014-09-20","2014-09-21","2014-09-22","2014-09-23","2014-09-24","2014-09-25","2014-09-26","2014-09-27","2014-09-28","2014-09-29","2014-09-30","2014-10-01","2014-10-02","2014-10-03","2014-10-04","2014-10-05","2014-10-06","2014-10-07","2014-10-08","2014-10-09","2014-10-10","2014-10-11","2014-10-12","2014-10-13","2014-10-14","2014-10-15","2014-10-16","2014-10-17","2014-10-18","2014-10-19","2014-10-20","2014-10-21","2014-10-22","2014-10-23","2014-10-24","2014-10-25","2014-10-26","2014-10-27","2014-10-28","2014-10-29","2014-10-30","2014-10-31","2014-11-01","2014-11-02","2014-11-03","2014-11-04","2014-11-05","2014-11-06","2014-11-07","2014-11-08","2014-11-09","2014-11-10","2014-11-11","2014-11-12","2014-11-13","2014-11-14","2014-11-15","2014-11-16","2014-11-17","2014-11-18","2014-11-19","2014-11-20","2014-11-21","2014-11-22","2014-11-23","2014-11-24","2014-11-25","2014-11-26","2014-11-27","2014-11-28","2014-11-29","2014-11-30","2014-12-01","2014-12-02","2014-12-03","2014-12-04","2014-12-05","2014-12-06","2014-12-07","2014-12-08","2014-12-09","2014-12-10","2014-12-11","2014-12-12","2014-12-13","2014-12-14","2014-12-15","2014-12-16","2014-12-17","2014-12-18","2014-12-19","2014-12-20","2014-12-21","2014-12-22","2014-12-23","2014-12-24","2014-12-25","2014-12-26","2014-12-27","2014-12-28","2014-12-29","2014-12-30","2014-12-31","2015-01-01","2015-01-02","2015-01-03","2015-01-04","2015-01-05","2015-01-06","2015-01-07","2015-01-08","2015-01-09","2015-01-10","2015-01-11","2015-01-12","2015-01-13","2015-01-14","2015-01-15","2015-01-16","2015-01-17","2015-01-18","2015-01-19","2015-01-20","2015-01-21","2015-01-22","2015-01-23","2015-01-24","2015-01-25","2015-01-26","2015-01-27","2015-01-28","2015-01-29","2015-01-30","2015-01-31","2015-02-01","2015-02-02","2015-02-03","2015-02-04","2015-02-05","2015-02-06","2015-02-07","2015-02-08","2015-02-09","2015-02-10","2015-02-11","2015-02-12","2015-02-13","2015-02-14","2015-02-15","2015-02-16","2015-02-17","2015-02-18","2015-02-19","2015-02-20","2015-02-21","2015-02-22","2015-02-23","2015-02-24","2015-02-25","2015-02-26","2015-02-27","2015-02-28","2015-03-01","2015-03-02","2015-03-03","2015-03-04","2015-03-05","2015-03-06","2015-03-07","2015-03-08","2015-03-09","2015-03-10","2015-03-11","2015-03-12","2015-03-13","2015-03-14","2015-03-15","2015-03-16","2015-03-17","2015-03-18","2015-03-19","2015-03-20","2015-03-21","2015-03-22","2015-03-23","2015-03-24","2015-03-25","2015-03-26","2015-03-27","2015-03-28","2015-03-29","2015-03-30","2015-03-31","2015-04-01","2015-04-02","2015-04-03","2015-04-04","2015-04-05","2015-04-06","2015-04-07","2015-04-08","2015-04-09","2015-04-10","2015-04-11","2015-04-12","2015-04-13","2015-04-14","2015-04-15","2015-04-16","2015-04-17","2015-04-18","2015-04-19","2015-04-20","2015-04-21","2015-04-22","2015-04-23","2015-04-24","2015-04-25","2015-04-26","2015-04-27","2015-04-28","2015-04-29","2015-04-30"],[1,1,2,1,1,1,2,1,1,1,3,2,2,2,1,1,2,3,3,2,3,4,2,1,3,1,2,1,3,3,10,1,1,1,2,5,3,4,4,5,1,5,5,3,1,1,2,5,6,4,2,3,7,3,4,2,6,5,3,1,2,2,6,4,3,5,6,5,3,3,7,7,5,4,6,6,10,10,6,6,10,7,11,4,6,11,9,10,7,12,6,15,14,8,9,16,13,18,18,9,9,9,10,13,17,7,17,12,17,31,13,14,14,19,17,26,19,25,21,16,24,23,25,25,22,27,25,28,30,22,33,30,36,33,23,31,27,30,42,40,50,37,38,38,49,52,35,50,37,38,33,33,39,39,45,34,44,29,40,50,41,39,35,28,36,34,37,36,36,34,43,28,38,33,37,29,33,44,43,24,37,30,35,24,37,44,34,40,30,34,26,29,33,31,22,26,26,19,30,24,29,24,21,19,11,22,20,23,32,33,28,15,20,24,18,20,19,22,17,32,21,20,23,17,15,18,20,19,18,21,18,16,20,15,18,15,18,18,15,15,19,18,19,11,15,19,11,13,13,12,11,14,18,17,10,15,16,12,17,19,14,12,18,14,14,15,11,13,21,11,14,11,13,12,14,11,10,16,10,15,13,13,10,11,8,11,11,11,8,9,8,8,10,8,9,11,13,13,16,13,11,16,6,8,10,16,11,11,8,11,16,9,10,8,14,7,10,11,11,7,5,11,6,8,9,13,9,7,9,4,9,7,13,2,7,9,5,5,10,12,10,3,6,4,5,11,3,7,6,7,9,3,7,4,9,6,5,5,9,4,4,4,9,7,8,2,2]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>date_onset<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>Энд <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> коммандыг ашиглаж тодорхой хугацаандах бүх өдрүүдийг гарч ирдэг болгоё.</p>
+<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">daily_counts</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                 <span class="co"># date_onset бичигдээгүй тохиолдлуудыг арилгана</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                   <span class="co"># огноо бүрт ноогдох тохиолдлын тоог тоол</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span>                               <span class="co"># тохиолдол илрээгүй ч бүх өдөр харагдах болно</span>
+    date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span>                <span class="co"># огноотой баганыг өдөр тутмыг харуулсан байдлаар зааж өгнө.</span>
+      from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">date_onset</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>, 
+      to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">date_onset</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+      by <span class="op">=</span> <span class="st">"day"</span><span class="op">)</span>,
+    fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>                   <span class="co"># n баганын 0 тохиолдолтой мөрүүдийг бөглөх  ( автоматаар гарах NA-ын оронд) </span></code></pre></div>
+<div id="htmlwidget-622015397bb91b646c0c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-622015397bb91b646c0c">{"x":{"filter":"none","vertical":false,"data":[["2014-04-07","2014-04-15","2014-04-21","2014-04-25","2014-04-26","2014-04-27","2014-05-01","2014-05-03","2014-05-04","2014-05-05","2014-05-06","2014-05-07","2014-05-08","2014-05-09","2014-05-10","2014-05-11","2014-05-12","2014-05-13","2014-05-14","2014-05-16","2014-05-17","2014-05-18","2014-05-19","2014-05-20","2014-05-21","2014-05-22","2014-05-23","2014-05-24","2014-05-25","2014-05-26","2014-05-27","2014-05-28","2014-05-29","2014-05-30","2014-05-31","2014-06-02","2014-06-03","2014-06-05","2014-06-06","2014-06-07","2014-06-08","2014-06-09","2014-06-10","2014-06-11","2014-06-12","2014-06-13","2014-06-14","2014-06-15","2014-06-16","2014-06-17","2014-06-18","2014-06-19","2014-06-20","2014-06-21","2014-06-22","2014-06-23","2014-06-24","2014-06-25","2014-06-26","2014-06-27","2014-06-28","2014-06-29","2014-06-30","2014-07-01","2014-07-02","2014-07-03","2014-07-04","2014-07-05","2014-07-06","2014-07-07","2014-07-08","2014-07-09","2014-07-10","2014-07-11","2014-07-12","2014-07-13","2014-07-14","2014-07-15","2014-07-16","2014-07-17","2014-07-18","2014-07-19","2014-07-20","2014-07-21","2014-07-22","2014-07-23","2014-07-24","2014-07-25","2014-07-26","2014-07-27","2014-07-28","2014-07-29","2014-07-30","2014-07-31","2014-08-01","2014-08-02","2014-08-03","2014-08-04","2014-08-05","2014-08-06","2014-08-07","2014-08-08","2014-08-09","2014-08-10","2014-08-11","2014-08-12","2014-08-13","2014-08-14","2014-08-15","2014-08-16","2014-08-17","2014-08-18","2014-08-19","2014-08-20","2014-08-21","2014-08-22","2014-08-23","2014-08-24","2014-08-25","2014-08-26","2014-08-27","2014-08-28","2014-08-29","2014-08-30","2014-08-31","2014-09-01","2014-09-02","2014-09-03","2014-09-04","2014-09-05","2014-09-06","2014-09-07","2014-09-08","2014-09-09","2014-09-10","2014-09-11","2014-09-12","2014-09-13","2014-09-14","2014-09-15","2014-09-16","2014-09-17","2014-09-18","2014-09-19","2014-09-20","2014-09-21","2014-09-22","2014-09-23","2014-09-24","2014-09-25","2014-09-26","2014-09-27","2014-09-28","2014-09-29","2014-09-30","2014-10-01","2014-10-02","2014-10-03","2014-10-04","2014-10-05","2014-10-06","2014-10-07","2014-10-08","2014-10-09","2014-10-10","2014-10-11","2014-10-12","2014-10-13","2014-10-14","2014-10-15","2014-10-16","2014-10-17","2014-10-18","2014-10-19","2014-10-20","2014-10-21","2014-10-22","2014-10-23","2014-10-24","2014-10-25","2014-10-26","2014-10-27","2014-10-28","2014-10-29","2014-10-30","2014-10-31","2014-11-01","2014-11-02","2014-11-03","2014-11-04","2014-11-05","2014-11-06","2014-11-07","2014-11-08","2014-11-09","2014-11-10","2014-11-11","2014-11-12","2014-11-13","2014-11-14","2014-11-15","2014-11-16","2014-11-17","2014-11-18","2014-11-19","2014-11-20","2014-11-21","2014-11-22","2014-11-23","2014-11-24","2014-11-25","2014-11-26","2014-11-27","2014-11-28","2014-11-29","2014-11-30","2014-12-01","2014-12-02","2014-12-03","2014-12-04","2014-12-05","2014-12-06","2014-12-07","2014-12-08","2014-12-09","2014-12-10","2014-12-11","2014-12-12","2014-12-13","2014-12-14","2014-12-15","2014-12-16","2014-12-17","2014-12-18","2014-12-19","2014-12-20","2014-12-21","2014-12-22","2014-12-23","2014-12-24","2014-12-25","2014-12-26","2014-12-27","2014-12-28","2014-12-29","2014-12-30","2014-12-31","2015-01-01","2015-01-02","2015-01-03","2015-01-04","2015-01-05","2015-01-06","2015-01-07","2015-01-08","2015-01-09","2015-01-10","2015-01-11","2015-01-12","2015-01-13","2015-01-14","2015-01-15","2015-01-16","2015-01-17","2015-01-18","2015-01-19","2015-01-20","2015-01-21","2015-01-22","2015-01-23","2015-01-24","2015-01-25","2015-01-26","2015-01-27","2015-01-28","2015-01-29","2015-01-30","2015-01-31","2015-02-01","2015-02-02","2015-02-03","2015-02-04","2015-02-05","2015-02-06","2015-02-07","2015-02-08","2015-02-09","2015-02-10","2015-02-11","2015-02-12","2015-02-13","2015-02-14","2015-02-15","2015-02-16","2015-02-17","2015-02-18","2015-02-19","2015-02-20","2015-02-21","2015-02-22","2015-02-23","2015-02-24","2015-02-25","2015-02-26","2015-02-27","2015-02-28","2015-03-01","2015-03-02","2015-03-03","2015-03-04","2015-03-05","2015-03-06","2015-03-07","2015-03-08","2015-03-09","2015-03-10","2015-03-11","2015-03-12","2015-03-13","2015-03-14","2015-03-15","2015-03-16","2015-03-17","2015-03-18","2015-03-19","2015-03-20","2015-03-21","2015-03-22","2015-03-23","2015-03-24","2015-03-25","2015-03-26","2015-03-27","2015-03-28","2015-03-29","2015-03-30","2015-03-31","2015-04-01","2015-04-02","2015-04-03","2015-04-04","2015-04-05","2015-04-06","2015-04-07","2015-04-08","2015-04-09","2015-04-10","2015-04-11","2015-04-12","2015-04-13","2015-04-14","2015-04-15","2015-04-16","2015-04-17","2015-04-18","2015-04-19","2015-04-20","2015-04-21","2015-04-22","2015-04-23","2015-04-24","2015-04-25","2015-04-26","2015-04-27","2015-04-28","2015-04-29","2015-04-30"],[1,1,2,1,1,1,2,1,1,1,3,2,2,2,1,1,2,3,3,2,3,4,2,1,3,1,2,1,3,3,10,1,1,1,2,5,3,4,4,5,1,5,5,3,1,1,2,5,6,4,2,3,7,3,4,2,6,5,3,1,2,2,6,4,3,5,6,5,3,3,7,7,5,4,6,6,10,10,6,6,10,7,11,4,6,11,9,10,7,12,6,15,14,8,9,16,13,18,18,9,9,9,10,13,17,7,17,12,17,31,13,14,14,19,17,26,19,25,21,16,24,23,25,25,22,27,25,28,30,22,33,30,36,33,23,31,27,30,42,40,50,37,38,38,49,52,35,50,37,38,33,33,39,39,45,34,44,29,40,50,41,39,35,28,36,34,37,36,36,34,43,28,38,33,37,29,33,44,43,24,37,30,35,24,37,44,34,40,30,34,26,29,33,31,22,26,26,19,30,24,29,24,21,19,11,22,20,23,32,33,28,15,20,24,18,20,19,22,17,32,21,20,23,17,15,18,20,19,18,21,18,16,20,15,18,15,18,18,15,15,19,18,19,11,15,19,11,13,13,12,11,14,18,17,10,15,16,12,17,19,14,12,18,14,14,15,11,13,21,11,14,11,13,12,14,11,10,16,10,15,13,13,10,11,8,11,11,11,8,9,8,8,10,8,9,11,13,13,16,13,11,16,6,8,10,16,11,11,8,11,16,9,10,8,14,7,10,11,11,7,5,11,6,8,9,13,9,7,9,4,9,7,13,2,7,9,5,5,10,12,10,3,6,4,5,11,3,7,6,7,9,3,7,4,9,6,5,5,9,4,4,4,9,7,8,2,2]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>date_onset<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="linelist-тохиолдлуудыг-долоо-хоног-бүрээр-бүлэглэх" class="section level3 unnumbered">
+<h3>Linelist тохиолдлуудыг долоо хоног бүрээр бүлэглэх<a class="anchor" aria-label="anchor" href="#linelist-%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3-%D0%B1%D2%AF%D1%80%D1%8D%D1%8D%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Долоо хоног бүрийн тоог мөн дээрхитэй адил зарчмаар хийнэ. Эхлээд <code>floor_date()</code> -ын нэгжийг <code>unit = "week"</code>хэмээн тохируулж тохиолдол бүрийн илэрсэн дотоо хоногийн дугаарыг тавьна. Дараа нь<code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> -аар дээрхийн адил долоо хоног бүрт ноогдох тохиолдлын тоог харуулна. Энэ комманд дээрээ <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> -ыг нэмбэл тохиолдол илрээгүй ч гэсэн бүх долоо хоног харуулах болно.</p>
+<div class="sourceCode" id="cb663"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Тохиолдлын тоог долоо хоног бүрээр харуулсан хүснэгт байгуул</span>
+<span class="va">weekly_counts</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                 <span class="co"># date_onset бичигдээгүй тохиолдлуудыг арилгана</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">floor_date</a></span><span class="op">(</span><span class="va">date_onset</span>, unit <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># өвчин эхлэл бүртгэгдсэн долоо хоногийн дугаартай багана</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                         <span class="co"># долоо хоног бүрээр датаг бүлэглэж, бүлэг бүрт ноогдох мөрийн тоог тоол</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span>                               <span class="co"># тохиолдол илрээгүй ч гэсэн бүх долоо хоногууд гарч ирдэг болго </span>
+    week <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span>                      <span class="co"># огноотой баганыг өдөр тутмыг харуулсан байдлаар зааж өгнө.</span>
+      from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">week</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>, 
+      to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">week</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+      by <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span>,
+    fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>                   <span class="co"># n баганын 0 тохиолдолтой мөрүүдийг бөглөх  ( автоматаар гарах NA-ын оронд)  </span></code></pre></div>
+<p>Шинээр байгуулсан хүснэгтийн эхний 50 мөрийг дор харуулав:</p>
+<div id="htmlwidget-2bc6f200f442d6a4b310" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2bc6f200f442d6a4b310">{"x":{"filter":"none","vertical":false,"data":[["2014-04-06","2014-04-13","2014-04-20","2014-04-27","2014-05-04","2014-05-11","2014-05-18","2014-05-25","2014-06-01","2014-06-08","2014-06-15","2014-06-22","2014-06-29","2014-07-06","2014-07-13","2014-07-20","2014-07-27","2014-08-03","2014-08-10","2014-08-17","2014-08-24","2014-08-31","2014-09-07","2014-09-14","2014-09-21","2014-09-28","2014-10-05","2014-10-12","2014-10-19","2014-10-26","2014-11-02","2014-11-09","2014-11-16","2014-11-23","2014-11-30","2014-12-07","2014-12-14","2014-12-21","2014-12-28","2015-01-04","2015-01-11","2015-01-18","2015-01-25","2015-02-01","2015-02-08","2015-02-15","2015-02-22","2015-03-01","2015-03-08","2015-03-15","2015-03-22","2015-03-29","2015-04-05","2015-04-12","2015-04-19","2015-04-26"],[1,1,4,4,12,14,14,21,21,18,30,23,31,35,55,58,80,86,114,122,159,187,210,294,278,270,263,252,243,241,223,176,140,170,151,130,123,122,94,101,106,99,87,80,66,80,80,76,68,61,51,58,39,45,37,28]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="linelist-тохиолдлуудыг-сар-бүрээр-бүлэглэх" class="section level3 unnumbered">
+<h3>Linelist тохиолдлуудыг сар бүрээр бүлэглэх<a class="anchor" aria-label="anchor" href="#linelist-%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%81%D0%B0%D1%80-%D0%B1%D2%AF%D1%80%D1%8D%D1%8D%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Тохиолдлыг сар бүрээр харуулахад мөн <strong>lubridate</strong> багцын <code>floor_date()</code> -ыг хэрэглэнэ. Гэхдээ нэгжийн аргументэд <code>unit = "months"</code> гэж тохируулна. Ингэснээр огноо бүр тухайн сарынхаа эхний өдөрт хураагддаг. Үүний үр дүнд огноо хэлбэрийн дататай багана үүснэ. Энэ үед <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> алхмыг хийхдээ <code>by = "months"</code> гэж аргументээ тохируулна гэдгийг анхаарна уу.</p>
+<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Тохиолдлын тоог сар бүрээр харуулсан хүснэгт байгуул</span>
+<span class="va">monthly_counts</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">floor_date</a></span><span class="op">(</span><span class="va">date_onset</span>, unit <span class="op">=</span> <span class="st">"months"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># шинэ багана, өвчин эхэлсэн сарын эхний өдөр</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                          <span class="co"># сар бүрт ноогдох тохиолдлын тоо</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span>
+    month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">month</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,     <span class="co"># тохиолдол илрээгүй ч гэсэн бүх саруудыг гарч ирдэг болго</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">month</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>,
+      by<span class="op">=</span><span class="st">"month"</span><span class="op">)</span>,
+    fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-3a6c1bcb8fa2e1643ade" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3a6c1bcb8fa2e1643ade">{"x":{"filter":"none","vertical":false,"data":[["2014-04-01","2014-05-01","2014-06-01","2014-07-01","2014-08-01","2014-09-01","2014-10-01","2014-11-01","2014-12-01","2015-01-01","2015-02-01","2015-03-01","2015-04-01"],[7,64,100,226,528,1070,1112,763,562,431,306,277,186]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>month<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="өдөр-тутмын-тооллогыг-долоо-хоногт-шилжүүлэх" class="section level3 unnumbered">
+<h3>Өдөр тутмын тооллогыг долоо хоногт шилжүүлэх<a class="anchor" aria-label="anchor" href="#%D3%A9%D0%B4%D3%A9%D1%80-%D1%82%D1%83%D1%82%D0%BC%D1%8B%D0%BD-%D1%82%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%B3%D1%8B%D0%B3-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3%D1%82-%D1%88%D0%B8%D0%BB%D0%B6%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Өдөр тутмын тооллогыг долоо хоног бүрт шилжүүлэхдээ <code>floor_date()</code> -ыг дээрхийн адил ашиглана. Харин энэ удаад долоо хоногт ноогдох мөрийн тоо биш харин өдөр тутамд илэрсэн тохиолдлын тооны нийлбэрийг (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>) тогтоох хэрэгтэй учраас <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>биш оронд<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> функцуудыг хавсарч хэрэглэх шаардлагатай.</p>
+<div id="өдөр-тутмын-тооллогыг-сард-шилжүүлэх" class="section level4 unnumbered">
+<h4>Өдөр тутмын тооллогыг сард шилжүүлэх<a class="anchor" aria-label="anchor" href="#%D3%A9%D0%B4%D3%A9%D1%80-%D1%82%D1%83%D1%82%D0%BC%D1%8B%D0%BD-%D1%82%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%B3%D1%8B%D0%B3-%D1%81%D0%B0%D1%80%D0%B4-%D1%88%D0%B8%D0%BB%D0%B6%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Өдөр тутмын тооллогыг сар бүрт шилжүүлэхдээ <code>floor_date()</code> -ыг <code>unit = "month"</code> нэгжтэйгээр дээрхийн адил ашиглана. Харин энэ удаад сар бүрт ноогдох мөрийн тоо биш харин өдөр тутамд илэрсэн тохиолдлын тооны нийлбэрийг (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>) тогтоох хэрэгтэй учраас <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>биш оронд<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> функцуудыг хавсарч хэрэглэх шаардлагатай.</p>
+</div>
+</div>
+</div>
+<div id="бүлэглэсэн-датаг-эрэмбэлэх" class="section level2" number="13.7">
+<h2>
+<span class="header-section-number">13.7</span> Бүлэглэсэн датаг эрэмбэлэх<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%81%D1%8D%D0%BD-%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Бүлэглэсэн датаг <strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> -аар эрэмбэлэх явц бүлэглээгүй linelist хүснэгтийг эрэмбэлэхтэй адил. Харин энэ үед аргументийг тохируулбал <code>.by_group =TRUE</code> эхлээд бүлэглэсэн баганууд эрэмбэлэгдэж, дараа нь <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> оруулсан бусад баганууд эрэмбэлэгддэг.</p>
+</div>
+<div id="бүлэглэсэн-датаг-шүүх" class="section level2" number="13.8">
+<h2>
+<span class="header-section-number">13.8</span> Бүлэглэсэн датаг шүүх<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%81%D1%8D%D0%BD-%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D1%88%D2%AF%D2%AF%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<div id="filter" class="section level3 unnumbered">
+<h3>
+<code>filter()</code><a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
+</h3>
+<p>Дата хүснэгтийг шүүхдээ (filter) бусад функцтэй (<code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>зэрэг ) хавсарч хэрэглэдэг ба бүлэглэсэн хүснэгтэд мөн адил хамт хэрэглэж болно. Жишээ нь медианаас дээш настан агуулсан мөрүүдийг үлдээх үйлдлийг бүлэглэсэн хүснэгтэд хийж болно. Өөрөөр хэлбэл бүлгүүдийн медиан наснаас дээш нас агуулсан мөрийг үлдээнэ гэсэн үг.</p>
+</div>
+<div id="бүлгээр-хуваах" class="section level3 unnumbered">
+<h3>Бүлгээр хуваах<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D0%B3%D1%8D%D1%8D%D1%80-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хуваахдаа <strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>-ыг ашиглаж болно. Энэ нь мөрийг байрлалын дагуу шүүгдэг ба бүлэглэсэн датанд адилхан үйлчилнэ <a href="https://dplyr.tidyverse.org/reference/slice.html">filters rows based on their position</a>. Хүссэн хэсгүүдэд хуваахын тулд бүлэг тус бүрийг эхлээд дотор нь эрэмбэлэх хэрэгэтй гэдгийг анхаар.</p>
+<p>Жишээ нь эмнэлэг тус бүрд хэвтэгсдийн дундаас хамгйин сүүлийн 5-ыг сугалж авахын тулд:</p>
+<ol style="list-style-type: decimal">
+<li>linelist -ыг <code>hospital</code> баганын дугуу бүлэглэ</li>
+<li>
+<em>Эмнэлэг/бүлэг тус бүр доторх</em> эмнэлэгт хэвтсэн огноог хамгийн сүүлчээс хамгийн эртрүү чиглэлтэйгээр эрэмбэл</li>
+<li>Эмнэлэг тус бүрийн хамгийн эхний 5 мөрийг сугалж гаргаж ирнэ</li>
+</ol>
+<div class="sourceCode" id="cb665"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">hospital</span>, <span class="va">date_hospitalisation</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                            <span class="co"># харуулах</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">case_id</span>, <span class="va">hospital</span>, <span class="va">date_hospitalisation</span><span class="op">)</span>  <span class="co"># харуулах</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 3
+## # Groups:   hospital [6]
+##    case_id hospital          date_hospitalisation
+##    &lt;chr&gt;   &lt;chr&gt;             &lt;date&gt;              
+##  1 20b688  Central Hospital  2014-05-06          
+##  2 d58402  Central Hospital  2014-05-10          
+##  3 b8f2fd  Central Hospital  2014-05-13          
+##  4 acf422  Central Hospital  2014-05-28          
+##  5 275cc7  Central Hospital  2014-05-28          
+##  6 d1fafd  Military Hospital 2014-04-17          
+##  7 974bc1  Military Hospital 2014-05-13          
+##  8 6a9004  Military Hospital 2014-05-13          
+##  9 09e386  Military Hospital 2014-05-14          
+## 10 865581  Military Hospital 2014-05-15          
+## # ... with 20 more rows</code></pre>
+<p><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head()</a></code> - n мөрийг дээрээс тоолж сонгоно<br><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail()</a></code> - n мөрийг доороос тоолж сонгоно
+<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code> - n мөрийг санамсаргүй байдлаар сонгоно<br><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code> - <code>order_by =</code> баганадах хамгийн их утгатай n мөрийг сонгоно (<code>with_ties = TRUE</code>гэж тохируул)
+<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> - <code>order_by =</code> баганадах хамгийн бага утгатай n мөрийг сонгоно (<code>with_ties = TRUE</code>гэж тохируул)</p>
+<p>[De-duplication] хуудаснаас <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>-ын талаар тайлбарласныг уншна уу.</p>
+</div>
+<div id="group_filter_grp_size" class="section level3 unnumbered">
+<h3>Бүлгийн том жижигээр нь шүүх<a class="anchor" aria-label="anchor" href="#group_filter_grp_size"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code> функц эх хүснэгтэд шинээр <code>n</code> гэсэн баганыг нэмдэг. Энэ баганын утга нь датандах мөр болгоны харьяалах бүлгийн хамрах хэмжээг зааж өгсөн байдаг.</p>
+<p>Доор уишээнд <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code> функцыг <code>hospital</code> багана дээр хэрэглэсэн байна. Тиймээс <code>n</code> багана дах утга бол тухайн мөрөнд бичигдсэн эмнэлэгийн бүлэгт ноогдох мөрний тоо юм. Тиймээс <code>n</code> баганын утгууд олон давтагдсан байна. Баганын нэр <code>n</code> -ийг <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code>-ын <code>name =</code>аргументээр өөрчилж болно. Харуулахад ойлгомжтой болгох үүднээс багануудыг <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>-ээр эрэмбэлсэн.</p>
+<div class="sourceCode" id="cb667"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">add_count</a></span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>          <span class="co"># "энэ эмнэлэгтэй адилхан эмнэлэгт хэвтсэн мөрийн тоог" нэм </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">hospital</span>, <span class="va">n</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 5,888 x 31
+##    hospital                   n case_id generation date_infection date_onset
+##    &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;date&gt;         &lt;date&gt;    
+##  1 Other                    885 5fe599           4 2014-05-08     2014-05-13
+##  2 Missing                 1469 8689b7           4 NA             2014-05-13
+##  3 St. Mark's Maternity ~   422 11f8ea           2 NA             2014-05-16
+##  4 Port Hospital           1762 b8812a           3 2014-05-04     2014-05-18
+##  5 Military Hospital        896 893f25           3 2014-05-18     2014-05-21
+##  6 Port Hospital           1762 be99c8           3 2014-05-03     2014-05-22
+##  7 Missing                 1469 07e3e8           4 2014-05-22     2014-05-27
+##  8 Missing                 1469 369449           4 2014-05-28     2014-06-02
+##  9 Missing                 1469 f393b4           4 NA             2014-06-05
+## 10 Missing                 1469 1389ca           4 NA             2014-06-05
+## # ... with 5,878 more rows, and 25 more variables:
+## #   date_hospitalisation &lt;date&gt;, date_outcome &lt;date&gt;, outcome &lt;chr&gt;,
+## #   gender &lt;chr&gt;, age &lt;dbl&gt;, age_unit &lt;chr&gt;, age_years &lt;dbl&gt;,
+## #   age_cat &lt;fct&gt;, age_cat5 &lt;fct&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;, infector &lt;chr&gt;,
+## #   source &lt;chr&gt;, wt_kg &lt;dbl&gt;, ht_cm &lt;dbl&gt;, ct_blood &lt;dbl&gt;, fever &lt;chr&gt;,
+## #   chills &lt;chr&gt;, cough &lt;chr&gt;, aches &lt;chr&gt;, vomit &lt;chr&gt;, temp &lt;dbl&gt;,
+## #   time_admission &lt;chr&gt;, bmi &lt;dbl&gt;, days_onset_hosp &lt;dbl&gt;</code></pre>
+<p>Ийм багана нэмэхэд жижиг (жишээ нь 500 аас доош хүн хэвтсэн) эмнэлэгт хэвтсэн тохиолдлуудыг шүүж гаргаж ирэхэд амар боллоо.</p>
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">add_count</a></span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;</span> <span class="fl">500</span><span class="op">)</span></code></pre></div>
+<p>##Бүлэглэсэн датаг хувиргах</p>
+<p>Бүх багана мөрийг хэвээр нь байхад (нэгтгэхгүй) <em>бүлгийн статистикийн тооцоо агуулсан шинэ багана</em> нэмэх бол <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>-ын оронд <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>-ыг <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> угсруулж хэрэглэ.</p>
+<p>Ингэснээр эх дата дээрээ бүлгийн статистикийг <em>бусад баганын хамтаар</em> харах боложмтой юм. Тухайлбал нэг мөрний утгыг бүлгийн утгатай нь харьцуулж болно.</p>
+<p>Доор жишээ код эмнэлэгт хожуу хэвтэлттэй мөрүүд болон хожуу хэвтэлтийн медиан үзүүлэлтүүдийг харьцуулж ялгааг харуулсан. Үүнийг хийх алхмууд нь:</p>
+<ol style="list-style-type: decimal">
+<li>Датаг эмнэлэг тус бүрээр бүлэглэ<br>
+</li>
+<li>
+<code>days_onset_hosp</code> (эмнэлэгт хожуу хэвтэх) баганыг ашиглан <em>тухайн мөрөн дэх</em> эмнэлэгийн хожуу хэвтэлийн дундаж үзүүлэлтийг тооцож бодсон шинэ багана үүсгэ.</li>
+<li>Хоёр баганын ялгааг тооц</li>
+</ol>
+<p>Ойлгомжтой байлгахын тулд зөвхөн тодорхой багануудыг <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> -ээр сонгож харуулав.</p>
+<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># Датаг эмнэлэг тус бүрээр бүлэглэ (linelist -д өөрчлөлт гарахгүй)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  
+  <span class="co"># Шинэ баганууд</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    <span class="co"># Эмнэлэгт хэвтэх хүртэлх өдрийн дундаж (таслалтын ард нэг орон байхаар хураа)</span>
+    group_delay_admit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">days_onset_hosp</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,
+    
+    <span class="co"># Тухайн мөрний хожуу хэвтэлт болон яг тэр мөрний эмнэлэгийн хожуу хэвтэлтийн дундаж хоёрын ялгаа (таслалтын ард нэг орон байхаар хураа)</span>
+    diff_to_group     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">days_onset_hosp</span> <span class="op">-</span> <span class="va">group_delay_admit</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  
+  <span class="co"># Ойлгомжтой байлгахын тулд зөвхөн тодорхой багануудыг л сонго</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">case_id</span>, <span class="va">hospital</span>, <span class="va">days_onset_hosp</span>, <span class="va">group_delay_admit</span>, <span class="va">diff_to_group</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 5,888 x 5
+## # Groups:   hospital [6]
+##    case_id hospital           days_onset_hosp group_delay_adm~ diff_to_group
+##    &lt;chr&gt;   &lt;chr&gt;                        &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+##  1 5fe599  Other                            2              2             0  
+##  2 8689b7  Missing                          1              2.1          -1.1
+##  3 11f8ea  St. Mark's Matern~               2              2.1          -0.1
+##  4 b8812a  Port Hospital                    2              2.1          -0.1
+##  5 893f25  Military Hospital                1              2.1          -1.1
+##  6 be99c8  Port Hospital                    1              2.1          -1.1
+##  7 07e3e8  Missing                          2              2.1          -0.1
+##  8 369449  Missing                          1              2.1          -1.1
+##  9 f393b4  Missing                          1              2.1          -1.1
+## 10 1389ca  Missing                          2              2.1          -0.1
+## # ... with 5,878 more rows</code></pre>
+</div>
+</div>
+<div id="бүлэглэсэн-дата-1" class="section level2" number="13.9">
+<h2>
+<span class="header-section-number">13.9</span> Бүлэглэсэн дата<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%81%D1%8D%D0%BD-%D0%B4%D0%B0%D1%82%D0%B0-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> функц мөн бүлэглэсэн датанд үйлчилдэг. Гэхдээ бүлэг үүссэн багана нь үргэлж сонгогдох болно (<code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> дотор зааж өгөөгүй байсан ч гэсэн). Бүлэг үүссэн баганыг оруулахгүй байхын тулд эхлээд <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> хийнэ.</p>
+<!-- ======================================================= -->
+</div>
+<div id="нэмэлт-материал" class="section level2" number="13.10">
+<h2>
+<span class="header-section-number">13.10</span> Нэмэлт материал<a class="anchor" aria-label="anchor" href="#%D0%BD%D1%8D%D0%BC%D1%8D%D0%BB%D1%82-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB"><i class="fas fa-link"></i></a>
+</h2>
+<p>Нэмэлт хэрэгтэй мэдээллүүдийг дараах линкуудээс үзнэ үү:</p>
+<p>Ямар ч нэгтгэж дүгнэсэн функцыг бүлэглэсэн датанд хийж болно; <a href="https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf">RStudio data transformation cheat sheet</a> ээс харна уу.</p>
+<p><a href="https://datacarpentry.org/R-genomics/04-dplyr.html"><strong>dplyr</strong></a><br>
+The <strong>tidyverse</strong> reference pages on <a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a> хуудасны The Data Carpentry хэсэг болон <a href="https://dplyr.tidyverse.org/articles/grouping.html">grouping</a></p>
+<p><a href="https://itsalocke.com/files/DataManipulationinR.pdf">Data manipulation</a> хуудас</p>
+<p><a href="https://stackoverflow.com/questions/23528862/summarize-with-conditions-in-dplyr">Summarize with conditions in dplyr</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
+<li>
+<a class="nav-link" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB-4"><span class="header-section-number">13.1</span> Бэлтгэл</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D1%85-2">Багцыг ачааллах</a></li>
+<li><a class="nav-link" href="#%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D0%B4%D0%B0%D1%82%D0%B0">Импорт дата</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><span class="header-section-number">13.2</span> Бүлэглэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D3%A9%D0%B2%D3%A9%D1%80%D0%BC%D3%A9%D1%86-%D0%B1%D2%AF%D0%BB%D0%B3%D2%AF%D2%AF%D0%B4">Өвөрмөц бүлгүүд</a></li>
+<li><a class="nav-link" href="#%D1%88%D0%B8%D0%BD%D1%8D-%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0-1">Шинэ багана</a></li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85-%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%8B%D0%B3-%D0%BD%D1%8D%D0%BC%D0%B6%D1%85%D0%B0%D1%81%D0%B0%D1%85">Бүлэглэх баганыг нэмж/хасах</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D0%B3%D0%B8%D0%B9%D0%B3-%D0%B7%D0%B0%D0%B4%D0%BB%D0%B0%D1%85"><span class="header-section-number">13.3</span> Бүлгийг задлах</a></li>
+<li><a class="nav-link" href="#group_summarise"><span class="header-section-number">13.4</span> Нэгтгэх</a></li>
+<li>
+<a class="nav-link" href="#%D1%82%D0%BE%D0%BE%D0%BB%D0%B6-%D0%B1%D2%AF%D1%80%D1%82%D0%B3%D1%8D%D1%85"><span class="header-section-number">13.5</span> Тоолж, бүртгэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tally">tally()</a></li>
+<li><a class="nav-link" href="#count">count()</a></li>
+<li><a class="nav-link" href="#%D1%82%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%B3%D0%BE-%D0%BD%D1%8D%D0%BC%D1%8D%D1%85">Тооллого нэмэх</a></li>
+<li><a class="nav-link" href="#%D0%BD%D0%B8%D0%B9%D1%82-%D0%B4%D2%AF%D0%BD%D0%B3-%D0%BD%D1%8D%D0%BC">Нийт дүнг нэм</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%BE%D0%BD-%D1%81%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85"><span class="header-section-number">13.6</span> Он сараар бүлэглэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linelist-%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D3%A9%D0%B4%D3%A9%D1%80-%D0%B1%D2%AF%D1%80%D1%8D%D1%8D%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85">Linelist тохиолдлуудыг өдөр бүрээр бүлэглэх</a></li>
+<li><a class="nav-link" href="#linelist-%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3-%D0%B1%D2%AF%D1%80%D1%8D%D1%8D%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85">Linelist тохиолдлуудыг долоо хоног бүрээр бүлэглэх</a></li>
+<li><a class="nav-link" href="#linelist-%D1%82%D0%BE%D1%85%D0%B8%D0%BE%D0%BB%D0%B4%D0%BB%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%81%D0%B0%D1%80-%D0%B1%D2%AF%D1%80%D1%8D%D1%8D%D1%80-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85">Linelist тохиолдлуудыг сар бүрээр бүлэглэх</a></li>
+<li><a class="nav-link" href="#%D3%A9%D0%B4%D3%A9%D1%80-%D1%82%D1%83%D1%82%D0%BC%D1%8B%D0%BD-%D1%82%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%B3%D1%8B%D0%B3-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3%D1%82-%D1%88%D0%B8%D0%BB%D0%B6%D2%AF%D2%AF%D0%BB%D1%8D%D1%85">Өдөр тутмын тооллогыг долоо хоногт шилжүүлэх</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%81%D1%8D%D0%BD-%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D%D0%BB%D1%8D%D1%85"><span class="header-section-number">13.7</span> Бүлэглэсэн датаг эрэмбэлэх</a></li>
+<li>
+<a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%81%D1%8D%D0%BD-%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D1%88%D2%AF%D2%AF%D1%85"><span class="header-section-number">13.8</span> Бүлэглэсэн датаг шүүх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#filter">filter()</a></li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D0%B3%D1%8D%D1%8D%D1%80-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85">Бүлгээр хуваах</a></li>
+<li><a class="nav-link" href="#group_filter_grp_size">Бүлгийн том жижигээр нь шүүх</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%81%D1%8D%D0%BD-%D0%B4%D0%B0%D1%82%D0%B0-1"><span class="header-section-number">13.9</span> Бүлэглэсэн дата</a></li>
+<li><a class="nav-link" href="#%D0%BD%D1%8D%D0%BC%D1%8D%D0%BB%D1%82-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB"><span class="header-section-number">13.10</span> Нэмэлт материал</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2022-01-05.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

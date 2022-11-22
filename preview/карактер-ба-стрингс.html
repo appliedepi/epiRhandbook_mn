@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>10 Карактер ба стрингс | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="Энэхүү хэсэгт карактер болон стрингс утгыг (залгаа карактерүүд) stringr багц ашиглаж шалгаж, янзлах талаар үзэх болно (“strings”). Нэгтгэх, эрэмбэлэх,хуваах, дараалал солих - str_c(), str_glue(),...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="10 Карактер ба стрингс | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Энэхүү хэсэгт карактер болон стрингс утгыг (залгаа карактерүүд) stringr багц ашиглаж шалгаж, янзлах талаар үзэх болно (“strings”). Нэгтгэх, эрэмбэлэх,хуваах, дараалал солих - str_c(), str_glue(),...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10 Карактер ба стрингс | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="Энэхүү хэсэгт карактер болон стрингс утгыг (залгаа карактерүүд) stringr багц ашиглаж шалгаж, янзлах талаар үзэх болно (“strings”). Нэгтгэх, эрэмбэлэх,хуваах, дараалал солих - str_c(), str_glue(),...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="active" href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="карактер-ба-стрингс" class="section level1" number="10">
+<h1>
+<span class="header-section-number">10</span> Карактер ба стрингс<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81"><i class="fas fa-link"></i></a>
+</h1>
+<div class="inline-figure"><img src="images/Characters_Strings_1500x500.png" width="100%"></div>
+<p>Энэхүү хэсэгт карактер болон стрингс утгыг (залгаа карактерүүд) <strong>stringr</strong> багц ашиглаж шалгаж, янзлах талаар үзэх болно (“strings”).</p>
+<ol style="list-style-type: decimal">
+<li><p>Нэгтгэх, эрэмбэлэх,хуваах, дараалал солих - <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_order.html">str_order()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code><br></p></li>
+<li>
+<p>Цэвэрлэх болон жигдрүүлэх</p>
+<ul>
+<li>Уртыг тохируул - <code><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_trunc.html">str_trunc()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_wrap.html">str_wrap()</a></code><br>
+</li>
+<li>Үсэгний том жижигийг өөрчлөх - <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_sentence()</a></code><br>
+</li>
+</ul>
+</li>
+<li><p>Байрлалыг тогтоож, орлуулах - <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/word.html">word()</a></code><br></p></li>
+<li>
+<p>Бүтэц, хэв маяг</p>
+<ul>
+<li>Илрүүлж, байрлалыг олох - <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code><br>
+</li>
+<li>Хувиргаж, солих - <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all()</a></code><br>
+</li>
+</ul>
+</li>
+<li><p>Regular expressions (“regex”)</p></li>
+</ol>
+<p>Тайлбарлахад хялбар болгохын тулд ихэнх жишээг карактерийн богино векторууд дээр харуулсан. Гэсэн хэдий ч эдгээр жишээг хүснэгт, баганад дээр хэрэгжүүлэх боломжтой юм.</p>
+<p>Энэхүү хэсгийг боловсруулахад <a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html">stringr vignette</a> дэх материалаас их ашигласан.</p>
+<!-- ======================================================= -->
+<div id="бэлтгэл-1" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Бэлтгэл<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB-1"><i class="fas fa-link"></i></a>
+</h2>
+<div id="багцыг-ачааллах" class="section level3 unnumbered">
+<h3>Багцыг ачааллах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>stringr</strong> болон бусад <strong>tidyverse</strong> багцыг татаж авч, ачааллана.</p>
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Багцыг татаж ав/ачаалла</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span>
+  <span class="va">stringr</span>,    <span class="co"># стрингс дээр ажиллах функцуудын иж бүрдэл</span>
+  <span class="va">tidyverse</span>,  <span class="co"># дата янзлахад хэрэгтэй</span>
+  <span class="va">tools</span><span class="op">)</span>      <span class="co"># гарчигийг хувиргахад хэрэглэнэ</span></code></pre></div>
+</div>
+<div id="дата-импортлох-2" class="section level3 unnumbered">
+<h3>Дата импортлох<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэ хэсгийн дасгалд Эболагийн дэгдэлтийг загварчилсан дата <code>linelist</code> -ын цэвэрлэгдсэн хэлбэрийг ашиглах болно. Дасгалуудыг дагаж хийхийг хүсвэл <a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds" class="download-button">линк дээр дарж, “clean” гэсэн linelist дээр дарж татаж авна уу</a> (.rds файл хэлбэрээр буй). Датаг импортлохдоо <strong>rio</strong> багцын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функцыг хэрэглэ ( .xlsx, .csv, .rds зэрэг олон өргөтгөлтэй ажиллаж чаддаг - [Import and export] хэсгээс нэмж уншна уу).</p>
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># case linelist -ийг импортло</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_cleaned.rds"</span><span class="op">)</span></code></pre></div>
+<p>linelist -ийн эхний 50 мөрийг дор харуулав.</p>
+<div id="htmlwidget-0d6252b8cc9f5b204008" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0d6252b8cc9f5b204008">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2\" data-max=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1399075200000\" data-max=\"1406419200000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1399939200000\" data-max=\"1407024000000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1400025600000\" data-max=\"1407110400000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"date\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1400371200000\" data-max=\"1410566400000\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"67\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"67\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;0-4&quot;,&quot;5-9&quot;,&quot;10-14&quot;,&quot;15-19&quot;,&quot;20-29&quot;,&quot;30-49&quot;,&quot;50-69&quot;,&quot;70+&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;0-4&quot;,&quot;5-9&quot;,&quot;10-14&quot;,&quot;15-19&quot;,&quot;20-24&quot;,&quot;25-29&quot;,&quot;30-34&quot;,&quot;35-39&quot;,&quot;40-44&quot;,&quot;45-49&quot;,&quot;50-54&quot;,&quot;55-59&quot;,&quot;60-64&quot;,&quot;65-69&quot;,&quot;70-74&quot;,&quot;75-79&quot;,&quot;80-84&quot;,&quot;85+&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-13.2697246824573\" data-max=\"-13.209391925612\" data-scale=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"8.45171855856465\" data-max=\"8.48802917129884\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"100\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"11\" data-max=\"241\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"20\" data-max=\"24\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"35.9\" data-max=\"38\" data-scale=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"428.994082840237\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["5fe599","8689b7","11f8ea","b8812a","893f25","be99c8","07e3e8","369449","f393b4","1389ca","2978ac","57a565","fc15ef","2eaa9a","bbfa93","c97dd9","f50e8a","3a7673","7f5a01","ddddee","99e8fa","567136","9371a9","bc2adf","403057","8bd1e8","f327be","42e1a9","90e5fe","959170","8ebf6e","e56412","6d788e","a47529","67be4e","da8ecb","148f18","2cb9a5","f5c142","70a9fe","3ad520","062638","c76676","baacc1","497372","23e499","38cc4a","3789ee","c71dcd","6b70f0"],[4,4,2,3,3,3,4,4,4,4,4,4,6,5,6,9,10,8,7,6,7,6,8,6,10,8,6,12,5,8,7,9,11,5,8,5,6,11,7,9,7,8,9,12,13,9,8,10,8,7],["2014-05-08",null,null,"2014-05-04","2014-05-18","2014-05-03","2014-05-22","2014-05-28",null,null,"2014-05-30","2014-05-28","2014-06-14","2014-06-07","2014-06-09",null,null,null,"2014-06-23","2014-06-18","2014-06-24",null,null,"2014-07-03",null,"2014-07-10","2014-06-14",null,"2014-06-18","2014-06-29","2014-07-02","2014-07-12","2014-07-12","2014-06-13","2014-07-15","2014-06-20",null,null,"2014-07-20",null,"2014-07-12","2014-07-19","2014-07-18","2014-07-18","2014-07-27",null,"2014-07-19","2014-07-26","2014-07-24",null],["2014-05-13","2014-05-13","2014-05-16","2014-05-18","2014-05-21","2014-05-22","2014-05-27","2014-06-02","2014-06-05","2014-06-05","2014-06-06","2014-06-13","2014-06-16","2014-06-17","2014-06-18","2014-06-19","2014-06-22","2014-06-23","2014-06-25","2014-06-26","2014-06-28","2014-07-02","2014-07-08","2014-07-09","2014-07-09","2014-07-10","2014-07-12","2014-07-12","2014-07-13","2014-07-13","2014-07-14","2014-07-15","2014-07-16","2014-07-17","2014-07-17","2014-07-18","2014-07-19","2014-07-22","2014-07-22","2014-07-24","2014-07-24","2014-07-25","2014-07-25","2014-07-27","2014-07-29","2014-07-30",null,"2014-08-01","2014-08-02","2014-08-03"],["2014-05-15","2014-05-14","2014-05-18","2014-05-20","2014-05-22","2014-05-23","2014-05-29","2014-06-03","2014-06-06","2014-06-07","2014-06-08","2014-06-15","2014-06-17","2014-06-17","2014-06-20","2014-06-19","2014-06-23","2014-06-24","2014-06-27","2014-06-28","2014-06-29","2014-07-03","2014-07-09","2014-07-09","2014-07-11","2014-07-11","2014-07-13","2014-07-14","2014-07-14","2014-07-13","2014-07-14","2014-07-17","2014-07-17","2014-07-18","2014-07-19","2014-07-20","2014-07-20","2014-07-22","2014-07-24","2014-07-26","2014-07-24","2014-07-27","2014-07-25","2014-07-27","2014-07-31","2014-08-01","2014-08-03","2014-08-02","2014-08-02","2014-08-04"],[null,"2014-05-18","2014-05-30",null,"2014-05-29","2014-05-24","2014-06-01","2014-06-07","2014-06-18","2014-06-09","2014-06-15",null,"2014-07-09",null,"2014-06-30","2014-07-11","2014-07-01","2014-06-25","2014-07-06","2014-07-02","2014-07-09","2014-07-07","2014-07-20",null,"2014-07-22","2014-07-16","2014-07-14","2014-07-20","2014-07-16","2014-07-19","2014-07-27","2014-07-19",null,"2014-07-26","2014-08-14","2014-08-01","2014-07-23","2014-08-28","2014-07-28","2014-07-19",null,"2014-08-03",null,null,null,"2014-08-06","2014-08-21","2014-09-13","2014-08-04",null],[null,"Recover","Recover",null,"Recover","Recover","Recover","Death","Recover","Death","Death","Death","Recover","Recover",null,"Recover",null,null,"Death","Death","Recover",null,null,null,"Death",null,"Death","Death",null,"Death","Recover","Death","Recover","Death","Recover",null,"Death","Recover","Recover","Death",null,null,"Death","Death","Death","Death","Recover",null,"Death","Death"],["m","f","m","f","m","f","f","f","m","f","m","m","m","f","f","m","f","f","f","f","m","m","f","m","f","m","m","f","m","f","f","f","m","m","f","m","f","f","f","m","f","m","f","m","m","f","m","f","m","m"],[2,3,56,18,3,16,16,0,61,27,12,42,19,7,7,13,35,17,11,11,19,54,14,28,6,3,31,6,67,14,10,21,20,45,1,12,3,15,20,36,7,13,14,3,10,1,0,20,26,14],["years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years","years"],[2,3,56,18,3,16,16,0,61,27,12,42,19,7,7,13,35,17,11,11,19,54,14,28,6,3,31,6,67,14,10,21,20,45,1,12,3,15,20,36,7,13,14,3,10,1,0,20,26,14],["0-4","0-4","50-69","15-19","0-4","15-19","15-19","0-4","50-69","20-29","10-14","30-49","15-19","5-9","5-9","10-14","30-49","15-19","10-14","10-14","15-19","50-69","10-14","20-29","5-9","0-4","30-49","5-9","50-69","10-14","10-14","20-29","20-29","30-49","0-4","10-14","0-4","15-19","20-29","30-49","5-9","10-14","10-14","0-4","10-14","0-4","0-4","20-29","20-29","10-14"],["0-4","0-4","55-59","15-19","0-4","15-19","15-19","0-4","60-64","25-29","10-14","40-44","15-19","5-9","5-9","10-14","35-39","15-19","10-14","10-14","15-19","50-54","10-14","25-29","5-9","0-4","30-34","5-9","65-69","10-14","10-14","20-24","20-24","45-49","0-4","10-14","0-4","15-19","20-24","35-39","5-9","10-14","10-14","0-4","10-14","0-4","0-4","20-24","25-29","10-14"],["Other","Missing","St. Mark's Maternity Hospital (SMMH)","Port Hospital","Military Hospital","Port Hospital","Missing","Missing","Missing","Missing","Port Hospital","Military Hospital","Missing","Missing","Other","Port Hospital","Port Hospital","Port Hospital","Missing","Other","Port Hospital","Port Hospital","St. Mark's Maternity Hospital (SMMH)","Missing","Other","Missing","St. Mark's Maternity Hospital (SMMH)","Military Hospital","Port Hospital","Central Hospital","Military Hospital","Central Hospital","Missing","Military Hospital","Other","Missing","Missing","Port Hospital","Port Hospital","Port Hospital","Missing","Central Hospital","Military Hospital","Other","Other","Other","Missing","St. Mark's Maternity Hospital (SMMH)","St. Mark's Maternity Hospital (SMMH)","Missing"],[-13.2157351064963,-13.2152339775486,-13.212910703914,-13.2363711169728,-13.2228638912441,-13.222625321098,-13.2331547837254,-13.2320975453153,-13.2225511595637,-13.2572163655863,-13.2206286746001,-13.253989309478,-13.2385127873491,-13.209391925612,-13.2157278814899,-13.2243437095992,-13.2336087079551,-13.21422143145,-13.2339681355349,-13.2535640411465,-13.2250089377786,-13.2160657166043,-13.2680671272333,-13.2266742923612,-13.2160179088168,-13.2482584611565,-13.2156319199566,-13.2142410663192,-13.2614879104088,-13.2452992638476,-13.2630592726116,-13.2343341712241,-13.2199077448676,-13.2227293309912,-13.2343062806506,-13.218781651651,-13.2483677722899,-13.2097478342339,-13.2680867723786,-13.2587535457526,-13.262635786914,-13.2697246824573,-13.2209026809759,-13.2330734719715,-13.2680923666905,-13.2547212675054,-13.2573683214693,-13.2137356012883,-13.2175973322257,-13.2486407324245],[8.46897295100924,8.45171855856465,8.46481700596819,8.4754761613651,8.46082377490923,8.46183062600728,8.46272931462646,8.46144367534271,8.46191259217774,8.47292327643506,8.48401630165138,8.45837125340844,8.47761705512509,8.47570184950483,8.47779946878972,8.47145134147474,8.47804840685363,8.48528034195779,8.46957530395867,8.45957352078114,8.47404889511544,8.48802917129884,8.473437335922,8.48408263734462,8.46242233645879,8.47026822126572,8.46398447480533,8.4641347894342,8.45623094629607,8.48334624336805,8.47493999153642,8.47832062438022,8.4693933891765,8.48480589906514,8.47121232619015,8.48438437371817,8.48466158574339,8.47714159984428,8.46238127010609,8.45568597813113,8.4632880274758,8.47940722413856,8.46353857052336,8.46178968158864,8.47508713872833,8.45825808128071,8.4532568143863,8.4732571907655,8.47911586641933,8.48480340615605],["f547d6",null,null,"f90f5f","11f8ea","aec8ec","893f25","133ee7",null,null,"996f3a","133ee7","37a6f6","9f6884","4802b1",null,null,null,"a75c7f","8e104d","ab634e",null,null,"b799eb",null,"5d9e4d","a15e13",null,"ea3740","beb26e","567136","894024","36e2e7","a2086d","7baf73","eb2277",null,null,"d6584f",null,"312ecf","52ea64","cfd79c","d145b7","174288",null,"53608c","3b096b","f5c142",null],["other",null,null,"other","other","other","other","other",null,null,"other","other","other","other","other",null,null,null,"other","other","other",null,null,"other",null,"other","other",null,"other","funeral","other","funeral","other","other","other","funeral",null,null,"other",null,"other","other","other","other","other",null,"funeral","other","other",null],[27,25,91,41,36,56,47,0,86,69,67,84,68,44,34,66,78,47,53,47,71,86,53,69,38,46,68,37,100,56,50,57,65,72,29,69,37,48,54,71,47,61,47,35,53,16,13,59,69,67],[48,59,238,135,71,116,87,11,226,174,112,186,174,90,91,152,214,137,117,131,150,241,131,161,80,69,188,66,233,142,110,182,164,214,26,157,39,154,133,168,100,125,123,67,134,31,36,125,183,169],[22,22,21,23,23,21,21,22,22,22,22,22,22,21,23,22,23,21,22,23,21,23,21,24,23,22,24,23,20,24,24,20,24,21,22,21,23,22,23,23,23,22,23,22,22,22,23,22,22,22],["no",null,null,"no","no","no",null,"no","no","no","no","no","no","no","no","no","no","no",null,"no","no","no","no","no",null,"no","no","no",null,null,"no","no",null,"no","no",null,null,"no","no",null,"no","no",null,"no","no","no","no","no","no",null],["no",null,null,"no","no","no",null,"no","no","no","no","no","no","no","no","no","yes","no",null,"no","no","no","yes","no",null,"no","no","yes",null,null,"no","no",null,"no","no",null,null,"no","no",null,"no","no",null,"no","yes","no","no","no","no",null],["yes",null,null,"no","yes","yes",null,"yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes",null,"yes","yes","yes","yes","yes",null,"yes","yes","yes",null,null,"yes","yes",null,"yes","yes",null,null,"yes","yes",null,"yes","yes",null,"yes","yes","yes","yes","yes","no",null],["no",null,null,"no","no","no",null,"no","no","no","no","no","no","no","no","yes","no","no",null,"no","no","no","no","no",null,"no","no","no",null,null,"no","no",null,"no","no",null,null,"yes","yes",null,"no","no",null,"no","no","no","no","no","no",null],["yes",null,null,"no","yes","yes",null,"yes","yes","no","yes","no","no","no","yes","no","no","no",null,"no","yes","no","no","no",null,"no","no","no",null,null,"no","yes",null,"yes","yes",null,null,"yes","yes",null,"yes","yes",null,"yes","yes","no","yes","yes","yes",null],[36.8,36.9,36.9,36.8,36.9,37.6,37.3,37,36.4,35.9,36.5,36.9,36.5,37.1,36.5,37.3,37,38,38,36,37,36.7,36.9,36.5,37,36.5,37.6,36.6,36.6,36.2,36.4,37.1,37.5,37.5,37.4,36.9,36.4,37.3,37,37.8,36.5,37.5,36.7,37,37.3,36.6,36.5,36.6,37.6,36.8],[null,"09:36","16:48","11:22","12:60","14:13","14:33","09:25","11:16","10:55","16:03","11:14","12:42","11:06","09:10","08:45",null,"15:41","13:34","18:58","12:43","16:33","14:29","07:18","08:11","16:32","16:17","07:32","17:45",null,"13:24","14:43","02:33","11:36","17:28","16:27",null,"20:49",null,"11:38","14:25","13:42","21:22","13:33","19:06","17:14","20:09",null,"10:23","09:09"],[117.1875,71.8184429761563,16.0652496292635,22.4965706447188,71.4144019043841,41.6171224732461,62.0953890870657,0,16.8376536925366,22.7903289734443,53.4119897959184,24.2802636142907,22.4600343506408,54.320987654321,41.0578432556455,28.5664819944598,17.0320552013276,25.0412914912888,38.7172182043977,27.3876813705495,31.5555555555556,14.8069075945662,30.8839811199813,26.6193433895297,59.375,96.6183574879227,19.2394748755093,84.9403122130395,18.4199377406104,27.7722674072605,41.3223140495868,17.2080666586161,24.1671624033314,15.7218971089178,428.994082840237,27.9930220292912,243.261012491782,20.2395007589813,30.527446435638,25.15589569161,47,39.04,31.0661643201798,77.9683671196257,29.5165961238583,166.493236212279,100.308641975309,37.76,20.6037803457852,23.458562375267],[2,1,2,2,1,1,2,1,1,2,2,2,1,0,2,0,1,1,2,2,1,1,1,0,2,1,1,2,1,0,0,2,1,1,2,2,1,0,2,2,0,2,0,0,2,2,null,1,0,1]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>case_id<\/th>\n      <th>generation<\/th>\n      <th>date_infection<\/th>\n      <th>date_onset<\/th>\n      <th>date_hospitalisation<\/th>\n      <th>date_outcome<\/th>\n      <th>outcome<\/th>\n      <th>gender<\/th>\n      <th>age<\/th>\n      <th>age_unit<\/th>\n      <th>age_years<\/th>\n      <th>age_cat<\/th>\n      <th>age_cat5<\/th>\n      <th>hospital<\/th>\n      <th>lon<\/th>\n      <th>lat<\/th>\n      <th>infector<\/th>\n      <th>source<\/th>\n      <th>wt_kg<\/th>\n      <th>ht_cm<\/th>\n      <th>ct_blood<\/th>\n      <th>fever<\/th>\n      <th>chills<\/th>\n      <th>cough<\/th>\n      <th>aches<\/th>\n      <th>vomit<\/th>\n      <th>temp<\/th>\n      <th>time_admission<\/th>\n      <th>bmi<\/th>\n      <th>days_onset_hosp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,8,10,14,15,18,19,20,26,28,29]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><!-- ======================================================= -->
+</div>
+</div>
+<div id="нэгтгэх-хуваах-эрэмбэлэх" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Нэгтгэх, хуваах, эрэмбэлэх<a class="anchor" aria-label="anchor" href="#%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Энэхүү хэсгийн агуулга:</p>
+<ul>
+<li>
+<code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code>, <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> -аар стрингсийг нэгтгэх<br>
+</li>
+<li>
+<code><a href="https://stringr.tidyverse.org/reference/str_order.html">str_order()</a></code> стрингсийг эрэмбэлэн байрлуулах<br>
+</li>
+<li>
+<code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code>, <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> стрингсийг хуваах</li>
+</ul>
+<!-- ======================================================= --><div id="стрингсийг-нэгтгэх" class="section level3 unnumbered">
+<h3>Стрингсийг нэгтгэх<a class="anchor" aria-label="anchor" href="#%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81%D0%B8%D0%B9%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Олон стрингсийг нэгтгэж, залгахдаа <strong>stringr</strong> -ийн <code>str_c</code> -ийг ашиглахыг зөвлөж байна. Хэрэв таны нэтгэх гэж буй карактерууд салангид утгууд бол тусдаа аргументууд болгон оруулж таслалаар зааглаж өгнө.</p>
+<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"String1"</span>, <span class="st">"String2"</span>, <span class="st">"String3"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "String1String2String3"</code></pre>
+<p>Оруулж буй аргументуудын дунд зааглах тэмдэгтийг <code>sep =</code> ээр тохиуруулж болно (таслал, зай, шинэ мөр <code>"\n"</code> гэх мэт)</p>
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"String1"</span>, <span class="st">"String2"</span>, <span class="st">"String3"</span>, sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "String1, String2, String3"</code></pre>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> -д олон <em>вектор</em> аргумент оруулах үед <code>collapse =</code> аргумент хэрэг болнд. Ингэснээр үүсэх векторууд хоорондоо зааглагдсан нэг урт элемент болно.</p>
+<p>Доорхи жишээ хоёр векторыг (овог, нэр) хэрхэн нэг болгож нэгтгэхийг харуулсан. Мөн нутаг дэвсгэрийн нэр болон тохиолдлын тоог энэ мэтээр нэгтгэж бас болно. Жишээнд:</p>
+<ul>
+<li>
+<code>sep =</code> тэмдэгт нэр, овог болгоны дунд гарч ирнэ<br>
+</li>
+<li>
+<code>collapse =</code> тэмдэгт хүн тус бүрийн дунд гарч ирнэ</li>
+</ul>
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">first_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"abdul"</span>, <span class="st">"fahruk"</span>, <span class="st">"janice"</span><span class="op">)</span> 
+<span class="va">last_names</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hussein"</span>, <span class="st">"akinleye"</span>, <span class="st">"okeke"</span><span class="op">)</span>
+
+<span class="co"># оруулсан аргумент болгоны дунд sep -ийн тэмдэг гарч ирж, элементү болгоны дунд collapse -ын тэмдэгт гарч ирж байна</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">first_names</span>, <span class="va">last_names</span>, sep <span class="op">=</span> <span class="st">" "</span>, collapse <span class="op">=</span> <span class="st">";  "</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "abdul hussein;  fahruk akinleye;  janice okeke"</code></pre>
+<p>Тэмдэглэл: Хэрэв дээрхи шиг стрингсүүд хавсарч, шинэ мөр үүсгэн харуулах бол өгүүлбэрээ бүтнээр нь <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> хийснээр зөв хэвлэгдэж харагдна.</p>
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># шинэ мөрөнд зөв хэвлэхийн тулд өгүүлбэрээ бүтнээр нь cat()-д хийнэ үү</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">first_names</span>, <span class="va">last_names</span>, sep <span class="op">=</span> <span class="st">" "</span>, collapse <span class="op">=</span> <span class="st">";\n"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## abdul hussein;
+## fahruk akinleye;
+## janice okeke</code></pre>
+<!-- ======================================================= -->
+</div>
+<div id="динамик-стрингс" class="section level3 unnumbered">
+<h3>Динамик стрингс<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингст динамик R код оруулах тохиолдолд <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> -ийг хэрэглэдэг. Графикт динамик тайлбар хийхэд энэ функцыг ашиглах нь их тохиромжтой. Үүнийг дор харуулав:</p>
+<ul>
+<li>Доторх бүх агуулга нь давхар хашилтад бичигднэ <code>str_glue("")</code><br>
+</li>
+<li>Аливаа динамик код эсвэл урьдчилан тодорхойлсон утгуудыг <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> хээтэй хаалтын доторх давхар хашилтын дотор байрлуулна. Нэг <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> коммандад олон хээтэй хаалт <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> хийж болно.<br>
+</li>
+<li>Хашилт ’’ -ыг тэмдэгтэн утганд оруулж харуулахын тулд <em>дан</em> хашилтыг давхар хашилтанд дотор оруулж бичнэ (жишээ болгож огноог хэрхэн бичихийг дор харуулсан)<br>
+</li>
+<li>Зөвлөгөө: <code>\n</code> шинэ мөр эхлүүлдэг болно<br>
+</li>
+<li>Зөвлөгөө: огнооны харагдах байдлыг <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> -аар тохируулж, <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date()</a></code> -аар одоогийн огноог харуулдаг.</li>
+</ul>
+<p>Графикт динамик тайлбар хийх жишээ:</p>
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"Data include {nrow(linelist)} cases and are current to {format(Sys.Date(), '%d %b %Y')}."</span><span class="op">)</span></code></pre></div>
+<pre><code>## Data include 5888 cases and are current to 05 1-р сар 2022.</code></pre>
+<p>Мөн <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> -дотор стрингс дундаа хээтэй хаалтан дотор орлуулагч оруулаад, кодыг нь тусдаа <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> аргумент байдлаар араас нь бичиж болно (доор жишээнд харуулсан). Ингэж бичих нь урт текстийг уншихад ойлгомжтой болгож өгдөг.</p>
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"Linelist as of {current_date}.\nLast case hospitalized on {last_hospital}.\n{n_missing_onset} cases are missing date of onset and not shown"</span>,
+         current_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %b %Y'</span><span class="op">)</span>,
+         last_hospital <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">date_hospitalisation</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span>, <span class="st">'%d %b %Y'</span><span class="op">)</span>,
+         n_missing_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+         <span class="op">)</span></code></pre></div>
+<pre><code>## Linelist as of 05 1-р сар 2022.
+## Last case hospitalized on 30 4-р сар 2015.
+## 256 cases are missing date of onset and not shown</code></pre>
+<p><strong>Дата хүснэгтээс гаргаж авах</strong></p>
+<p>Заримдаа хүснэгт доторх датаг гаргаад дарааллуулан өрж тавих шаардлага гардаг. Нутаг дэвсгэр, шинэ тохиолдол, нийт тохиолдлын талаарх мэдэгдллийг хүснэгтээс хэрхэн гаргаж авах талаар жишээг дор харуулав.</p>
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># тохиолдолдтой хүснэгт үүсгэ</span>
+<span class="va">case_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  zone        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Zone 1"</span>, <span class="st">"Zone 2"</span>, <span class="st">"Zone 3"</span>, <span class="st">"Zone 4"</span>, <span class="st">"Zone 5"</span><span class="op">)</span>,
+  new_cases   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">7</span>, <span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span>,
+  total_cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">4</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">103</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<div id="htmlwidget-821497a9e8e17b7b9268" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-821497a9e8e17b7b9268">{"x":{"filter":"none","vertical":false,"data":[["Zone 1","Zone 2","Zone 3","Zone 4","Zone 5"],[3,0,7,0,15],[40,4,25,10,103]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>zone<\/th>\n      <th>new_cases<\/th>\n      <th>total_cases<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>Хүснэгтийн мөрөнд буй датаг <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue_data()</a></code> -аар гаргаж авдаг.</p>
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">case_table</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue_data</a></span><span class="op">(</span><span class="st">"{zone}: {new_cases} ({total_cases} total cases)"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Zone 1: 3 (40 total cases)
+## Zone 2: 0 (4 total cases)
+## Zone 3: 7 (25 total cases)
+## Zone 4: 0 (10 total cases)
+## Zone 5: 15 (103 total cases)</code></pre>
+<p><strong>Стрингсийг мөр дагуулж нэгтгэх</strong></p>
+<p>Хүснэгтийн багана дах утгыг “хуйлах” буюу олон мөрүүдийг нэгтгэж нэг мөрд багтаагаад доторх утгыг нь тусгаарлагчаар тусгаарлах шаардлагатай бол <a href="#str_rollup">“rolling-up” values</a> хуудасны [De-duplication] хэсгийг уншна уу.</p>
+<p><strong>Хүснэгтийг нэг шугаманд багтаах</strong></p>
+<p>Үүсгэсэн текстээ <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> -ээр нэг шугаманд багтаахдаа (хүснэгт, баганын нэрсийг зааж өгнө) <code>sep =</code> болон <code>collapse =</code> аргументийг нэмж тохируулна.</p>
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">case_table</span><span class="op">$</span><span class="va">zone</span>, <span class="va">case_table</span><span class="op">$</span><span class="va">new_cases</span>, sep <span class="op">=</span> <span class="st">" = "</span>, collapse <span class="op">=</span> <span class="st">";  "</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Zone 1 = 3;  Zone 2 = 0;  Zone 3 = 7;  Zone 4 = 0;  Zone 5 = 15"</code></pre>
+<p>pre-fix -ээр “Шинэ Тохиролдол:” гэсэн үгийг текстийнхээ өмнө автоматаар гардаг болгож болно. Ингэхдээ <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> функц дотор оруулж бичнэ (“Шинэ Тохиолдол:” анхны <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> дотор оруулчихвад олон дахин бичигдчихдэг.</p>
+<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"New Cases: "</span>, <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">case_table</span><span class="op">$</span><span class="va">zone</span>, <span class="va">case_table</span><span class="op">$</span><span class="va">new_cases</span>, sep <span class="op">=</span> <span class="st">" = "</span>, collapse <span class="op">=</span> <span class="st">";  "</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "New Cases: Zone 1 = 3;  Zone 2 = 0;  Zone 3 = 7;  Zone 4 = 0;  Zone 5 = 15"</code></pre>
+</div>
+<div id="str_unite" class="section level3 unnumbered">
+<h3>Баганыг нэтгэх<a class="anchor" aria-label="anchor" href="#str_unite"><i class="fas fa-link"></i></a>
+</h3>
+<p>Багануудын карактер утгыг <strong>tidyr</strong>-ын <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> функцээр нэгтгэдэг. Энэ нь <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> функцын эсрэг үйлдэл.</p>
+<p>Шинээр үүсгэх баганын нэрийг оруулаад, нэтгэх багануудын нэрийг оруулна.</p>
+<ul>
+<li>Нэтгэсэн багана дах утгын default тусгаарлагч нь доогуур зураас <code>_</code>. Үүнийг <code>sep =</code> аргументэд тохируулга өгснөөр өөрчилж болно.<br>
+</li>
+<li>
+<code>remove =</code> Хүснэгтээс нэгтгэлд оруулсан багануудыг хасна (default -аар TRUE)<br>
+</li>
+<li>
+<code>na.rm =</code> нэтгэж байх явцдаа дутуу утгыг хасна (default -аар FALSE)</li>
+</ul>
+<p>Эдгээрийг богино жишээгээр тайлбарлав:</p>
+<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  case_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,
+  symptoms  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"jaundice, fever, chills"</span>,     <span class="co"># 1-р өвчтөн</span>
+                <span class="st">"chills, aches, pains"</span>,        <span class="co"># 2-р өвчтөн</span>
+                <span class="st">"fever"</span>,                       <span class="co"># 3-р өвчтөн</span>
+                <span class="st">"vomiting, diarrhoea"</span>,         <span class="co"># 4-р өвчтөн</span>
+                <span class="st">"bleeding from gums, fever"</span>,   <span class="co"># 5-р өвчтөн</span>
+                <span class="st">"rapid pulse, headache"</span><span class="op">)</span>,      <span class="co"># 6-р өвчтөн</span>
+  outcome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Recover"</span>, <span class="st">"Death"</span>, <span class="st">"Death"</span>, <span class="st">"Recover"</span>, <span class="st">"Recover"</span>, <span class="st">"Recover"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_split</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">symptoms</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sym_1"</span>, <span class="st">"sym_2"</span>, <span class="st">"sym_3"</span><span class="op">)</span>, extra <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: Expected 3 pieces. Missing pieces filled with `NA` in 2 rows [3,
+## 4].</code></pre>
+<p>Жишээ хүснэгт:</p>
+<div id="htmlwidget-e3f712e2971bf4ef3c55" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e3f712e2971bf4ef3c55">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6],["jaundice","chills","fever","vomiting","bleeding","rapid"],["fever","aches",null,"diarrhoea","from","pulse"],["chills","pains",null,null,"gums, fever","headache"],["Recover","Death","Death","Recover","Recover","Recover"]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>case_ID<\/th>\n      <th>sym_1<\/th>\n      <th>sym_2<\/th>\n      <th>sym_3<\/th>\n      <th>outcome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>Доор жишээнд шинж тэмдэг бичсэн гурван баганыг нэгтгэв:</p>
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_split</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span>
+    col <span class="op">=</span> <span class="st">"all_symptoms"</span>,         <span class="co"># Шинээр нэгтгэж үүсгэх баганын нэр</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sym_1"</span>, <span class="st">"sym_2"</span>, <span class="st">"sym_3"</span><span class="op">)</span>, <span class="co"># Нэтгэх баганууд</span>
+    sep <span class="op">=</span> <span class="st">", "</span>,                   <span class="co"># Нэтгэсэн баганад хэрэглэх тусгаарлагч</span>
+    remove <span class="op">=</span> <span class="cn">TRUE</span>,                <span class="co"># TRUE гэж өгснөөр нэгтгэлд оруулсан багануудыг хүснэгтээс хасах</span>
+    na.rm <span class="op">=</span> <span class="cn">TRUE</span>                  <span class="co"># TRUE гэж өгснөөр нэтгэх явцад дутуу утгууд хасагдна</span>
+  <span class="op">)</span></code></pre></div>
+<pre><code>##   case_ID                all_symptoms outcome
+## 1       1     jaundice, fever, chills Recover
+## 2       2        chills, aches, pains   Death
+## 3       3                       fever   Death
+## 4       4         vomiting, diarrhoea Recover
+## 5       5 bleeding, from, gums, fever Recover
+## 6       6      rapid, pulse, headache Recover</code></pre>
+<!-- ======================================================= -->
+</div>
+<div id="хуваах" class="section level3 unnumbered">
+<h3>Хуваах<a class="anchor" aria-label="anchor" href="#%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ямар нэг хэв шинжид үндэслэн стрингсийг хуваах бол <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code>-ийг хэрэглэдэг. Энэ функц стрингсийг заасны дагуу шалгаж, хуваагаад шинээр хуваагдсан утгуудаас бүрдсэн карактер вектортой <code>list</code> -ийг үүсгэдэг.</p>
+<p>Доорхи энгийн жишээгээр нэг стрингсийг хэрхэн гурав хуваахыг харуулав. Хуваагдсан дата <code>list</code> хэлбэртэй үүсдэг ба анх өгөгдсөн стрингс тус бүрт нэг элэмент (карактер вектор) үүсгэсэн байдаг. Хэрэв <code>simplify = TRUE</code> гэж өгвөл карактер матрикс үүсгэдэг.</p>
+<p>Энэхүү жишээнд нэг стрингсийг <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code>-д өгөгдхөд нэг элементтэй list үүсч байна. Энэ элэмент гурван карактер утгаас бүртдсэн вектор байна.</p>
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"jaundice, fever, chills"</span>,
+          pattern <span class="op">=</span> <span class="st">","</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "jaundice" " fever"   " chills"</code></pre>
+<p>Үүссэн обьектийг хадгалчихвал цаашид дөрвөлжин хаалтыг ашиглан хүссэн n-дэх утгаа сугалж гаргах боломжтой болно. Ийм синтаксыг дараахь байдлаар бичдэг: <code>the_returned_object[[1]][2]</code> комманд эхний элементийн стрингс утгуудын хоёрдах утгыг гаргаж ирнэ (“fever”). [R basics] -ээс элэментэд орох гэсэн хэсгийг нэмж уншна уу.</p>
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pt1_symptoms</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="st">"jaundice, fever, chills"</span>, <span class="st">","</span><span class="op">)</span>
+
+<span class="va">pt1_symptoms</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>  <span class="co"># list-ийн эхний элэментийн 2 дах утгыг гаргаж ирэх </span></code></pre></div>
+<pre><code>## [1] " fever"</code></pre>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> -д стрингсийг олноор нь өгч буй тохиолдолд үүсэх листний элэментийн тоо мөн олон болдог.</p>
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">symptoms</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"jaundice, fever, chills"</span>,     <span class="co"># 1-р өвчтөн </span>
+              <span class="st">"chills, aches, pains"</span>,        <span class="co"># 2-р өвчтөн</span>
+              <span class="st">"fever"</span>,                       <span class="co"># 3-р өвчтөн</span>
+              <span class="st">"vomiting, diarrhoea"</span>,         <span class="co"># 4-р өвчтөн</span>
+              <span class="st">"bleeding from gums, fever"</span>,   <span class="co"># 5-р өвчтөн</span>
+              <span class="st">"rapid pulse, headache"</span><span class="op">)</span>       <span class="co"># 6-р өвчтөн</span>
+
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">symptoms</span>, <span class="st">","</span><span class="op">)</span>                     <span class="co"># өвчтөн болгоны шинж тэмдгийг хуваах</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "jaundice" " fever"   " chills" 
+## 
+## [[2]]
+## [1] "chills" " aches" " pains"
+## 
+## [[3]]
+## [1] "fever"
+## 
+## [[4]]
+## [1] "vomiting"   " diarrhoea"
+## 
+## [[5]]
+## [1] "bleeding from gums" " fever"            
+## 
+## [[6]]
+## [1] "rapid pulse" " headache"</code></pre>
+<p>“Карактер матрикс” үүсгэх шаардалгатай бол <code>simplify = TRUE</code> гэж тохируулна. Матрикс байгуулах нь цаашид багана бий болгоход хэрэгтэй байдаг.</p>
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">symptoms</span>, <span class="st">","</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>##      [,1]                 [,2]         [,3]     
+## [1,] "jaundice"           " fever"     " chills"
+## [2,] "chills"             " aches"     " pains" 
+## [3,] "fever"              ""           ""       
+## [4,] "vomiting"           " diarrhoea" ""       
+## [5,] "bleeding from gums" " fever"     ""       
+## [6,] "rapid pulse"        " headache"  ""</code></pre>
+<p>Мөн <code>n =</code> аргументээр хэдэн хэсэг болгож хуваахаа зааж өгч болно. Доорхи жишээнд хуваагдах тоог 2-оор хязгаарласан байна. Энэ заасан тооноос хойшхи таслалууд хоёр дах утганд хамрах болно.</p>
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">symptoms</span>, <span class="st">","</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<pre><code>##      [,1]                 [,2]            
+## [1,] "jaundice"           " fever, chills"
+## [2,] "chills"             " aches, pains" 
+## [3,] "fever"              ""              
+## [4,] "vomiting"           " diarrhoea"    
+## [5,] "bleeding from gums" " fever"        
+## [6,] "rapid pulse"        " headache"</code></pre>
+<p><em>Тэмдэглэл -дээрхитэй ижил үр дүнг <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split_fixed()</a></code> функцээр үйлдэж болно. Энэ функцэд <code>simplify</code> аргументийг өгөх шаардлагагүй харин баганын тоог заавал зааж өгөх шаардлагатай (<code>n</code>).</em></p>
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split_fixed</a></span><span class="op">(</span><span class="va">symptoms</span>, <span class="st">","</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="баганыг-хуваах" class="section level3 unnumbered">
+<h3>Баганыг хуваах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%8B%D0%B3-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хүснэгтийн баганыг <strong>dplyr</strong>-ын <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>-ээр хуваавал илүү хялбар. Энэ функц карактер баганыг олон багана болгож хэсэглэн хуваадаг.</p>
+<p>Жишээ нь энгийн нэгэн хүснэгт <code>df</code> байна гэж бодьё ( <a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#str_unite">unite section</a> хэсэгт нэгтгэгдсэн). Үүнд <code>case_ID</code>, болон өвчний шинж тэмдэг (<code>symptoms</code>) болон эмчилгээний үр дүн тус тус бичсэн баганууд байв. Бид <code>symptoms</code> баганын утгыг задалж нэг шинж тэмдэг нэг багана болж задарсан олон баганууд үүсгэх хэрэгтэй болов.</p>
+<div id="htmlwidget-586a3d8f9e4ff12842fb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-586a3d8f9e4ff12842fb">{"x":{"filter":"none","vertical":false,"data":[[1,2,3,4,5,6],["jaundice, fever, chills","chills, aches, pains","fever","vomiting, diarrhoea","bleeding from gums, fever","rapid pulse, headache"],["Recover","Death","Death","Recover","Recover","Recover"]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>case_ID<\/th>\n      <th>symptoms<\/th>\n      <th>outcome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p><code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>хэрвээ pipe холбоосонд залгаатай бол эхлээд хуваагдах баганыг зааж өгнө. Үүний дөраа <code>into =</code> аргументнд <em>шинээр</em> үүсгэх баганын нэрсийг вектор хэлбэрээр <code><a href="https://rdrr.io/r/base/c.html">c( )</a></code> дотор оруулж бичнэ. Доор үзүүлсэн жишээнд харуулсан.</p>
+<ul>
+<li><p><code>sep =</code> зааглагч, тэмдэгт эсвэл тоо байж болно (interpreted as the character position to split at)</p></li>
+<li><p><code>remove =</code> default нь FALSE, ашиглагдаж орсон баганыг устгана<br></p></li>
+<li><p><code>convert =</code> default нь FALSE, карактер хэлбэрт буй “NA”-г <code>NA</code> -руу хувиргана<br></p></li>
+<li>
+<p><code>extra =</code> шинээр багана үүсгэсний дараа багана болж ороогүй утга илүү гарвал дараахь нөхцлүүдээр тохируулдаг.</p>
+<ul>
+<li>
+<code>extra = "warn"</code> анхааруулга гарч ирэх боловч илүү утгууд устгагдна (<strong>default</strong>)<br>
+</li>
+<li>
+<code>extra = "drop"</code> анхааруулга гарч ирэхгүйгээр илүү утгууд устгагдна<br>
+</li>
+<li><strong><code>extra = "merge"into</code>-д зааж өгсөн баганын тоонд хуваах болно - <em>гэхдээ бүх датаг хадгалж үлднэ</em></strong></li>
+</ul>
+</li>
+</ul>
+<p>Доорхи жишээнд <code>extra = "merge"</code> -ийг хэрэглэхэд ямар ч дата устгагдаагүй байна. Хоёр шинэ багана үүссэн ба үүнээс илүү гарсан хэсэг нь хоёр дах баганадаа үлдсэн байна:</p>
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># гурав дах шинж тэмдэг хоёр дах утганд нэгтгэгдсэн</span>
+<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">symptoms</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sym_1"</span>, <span class="st">"sym_2"</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">","</span>, extra <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [3].</code></pre>
+<pre><code>##   case_ID              sym_1          sym_2 outcome
+## 1       1           jaundice  fever, chills Recover
+## 2       2             chills   aches, pains   Death
+## 3       3              fever           &lt;NA&gt;   Death
+## 4       4           vomiting      diarrhoea Recover
+## 5       5 bleeding from gums          fever Recover
+## 6       6        rapid pulse       headache Recover</code></pre>
+<p>When the default <code>extra = "drop"</code> is used below, a warning is given but the third symptoms are lost:</p>
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># гуравдах шинж тэмдэг алдагдсан байна</span>
+<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">symptoms</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sym_1"</span>, <span class="st">"sym_2"</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">","</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 2 rows [1, 2].</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [3].</code></pre>
+<pre><code>##   case_ID              sym_1      sym_2 outcome
+## 1       1           jaundice      fever Recover
+## 2       2             chills      aches   Death
+## 3       3              fever       &lt;NA&gt;   Death
+## 4       4           vomiting  diarrhoea Recover
+## 5       5 bleeding from gums      fever Recover
+## 6       6        rapid pulse   headache Recover</code></pre>
+<p><span style="color: orange;"><strong><em>АНХААРУУЛГА:</em></strong> Хэрэв <code>into</code> -д хангалттай тоог оруулахгүй бол дата тайрагдаж болохыг анхаар.</span></p>
+<!-- ======================================================= -->
+</div>
+<div id="цагаан-толгойн-дарааллаар-эрэмбэлэх" class="section level3 unnumbered">
+<h3>Цагаан толгойн дарааллаар эрэмбэлэх<a class="anchor" aria-label="anchor" href="#%D1%86%D0%B0%D0%B3%D0%B0%D0%B0%D0%BD-%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9%D0%BD-%D0%B4%D0%B0%D1%80%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D0%B0%D1%80-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Олон стрингсүүдийг цагаан толгойн дарааллаар эрэмбэлж болно. <code><a href="https://stringr.tidyverse.org/reference/str_order.html">str_order()</a></code> функц дарааллын дугаарыг үүсгэж, <code><a href="https://stringr.tidyverse.org/reference/str_order.html">str_sort()</a></code> дарааллаар нь эрэмбэлж байрлуулдаг.</p>
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># стрингс</span>
+<span class="va">health_zones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alba"</span>, <span class="st">"Takota"</span>, <span class="st">"Delta"</span><span class="op">)</span>
+
+<span class="co"># цагаан толгойгоор дарааллаар дугаарлана</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_order.html">str_order</a></span><span class="op">(</span><span class="va">health_zones</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1 3 2</code></pre>
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># цагаан толгойн дарааллаар эрэмбэлэн байрлуулна</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_order.html">str_sort</a></span><span class="op">(</span><span class="va">health_zones</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Alba"   "Delta"  "Takota"</code></pre>
+<p>Өөр хэлний цагаан толгой хэрэглэх бол <code>locale =</code> аргументээр тохируулдаг. <code>locale =</code>-д орох жагсаалтыг R console-д <code><a href="https://rdrr.io/pkg/stringi/man/stri_locale_list.html">stringi::stri_locale_list()</a></code> гэж бичиж гаргаж ирнэ.</p>
+<!-- ======================================================= -->
+</div>
+<div id="base-r--ын-функцууд" class="section level3 unnumbered">
+<h3>base R -ын функцууд<a class="anchor" aria-label="anchor" href="#base-r--%D1%8B%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Векторуудыг бүхэлд нь карактерлуу хувиргаад, нэгтгэдэг <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> гэсэн функцууд <strong>base</strong> R-т бий. Эдгээр нь <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code>-тэй төстэй боловч бичигдэх синтаксаараа арай өөр - хаалтан дотор, хэсэг тус бүрийн дунд таслал оруулах хэрэгтэй болдог. Эдгээр хэсгүүд нэг бол карактер текст (хашилтанд бичигдна) эсвэл тодорхой кодын обьектууд байна (хашилтгүй бичигднэ). Жишээ нь:</p>
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n_beds</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">n_masks</span> <span class="op">&lt;-</span> <span class="fl">20</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Regional hospital needs "</span>, <span class="va">n_beds</span>, <span class="st">" beds and "</span>, <span class="va">n_masks</span>, <span class="st">" masks."</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Regional hospital needs 10 beds and 20 masks."</code></pre>
+<p><code>sep =</code> болон <code>collapse =</code> аргументыг тохируулж болно. <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> бол <code>sep = " "</code> гэсэн аргументтэй <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> (зай авахгүй) гэсэн үг .</p>
+</div>
+</div>
+<div id="цэвэрлэх-болон-жигдрүүлэх" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Цэвэрлэх болон жигдрүүлэх<a class="anchor" aria-label="anchor" href="#%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D1%85-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B6%D0%B8%D0%B3%D0%B4%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<!-- ======================================================= -->
+<div id="үсгийн-том-жижигийг-өөрчлөх" class="section level3 unnumbered">
+<h3>Үсгийн том жижигийг өөрчлөх<a class="anchor" aria-label="anchor" href="#%D2%AF%D1%81%D0%B3%D0%B8%D0%B9%D0%BD-%D1%82%D0%BE%D0%BC-%D0%B6%D0%B8%D0%B6%D0%B8%D0%B3%D0%B8%D0%B9%D0%B3-%D3%A9%D3%A9%D1%80%D1%87%D0%BB%D3%A9%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингс дата янзалж байхад үсгийн том жижигийг тохируулах шаадрдлага их гардаг. Ийм стрингсүүдийн жишээнд нутаг дэвсгэрийн нэрс ордог. Үүнд <strong>stringr</strong>-ын <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title()</a></code> нарыг дор жишээнд харуулсан шиг хэрэглэнэ.</p>
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper</a></span><span class="op">(</span><span class="st">"California"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "CALIFORNIA"</code></pre>
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="st">"California"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "california"</code></pre>
+<p>Мөн *base** R-ын <code><a href="https://rdrr.io/r/base/chartr.html">toupper()</a></code>, <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code>-аар адил үр дүнд хүрч болно.</p>
+<p><strong>Гарчигны үсгийн том жижиг</strong></p>
+<p>Бүх үгсийн эхний үсгийг томоор бичих бол <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title()</a></code>-ийг хэрэглэнэ:</p>
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title</a></span><span class="op">(</span><span class="st">"go to the US state of california "</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Go To The Us State Of California "</code></pre>
+<p><strong>tools</strong> багцын <code>toTitleCase()</code> -ыг хэрэглэвэл дээрх үйлдлийг арай боловсронгуй гүйцэтгэдэг (“to”, “the”, “of” зэрэг зарим туслах үгс том болж хувирахгүй).</p>
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/toTitleCase.html">toTitleCase</a></span><span class="op">(</span><span class="st">"This is the US state of california"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "This is the US State of California"</code></pre>
+<p><code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_sentence()</a></code> -ээр стрингийн зөвхөн эхний үсгийг том болгоход хэрэглэнэ.</p>
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_sentence</a></span><span class="op">(</span><span class="st">"the patient must be transported"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "The patient must be transported"</code></pre>
+</div>
+<div id="str_pad" class="section level3 unnumbered">
+<h3>Уртыг тааруулах<a class="anchor" aria-label="anchor" href="#str_pad"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингст доод уртын хэмжээг хэд байхыг зааж өгч болох ба үүнийг <code><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad()</a></code> -аар гүйцэтгэнэ. Уртыг заасан хэмжээнд хүргэхийн тулд нэмдэг default тэмдэгт нь хоосон зай (space) боловч <code>pad =</code> аргументэд үүнийг сольж өгч болно.</p>
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># өөр өөр урттай ICD  кодын стрингсүүд</span>
+<span class="va">ICD_codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"R10.13"</span>,
+               <span class="st">"R10.819"</span>,
+               <span class="st">"R17"</span><span class="op">)</span>
+
+<span class="co"># ICD кодын баруун талд 7 карактер нэмж стрингсүүдийн уртыг тэнцүүлнэ</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="va">ICD_codes</span>, <span class="fl">7</span>, <span class="st">"right"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "R10.13 " "R10.819" "R17    "</code></pre>
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># зай авахын оронд цэг нэм</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="va">ICD_codes</span>, <span class="fl">7</span>, <span class="st">"right"</span>, pad <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "R10.13." "R10.819" "R17...."</code></pre>
+<p>Доорхи жишээнд 0 -оор эхэлдэг (минут цаг гэх мэт) тоон утгуудыг дор хаяж 2 оронтой байлгахын тулд урд талдаа <code>pad = "0"</code> -гэж тохируулсан.</p>
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 2 орон болтол нь урд нь 0-ыг нэмнэ (цаг/минут)</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="fl">2</span>, pad <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span> </code></pre></div>
+<pre><code>## [1] "04"</code></pre>
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># "цаг" гэсэн тоон багана нэм</span>
+<span class="co"># hours &lt;- str_pad(hours, 2, pad = "0")</span></code></pre></div>
+</div>
+<div id="огтлох" class="section level3 unnumbered">
+<h3>Огтлох<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D1%82%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_trunc.html">str_trunc()</a></code> -ээр стрингсийн дээд уртыг зааж өгнө. Хэрэв стрингс энэнээс урт бол огтлогддог (богиносно). Гэхдээ анхны утга урт байсныг сануулж эллипсис буюу гурван цэг (…) ард нь нэмж өгдөг. Гурван цэг нь өөрөө уртад тоологдох болохыг анхаар. Гурван цэгийн оронд өөр тэмдэг оруулахдаа <code>ellipsis =</code> аргументийг ашиглана. <code>side =</code> аргументээр гурван цэг огтлогдсон стрингсийн аль талд байрлахыг зааж өгнө (“зүүн”, “баруун”, “төв”).</p>
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">original</span> <span class="op">&lt;-</span> <span class="st">"Symptom onset on 4/3/2020 with vomiting"</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html">str_trunc</a></span><span class="op">(</span><span class="va">original</span>, <span class="fl">10</span>, <span class="st">"center"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Symp...ing"</code></pre>
+</div>
+<div id="уртыг-жигдрүүлэх" class="section level3 unnumbered">
+<h3>Уртыг жигдрүүлэх<a class="anchor" aria-label="anchor" href="#%D1%83%D1%80%D1%82%D1%8B%D0%B3-%D0%B6%D0%B8%D0%B3%D0%B4%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Уртын дээд хэмжээг <code><a href="https://stringr.tidyverse.org/reference/str_trunc.html">str_trunc()</a></code> -аар зааж өгдөг бол хэт богино стрингсийг <code><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad()</a></code>-аар заасан цэг хүртэл сунгаж болдог. Доорх жишээнд уртын дээд хэмжээг 6 гэж заасан (ингэснээр нэг утга огтлогдсон). Үүний дараа их богино хэмжээтэй нэг стрингс байгааг 6 болгож уртасгасан.</p>
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Өөр урттай бичигдсэн ICD код</span>
+<span class="va">ICD_codes</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"R10.13"</span>,
+                 <span class="st">"R10.819"</span>,
+                 <span class="st">"R17"</span><span class="op">)</span>
+
+<span class="co"># уртын дээд хязгаарыг 6 болгох</span>
+<span class="va">ICD_codes_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html">str_trunc</a></span><span class="op">(</span><span class="va">ICD_codes</span>, <span class="fl">6</span><span class="op">)</span>
+<span class="va">ICD_codes_2</span></code></pre></div>
+<pre><code>## [1] "R10.13" "R10..." "R17"</code></pre>
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># доод хязгаарыг 6 болгож уртасга</span>
+<span class="va">ICD_codes_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="va">ICD_codes_2</span>, <span class="fl">6</span>, <span class="st">"right"</span><span class="op">)</span>
+<span class="va">ICD_codes_3</span></code></pre></div>
+<pre><code>## [1] "R10.13" "R10..." "R17   "</code></pre>
+</div>
+<div id="илүү-гарсан-хоосон-зайг-арилгах" class="section level3 unnumbered">
+<h3>Илүү гарсан хоосон зайг арилгах<a class="anchor" aria-label="anchor" href="#%D0%B8%D0%BB%D2%AF%D2%AF-%D0%B3%D0%B0%D1%80%D1%81%D0%B0%D0%BD-%D1%85%D0%BE%D0%BE%D1%81%D0%BE%D0%BD-%D0%B7%D0%B0%D0%B9%D0%B3-%D0%B0%D1%80%D0%B8%D0%BB%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингc утганд нэмэлт хоосон зай, шинэ мөр (<code>\n</code>), таб (<code>\t</code>) зэрэг илүүдлээр орсон бол эдгээрийг <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code> - ээр тайрч болно. Тайрах талын байрлалыг <code>"right"</code> <code>"left"</code>, <code>"both"</code> гэж зааж өгч болно ( жишээ нь <code>str_trim(x, "right")</code>.</p>
+<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ID дугааруудын баруун талд илүү зай байна</span>
+<span class="va">IDs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provA_1852  "</span>, <span class="co"># 2 орон илүү зай</span>
+         <span class="st">"provA_2345"</span>,   <span class="co"># илүү зай байхгүй</span>
+         <span class="st">"provA_9460 "</span><span class="op">)</span>  <span class="co"># 1 орон илүү зай </span>
+
+<span class="co"># ID дугаартай стрингсийн зөвхөн баруун талын илүү зайг тайрах</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="va">IDs</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "provA_1852" "provA_2345" "provA_9460"</code></pre>
+</div>
+<div id="давтагдсан-хоосон-зайг-арилгах" class="section level3 unnumbered">
+<h3>Давтагдсан хоосон зайг арилгах<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D0%B2%D1%82%D0%B0%D0%B3%D0%B4%D1%81%D0%B0%D0%BD-%D1%85%D0%BE%D0%BE%D1%81%D0%BE%D0%BD-%D0%B7%D0%B0%D0%B9%D0%B3-%D0%B0%D1%80%D0%B8%D0%BB%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингсийн <em>завсар</em> хоосон зай давтагдсан бол <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_squish()</a></code>-ээр үүнийг янзалж болно. Давхар хоосон зай нэг хоосон зай болдог. Стрингсийн хажуугийн хоосон зай, шинэ мөр, таб -ыг <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code> -ээр янзалж болно.</p>
+<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Эх текстийн завсарт хэт их зай авсагдсан байна</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_squish</a></span><span class="op">(</span><span class="st">"  Pt requires   IV saline\n"</span><span class="op">)</span> </code></pre></div>
+<pre><code>## [1] "Pt requires IV saline"</code></pre>
+<p>Эдгээр функцын талаарх нэмэлт мэдээллийг R console -д <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">?str_trim</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_pad.html">?str_pad</a></code> гэсэн комманд уншуулж авна уу.</p>
+</div>
+<div id="параграф-болгож-нэгтгэх" class="section level3 unnumbered">
+<h3>Параграф болгож нэгтгэх<a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B0%D1%80%D0%B0%D0%B3%D1%80%D0%B0%D1%84-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ямар ч бүтэц, хэвгүй үргэлжилсэн текстийг нэтгэж, бүтэцжүүлж, мөрийн уртыг зааж өгөн параграф хэвлбэрт оруулах бол <code><a href="https://stringr.tidyverse.org/reference/str_wrap.html">str_wrap()</a></code> -ыг хэрэглэ. Мөрний хэр урт байхыг зааж өгснөөр текст дундуур мөрүүд алгоритмын дагуу бий болж параграф хэлбэрт орно (жишээ дор харуулсан).</p>
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pt_course</span> <span class="op">&lt;-</span> <span class="st">"Symptom onset 1/4/2020 vomiting chills fever. Pt saw traditional healer in home village on 2/4/2020. On 5/4/2020 pt symptoms worsened and was admitted to Lumta clinic. Sample was taken and pt was transported to regional hospital on 6/4/2020. Pt died at regional hospital on 7/4/2020."</span>
+
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_wrap.html">str_wrap</a></span><span class="op">(</span><span class="va">pt_course</span>, <span class="fl">40</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Symptom onset 1/4/2020 vomiting chills\nfever. Pt saw traditional healer in\nhome village on 2/4/2020. On 5/4/2020\npt symptoms worsened and was admitted\nto Lumta clinic. Sample was taken and pt\nwas transported to regional hospital on\n6/4/2020. Pt died at regional hospital\non 7/4/2020."</code></pre>
+<p>Дээрх коммандын үр дүнг хэвлэх бол <strong>base</strong> -ын <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> -д функц дотор коммандаа уншуулна уу.</p>
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_wrap.html">str_wrap</a></span><span class="op">(</span><span class="va">pt_course</span>, <span class="fl">40</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## Symptom onset 1/4/2020 vomiting chills
+## fever. Pt saw traditional healer in
+## home village on 2/4/2020. On 5/4/2020
+## pt symptoms worsened and was admitted
+## to Lumta clinic. Sample was taken and pt
+## was transported to regional hospital on
+## 6/4/2020. Pt died at regional hospital
+## on 7/4/2020.</code></pre>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="байрлалаар-нь-янзлах" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Байрлалаар нь янзлах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%BD%D1%8C-%D1%8F%D0%BD%D0%B7%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<div id="карактерийг-байрлалаар-гаргаж-ирэх" class="section level3 unnumbered">
+<h3>Карактерийг байрлалаар гаргаж ирэх<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D0%B9%D0%B3-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B8%D1%80%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингсийг хэсэглэж гаргаж авах шаардлагтай үед <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> -ийг хэрэглэдэг. Энэхүү функц гурван үндсэн аргумент авдаг:</p>
+<ol style="list-style-type: decimal">
+<li>карактер вектор(-ууд)<br>
+</li>
+<li>эхлэх байрлал<br>
+</li>
+<li>дуусах байрлал</li>
+</ol>
+<p>Байрлалын дугаарлах талаар:</p>
+<ul>
+<li>Хэрэв байрлал эерэг бол стрингсийн зүүн үзүүрээс эхэлж тоологдсон гэсэн үг<br>
+</li>
+<li>Хэрэв байрлал сөрөг бол стрингсийн баруун үзүүрээс эхэлж тоологдсон гэсэн үг<br>
+</li>
+<li>Байрлалын дугаар нь нээлттэй (inclusive)<br>
+</li>
+<li>Стрингсээс гадуур байрлал огтлогддог (устгагдна).</li>
+</ul>
+<p>Дор “pneumonia” гэсэн стрингсийг жишээ болгож үзүүлэв:</p>
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># зүүн талын үзүүрээс тоолж гуравдах орноос эхэлж гурав дах орон дээр дуусна (зүүн талаас гурав дах үсэг)</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="st">"pneumonia"</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "e"</code></pre>
+<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 0 гэсэн байрлал байхгүй </span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="st">"pneumonia"</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] ""</code></pre>
+<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># зүүн талаас 6 даха орноос баруун талаас 1 дэх хүртэл</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="st">"pneumonia"</span>, <span class="fl">6</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "onia"</code></pre>
+<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># баруун талаас 5 дахаас орноос баруун талаас 2 дах хүртэл </span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="st">"pneumonia"</span>, <span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "moni"</code></pre>
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># зүүн талаасаа 4 дэх орноос стрингсийн гадна давж гартал</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="st">"pneumonia"</span>, <span class="fl">4</span>, <span class="fl">15</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "umonia"</code></pre>
+</div>
+<div id="үгийн-байрлалаар-гаргаж-ирэх" class="section level3 unnumbered">
+<h3>Үгийн байрлалаар гаргаж ирэх<a class="anchor" aria-label="anchor" href="#%D2%AF%D0%B3%D0%B8%D0%B9%D0%BD-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B8%D1%80%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингсээс n-дүгээр ‘үгийг’ гаргаж авахдаа мөн <strong>stringr</strong>-ийн <code><a href="https://stringr.tidyverse.org/reference/word.html">word()</a></code>функцыг хэрэглэдэг. Эхлээд шүүлт хийх стрингсээ оруулна. Үүнээс тасалж авах хэсгийн эхлэх үгийн байрлал, төгсгөл үгийн байрлалыг зааж өгнө.</p>
+<p>Үүссэн стрингст үг хоорондын завсар орох default тэмдэгт нь хоосон зай боловч <code>sep =</code> -д үүнийг сольж болно (жишээ нь <code>sep = "_"</code> доогуур зураасыг оруулахаар зааж өгч болно).</p>
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Шүүлт хийх стрингс</span>
+<span class="va">chief_complaints</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"I just got out of the hospital 2 days ago, but still can barely breathe."</span>,
+                      <span class="st">"My stomach hurts"</span>,
+                      <span class="st">"Severe ear pain"</span><span class="op">)</span>
+
+<span class="co"># Стрингс тус бүрийн 1 дэхээс 3д ах үгийг гаргаж ирэх</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/word.html">word</a></span><span class="op">(</span><span class="va">chief_complaints</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fl">3</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "I just got"       "My stomach hurts" "Severe ear pain"</code></pre>
+</div>
+<div id="карактерийн-байрлалаар-орлуулах" class="section level3 unnumbered">
+<h3>Карактерийн байрлалаар орлуулах<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D0%B9%D0%BD-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%BE%D1%80%D0%BB%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингсийн нэг хэсэгт өөрчлөлт оруулах шаардлагтай бол <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> болон (<code>&lt;-</code>) оноогч операторыг хамтарч хэрэглэнэ.</p>
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">word</span> <span class="op">&lt;-</span> <span class="st">"pneumonia"</span>
+
+<span class="co"># 3,4 дүгээр карактерийг X -ээр орлуул</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">word</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"XX"</span>
+
+<span class="co"># Хэвлэ</span>
+<span class="va">word</span></code></pre></div>
+<pre><code>## [1] "pnXXmonia"</code></pre>
+<p>Дээрхи жишээг стрингсийн векторт хэрэглэж үзье (эсвэл багана). “HIV”-ийн хэмжээ уртасч байгааг анзаарна уу.</p>
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">words</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pneumonia"</span>, <span class="st">"tubercolosis"</span>, <span class="st">"HIV"</span><span class="op">)</span>
+
+<span class="co"># 3,4 дүгээр карактерийг X -ээр орлуул</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">words</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"XX"</span>
+
+<span class="va">words</span></code></pre></div>
+<pre><code>## [1] "pnXXmonia"    "tuXXrcolosis" "HIXX"</code></pre>
+</div>
+<div id="уртыг-шалга" class="section level3 unnumbered">
+<h3>Уртыг шалга<a class="anchor" aria-label="anchor" href="#%D1%83%D1%80%D1%82%D1%8B%D0%B3-%D1%88%D0%B0%D0%BB%D0%B3%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span><span class="st">"abc"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p><strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/nchar.html">nchar()</a></code> -ыг бас хэрэглэж болно.</p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="хэв-маяг" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> Хэв маяг<a class="anchor" aria-label="anchor" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Аливаа <em>хэв маягт</em> тааруулан илрүүлэх, байрлуулах, гаргаж авах, тааруулах, орлуулах, хуваах үйлдлйиг хийдэг функцууд <strong>stringr</strong> багцад буй .</p>
+<!-- ======================================================= -->
+<div id="хэв-маягийг-илрүүлэх" class="section level3 unnumbered">
+<h3>Хэв маягийг илрүүлэх<a class="anchor" aria-label="anchor" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3%D0%B8%D0%B9%D0%B3-%D0%B8%D0%BB%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стрингс доторх аливаа хэв маягийг <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> -ээр хайж, илрүүлдэг. Эхлээд шүүлт явуулах стрингс эсвэл вектороо оруулаад (<code>string =</code>), дараа нь хайж буй хэв маягийг зааж өгнө (<code>pattern =</code>). Default -аар <em>үсгийн том жижиг хамаатай</em> !</p>
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"primary school teacher"</span>, pattern <span class="op">=</span> <span class="st">"teach"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Хэрэв <code>negate =</code> аргументийг нэмж <code>TRUE</code> гэж тохируулбал тухайн заасан хэв маяг БАЙХГҮЙ эсэхийг шалгадаг.</p>
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"primary school teacher"</span>, pattern <span class="op">=</span> <span class="st">"teach"</span>, negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Хэрэв үсгийн том жижигийг хамаарахгүй болгохын тулд хайлт хийх хэв маягаа <code><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex()</a></code> функцэд оруулаад <code><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex()</a></code> <em>дотор</em> <code>ignore_case = TRUE</code> гэсэн тохиргоо хийдэг (эсвэл <code>T</code> гэж товчилж болно).</p>
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"Teacher"</span>, pattern <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"teach"</span>, ignore_case <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Карактер вектор эсвэл хүснэгтийн баганад <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> функцыг уншуулбал TRUE эсвэл FALSE гэсэн логик утгатай вектор үүснэ.</p>
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># мэргэжил бүртгэсэн вектор/хүснэгтийн багана</span>
+<span class="va">occupations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"field laborer"</span>,
+                 <span class="st">"university professor"</span>,
+                 <span class="st">"primary school teacher &amp; tutor"</span>,
+                 <span class="st">"tutor"</span>,
+                 <span class="st">"nurse at regional hospital"</span>,
+                 <span class="st">"lineworker at Amberdeen Fish Factory"</span>,
+                 <span class="st">"physican"</span>,
+                 <span class="st">"cardiologist"</span>,
+                 <span class="st">"office worker"</span>,
+                 <span class="st">"food service"</span><span class="op">)</span>
+
+<span class="co"># стрингс тус бүрт "teach" гэсэн хэв маяг/үг байгаа эсэхийг шалгаж үр дүнг TRUE/FALSE-оор харуулна</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">occupations</span>, <span class="st">"teach"</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>Үүнийг <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> -ын дотор оруулж нийт хэдэн <code>TRUE</code>- байгааг тоолж болно.</p>
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">occupations</span>, <span class="st">"teach"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Олон янзын хэв маяг хайх бол тэдгээгийг жагсаан ЭСВЭЛ (<code>|</code>) тэмдэгтээр тусгаарлаж бичээд <code>pattern =</code> аргументэд дор харуулсан шиг бичнэ:</p>
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">occupations</span>, pattern <span class="op">=</span> <span class="st">"teach|professor|tutor"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Хайлт хийх хэв маягийн жагсаалт их урт тохиолдолд эхлээд <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> болон <code>sep = |</code>-ийг хавсарч хэрэглээд, карактер гэдгийг нь зааж өгвөл цаашид хайлтаа арай товч болгож болно. Доорх жишээнд эрүүл мэндийн ажилтнуудын тэргүүн шугаманд ажилладаг мэргэжлийн нэрсээр хайлт хийж байна.</p>
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># олон янзын хэв маягийг хайх</span>
+<span class="va">occupation_med_frontline</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"medical"</span>, <span class="st">"medicine"</span>, <span class="st">"hcw"</span>, <span class="st">"healthcare"</span>, <span class="st">"home care"</span>, <span class="st">"home health"</span>,
+                                <span class="st">"surgeon"</span>, <span class="st">"doctor"</span>, <span class="st">"doc"</span>, <span class="st">"physician"</span>, <span class="st">"surgery"</span>, <span class="st">"peds"</span>, <span class="st">"pediatrician"</span>,
+                               <span class="st">"intensivist"</span>, <span class="st">"cardiologist"</span>, <span class="st">"coroner"</span>, <span class="st">"nurse"</span>, <span class="st">"nursing"</span>, <span class="st">"rn"</span>, <span class="st">"lpn"</span>,
+                               <span class="st">"cna"</span>, <span class="st">"pa"</span>, <span class="st">"physician assistant"</span>, <span class="st">"mental health"</span>,
+                               <span class="st">"emergency department technician"</span>, <span class="st">"resp therapist"</span>, <span class="st">"respiratory"</span>,
+                                <span class="st">"phlebotomist"</span>, <span class="st">"pharmacy"</span>, <span class="st">"pharmacist"</span>, <span class="st">"hospital"</span>, <span class="st">"snf"</span>, <span class="st">"rehabilitation"</span>,
+                               <span class="st">"rehab"</span>, <span class="st">"activity"</span>, <span class="st">"elderly"</span>, <span class="st">"subacute"</span>, <span class="st">"sub acute"</span>,
+                                <span class="st">"clinic"</span>, <span class="st">"post acute"</span>, <span class="st">"therapist"</span>, <span class="st">"extended care"</span>,
+                                <span class="st">"dental"</span>, <span class="st">"dential"</span>, <span class="st">"dentist"</span>, sep <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>
+
+<span class="va">occupation_med_frontline</span></code></pre></div>
+<pre><code>## [1] "medical|medicine|hcw|healthcare|home care|home health|surgeon|doctor|doc|physician|surgery|peds|pediatrician|intensivist|cardiologist|coroner|nurse|nursing|rn|lpn|cna|pa|physician assistant|mental health|emergency department technician|resp therapist|respiratory|phlebotomist|pharmacy|pharmacist|hospital|snf|rehabilitation|rehab|activity|elderly|subacute|sub acute|clinic|post acute|therapist|extended care|dental|dential|dentist"</code></pre>
+<p>Дараах коммандыг уншуулснаар occupations бүртгэлд дээрх жагсаалттай (<code>occupation_med_frontline</code>) тохирсон мэргэжлүүд хэд байгааг харуулна:</p>
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">occupations</span>, pattern <span class="op">=</span> <span class="va">occupation_med_frontline</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p><strong>Base R -ын стрингс хайх функцууд</strong></p>
+<p><strong>base</strong> -ын функц болох <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code> нь <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> -тэй төстэй үйлдэлтэй. Энэ функц таарсан бүтцийг хайж логик вектор үүсгэдэг. Үндсэн синтакс нь <code>grepl(бүтэц, хайх_стрингс, ignore.case = FALSE, ...)</code>. Давуу тал нь <code>ignore.case</code> аргументийг бичихэд хялбар ( <code><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex()</a></code> функцтэй хавсарч хэрэглэх шаардлагагүй).</p>
+<p>Мөн <strong>base</strong> -ын функц болох <code><a href="https://rdrr.io/r/base/grep.html">sub()</a></code>, <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> нар нь <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>-тэй төстэй үйлдэлтэй. Үндсэн синтакс нь: <code>gsub(бүтэц, орлуулалт, хайх_стрингс, ignore.case = FALSE)</code>. <code><a href="https://rdrr.io/r/base/grep.html">sub()</a></code> функц уншуулахад өгөгдсөн хэв маягт таарсан эхний тохиолдлыг орлуулдаг бол <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> функцыг уншуулахад өгөгдсөн бүтэцтэй таарсан бүх тохиолдлуудыг орлуулна.</p>
+<div id="таслалыг-цэгээр-солих" class="section level4 unnumbered">
+<h4>Таслалыг цэгээр солих<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B0%D1%81%D0%BB%D0%B0%D0%BB%D1%8B%D0%B3-%D1%86%D1%8D%D0%B3%D1%8D%D1%8D%D1%80-%D1%81%D0%BE%D0%BB%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Тоон векторуудад буй таслалуудыг <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> ашиглаж цэгээр хэрхэн солихыг харуулав. Ингэж цэгээр солих үйлдлйиг АНУ, Их Британийн бус гаралтай датанд их хийдэг.</p>
+<p>Доорх жишээнд эхлээд дотор талд буй <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> нь <code>lengths</code> баганыг уншиж, үүнд агуулагдаж бүх цэгийг “” (зайгүй хоосон) болгож хувиргаж байна. Ингэхдээ “.” гэсэн тэмдэгтийг алгасахын тулд хоёр ташуу зураас оруулж өгнө. Учир нь regex -т “.” нь “бүх тэмдэгт” ( “any character”)-ийг илэрхийлдэг. Үүссэн (зөвхөн таслалтай) үр дүн гаднах <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> -д уншигдах ба ингэснээр бүх таслалууд цэг болж хувирна.</p>
+<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2.454,56"</span>, <span class="st">"1,2"</span>, <span class="st">"6.096,5"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">","</span>,                <span class="co"># бүх таслалыг  </span>
+                replacement <span class="op">=</span> <span class="st">"."</span>,            <span class="co"># цэгээр солих</span>
+                x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\\."</span>, <span class="st">""</span>, <span class="va">lengths</span><span class="op">)</span>  <span class="co"># цэг агуулсан бусад векторуудыг арилгах (цэг ())</span>
+                <span class="op">)</span>
+           <span class="op">)</span>                                  <span class="co"># үр дүнг тоон утга болго</span></code></pre></div>
+</div>
+</div>
+<div id="бүгдийг-зэрэг-солих" class="section level3 unnumbered">
+<h3>Бүгдийг зэрэг солих<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D0%B3%D0%B4%D0%B8%D0%B9%D0%B3-%D0%B7%D1%8D%D1%80%D1%8D%D0%B3-%D1%81%D0%BE%D0%BB%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all()</a></code> -ыг “олоод ёоль” гэсэн үйлдэл хийхэд ашигладаг. Эхлээд шүүлт хийх стрингсээ <code>string =</code>-нд, хайлт хийх бүтцээ <code>pattern =</code>-нд, сольж тавих утгаа <code>replacement =</code>-нд тус тус зааж өгнө. Доорхи жишээгээр бүх “dead” гэсэн утгыг “deceased” болгож солих болно. Үсгийн том жижиг хамаатай болохыг анхаарна уу.</p>
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Karl: dead"</span>,
+            <span class="st">"Samantha: dead"</span>,
+            <span class="st">"Marco: not dead"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">outcome</span>, pattern <span class="op">=</span> <span class="st">"dead"</span>, replacement <span class="op">=</span> <span class="st">"deceased"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Karl: deceased"      "Samantha: deceased"  "Marco: not deceased"</code></pre>
+<p>Тэмдэглэл:</p>
+<ul>
+<li>Аливаа хэв маягийг <code>NA</code>-аар солиход <code><a href="https://stringr.tidyverse.org/reference/str_replace_na.html">str_replace_na()</a></code> функцыг хэрэглэдэг.<br>
+</li>
+<li>
+<code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code> функц шалгагдаж буй стрингс тус бүрийн зөвхөн эхний тохиолдлыг л сольдог.</li>
+</ul>
+<!-- ======================================================= -->
+</div>
+<div id="логик-дотор-илрүүлэх" class="section level3 unnumbered">
+<h3>Логик дотор илрүүлэх<a class="anchor" aria-label="anchor" href="#%D0%BB%D0%BE%D0%B3%D0%B8%D0%BA-%D0%B4%D0%BE%D1%82%D0%BE%D1%80-%D0%B8%D0%BB%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong><code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> дотор</strong></p>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> -ийг (<strong>dplyr</strong>-ын) <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>-ын дотор хэрэглэх нь их. Жишээнд linelist -д <code>occupations</code> хэмээх баганыг авч үзье. Энэхүү баганад логик нөхцлийг <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> -ээр оруулж, үүнийгээ <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> дотор оруулсгнаар <code>is_educator</code> гэсэн шинэ багана үүсгэж байна. <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>-ийн талаар дата цэвэрлэгээг тайлбарласан хэсгээс лавшруулж уншиж болно.</p>
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>is_educator <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+    <span class="co"># occupation дотор хийгдэж буй хайлтад үсгийн жижиг том хамаагүй</span>
+    <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">occupations</span>,
+               <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"teach|prof|tutor|university"</span>,
+                     ignore_case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>              <span class="op">~</span> <span class="st">"Educator"</span>,
+    <span class="co"># бусад бүх</span>
+    <span class="cn">TRUE</span>                                               <span class="op">~</span> <span class="st">"Not an educator"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Оруулахгүй хэв маягийг логик нөхцөлд зааж өгч болно (<code>negate = F</code>):</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb517-2"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># шинээр үүсгэсэн is_educator багана дах утгыг логик нөхцлөөр үүсгэсэн </span></span>
+<span id="cb517-3"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_educator =</span> <span class="fu">case_when</span>(</span>
+<span id="cb517-4"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb517-5"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># occupation баганын утга хоёр шалгуурт нийцэж байж "Educator" баганын утга болж чадна:</span></span>
+<span id="cb517-6"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># it must have a search term AND NOT any exclusion term</span></span>
+<span id="cb517-7"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb517-8"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Хайлт хийх хэв маягууд</span></span>
+<span id="cb517-9"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(occupations,</span>
+<span id="cb517-10"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">regex</span>(<span class="st">"teach|prof|tutor|university"</span>, <span class="at">ignore_case =</span> T)) <span class="sc">&amp;</span>              </span>
+<span id="cb517-11"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb517-12"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AND must NOT have an exclusion term</span></span>
+<span id="cb517-13"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(occupations,</span>
+<span id="cb517-14"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-14" aria-hidden="true" tabindex="-1"></a>               <span class="fu">regex</span>(<span class="st">"admin"</span>, <span class="at">ignore_case =</span> T),</span>
+<span id="cb517-15"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">negate =</span> <span class="cn">TRUE</span>                        <span class="sc">~</span> <span class="st">"Educator"</span></span>
+<span id="cb517-16"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb517-17"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Дээрх шалгуурт нийцэхгүй бусад бүх нөхцлүүд</span></span>
+<span id="cb517-18"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#cb517-18" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                                            <span class="sc">~</span> <span class="st">"Not an educator"</span>))</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+<div id="хэв-маягийн-байрлалыг-тогтоох" class="section level3 unnumbered">
+<h3>Хэв маягийн байрлалыг тогтоох<a class="anchor" aria-label="anchor" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3%D0%B8%D0%B9%D0%BD-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D1%8B%D0%B3-%D1%82%D0%BE%D0%B3%D1%82%D0%BE%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хайлт хийж буй хэв маягийн эхний байрлалыг тогтоохын тулд <code><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate()</a></code>-ыг хэрэглэ. Эхлэл болон төгсгөл хэсгээр нь хайдаг.</p>
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate</a></span><span class="op">(</span><span class="st">"I wish"</span>, <span class="st">"sh"</span><span class="op">)</span></code></pre></div>
+<pre><code>##      start end
+## [1,]     5   6</code></pre>
+<p>Бусад <code>str</code> функцын адил дээрх функцэд хэв маяг таарч буй <em>бүх</em> тохиолдлуудыг (стрингс тус бүрээс) гаргаж ирдэг “_all” хувилбар (<code><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate_all()</a></code>) бас байна. Үүний хайлтын үр дүн <code>list</code> -ээр үүсдэг.</p>
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">phrases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"I wish"</span>, <span class="st">"I hope"</span>, <span class="st">"he hopes"</span>, <span class="st">"He hopes"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate</a></span><span class="op">(</span><span class="va">phrases</span>, <span class="st">"h"</span> <span class="op">)</span>     <span class="co"># Хайлт хийж буй хэв маягтай тохирох *эхний* тохиолдлыг олох</span></code></pre></div>
+<pre><code>##      start end
+## [1,]     6   6
+## [2,]     3   3
+## [3,]     1   1
+## [4,]     4   4</code></pre>
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate_all</a></span><span class="op">(</span><span class="va">phrases</span>, <span class="st">"h"</span> <span class="op">)</span> <span class="co"># Хайлт хийх хэв маягтай тохирсон *бүх* тохиолдлыг олох</span></code></pre></div>
+<pre><code>## [[1]]
+##      start end
+## [1,]     6   6
+## 
+## [[2]]
+##      start end
+## [1,]     3   3
+## 
+## [[3]]
+##      start end
+## [1,]     1   1
+## [2,]     4   4
+## 
+## [[4]]
+##      start end
+## [1,]     4   4</code></pre>
+<!-- ======================================================= -->
+</div>
+<div id="хэв-маягийг-тааруулж-сугалж-гаргах" class="section level3 unnumbered">
+<h3>Хэв маягийг тааруулж сугалж гаргах<a class="anchor" aria-label="anchor" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B6-%D1%81%D1%83%D0%B3%D0%B0%D0%BB%D0%B6-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Олон хэв маягийг зэрэг ЭСВЭЛ (<code>|</code>) нөхцөлтэйгээр зэрэг хайж буй үед <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all()</a></code> -ийг хэрэглэснээр тохирох хэв маягууд тэр хэвээрээ гарч ирдэг давуу талтай. Жишээ нь occupations гэсэн стрингс векторт (дээр бичигдсэн табд буй) “teach”, “prof”, “tutor” гэсэн хэв маяг/үгийн <em>аль нэгийг</em> хайя.</p>
+<p>Энэ үед <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all()</a></code> функ стрингс бүрийн <em>таарсан</em> хэв маяг/үгсийг ялгаж цуглуулсан <code>list</code> үүсдэг. Доорх жишээнд бичсэн 3 мэргэжлийн 2 бүтэц occupations датанд таарч байна.</p>
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">occupations</span>, <span class="st">"teach|prof|tutor"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## character(0)
+## 
+## [[2]]
+## [1] "prof"
+## 
+## [[3]]
+## [1] "teach" "tutor"
+## 
+## [[4]]
+## [1] "tutor"
+## 
+## [[5]]
+## character(0)
+## 
+## [[6]]
+## character(0)
+## 
+## [[7]]
+## character(0)
+## 
+## [[8]]
+## character(0)
+## 
+## [[9]]
+## character(0)
+## 
+## [[10]]
+## character(0)</code></pre>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code> функц стрингс тус бүрийн <em>зөвхөн эхний таарсан хэв маяг/үгийг</em> гаргаж ирдэг. Ингэснээр стрингс тус бүрт нэг элэменттэй карактер вектор үүсдэг. Тохироо таараагүй утгуудад <code>NA</code> үүсдэг. Үүссэн векторыг <code><a href="https://rdrr.io/r/stats/na.fail.html">na.exclude()</a></code>-д оруулснаар <code>NA</code>-г арилгаж болно. occupation 3-ын хоёрдах тохироо харагдахгүй байгааг анзаарна уу.</p>
+<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">occupations</span>, <span class="st">"teach|prof|tutor"</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] NA      "prof"  "teach" "tutor" NA      NA      NA      NA      NA     
+## [10] NA</code></pre>
+<!-- ======================================================= -->
+</div>
+<div id="хэсэгчлэх-ба-тоолох" class="section level3 unnumbered">
+<h3>Хэсэгчлэх ба тоолох<a class="anchor" aria-label="anchor" href="#%D1%85%D1%8D%D1%81%D1%8D%D0%B3%D1%87%D0%BB%D1%8D%D1%85-%D0%B1%D0%B0-%D1%82%D0%BE%D0%BE%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Эдгээр үйлдлийг <code><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_count.html">str_count()</a></code> гүйцэтгэдэг.</p>
+<p>Аливаа хэв маягийг <code><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset()</a></code> -ээр хайснаар таарсан хэв маягийг агуулж буй утга анхны хэлбэрээр гарч ирдэг.</p>
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">occupations</span>, <span class="st">"teach|prof|tutor"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "university professor"           "primary school teacher &amp; tutor"
+## [3] "tutor"</code></pre>
+<p><code><a href="https://stringr.tidyverse.org/reference/str_count.html">str_count()</a></code> -ээр тоон вектор үүсдэг: шалгагдсан утга бүрт хайгдаж буй хэв маяг <strong>хэдэн ширхэг</strong> байгаа нь гарч ирдэг.</p>
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_count.html">str_count</a></span><span class="op">(</span><span class="va">occupations</span>, <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"teach|prof|tutor"</span>, ignore_case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] 0 1 2 1 0 0 0 0 0 0</code></pre>
+<!-- ======================================================= -->
+</div>
+<div id="regex-ийн-группууд" class="section level3 unnumbered">
+<h3>Regex-ийн группууд<a class="anchor" aria-label="anchor" href="#regex-%D0%B8%D0%B9%D0%BD-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>ХИЙГДЭЖ БУЙ</p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="өвөрмөц-карактерүүд" class="section level2" number="10.6">
+<h2>
+<span class="header-section-number">10.6</span> Өвөрмөц карактерүүд<a class="anchor" aria-label="anchor" href="#%D3%A9%D0%B2%D3%A9%D1%80%D0%BC%D3%A9%D1%86-%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D2%AF%D2%AF%D0%B4"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Арагшаа ташуу зураас <code>\</code> бол “алгасах тэмдэг”</strong></p>
+<p>Арагшаа ташуу зураасыг <code>\</code> арынх нь карактер утгыг “алгасах” зориулалтаар хэрэглэдэг. Тиймээс арагшаа ташуу зураасыг хашилтан <em>доторх</em> хашилттай хамт хэрэглэдэг (<code>"\""</code>) - дундах хашилт хоёр захын хашилтуудыг <em>эвдлэхгүй</em>.</p>
+<p>Тэмдэглэл - хэрэв арагшаа ташуу зураасыг <em>хэвлэх</em> бол, <em>дахин нэг</em> арагшаа ташуу зураас бичих шаардлагатай болдог. Өөрөөр хэлбэл нэг арагшаа ташуу зураас бичихийн тулд хоёр ташуу зураастай код бичнэ (<code>\\</code>).</p>
+<p><strong>Өвөрмөц карактерүүд</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Өвөрмөц карактерүүд</th>
+<th>Зориулалт</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>"\\"</code></td>
+<td>Арагшаа ташуу зураас</td>
+</tr>
+<tr class="even">
+<td><code>"\n"</code></td>
+<td>шинэ мөр (newline)</td>
+</tr>
+<tr class="odd">
+<td><code>"\""</code></td>
+<td>давхар хашилт <em>доторх</em> давхар хашилт</td>
+</tr>
+<tr class="even">
+<td><code>'\''</code></td>
+<td>дан хашилт <em>доторх</em> дан хашилт</td>
+</tr>
+<tr class="odd">
+<td>
+<code>"\</code>“<code>| grave accent</code>”<code>| carriage return</code>“<code>| tab</code>”<code>| vertical tab</code>“`</td>
+<td>backspace</td>
+</tr>
+</tbody>
+</table></div>
+<p>Эдгээр өвөрмөц карактерүүдийн бүрэн жагсаалтыг R Console -д <code><a href="https://rdrr.io/r/base/Quotes.html">?"'"</a></code> гэж уншуулж гаргаж ирнэ ( RStudio -ын Help цонхонд харагдна).</p>
+<!-- ======================================================= -->
+</div>
+<div id="regular-expressions-regex" class="section level2" number="10.7">
+<h2>
+<span class="header-section-number">10.7</span> Regular expressions (regex)<a class="anchor" aria-label="anchor" href="#regular-expressions-regex"><i class="fas fa-link"></i></a>
+</h2>
+<!-- ======================================================= -->
+</div>
+<div id="regex-болон-өвөрмөц-карактерүүд" class="section level2" number="10.8">
+<h2>
+<span class="header-section-number">10.8</span> Regex болон өвөрмөц карактерүүд<a class="anchor" aria-label="anchor" href="#regex-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D3%A9%D0%B2%D3%A9%D1%80%D0%BC%D3%A9%D1%86-%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D2%AF%D2%AF%D0%B4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Regular expressions, буюу “regex” бол стрингсийн доторх хэв маяг, бүтцийг дүрсэлж хураангуйлсан хэл юм. Regular expressions-ыг сайн мэдэхгүй хүнд харь гаригийн бичиг шиг харагддаг. Энэхүү хэсэгт энэ хэлийн тайллыг тайлбарлахыг зорилоо.</p>
+<p><em>Энэ хэсгийн ихэнх агуулгыг <a href="https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432">this tutorial</a> болон <a href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf">this cheatsheet</a> линкүүдээс авсан</em>. Энэхүү линкийн хичээлийг интернетгүй газар хэрэглэх боломжгүй тул бид энэхүү номондоо сонгож шилээд заримыг нь оруулсан.</p>
+<p>regular expression -ыг “бүтэцгүй” текстнээс бүтэц хайж илрүүлэхэд хэрэглэдэг - үүний жишээнд өвчний түүх, өргөдөл, гомдол, эмнэлэгийн тэмдэглэл болоэ хүснэгтэлсэн сул текстүүд ордог.</p>
+<p>regular expression -ын үндсэн хэсгийг дараах дөрвөн аргаар бүтээдэг:</p>
+<ol style="list-style-type: decimal">
+<li>Карактер багц<br>
+</li>
+<li>Мета карактер<br>
+</li>
+<li>Тоон үзүүлэлт<br>
+</li>
+<li>Бүлэг</li>
+</ol>
+<p><strong>Карактер багц</strong></p>
+<p>Карактерийн сонголтуудыг жагсаалтаар илэрхийлж, хаалтанд дотор багцлах арга юм. Аливаа стрингст хайлт хийж буй карактерүүдийн аль нэг нь олдвол тохироо үүслээ гэж үзнэ. Жишээ нь эгшиг үсгүүдийг хайхын тулд “[aeiou]” гэсэн карактер багцыг хэрэглэдэг. Нийтлэг хэрэглэгддэг карактер багцуудыг дор жагсаав:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Карактер багц</th>
+<th>Илэрхийлэх утга</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>"[A-Z]"</code></td>
+<td>томоор бичсэн бүх үсэг</td>
+</tr>
+<tr class="even">
+<td><code>"[a-z]"</code></td>
+<td>жижигээр бичсэн бүх үсэг</td>
+</tr>
+<tr class="odd">
+<td><code>"[0-9]"</code></td>
+<td>бүх цифр</td>
+</tr>
+<tr class="even">
+<td><code>[:alnum:]</code></td>
+<td>тоон болон үсгэн бүх тэмдэгтүүд</td>
+</tr>
+<tr class="odd">
+<td><code>[:digit:]</code></td>
+<td>бүх тоон цифр</td>
+</tr>
+<tr class="even">
+<td><code>[:alpha:]</code></td>
+<td>бүх үсэг (том болон жижиг үсэг)</td>
+</tr>
+<tr class="odd">
+<td><code>[:upper:]</code></td>
+<td>томоор бичсэн бүх үсэг</td>
+</tr>
+<tr class="even">
+<td><code>[:lower:]</code></td>
+<td>жижигээр бисэн бүх үсэг</td>
+</tr>
+</tbody>
+</table></div>
+<p>Карактер багцуудыг хамтад нь зэрэг нэг хаалтанд бичиж болно (зай авахгүй!). Жишээ нь <code>"[A-Za-z]"</code> (том болон жижиг бүх үсгүүд), <code>"[t-z0-5]"</code> (жижиг t-ээс z хүртэл ЭСВЭЛ 0-оос 5 хүртэл) гэх мэтээр бичиж болно.</p>
+<p><strong>Мета карактер</strong></p>
+<p>Мета карактер нь карактер багцын товчилсон хэлбэр. Нийтлэг хэрэглэгддэг мета карактерүүдийг дор жагсаав:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Мета карактерүүд</th>
+<th>Илэрхийлэх утга</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>"\\s"</code></td>
+<td>нэг хоосон зай</td>
+</tr>
+<tr class="even">
+<td><code>"\\w"</code></td>
+<td>нэг ширхэг тоон болон үсгэн тэмдэгт (A-Z, a-z, or 0-9)</td>
+</tr>
+<tr class="odd">
+<td><code>"\\d"</code></td>
+<td>нэг ширхэг тоон цифр (0-9)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Олшруулагч</strong></p>
+<p>Зөвхөн нэг карактер хайх тохиолдол бараг гардаггүй. Иймээс олшруулагч ашиглаж урт хэмжээний үсэг/тоон хайлт хийдэг .</p>
+<p>Олшуурах гэж буй карактерийн <em>ард</em> олшруулах тоог <code><a href="https://rdrr.io/r/base/Paren.html">{ }</a></code> хаалтанд дотор бичдэг,</p>
+<ul>
+<li>
+<code>"A{2}"</code> нь <strong>хоёр</strong> том A үсэг илэрхийлнэ.<br>
+</li>
+<li>
+<code>"A{2,4}"</code> нь <strong>2 оос 4 -н</strong> том A үсгийг илэрхийлнэ <em>(зай авч болохгүй!)</em>.<br>
+</li>
+<li>
+<code>"A{2,}"</code> <strong>2 болон түүнээс дээш</strong> тооны том А үсгийг илэрхийлнэ.<br>
+</li>
+<li>
+<code>"A+"</code> <strong>нэг болон түүнээс дээш</strong> тооны том А үсгийг илэрхийлнэ (өөр карактер гарч иртэл энэ бүлэг үргэлжлэх болно).<br>
+</li>
+<li>Хэрэв од <code>*</code> тэмдэг урд нь тавьбал <strong>0 болон түүнээс дээш</strong> тохироо буй эсэхийг харуулна (тухайн хэв маяг байгаа эсэх нь эргэлзээтэй үед байгаа хэрэг болдог).</li>
+</ul>
+<p>Нэмэх <code>+</code> тэмдгийг олшуулагчаар өгвөл таарсан хэв маягийг дараачийн карактер гарч иртэл хайх болно. Жишээ нь <code>"[A-Za-z]+"</code> (цагаан толгойн карактерүүд) -ээр бүх <em>үгсийг</em> илэрхийлнэ:</p>
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># олшруулагчийг шалгах тест стринг</span>
+<span class="va">test</span> <span class="op">&lt;-</span> <span class="st">"A-AA-AAA-AAAA"</span></code></pre></div>
+<p>Олшруулагчийг {2} гэж өгвөл зөвхөн дараалласан A -г л гаргаж ирнэ. Жишээ нь <code>AAAA</code>-д хоёр хос дараалласан А байна.</p>
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">test</span>, <span class="st">"A{2}"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "AA" "AA" "AA" "AA"</code></pre>
+<p>Хэрэв олшруулагч {2,4} бол 2 -оос 4 удаа дараалласан A байх тохиолдлуудыг гаргаж ирнэ.</p>
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">test</span>, <span class="st">"A{2,4}"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "AA"   "AAA"  "AAAA"</code></pre>
+<p>Хэрэв олшруулагч <code>+</code> бол <strong>нэг болон түүнээс дээш</strong> тооны А байх тохиолдлууд гарч ирнэ:</p>
+<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">test</span>, <span class="st">"A+"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "A"    "AA"   "AAA"  "AAAA"</code></pre>
+<p><strong>Харьцангуй байрлал</strong></p>
+<p>Эдгээр нөхцлүүд хайж буй хэв маягийн өмнө болон хойно нь юу байгаа вэ гэдгээр илэрхийлэгддэг. Жишээ нь “хоёр тооны ардах цэг” (<code>""</code>). (?&lt;=\.)\s(?=[A-Z])</p>
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">test</span>, <span class="st">""</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] "A" "-" "A" "A" "-" "A" "A" "A" "-" "A" "A" "A" "A"</code></pre>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Байрлын илэрхийлэл</th>
+<th>Илэрхийлэх утга</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>"(?&lt;=b)a"</code></td>
+<td>
+<strong>урдаа</strong> “b” тэй “a”</td>
+</tr>
+<tr class="even">
+<td><code>"(?&lt;!b)a"</code></td>
+<td>
+<strong>урдаа</strong> “b” <strong>БАЙХГҮЙ</strong> “a”</td>
+</tr>
+<tr class="odd">
+<td><code>"a(?=b)"</code></td>
+<td>
+<strong>ардаа</strong> “b” тэй “a”</td>
+</tr>
+<tr class="even">
+<td><code>"a(?!b)"</code></td>
+<td>
+<strong>урдаа</strong> “b” <strong>БАЙХГҮЙ</strong> “a”</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Бүлгүүд</strong></p>
+<p>regular expression ийг бүлэглэснээр үр дүн илүү зохион байгуулалттайгаар гарч ирдэг.</p>
+<p><strong>Regex -ын жишээ</strong></p>
+<p>Сул текст дээр хэрхэн ажиллах талаар жишээ дор харуулав. Үүнээс бид regular expression-ийн хайлтын дүрмээр хэрэгтэй мэдээллээ гаргаж авах болно.</p>
+<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pt_note</span> <span class="op">&lt;-</span> <span class="st">"Patient arrived at Broward Hospital emergency ward at 18:00 on 6/12/2005. Patient presented with radiating abdominal pain from LR quadrant. Patient skin was pale, cool, and clammy. Patient temperature was 99.8 degrees farinheit. Patient pulse rate was 100 bpm and thready. Respiratory rate was 29 per minute."</span></code></pre></div>
+<p>Энэхүү илэрхийлэл нь бүх үгтэй тохирч байна (тохироо нь бүх карактертэй тохирох ба хоосон зай гэх мэт үсэг биш карактер гарч иртэл үргэлжилнэ):</p>
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">pt_note</span>, <span class="st">"[A-Za-z]+"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] "Patient"     "arrived"     "at"          "Broward"     "Hospital"   
+##  [6] "emergency"   "ward"        "at"          "on"          "Patient"    
+## [11] "presented"   "with"        "radiating"   "abdominal"   "pain"       
+## [16] "from"        "LR"          "quadrant"    "Patient"     "skin"       
+## [21] "was"         "pale"        "cool"        "and"         "clammy"     
+## [26] "Patient"     "temperature" "was"         "degrees"     "farinheit"  
+## [31] "Patient"     "pulse"       "rate"        "was"         "bpm"        
+## [36] "and"         "thready"     "Respiratory" "rate"        "was"        
+## [41] "per"         "minute"</code></pre>
+<p><code>"[0-9]{1,2}"</code> бол үргэлжилсэн, 1 ээс 2 орон тоог илэрхийлэл. Үүнийг мөн <code>"\\d{1,2}"</code>, эсвэл <code>"[:digit:]{1,2}"</code> гэж бичиж болно.</p>
+<div class="sourceCode" id="cb544"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">pt_note</span>, <span class="st">"[0-9]{1,2}"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] "18" "00" "6"  "12" "20" "05" "99" "8"  "10" "0"  "29"</code></pre>
+<!-- нь бүх өгүүлбэрийг илэрхийлнэ (ингэхдээ өгүүлбэрийн эхний үсэг томоор, бичигдсэн ба өгүүлбэр төгсөхөд цэг тавигдсан гэж үзнэ). Илэрхийлсэн бүтэц Англи хэлээр уншигдахдаа: "Ардаасаа жижиг үсэгнүүд, хоосон зай, хэдэн үсэг, зай гэх мэтээр дагуулсан том үсэг     -->
+<!-- ```{r} -->
+<!-- str_extract_all(pt_note, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*") -->
+<!-- ``` -->
+<p>Дараах линкийн 2 дугаар хуудаснаас чухал regex expressions-үүд, хэрэгтэй зөвлөгөөнүүдтэй танилцаж болно <a href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf">this cheatsheet</a></p>
+<p>Мөн <a href="https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432">tutorial</a> линкээс нэмэлт мэдээлэл авна уу.</p>
+<!-- ======================================================= -->
+</div>
+<div id="эх-сурвалж-материалууд" class="section level2" number="10.9">
+<h2>
+<span class="header-section-number">10.9</span> Эх сурвалж материалууд<a class="anchor" aria-label="anchor" href="#%D1%8D%D1%85-%D1%81%D1%83%D1%80%D0%B2%D0%B0%D0%BB%D0%B6-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>stringr</strong> функцын лавлагаа хуудсыг дараах линкээс үзэж болно: <a href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf">here</a></p>
+<p><strong>stringr</strong> -ын винньетийг дараах линкээс үзэж болно: <a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html">here</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></div>
+<div class="next"><a href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li>
+<a class="nav-link" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB-1"><span class="header-section-number">10.1</span> Бэлтгэл</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D1%85">Багцыг ачааллах</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85-2">Дата импортлох</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D%D0%BB%D1%8D%D1%85"><span class="header-section-number">10.2</span> Нэгтгэх, хуваах, эрэмбэлэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81%D0%B8%D0%B9%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85">Стрингсийг нэгтгэх</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81">Динамик стрингс</a></li>
+<li><a class="nav-link" href="#str_unite">Баганыг нэтгэх</a></li>
+<li><a class="nav-link" href="#%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85">Хуваах</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%8B%D0%B3-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85">Баганыг хуваах</a></li>
+<li><a class="nav-link" href="#%D1%86%D0%B0%D0%B3%D0%B0%D0%B0%D0%BD-%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9%D0%BD-%D0%B4%D0%B0%D1%80%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D0%B0%D1%80-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D%D0%BB%D1%8D%D1%85">Цагаан толгойн дарааллаар эрэмбэлэх</a></li>
+<li><a class="nav-link" href="#base-r--%D1%8B%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4">base R -ын функцууд</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D1%85-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B6%D0%B8%D0%B3%D0%B4%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><span class="header-section-number">10.3</span> Цэвэрлэх болон жигдрүүлэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D2%AF%D1%81%D0%B3%D0%B8%D0%B9%D0%BD-%D1%82%D0%BE%D0%BC-%D0%B6%D0%B8%D0%B6%D0%B8%D0%B3%D0%B8%D0%B9%D0%B3-%D3%A9%D3%A9%D1%80%D1%87%D0%BB%D3%A9%D1%85">Үсгийн том жижигийг өөрчлөх</a></li>
+<li><a class="nav-link" href="#str_pad">Уртыг тааруулах</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B3%D1%82%D0%BB%D0%BE%D1%85">Огтлох</a></li>
+<li><a class="nav-link" href="#%D1%83%D1%80%D1%82%D1%8B%D0%B3-%D0%B6%D0%B8%D0%B3%D0%B4%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85">Уртыг жигдрүүлэх</a></li>
+<li><a class="nav-link" href="#%D0%B8%D0%BB%D2%AF%D2%AF-%D0%B3%D0%B0%D1%80%D1%81%D0%B0%D0%BD-%D1%85%D0%BE%D0%BE%D1%81%D0%BE%D0%BD-%D0%B7%D0%B0%D0%B9%D0%B3-%D0%B0%D1%80%D0%B8%D0%BB%D0%B3%D0%B0%D1%85">Илүү гарсан хоосон зайг арилгах</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D0%B2%D1%82%D0%B0%D0%B3%D0%B4%D1%81%D0%B0%D0%BD-%D1%85%D0%BE%D0%BE%D1%81%D0%BE%D0%BD-%D0%B7%D0%B0%D0%B9%D0%B3-%D0%B0%D1%80%D0%B8%D0%BB%D0%B3%D0%B0%D1%85">Давтагдсан хоосон зайг арилгах</a></li>
+<li><a class="nav-link" href="#%D0%BF%D0%B0%D1%80%D0%B0%D0%B3%D1%80%D0%B0%D1%84-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85">Параграф болгож нэгтгэх</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%BD%D1%8C-%D1%8F%D0%BD%D0%B7%D0%BB%D0%B0%D1%85"><span class="header-section-number">10.4</span> Байрлалаар нь янзлах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D0%B9%D0%B3-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B8%D1%80%D1%8D%D1%85">Карактерийг байрлалаар гаргаж ирэх</a></li>
+<li><a class="nav-link" href="#%D2%AF%D0%B3%D0%B8%D0%B9%D0%BD-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B8%D1%80%D1%8D%D1%85">Үгийн байрлалаар гаргаж ирэх</a></li>
+<li><a class="nav-link" href="#%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D0%B9%D0%BD-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0%D1%80-%D0%BE%D1%80%D0%BB%D1%83%D1%83%D0%BB%D0%B0%D1%85">Карактерийн байрлалаар орлуулах</a></li>
+<li><a class="nav-link" href="#%D1%83%D1%80%D1%82%D1%8B%D0%B3-%D1%88%D0%B0%D0%BB%D0%B3%D0%B0">Уртыг шалга</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3"><span class="header-section-number">10.5</span> Хэв маяг</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3%D0%B8%D0%B9%D0%B3-%D0%B8%D0%BB%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85">Хэв маягийг илрүүлэх</a></li>
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D0%B3%D0%B4%D0%B8%D0%B9%D0%B3-%D0%B7%D1%8D%D1%80%D1%8D%D0%B3-%D1%81%D0%BE%D0%BB%D0%B8%D1%85">Бүгдийг зэрэг солих</a></li>
+<li><a class="nav-link" href="#%D0%BB%D0%BE%D0%B3%D0%B8%D0%BA-%D0%B4%D0%BE%D1%82%D0%BE%D1%80-%D0%B8%D0%BB%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85">Логик дотор илрүүлэх</a></li>
+<li><a class="nav-link" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3%D0%B8%D0%B9%D0%BD-%D0%B1%D0%B0%D0%B9%D1%80%D0%BB%D0%B0%D0%BB%D1%8B%D0%B3-%D1%82%D0%BE%D0%B3%D1%82%D0%BE%D0%BE%D1%85">Хэв маягийн байрлалыг тогтоох</a></li>
+<li><a class="nav-link" href="#%D1%85%D1%8D%D0%B2-%D0%BC%D0%B0%D1%8F%D0%B3%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B6-%D1%81%D1%83%D0%B3%D0%B0%D0%BB%D0%B6-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D1%85">Хэв маягийг тааруулж сугалж гаргах</a></li>
+<li><a class="nav-link" href="#%D1%85%D1%8D%D1%81%D1%8D%D0%B3%D1%87%D0%BB%D1%8D%D1%85-%D0%B1%D0%B0-%D1%82%D0%BE%D0%BE%D0%BB%D0%BE%D1%85">Хэсэгчлэх ба тоолох</a></li>
+<li><a class="nav-link" href="#regex-%D0%B8%D0%B9%D0%BD-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%83%D1%83%D0%B4">Regex-ийн группууд</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D3%A9%D0%B2%D3%A9%D1%80%D0%BC%D3%A9%D1%86-%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D2%AF%D2%AF%D0%B4"><span class="header-section-number">10.6</span> Өвөрмөц карактерүүд</a></li>
+<li><a class="nav-link" href="#regular-expressions-regex"><span class="header-section-number">10.7</span> Regular expressions (regex)</a></li>
+<li><a class="nav-link" href="#regex-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D3%A9%D0%B2%D3%A9%D1%80%D0%BC%D3%A9%D1%86-%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D2%AF%D2%AF%D0%B4"><span class="header-section-number">10.8</span> Regex болон өвөрмөц карактерүүд</a></li>
+<li><a class="nav-link" href="#%D1%8D%D1%85-%D1%81%D1%83%D1%80%D0%B2%D0%B0%D0%BB%D0%B6-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4"><span class="header-section-number">10.9</span> Эх сурвалж материалууд</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2022-01-05.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

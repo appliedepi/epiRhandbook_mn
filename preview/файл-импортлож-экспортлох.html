@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>7 Файл импортлож экспортлох | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="Энэ бүлэгт бид файлыг хэрхэн байрлуулж, импортлож, экспортлохыг тайлбарлана: rio багц төрөл бүрийн файлыг хэрхэн чөлөөтэй import(), export() хийдэг эсэх; here багцаар файлын байршлыг R төслийн...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="7 Файл импортлож экспортлох | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Энэ бүлэгт бид файлыг хэрхэн байрлуулж, импортлож, экспортлохыг тайлбарлана: rio багц төрөл бүрийн файлыг хэрхэн чөлөөтэй import(), export() хийдэг эсэх; here багцаар файлын байршлыг R төслийн...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="7 Файл импортлож экспортлох | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="Энэ бүлэгт бид файлыг хэрхэн байрлуулж, импортлож, экспортлохыг тайлбарлана: rio багц төрөл бүрийн файлыг хэрхэн чөлөөтэй import(), export() хийдэг эсэх; here багцаар файлын байршлыг R төслийн...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="active" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="файл-импортлож-экспортлох" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Файл импортлож экспортлох<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h1>
+<div class="inline-figure"><img src="images/Import_Export_1500x500.png" width="100%"></div>
+<p>Энэ бүлэгт бид файлыг хэрхэн байрлуулж, импортлож, экспортлохыг тайлбарлана:</p>
+<ul>
+<li><p><strong>rio</strong> багц төрөл бүрийн файлыг хэрхэн чөлөөтэй <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>, <code><a href="https://rdrr.io/pkg/rio/man/export.html">export()</a></code> хийдэг эсэх;</p></li>
+<li><p><strong>here</strong> багцаар файлын байршлыг R төслийн үндсэн хавтастай хэрхэн холбоотойгоор заах;</p></li>
+<li>
+<p>Импортлох файлын төрлүүд:</p>
+<ul>
+<li><p>Excel–ийн sheet-үүд</p></li>
+<li><p>Цэгцгүй хүснэгтийн толгой болон мөр алгасах</p></li>
+<li><p>Google sheet-үүд</p></li>
+<li><p>Вебсайтад хэвлэгдсэн дата</p></li>
+<li><p>API -ууд</p></li>
+<li><p><em>Хамгийн сүүлд</em> хэрэглэж байсан файлыг оруулах</p></li>
+</ul>
+</li>
+<li><p>Гараар өгөгдлийг оруулах</p></li>
+<li><p>R файлын төрлүүд (RDS, RData)</p></li>
+<li><p>Файл, графикыг хадгалж/экспортлох</p></li>
+</ul>
+<!-- ======================================================= --><div id="ерөнхий-тойм" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Ерөнхий тойм<a class="anchor" aria-label="anchor" href="#%D0%B5%D1%80%D3%A9%D0%BD%D1%85%D0%B8%D0%B9-%D1%82%D0%BE%D0%B9%D0%BC"><i class="fas fa-link"></i></a>
+</h2>
+<p>“Датасет” -ыг анх R -луу оруулахад R -ын орчинд шинэ <em>data frame</em> (хүснэгт) обьект үүсдэг. Үүнийг таны ажлын хавтсанд тодорхой хаяг/байршилтай, импортлогдсон (e.g. Excel, CSV, TSV, RDS) файл гэж үзнэ.</p>
+<p>R -луу төрөл бүрийн өргөтгөлтэй файлаас гадна бусад статистикийн программ (SAS, STATA, SPSS) -ын файлыг бас оруулж болно. Мөн relational database (хамааралт өгөгдлийн санд)-т холбож болно.</p>
+<p>R бас өөрийн өргөтгөлтэй:</p>
+<ul>
+<li><p>RDS файл нь (.rds) нэг ширхэг R обьектийг хадгалдаг (ж: data frame). Ийм өртгөтгөлтэй файлын багана дах дата төрөл хэвээр хадгалдаг тул цэвэрлэгдсэн дата хадгалахад тохиромжтой. Энэ талаар <a href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html#import_rds">энэ хэсгээс</a> тодруулж үзнэ үү.</p></li>
+<li><p>RData файл нь (.Rdata) хэд хэдэн обьект, эсвэл R workspace (ажлын талбай) -г бүтнээр нь хадгалдаг. Энэ талаар <a href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html#import_rdata">энэ хэсгээс</a> тодруулж үзнэ үү.</p></li>
+</ul>
+<!-- ======================================================= -->
+</div>
+<div id="rio-багц" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> rio багц<a class="anchor" aria-label="anchor" href="#rio-%D0%B1%D0%B0%D0%B3%D1%86"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>rio</strong> багцаар импорт хийхэд их тохиромжтой. <strong>rio</strong> бол input/output (оролт/гаралт) -ын товчлол “R I/O” гэсэн үг юм.</p>
+<p>Энэ багцын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>, <code><a href="https://rdrr.io/pkg/rio/man/export.html">export()</a></code> функцууд төрөл бүрийн файлтай ажиллаж чаддаг (e.g. .xlsx, .csv, .rds, .tsv) . Эдгээр функцэд файлын байршлыг (өргөтгөлтэй нь хамт) зааж өгснөөр <strong>rio</strong> багц тухайн өргөтгөлд шаардлагатай тохируулгыг хийж, файл импортлогдож, экспортлогддог.</p>
+<p><strong>rio</strong> багцгүйгээр дээрх үйлдлийг хийхэд хэд хэдэн багц хамт ажиллах шаардлага гардаг. Багц болгон тус бүр өөр өргөтгөлийг уншина. Жишээ нь <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> (<strong>base</strong> R), <code>read.xlsx()</code> (<strong>openxlsx</strong> багц), <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> (<strong>readr</strong> багц) гэсэн функцууд байдаг. Эдгээрийг тэр болгон санаж хэрэглэхэд бэрхшээлтэй. Харин <strong>rio</strong> -ын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>, <code><a href="https://rdrr.io/pkg/rio/man/export.html">export()</a></code> энэ үйлдлийг хялбар болгодог.</p>
+<p><strong>rio</strong>-ын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>,<code><a href="https://rdrr.io/pkg/rio/man/export.html">export()</a></code> функцууд тухайн файлын өргөтгөлд шаардлагатай багцыг давхар дуудаж ажилуулдаг. <strong>rio</strong>-ын цаана нь давхар ажиллаж байдаг эдгээр багцыг бүлгийн төгсгөлд хүснэгтэд жагсааж харуулав. <strong>rio</strong> багц STATA, SAS, SPSS программын файлыг мөн зөөвөрлөдөг.</p>
+<p>Харин shapefiles–г зөөвөрлөхөд өөр багц шаардлагатай. Энэ талаар <a href="#GIS%20basics">GIS үндсэн ойлголтууд</a> хэсэгт дэлгэрэнгүй дурьдсан.</p>
+</div>
+<div id="here" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> <strong>here</strong> багц<a class="anchor" aria-label="anchor" href="#here"><i class="fas fa-link"></i></a>
+</h2>
+<p>Аливаа файлыг хаанаас олох, хаана хадгалахаа R-т хэлж, файлын зам үүсгэх үйлдлийг <strong>here</strong> багц, түүний <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> функцээр хялбархан гүйцэтгэж болдог.</p>
+<p><strong>here</strong> багц R төсөл дэх файлуудын байршлыг тухайн R төслийн үндсэн хавтастай (хамгийн дээд түвшний хавтас) холбоотойгоор зааж өгдөг. R төслийг олон компьютерт дамжуулан хэрэглэж байхад дээрх үйлдэл их хэрэгтэй. <strong>here</strong> багц бүх хэрэглэгчдэд нийтлэг байршилтайгаар (R төслийн үндсэн хавтас) файлын замыг заадаг ба ингэснээр файлын зам компьютер болгонд өвөрмөц бичигдсэнээс болж үүсдэг хүндрэлээс сэргийлж чаддаг (жишээ нь “C:/Users/Laura/Documents…”) .</p>
+<p>R төсөлд <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> -ын ажиллах зарчим:</p>
+<ul>
+<li><p>Анх <strong>here</strong> багцыг ачаалах үед R төслийн үндсэн хавтас дотор “.here” гэсэн жижиг файл автоматаар үүсгэгдэж “чиглүүлэх”, “холбох” үүрэг гүйцэтгэдэг.</p></li>
+<li><p>R төслийн аль нэг дэд хавтаст файл хадгалахаар код бичих үед <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> функцээр файлын зам үүсгэж энэхүү <em>чиглүүлэгчид холбож өгдөг</em>.</p></li>
+<li><p>Файлын зам үүсгэхдээ <em>үндсэн хавтсан доторх</em> хавтаснуудын нэрсийг хашилт дотор оруулж, таслалаар тусгаарлаж бичих ба файлын нэрийг өргөтгөлтэй нь хамт бичнэ. Дор жишээ харуулав.</p></li>
+<li><p><code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> файлын замыг импорт, экспортын аль алинд нь ашиглаж болно.</p></li>
+</ul>
+<p>Дараах <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функц дотор <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> -ээр файлын зам бүтээсэн.</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"linelists"</span>, <span class="st">"ebola_linelist.xlsx"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><code>here("data", "linelists", "ebola_linelist.xlsx")</code> гэсэн комманд үнэн хэрэг дээрээ <em>тухайн хэрэглэгчийн компьютерт өвөрмөц</em> файлын бүтэн замыг илэрхийлж байдаг:</p>
+<pre><code>"C:/Users/Laura/Documents/my_R_project/data/linelists/ebola_linelist.xlsx"</code></pre>
+<p><code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> -ээр бичигдсэн энэхүү комманд нь ямар ч компьютер байсан тухайн R төслийг олж чаддагаараа давуу талтай.</p>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> “.here” файл хаана байрлаж буйг <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> функцыг хоосон хаалттайгаар уншуулснаар олж болно.</span></p>
+<p><strong>here</strong> багцын талаарх дэлгэрэнгүй мэдээллийг <a href="https://here.r-lib.org/">энэ линкээс</a> уншина уу.</p>
+<!-- ======================================================= -->
+</div>
+<div id="файлын-зам" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Файлын зам<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%B7%D0%B0%D0%BC"><i class="fas fa-link"></i></a>
+</h2>
+<p>Датаг импортлож, экспортлоход тухайн файлын замыг зааж өгөх шаардлагатай. Үүнийг дараахь гурван аргаар хийх боломжтой:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Санал болгож буй арга</em>: <strong>here</strong> багцыг ашиглан файлын “холбоотой (relative)” замыг олно.</p></li>
+<li><p>Файлын “бүтэн” буюу “жинхэнэ (absolute)” замыг бичиж өгнө.</p></li>
+<li><p>Гараар (manuel) файлыг сонгох</p></li>
+</ol>
+<div id="файлын-холбоотой-relative-зам" class="section level3 unnumbered">
+<h3>Файлын “холбоотой (relative)” зам<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D1%85%D0%BE%D0%BB%D0%B1%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-relative-%D0%B7%D0%B0%D0%BC"><i class="fas fa-link"></i></a>
+</h3>
+<p>“Холбоотой (relative)” зам гэдэг нь файлын зам R төслийн үндсэн хавтастай холбоотой байхыг хэлнэ. Ингэснээр өөр компьютер дээр ажилласан ч файлыг хялбар олж болохуйц файлын замыг үүсдэг (жишээ нь R төслийг имэйлээр илгээх, эсвэл дундын драйв дээр ашиглах зэрэгт хэрэгтэй). <a href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html#here">Дээр</a> дурьдсанчлан “холбоотой (relative)” байршлыг зааж өгөхдөө <strong>here</strong> багцыг ашиглана.</p>
+<p><code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>-ээр файлын холбоотой замыг бичих жишээ дор харуулав. Жишээнд R төслийн үндсэн хавтаст “data” гэсэн хавтас байх ба энэ хавтаст дахиад дэд хавтас болох “linelists” гэсэн хавтас байгаа ба үүн дотор бидний ажиллах .xlsx өргөтгөлтэй файл байна.</p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"linelists"</span>, <span class="st">"ebola_linelist.xlsx"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="файлын-жинхэнэ-зам" class="section level3 unnumbered">
+<h3>Файлын “жинхэнэ” зам<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%B6%D0%B8%D0%BD%D1%85%D1%8D%D0%BD%D1%8D-%D0%B7%D0%B0%D0%BC"><i class="fas fa-link"></i></a>
+</h3>
+<p>Файлын “бүтэн” замыг <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> болон бусад төстэй функцэд оруулж өгч болдог. Гэвч энэ нь зөвхөн тухайн ажиллаж буй компьютерт л өвөрмөц зам үүсдэг тул <em>энэ аргыг хэрэглэхгүй байхыг зөвлөж</em> байна.</p>
+<p>Файлын жинхэнэ замын жишээг дор харуулав. Энд Лаурагийн компьютер дэх “analysis” дэд хавтаст буй “data” дэд хавтас дотор “linelists” гэсэн дэд хавтас байна. Үүн дотор бидний ажиллаж буй .xlsx өргөтгөлтэй файл байрлаж байна.</p>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"C:/Users/Laura/Documents/analysis/data/linelists/ebola_linelist.xlsx"</span><span class="op">)</span></code></pre></div>
+<p>Файлын жинхэнэ замыг ашиглахад анхаарах зүйлс:</p>
+<ul>
+<li><p>Өөр хүний компьютер дээр ажиллах үед файлын байршлын холбоос эвдэрдэг тул аль болох <strong>файлын жинхэнэ замыг хэрэглэхээс зайлсхий.</strong></p></li>
+<li><p>Урагшаа чиглэлтэй ташуу зураасыг (<code>/</code>) ашигла (Windows-д байнга хэрэглэгддэг ташуу зурааснаас ӨӨР болохыг анхаар)</p></li>
+<li><p>Давхар ташуу зураасаар ( “//…” гэх мэт) эхэлдэг файлын зам <strong>R программд танигддахгүй</strong> байх өндөр магадлалтай ба ихэвчлэн алдаа заадаг. Ажлаа “нэртэй” эсвэл “J:”, “C:” гэх мэт үсгээр дугаарласан дискэнд хадгалахыг зөвлөж байна. Энэ талаар [Directory interactions] хэсгээс нэмж тодруулна уу.</p></li>
+</ul>
+<p>Дундын драйв дээрээс файл импортлоход тухайн файлын жинхэнэ зам бүх хэрэглэгчдэд яг адилхан бичигдсэн тохиодолд файлын жинхэнэ замыг ашиглаж болдлг.</p>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> <code>\</code> тэмдэгтийг <code>/</code>-ээр түргэн солихын тулд Ctrl+f (Windows) дарж гарах цэснээс “In selection”-г сонго. Үүний дараа тэмдэгт солих үйлдэл хийж нэг дор солих боломжтой.</span></p>
+<!-- ======================================================= -->
+</div>
+<div id="гараар-байршлыг-сонгох" class="section level3 unnumbered">
+<h3>Гараар байршлыг сонгох<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B1%D0%B0%D0%B9%D1%80%D1%88%D0%BB%D1%8B%D0%B3-%D1%81%D0%BE%D0%BD%D0%B3%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Гараар дата импортлоход дараах аргуудыг хэрэглэж болно:</p>
+<ol style="list-style-type: decimal">
+<li><p>RStudio–ын Environment (орчин) табны “Import Dataset” (датасетийг импортлох)-г дарж, гарсан цэснээс дата төрлийг сонго.</p></li>
+<li><p>File/Import Dataset -г дарж өгөгдлийн төрлийг сонго.</p></li>
+<li><p><em>base R</em>-ын <code><a href="https://rdrr.io/r/base/file.choose.html">file.choose()</a></code> функцыг хоосон хаалттайгаар уншуулахад <strong>pop-up цонхыг</strong> гарч ирэх ба энэ үед компьютерээсээ файлыг гараар сонго. Жишээ:</p></li>
+</ol>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Гараар файл сонгох. Дараах коммандыг уншуулахад POP-UP цонх нээгдэнэ</span>
+<span class="co"># Гараар сонгосон файлын зам import() командын дотор бичигддэг.</span>
+
+<span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.choose.html">file.choose</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> <strong>Pop-up цонх</strong> RStudio-гийн цонхны АРД нээгдсэн байж болохыг анхаар.</span></p>
+</div>
+</div>
+<div id="дата-импортлох" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Дата импортлох<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p><code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>функцээр датасетийг хялбар импортлодог. Хаалтан дотор файлын замыг (файлын нэр өргөтгэлтэй нь хамт) хашилтанд оруулж бичихэд болно. Хэрэв <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>-ээр файлын замыг зааж өгөх бол дээр дурьдсан жишээг харна уу. Дор жишээнүүд харуулав:</p>
+<p>Таны “working directory” (ажлын хавтас)-д эсвэл R-ын үндсэн хавтаст байрлах csv файлыг оруулах:</p>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_cleaned.csv"</span><span class="op">)</span></code></pre></div>
+<p>R төсөл дэх “data” хавтсын “linelists” дэд хавтаст буй Excel файлын эхний sheet–ийг оруулах (файлын замыг <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>-ээр зааж өгсөн):</p>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"linelists"</span>, <span class="st">"linelist_cleaned.xlsx"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Файлын жинхэнэ байршлыг дуудаж датаг (.rds файл) импортлох:</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"C:/Users/Laura/Documents/tuberculosis/data/linelists/linelist_cleaned.rds"</span><span class="op">)</span></code></pre></div>
+<div id="excel-ийн-sheet--тэй-ажиллах" class="section level3 unnumbered">
+<h3>Excel-ийн sheet- тэй ажиллах<a class="anchor" aria-label="anchor" href="#excel-%D0%B8%D0%B9%D0%BD-sheet--%D1%82%D1%8D%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Excel (.xlsx) файлыг <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>-д импортлох үед default-оор эхний sheet импортлогддог. Өөр <strong>sheet</strong> –импортлох шаардлагтай тохиолдолд <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функцын <code>which=</code> аргументэд sheet-ийн нэрийг бич. Жишээ нь:</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"my_excel_file.xlsx"</span>, which <span class="op">=</span> <span class="st">"Sheetname"</span><span class="op">)</span></code></pre></div>
+<p>Файлын холбоотой замыг <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>-ээр бичиж <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> -д оруулаад <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>–ийн хаалтыг хаасны дараа нэмэлтээр <code>which =</code> аргумент өгч үүндээ тухайн sheet –ийн нэрийг зааж өгдөг.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Файлын холбоотой замыг 'here' -ээр дууудаж Excel sheet-ийг импортлох</span></span>
+<span id="cb140-2"><a href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html#cb140-2" aria-hidden="true" tabindex="-1"></a>linelist_raw <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"linelist.xlsx"</span>), <span class="at">which =</span> <span class="st">"Sheet1"</span>)<span class="st">`</span><span class="at">  </span></span></code></pre></div>
+<p>R –ын хүснэгтийг Excel -ийн аль нэг sheet рүү (бусад sheet-ийг өөрчлөлгүйгээр ) <em>экспортлох</em> бол тусгай зориулалтын <strong>openxlsx</strong> гэх мэт багц ашигладаг. Энэ талаар [Directory interactions] эсвэл <a href="https://ycphs.github.io/openxlsx/">at this github page</a> хэсгээс харна уу.</p>
+<p>Excel-ийн .xlsb (binary хэлбэртэй Excel файл) файлыг <strong>rio</strong> багцаар импортолж болдоггүй. Ийм тохиолдолд .xlsb файлаа .xlsx болгон хувиргаж хадгалдаг. Эсвэл <a href="https://cran.r-project.org/web/packages/readxlsb/vignettes/read-xlsb-workbook.html">this purpose</a> энэ зориулалтын <strong>readxlsb</strong> багцыг ашигладаг.</p>
+<!-- ======================================================= -->
+</div>
+<div id="import_missing" class="section level3 unnumbered">
+<h3>Дутуу утга<a class="anchor" aria-label="anchor" href="#import_missing"><i class="fas fa-link"></i></a>
+</h3>
+<p>Дата дах дутуу утгуудыг зааж өгөх шаардлага гардаг. R дутуу утгыг <code>NA</code> гэж бичдэг ([Missing data] гэсэн хэсэгт заасан). Харин таны датанд дутуу утгыг 99, “Дутуу”, эсвэл хоосон зайгаар тэмдэглэсэн байх тохиолдол байдаг.</p>
+<p>Ийм үед <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> дотор <code>na =</code> -аргумент нэмж өөрийн дата дах дутуу утгын тэмдэглэгээг хашилтад оруулан бичнэ (тоогоор тэмдэглэсэн байсан ч гэсэн). Янз бүрийн дутуу утгуудыг зэрэг зааж өгөх бол <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>функц ашиглан вектор хэлбэрээр оруулж болдог. Жишээг дор харуулав.</p>
+<p>Жишээнд импортолж буй датанд дутуу утгыг “99” –ээр тэмдэглэсэн ба R -д оруулахдаа <code>NA</code> болгож хувиргаж байна.</p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"my_linelist.xlsx"</span><span class="op">)</span>, na <span class="op">=</span> <span class="st">"99"</span><span class="op">)</span></code></pre></div>
+<p>Энэ жишээнд импортолж буй датаны “Дутуу”, “” (хоосон нүд), эсвэл ” “(нэг зай) гэж бичигдсэн бүх утгуудыг R-т <code>NA</code> болгож хувиргаж байна.</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"my_linelist.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Missing"</span>, <span class="st">""</span>, <span class="st">" "</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+<div id="мөр-алгасах" class="section level3 unnumbered">
+<h3>Мөр алгасах<a class="anchor" aria-label="anchor" href="#%D0%BC%D3%A9%D1%80-%D0%B0%D0%BB%D0%B3%D0%B0%D1%81%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Зарим мөрийг оруулалгүйгээр дата импортлох шаардлага гардаг. Үүнийг <strong>rio</strong> -ын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функцийн <code>skip =</code> аргументийн тусламжтайгаар хйидэг (.xlsx зэрэг .csv файлтай ажиллаж буй үед). Ингэхдээ алгасах мөрийн тоог зааж өг.</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_raw.xlsx"</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>  <span class="co"># толгой (header) мөрийг оруулалгүйгээр импортлоно</span></code></pre></div>
+<p><code>skip =</code> зөвхөн нэг бүхэл тоон утга л авдаг ба дараалласан хэд хэдэн тоон утга оруулж <strong>болдоггүй</strong> (жишээ нь “2:10” гэх боломжгүй). Хүснэгтийг эхнээс дараалласан биш, энд тэнд байрлалтай мөрүүдийг алгасах бол датаг дахин импортлоод <strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code>–ыг хэрэглэдэг. Доор жишээнд ердөө 2 мөр алгасахыг харуулав.</p>
+</div>
+<div id="хоёр-дах-толгой-header-мөртэй-ажиллах" class="section level3 unnumbered">
+<h3>Хоёр дах толгой (header) мөртэй ажиллах<a class="anchor" aria-label="anchor" href="#%D1%85%D0%BE%D1%91%D1%80-%D0%B4%D0%B0%D1%85-%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9-header-%D0%BC%D3%A9%D1%80%D1%82%D1%8D%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Заримдаа хүснэгтийн толгой хоёр мөрнөөс бүтсэн байдаг. Жишээ нь датаны “нэрсийн тайлбар” –ийг хоёр дах нүдэнд биччихдэг. Ийм датаг тэр чигээр нь импортловол бүх багана “character” хэлбэртэй болж хувирах эрсдэлтэй.</p>
+<p>Ийм датасетын жишээг дор харуулав (эхний мөрөндөө нэрсийн тайлбартай).</p>
+<div id="htmlwidget-cdc3db206d9c421cf7e3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cdc3db206d9c421cf7e3">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["case identification number assigned by MOH","5fe599","8689b7","11f8ea","b8812a"],["transmission chain generation number","4","4","2","3"],["estimated date of infection, mm/dd/yyyy","2014-05-08",null,null,"2014-05-04"],["date of symptom onset, YYYY-MM-DD","2014-05-13","2014-05-13","2014-05-16","2014-05-18"],["date of initial hospitalization, mm/dd/yyyy","2014-05-15","2014-05-14","2014-05-18","2014-05-20"],["date of outcome status determination",null,"2014-05-18","2014-05-30",null],["either 'Death' or 'Recovered' or 'Unknown'",null,"Recover","Recover",null],["either 'm' or 'f' or 'unknown'","m","f","m","f"],["age number","2","3","56","18"],["age unit, either 'years' or 'months' or 'days'","years","years","years","years"],[null,"2","3","56","18"],[null,"0-4","0-4","50-69","15-19"],[null,"0-4","0-4","55-59","15-19"],["Name of hospital of first admission","Other","Missing","St. Mark's Maternity Hospital (SMMH)","Port Hospital"],["longitude of residence, approx","-13.2157351064963","-13.2152339775486","-13.212910703914","-13.2363711169728"],["latitude of residence, approx","8.46897295100924","8.45171855856465","8.46481700596819","8.4754761613651"],["case_id of infector","f547d6",null,null,"f90f5f"],["context of known transmission event","other",null,null,"other"],[null,"27","25","91","41"],[null,"48","59","238","135"],[null,"22","22","21","23"],["presence of fever on admission, either 'yes' or 'no'","no",null,null,"no"],["presence of chills on admission, either 'yes' or 'no'","no",null,null,"no"],["presence of cough on admission, either 'yes' or 'no'","yes",null,null,"no"],["presence of aches on admission, either 'yes' or 'no'","no",null,null,"no"],["presence of vomiting on admission, either 'yes' or 'no'","yes",null,null,"no"],[null,"36.8","36.9","36.9","36.8"],["time of hospital admission HH:MM",null,"09:36","16:48","11:22"],[null,"117.1875","71.8184429761563","16.0652496292635","22.4965706447188"],[null,"2","1","2","2"]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>case_id<\/th>\n      <th>generation<\/th>\n      <th>date_infection<\/th>\n      <th>date_onset<\/th>\n      <th>date_hospitalisation<\/th>\n      <th>date_outcome<\/th>\n      <th>outcome<\/th>\n      <th>gender<\/th>\n      <th>age<\/th>\n      <th>age_unit<\/th>\n      <th>age_years<\/th>\n      <th>age_cat<\/th>\n      <th>age_cat5<\/th>\n      <th>hospital<\/th>\n      <th>lon<\/th>\n      <th>lat<\/th>\n      <th>infector<\/th>\n      <th>source<\/th>\n      <th>wt_kg<\/th>\n      <th>ht_cm<\/th>\n      <th>ct_blood<\/th>\n      <th>fever<\/th>\n      <th>chills<\/th>\n      <th>cough<\/th>\n      <th>aches<\/th>\n      <th>vomit<\/th>\n      <th>temp<\/th>\n      <th>time_admission<\/th>\n      <th>bmi<\/th>\n      <th>days_onset_hosp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><div id="хоёрдах-толгой-мөрийг-арилгах" class="section level4 unnumbered">
+<h4>Хоёрдах толгой мөрийг арилгах<a class="anchor" aria-label="anchor" href="#%D1%85%D0%BE%D1%91%D1%80%D0%B4%D0%B0%D1%85-%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9-%D0%BC%D3%A9%D1%80%D0%B8%D0%B9%D0%B3-%D0%B0%D1%80%D0%B8%D0%BB%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Дата импортлох үйлдлийг хоёр давтан хийснээр хоёр дах мөрийг арилгах боломжтой.</p>
+<ol style="list-style-type: decimal">
+<li>Датаг импортлоод баганын жинхэнэ нэрийг хадгал<br>
+</li>
+<li>Датаг дахин импортлох ба ингэхдээ эхний <em>хоёр</em> мөрийг (толгой мөр, 2 дах мөр) алгасч оруул<br>
+</li>
+<li>Эхэнд хадгалсан баганын нэрсээ мөр алгассан хүснэгтдээ холбож өг.</li>
+</ol>
+<p>Баганын нэрийг хүснэгттэй холбодог үйлдлийн аргумент дата төрлөөс хамаарч өөр байдаг ( жишээ нь .csv, .tsv, .xlsx,). Энэ нь файлын төрлөөс хамаарч <strong>rio</strong> багц өөр функц ашигладагтай холбоотой. (дээрх хүснэгтээс харна уу).</p>
+<p><strong>For Excel files:</strong> (<code>col_names =</code>)</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Эхний удаагийн импорт хийх үйлдлээр зөвхөн нэрсийг хадгал;</span>
+<span class="va">linelist_raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_raw.xlsx"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># баганын нэрсийг хадгал</span>
+
+<span class="co"># Датаг дахин импортло; эхний 2 мөрийг алгасаад col_names = аргументэд өмнөх хадгалсан нэрсээ заа.</span>
+<span class="va">linelist_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_raw.xlsx"</span>,
+                       skip <span class="op">=</span> <span class="fl">2</span>,
+                       col_names <span class="op">=</span> <span class="va">linelist_raw_names</span>
+                       <span class="op">)</span> </code></pre></div>
+<p><strong>For CSV files:</strong> (<code>col.names =</code>)</p>
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Эхний удаагийн импорт хийх үйлдлээр зөвхөн нэрсийг хадгал;</span>
+<span class="va">linelist_raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_raw.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># баганын нэрсийг хадгал</span>
+
+<span class="co"># csv файлын аргумент 'col.names = ' болохыг анхаар</span>
+<span class="va">linelist_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_raw.csv"</span>,
+                       skip <span class="op">=</span> <span class="fl">2</span>,
+                       col.names <span class="op">=</span> <span class="va">linelist_raw_names</span>
+                       <span class="op">)</span> </code></pre></div>
+<p><strong>Нэмэлт хувилбар</strong> - баганын нэрийг тусдаа коммандаар өөрчилж болно.</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R base –ийн 'colnames()' функцээр хүснэгтийн толгойд дахин нэр онооно.</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">linelist_raw</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">linelist_raw_names</span></code></pre></div>
+</div>
+<div id="датанд-нэрсийн-тайлбар-толь-data-dictionary-үүсгэх" class="section level4 unnumbered">
+<h4>Датанд нэрсийн тайлбар толь (data dictionary) үүсгэх<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0%D0%BD%D0%B4-%D0%BD%D1%8D%D1%80%D1%81%D0%B8%D0%B9%D0%BD-%D1%82%D0%B0%D0%B9%D0%BB%D0%B1%D0%B0%D1%80-%D1%82%D0%BE%D0%BB%D1%8C-data-dictionary-%D2%AF%D2%AF%D1%81%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Бонус! хоёр дах мөрөнд нэрсийн тайлбар бичигдчихсэн байвал үүнийг нэрсийн тайлбар багана болгож хувиргах амархан. Энэ санааг <a href="https://alison.rbind.io/post/2018-02-23-read-multiple-header-rows/">post</a> -д тайлбарласан байсан.</p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dict</span> <span class="op">&lt;-</span> <span class="va">linelist_2headers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>             <span class="co"># эхлэл: эхний мөрөндөө тайлбартай linelist</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                             <span class="co"># зөвхөн баганын нэрс болон нэрсийн тайлбарыг авч үлд</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,       <span class="co"># бүх баганыг урт хэлбэрт шилжүүл</span>
+               names_to <span class="op">=</span> <span class="st">"Column"</span>,       <span class="co"># шинэ үүссэн хоёр баганад нэр өг</span>
+               values_to <span class="op">=</span> <span class="st">"Description"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-2f01c44f578d4da5b116" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2f01c44f578d4da5b116">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["case_id","generation","date_infection","date_onset","date_hospitalisation","date_outcome","outcome","gender","age","age_unit","age_years","age_cat","age_cat5","hospital","lon","lat","infector","source","wt_kg","ht_cm","ct_blood","fever","chills","cough","aches","vomit","temp","time_admission","bmi","days_onset_hosp"],["case identification number assigned by MOH","transmission chain generation number","estimated date of infection, mm/dd/yyyy","date of symptom onset, YYYY-MM-DD","date of initial hospitalization, mm/dd/yyyy","date of outcome status determination","either 'Death' or 'Recovered' or 'Unknown'","either 'm' or 'f' or 'unknown'","age number","age unit, either 'years' or 'months' or 'days'",null,null,null,"Name of hospital of first admission","longitude of residence, approx","latitude of residence, approx","case_id of infector","context of known transmission event",null,null,null,"presence of fever on admission, either 'yes' or 'no'","presence of chills on admission, either 'yes' or 'no'","presence of cough on admission, either 'yes' or 'no'","presence of aches on admission, either 'yes' or 'no'","presence of vomiting on admission, either 'yes' or 'no'",null,"time of hospital admission HH:MM",null,null]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>Column<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="хоёр-толгой-мөрийг-нэгтгэх" class="section level4 unnumbered">
+<h4>Хоёр толгой мөрийг нэгтгэх<a class="anchor" aria-label="anchor" href="#%D1%85%D0%BE%D1%91%D1%80-%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9-%D0%BC%D3%A9%D1%80%D0%B8%D0%B9%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Хэрэв датасет боловсруулалт хийхээс өмнө <em>хоёр</em> толгой мөртэй байвал (баганын туслах гарчиг хоёр дах мөрөнд бичигдсэн г.м) “нэгтгэх”, эсвэл хоёр мөрөн дэх утгыг хооронд нь нийлүүлэх шаардлага гардаг.</p>
+<p>Дараах коммандыг өгснөөр эхний болон түүний дорх мөр нэтгэгдэж (paste) баганын нэр болж импортлогддог.</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span>, <span class="va">my_data</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="google-sheet-үүд" class="section level3 unnumbered">
+<h3>Google sheet-үүд<a class="anchor" aria-label="anchor" href="#google-sheet-%D2%AF%D2%AF%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Google-ийн онлайн spreadsheet-ийг <strong>googlesheet4</strong> багцаар импортлодог. Энэ үед мөн хандах эрхээ баталгаажуулах шаардлагатайг анхаар.</p>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="st">"googlesheets4"</span><span class="op">)</span></code></pre></div>
+<p>Google sheet оруулах жишээг дор харуулав. Энэхүү коммандыг уншуулхад google account –ыг баталгаажуулах хүсэлт гарч ирдэг. Интернетийн браузерт гарч ирсэн цонх, pop-up -г дагаж биелүүлсний дараа Tidyverse API- багцууд таны Google Drive дээрх хүснэгтийг засаж, арилгах шинээр үүсгэх зөвшөөрөлтэй болдог.</p>
+<p>Дорх хүснэгт “линкээр орсон хүн болгон үзэх боломжтой” (“viewable for anyone with the link”) гэсэн тохируулгатай учир та импортлож үзэж болно.</p>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Gsheets_demo</span> <span class="op">&lt;-</span> <span class="fu">read_sheet</span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1scgtzkVLLHAe5a6_eFQEwkZcc14yFUx1KgOMZ4AKUfY/edit#gid=0"</span><span class="op">)</span></code></pre></div>
+<p>Тухайн sheet -ийн ID -г зааж өгсний дараа импортлогддог. ID нь URL-ын богино хэсэгт байрладаг:</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Gsheets_demo</span> <span class="op">&lt;-</span> <span class="fu">read_sheet</span><span class="op">(</span><span class="st">"1scgtzkVLLHAe5a6_eFQEwkZcc14yFUx1KgOMZ4AKUfY"</span><span class="op">)</span></code></pre></div>
+<p>Дээрхтэй ижил үйлдэл хийдэг өөр нэгэн багц бол <strong>googledrive</strong>. Үүнийг ашиглаж Google sheet-ийг янзалж, арилгаж, шинээр үүсгэж болно. Энэ багцад <code>gs4_create()</code>,<code>sheet_write()</code> гэх мэт функцууд байдаг.</p>
+<p>Энэ талаар дэлгэрүүлж заасан хичээл, материалуудыг дараах линкүүдээс үзнэ үү:<br><a href="https://arbor-analytics.com/post/getting-your-data-into-r-from-google-sheets/">basic Google sheets importing tutorial</a><br><a href="https://googlesheets4.tidyverse.org/articles/googlesheets4.html">more detailed tutorial</a><br><a href="https://googlesheets4.tidyverse.org/articles/articles/drive-and-sheets.html">interaction between the googlesheets4 and tidyverse</a></p>
+</div>
+</div>
+<div id="олон-файлтай-зэрэг-ажиллах---импорт-экспорт-хуваах-нэгтгэх" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> Олон файлтай зэрэг ажиллах - импорт, экспорт, хуваах, нэгтгэх<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%BB%D0%BE%D0%BD-%D1%84%D0%B0%D0%B9%D0%BB%D1%82%D0%B0%D0%B9-%D0%B7%D1%8D%D1%80%D1%8D%D0%B3-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85---%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Олон файлыг зэрэг импортлох, нэгтгэх, эсвэл олон Excel файлтай зэрэг ажиллах жишээг [Iteration, loops, and lists] хэсгээс харна уу. Энэ линкэд мөн хүснэгтийг хэрхэн хуваах, хуваасан хэсэг тус бүрийг экспортлох, Excel-ийн тусгай sheet болгон хадгалах талаар тайлбарласан.</p>
+<!-- ======================================================= -->
+</div>
+<div id="import_github" class="section level2" number="7.7">
+<h2>
+<span class="header-section-number">7.7</span> Github-аас файл импортлох<a class="anchor" aria-label="anchor" href="#import_github"><i class="fas fa-link"></i></a>
+</h2>
+<p>Github-аас шууд R-луу дата импортлох нь хялбар, цөөн үйлдэлтэй байдаг. Дараах аргуудаар импортлоно:</p>
+<div id="csv-файл" class="section level3 unnumbered">
+<h3>CSV файл<a class="anchor" aria-label="anchor" href="#csv-%D1%84%D0%B0%D0%B9%D0%BB"><i class="fas fa-link"></i></a>
+</h3>
+<p>Github-аас .csv файлыг R-луу шууд R коммандаар хялбар импортлодог.</p>
+<ol style="list-style-type: decimal">
+<li>Github –ийн агуулахыг нээнэ, импортлох файлаа байрлуулаад дээр нь дар<br>
+</li>
+<li>“Raw” товчийг дар (“raw” csv гэсэн дата харагдна, доор харуулав)<br>
+</li>
+<li>URL (вебхаяг)-г хуулж ав<br>
+</li>
+<li>Хуулсан URL –г хашилттанд хийж <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функцэд оруулж уншуул</li>
+</ol>
+<div class="inline-figure"><img src="images/download_csv_raw.png" width="100%" style="display: block; margin: auto auto auto 0;"></div>
+</div>
+<div id="xlsx-файл" class="section level3 unnumbered">
+<h3>XLSX файл<a class="anchor" aria-label="anchor" href="#xlsx-%D1%84%D0%B0%D0%B9%D0%BB"><i class="fas fa-link"></i></a>
+</h3>
+<p>Зарим файл дах “Raw” датаг харж болдоггүй (.xlsx, .rds, .nwk, .shp гэх мэт).</p>
+<ol style="list-style-type: decimal">
+<li><p>Github –ийн агуулахыг нээ, импортлох файлаа байрлуулаад дээр нь дар</p></li>
+<li><p>“Download” товчийг дар (доор зурагт харуулснаар)</p></li>
+<li><p>Файлыг компьютертээ хадгалаад дараа нь R -луу импорт хий.</p></li>
+</ol>
+<div class="inline-figure"><img src="images/download_xlsx.png" width="100%" style="display: block; margin: auto auto auto 0;"></div>
+</div>
+<div id="shapefiles" class="section level3 unnumbered">
+<h3>Shapefiles<a class="anchor" aria-label="anchor" href="#shapefiles"><i class="fas fa-link"></i></a>
+</h3>
+<p>Shapefiles файл олон дэд бүрэлдэхүүн хэсгүүдтэй ба хэсэг тус бүр өөр өргөтгөлтэй. Нэг файл “.shp” гэсэн өргөтгөлтэй байхад нөгөө файл “.dbf”, “.prj” гэх мэтээр өөр байдаг. Github-аас shapefile татахад дэд бүрэлдэхүүүн бүрийг тусдаа татаж аваад өөрийн компьютерт <em>ижил</em> хавтаст хийж хадгал. Github дээрх файл тус бүрийг “Download” товчийг дарж нэг бүрчлэн татаж ав.</p>
+<p>Компьютерт хадгалагдсны дараа <strong>sf</strong> багцын <code>st_read()</code>–ээр shapefile –аа импорт хийнэ ([GIS basics] хэсэгт заасан буй). Та зөвхөн файлын зам болон “.shp” файлынхаа нэрийг зааж өгөхөд л болно (тухайн “.shp файлтай холбоотой бусад файлууд ижил хавтаст байрлаж байх шаардлагатай).</p>
+<p>Дор жишээнд “sle_adm3” гэх shapefile олон янзын файлаас хэрхэн бүрэлддэгийг харуулав. Файл болгоноо Github -аас тусдаа татаж авах шаардлагатай.</p>
+<div class="inline-figure"><img src="images/download_shp.png" width="100%" style="display: block; margin: auto auto auto 0;"></div>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="гараар-дата-оруулах" class="section level2" number="7.8">
+<h2>
+<span class="header-section-number">7.8</span> Гараар дата оруулах<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B4%D0%B0%D1%82%D0%B0-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<div id="мөр-болгоноор-оруулах" class="section level3 unnumbered">
+<h3>Мөр болгоноор оруулах<a class="anchor" aria-label="anchor" href="#%D0%BC%D3%A9%D1%80-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%BD%D0%BE%D0%BE%D1%80-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>tidyverse</strong> багцуудын нэг <strong>tibble</strong> багцын <code>tribble</code> функцийг хэрэглэ (<a href="https://tibble.tidyverse.org/reference/tribble.html">online tibble reference</a>).</p>
+<p>Баганын толгой <em>tilde</em> (<code>~</code>) тэмдэгтээр эхэлж буйг анхаар. Мөн багана болгон нэг төрлийн дата агуулсан байна (character, numeric гэх мэт.). Кодыг хялбар уншигддаг болгох үүднээс таб, зай авах, шинэ мөр эхлэх зэргээр кодоо тохируулж болно. Утга хооронд зай авах нь чухал биш, харин мөр болгоныг шинэ мөрнөөс эхэлж бичих хэрэгтэй. Жишээ:</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># датасетийг гараар мөр дагуу бичих</span>
+<span class="va">manual_entry_rows</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+  <span class="op">~</span><span class="va">colA</span>, <span class="op">~</span><span class="va">colB</span>,
+  <span class="st">"a"</span>,   <span class="fl">1</span>,
+  <span class="st">"b"</span>,   <span class="fl">2</span>,
+  <span class="st">"c"</span>,   <span class="fl">3</span>
+  <span class="op">)</span></code></pre></div>
+<p>Үүсгэсэн хүснэгт дараах байдлаар харагдна::</p>
+<div id="htmlwidget-deb68fc145c22f926dcb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-deb68fc145c22f926dcb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["a","b","c"],[1,2,3]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>colA<\/th>\n      <th>colB<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="багана-дагуу-дата-оруулах" class="section level3 unnumbered">
+<h3>Багана дагуу дата оруулах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0-%D0%B4%D0%B0%D0%B3%D1%83%D1%83-%D0%B4%D0%B0%D1%82%D0%B0-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хүснэгт нь векторуудаас бүтдэг (вертикал багана) учир <strong>base</strong> R таныг багануудаа эхлэж үүсгээд дараа нь нэгтгэнэ гэж ойлгодог. Харин тархвар судлалын хувьд датаг ихэвчлэн эхэлж мөрийн дагуу оруулдаг онцлогтой (дээрх жишээ).</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Бүх векторыг багана бүрээр бичиж оруул; багана бүрт нэр өг</span>
+<span class="va">PatientID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">235</span>, <span class="fl">452</span>, <span class="fl">778</span>, <span class="fl">111</span><span class="op">)</span>
+<span class="va">Treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span><span class="op">)</span>
+<span class="va">Death</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<p><span style="color: orange;"><strong><em>АНХААРУУЛГА:</em></strong> Бүх векторууд ижил урттай байх шаардлагатай (ижил тооны утгатай).</span></p>
+<p>Векторуудыг <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> функцээр нэгтгэдэг:</p>
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Векторын нэрсийг data.frame -д оруулснаар хүснэгт нэгтгэгднэ.</span>
+<span class="va">manual_entry_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">PatientID</span>, <span class="va">Treatment</span>, <span class="va">Death</span><span class="op">)</span></code></pre></div>
+<p>Үүсгэсэн хүснэгт нь дараах байдлаар харагдна:</p>
+<div id="htmlwidget-5ca0e275b79f4c4d3b80" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ca0e275b79f4c4d3b80">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],[235,452,778,111],["Yes","No","Yes","Yes"],[1,0,1,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PatientID<\/th>\n      <th>Treatment<\/th>\n      <th>Death<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="clipboard-оос-хуулж-авах" class="section level3 unnumbered">
+<h3>Clipboard-оос хуулж авах<a class="anchor" aria-label="anchor" href="#clipboard-%D0%BE%D0%BE%D1%81-%D1%85%D1%83%D1%83%D0%BB%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Clipboard -д хуулж авсан датаг дараах хоёр аргаар импорт хийдэг.</p>
+<p><strong>clipr</strong> багцын <code>read_clip_tbl()</code>–ыг ашиглан хүснэгт хэлбэрээр,<code>read_clip()</code>–ээр character хэлбэрээр импортлоно. Энэ хоёр функцын хаалтыг хоосон орхи.</p>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu">clipr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clipr/man/read_clip_tbl.html">read_clip_tbl</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># clipboard дах датаг хүснэгт хэлбэрээр импорт хий </span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu">clipr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clipr/man/read_clip.html">read_clip</a></span><span class="op">(</span><span class="op">)</span>      <span class="co"># character хэлбэрээр импорт хий</span></code></pre></div>
+<p>Системийн clipboard-д хуулагдсан бол <strong>clipr</strong>-ийг ашиглан амархан экспортолж болно. Экспорт хэсэгт дэлгэрүүлж бичсэн.</p>
+<p>Мөн <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>–д <code>file ="clipboard"</code> гэсэн аргумент өгюөл дата хүснэгт хэлбэрээр импортлогддог.</p>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_from_clipboard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span>
+  file <span class="op">=</span> <span class="st">"clipboard"</span>,  <span class="co"># "clipboard"-ийн файл гэдгийг заана</span>
+  sep <span class="op">=</span> <span class="st">"t"</span>,           <span class="co"># tab, таслал зэргээр тусгаарлагчийг заана.</span>
+  header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>         <span class="co"># баганын эхний мөр толгой мөр мөн эсэхийг заана</span></code></pre></div>
+</div>
+</div>
+<div id="хамгийн-сүүлд-хэрэглэж-байсан-файлыг-импортлох" class="section level2" number="7.9">
+<h2>
+<span class="header-section-number">7.9</span> Хамгийн сүүлд хэрэглэж байсан файлыг импортлох<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D0%BC%D0%B3%D0%B8%D0%B9%D0%BD-%D1%81%D2%AF%D2%AF%D0%BB%D0%B4-%D1%85%D1%8D%D1%80%D1%8D%D0%B3%D0%BB%D1%8D%D0%B6-%D0%B1%D0%B0%D0%B9%D1%81%D0%B0%D0%BD-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%B3-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Та датанд тогтмол өөрчлөлт оруулдаг бол хамгийн сүүлд хэрэглэж байсан файлыг импортлодог код хэрэгтэй байдаг. Үүнийг гүйцэтгэх хоёр янзын арга буй:</p>
+<ul>
+<li>файлын нэр дээрх огнооны дагуу файлыг сонгох<br>
+</li>
+<li>файлын метадатан дах огнооны дагуу файлыг сонгох (хамгийн сүүлд хийсэн өөрчлөлтийн огноо)</li>
+</ul>
+<div id="файлын-нэр-дээрх-огноо" class="section level3 unnumbered">
+<h3>Файлын нэр дээрх огноо<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%BD%D1%8D%D1%80-%D0%B4%D1%8D%D1%8D%D1%80%D1%85-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><i class="fas fa-link"></i></a>
+</h3>
+<p>Үүнийг хийхэд дараах гурван нөхцөл бүрдсэн эсэх хамаатай:</p>
+<ol style="list-style-type: decimal">
+<li>Файлын нэр дээр бичигдсэн огноонд итгэлтэй байх</li>
+<li>Огноо тоогоор бичигдсэн ба <em>ерөнхийдөө</em> ижил форматтай байна (дараалал нь жил, сар, өдөр гэх мэт)</li>
+<li>Файлын нэрэнд тоогоор огнооноос өөр зүйл тэмдэглээгүй байх.</li>
+</ol>
+<p>Бид энд алхам бүрийг тайлбарласны дараа нэтгэж харуулав.</p>
+<p>Эхлээд <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code>– ийг хэрэглэж, сонгосон хавтас доторх файлын зөвхөн нэрсийг авна. [Directory interactions] хэсгээс <code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code> –ийн талаар харна уу. R төслийн хавтас дах “data” хавтасны “example” хавтсанд буй “linelists” хавтсыг хэрхэн дуудахыг дор жишээнд харуулав.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist_filenames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"example"</span>, <span class="st">"linelists"</span><span class="op">)</span><span class="op">)</span> <span class="co"># хавтсан дах файлын нэрсийг ав</span>
+<span class="va">linelist_filenames</span>                                              <span class="co"># хэвлэ</span></code></pre></div>
+<pre><code>## [1] "20201007linelist.csv"          "case_linelist_2020-10-02.csv" 
+## [3] "case_linelist_2020-10-03.csv"  "case_linelist_2020-10-04.csv" 
+## [5] "case_linelist_2020-10-05.csv"  "case_linelist_2020-10-08.xlsx"
+## [7] "case_linelist20201006.csv"</code></pre>
+<p>Файлын нэрсийг вектор болгож авсны дараа огноотой хэсгийг салгаж авахын тулд <strong>stringr</strong> багцын <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code>-т дараах regular expression-г оруулж комманд өгнө. Энэ коммандаар файлын нэрэнд буй тоотой бүх хэсгийг салгаж авч болно (дунд нь орсон зураас, ташуу зураас зэргийг оруулаад). <strong>stringr</strong> багцын талаар дэлгэрүүлж [strings болон characters] -аас уншиж болно.</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist_dates_raw</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">linelist_filenames</span>, <span class="st">"[0-9].*[0-9]"</span><span class="op">)</span> <span class="co">#тоо болон тэмдэгтүүдийг салгаж авна.</span>
+<span class="va">linelist_dates_raw</span>  <span class="co"># хэвлэ</span></code></pre></div>
+<pre><code>## [1] "20201007"   "2020-10-02" "2020-10-03" "2020-10-04" "2020-10-05"
+## [6] "2020-10-08" "20201006"</code></pre>
+<p>Файлын нэрэн дээрх огнооны формат ижил төстэй (дараалал нь жил, сар, өдөр гэх мэт ), жил нь 4 цифртэйгээр бичигдсэн байвал, <strong>lubridate</strong> багцын хувиргагч функцуудыг (<code>ymd()</code>,<code>dmy()</code>, <code>mdy()</code>) ашиглан амархан хувиргалт хийж болдог. Эдгээр функц зураас, ташуу зураас, хоосон зай зэргийг ажралгүй зөвхөн огнооны дэс дараалаллыг анхаардаг. Энэ талаар [Working with dates] хэсгээс нэмж үзнэ үү.</p>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist_dates_clean</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="va">linelist_dates_raw</span><span class="op">)</span>
+<span class="va">linelist_dates_clean</span></code></pre></div>
+<pre><code>## [1] "2020-10-07" "2020-10-02" "2020-10-03" "2020-10-04" "2020-10-05"
+## [6] "2020-10-08" "2020-10-06"</code></pre>
+<p><strong>base</strong> R -ын <code><a href="https://rdrr.io/r/base/which.min.html">which.max()</a></code>-аар огноонуудын индекс байрлалаас (1 дүгээр, 2 дугаар, 3 дугаар) хамгийн ихийг нь дууддаг. Дор жишээнд “case_linelist_2020-10-08.xlsx”-ыг (хамгийн сүүлд хэрэглэсэн файл) 6 дугаар файл гэж зөв дугаарлагдсан байна.</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">index_latest_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">linelist_dates_clean</span><span class="op">)</span>
+<span class="va">index_latest_file</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>Эдгээр коммандыг нэгтгэж доор харуулав. Энэхүү pipe дараалаллын төгсгөлд тухайн pipe -аар бичигдэж буй обьектийг илэрхийлэхдээ <code>.</code> тэмдэгтээр бичсэнийг анхаарна уу. Энэ үед бичигдэж буй обьект 6 гэсэн тоо . <code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code> –ээр үүсгэгдсэн файлын нэрстэй векторын 6 дугаар элэментийг гаргаж авахын тулд дээрх тэмдэглэгээг давхар хаалтанд оруулж бичсэн, .</p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Багцуудыг ачааллах</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span>
+  <span class="va">tidyverse</span>,         <span class="co"># дата менежмент</span>
+  <span class="va">stringr</span>,           <span class="co"># strings/characters-тай ажиллах</span>
+  <span class="va">lubridate</span>,         <span class="co"># огноотой ажиллах</span>
+  <span class="va">rio</span>,               <span class="co"># импорт / экспорт</span>
+  <span class="va">here</span>,              <span class="co"># файлын холбоотой зам</span>
+  <span class="va">fs</span><span class="op">)</span>                <span class="co"># файлын байрлалуудын харилцан үйлчлэл</span>
+
+<span class="co"># сүүлийн хэрэглэсэн файлын нэрийг салгаж ав</span>
+<span class="va">latest_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"example"</span>, <span class="st">"linelists"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co">#файлын нэрсийг "linelists" дэд хавтаснаас ав               </span>
+  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="st">"[0-9].*[0-9]"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>       <span class="co"># нэрнүүд дэх огноог салгаж ав (тоогоор бичигдсэн)</span>
+  <span class="fu">ymd</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                             <span class="co"># тоон утгыг огноо болго (жил-сар-өдөр форматтай тохиолдолд)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                   <span class="co"># хамгийн их огнооны индекс байрлал (хамгийн сүүлд хэрэглэсэн файл)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"example"</span>, <span class="st">"linelists"</span><span class="op">)</span><span class="op">)</span><span class="op">[[</span><span class="va">.</span><span class="op">]</span><span class="op">]</span>          <span class="co"># хамгийн сүүлд хэрэглэсэн linelist-ийн файлын нэрийг дуудах</span>
+
+<span class="va">latest_file</span>  <span class="co"># сүүлд хэрэглэсэн файлын нэрийг хэвлэ</span></code></pre></div>
+<pre><code>## [1] "case_linelist_2020-10-08.xlsx"</code></pre>
+<p>Одоо энэхүү нэрээ <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> багцад оруулж тухайн файлын холбоотой замыг гүйцээж бич:</p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"example"</span>, <span class="st">"linelists"</span>, <span class="va">latest_file</span><span class="op">)</span> </code></pre></div>
+<p>Одоо хамгийн сүүлд хэрэглэж байсан файлыг импортлох боломжтой:</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># импорт</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"example"</span>, <span class="st">"linelists"</span>, <span class="va">latest_file</span><span class="op">)</span><span class="op">)</span> <span class="co"># импорт</span></code></pre></div>
+</div>
+<div id="файлын-метадата-ашиглах" class="section level3 unnumbered">
+<h3>Файлын метадата ашиглах<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%BC%D0%B5%D1%82%D0%B0%D0%B4%D0%B0%D1%82%D0%B0-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Та файлын нэрэн дээр огноо бичээгүй (эсвэл та нэрэн дээрх огноонд итгэлгүй) тохиолдолд тухайн файлын метадатанаас хамгйин сүүлд ашигласан огноог олж болно. Файлын сүүлд ашигласан огноо, файлын зам зэрэг мэдээллийг шалгахдаа <strong>fs</strong> багцын функцээс хэрэглэдэг.</p>
+<p>Дараах жишээнд сонгосон хавтсыг <strong>fs</strong>-ын <code>dir_info()</code> -д оруулж бичсэн. Сонгосн хавтас нь R төслийн хавтсан дах “data” хавтасны “example” дэд хавтас доторх “linelists” хавтас юм. Ингэснээр файл тус бүрт нэг мөртэй, <code>modification_time</code>,<code>path</code> (файлын метадата) гэсэн багануудтай хүснэгт бий болно. [Directory interactions] –д жишээг илүү дэлгэрэнгүй харуулсан.</p>
+<p>Үүний дараа хүснэгийг <code>modification_time</code> –аар нь эрэмбэлээд <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> -ээр зөвхөн эхний мөр буюу хамгийн сүүлд ашигласан файлтай мөрийг авч үлдэж болно. Дараа нь хүснэгтийн <code>path</code> баганыг <strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code>–д оруулж сүүлд хэрэглэсэн файлын замыг гаргаж авна. Эцэст нь энэ файлын замыг <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>-д оруулна. Импортлогдсон файлыг <code>latest_file</code> гэж хадгална.</p>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">latest_file</span> <span class="op">&lt;-</span> <span class="fu">dir_info</span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"example"</span>, <span class="st">"linelists"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># энэ байршилд буй бүх файлын метадатаг цуглуул </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">modification_time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>      <span class="co"># өөрчлөлт оруулсан хугацаагаар нь эрэмблэ</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                               <span class="co"># зөвхөн толгой мөрийг авч үлд</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                            <span class="co"># зөвхөн файлын замыг авч үлд</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="op">)</span>                                  <span class="co"># файлыг импорт хий</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="import_api" class="section level2" number="7.10">
+<h2>
+<span class="header-section-number">7.10</span> APIs<a class="anchor" aria-label="anchor" href="#import_api"><i class="fas fa-link"></i></a>
+</h2>
+<p>Автомат Программчлагдсан Интерфэйс (Automated Programming Interface) (API) –ыг ашиглан дата авах хүсэлтийг шууд вебсайтад нь явуулдаг. API гэдэг нь программ бие биетэйгээ харилцан үйлчлэх боломжийг бүрдүүлж буй дүрмийн багцыг хэлнэ. Үйлчлүүлэгч (та) “хүсэлтээ” илгээсний дараа мэдээлэл агуулсан “хариуг” хүлээж авдаг. R дээр <strong>httr</strong>, <strong>jsonlite</strong> багцууд энэ үйлдлийг гүйцэтгэдэг.</p>
+<p>API -г идэвхижүүлсэн вебхуудас бүр өөрийн дүрмийг танилцуулсан байдаг. Зарим вебхуудас нийтэд нээлттэй, хэн ч авч болохоор байхад зарим вебсайт ялангуяа ID, нууц үг хэрэглэдэг платформуудаас мэдээлэлэл авахын тулд баталгаажуулалт хэрэгтэй байдаг.</p>
+<p>API –аар мэдээлэл импортлоход мэдээж сүлжээнд холбогдсон байна. API ашиглан мэдээлэл импортлохыг товч жишээгээр харуулж, нэмэлт линкийг дор бичлээ.</p>
+<p><em>Тэмдэглэл: мэдээлэл вебхуудаст ямар ч API гүйгээр тавигдсан</em>* <em>байж болох</em> ба ийм тохиолдолд татаж авахад хялбар байх талтай. Жишээ нь сайтын URL-г <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> дотор оруулснаар CSV файлыг шууд татаж авах боломжтой байж болно. Энэ талаар <a href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html#import_github">importing from Github</a> -д мөн дурьдсан*</p>
+<div id="http-request" class="section level3 unnumbered">
+<h3>HTTP request<a class="anchor" aria-label="anchor" href="#http-request"><i class="fas fa-link"></i></a>
+</h3>
+<p>API солилцоог ихэвчлэн HTTP хүсэлтээр гүйцэтгэдэг. HTTP гэдэг нь Hypertext Transfer Protocol –ын товчлол. Энэ бол үйлчлүүлэгч, сервер хоёрын хүсэлт/хариу солилцон явуулахад ашигладаг үндсэн формат юм. API -ын төрлөөс хамаарч оролт/гаралт (input/output) нь бага зэрэг өөр байх боловч үндсэн процесс нь адил. Энэ нь хэрэглэгчээс ирж буй лавлагаа, асуумжтай “Хүсэлт” (ихэвчлэн HHTP хүсэлт) ба хүсэлтийн статус, хариу мэдээллийг агуулсан “Хариулт”-аас бүрддэг.<br><em>HTTP хүсэлтийн</em> зарим бүрдэл хэсгүүд:</p>
+<p>- API -ын эцсийн цэгийн URL<br>
+- “Аргачлал” (эсвэл “Үйл үг”)<br>
+- Толгой хэсэг<br>
+- Бие хэсэг</p>
+<p>HTTP хүсэлтийн “аргачлал” гэдэг нь таны үйлдэх гэж буй үйлдлийн нэр. Нийтлэг хэрэглэгддэг хоёр HTTP аргачлал бол <code>GET</code> болон <code>POST</code>. Бусад аргачлалд <code>PUT</code>,<code>DELETE</code>,<code>PATCH</code> зэрэг орно. R -луу дата импорт хийхэд ихэвчлэн <code>GET</code>-ийг хэрэглэдэг.</p>
+<p>Хүсэлт гаргасны дараа таны компьютер хариуг хүлээж авна. Ирэх хариулт таны илгээсэн мэдээлэлтэй төстэй форматаар буцаж ирнэ. Үүнд URL, HTTP статус (Статусыг 200 байлгах нь чухал!), файлын төрөл, хэмжээ болон гол авахыш хүссэн мэдээлэл ордог. Та ирсэн мэдээллийг ялгаж, R –ын орчинруу хүснэгт хэлбэрээр оруулах шаардлагатай.</p>
+</div>
+<div id="багцууд" class="section level3 unnumbered">
+<h3>Багцууд<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>R дээр HTTP хүсэлт гаргахад <strong>httr</strong> багцыг нийтлэг хэрэглэдэг. Энэ багцыг ашиглахад Веб API мэдлэг бага шаардагддаг ба компьютер программчлалын хэллэг сайн мэдэхгүй хүмүүс хэрэглэх боломжтой. Хэрэв HTTP хүсэлт .json хэл дээр бичигдсэн бол <strong>jsonlite</strong>–ашиглаж хариу мэдээллийг задалж болно.</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># багцыг ачааллана</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">httr</span>, <span class="va">jsonlite</span>, <span class="va">tidyverse</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="олон-нийтэд-нээлттэй-дата" class="section level3 unnumbered">
+<h3>Олон нийтэд нээлттэй дата<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%BB%D0%BE%D0%BD-%D0%BD%D0%B8%D0%B9%D1%82%D1%8D%D0%B4-%D0%BD%D1%8D%D1%8D%D0%BB%D1%82%D1%82%D1%8D%D0%B9-%D0%B4%D0%B0%D1%82%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p>Дараах жишээнд HTTP хүсэлт гаргахыг харуулав. Жишээг <a href="https://www.trafforddatalab.io/open_data_companion/#A_quick_introduction_to_APIs">the Trafford Data Lab</a> линк дээрх хичээлээс хуулбарлав. Энэ нлинкэд API –ын хичээл, дасгалууд олон бий.</p>
+<p>Жишээ хувилбар: Бид Их Британийн Траффорд хотын түргэн хоолны газруудын жагсаалтыг импортлох хэрэгтэй болов. Энэ датаг Их Британийн хоолны ариун цэврийн үнэлгээний мэдээг боловсруулдаг Хоолны Стандартын Агентлагийн API-д нэвтэрснээр авч болох юм. Бидний хүсэлт гаргах параметрууд:</p>
+<ul>
+<li>HTTP үйл үг: GET<br>
+</li>
+<li>API –ийн эцсийн цэг URL: <a href="http://api.ratings.food.gov.uk/Establishments" class="uri">http://api.ratings.food.gov.uk/Establishments</a><br>
+</li>
+<li>Сонгосон параметрүүд: нэр, хаяг, уртраг, өргөрөг, бизнессийн төрлийн дугаар, үнэлгээний төрөл, зөвшөөрөл өгөгчийн дугаар<br>
+</li>
+<li>Толгой: “x-api-version”, 2<br>
+</li>
+<li>Өгөгдлийн формат(s): JSON, XML<br>
+</li>
+<li>Дүрэм: <a href="http://api.ratings.food.gov.uk/help" class="uri">http://api.ratings.food.gov.uk/help</a>
+</li>
+</ul>
+<p>Кодыг дараах маягаар бичнэ:</p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Хүсэлтээ бэлд</span>
+<span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"http://api.ratings.food.gov.uk/Establishments"</span>
+<span class="va">request</span> <span class="op">&lt;-</span> <span class="fu">GET</span><span class="op">(</span>url <span class="op">=</span> <span class="va">path</span>,
+             query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+               localAuthorityId <span class="op">=</span> <span class="fl">188</span>,
+               BusinessTypeId <span class="op">=</span> <span class="fl">7844</span>,
+               pageNumber <span class="op">=</span> <span class="fl">1</span>,
+               pageSize <span class="op">=</span> <span class="fl">5000</span><span class="op">)</span>,
+             <span class="fu">add_headers</span><span class="op">(</span><span class="st">"x-api-version"</span> <span class="op">=</span> <span class="st">"2"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># server –т гарах алдааг хянах  ("200" байвал сайн!)</span>
+<span class="va">request</span><span class="op">$</span><span class="va">status_code</span>
+
+<span class="co"># хүсэлтийг илгээж, хариуг үнэлж, хүснэгт болгон хувирга</span>
+<span class="va">response</span> <span class="op">&lt;-</span> <span class="fu">content</span><span class="op">(</span><span class="va">request</span>, as <span class="op">=</span> <span class="st">"text"</span>, encoding <span class="op">=</span> <span class="st">"UTF-8"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">fromJSON</span><span class="op">(</span>flatten <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"establishments"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Ингээд мөр бүрт нэг түргэн хоолны газрын мэдээлэл агуулсан <code>response</code> дататай болох ба үүнийг та янзалж болохоор боллоо.</p>
+</div>
+<div id="баталгаажуулалт-шаардлагатай-үед" class="section level3 unnumbered">
+<h3>Баталгаажуулалт шаардлагатай үед<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D1%82%D0%B0%D0%BB%D0%B3%D0%B0%D0%B0%D0%B6%D1%83%D1%83%D0%BB%D0%B0%D0%BB%D1%82-%D1%88%D0%B0%D0%B0%D1%80%D0%B4%D0%BB%D0%B0%D0%B3%D0%B0%D1%82%D0%B0%D0%B9-%D2%AF%D0%B5%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Зарим API-руу нэвтрэхийн тулд та өөрийгөө мөн эсэхийг баталгаажуулах шаардлагатай байдаг. Ингэснээр хязгаарлалттай мэдээлэлд нэвтрэх эрх авна. Энэ үед эхлээд хэрэглэгчийн нэр, нууц үг, код зэргийг POST -аргаар явуулдаг. Ингэснээр нэвтрэх эрх (token) авч улмаар GET аргаар хүсэлт явуулж хүссэн датагаа авдаг.</p>
+<p>Доорх жишээнд <em>Go.Data</em> хэмээх өвчний дэгдэлтийг судалдаг аппликэйшнээс лавлагааг хэрхэн татаж авах талаар харуулав. <em>Go.Data</em> веб front-end болон дата цуглуулах зориулаттай гар утасны аппликэйшн хоёрын бүх харилцан үйлдэлд API ашигладаг. <em>Go.Data</em>-г дэлхий даяар ашиглагддаг боловч өвчний дэгдэлтийн талаарх мэдээлэл нууцлалтай учраас өөрийгөө мөн эсэхийг баталгаажуулсны үндсэн дээр зөвхөн <em>өөрийн</em> дэгдэлтийн мэдээлэлд орох эрхтэй болдог.</p>
+<p>Дараах жишээнд <em>Go.Data</em>–ын <strong>httr</strong> болон <strong>jsonlite</strong> -аар API-тай харьцаж дэгдэлтийн үеийн хавьтагсдын датаг импорт хийхийг харуулав.</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># баталгаажуулалт</span>
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://godatasampleURL.int/"</span>           <span class="co"># Go.Data –н зөв url</span>
+<span class="va">username</span> <span class="op">&lt;-</span> <span class="st">"username"</span>                          <span class="co"># Go.Data -ийн хэрэглэгчийн нэр  </span>
+<span class="va">password</span> <span class="op">&lt;-</span> <span class="st">"password"</span>                          <span class="co"># Go.Data –ын нууц үг</span>
+<span class="va">outbreak_id</span> <span class="op">&lt;-</span> <span class="st">"xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"</span>  <span class="co"># Go.Data дахь дэгдэлтийн ID </span>
+
+<span class="co"># Нэвтрэх эрх, тасалбар (token)</span>
+<span class="va">url_request</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">url</span>,<span class="st">"api/oauth/token?access_token=123"</span><span class="op">)</span> <span class="co"># үндсэн URL хүсэлтийг тодорхойл</span>
+
+
+<span class="co"># хүсэлтийг бэлд</span>
+<span class="va">response</span> <span class="op">&lt;-</span> <span class="fu">POST</span><span class="op">(</span>
+  url <span class="op">=</span> <span class="va">url_request</span>,  
+  body <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    username <span class="op">=</span> <span class="va">username</span>,    <span class="co"># дээр хадгалсан хэрэглэгчийн нэр, нууц үгээ ашиглан орох эрхийг баталгаажуулна                     </span>
+    password <span class="op">=</span> <span class="va">password</span><span class="op">)</span>,                                       
+    encode <span class="op">=</span> <span class="st">"json"</span><span class="op">)</span>
+
+<span class="co"># хүсэлтийг илгээж, ирсэн хариуг задал</span>
+<span class="va">content</span> <span class="op">&lt;-</span>
+  <span class="fu">content</span><span class="op">(</span><span class="va">response</span>, as <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">fromJSON</span><span class="op">(</span>flatten <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>          <span class="co"># сүлжилдсэн JSON-г нэгтгэ</span>
+  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Хариултад ирсэн нэвтрэх эрх (token)-ийг хадгал</span>
+<span class="va">access_token</span> <span class="op">&lt;-</span> <span class="va">content</span><span class="op">$</span><span class="va">access_token</span>    <span class="co"># нэвтрэх эрхийг хадгалснаар дараагийн API –ийн үйлдлүүд хийгдэх боломжтой болно</span>
+
+<span class="co"># Дэгдэлтийн хавьтлуудын өгөгдлийг импортлох</span>
+<span class="co"># нэвтрэх эрх (token)-ийг хэрэглэ</span>
+<span class="va">response_contacts</span> <span class="op">&lt;-</span> <span class="fu">GET</span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">url</span>,<span class="st">"api/outbreaks/"</span>,<span class="va">outbreak_id</span>,<span class="st">"/contacts"</span><span class="op">)</span>,          <span class="co"># GET хүсэлт</span>
+  <span class="fu">add_headers</span><span class="op">(</span>
+    Authorization <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Bearer"</span>, <span class="va">access_token</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">json_contacts</span> <span class="op">&lt;-</span> <span class="fu">content</span><span class="op">(</span><span class="va">response_contacts</span>, as <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>         <span class="co"># текстийг JSON луу хувирга</span>
+<span class="va">contacts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu">fromJSON</span><span class="op">(</span><span class="va">json_contacts</span>, flatten <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>   <span class="co"># JSON –г tibble (хүснэгт) -руу хувирга</span></code></pre></div>
+<p><span style="color: orange;"><strong><em>АНХААРУУЛГА:</em></strong> API –ийн зөвшөөрөл шаардлагатай вебсайтаас том хэмжээний дата татаж байх явцад сайт завсарлага авч үйлдэл зогсох магадлалтай. Үүнээс сэргийлж нэвтрэх эрхийг (access_token) API GET хүсэлт болгоны өмнө эргүүлж татах хэрэгтэй ба мөн асуумжыг хязгаарлах эсвэл шүүлтүүр ашиглаж болно.</span></p>
+<p><span style="color: darkgreen;"><strong><em>TIP:</em></strong> The <code>fromJSON()</code> function in the <strong>jsonlite</strong> package does not fully un-nest the first time it’s executed, so you will likely still have list items in your resulting tibble. You will need to further un-nest for certain variables; depending on how nested your .json is. To view more info on this, view the documentation for the <strong>jsonlite</strong> package, such as the <a href="https://rdrr.io/cran/jsonlite/man/flatten.html"><code>flatten()</code> function</a>.</span></p>
+<p>Нэмэлт мэдээлэл, зааврыг <a href="https://loopback.io/doc/en/lb4/index.html">LoopBack Explorer</a>, [Contact Tracing] хуудас эсвэл <a href="https://worldhealthorganization.github.io/godata/api-docs">Go.Data Github repository</a> доторх API зөвлөгөөнөөс харна уу.</p>
+<p><a href="https://httr.r-lib.org/articles/quickstart.html">here</a> линкээс <strong>httr</strong> багцын талаар уншна уу.</p>
+<p>Мөн энэхүү хэсгийг бичихэд <a href="https://www.dataquest.io/blog/r-api-tutorial/">this tutorial</a> болон <a href="https://medium.com/@traffordDataLab/querying-apis-in-r-39029b73d5f1">this tutorial</a> линк дэх хичээлээс ашигласан.</p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="экспорт" class="section level2" number="7.11">
+<h2>
+<span class="header-section-number">7.11</span> Экспорт<a class="anchor" aria-label="anchor" href="#%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82"><i class="fas fa-link"></i></a>
+</h2>
+<div id="rio-багцаар-экспортлох" class="section level3 unnumbered">
+<h3>
+<strong>rio</strong> багцаар экспортлох<a class="anchor" aria-label="anchor" href="#rio-%D0%B1%D0%B0%D0%B3%D1%86%D0%B0%D0%B0%D1%80-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>rio</strong> -ын <code><a href="https://rdrr.io/pkg/rio/man/export.html">export()</a></code> функц <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> тэй ижил хэрэглэгддэг. Эхлээд хадгалах гэж буй R обьектоо (<code>linelist</code> гэх мэт) бичээд, араас нь шинээр үүсгэж буй файлын нэрийг өргөтгөлтэй нь хамт хашилтанд оруулж бичнэ. Жишээ:</p>
+<p>Доорх жишээгээр <code>linelist</code> гэсэн хүснэгтийг Excel хүснэгт болгож R-ийн үндсэн ажлын хавтаст хадгалахыг харуулав.</p>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">linelist</span>, <span class="st">"my_linelist.xlsx"</span><span class="op">)</span> <span class="co"># ажлын хавтаст хадгалагдна</span></code></pre></div>
+<p>Дээрх linelist хүснэгтийг csv файл болгож хадгалая гэвэл дээрх кодон дах өргөтгөлийг өөрчлөхөд л болно. Үүнийгээ мөн <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> -аар файлын замыг нь зааж хадгална:</p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">linelist</span>, <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"my_linelist.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="clipboard-д-экспорт-хийх" class="section level3 unnumbered">
+<h3>Clipboard-д экспорт хийх<a class="anchor" aria-label="anchor" href="#clipboard-%D0%B4-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D1%85%D0%B8%D0%B9%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хүснэгтийг өөрийн компьютерийн “clipboard” –д экспорт хийхийн тулд (дараагаар нь Excel, Google spreadsheet -руу орууулах зориулалтаар) <strong>clipr</strong> -ын <code>write_clip()</code> -ыг ашиглана.</p>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># linelist хүснэтгийг системийн clipboard -д экспортлох</span>
+<span class="fu">clipr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clipr/man/write_clip.html">write_clip</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="import_rds" class="section level2" number="7.12">
+<h2>
+<span class="header-section-number">7.12</span> RDS файлууд<a class="anchor" aria-label="anchor" href="#import_rds"><i class="fas fa-link"></i></a>
+</h2>
+<p>Хүснэгтийг .csv, .xlsx зэрэг өртгөтгөлөөс гадна .rds өргөтгөлөөр экспортлож болно. Энэ нь зөвхөн R –т өвөрмөц ба тухайн датаг R дээр дахин хэрэглэх нь тодорхой бол энэ өргөтгөлөөр хадгалах нь тохиромжтой.</p>
+<p>Багануудын дата төрөл хэвээр хадгалагдсан байдаг тул импорт хийхэд дахин янзалж, цэвэрлэх шаардлагагүй (Excel, CSV файлууд дээр энэ үйлдлийг хийх нь толгойны өвчин болдог!). Мөн файлын хэмжээ багасгадаг учир том хэмжээний дата импорт, экспорт хийхэд тохиромжтой.</p>
+<p>Жишээ нь та тархвар судлалын багтай ажиллаж байлаа гэж бодъё. Тэдний ГИС (GIS)-ийн багт газрын зураг үүсгүүлэхээр файл явуулах бол .rds хэлбэрээр явуулбал оновчтой (тэд бас R хэрэглэдэг бол)! Учир нь багана тус бүрийн дата төрөл өөрчлөгддөггүй тул тэдний хийх ажлыг хөнгөвчилж өгдөг.</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">linelist</span>, <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"my_linelist.rds"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+<div id="import_rdata" class="section level2" number="7.13">
+<h2>
+<span class="header-section-number">7.13</span> Rdata файл ба list-үүд<a class="anchor" aria-label="anchor" href="#import_rdata"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>.Rdata</code> файлууд олон R обьектыг зэрэг хадгалдаг. Тухайлбал олон хүснэгт, математик загварын үр дүнгүүд, list-үүд зэрэг файлууд хадгалагддаг. Энэ нь аливаа төсөл дээр хамтран ажиллаж, хоорондоо олон файл солилцож өөрчлөх шаардлагатай тохиолдолд их хэрэгтэй байдаг.</p>
+<p>Жишээнд “my_objects.Rdata” хэмээх файл дотор олон R обьектуудыг оруулан экспортолж буйг харуулав.</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">my_list</span>, <span class="va">my_dataframe</span>, <span class="va">my_vector</span>, <span class="st">"my_objects.Rdata"</span><span class="op">)</span></code></pre></div>
+<p>Тэмдэглэл: list импорт хийх үед <strong>rio</strong> -ын <code><a href="https://rdrr.io/pkg/rio/man/import_list.html">import_list()</a></code>–ыг ашигласнаар list-ийн бүтэц, агууламжийг яг хэвээр нь хадгалах боломжтой.</p>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import_list.html">import_list</a></span><span class="op">(</span><span class="st">"my_list.Rdata"</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+<div id="график-зураг-хадгалах" class="section level2" number="7.14">
+<h2>
+<span class="header-section-number">7.14</span> График, зураг хадгалах<a class="anchor" aria-label="anchor" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%B7%D1%83%D1%80%D0%B0%D0%B3-%D1%85%D0%B0%D0%B4%D0%B3%D0%B0%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>-ээр бүтээсэн график хадгалах талаар [ggplot basics] хэсэгт дэлгэрэнгүй заасан буй.</p>
+<p>Товчхондоо графикийг хэвлэсний дараа <code>ggsave("my_plot_filepath_and_name.png")</code> коммандаар хадгална. Хамгийн сүүлд хэвлэгдсэн графикийг хадгалахдаа үүсгэж буй файлын нэрийг (өргөтгөлтэй нь хамт ) бичиж болно, эсвэл өмнө нь хадгалагдсан байсан график дээр өөрчлөлт хийн хадгалж буй бол нэрийг нь <code>plot =</code> аргументэд шууд зааж болно. Графикийн өргөн, урт, нэгж, нарийвчлал зэргийг <code>width =</code>,<code>height =</code>,<code>units =</code>,<code>dpi =</code> аргументуудаар тохируулж болно.</p>
+<p>Халдварын тархалт харуулдаг тор хэлбэрийн (network) график хадгалах талаар [Transmission chains] хуудаст оруулсан.</p>
+<!-- ======================================================= -->
+</div>
+<div id="эх-сурвалж-материал" class="section level2" number="7.15">
+<h2>
+<span class="header-section-number">7.15</span> Эх сурвалж материал<a class="anchor" aria-label="anchor" href="#%D1%8D%D1%85-%D1%81%D1%83%D1%80%D0%B2%D0%B0%D0%BB%D0%B6-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">R Data Import/Export Manual</a><br><a href="https://r4ds.had.co.nz/data-import.html#data-import">R 4 Data Science chapter on data import</a><br><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave() documentation</a></p>
+<p>Дараах хүснэгтийг <strong>rio</strong> -ын онлайн <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vignette</a> –ээс авсан. Энэхүү хүснэгтээр <strong>rio</strong> багцын импорт, экспорт хийхдээ файлын өргөтгөлтэй холбоотойгоор зэрэг ажиллуулдаг багцууд, эдгээр нь <strong>rio</strong>-ын default -д орсон эсэхийг харуулав. .</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="27%">
+<col width="18%">
+<col width="16%">
+<col width="14%">
+<col width="22%">
+</colgroup>
+<thead><tr class="header">
+<th>Формат</th>
+<th>Өргөтгөл</th>
+<th>Импорт хийх багц</th>
+<th>Экспорт хийх багц</th>
+<th>Default-аар суулгагддаг эсэх</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Comma-separated data</td>
+<td>.csv</td>
+<td>data.table <code>fread()</code>
+</td>
+<td>data.table</td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Pipe-separated data</td>
+<td>.psv</td>
+<td>data.table <code>fread()</code>
+</td>
+<td>data.table</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>Tab-separated data</td>
+<td>.tsv</td>
+<td>data.table <code>fread()</code>
+</td>
+<td>data.table</td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>SAS</td>
+<td>.sas7bdat</td>
+<td>haven</td>
+<td>haven</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>SPSS</td>
+<td>.sav</td>
+<td>haven</td>
+<td>haven</td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Stata</td>
+<td>.dta</td>
+<td>haven</td>
+<td>haven</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>SAS</td>
+<td>XPORT</td>
+<td>.xpt</td>
+<td>haven</td>
+<td>haven</td>
+</tr>
+<tr class="even">
+<td>SPSS Portable</td>
+<td>.por</td>
+<td>haven</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>Excel</td>
+<td>.xls</td>
+<td>readxl</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Excel</td>
+<td>.xlsx</td>
+<td>readxl</td>
+<td>openxlsx</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>R syntax</td>
+<td>.R</td>
+<td>base</td>
+<td>base</td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Saved R objects</td>
+<td>.RData, .rda</td>
+<td>base</td>
+<td>base</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>Serialized R objects</td>
+<td>.rds</td>
+<td>base</td>
+<td>base</td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Epiinfo</td>
+<td>.rec</td>
+<td>Гадны</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>Minitab</td>
+<td>.mtp</td>
+<td>Гадны</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Systat</td>
+<td>.syd</td>
+<td>Гадны</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>“XBASE”</td>
+<td>database files</td>
+<td>.dbf</td>
+<td>Гадны</td>
+<td>Гадны</td>
+</tr>
+<tr class="even">
+<td>Weka Attribute-Relation File Format</td>
+<td>.arff</td>
+<td>foreign</td>
+<td>Гадны</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>Data Interchange Format</td>
+<td>.dif</td>
+<td>utils</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>Fortran data</td>
+<td>no recognized extension</td>
+<td>utils</td>
+<td></td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>Fixed-width format data</td>
+<td>.fwf</td>
+<td>utils</td>
+<td>utils</td>
+<td>Тийм</td>
+</tr>
+<tr class="even">
+<td>gzip comma-separated data</td>
+<td>.csv.gz</td>
+<td>utils</td>
+<td>utils</td>
+<td>Тийм</td>
+</tr>
+<tr class="odd">
+<td>CSVY (CSV + YAML metadata header)</td>
+<td>.csvy</td>
+<td>csvy</td>
+<td>csvy</td>
+<td>Үгүй</td>
+</tr>
+<tr class="even">
+<td>EViews</td>
+<td>.wf1</td>
+<td>hexView</td>
+<td></td>
+<td>Үгүй</td>
+</tr>
+<tr class="odd">
+<td>Feather R/Python interchange format</td>
+<td>.feather</td>
+<td>feather</td>
+<td>feather</td>
+<td>Үгүй</td>
+</tr>
+<tr class="even">
+<td>Fast Storage</td>
+<td>.fst</td>
+<td>fst</td>
+<td>fst</td>
+<td>Үгүй</td>
+</tr>
+<tr class="odd">
+<td>JSON</td>
+<td>.json</td>
+<td>jsonlite</td>
+<td>jsonlite</td>
+<td>Үгүй</td>
+</tr>
+<tr class="even">
+<td>Matlab</td>
+<td>.mat</td>
+<td>rmatio</td>
+<td>rmatio</td>
+<td>Үгүй</td>
+</tr>
+<tr class="odd">
+<td>OpenDocument Spreadsheet</td>
+<td>.ods</td>
+<td>readODS</td>
+<td>readODS</td>
+<td>Үгүй</td>
+</tr>
+<tr class="even">
+<td>HTML Tables</td>
+<td>.html</td>
+<td>xml2</td>
+<td>xml2</td>
+<td>Үгүй</td>
+</tr>
+<tr class="odd">
+<td>Shallow XML documents</td>
+<td>.xml</td>
+<td>xml2</td>
+<td>xml2</td>
+<td>Үгүй</td>
+</tr>
+<tr class="even">
+<td>YAML</td>
+<td>.yml</td>
+<td>yaml</td>
+<td>yaml</td>
+<td>Үгүй</td>
+</tr>
+<tr class="odd">
+<td>Clipboard default is tsv</td>
+<td></td>
+<td>clipr</td>
+<td>clipr</td>
+<td>Үгүй</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></div>
+<div class="next"><a href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="nav-link" href="#%D0%B5%D1%80%D3%A9%D0%BD%D1%85%D0%B8%D0%B9-%D1%82%D0%BE%D0%B9%D0%BC"><span class="header-section-number">7.1</span> Ерөнхий тойм</a></li>
+<li><a class="nav-link" href="#rio-%D0%B1%D0%B0%D0%B3%D1%86"><span class="header-section-number">7.2</span> rio багц</a></li>
+<li><a class="nav-link" href="#here"><span class="header-section-number">7.3</span> here багц</a></li>
+<li>
+<a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%B7%D0%B0%D0%BC"><span class="header-section-number">7.4</span> Файлын зам</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D1%85%D0%BE%D0%BB%D0%B1%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-relative-%D0%B7%D0%B0%D0%BC">Файлын “холбоотой (relative)” зам</a></li>
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%B6%D0%B8%D0%BD%D1%85%D1%8D%D0%BD%D1%8D-%D0%B7%D0%B0%D0%BC">Файлын “жинхэнэ” зам</a></li>
+<li><a class="nav-link" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B1%D0%B0%D0%B9%D1%80%D1%88%D0%BB%D1%8B%D0%B3-%D1%81%D0%BE%D0%BD%D0%B3%D0%BE%D1%85">Гараар байршлыг сонгох</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><span class="header-section-number">7.5</span> Дата импортлох</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#excel-%D0%B8%D0%B9%D0%BD-sheet--%D1%82%D1%8D%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85">Excel-ийн sheet- тэй ажиллах</a></li>
+<li><a class="nav-link" href="#import_missing">Дутуу утга</a></li>
+<li><a class="nav-link" href="#%D0%BC%D3%A9%D1%80-%D0%B0%D0%BB%D0%B3%D0%B0%D1%81%D0%B0%D1%85">Мөр алгасах</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%BE%D1%91%D1%80-%D0%B4%D0%B0%D1%85-%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9-header-%D0%BC%D3%A9%D1%80%D1%82%D1%8D%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85">Хоёр дах толгой (header) мөртэй ажиллах</a></li>
+<li><a class="nav-link" href="#google-sheet-%D2%AF%D2%AF%D0%B4">Google sheet-үүд</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D0%BE%D0%BB%D0%BE%D0%BD-%D1%84%D0%B0%D0%B9%D0%BB%D1%82%D0%B0%D0%B9-%D0%B7%D1%8D%D1%80%D1%8D%D0%B3-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85---%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D1%85%D1%83%D0%B2%D0%B0%D0%B0%D1%85-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><span class="header-section-number">7.6</span> Олон файлтай зэрэг ажиллах - импорт, экспорт, хуваах, нэгтгэх</a></li>
+<li>
+<a class="nav-link" href="#import_github"><span class="header-section-number">7.7</span> Github-аас файл импортлох</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#csv-%D1%84%D0%B0%D0%B9%D0%BB">CSV файл</a></li>
+<li><a class="nav-link" href="#xlsx-%D1%84%D0%B0%D0%B9%D0%BB">XLSX файл</a></li>
+<li><a class="nav-link" href="#shapefiles">Shapefiles</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B4%D0%B0%D1%82%D0%B0-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><span class="header-section-number">7.8</span> Гараар дата оруулах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BC%D3%A9%D1%80-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%BD%D0%BE%D0%BE%D1%80-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85">Мөр болгоноор оруулах</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0-%D0%B4%D0%B0%D0%B3%D1%83%D1%83-%D0%B4%D0%B0%D1%82%D0%B0-%D0%BE%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85">Багана дагуу дата оруулах</a></li>
+<li><a class="nav-link" href="#clipboard-%D0%BE%D0%BE%D1%81-%D1%85%D1%83%D1%83%D0%BB%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85">Clipboard-оос хуулж авах</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D1%85%D0%B0%D0%BC%D0%B3%D0%B8%D0%B9%D0%BD-%D1%81%D2%AF%D2%AF%D0%BB%D0%B4-%D1%85%D1%8D%D1%80%D1%8D%D0%B3%D0%BB%D1%8D%D0%B6-%D0%B1%D0%B0%D0%B9%D1%81%D0%B0%D0%BD-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%B3-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85"><span class="header-section-number">7.9</span> Хамгийн сүүлд хэрэглэж байсан файлыг импортлох</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%BD%D1%8D%D1%80-%D0%B4%D1%8D%D1%8D%D1%80%D1%85-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE">Файлын нэр дээрх огноо</a></li>
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%BC%D0%B5%D1%82%D0%B0%D0%B4%D0%B0%D1%82%D0%B0-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D1%85">Файлын метадата ашиглах</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#import_api"><span class="header-section-number">7.10</span> APIs</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#http-request">HTTP request</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4">Багцууд</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%BB%D0%BE%D0%BD-%D0%BD%D0%B8%D0%B9%D1%82%D1%8D%D0%B4-%D0%BD%D1%8D%D1%8D%D0%BB%D1%82%D1%82%D1%8D%D0%B9-%D0%B4%D0%B0%D1%82%D0%B0">Олон нийтэд нээлттэй дата</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D1%82%D0%B0%D0%BB%D0%B3%D0%B0%D0%B0%D0%B6%D1%83%D1%83%D0%BB%D0%B0%D0%BB%D1%82-%D1%88%D0%B0%D0%B0%D1%80%D0%B4%D0%BB%D0%B0%D0%B3%D0%B0%D1%82%D0%B0%D0%B9-%D2%AF%D0%B5%D0%B4">Баталгаажуулалт шаардлагатай үед</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82"><span class="header-section-number">7.11</span> Экспорт</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rio-%D0%B1%D0%B0%D0%B3%D1%86%D0%B0%D0%B0%D1%80-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85">rio багцаар экспортлох</a></li>
+<li><a class="nav-link" href="#clipboard-%D0%B4-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D1%85%D0%B8%D0%B9%D1%85">Clipboard-д экспорт хийх</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#import_rds"><span class="header-section-number">7.12</span> RDS файлууд</a></li>
+<li><a class="nav-link" href="#import_rdata"><span class="header-section-number">7.13</span> Rdata файл ба list-үүд</a></li>
+<li><a class="nav-link" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%B7%D1%83%D1%80%D0%B0%D0%B3-%D1%85%D0%B0%D0%B4%D0%B3%D0%B0%D0%BB%D0%B0%D1%85"><span class="header-section-number">7.14</span> График, зураг хадгалах</a></li>
+<li><a class="nav-link" href="#%D1%8D%D1%85-%D1%81%D1%83%D1%80%D0%B2%D0%B0%D0%BB%D0%B6-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB"><span class="header-section-number">7.15</span> Эх сурвалж материал</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2022-01-05.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

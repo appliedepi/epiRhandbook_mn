@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>11 Фактор | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="Боломжит утгууд тодорхой байдлаар багцлагдан, эрэмбэлэн ангилагдсан датаг R дээр фактор дата гэнэ. График, хүснэгт байгуулахад default-аар цагаан толгойн дарааллаар, багаас ихрүү чиглэлтэй...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="11 Фактор | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Боломжит утгууд тодорхой байдлаар багцлагдан, эрэмбэлэн ангилагдсан датаг R дээр фактор дата гэнэ. График, хүснэгт байгуулахад default-аар цагаан толгойн дарааллаар, багаас ихрүү чиглэлтэй...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11 Фактор | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="Боломжит утгууд тодорхой байдлаар багцлагдан, эрэмбэлэн ангилагдсан датаг R дээр фактор дата гэнэ. График, хүснэгт байгуулахад default-аар цагаан толгойн дарааллаар, багаас ихрүү чиглэлтэй...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li><a class="active" href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="фактор" class="section level1" number="11">
+<h1>
+<span class="header-section-number">11</span> Фактор<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80"><i class="fas fa-link"></i></a>
+</h1>
+<div class="inline-figure"><img src="images/Factors_1500x500.png" width="100%"></div>
+<p>Боломжит утгууд тодорхой байдлаар багцлагдан, эрэмбэлэн ангилагдсан датаг R дээр <em>фактор</em> дата гэнэ.</p>
+<p>График, хүснэгт байгуулахад default-аар цагаан толгойн дарааллаар, багаас ихрүү чиглэлтэй (alpha-numeric) гарч ирдэг. Харин баганын утгад эрэмбэ (<em>шатлал</em>) тогтоосноор болиулж болдог. Үүний тулд карактер, тоон багануудыг фактор хэлбэрт хувиргах ашаардлагатй. Фактор датаны өөр ач холбогдол бол графикт стандарт легендийг байгуулж өгдөг. Энэ нь датанд аль нэг утга байхгүйгээс легендийн байрлал график янз бүр болж өөрчлөгдөөд байдаг асуудлыг шийдэж өгдө.</p>
+<p>Энэ хэсэгт <strong>forcats</strong> багцын функцууд ( “<strong>For</strong>”<strong>cat</strong>egorical variables”-гэсэн үгийн товчлол) болон <strong>base</strong> R- зарим функцыг тайлбарлана. Мөн тархварзүйн долоо хоногтой (epiweeks) хэсэгт <strong>lubridate</strong>, <strong>aweek</strong> гэсэн багцуудаас цухас яригдах болно.</p>
+<p><strong>forcats</strong> багц дах функцуудын бүрэн жагсаалтыг <a href="https://forcats.tidyverse.org/reference/index.html">here</a> –ээс үзэж болно. Энд Энд зөвхөн чухал хэрэглэгддэг функцуудыг тайлбарласан.</p>
+<!-- ======================================================= -->
+<div id="бэлтгэл-2" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> Бэлтгэл<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB-2"><i class="fas fa-link"></i></a>
+</h2>
+<div id="багцыг-ачааллах-1" class="section level3 unnumbered">
+<h3>Багцыг ачааллах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D1%85-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэ хэсэгт анализ хийхэд шаардлагатай багцуудыг доорхи кодоор ачааллана.<strong>pacman</strong> багцын <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load()</a></code> функцээр шаардлагатай багцыг татаж аваад ачааллана уу. Өмнө татаж авсан багцуудаа <strong>base</strong> R -ын <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>-аар ачааллаж болно. Багцын талаарх нэмэлт мэдээллийг [R basics] хэсгээс харна уу.</p>
+<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span>
+  <span class="va">rio</span>,           <span class="co"># импорт/экспорт</span>
+  <span class="va">here</span>,          <span class="co"># файлын зам</span>
+  <span class="va">lubridate</span>,     <span class="co"># огноог янзлана</span>
+  <span class="va">forcats</span>,       <span class="co"># факторыг янзлана</span>
+  <span class="va">aweek</span>,         <span class="co"># автоматаар фактор үүсгэж тархварзүйн долоо хоног (epiweeks) үүсгэнэ</span>
+  <span class="va">janitor</span>,       <span class="co"># хүснэгт</span>
+  <span class="va">tidyverse</span>      <span class="co"># дата менежмент, график</span>
+  <span class="op">)</span></code></pre></div>
+</div>
+<div id="дата-импортлох-3" class="section level3 unnumbered">
+<h3>Дата импортлох<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Жишээ дасгалуудад Эбола дэгдэлтийн үеийн зохиомол дата ашиглах болно. Эдгээр дасгалуудыг дагаж хийхийг хүсвэл <a href="https://github.com/epirhandbook/Epi_R_handbook/raw/master/data/case_linelists/linelist_cleaned.rds" class="download-button">линкийн “clean” linelist дээ дарж татаж авна уу </a> (as .rds file). Датагаа <strong>rio</strong>-ын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code>функцээр импортлож болно (энэ нь.xlsx, .rds, .csv - зэрэг олон дата төрөлтэй ажиллаж чадна. [Import and export] хэсэгт илүү тайлбарласан).</p>
+<div class="sourceCode" id="cb547"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># датаг импортлох</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_cleaned.rds"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="fct_newcat" class="section level3 unnumbered">
+<h3>Шинээр ангилагдсан (categorical) хувьсагч үүсгэх<a class="anchor" aria-label="anchor" href="#fct_newcat"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ойлгомжтой тайлбарлах үүднээс хамгийн нийтлэг хэрэглэгддэг үйлдэл болох ангилагдсан хувьсагч шинээр хэрхэн үүсгэхийг үзэх болно.</p>
+<p>Тоон баганыг фактор хэлбэрт хувиргаснаар статистик бодолт хийх боломжгүй өолдог гэдгийг санаарай.</p>
+<div id="багана-үүсгэх" class="section level4 unnumbered">
+<h4>Багана үүсгэх<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0-%D2%AF%D2%AF%D1%81%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Жишээгээр <code>days_onset_hosp</code> (өвчний шинж эхэлснээс эмнэлэгт хэвтэх хүртэл хугацаа) баганын мөрүүдийг ангилан ялгаж <code>delay_cat</code> гэсэн шинэ багана үүсгэх болно. Үүнийг <strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцээр хйинэ. <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцын логик шалгуур (баруун тал) дэс дарааллан мөр болгонд үйлчилж, үүссэн утга нь <code>delay_cat</code> шинэ баганын (зүүн тал) тохирох мөрөнд ордог. <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцын талаар [Cleaning data and core functions] хэсэгт дэлгэрэнгүй тайлбарласан.</p>
+<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+    <span class="co"># шалгуур                                   # TRUE байвал орох шинэ утга </span>
+    <span class="va">days_onset_hosp</span> <span class="op">&lt;</span> <span class="fl">2</span>                        <span class="op">~</span> <span class="st">"&lt;2 days"</span>,
+    <span class="va">days_onset_hosp</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">days_onset_hosp</span> <span class="op">&lt;</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">"2-5 days"</span>,
+    <span class="va">days_onset_hosp</span> <span class="op">&gt;=</span> <span class="fl">5</span>                       <span class="op">~</span> <span class="st">"&gt;5 days"</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">days_onset_hosp</span><span class="op">)</span>                     <span class="op">~</span> <span class="cn">NA_character_</span>,
+    <span class="cn">TRUE</span>                                       <span class="op">~</span> <span class="st">"Check me"</span><span class="op">)</span><span class="op">)</span>  </code></pre></div>
+</div>
+<div id="утгын-default-эрэмбэ" class="section level4 unnumbered">
+<h4>Утгын default эрэмбэ<a class="anchor" aria-label="anchor" href="#%D1%83%D1%82%D0%B3%D1%8B%D0%BD-default-%D1%8D%D1%80%D1%8D%D0%BC%D0%B1%D1%8D"><i class="fas fa-link"></i></a>
+</h4>
+<p><code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>-ээр үүсгэдсэн <code>delay_cat</code> багана карактер утгатай ангилагдсан багана байдаг. Өөрөөр хэлбэл фактор болж <em>амжаагүй</em> байдаг. Тийм ч учраас давтамж харуулсан хүснэгт дээр ангилалын жагсаалт цагаан толгойн дарааллаар эрэмбэлэгдсэн байдаг. Гэтэл энэ дараалал тухайн датаг ойлгоход учир дутагдалтай байдаг:</p>
+<div class="sourceCode" id="cb549"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">delay_cat</span>, useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  &lt;2 days  &gt;5 days 2-5 days     &lt;NA&gt; 
+##     2990      602     2040      256</code></pre>
+<p>Barplot байгуулахад x-тэнхлэгийн дараалал автомат тохируулгатай байдаг ( R график байгуулахын тулд хамгийн их хэрэглэгддэг <strong>ggplot2</strong> багцын талаар [ggplot basics] хуудасанд дэлгэрэнгүй тайлбарласан).</p>
+<div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-374-1.png" width="672"></div>
+</div>
+</div>
+</div>
+<div id="фактор-болгож-хувиргах" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> Фактор болгож хувиргах<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D1%85%D1%83%D0%B2%D0%B8%D1%80%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p>Карактер эсвэл тоон баганыг <em>фактор</em> болгож хувиргахад <strong>forcats</strong> -ын аль ч функцыг хэрэглэж болно (дэлгэрэнгүй мэдээлэл <a href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html#fct_adjust">below</a> -д орсон). Эдгээр функц нь датаг юуны түрүүнд фактор болгож хувиргадаг тул цаашид шатлалтай ангилал үүсгэх боломжтой болдог. Тухайлбал шатлалын эрэмбийг <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code> -ээр зааж өгч болно. Гэтэл <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor()</a></code> функц зөвхөн факторт хувиргахаас өөр үйлдэл нэмж хийдэггүй.</p>
+<p><strong>base</strong> R -ын <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> функц мөн баганыг факторлуу хувиргадаг ба шатлалын эрэмбийг <code>levels =</code> аргументэд нь та өөрөө зааж өгөх болно.</p>
+<p>Дор жишээнд <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> болон <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code> -ээр <code>delay_cat</code> баганыг карактерээс фактор болгож хувиргахыг харуулав. <code>delay_cat</code> багана үүсэх талаар өмнөх <a href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html#fct_newcat">Preparation</a> хэсэгт тайлбарласан.</p>
+<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><em>Одоо энэхүү баганын “утгууд” фактор “түвшингүүд” боллоо гэсэн үг.</em> Энэхүү үүсгэсэн түвшний жагсаалтыг <em>эрэмбийг</em> <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code> функц эсвэл <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> эсвэл <strong>janitor</strong> -ын <code>tabyl()</code> функцуудээр харж болно. Түвшний эрэмбэ нь default-аар цагаан толгойн болон багаас ихсэх (alpha-numeric) дарааллар гарч ирдэг. <code>NA</code> бол факторын түвшинд тооцогдохгүй болохыг анхаарна уу.</p>
+<div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "&lt;2 days"  "&gt;5 days"  "2-5 days"</code></pre>
+<p>Үүнээс гадна <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code> -ээр түвшний эрэмбийг гараар зааж өгч болно. Ингэхдээ доор үзүүлсний дагуу түвшин заасан утгуудаа таслалаар тусгаарлаж, хашилтанд уагсааж бичнэ. Датан дах утгаасаа үг үсгийн зөрөөгүй бичхийг анхаар. Хэрэв датанд байхгүй түвшин үүсгэх хэрэгтэй бол <a href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html#fct_add"><code>fct_expand()</code> instead</a>)-ыг хэрэглэ.</p>
+<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">delay_cat</span>, <span class="st">"&lt;2 days"</span>, <span class="st">"2-5 days"</span>, <span class="st">"&gt;5 days"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Дээрх коммандаар зааж өгсний үр дүнд түвшний эрэмбэ илүү ойлгомжтой болно байна.</p>
+<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "&lt;2 days"  "2-5 days" "&gt;5 days"</code></pre>
+<p>График дээр хэвлэгдэх дараалал ч гэсэн илүү ойлгомжтой болж байна.</p>
+<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-379-1.png" width="672"></div>
+</div>
+<div id="түвшин-нэмэх-хасах" class="section level2" number="11.3">
+<h2>
+<span class="header-section-number">11.3</span> Түвшин нэмэх, хасах<a class="anchor" aria-label="anchor" href="#%D1%82%D2%AF%D0%B2%D1%88%D0%B8%D0%BD-%D0%BD%D1%8D%D0%BC%D1%8D%D1%85-%D1%85%D0%B0%D1%81%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<div id="fct_add" class="section level3 unnumbered">
+<h3>Нэмэх<a class="anchor" aria-label="anchor" href="#fct_add"><i class="fas fa-link"></i></a>
+</h3>
+<p>Фактортоо нэмж түвшин оруулах бол <code><a href="https://forcats.tidyverse.org/reference/fct_expand.html">fct_expand()</a></code>-ыг хэрэглэ. Багана болон нэмэгдэж буй түвшний нэрийг (таслалаар тусгаарлаж) функцэл оруулдаг. Баганын нийт утгыг хүснэгтэлж харвал шинээр үүсгэсэн түвшин 0 давтамжтай харагддаг. <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> эсвэл <strong>janitor</strong>-ын <code>tabyl()</code> -аар хүснэгт болгож хараарай:</p>
+<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_expand.html">fct_expand</a></span><span class="op">(</span><span class="va">delay_cat</span>, <span class="st">"Not admitted to hospital"</span>, <span class="st">"Transfer to other jurisdiction"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span>   <span class="co"># хүснэгт хэвлэ</span></code></pre></div>
+<pre><code>##                       delay_cat    n    percent valid_percent
+##                         &lt;2 days 2990 0.50781250     0.5308949
+##                        2-5 days 2040 0.34646739     0.3622159
+##                         &gt;5 days  602 0.10224185     0.1068892
+##        Not admitted to hospital    0 0.00000000     0.0000000
+##  Transfer to other jurisdiction    0 0.00000000     0.0000000
+##                            &lt;NA&gt;  256 0.04347826            NA</code></pre>
+<p>Тэмдэглэл: <strong>forcats</strong> -д дутуу утгыг (<code>NA</code>) хялбар аргаар түвшин болгож хувиргах тусгай функц байдаг. <a href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html#fct_missing">Missing values</a> хэсгийг нэмж үзнэ үү.</p>
+</div>
+<div id="хасах" class="section level3 unnumbered">
+<h3>Хасах<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D1%81%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://forcats.tidyverse.org/reference/fct_drop.html">fct_drop()</a></code>-ээр “ашиглагдаагүй”, 0 давтамжтай түвшинг хасдаг. Өмнөх жишээний нэг түвшин (“эмнэлэгт хэвтээгүй тохиолдлууд”) 0 давтамжтай байна. Фактортай баганаа <code><a href="https://forcats.tidyverse.org/reference/fct_drop.html">fct_drop()</a></code>-д оруулснаар энэхүү 0 давтамжтай түвшин хасагдна:</p>
+<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_drop.html">fct_drop</a></span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>##  delay_cat    n    percent valid_percent
+##    &lt;2 days 2990 0.50781250     0.5308949
+##   2-5 days 2040 0.34646739     0.3622159
+##    &gt;5 days  602 0.10224185     0.1068892
+##       &lt;NA&gt;  256 0.04347826            NA</code></pre>
+</div>
+</div>
+<div id="fct_adjust" class="section level2" number="11.4">
+<h2>
+<span class="header-section-number">11.4</span> Түвшний эрэмбийг тохируулах<a class="anchor" aria-label="anchor" href="#fct_adjust"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>forcats</strong> -ын функцуудээр түвшний эрэмбийг тохируулахад хялбар (багана фактор хэлбэрт хувирсан байх шаардлагатай):</p>
+<p>Ингэхдээ фактор баганад хоёр янзаар үйлчилнэ:</p>
+<ol style="list-style-type: decimal">
+<li>Хүснэгтийн багана: датанд өөрчлөлт хийгдсэн тул цаашид хийгдэх үйлдэлд нөлөөлнө.<br>
+</li>
+<li>
+<em>График дотор</em>: өөрчлөлт зөвхөн график дотор хийгдэх болно.</li>
+</ol>
+<div id="гараар-гүйцэтгэх" class="section level3 unnumbered">
+<h3>Гараар гүйцэтгэх<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B3%D2%AF%D0%B9%D1%86%D1%8D%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Фактор дах түвшний эрэмбийг гараар янзалж болно. Фактор бус баганыг функцэд оруулбал багана эхлээд фактор хэлбэрт хувирдаг.</p>
+<p>Хаалтан дотор баганын нэрийг оруулаад араас нь дараахь хоёрын аль нэгийг оруул:</p>
+<ul>
+<li>Түвшнүүдийг бүгдийг хүссэн дарааллын дагуу жагсааж оруулна (карактер вектор хэлбэрээр <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>) эсвэл<br>
+</li>
+<li>Засагдах шаардлагатай нэг ширхэг түвшний нэрийг оруулаад түүний шинэ эрэмбийн байрлалыг <code>after =</code> аргументэд зааж өгнө.</li>
+</ul>
+<p>Энэхүү жишээнд <code>delay_cat</code> баганын түвний эрэмбийг дахин зааж өгч (өмнө нь фактор байсан) хүссэн дарааллалдаа хэрхэн оруулахыг харуулав.</p>
+<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># түвшний эрэмбийг дахин зааж өгөх</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">delay_cat</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;2 days"</span>, <span class="st">"2-5 days"</span>, <span class="st">"&gt;5 days"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Зөвхөн нэг л түвшинг зөөх шаардлагатй үед <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code> -ыг дангаар нь хэрэглэж, засагдах эрэмбийн байрлалыг <code>after =</code> аргументэд зааж өг. Жишээ нь дараахь коммандаар “&lt;2 days” гэсэн түвшин хоёрдугаар байрлалруу зөөгдөж байна:</p>
+<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># түвшний эрэмбийг дахин зааж өгч</span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">delay_cat</span>, <span class="st">"&lt;2 days"</span>, after <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="график-дотор" class="section level3 unnumbered">
+<h3>График дотор<a class="anchor" aria-label="anchor" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%B4%D0%BE%D1%82%D0%BE%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хүснэгтээс гадна график доторх түвшний эрэмбийг <strong>forcats</strong> -аар зааж өгдөг. Эдгээр функцыг график байгуулдаг <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> дотор оруулаад түвшнийг эрэмбэлж, урвуулж (reverse) болно. Ингэснээр өөрчлөлт зөвхөн графикт л хийгдэх болно.</p>
+<p>Доор жишээнд хоёр графикийг<code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> -ээр байгуулав ( [ggplot basics] хуудсаас лавлаж болно). Эхний графикт <code>delay_cat</code> баганыг x-тэнхлэгт байрлуулж, түвшний эрэмбэ нь default хэлбэрээр байна. Хоёр дах графикийн кодонд баганын нэр, түвшний дарааллыг <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>-т оруулснаас график дээрх эрэмбэ өөрчлөгдсөн байна.</p>
+<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ggplot дотор тохируулга хийж өгөөгүй учир эрэбмэ default буюу цагаан толгойн, багаас ихсэх дараалалтай байна </span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># фактор лах түвшний эрэмбийг ggplot дотор тохируулж өгсөн</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">delay_cat</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;2 days"</span>, <span class="st">"2-5 days"</span>, <span class="st">"&gt;5 days"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-385-1.png" width="50%"><img src="_main_files/figure-html/unnamed-chunk-385-2.png" width="50%"></p>
+<p>графикийн түвшинд ингэж өөрчлөлт хийхэд x- тэнхлэг дээрх default гарчигны утга алдагддаг. Иймээс гарчигийг <strong>ggplot2</strong>-ын <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> аргументээр дахин нэрлэх хэрэгтэй.</p>
+</div>
+<div id="урвуулах" class="section level3 unnumbered">
+<h3>Урвуулах<a class="anchor" aria-label="anchor" href="#%D1%83%D1%80%D0%B2%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Түвшний эрэмбийг урвуугаар нь эрэмбэлэх хэрэгцээ их байдаг. Энэ үед факторыг <code><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev()</a></code>-т оруулж бичихэд хангалттай.</p>
+<p>Дата доторх факторын эрэмбэ нь хэвээр боловч графикт харагдах эрэмбэд өөрчлөлт оруулах гэж буй бол <code><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides()</a></code> функцыг хэрэглэж болно ([ggplot tips] хэсгээс харна уу).</p>
+</div>
+<div id="давтамжаар" class="section level3 unnumbered">
+<h3>Давтамжаар<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D0%B2%D1%82%D0%B0%D0%BC%D0%B6%D0%B0%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Датаны давтамжийн тоогоор эрэмбэлэхдээ <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code>-ийг хэрэглэдэг. Дутуу утгад (<code>NA</code>) тодорхой түвшин зааж өгөөгүй тохиолдолд автоматаар хамгийн төгсгөлд эрэмбэлэгддэг (<a href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html#fct_missing">this section</a> -ээс харна уу). Давтамжийн урвуу дараалалд оруулах бол <code><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev()</a></code>-т давхар оруулж эрэмбэлдэг.</p>
+<p>Энэ функцыг доор үзүүлсэнчлэн <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>дотор хэрэглэж болно.</p>
+<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># давтамжаар нь эрэмбэлэх</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Delay onset to admission (days)"</span>,
+       title <span class="op">=</span> <span class="st">"Ordered by frequency"</span><span class="op">)</span>
+
+<span class="co"># урвуу давтамжаар эрэмбэлэх</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Delay onset to admission (days)"</span>,
+       title <span class="op">=</span> <span class="st">"Reverse of order by frequency"</span><span class="op">)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-386-1.png" width="50%"><img src="_main_files/figure-html/unnamed-chunk-386-2.png" width="50%"></p>
+</div>
+<div id="харагдах-байдлаар" class="section level3 unnumbered">
+<h3>Харагдах байдлаар<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D1%80%D0%B0%D0%B3%D0%B4%D0%B0%D1%85-%D0%B1%D0%B0%D0%B9%D0%B4%D0%BB%D0%B0%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Датанд эхэлж гарч ирэх дарааллаар (эхний мөрөөс эхэлж тооцно) эрэмбэлэхийн тулд <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder()</a></code>-ийг хэрэглэ. Датаг <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> функцээр эхэлж эрэмбэлээд, факторт хувиргаж буй үед <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder()</a></code> функц илүү хэрэг болдог.</p>
+</div>
+<div id="өөр-баган-дах-статистикийн-тооцооллоор" class="section level3 unnumbered">
+<h3>Өөр баган дах статистикийн тооцооллоор<a class="anchor" aria-label="anchor" href="#%D3%A9%D3%A9%D1%80-%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD-%D0%B4%D0%B0%D1%85-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D0%BE%D0%BE%D1%86%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%BE%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Сонгосон баганын түвшинг <em>өөр баганын статистикийн тооцооллын</em> дагуу эрэмбэлэхдээ <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code>-ыг ашигладаг. Ингэж эрэмбэлэхэд аажмаар өгсөж, буурсан bars/цэгэн график байгуулагдаж харахад илүү ойлгомжтой болдог.</p>
+<p>Жишээнд x-тэнхлэгт <code>delay_cat</code> гэсэн фактор багана y-тэнхлэгт <code>ct_blood</code> гэсэн тоон багана байрлуулав (босго утга). <code>delay_cat</code> -ын бүлэг тус бүрт boxplot-оор CT -ыг дүнг байна. Жишээнд үүнийг CT үр дүнгийн медиан дүнгийн өгсөх дарааллаар эрэмбэлэгдсэн boxplots болгож хувиргав.</p>
+<p>Эхний графикт түвшингүүд цагаан толгойн, багаас ихсэх тоон дарааллаар (alpha-numeric) эрэмбэлэгдсэн. Тиймээс boxplot -ын өндөр янз бүр холилдсон, тодорхой дараалалгүй харагдаж байна. Хоёрдах жишээнд <code>delay_cat</code> баганыг (x-тэнхлэгдэх) <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> дотор оруулж, <code>ct_blood</code> баганыг араас нь хоёр дах аргументээр зааж өгч, “median” -ийг гуравдах аргументээр өгсөн байна (мөн “max”, “mean”, “min” зэргийг хэрэглэж болно). Тиймээс <code>delay_cat</code> түвшний дараалал нь <code>delay_cat</code> бүлэг бүрийн дундаж CT утгын өсөх дундаж CT утгыг тусгах болно. Үүнийг хоёр дах график дээрээс харж болно. Boxplot -ууд өгсөх дарааллаар эрэмбэлэгдсэн байна. Хэрэв <code>NA</code> -г (дутуу утга) тодорхой түвшинд хуваарилаагүй болавтоматаар хамгийн сүүлд эрэмбэлэгддэг.</p>
+<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># анхны дарааллаар эрэмбэлэгдсэн boxplots </span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">delay_cat</span>,
+        y <span class="op">=</span> <span class="va">ct_blood</span>, 
+        fill <span class="op">=</span> <span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Delay onset to admission (days)"</span>,
+       title <span class="op">=</span> <span class="st">"Ordered by original alpha-numeric levels"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
+
+
+<span class="co"># CT баганын median утгаар эрэмбэлэгдсэн boxplots</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">delay_cat</span>, <span class="va">ct_blood</span>, <span class="st">"median"</span><span class="op">)</span>,
+        y <span class="op">=</span> <span class="va">ct_blood</span>,
+        fill <span class="op">=</span> <span class="va">delay_cat</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Delay onset to admission (days)"</span>,
+       title <span class="op">=</span> <span class="st">"Ordered by median CT value in group"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-387-1.png" width="50%"><img src="_main_files/figure-html/unnamed-chunk-387-2.png" width="50%"></p>
+<p>Энэ үйлдлийг хийхэд <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> коммандын өмнө ямар нэгэн нэмэлт үйлдлэл хийгдэх шаардлагагүй. Бүлэглэж, тооцоолол хийх үйлдлүүд бүгд ggplot комманд дотроо хийгддэг.</p>
+</div>
+<div id="сүүлийн-утгаар" class="section level3 unnumbered">
+<h3>“Сүүлийн” утгаар<a class="anchor" aria-label="anchor" href="#%D1%81%D2%AF%D2%AF%D0%BB%D0%B8%D0%B9%D0%BD-%D1%83%D1%82%D0%B3%D0%B0%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Бүлэглэсэн шугаман графикт <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2()</a></code> -ыг хэрэглэж болно. Энэ функц график дах шугамын “төгсгөлийн” хэсгийн түвшингүүдийг (мөн <em>легенд</em>) босоо тэнхлэгийн дагуу эрэмбэлдэг. Өөрөөр хэлбэл x-тэнхлэг дэх утгын хамгийн ихтэй хамааралтай y-утгыг эрэмбэлнэ гэсэн үг.</p>
+<p>Жишээ нь өвчлөлийн бодит тоог эмнэлг тус бүрээр бүлэглэж цаг хугацаагаар харуулсан график байгуулахаар болов. Ингэхдээ <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> доторх <code>color =</code> аргументэд <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2()</a></code>-тай синтаксаа оруулбал легендийн босоо тэнхлэгийн эрэмбэ графикийн төгсгөлийн босоо тэнхлэгт харагдах эрэмбэтэй ижил болдог. Энэ талаар <a href="https://forcats.tidyverse.org/reference/fct_reorder.html">online documentation</a> материалаас уншна уу.</p>
+<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">epidemic_data</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>         <span class="co"># linelist-ээр эхэл</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">date_onset</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2014-09-21"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    <span class="co"># харахад ойлгомжтой болхын тулд босго огноо өг</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span>                                            <span class="co"># долоо хоног тутам, эмнэлэг тус бүрээр харуулах</span>
+      epiweek <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">floor_date</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="st">"week"</span><span class="op">)</span>,  
+      <span class="va">hospital</span>                                            
+    <span class="op">)</span> 
+  
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">epidemic_data</span><span class="op">)</span><span class="op">+</span>                       <span class="co"># график байгуулж эхлэх</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>                                        <span class="co"># шугам хийх</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>
+      x <span class="op">=</span> <span class="va">epiweek</span>,                                  <span class="co"># тархварзүйн долоо хоногийн х-тэнхлэг</span>
+      y <span class="op">=</span> <span class="va">n</span>,                                        <span class="co"># өндрөөр долоо хоног тутам дах бодит тоог илэрхийлнэ</span>
+      color <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2</a></span><span class="op">(</span><span class="va">hospital</span>, <span class="va">epiweek</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span> <span class="co"># эмнэлэг тус бүрээр датаг бүлэглэж өнгөөр ялгана. Графикийн төгсгөлийн тооны эрэмбээр факторын эрэмбийг тодорхойлно</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Factor levels (and legend display) by line height at end of plot"</span>,
+       color <span class="op">=</span> <span class="st">"Hospital"</span><span class="op">)</span>                          <span class="co"># легендийн гарчигийг өөрчлөх</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-388-1.png" width="672"></div>
+</div>
+</div>
+<div id="fct_missing" class="section level2" number="11.5">
+<h2>
+<span class="header-section-number">11.5</span> Дутуу утга<a class="anchor" aria-label="anchor" href="#fct_missing"><i class="fas fa-link"></i></a>
+</h2>
+<p>фактор багана дутуу утгатай (<code>NA</code>) бол <code><a href="https://forcats.tidyverse.org/reference/fct_explicit_na.html">fct_explicit_na()</a></code>-аар <code>NA</code>-г түвшин болгож нэр (“Missing” ) өгч болно. Default-аар хамгийн ард орж эрэмбэлэгддэг. Нэрийг нь <code>na_level =</code> аргументээр өөрчилж болно.</p>
+<p>Дээрх үйлдлийг <code>delay_cat</code> дээр туршиж, <code>tabyl()</code> -аар хүснэгтлэн хэвлэхэд <code>NA</code> “Missing delay” гэж нэрлэгдсэн буйг харж байна.</p>
+<div class="sourceCode" id="cb569"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_explicit_na.html">fct_explicit_na</a></span><span class="op">(</span><span class="va">delay_cat</span>, na_level <span class="op">=</span> <span class="st">"Missing delay"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>##      delay_cat    n    percent
+##       2-5 days 2040 0.34646739
+##        &lt;2 days 2990 0.50781250
+##        &gt;5 days  602 0.10224185
+##  Missing delay  256 0.04347826</code></pre>
+</div>
+<div id="түвшнүүдийг-нэгтгэх" class="section level2" number="11.6">
+<h2>
+<span class="header-section-number">11.6</span> Түвшнүүдийг нэгтгэх<a class="anchor" aria-label="anchor" href="#%D1%82%D2%AF%D0%B2%D1%88%D0%BD%D2%AF%D2%AF%D0%B4%D0%B8%D0%B9%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<div id="гар-аргаар" class="section level3 unnumbered">
+<h3>Гар аргаар<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80-%D0%B0%D1%80%D0%B3%D0%B0%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Түвшний харагдах байдлыг <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code>-ыг ашиглаж гараар янзалдаг. Энэ нь <strong>dplyr</strong> -ын <code><a href="https://dplyr.tidyverse.org/reference/recode.html">recode()</a></code> функцтэй адил ([Cleaning data and core functions]-ээс хар) боловч <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code> -ыг хэрэглэснээр шинэ фактор түвшин үүсгэх боломжтой байдгаараа ач холбогдолтой. Ердийн <code><a href="https://dplyr.tidyverse.org/reference/recode.html">recode()</a></code>-ийг хэрэглэхэд шинэ утгыг хүлээж авдгүй ба нэмэлт тохируулга хийж байж боломжтой болдог.</p>
+<p>Энэхүү функцээр олон түвшинд ижил утга оруулж түвшнүүдийг “нэгтгэж” болно. Ингэхдээ хэрэгтэй мэдээлэл санамсаргүй утгагдхаас болгоомжил! Шинэ багана үүсгэн түвшнүүдийг нэгтгэвэл эрсдэл багатай (хуучих багана дээрээс бичигдэхгүй).</p>
+<p><code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code> -ын синтакс <code><a href="https://dplyr.tidyverse.org/reference/recode.html">recode()</a></code>-оос өөр. <code><a href="https://dplyr.tidyverse.org/reference/recode.html">recode()</a></code> -оор <code>ХУУЧИН = ШИНЭ</code>гэсэн дараалалтай бол <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code> нь <code>ШИНЭ = ХУУЧИН</code> гэсэн дараалалтай.</p>
+<p>Эхлээд <code>delay_cat</code> -ын түвшин дараах байдалтай байна:</p>
+<div class="sourceCode" id="cb571"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "&lt;2 days"  "2-5 days" "&gt;5 days"</code></pre>
+<p>Шинэ түвшинг <code>fct_recode(column, "new" = "old", "new" = "old", "new" = "old")</code> гэсэн синтаксаар үүсгэж хэвлэв:</p>
+<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span>
+    <span class="va">delay_cat</span>,
+    <span class="st">"Less than 2 days"</span> <span class="op">=</span> <span class="st">"&lt;2 days"</span>,
+    <span class="st">"2 to 5 days"</span>      <span class="op">=</span> <span class="st">"2-5 days"</span>,
+    <span class="st">"More than 5 days"</span> <span class="op">=</span> <span class="st">"&gt;5 days"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>##         delay_cat    n    percent valid_percent
+##  Less than 2 days 2990 0.50781250     0.5308949
+##       2 to 5 days 2040 0.34646739     0.3622159
+##  More than 5 days  602 0.10224185     0.1068892
+##              &lt;NA&gt;  256 0.04347826            NA</code></pre>
+<p>Энд дээрх түвшнийг <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code> -оор нэгтгэв. “Less than 5 days” түвшинг шинээр нэмхэд алдаа гарч анхааруулж байна.</p>
+<div class="sourceCode" id="cb575"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>delay_cat <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span>
+    <span class="va">delay_cat</span>,
+    <span class="st">"Less than 5 days"</span> <span class="op">=</span> <span class="st">"&lt;2 days"</span>,
+    <span class="st">"Less than 5 days"</span> <span class="op">=</span> <span class="st">"2-5 days"</span>,
+    <span class="st">"More than 5 days"</span> <span class="op">=</span> <span class="st">"&gt;5 days"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">delay_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>##         delay_cat    n    percent valid_percent
+##  Less than 5 days 5030 0.85427989     0.8931108
+##  More than 5 days  602 0.10224185     0.1068892
+##              &lt;NA&gt;  256 0.04347826            NA</code></pre>
+</div>
+<div id="бусад-болгож-хумих" class="section level3 unnumbered">
+<h3>“Бусад” болгож хумих<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D1%85%D1%83%D0%BC%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Гараар “Бусад” гэсэн түвшин үүсгэх бол <code><a href="https://forcats.tidyverse.org/reference/fct_other.html">fct_other()</a></code> функцыг хэрэглэж болно. Дор жишээнд <code>hospital</code> баганын “Port Hospital” болон “Central Hospital” түвшнээс бусад түвшингүүд “Other” болж нэтггэдсэн байна. Энэ үед хасах, нэмэх шаардлагатай утгаа <code>keep =</code> эсвэл <code>drop =</code>-аргументэд вектор хэлбэрээр зааж өгч болно. “Бусад” гэсэн түвшний харагдах байдлыг <code>other_level =</code>гэсэн аргументээр өөрчилж болно.</p>
+<div class="sourceCode" id="cb577"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hospital <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_other.html">fct_other</a></span><span class="op">(</span>                      <span class="co"># түвшнүүдийг тохируул</span>
+    <span class="va">hospital</span>,
+    keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Port Hospital"</span>, <span class="st">"Central Hospital"</span><span class="op">)</span>,  <span class="co"># тусдаа утгуудыг оруул</span>
+    other_level <span class="op">=</span> <span class="st">"Other Hospital"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>            <span class="co"># Бусад бүх утгыг "Other Hospital" болго</span>
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span>                                   <span class="co"># хүснэгтийг хэвлэ</span></code></pre></div>
+<pre><code>##          hospital    n    percent
+##  Central Hospital  454 0.07710598
+##     Port Hospital 1762 0.29925272
+##    Other Hospital 3672 0.62364130</code></pre>
+</div>
+<div id="давтамжаар-нь-хумих" class="section level3 unnumbered">
+<h3>Давтамжаар нь хумих<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D0%B2%D1%82%D0%B0%D0%BC%D0%B6%D0%B0%D0%B0%D1%80-%D0%BD%D1%8C-%D1%85%D1%83%D0%BC%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хамгийн бага давтамжтай түвшнүүдийг <code><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump()</a></code>-ээр зэрэг нэгтгэж болдог.</p>
+<p>Бага давтамжтай бүлгүүдийг зэрэг “бөөндөж” нэгтгэн “Other” түвшин үүсгэхийн тулд дараах үйлдлүүдээс сонгож хийнэ үү:</p>
+<ul>
+<li>
+<code>n =</code> -ээр хэдэн бүлэг үүсгэхээ зааж өгнө. Ингэснээр хамгийн их давтамжтай n бүлэг үлдэж, үлдсэн хэсэг нь “Other” бүлэгт нэтгэгднэ
+.<br>
+</li>
+<li>
+<code>prop =</code> -ыг тохируул. Үлдээх гэж буй түвшний давтамжид босго хувь зааж өг. Энэхүү босго хувиас бага утгууд “Other” болж нэгтгэгднэ.</li>
+</ul>
+<p>“Other” түвшний харагдах байдлыг <code>other_level =</code> аргументээр тохируулж өөрчилж болно. Доорх жишээнд хамгийн их давтамжтай хоёр эмнэлэгээс бусад нь “Other Hospital” болж нэтгэгдсэн.</p>
+<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hospital <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump</a></span><span class="op">(</span>                      <span class="co"># түвшнүүдийг тохируул</span>
+    <span class="va">hospital</span>,
+    n <span class="op">=</span> <span class="fl">2</span>,                                          <span class="co"># дээрээсээ эхний хоёр түвшинг үлдээ</span>
+    other_level <span class="op">=</span> <span class="st">"Other Hospital"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>            <span class="co"># бусдыг нь "Other Hospital"-т нэгтгэ</span>
+  <span class="fu">tabyl</span><span class="op">(</span><span class="va">hospital</span><span class="op">)</span>                                   <span class="co"># хүснэгтийг хэвлэ</span></code></pre></div>
+<pre><code>##        hospital    n   percent
+##         Missing 1469 0.2494905
+##   Port Hospital 1762 0.2992527
+##  Other Hospital 2657 0.4512568</code></pre>
+<p>, warn
+## Бүх түвшнийг харуул</p>
+<p>Фактор хэрэглэхийн бас нэг ач холбогдол нь датанд ямар утга байгаагаас үл хамааран графикийн легенд болон тайлангийн хүснэгтийг жигд, стандарт болгож өгдөг.</p>
+<p>Олон график, зураг зэрэг бэлдэж буй үед (графикийг газар нутгаар нь ялгаж харуулах гэх мэт) легенд, тайлангийн хүснэгтийг яг адилхан байлгах шаардлагатй болдог (датанд зарим утгы нь өөр байсан ч гэсэн).</p>
+</div>
+<div id="графикт" class="section level3 unnumbered">
+<h3>Графикт<a class="anchor" aria-label="anchor" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D1%82"><i class="fas fa-link"></i></a>
+</h3>
+<p>Үүний тулд <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>-ын тохируулгын нэг <code>scale_xxxx()</code> функцуудэд <code>drop = FALSE</code> гэсэн аргументийг нэмдэг. Ингэснээр датанд байхгүй ч гэсэн факторын бүх түвшин графикт гарч ирдэг. Фактор баганын түвшин <code>fill =</code> аргументэд орсон үед scale_fill_discrete() дотор <code>drop = FALSE</code> гэж өгнө (доор харуулсан). Түвшингүүдийг <code>x =</code>(x-тэнхлэг) ,<code>color =</code>, <code>size =</code>-нарт оруулсан үед <code>drop = FALSE</code>-ыг <code><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_color_discrete()</a></code> эсвэл <code><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size_discrete()</a></code> -д оруулна.</p>
+<p>Жишээнд насны ангиллыг эмнэлэг тус бүрээр давхар bar plot -д оруулж харуулсан. Үүн дээр <code>scale_fill_discrete(drop = FALSE)</code> гэж нэмснээр бүх насны бүлэг легенд дээр харагдаж байна (зарим нь датанд байхгүй ч гэсэн).</p>
+<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hospital</span>, fill <span class="op">=</span> <span class="va">age_cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_fill_discrete</a></span><span class="op">(</span>drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">+</span>                        <span class="co"># датанд байхгүй ч гэсэн легенд дээр бүх насны ангилал харагдна</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"All age groups will appear in legend, even if not present in data"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-396-1.png" width="672"></div>
+</div>
+<div id="хүснэгтэнд" class="section level3 unnumbered">
+<h3>Хүснэгтэнд<a class="anchor" aria-label="anchor" href="#%D1%85%D2%AF%D1%81%D0%BD%D1%8D%D0%B3%D1%82%D1%8D%D0%BD%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>болон <strong>janitor</strong>-ын <code>tabyl()</code> -ыг хэрэглэж бүх фактор түвшинг харуулдаг (хэрэглэгдээгүй түвшин ч гэсэн).</p>
+<p>Хэрэв хүснэгтийг <strong>dplyr</strong>-ын <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> эсвэл <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>-аар байгуулж буй бол <code>.drop = FALSE</code> гэсэн аргумент нэмж хэрэглэгдээгүй ч гэсэн бүх фактор түвшинг гарч ирэх болно.</p>
+<p>[Descriptive tables] хуудас эсвэл <a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_discrete documentation</a>, or the <a href="https://dplyr.tidyverse.org/reference/count.html">count() documentation</a> линкээс нэмж уншна уу. [Contact tracing] хуудасны жишээг нэмж үзэж болно.</p>
+</div>
+</div>
+<div id="тархвар-зүйн-долоо-хоног" class="section level2" number="11.7">
+<h2>
+<span class="header-section-number">11.7</span> Тархвар зүйн долоо хоног<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B0%D1%80%D1%85%D0%B2%D0%B0%D1%80-%D0%B7%D2%AF%D0%B9%D0%BD-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Тархварзүйн долоо хоногийг хэрхэн байгуулах талаар [Grouping data] хуудаснт дэлгэрэнгүй бичсэн. Мөн [Working with dates] хуудаст тархварзүйн долоо хоногийг үүсгэж, хэлбэржүүлэх талаар оруулсан.</p>
+<div id="график-дээрх-тархварзүйн-долоо-хоног" class="section level3 unnumbered">
+<h3>График дээрх тархварзүйн долоо хоног<a class="anchor" aria-label="anchor" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%B4%D1%8D%D1%8D%D1%80%D1%85-%D1%82%D0%B0%D1%80%D1%85%D0%B2%D0%B0%D1%80%D0%B7%D2%AF%D0%B9%D0%BD-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Тархварзүйн долоо хоногийг графикт харуулахдаа <strong>lubridate</strong>-ын <code>floor_date()</code> функцыг ([Grouping data] хуудаст тайлбарласан) хэрэглэж болно. Ингэснээр YYYY-MM-DD форматтай, огноо төрлийн дата үүсдэг. Ийм огноотой баганаар график байгуулвал эрэмбэ нь автоматаар зөв гарч ирдэг бөгөөд факторт хувиргаж, түвшинг эрэмбэлэх шаардлагагүй. Жишээнд өвчний эхэлсэн огноог <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> гистограммаар харуулав.</p>
+<p>Огнооны харагдах байдлыг <code><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_date()</a></code> -ээр тохируулж болно. Энэ талаар [Epidemic curves] хуудаст дэлгэрүүлж бичсэн. <code><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_date()</a></code> функцын <code>date_labels =</code> аргументэд “strptime” гэсэн форматыг зааж өгдөг. Энэхүү формат “%” тэмдэгтийг огноог илэрхийлэх тэмдэг болгодог ( дэлгэрэнгүй мэдээллийг [Working with dates] хуудаст оруулсан). Тухайлбал “%Y” гэж бичвэл жилийг 4 цифрээр бичихийг, “%W” эсвэл “%U” -аар хэддүгээр долоо хоног болохыг зааж өгдөг (нэгдэх, бүтэнсайнаар эхэлдэг долоо хоног).</p>
+<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>epiweek_date <span class="op">=</span> <span class="fu">floor_date</span><span class="op">(</span><span class="va">date_onset</span>, <span class="st">"week"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># долоо хоногийн багана</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>                                                  <span class="co"># ggplot-ыг эхэл</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">epiweek_date</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>           <span class="co"># өвчний эхлэлийн гистограмм</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_date</a></span><span class="op">(</span>date_labels <span class="op">=</span> <span class="st">"%Y-W%W"</span><span class="op">)</span>                       <span class="co"># огнооны форматыг YYYY-WWw болгоно</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-397-1.png" width="672"></div>
+</div>
+<div id="датандах-тархварзүйн-долоо-хоног" class="section level3 unnumbered">
+<h3>Датандах тархварзүйн долоо хоног<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%85-%D1%82%D0%B0%D1%80%D1%85%D0%B2%D0%B0%D1%80%D0%B7%D2%AF%D0%B9%D0%BD-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хэрэв таны гол зорилго график бүтээх <em>биш</em> бол дараах хоёр аргыг хэрэглэж болох юм:</p>
+<ol style="list-style-type: decimal">
+<li>
+<em>For fine control over the display</em>, convert the <strong>lubridate</strong> epiweek column (YYYY-MM-DD) to the desired display format (YYYY-WWw) <em>within the data frame itself</em>, and then convert it to class Factor.</li>
+</ol>
+<p>Эхлээд <strong>base</strong> R -ын <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> -аар огнооны YYYY-MM-DD форматыг YYYY-Www болгож хувирга ([Working with dates] хуудсаас харна уу). Ингэснээр карактер төрлийн багана болж хувирна. Үүнийг <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>-аар фактор болгож хувирга.</p>
+<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>epiweek_date <span class="op">=</span> <span class="fu">floor_date</span><span class="op">(</span><span class="va">date_onset</span>, <span class="st">"week"</span><span class="op">)</span>,       <span class="co"># тархварзүйн долоо хоног үүсгэ (YYYY-MM-DD)</span>
+         epiweek_formatted <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">epiweek_date</span>, <span class="st">"%Y-W%W"</span><span class="op">)</span>,  <span class="co"># Хувирга (YYYY-WWw)</span>
+         epiweek_formatted <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">epiweek_formatted</span><span class="op">)</span><span class="op">)</span>       <span class="co"># Факторт хувирга</span>
+
+<span class="co"># Түвшнүүдийг харуул</span>
+<span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">epiweek_formatted</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] "2014-W13" "2014-W14" "2014-W15" "2014-W16" "2014-W17" "2014-W18"
+##  [7] "2014-W19" "2014-W20" "2014-W21" "2014-W22" "2014-W23" "2014-W24"
+## [13] "2014-W25" "2014-W26" "2014-W27" "2014-W28" "2014-W29" "2014-W30"
+## [19] "2014-W31" "2014-W32" "2014-W33" "2014-W34" "2014-W35" "2014-W36"
+## [25] "2014-W37" "2014-W38" "2014-W39" "2014-W40" "2014-W41" "2014-W42"
+## [31] "2014-W43" "2014-W44" "2014-W45" "2014-W46" "2014-W47" "2014-W48"
+## [37] "2014-W49" "2014-W50" "2014-W51" "2015-W00" "2015-W01" "2015-W02"
+## [43] "2015-W03" "2015-W04" "2015-W05" "2015-W06" "2015-W07" "2015-W08"
+## [49] "2015-W09" "2015-W10" "2015-W11" "2015-W12" "2015-W13" "2015-W14"
+## [55] "2015-W15" "2015-W16"</code></pre>
+<p><span style="color: red;"><strong><em>АЮУЛТАЙ:</em></strong> Хэрэв та долоо хоногийн дугаарыг жилийн урд талд нь оруулбал (“Www-YYYY”) (“%W-%Y”) default тохируулгаар (alpha-numeric) буруу эрэмбэлэгднэ (жишээ нь 01-2015 нь 35-2014 -ын урд талд бичигднэ). Үүнийг зөвхөн гараар янзалж болдог бөгөөд энэ нь маш их ажиллагаатай.</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<em>For fast default display</em>, use the <strong>aweek</strong> package and it’s function <code>date2week()</code>. Долоо хоногийн эхлэх өдрийг <code>week_start =</code> аргументээр тохируулж болдог. Хэрэв <code>factor = TRUE</code> гэж тохируулбал үүсэх багана нь фактор болдог. Ингэснээр байж болох <em>бүх</em> долоо хоногийг оруулж болдог (тухайн долоо хоногт тохиолдол гараагүй байсан ч гэсэн ).</li>
+</ol>
+<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>epiweek <span class="op">=</span> <span class="fu">date2week</span><span class="op">(</span><span class="va">date_onset</span>, week_start <span class="op">=</span> <span class="st">"Monday"</span>, factor <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">epiweek</span><span class="op">)</span></code></pre></div>
+<p>[Working with dates] хуудаснаас <strong>aweek</strong>-ийн талаар нэмж үзэж болно. Энэ багцад бас урвуу функц <code>week2date()</code> байдаг.</p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="эх-сурвалж" class="section level2" number="11.8">
+<h2>
+<span class="header-section-number">11.8</span> Эх сурвалж<a class="anchor" aria-label="anchor" href="#%D1%8D%D1%85-%D1%81%D1%83%D1%80%D0%B2%D0%B0%D0%BB%D0%B6"><i class="fas fa-link"></i></a>
+</h2>
+<p>R for Data Science номын <a href="https://r4ds.had.co.nz/factors.html">factors</a> хуудас
+<a href="https://cran.r-project.org/web/packages/aweek/vignettes/introduction.html">aweek package vignette</a>.</p>
+
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></div>
+<div class="next"><a href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80"><span class="header-section-number">11</span> Фактор</a></li>
+<li>
+<a class="nav-link" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB-2"><span class="header-section-number">11.1</span> Бэлтгэл</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%BB%D0%B0%D1%85-1">Багцыг ачааллах</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85-3">Дата импортлох</a></li>
+<li><a class="nav-link" href="#fct_newcat">Шинээр ангилагдсан (categorical) хувьсагч үүсгэх</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D1%85%D1%83%D0%B2%D0%B8%D1%80%D0%B3%D0%B0%D1%85"><span class="header-section-number">11.2</span> Фактор болгож хувиргах</a></li>
+<li>
+<a class="nav-link" href="#%D1%82%D2%AF%D0%B2%D1%88%D0%B8%D0%BD-%D0%BD%D1%8D%D0%BC%D1%8D%D1%85-%D1%85%D0%B0%D1%81%D0%B0%D1%85"><span class="header-section-number">11.3</span> Түвшин нэмэх, хасах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#fct_add">Нэмэх</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%B0%D1%81%D0%B0%D1%85">Хасах</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#fct_adjust"><span class="header-section-number">11.4</span> Түвшний эрэмбийг тохируулах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D0%B3%D2%AF%D0%B9%D1%86%D1%8D%D1%82%D0%B3%D1%8D%D1%85">Гараар гүйцэтгэх</a></li>
+<li><a class="nav-link" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%B4%D0%BE%D1%82%D0%BE%D1%80">График дотор</a></li>
+<li><a class="nav-link" href="#%D1%83%D1%80%D0%B2%D1%83%D1%83%D0%BB%D0%B0%D1%85">Урвуулах</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D0%B2%D1%82%D0%B0%D0%BC%D0%B6%D0%B0%D0%B0%D1%80">Давтамжаар</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%B0%D1%80%D0%B0%D0%B3%D0%B4%D0%B0%D1%85-%D0%B1%D0%B0%D0%B9%D0%B4%D0%BB%D0%B0%D0%B0%D1%80">Харагдах байдлаар</a></li>
+<li><a class="nav-link" href="#%D3%A9%D3%A9%D1%80-%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD-%D0%B4%D0%B0%D1%85-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D0%BE%D0%BE%D1%86%D0%BE%D0%BE%D0%BB%D0%BB%D0%BE%D0%BE%D1%80">Өөр баган дах статистикийн тооцооллоор</a></li>
+<li><a class="nav-link" href="#%D1%81%D2%AF%D2%AF%D0%BB%D0%B8%D0%B9%D0%BD-%D1%83%D1%82%D0%B3%D0%B0%D0%B0%D1%80">“Сүүлийн” утгаар</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#fct_missing"><span class="header-section-number">11.5</span> Дутуу утга</a></li>
+<li>
+<a class="nav-link" href="#%D1%82%D2%AF%D0%B2%D1%88%D0%BD%D2%AF%D2%AF%D0%B4%D0%B8%D0%B9%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><span class="header-section-number">11.6</span> Түвшнүүдийг нэгтгэх</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B3%D0%B0%D1%80-%D0%B0%D1%80%D0%B3%D0%B0%D0%B0%D1%80">Гар аргаар</a></li>
+<li><a class="nav-link" href="#%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D1%85%D1%83%D0%BC%D0%B8%D1%85">“Бусад” болгож хумих</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D0%B2%D1%82%D0%B0%D0%BC%D0%B6%D0%B0%D0%B0%D1%80-%D0%BD%D1%8C-%D1%85%D1%83%D0%BC%D0%B8%D1%85">Давтамжаар нь хумих</a></li>
+<li><a class="nav-link" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D1%82">Графикт</a></li>
+<li><a class="nav-link" href="#%D1%85%D2%AF%D1%81%D0%BD%D1%8D%D0%B3%D1%82%D1%8D%D0%BD%D0%B4">Хүснэгтэнд</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D1%82%D0%B0%D1%80%D1%85%D0%B2%D0%B0%D1%80-%D0%B7%D2%AF%D0%B9%D0%BD-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3"><span class="header-section-number">11.7</span> Тархвар зүйн долоо хоног</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%B4%D1%8D%D1%8D%D1%80%D1%85-%D1%82%D0%B0%D1%80%D1%85%D0%B2%D0%B0%D1%80%D0%B7%D2%AF%D0%B9%D0%BD-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3">График дээрх тархварзүйн долоо хоног</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%85-%D1%82%D0%B0%D1%80%D1%85%D0%B2%D0%B0%D1%80%D0%B7%D2%AF%D0%B9%D0%BD-%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3">Датандах тархварзүйн долоо хоног</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D1%8D%D1%85-%D1%81%D1%83%D1%80%D0%B2%D0%B0%D0%BB%D0%B6"><span class="header-section-number">11.8</span> Эх сурвалж</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2022-01-05.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

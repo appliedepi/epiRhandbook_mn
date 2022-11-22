@@ -1047,7 +1047,7 @@ linelist <- linelist_raw %>%
     # баганын төрлийг хувирга
     mutate(across(contains("date"), as.Date), 
            generation = as.numeric(generation),
-           age        = as.numeric(age)) 
+           age        = as.numeric(age)) |> 
     
     # багана нэм: эмнэлэгт хожуу ирэлт
     mutate(days_onset_hosp = as.numeric(date_hospitalisation - date_onset)) %>% 
@@ -1383,7 +1383,7 @@ linelist <- linelist_raw %>%
     # баганын төрлийг хувирга
     mutate(across(contains("date"), as.Date), 
            generation = as.numeric(generation),
-           age        = as.numeric(age)) 
+           age        = as.numeric(age)) |> 
     
     # багана нэм: эмнэлэгт хожуу ирэлт
     mutate(days_onset_hosp = as.numeric(date_hospitalisation - date_onset)) %>% 
@@ -1407,7 +1407,7 @@ linelist <- linelist_raw %>%
           age_unit == "years" ~ age,
           age_unit == "months" ~ age/12,
           is.na(age_unit) ~ age,
-          TRUE ~ NA_real_))
+          TRUE ~ NA_real_)) |> 
   
    # ЭНЭ ХҮРТЭЛХ ҮЙЛДЭЛ ӨМНӨХ ХЭСЭГТ ХЭЛЦЭГДСЭН
    ################################################### 
@@ -1655,7 +1655,7 @@ linelist <- linelist_raw %>%
     # баганын төрлийг хувирга
     mutate(across(contains("date"), as.Date), 
            generation = as.numeric(generation),
-           age        = as.numeric(age)) 
+           age        = as.numeric(age)) |> 
     
     # багана нэм: эмнэлэгт хожуу ирэлт
     mutate(days_onset_hosp = as.numeric(date_hospitalisation - date_onset)) %>% 
@@ -1679,14 +1679,14 @@ linelist <- linelist_raw %>%
           age_unit == "years" ~ age,
           age_unit == "months" ~ age/12,
           is.na(age_unit) ~ age,
-          TRUE ~ NA_real_))
+          TRUE ~ NA_real_)) |> 
   
     mutate(
           # насны ангилал: өөрөө оруулах
           age_cat = epikit::age_categories(age_years, breakers = c(0, 5, 10, 15, 20, 30, 50, 70)),
         
           # насны ангилал: 0 -оос 85 хүртэл 5 -аар
-          age_cat5 = epikit::age_categories(age_years, breakers = seq(0, 85, 5)))
+          age_cat5 = epikit::age_categories(age_years, breakers = seq(0, 85, 5))) |> 
     
    # ЭНЭ ХҮРТЭЛХ ҮЙЛДЭЛ ӨМНӨХ ХЭСЭГТ ХЭЛЦЭГДСЭН
    ################################################### 

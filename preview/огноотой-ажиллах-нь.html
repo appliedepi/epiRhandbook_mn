@@ -4,24 +4,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>1 Огноотой ажиллах нь | Тархвар судлаачийн R гарын авлага</title>
+<title>9 Огноотой ажиллах нь | Тархвар судлаачийн R гарын авлага</title>
 <meta name="author" content="гарын авлагын баг">
 <meta name="description" content="R дээр огноог ашиглах нь бусад объектын төрлүүдтэй ажиллахаас илүү анхаарал шаарддаг. Доор бид энэ үйл явцыг арай хялбар болгохын тулд зарим хэрэгсэл, жишээг санал болгож байна. Аз болоход...">
-<meta name="generator" content="bookdown 0.23 with bs4_book()">
-<meta property="og:title" content="1 Огноотой ажиллах нь | Тархвар судлаачийн R гарын авлага">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="9 Огноотой ажиллах нь | Тархвар судлаачийн R гарын авлага">
 <meta property="og:type" content="book">
 <meta property="og:description" content="R дээр огноог ашиглах нь бусад объектын төрлүүдтэй ажиллахаас илүү анхаарал шаарддаг. Доор бид энэ үйл явцыг арай хялбар болгохын тулд зарим хэрэгсэл, жишээг санал болгож байна. Аз болоход...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1 Огноотой ажиллах нь | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:title" content="9 Огноотой ажиллах нь | Тархвар судлаачийн R гарын авлага">
 <meta name="twitter:description" content="R дээр огноог ашиглах нь бусад объектын төрлүүдтэй ажиллахаас илүү анхаарал шаарддаг. Доор бид энэ үйл явцыг арай хялбар болгохын тулд зарим хэрэгсэл, жишээг санал болгож байна. Аз болоход...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -45,7 +48,19 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"></a></li>
 <li class="book-part">Preview pages</li>
-<li><a class="active" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">1</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li><a class="" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></li>
+<li><a class="active" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
 </ul>
 
         <div class="book-extra">
@@ -53,660 +68,653 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="огноотой-ажиллах-нь" class="section level1" number="1">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="огноотой-ажиллах-нь" class="section level1" number="9">
 <h1>
-<span class="header-section-number">1</span> Огноотой ажиллах нь<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9</span> Огноотой ажиллах нь<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C"><i class="fas fa-link"></i></a>
 </h1>
 <div class="inline-figure"><img src="images/Dates_500x500.png" width="50%" style="display: block; margin: auto;"></div>
 <p>R дээр огноог ашиглах нь бусад объектын төрлүүдтэй ажиллахаас илүү анхаарал шаарддаг. Доор бид энэ үйл явцыг арай хялбар болгохын тулд зарим хэрэгсэл, жишээг санал болгож байна. Аз болоход <strong>lubridate</strong> гэх мэт багцуудын тусламжтайгаар, практик дадлагын үр дүнд огноог хялбархан янзалж чаддаг болно.</p>
 <p>Боловсруулаагүй өгөгдлийг R руу импортлох үед огноог ихэвчлэн тэмдэгт (character) обьект хэмээн таньж оруулдаг бөгөөд энэ обьектыг цагийн цуврал хийх, хугацааны интервалыг тооцоолох гэх мэт огнооны ерөнхий үйлдлүүдэд ашиглах боломжгүй байдаг. Дээрээс нь огноог форматлах олон арга байдаг тул та огнооны аль хэсэг нь юу болохыг (сар, өдөр, цаг гэх мэт) танихад нь R-д туслах шаардлагатай болдог нь огноотой ажиллах процессыг улам төвөгтэй болгодог.</p>
-<p>R дахь огноо нь өөрсдийн гэсэн объектын ангилал- <code>Date</code> ангилал. Энд огноо, цаг хоёуланг нь агуулсан объектуудыг хадгалдаг тусгай ангилал бас байдаг гэдгийг тэмдэглэх нь зүйтэй. Огноо, цагийн объектуудыг албан ёсоор <code>POSIXt</code>, <code>POSIXct</code> ба/эсвэл <code>POSIXlt</code> ангилал гэж нэрлэдэг (ялгаа нь чухал биш). Эдгээр объектыг албан бусаар <em>datetime</em> ангилал гэдэг.</p>
+<p>R дахь огноо нь өөрсдийн гэсэн объектын ангитай буюу <code>Date</code> анги юм. Энд огноо, цаг хоёуланг нь агуулсан объектуудыг хадгалдаг тусгай анги бас байдаг гэдгийг тэмдэглэх нь зүйтэй. Огноо, цагийн объектуудыг албан ёсоор <code>POSIXt</code>, <code>POSIXct</code> ба/эсвэл <code>POSIXlt</code> анги гэж нэрлэдэг (ялгаа нь чухал биш). Эдгээр объектыг албан бусаар <em>datetime</em> ангид оруулдаг.</p>
 <ul>
 <li><p>Багана нь огноог агуулсан бол R-д тухайн баганыг огноо гэдгийг таниулах нь чухал.</p></li>
 <li><p>Огноо бол объектын ангилал бөгөөд түүнтэй ажиллахад төвөгтэй байдаг.</p></li>
 <li>
-<p>Энд бид огноо агуулсан багануудыг <code>Date</code> ангилалд хөрвүүлэх хэд хэдэн аргыг танилцуулж байна.</p>
+<p>Энд бид огноо агуулсан багануудыг <code>Date</code> анги руу хөрвүүлэх хэд хэдэн аргыг танилцуулж байна.</p>
 <!-- ======================================================= -->
 </li>
 </ul>
-<div id="бэлтгэл" class="section level2" number="1.1">
+<div id="бэлтгэл" class="section level2" number="9.1">
 <h2>
-<span class="header-section-number">1.1</span> Бэлтгэл<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> Бэлтгэл<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB"><i class="fas fa-link"></i></a>
 </h2>
 <div id="багцуудыг-ачаалах" class="section level3 unnumbered">
 <h3>Багцуудыг ачаалах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
 </h3>
-<p>This code chunk shows the loading of packages required for this page. In this handbook we emphasize <code>p_load()</code> from <strong>pacman</strong>, which installs the package if necessary <em>and</em> loads it for use. You can also load installed packages with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> from <strong>base</strong> R. See the page on [R basics] for more information on R packages.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Checks if package is installed, installs if necessary, and loads package for current session</span>
+<p>Доорх кодын хэсэг нь энэ хуудсанд шаардлагатай багцуудын ачааллыг харуулж байна. Энэхүү гарын авлагад бид <strong>pacman</strong> багцаас <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load()</a></code> функцыг онцлон ашиглаж буй бөгөөд энэ функц нь шаардлагатай бол тухайн багцыг шууд суулгаж, ашиглахаар ачаалдаг. Мөн та аль хэдийн суулгасан багцуудыг <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> функц ашиглан ачаалж болно. R багцуудын талаар дэлгэрэнгүй мэдээллийг <span class="math display">\[R суурь ойлголтууд\]</span> хуудаснаас үзнэ үү.</p>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Багц суулгасан эсэхийг шалгаж, шаардлагатай бол суулгаж, одоогийн сесс рүү багцыг ачаална</span>
 
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span>
-  <span class="va">lubridate</span>,  <span class="co"># general package for handling and converting dates  </span>
-  <span class="va">linelist</span>,   <span class="co"># has function to "guess" messy dates</span>
-  <span class="va">aweek</span>,      <span class="co"># another option for converting dates to weeks, and weeks to dates</span>
-  <span class="va">zoo</span>,        <span class="co"># additional date/time functions</span>
-  <span class="va">tidyverse</span>,  <span class="co"># data management and visualization  </span>
-  <span class="va">rio</span><span class="op">)</span>        <span class="co"># data import/export</span></code></pre></div>
+  <span class="va">lubridate</span>,  <span class="co"># огноог зохицуулах, хөрвүүлэх ерөнхий багц</span>
+  <span class="va">linelist</span>,   <span class="co"># замбараагүй огноог "таах" функцтэй </span>
+  <span class="va">aweek</span>,      <span class="co"># огноог долоо хоног, долоо хоногийг огноо болгон хөрвүүлэх өөр сонголт</span>
+  <span class="va">zoo</span>,        <span class="co"># нэмэлт огноо/цаг функцүүд</span>
+  <span class="va">tidyverse</span>,  <span class="co"># дата менежмент болон дүрслэл</span>
+  <span class="va">rio</span><span class="op">)</span>        <span class="co"># дата импорт/экспорт</span></code></pre></div>
 </div>
-<div id="import-data" class="section level3 unnumbered">
-<h3>Import data<a class="anchor" aria-label="anchor" href="#import-data"><i class="fas fa-link"></i></a>
+<div id="дата-импортлох-1" class="section level3 unnumbered">
+<h3>Дата импортлох<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>We import the dataset of cases from a simulated Ebola epidemic. If you want to download the data to follow along step-by-step, see instruction in the [Download handbook and data] page. We assume the file is in the working directory so no sub-folders are specified in this file path.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu">import</span><span class="op">(</span><span class="st">"linelist_cleaned.xlsx"</span><span class="op">)</span></code></pre></div>
+<p>Бид Эбола тахлын зохиомол тохиолдлын датасетийг импортолж байна. Хэрэв та датаг татаж аван алхам алхмаар дагахыг хүсвэл <span class="math display">\[Гарын авлага, дата татаж авах\]</span> хуудасны зааврыг харна уу. Бид энэ файлыг ажлын директор дотор байгаа гэж үзэж байгаа тул энэ файлын замд дэд хавтас заагаагүй болно.</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_cleaned.xlsx"</span><span class="op">)</span></code></pre></div>
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="current-date" class="section level2" number="1.2">
+<div id="одоогийн-огноо" class="section level2" number="9.2">
 <h2>
-<span class="header-section-number">1.2</span> Current date<a class="anchor" aria-label="anchor" href="#current-date"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2</span> Одоогийн огноо<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B4%D0%BE%D0%BE%D0%B3%D0%B8%D0%B9%D0%BD-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><i class="fas fa-link"></i></a>
 </h2>
-<p>You can get the current “system” date or system datetime of your computer by doing the following with <strong>base</strong> R.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># get the system date - this is a DATE class</span>
+<p>Та <strong>base</strong> R дээр дараах зүйлийг хийснээр таны компьютерийн одоогийн “систем” огноо эсвэл системийн огнооцагийг авах боломжтой.</p>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># системийн огноог авах - энэ бол DATE анги юм</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2021-08-28"</code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># get the system time - this is a DATETIME class</span>
+<pre><code>## [1] "2022-01-05"</code></pre>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># системийн цагийг авах - энэ бол DATETIME анги юм </span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2021-08-28 00:25:33 +08"</code></pre>
-<p>With the <strong>lubridate</strong> package these can also be returned with <code>today()</code> and <code>now()</code>, respectively. <code><a href="https://rdrr.io/r/base/date.html">date()</a></code> returns the current date and time with weekday and month names.</p>
+<pre><code>## [1] "2022-01-05 18:16:53 +08"</code></pre>
+<p><strong>lubridate</strong> багцын тусламжтайгаар эдгээрийг <code>today()</code> болон <code>now()</code> функцүүдээр тус тус авах боломжтой. <code><a href="https://rdrr.io/r/base/date.html">date()</a></code> функц нь өдөр, сарын нэрийн хамт одоогийн огноо, цагийг харуулна.</p>
 <!-- ======================================================= -->
 </div>
-<div id="convert-to-date" class="section level2" number="1.3">
+<div id="огноо-руу-хөрвүүлэх" class="section level2" number="9.3">
 <h2>
-<span class="header-section-number">1.3</span> Convert to Date<a class="anchor" aria-label="anchor" href="#convert-to-date"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3</span> Огноо руу хөрвүүлэх<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE-%D1%80%D1%83%D1%83-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
 </h2>
-<p>After importing a dataset into R, date column values may look like “1989/12/30”, “05/06/2014”, or “13 Jan 2020”. In these cases, R is likely still treating these values as Character values. R must be <em>told</em> that these values are dates… and what the format of the date is (which part is Day, which is Month, which is Year, etc).</p>
-<p>Once told, R converts these values to class Date. In the background, R will store the dates as numbers (the number of days from its “origin” date 1 Jan 1970). You will not interface with the date number often, but this allows for R to treat dates as continuous variables and to allow special operations such as calculating the distance between dates.</p>
-<p>By default, values of class Date in R are displayed as YYYY-MM-DD. Later in this section we will discuss how to change the display of date values.</p>
-<p>Below we present two approaches to converting a column from character values to class Date.</p>
-<p><span style="color: darkgreen;"><strong><em>TIP:</em></strong> You can check the current class of a column with <strong>base</strong> R function <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>, like <code><a href="https://rdrr.io/r/base/class.html">class(linelist$date_onset)</a></code>.</span></p>
+<p>Датасетийг R руу импортлосны дараа огнооны баганын утгууд “1989/12/30”, “05/06/2014”, эсвэл “2020 оны 1-р сарын 13” гэх мэтээр харагдаж болно. Эдгээр тохиолдолд R нь эдгээр утгуудыг тэмдэгт утга гэж оруулсан байх магадлалтай. Эдгээр утгууд нь огноо мөн… бөгөөд огнооны формат ямар байхыг R-д <em>хэлж өгөх</em> шаардлагатай (аль хэсэг нь Өдөр, аль нь Сар, аль нь Жил гэх мэт).</p>
+<p>Ингээд хэлээд өгөхөд R эдгээр утгыг <code>Date</code> анги руу хөрвүүлдэг. Харин хөшигний цаана R огноог тоогоор хадгална (1970 оны 1-р сарын 1-ний “эх” өдрөөс хойшхи өдрийн тоо). Та огнооны энэхүү тоотой бараг харьцахгүй боловч R огноог ингэж хадгалснаар огноог үргэлжилсэн (continuous) хувьсагч гэж үзэн огноо хоорондын зайг тооцоолох зэрэг тусгай үйлдлүүдийг хийх боломжийг олгодог.</p>
+<p>Өгөгдмөлөөр, R дахь <code>Date</code> ангийн утгууд нь YYYY-MM-DD хэлбэрээр харагдана. Энэ бүлэгт бид огнооны утгын харагдах байдлыг хэрхэн өөрчлөх талаар харуулах болно.</p>
+<p>Доор бид баганыг тэмдэгтийн утгаас <code>Date</code> анги руу хөрвүүлэх хоёр аргыг танилцуулж байна.</p>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨМЖ:</em></strong> Та баганын одоогийн ангийг <code>class(linelist$date_onset)</code> зэргээр <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>функц ашиглан шалгаж болно.</span></p>
 <div id="base-r" class="section level3 unnumbered">
 <h3>
 <strong>base</strong> R<a class="anchor" aria-label="anchor" href="#base-r"><i class="fas fa-link"></i></a>
 </h3>
-<p><code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> is the standard, <strong>base</strong> R function to convert an object or column to class Date (note capitalization of “D”).</p>
-<p>Use of <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> requires that:</p>
+<p><code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> нь объект эсвэл баганыг <code>Date</code> анги руу хөрвүүлдэг стандарт, <strong>base</strong> R функц юм (“D”-н том үсгийг анхаарна уу).</p>
+<p><code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>-г ашиглахад дараахь зүйлийг шаарддаг:</p>
 <ul>
-<li>You <em>specify the <strong>existing</strong> format of the raw character date</em> or the origin date if supplying dates as numbers (see section on Excel dates)<br>
-</li>
-<li>If used on a character column, all date values must have the same exact format (if this is not the case, try <code>guess_dates()</code> from the <strong>linelist</strong> package)</li>
+<li><p>Хэрэв та огноог тоогоор оруулж буй бол эх огноог эсвэл огноог <em>тэмдэгт хэлбэрээр оруулж буй бол <strong>одоо байгаа</strong> форматыг зааж өгнө</em> (Excel огнооны хэсгийг үзнэ үү)</p></li>
+<li><p>Хэрэв тэмдэгтийн баганад ашигласан бол бүх огнооны утгууд яг ижил форматтай байх ёстой (хэрэв тийм биш бол <strong>linelist</strong> багцын <code>guess_dates()</code> функцыг ашиглаж үзнэ үү)</p></li>
 </ul>
-<p><strong>First</strong>, check the class of your column with <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> from <strong>base</strong> R. If you are unsure or confused about the class of your data (e.g. you see “POSIXct”, etc.) it can be easiest to first convert the column to class Character with <code><a href="https://rdrr.io/r/base/character.html">as.character()</a></code>, and then convert it to class Date.</p>
-<p><strong>Second</strong>, within the <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> function, use the <code>format =</code> argument to tell R the <em>current</em> format of the character date components - which characters refer to the month, the day, and the year, and how they are separated. If your values are already in one of R’s standard date formats (“YYYY-MM-DD” or “YYYY/MM/DD”) the <code>format =</code> argument is not necessary.</p>
-<p>To <code>format =</code>, provide a character string (in quotes) that represents the <em>current</em> date format using the special “strptime” abbreviations below. For example, if your character dates are currently in the format “DD/MM/YYYY”, like “24/04/1968”, then you would use <code>format = "%d/%m/%Y"</code> to convert the values into dates. <strong>Putting the format in quotation marks is necessary. And don’t forget any slashes or dashes!</strong></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Convert to class date</span>
-<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date_of_onset</span>, format <span class="op">=</span> <span class="st">"%d/%m/%Y"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Most of the strptime abbreviations are listed below. You can see the complete list by running <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>.</p>
-<p>%d = Day number of month (5, 17, 28, etc.)<br>
-%j = Day number of the year (Julian day 001-366)<br>
-%a = Abbreviated weekday (Mon, Tue, Wed, etc.)<br>
-%A = Full weekday (Monday, Tuesday, etc.) %w = Weekday number (0-6, Sunday is 0)<br>
-%u = Weekday number (1-7, Monday is 1)<br>
-%W = Week number (00-53, Monday is week start)<br>
-%U = Week number (01-53, Sunday is week start)<br>
-%m = Month number (e.g. 01, 02, 03, 04)<br>
-%b = Abbreviated month (Jan, Feb, etc.)<br>
-%B = Full month (January, February, etc.)<br>
-%y = 2-digit year (e.g. 89)<br>
-%Y = 4-digit year (e.g. 1989)<br>
-%h = hours (24-hr clock)<br>
-%m = minutes<br>
-%s = seconds %z = offset from GMT<br>
-%Z = Time zone (character)</p>
-<p><span style="color: darkgreen;"><strong><em>TIP:</em></strong> The <code>format =</code> argument of <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> is <em>not</em> telling R the format you want the dates to be, but rather how to identify the date parts as they are <em>before</em> you run the command.</span></p>
-<p><span style="color: darkgreen;"><strong><em>TIP:</em></strong> Be sure that in the <code>format =</code> argument you use the <em>date-part separator</em> (e.g. /, -, or space) that is present in your dates.</span></p>
-<p>Once the values are in class Date, R will by default display them in the standard format, which is YYYY-MM-DD.</p>
+<p><strong>Эхлээд</strong> баганыхаа ангийг <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> функцээр шалгана уу. Хэрэв та датаныхаа ангийн талаар эргэлзэж байвал (жишээ нь “POSIXct” зэрэг анги гараад ирэх үед) эхлээд тухайн баганыг <code><a href="https://rdrr.io/r/base/character.html">as.character()</a></code> функц ашиглан тэмдэгт анги руу хөрвүүлээд дараа нь Date анги руу хөрвүүлэх нь хамгийн хялбар арга юм.</p>
+<p><strong>Хоёрдугаарт</strong>, <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> функц дотор <code>format =</code> аргументыг ашиглан R-д тэмдэгтийн огнооны бүрэлдэхүүн хэсгүүдийн <em>одоогийн</em> форматыг хэлж болно - аль тэмдэгтүүд нь сар, өдөр, жилийг зааж буй болон, тэдгээрийг хэрхэн тусгаарласан зэргийг. Хэрэв таны утгууд аль хэдийн R-ын стандарт огнооны форматын аль нэгэнд байгаа бол (“YYYY-MM-DD” эсвэл “YYYY/MM/DD”) <code>format =</code> аргумент шаардлагагүй.</p>
+<p>Форматлахын (<code>format =</code>) тулд доорх тусгай “strptime” товчлолуудыг ашиглан <em>одоогийн</em> огнооны форматыг илэрхийлэх тэмдэгтийн стрингийг (ишлэл дотор) оруулна. Жишээлбэл, хэрэв таны тэмдэгтийн огноо “24/04/1968” гэх мэт “DD/MM/YYYY” форматтай байгаа бол <code>format = "%d/%m/%Y"</code> ашиглан утгуудыг огноо руу хөрвүүлнэ. <strong>Форматыг ишлэл дотор оруулах шаардлагатай. Мөн ташуу зураас, зураасыг бүү мартаарай!</strong></p>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Date анги руу хөрвүүлэх</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date_of_onset</span>, format <span class="op">=</span> <span class="st">"%d/%m/%Y"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Ихэнх strptime товчиллуудыг доор жагсаав. Та <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> командыг ажиллуулан бүрэн жагсаалтыг харах боломжтой.</p>
+<p>%d = Сарын өдрийн дугаар (5, 17, 28 гэх мэт)<br>
+%j = Жилийн өдрийн дугаар (Жулиан өдөр 001-366)<br>
+%a = Товчилсон ажлын өдөр (Mon, Tue, Wed гэх мэт)<br>
+%A = Бүтэн ажлын өдөр (Monday, Tuesday гэх мэт)</p>
+<p>%w = Ажлын өдрийн дугаар (0-6, Ням гараг 0)<br>
+%u = Ажлын өдрийн дугаар (1-7, Даваа гараг 1)<br>
+%W = Долоо хоногийн дугаар (00-53, Даваа гараг долоо хоногийн эхлэл)<br>
+%U = Долоо хоногийн дугаар (01-53, Ням гараг долоо хоногийн эхлэл)<br>
+%m = Сарын дугаар (жишээ нь 01, 02, 03, 04)<br>
+%b = Товчилсон сар (Jan, Feb гэх мэт)<br>
+%B = Бүтэн сар (January, February гэх мэт)<br>
+%y = 2-оронтой жил (жишээ нь 89)<br>
+%Y = 4-оронтой жил (жишээ нь 1989)<br>
+%h = цаг (24 цагийн цаг)<br>
+%m = минут<br>
+%s = секунд</p>
+<p>%z = GMT-ээс офсет<br>
+%Z = Цагийн бүс (тэмдэгт)</p>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨМЖ:</em></strong> <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>-ын <code>format =</code> аргумент нь таны хүсэж буй огнооны форматыг R-д хэлж буй биш бөгөөд харин командыг ажиллуулахын <em>өмнө</em> огнооны ямар хэсгүүд байгааг R-д зааж өгч буйг хэлж байгаа юм.</span></p>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨМЖ:</em></strong> <code>format =</code> аргументад таны оруулж буй огноонд байгаа <em>огнооны-хэсэг тусгаарлагчийг</em> (жишээ нь, /, -, эсвэл зай) ашиглахаа мартаж болохгүй.</span></p>
+<p>Утгууд нь Date ангид орсны дараа R нь тэдгээрийг стандарт формат болох YYYY-MM-DD байдлаар харуулах болно.</p>
 </div>
 <div id="lubridate" class="section level3 unnumbered">
 <h3>
 <strong>lubridate</strong><a class="anchor" aria-label="anchor" href="#lubridate"><i class="fas fa-link"></i></a>
 </h3>
-<p>Converting character objects to dates can be made easier by using the <strong>lubridate</strong> package. This is a <strong>tidyverse</strong> package designed to make working with dates and times more simple and consistent than in <strong>base</strong> R. For these reasons, <strong>lubridate</strong> is often considered the gold-standard package for dates and time, and is recommended whenever working with them.</p>
-<p>The <strong>lubridate</strong> package provides several different helper functions designed to convert character objects to dates in an intuitive, and more lenient way than specifying the format in <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>. These functions are specific to the rough date format, but allow for a variety of separators, and synonyms for dates (e.g. 01 vs Jan vs January) - they are named after abbreviations of date formats.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install/load lubridate </span>
+<p><strong>lubridate</strong> багцыг ашигласнаар тэмдэгтийн объектуудыг огноо руу хөрвүүлэх нь илүү хялбар болно. Энэ багц нь огноо, цагтай ажиллах явцыг <strong>base</strong> R-аас илүү энгийн бөгөөд тогтвортой болгоход зориулагдсан <strong>tidyverse</strong>-ийн багц юм. Эдгээр шалтгааны улмаас <strong>lubridate</strong>-г ихэвчлэн огноо, цагийн хувьд алтан стандартын багц гэж үздэг бөгөөд тэдэнтэй ажиллах бүрт хэрэглэхийг зөвлөдөг.</p>
+<p><strong>lubridate</strong> багц тэмдэгтийн объектуудыг огноо руу хөрвүүлэхэд зориулсан хэд хэдэн туслах функцээр хангадаг бөгөөд эдгээр нь <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>-д форматыг зааж өгөхөөс илүү хялбар бөгөөд ойлгомжтой байдаг. Эдгээр функцууд нь огнооны форматуудын товчлолын нэрээр нэрлэгдсэн бөгөөд тэдгээр нь тухайн огнооны форматтай тусгай холбоотой боловч төрөл бүрийн ялгагч, огнооны синоним (жишээ нь, 01 vs Jan vs January гэх мэт) ашиглах боломж олгодог.</p>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># lubridate суулгах/ачаалах</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">lubridate</span><span class="op">)</span></code></pre></div>
-<p>The <code>ymd()</code> function flexibly converts date values supplied as <strong>year, then month, then day</strong>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># read date in year-month-day format</span>
+<p><code>ymd()</code> функц нь огнооны утгыг <strong>жил, сар, өдөр</strong> гэсэн дараалалтай болгон хувиргадаг.</p>
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># огноог жил-сар-өдөр хэлбэрээр унших</span>
 <span class="fu">ymd</span><span class="op">(</span><span class="st">"2020-10-11"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-10-11"</code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ymd</span><span class="op">(</span><span class="st">"20201011"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-10-11"</code></pre>
-<p>The <code>mdy()</code> function flexibly converts date values supplied as <strong>month, then day, then year</strong>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># read date in month-day-year format</span>
+<p><code>mdy()</code> функц нь <strong>сар, өдөр, жил</strong> гэсэн дарааллаар өгсөн огнооны утгыг уян хатан байдлаар хөрвүүлдэг.</p>
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># огноог сар-өдөр-жил форматаар унших</span>
 <span class="fu">mdy</span><span class="op">(</span><span class="st">"10/11/2020"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-10-11"</code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mdy</span><span class="op">(</span><span class="st">"Oct 11 20"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-10-11"</code></pre>
-<p>The <code>dmy()</code> function flexibly converts date values supplied as <strong>day, then month, then year</strong>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># read date in day-month-year format</span>
+<p><code>dmy()</code> функц нь <strong>өдөр, сар, жил</strong> гэсэн дарааллаар өгсөн огнооны утгыг уян хатан байдлаар хөрвүүлдэг.</p>
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># огноог өдөр-сар-жил форматаар унших</span>
 <span class="fu">dmy</span><span class="op">(</span><span class="st">"11 10 2020"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-10-11"</code></pre>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dmy</span><span class="op">(</span><span class="st">"11 October 2020"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-10-11"</code></pre>
 <!-- The `as.character()` and `as.Date()` commands can optionally be combined as:   -->
 <!-- ```{r eval=F} -->
 <!-- linelist_cleaned$date_of_onset <- as.Date(as.character(linelist_cleaned$date_of_onset), format = "%d/%m/%Y") -->
 <!-- ``` -->
-<p>If using piping, the conversion of a character column to dates with <strong>lubridate</strong> might look like this:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Once complete, you can run <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> to verify the class of the column</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Check the class of the column</span>
+<p>Хэрэв пайп ашиглаж байгаа бол тэмдэгтийн баганыг <strong>lubridate</strong> ашиглан огноо руу хөрвүүлэх нь дараах байдалтай байж болно:</p>
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Дууссаны дараа та баганын ангийг шалгахын тулд <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> ажиллуулж болно.</p>
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Баганын ангийг шалгах</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">date_onset</span><span class="op">)</span>  </code></pre></div>
-<p>Once the values are in class Date, R will by default display them in the standard format, which is YYYY-MM-DD.</p>
-<p>Note that the above functions work best with 4-digit years. 2-digit years can produce unexpected results, as lubridate attempts to guess the century.</p>
-<p>To convert a 2-digit year into a 4-digit year (all in the same century) you can convert to class character and then combine the existing digits with a pre-fix using <code>str_glue()</code> from the <strong>stringr</strong> package (see [Characters and strings]). Then convert to date.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<p>Утгууд нь Date ангид орсны дараа R нь тэдгээрийг стандарт формат болох YYYY-MM-DD байдлаар харуулах болно.</p>
+<p>Дээрх функцууд 4 оронтой жил бүхий форматтай хамгийн сайн ажилладаг гэдгийг анхаарна уу. 2 оронтой жил ашиглахад <strong>lubridate</strong> зууныг нь таах гэж оролддог тул төсөөлөөгүй үр дүнд хүргэж болзошгүй.</p>
+<p>2 оронтой жилийг 4 оронтой жил (нэг зууны) болгон хөрвүүлэхийн тулд та эхлээд тэмдэгт анги руу хөрвүүлж, дараа нь <strong>stringr</strong> багцын <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> функц ашиглан одоо байгаа цифрүүдийн өмнө pre-fix нэмэн нэгтгэж болно (<span class="math display">\[Тэмдэгтүүд болон стрингүүд бүлгийг харна уу\]</span>). Үүний дараа нь огноо руу хөрвүүлнэ.</p>
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">two_digit_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15"</span>, <span class="st">"15"</span>, <span class="st">"16"</span>, <span class="st">"17"</span><span class="op">)</span>
-<span class="fu">str_glue</span><span class="op">(</span><span class="st">"20{two_digit_years}"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"20{two_digit_years}"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 2015
 ## 2015
 ## 2016
 ## 2017</code></pre>
 </div>
-<div id="combine-columns" class="section level3 unnumbered">
-<h3>Combine columns<a class="anchor" aria-label="anchor" href="#combine-columns"><i class="fas fa-link"></i></a>
+<div id="багануудыг-нэгтгэх" class="section level3 unnumbered">
+<h3>Багануудыг нэгтгэх<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can use the <strong>lubridate</strong> functions <code>make_date()</code> and <code>make_datetime()</code> to combine multiple numeric columns into one date column. For example if you have numeric columns <code>onset_day</code>, <code>onset_month</code>, and <code>onset_year</code> in the data frame <code>linelist</code>:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>onset_date <span class="op">=</span> <span class="fu">make_date</span><span class="op">(</span>year <span class="op">=</span> <span class="va">onset_year</span>, month <span class="op">=</span> <span class="va">onset_month</span>, day <span class="op">=</span> <span class="va">onset_day</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Та олон тоон багануудыг нэг огнооны баганад нэгтгэхийн тулд <strong>lubridate</strong> багцын <code>make_date()</code> болон <code>make_datetime()</code> функцуудыг ашиглаж болно. Жишээлбэл, хэрэв таны <code>linelist</code> датафрэймд <code>onset_day</code>, <code>onset_month</code>, <code>onset_year</code> гэсэн тоон баганууд байгаа бол:</p>
+<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>onset_date <span class="op">=</span> <span class="fu">make_date</span><span class="op">(</span>year <span class="op">=</span> <span class="va">onset_year</span>, month <span class="op">=</span> <span class="va">onset_month</span>, day <span class="op">=</span> <span class="va">onset_day</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="excel-dates" class="section level2" number="1.4">
+<div id="excel-огноо" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">1.4</span> Excel dates<a class="anchor" aria-label="anchor" href="#excel-dates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Excel огноо<a class="anchor" aria-label="anchor" href="#excel-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><i class="fas fa-link"></i></a>
 </h2>
-<p>In the background, most software store dates as numbers. R stores dates from an origin of 1st January, 1970. Thus, if you run <code>as.numeric(as.Date("1970-01-01))</code> you will get <code>0</code>.</p>
-<p>Microsoft Excel stores dates with an origin of either December 30, 1899 (Windows) or January 1, 1904 (Mac), depending on your operating system. See this <a href="https://docs.microsoft.com/en-us/office/troubleshoot/excel/1900-and-1904-date-system">Microsoft guidance</a> for more information.</p>
-<p>Excel dates often import into R as these numeric values instead of as characters. If the dataset you imported from Excel shows dates as numbers or characters like “41369”… use <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> (or <strong>lubridate</strong>’s <code>as_date()</code> function) to convert, but <strong>instead of supplying a “format” as above, supply the Excel origin date</strong> to the argument <code>origin =</code>.</p>
-<p>This will not work if the Excel date is stored in R as a character type, so be sure to ensure the number is class Numeric!</p>
-<p><span style="color: black;"><strong><em>NOTE:</em></strong> You should provide the origin date in R’s default date format (“YYYY-MM-DD”).</span></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># An example of providing the Excel 'origin date' when converting Excel number dates</span>
-<span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>   <span class="co"># ensure class is numeric</span>
-  <span class="fu">mutate</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date_onset</span>, origin <span class="op">=</span> <span class="st">"1899-12-30"</span><span class="op">)</span><span class="op">)</span> <span class="co"># convert to date using Excel origin</span></code></pre></div>
+<p>Ихэнх программ хангамжууд огноог тоогоор хадгалдаг. R нь 1970 оны 1-р сарын 1-нийг эх өдөр болгон түүнээс хойш тоолон огноог хадгалдаг. Тиймээс хэрэв та <code>as.numeric(as.Date("1970-01-01))</code> гэж ажиллуулбал <code>0</code> гарах болно.</p>
+<p>Microsoft Excel нь таны үйлдлийн системээс хамааран 1899 оны 12-р сарын 30 (Windows) эсвэл 1904 оны 1-р сарын 1-нээр (Mac) эх болгон огноог хадгалдаг. Дэлгэрэнгүй мэдээллийг энэхүү <a href="https://docs.microsoft.com/en-us/office/troubleshoot/excel/1900-and-1904-date-system">Microsoft-ын заавраас</a> үзнэ үү.</p>
+<p>Excel-ийн огноо нь ихэвчлэн R руу орохдоо тэмдэгтийн оронд эдгээр тоон утгууд байдлаар импортлогддог. Хэрэв таны Excel-ээс импортолсон датасетийн огноог “41369” гэх мэт тоо эсвэл тэмдэгтээр харуулсан бол хөрвүүлэхийн тулд <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> (эсвэл <strong>lubridate</strong>-ийн <code>as_date()</code> функцийг) ашиглана уу. Гэхдээ <strong>дээрх шиг “формат” өгөхийн оронд <code>origin =</code> аргументэд Excel-ийн эх огноог өгнө</strong>.</p>
+<p>Хэрэв Excel-ийн огноог R-д тэмдэгтийн хэлбэрээр хадгалсан бол энэ нь ажиллахгүй тул огнооны тоо нь Тоон анги эсэхийг шалгаарай!</p>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> Та R-ийн анхдагч огнооны форматаар (“YYYY-MM-DD”) эх огноог оруулах шаардлагатай.</span></p>
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Excel-ийн тоон огноог хөрвүүлэхдээ Excel-ийн "эх огноо"-г өгөх жишээ</span>
+<span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># тоон ангитай байхыг бататгах</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date_onset</span>, origin <span class="op">=</span> <span class="st">"1899-12-30"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Excel эх огноо ашиглан огноо руу хөрвүүлэх</span></code></pre></div>
 <!-- ======================================================= -->
 </div>
-<div id="messy-dates" class="section level2" number="1.5">
+<div id="эмх-цэгцгүй-огноо" class="section level2" number="9.5">
 <h2>
-<span class="header-section-number">1.5</span> Messy dates<a class="anchor" aria-label="anchor" href="#messy-dates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5</span> Эмх цэгцгүй огноо<a class="anchor" aria-label="anchor" href="#%D1%8D%D0%BC%D1%85-%D1%86%D1%8D%D0%B3%D1%86%D0%B3%D2%AF%D0%B9-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><i class="fas fa-link"></i></a>
 </h2>
-<p>The function <code>guess_dates()</code> from the <strong>linelist</strong> package attempts to read a “messy” date column containing dates in many different formats and convert the dates to a standard format. You can <a href="https://www.repidemicsconsortium.org/linelist/reference/guess_dates.html">read more online about <code>guess_dates()</code></a>. If <code>guess_dates()</code> is not yet available on CRAN for R 4.0.2, try install via <code><a href="https://rdrr.io/pkg/pacman/man/p_load_gh.html">pacman::p_load_gh("reconhub/linelist")</a></code>.</p>
-<p>For example <code>guess_dates</code> would see a vector of the following character dates “03 Jan 2018”, “07/03/1982”, and “08/20/85” and convert them to class Date as: <code>2018-01-03</code>, <code>1982-03-07</code>, and <code>1985-08-20</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<p><strong>linelist</strong> багцын <code>guess_dates()</code> функц нь олон янзын форматтай огноог агуулсан “замбараагүй” огнооны баганыг уншиж, огноог стандарт формат руу хөрвүүлэхийг оролддог. Та <a href="https://www.repidemicsconsortium.org/linelist/reference/guess_dates.html">онлайнаар <code>guess_dates()</code>-ын талаар илүү ихийг уншиж</a> болно. Хэрэв <code>guess_dates()</code> функцын R 4.0.2-д зориулсан хувилбар CRAN дээр байхгүй бол <code>pacman::p_load_gh("reconhub/linelist")</code> командаар суулгаж ашиглана уу.</p>
+<p>Жишээлбэл, <code>guess_dates</code> нь “2018 оны 1-р сарын 03”, “07/03/1982”, “08/20/85” гэсэн тэмдэгтийн огнооны векторыг хараад дараах Огноо ангилал руу хөрвүүлнэ: <code>2018-01-03</code>, <code>1982-03-07</code>, <code>1985-08-20</code>.</p>
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">linelist</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/linelist/man/guess_dates.html">guess_dates</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"03 Jan 2018"</span>,
                         <span class="st">"07/03/1982"</span>,
                         <span class="st">"08/20/85"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2018-01-03" "1982-03-07" "1985-08-20"</code></pre>
-<p>Some optional arguments for <code>guess_dates()</code> that you might include are:</p>
+<p>Таны <code>guess_dates()</code> функцэд оруулж болох нэмэлт аргументууд:</p>
 <ul>
-<li>
-<code>error_tolerance</code> - The proportion of entries which cannot be identified as dates to be tolerated (defaults to 0.1 or 10%)</li>
-<li>
-<code>last_date</code> - the last valid date (defaults to current date)<br>
-</li>
-<li>
-<code>first_date</code> - the first valid date. Defaults to fifty years before the last_date.</li>
+<li><p><code>error_tolerance</code> - Огноог тодорхойлох боломжгүй оруулгуудын эзлэх хувийн зөвшөөрөгдөх хэмжээ (өгөгдмөл нь 0.1 эсвэл 10%)</p></li>
+<li><p><code>last_date</code> - сүүлчийн хүчинтэй огноо (өгөгдмөл нь одоогийн огноо)</p></li>
+<li><p><code>first_date</code> - эхний хүчинтэй огноо. Өгөгдмөл нь <code>last_date</code>-ээс тавин жилийн өмнөх огноо.</p></li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># An example using guess_dates on the column dater_onset</span></span>
-<span id="cb29-2"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-2" aria-hidden="true" tabindex="-1"></a>linelist <span class="ot">&lt;-</span> linelist <span class="sc">%&gt;%</span>                 <span class="co"># the dataset is called linelist</span></span>
-<span id="cb29-3"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb29-4"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_onset =</span> linelist<span class="sc">::</span><span class="fu">guess_dates</span>(  <span class="co"># the guess_dates() from package "linelist"</span></span>
-<span id="cb29-5"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-5" aria-hidden="true" tabindex="-1"></a>      date_onset,</span>
-<span id="cb29-6"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">error_tolerance =</span> <span class="fl">0.1</span>,</span>
-<span id="cb29-7"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">first_date =</span> <span class="st">"2016-01-01"</span></span>
-<span id="cb29-8"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb29-8" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="co"># guess_dates-г date_onset багана дээр ашигласан жишээ</span></span>
+<span id="cb346-2"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-2" aria-hidden="true" tabindex="-1"></a>linelist <span class="ot">&lt;-</span> linelist <span class="sc">%&gt;%</span>                 <span class="co"># linelist датасет</span></span>
+<span id="cb346-3"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb346-4"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_onset =</span> linelist<span class="sc">::</span><span class="fu">guess_dates</span>(  <span class="co"># "linelist" багцын guess_dates() функц</span></span>
+<span id="cb346-5"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-5" aria-hidden="true" tabindex="-1"></a>      date_onset,</span>
+<span id="cb346-6"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">error_tolerance =</span> <span class="fl">0.1</span>,</span>
+<span id="cb346-7"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">first_date =</span> <span class="st">"2016-01-01"</span></span>
+<span id="cb346-8"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb346-8" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <!-- ======================================================= -->
 </div>
-<div id="working-with-date-time-class" class="section level2" number="1.6">
+<div id="date-time-ангитай-ажиллах" class="section level2" number="9.6">
 <h2>
-<span class="header-section-number">1.6</span> Working with date-time class<a class="anchor" aria-label="anchor" href="#working-with-date-time-class"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6</span> date-time ангитай ажиллах<a class="anchor" aria-label="anchor" href="#date-time-%D0%B0%D0%BD%D0%B3%D0%B8%D1%82%D0%B0%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
 </h2>
-<p>As previously mentioned, R also supports a <code>datetime</code> class - a column that contains date <strong>and</strong> time information. As with the <code>Date</code> class, these often need to be converted from <code>character</code> objects to <code>datetime</code> objects.</p>
-<div id="convert-dates-with-times" class="section level3 unnumbered">
-<h3>Convert dates with times<a class="anchor" aria-label="anchor" href="#convert-dates-with-times"><i class="fas fa-link"></i></a>
+<p>Өмнө дурьдсанчлан, R нь огноо болон цагийн мэдээллийг агуулсан <code>datetime</code> ангийг дэмждэг. Date ангийн нэгэн адил эдгээрийг ихэвчлэн тэмдэгтийн объектоос <code>datetime</code> объект руу хөрвүүлэх шаардлагатай болдог.</p>
+<div id="цаг-агуулсан-огноог-хөрвүүлэх" class="section level3 unnumbered">
+<h3>Цаг агуулсан огноог хөрвүүлэх<a class="anchor" aria-label="anchor" href="#%D1%86%D0%B0%D0%B3-%D0%B0%D0%B3%D1%83%D1%83%D0%BB%D1%81%D0%B0%D0%BD-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%B3-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
 </h3>
-<p>A standard <code>datetime</code> object is formatted with the date first, which is followed by a time component - for example <em>01 Jan 2020, 16:30</em>. As with dates, there are many ways this can be formatted, and there are numerous levels of precision (hours, minutes, seconds) that can be supplied.</p>
-<p>Luckily, <strong>lubridate</strong> helper functions also exist to help convert these strings to <code>datetime</code> objects. These functions are extensions of the date helper functions, with <code>_h</code> (only hours supplied), <code>_hm</code> (hours and minutes supplied), or <code>_hms</code> (hours, minutes, and seconds supplied) appended to the end (e.g. <code>dmy_hms()</code>). These can be used as shown:</p>
-<p>Convert datetime with only hours to datetime object</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<p>Стандарт <code>datetime</code> объект нь эхлээд огноогоор форматлагдсан бөгөөд дараа нь цагийн бүрэлдэхүүн хэсэг орно - жишээлбэл <em>2020 оны 1-р сарын 01, 16:30</em>. Огнооны нэгэн адил үүнийг форматлах олон арга байдаг бөгөөд мөн олон түвшний нарийвчлал (цаг, минут, секунд) байдаг.</p>
+<p>Аз болоход эдгээр стрингүүдийг <code>datetime</code> объект руу хөрвүүлэх <strong>lubridate</strong>-ийн туслах функцууд бас байдаг. Эдгээр функцууд нь төгсгөлд нь <code>_h</code> (зөвхөн цаг), <code>_hm</code> (цаг, минут) эсвэл <code>_hms</code> (цаг, минут, секунд) нэмж хавсаргасан огнооны туслах функцүүдийн өргөтгөлүүд юм (жишээ нь, <code>dmy_hms()</code>). Эдгээрийг дараах байдлаар ашиглаж болно:</p>
+<p>Зөвхөн цаг агуулсан огноо, цагийг datetime объект руу хөрвүүлэх</p>
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ymd_h</span><span class="op">(</span><span class="st">"2020-01-01 16hrs"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 16:00:00 UTC"</code></pre>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ymd_h</span><span class="op">(</span><span class="st">"2020-01-01 4PM"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 04:00:00 UTC"</code></pre>
-<p>Convert datetime with hours and minutes to datetime object</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<p>Цаг, минут агуулсан огноо, цагийг datetime объект руу хөрвүүлэх</p>
+<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dmy_hm</span><span class="op">(</span><span class="st">"01 January 2020 16:20"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 16:20:00 UTC"</code></pre>
-<p>Convert datetime with hours, minutes, and seconds to datetime object</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<p>Цаг, минут, секунд агуулсан огноо, цагийг datetime объект руу хөрвүүлэх</p>
+<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mdy_hms</span><span class="op">(</span><span class="st">"01 January 2020, 16:20:40"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-20 16:20:40 UTC"</code></pre>
-<p>You can supply time zone but it is ignored. See section later in this page on time zones.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<p>Та цагийн бүсийг өгч болно, гэхдээ үүнийг ашигладаггүй. Цагийн бүсийн талаар энэ бүлгийн сүүл хэсгийг үзнэ үү.</p>
+<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mdy_hms</span><span class="op">(</span><span class="st">"01 January 2020, 16:20:40 PST"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-20 16:20:40 UTC"</code></pre>
-<p>When working with a data frame, time and date columns can be combined to create a datetime column using <code>str_glue()</code> from <strong>stringr</strong> package and an appropriate <strong>lubridate</strong> function. See the page on [Characters and strings] for details on <strong>stringr</strong>.</p>
-<p>In this example, the <code>linelist</code> data frame has a column in format “hours:minutes”. To convert this to a datetime we follow a few steps:</p>
-<ol style="list-style-type: decimal">
-<li>Create a “clean” time of admission column with missing values filled-in with the column median. We do this because <strong>lubridate</strong> won’t operate on missing values. Combine it with the column <code>date_hospitalisation</code>, and then use the function <code>ymd_hm()</code> to convert.</li>
-</ol>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages</span></span>
-<span id="cb40-2"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, lubridate, stringr)</span>
-<span id="cb40-3"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># time_admission is a column in hours:minutes</span></span>
-<span id="cb40-5"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-5" aria-hidden="true" tabindex="-1"></a>linelist <span class="ot">&lt;-</span> linelist <span class="sc">%&gt;%</span></span>
-<span id="cb40-6"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-7"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># when time of admission is not given, assign the median admission time</span></span>
-<span id="cb40-8"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-9"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">time_admission_clean =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb40-10"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(time_admission),         <span class="co"># if time is missing</span></span>
-<span id="cb40-11"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">median</span>(time_admission),        <span class="co"># assign the median</span></span>
-<span id="cb40-12"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-12" aria-hidden="true" tabindex="-1"></a>      time_admission                 <span class="co"># if not missing keep as is</span></span>
-<span id="cb40-13"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb40-14"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-15"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use str_glue() to combine date and time columns to create one character column</span></span>
-<span id="cb40-16"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and then use ymd_hm() to convert it to datetime</span></span>
-<span id="cb40-17"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-18"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_time_of_admission =</span> <span class="fu">str_glue</span>(<span class="st">"{date_hospitalisation} {time_admission_clean}"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-19"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ymd_hm</span>()</span>
-<span id="cb40-20"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb40-20" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Датафрэймтэй ажиллахдаа <strong>stringr</strong> багцын <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> функц ба тохирох <strong>lubridate</strong> функцийг ашиглан цаг, огнооны баганыг нэгтгэн datetime багана үүсгэж болно. <strong>stringr</strong> багцын талаарх дэлгэрэнгүй мэдээллийг <span class="math display">\[Тэмдэгтүүд болон стрингүүд\]</span> хуудаснаас үзнэ үү.</p>
+<p>Энэ жишээнд <code>linelist</code> датафрэйм нь “цаг:минут” формат бүхий баганатай байна. Үүнийг datetime болгон хөрвүүлэхийн тулд бид хэд хэдэн алхмуудыг дагана:</p>
+<p>Тухайн баганын голч утга ашиглан хоосон утгыг дүүргэсэн эмнэлэгт хэвтэлтийн “цэвэр” цагийн багана үүсгэнэ. <strong>lubridate</strong> багц хоосон утгууд дээр ажиллахгүй тул бид үүнийг хийж буй юм. Үүнийг <code>date_hospitalisation</code> баганатай нэгтгээд <code>ymd_hm()</code> функцийг ашиглан хөрвүүлнэ.</p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># багцууд</span></span>
+<span id="cb357-2"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, lubridate, stringr)</span>
+<span id="cb357-3"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-4"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="co"># time_admission багана нь цаг:минут бүхий форматтай</span></span>
+<span id="cb357-5"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-5" aria-hidden="true" tabindex="-1"></a>linelist <span class="ot">&lt;-</span> linelist <span class="sc">%&gt;%</span></span>
+<span id="cb357-6"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb357-7"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># эмнэлэгт хэвтэлтийн цаг байхгүй тохиолдолд хэвтэлтийн голч хугацааг онооно</span></span>
+<span id="cb357-8"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb357-9"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">time_admission_clean =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb357-10"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(time_admission),         <span class="co"># цаг хоосон байгаа үед</span></span>
+<span id="cb357-11"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">median</span>(time_admission),        <span class="co"># голч утгыг онооно</span></span>
+<span id="cb357-12"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-12" aria-hidden="true" tabindex="-1"></a>      time_admission                 <span class="co"># хоосон биш байвал хэвээр үлдээнэ</span></span>
+<span id="cb357-13"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb357-14"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb357-15"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># str_glue() ашиглан огноо, цагийн багануудыг нэгтгэж нэг тэмдэгт багана үүсгэнэ </span></span>
+<span id="cb357-16"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># дараа нь ymd_hm()-г ашиглан datetime руу хөрвүүлнэ</span></span>
+<span id="cb357-17"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb357-18"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_time_of_admission =</span> <span class="fu">str_glue</span>(<span class="st">"{date_hospitalisation} {time_admission_clean}"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb357-19"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ymd_hm</span>()</span>
+<span id="cb357-20"><a href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html#cb357-20" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
-<div id="convert-times-alone" class="section level3 unnumbered">
-<h3>Convert times alone<a class="anchor" aria-label="anchor" href="#convert-times-alone"><i class="fas fa-link"></i></a>
+<div id="зөвхөн-цагийг-хөрвүүлэх" class="section level3 unnumbered">
+<h3>Зөвхөн цагийг хөрвүүлэх<a class="anchor" aria-label="anchor" href="#%D0%B7%D3%A9%D0%B2%D1%85%D3%A9%D0%BD-%D1%86%D0%B0%D0%B3%D0%B8%D0%B9%D0%B3-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
 </h3>
-<p>If your data contain only a character time (hours and minutes), you can convert and manipulate them as times using <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code> from <strong>base</strong> R. For example, to get the difference between two of these times:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># raw character times</span>
+<p>Хэрэв таны датанд зөвхөн хугацаа (цаг, минут) тэмдэгт байдлаар агуулагдаж байвал та <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code>-г ашиглан тэдгээрийг цаг болгон хувиргаж, өөрчлөх боломжтой. Жишээлбэл, эдгээр хоёр цагийн зөрүүг олж авахын тулд:</p>
+<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># тэмдэгт ангийн цагууд</span>
 <span class="va">time1</span> <span class="op">&lt;-</span> <span class="st">"13:45"</span> 
 <span class="va">time2</span> <span class="op">&lt;-</span> <span class="st">"15:20"</span>
 
-<span class="co"># Times converted to a datetime class</span>
+<span class="co"># Цагуудыг datetime анги руу хөрвүүлнэ</span>
 <span class="va">time1_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">time1</span>, format <span class="op">=</span> <span class="st">"%H:%M"</span><span class="op">)</span>
 <span class="va">time2_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">time2</span>, format <span class="op">=</span> <span class="st">"%H:%M"</span><span class="op">)</span>
 
-<span class="co"># Difference is of class "difftime" by default, here converted to numeric hours </span>
-<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">time2_clean</span> <span class="op">-</span> <span class="va">time1_clean</span><span class="op">)</span>   <span class="co"># difference in hours</span></code></pre></div>
+<span class="co"># Ялгаа нь "difftime" анги бөгөөд энд тоон цаг руу хөрвүүлж байна </span>
+<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">time2_clean</span> <span class="op">-</span> <span class="va">time1_clean</span><span class="op">)</span>   <span class="co"># цагийн зөрүү</span></code></pre></div>
 <pre><code>## [1] 1.583333</code></pre>
-<p>Note however that without a date value provided, it assumes the date is today. To combine a string date and a string time together see how to use <strong>stringr</strong> in the section just above. Read more about <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code> <a href="https://rdrr.io/r/base/strptime.html">here</a>.</p>
-<p>To convert single-digit numbers to double-digits (e.g. to “pad” hours or minutes with leading zeros to achieve 2 digits), see this <a href="#str_pad">“Pad length” section of the Characters and strings page</a>.</p>
+<p>Гэхдээ огнооны утгыг заагаагүй бол огноог өнөөдөр гэж тооцдог гэдгийг анхаарна уу. <strong>stringr</strong> багцыг ашиглан стринг огноо болон стринг цагийг хэрхэн нэгтгэх талаар дээрх хэсгээс харна уу. <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code>-ийн талаар <a href="https://rdrr.io/r/base/strptime.html">эндээс</a> уншина уу.</p>
+<p>Нэг оронтой тоог хоёр оронтой тоонд хөрвүүлэхийн тулд (жишээ нь, 2 оронтой болохын тулд цаг эсвэл минутын урд тэг оруулж дэвсэх) <a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html#str_pad">“Тэмдэгтүүд болон стрингүүд” хуудасны “Дэвсэх урт” хэсгийг</a> үзнэ үү.</p>
 </div>
-<div id="extract-time" class="section level3 unnumbered">
-<h3>Extract time<a class="anchor" aria-label="anchor" href="#extract-time"><i class="fas fa-link"></i></a>
+<div id="цагийг-гаргаж-авах" class="section level3 unnumbered">
+<h3>Цагийг гаргаж авах<a class="anchor" aria-label="anchor" href="#%D1%86%D0%B0%D0%B3%D0%B8%D0%B9%D0%B3-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can extract elements of a time with <code>hour()</code>, <code>minute()</code>, or <code>second()</code> from <strong>lubridate</strong>.</p>
-<p>Here is an example of extracting the hour, and then classifing by part of the day. We begin with the column <code>time_admission</code>, which is class Character in format “HH:MM”. First, the <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code> is used as described above to convert the characters to datetime class. Then, the hour is extracted with <code>hour()</code>, returning a number from 0-24. Finally, a column <code>time_period</code> is created using logic with <code>case_when()</code> to classify rows into Morning/Afternoon/Evening/Night based on their hour of admission.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>hour_admit <span class="op">=</span> <span class="fu">hour</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">time_admission</span>, format <span class="op">=</span> <span class="st">"%H:%M"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>time_period <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
+<p>Та <strong>lubridate</strong> багцын <code>hour()</code>, <code>minute()</code>, <code>second()</code> функцүүдийг ашиглан цагийн элементүүдийг гаргаж авч болно.</p>
+<p>Цагийг гаргаж аваад өдрийн нэг хэсгээр нь ангилах жишээ энд байна. Бид “HH:MM” форматтай Тэмдэгт ангийн <code>time_admission</code> баганаас эхэлнэ. Нэгдүгээрт, тэмдэгтүүдийг datetime анги руу хөрвүүлэхийн тулд дээр дурдсанчлан <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code> ашигладаг. Дараа нь цагийг <code>hour()</code> функцээр гаргаж авахад 0-24 хүртэлх тооны аль нэг гарч ирнэ. Эцэст нь, эмнэлэгт хэвтсэн цагийг логик мэдэгдлүүд ашиглан <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцын тусламжтайгаар Өглөө/Үдээс/Орой/Шөнө гэж ангилсан <code>time_period</code> хэмээх шинэ багана үүсгэж байна.</p>
+<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hour_admit <span class="op">=</span> <span class="fu">hour</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">time_admission</span>, format <span class="op">=</span> <span class="st">"%H:%M"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time_period <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
     <span class="va">hour_admit</span> <span class="op">&gt;</span> <span class="fl">06</span> <span class="op">&amp;</span> <span class="va">hour_admit</span> <span class="op">&lt;</span> <span class="fl">12</span> <span class="op">~</span> <span class="st">"Morning"</span>,
     <span class="va">hour_admit</span> <span class="op">&gt;=</span> <span class="fl">12</span> <span class="op">&amp;</span> <span class="va">hour_admit</span> <span class="op">&lt;</span> <span class="fl">17</span> <span class="op">~</span> <span class="st">"Afternoon"</span>,
     <span class="va">hour_admit</span> <span class="op">&gt;=</span> <span class="fl">17</span> <span class="op">&amp;</span> <span class="va">hour_admit</span> <span class="op">&lt;</span> <span class="fl">21</span> <span class="op">~</span> <span class="st">"Evening"</span>,
     <span class="va">hour_admit</span> <span class="op">&gt;=</span><span class="fl">21</span> <span class="op">|</span> <span class="va">hour_admit</span> <span class="op">&lt;=</span> <span class="fl">6</span> <span class="op">~</span> <span class="st">"Night"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>To learn more about <code>case_when()</code> see the page on [Cleaning data and core functions].</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцын талаар илүү ихийг мэдэхийг хүсвэл <span class="math display">\[Дата цэвэрлэх болон үндсэн функцууд\]</span> хуудаснаас үзнэ үү.</p>
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="working-with-dates" class="section level2" number="1.7">
+<div id="огноотой-ажиллах" class="section level2" number="9.7">
 <h2>
-<span class="header-section-number">1.7</span> Working with dates<a class="anchor" aria-label="anchor" href="#working-with-dates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7</span> Огноотой ажиллах<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>lubridate</code> can also be used for a variety of other functions, such as <strong>extracting aspects of a date/datetime</strong>, <strong>performing date arithmetic</strong>, or <strong>calculating date intervals</strong></p>
-<p>Here we define a date to use for the examples:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># create object of class Date</span>
+<p><strong>lubridate</strong> багцыг <strong>date/datetime</strong> <strong>багануудын хэсгийг гаргаж авах, огноон дээр арифметик хийх, огнооны интервалыг тооцоолох</strong> зэрэг олон төрлийн функцэд ашиглаж болно.</p>
+<p>Энд бид жишээнүүдэд ашиглах огноог тодорхойллоо:</p>
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Date ангийн объект үүсгэх</span>
 <span class="va">example_date</span> <span class="op">&lt;-</span> <span class="fu">ymd</span><span class="op">(</span><span class="st">"2020-03-01"</span><span class="op">)</span></code></pre></div>
-<div id="extract-date-components" class="section level3 unnumbered">
-<h3>Extract date components<a class="anchor" aria-label="anchor" href="#extract-date-components"><i class="fas fa-link"></i></a>
+<div id="огнооны-бүрэлдэхүүн-хэсгүүдийг-гаргаж-авах" class="section level3 unnumbered">
+<h3>Огнооны бүрэлдэхүүн хэсгүүдийг гаргаж авах<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%BD%D1%8B-%D0%B1%D2%AF%D1%80%D1%8D%D0%BB%D0%B4%D1%8D%D1%85%D2%AF%D2%AF%D0%BD-%D1%85%D1%8D%D1%81%D0%B3%D2%AF%D2%AF%D0%B4%D0%B8%D0%B9%D0%B3-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can extract common aspects such as month, day, weekday:</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">month</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span>  <span class="co"># month number</span></code></pre></div>
+<p>Та сар, өдөр, ажлын өдөр гэх мэт нийтлэг талуудыг гаргаж авч болно:</p>
+<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">month</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span>  <span class="co"># сарын дугаар</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">day</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span>    <span class="co"># day (number) of the month</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">day</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span>    <span class="co"># сарын өдөр (дугаар)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">wday</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span>   <span class="co"># day number of the week (1-7)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">wday</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span>   <span class="co"># долоо хоногийн өдрийн дугаар (1-7)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<p>You can also extract time components from a <code>datetime</code> object or column. This can be useful if you want to view the distribution of admission times.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<p>Та мөн <code>datetime</code> объект эсвэл баганаас цагийн бүрэлдэхүүн хэсгүүдийг гаргаж авах боломжтой. Хэрэв та эмнэлэгт хэвтсэн цагийн тархалтыг харахыг хүсвэл энэ нь хэрэг болно.</p>
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">example_datetime</span> <span class="op">&lt;-</span> <span class="fu">ymd_hm</span><span class="op">(</span><span class="st">"2020-03-01 14:45"</span><span class="op">)</span>
 
-<span class="fu">hour</span><span class="op">(</span><span class="va">example_datetime</span><span class="op">)</span>     <span class="co"># extract hour</span>
-<span class="fu">minute</span><span class="op">(</span><span class="va">example_datetime</span><span class="op">)</span>   <span class="co"># extract minute</span>
-<span class="fu">second</span><span class="op">(</span><span class="va">example_datetime</span><span class="op">)</span>   <span class="co"># extract second</span></code></pre></div>
-<p>There are several options to retrieve weeks. See the section on Epidemiological weeks below.</p>
-<p>Note that if you are seeking to <em>display</em> a date a certain way (e.g. “Jan 2020” or “Thursday 20 March” or “Week 20, 1977”) you can do this more flexibly as described in the section on Date display.</p>
+<span class="fu">hour</span><span class="op">(</span><span class="va">example_datetime</span><span class="op">)</span>     <span class="co"># цаг гаргаж авах</span>
+<span class="fu">minute</span><span class="op">(</span><span class="va">example_datetime</span><span class="op">)</span>   <span class="co"># минут гаргаж авах</span>
+<span class="fu">second</span><span class="op">(</span><span class="va">example_datetime</span><span class="op">)</span>   <span class="co"># секунд гаргаж авах</span></code></pre></div>
+<p>Долоо хоногуудыг харах хэд хэдэн сонголт байдаг. Доорх Эпидемиологийн долоо хоногийн хэсгийг үзнэ үү.</p>
+<p>Хэрэв та огноог тодорхой байдлаар <em>харуулахыг</em> хүсч байгаа бол (жишээ нь “2020 оны 1-р сар” эсвэл “3-р сары 20-ны Пүрэв гараг” эсвэл “1977 оны 20-р долоо хоног”) үүнийг Огноо харуулах хэсэгт тайлбарласны дагуу илүү уян хатан байдлаар хийж болно.</p>
 </div>
-<div id="date-math" class="section level3 unnumbered">
-<h3>Date math<a class="anchor" aria-label="anchor" href="#date-math"><i class="fas fa-link"></i></a>
+<div id="огнооны-математик" class="section level3 unnumbered">
+<h3>Огнооны математик<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%BD%D1%8B-%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can add certain numbers of days or weeks using their respective function from <strong>lubridate</strong>.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># add 3 days to this date</span>
+<p>Та <strong>lubridate</strong> багцаас тус тусын функцийг ашиглан тодорхой тооны өдөр, долоо хоног нэмж болно.</p>
+<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># энэхүү огноо руу 3 өдөр нэмэх</span>
 <span class="va">example_date</span> <span class="op">+</span> <span class="fu">days</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-03-04"</code></pre>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># add 7 weeks and subtract two days from this date</span>
+<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># энэ огноо дээр 7 долоо хоног нэмж, хоёр өдрийг хас</span>
 <span class="va">example_date</span> <span class="op">+</span> <span class="fu">weeks</span><span class="op">(</span><span class="fl">7</span><span class="op">)</span> <span class="op">-</span> <span class="fu">days</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-04-17"</code></pre>
 </div>
-<div id="date-intervals" class="section level3 unnumbered">
-<h3>Date intervals<a class="anchor" aria-label="anchor" href="#date-intervals"><i class="fas fa-link"></i></a>
+<div id="огнооны-интервал" class="section level3 unnumbered">
+<h3>Огнооны интервал<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%BD%D1%8B-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB"><i class="fas fa-link"></i></a>
 </h3>
-<p>The difference between dates can be calculated by:</p>
+<p>Огноо хоорондын зөрүүг дараах байдлаар тооцоолж болно:</p>
 <ol style="list-style-type: decimal">
-<li>Ensure both dates are of class date<br>
-</li>
-<li>Use subtraction to return the “difftime” difference between the two dates<br>
-</li>
-<li>If necessary, convert the result to numeric class to perform subsequent mathematical calculations</li>
+<li><p>Хоёр огноо нь хоёулаа <code>date</code> анги мөн эсэхийг шалгана</p></li>
+<li><p>Хоёр огнооны хоорондох “difftime” зөрүүг гаргахын тулд хасаж болно</p></li>
+<li><p>Шаардлагатай бол дараагийн математик тооцооллыг хийхийн тулд гарсан үр дүнг тоон анги руу хөрвүүлнэ</p></li>
 </ol>
-<p>Below the interval between two dates is calculated and displayed. You can find intervals by using the subtraction “minus” symbol on values that are class Date. Note, however that the class of the returned value is “difftime” as displayed below, and must be converted to numeric.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># find the interval between this date and Feb 20 2020 </span>
+<p>Доор хоёр огнооны хоорондох интервалыг тооцон харуулж байна. Огноо ангийн утгууд дээр “хасах” тэмдгийг ашиглан интервалыг олох боломжтой. Гэсэн хэдий ч буцаасан утгын анги нь доор үзүүлсэн шиг “difftime” бөгөөд тоон хэлбэрт хөрвүүлэх ёстой гэдгийг анхаарна уу.</p>
+<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Жишээ огнооноос 2020 оны 2-р сарын 20-ны хоорондох зайг ол </span>
 <span class="va">output</span> <span class="op">&lt;-</span> <span class="va">example_date</span> <span class="op">-</span> <span class="fu">ymd</span><span class="op">(</span><span class="st">"2020-02-20"</span><span class="op">)</span>
-<span class="va">output</span>    <span class="co"># print</span></code></pre></div>
+<span class="va">output</span>    <span class="co"># хэвлэ</span></code></pre></div>
 <pre><code>## Time difference of 10 days</code></pre>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "difftime"</code></pre>
-<p>To do subsequent operations on a “difftime”, convert it to numeric with <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code>.</p>
-<p>This can all be brought together to work with data - for example:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">lubridate</span>, <span class="va">tidyverse</span><span class="op">)</span>   <span class="co"># load packages</span>
+<p>“Dfftime” дээр дараагийн үйлдлүүдийг хийхийн тулд үүнийг <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> ашиглан тоон хэлбэрт хөрвүүлнэ.</p>
+<p>Дата ажиллах үед энэ бүгдийг нэгтгэж болно - жишээлбэл:</p>
+<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">lubridate</span>, <span class="va">tidyverse</span><span class="op">)</span>   <span class="co"># багцууд ачааллах</span>
 
-<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   
-  <span class="co"># convert date of onset from character to date objects by specifying dmy format</span>
-  <span class="fu">mutate</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span>,
-         date_hospitalisation <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">date_hospitalisation</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># dmy форматыг зааж өгснөөр шинж тэмдэг эхэлсэн огноог тэмдэгтээс огноо болгон хувиргана </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span>,
+         date_hospitalisation <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">date_hospitalisation</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   
-  <span class="co"># filter out all cases without onset in march</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">month</span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># Гуравдугаар сард шинж тэмдэг нь эхлээгүй бүх тохиолдлыг шүүж хасна</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">month</span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     
-  <span class="co"># find the difference in days between onset and hospitalisation</span>
-  <span class="fu">mutate</span><span class="op">(</span>days_onset_to_hosp <span class="op">=</span> <span class="va">date_hospitalisation</span> <span class="op">-</span> <span class="va">date_of_onset</span><span class="op">)</span></code></pre></div>
-<p>In a data frame context, if either of the above dates is missing, the operation will fail for that row. This will result in an <code>NA</code> instead of a numeric value. When using this column for calculations, be sure to set the <code>na.rm =</code> argument to <code>TRUE</code>. For example:</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># calculate the median number of days to hospitalisation for all cases where data are available</span>
+  <span class="co"># шинж тэмдэг эхэлсэн ба эмнэлэгт хэвтсэн өдрүүдийн хоорондох зөрүүг ол</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>days_onset_to_hosp <span class="op">=</span> <span class="va">date_hospitalisation</span> <span class="op">-</span> <span class="va">date_of_onset</span><span class="op">)</span></code></pre></div>
+<p>Датафрэймтэй ажиллах үед тодорхой мөр дээр дээрх огнооны аль нэг нь байхгүй бол тухайн мөрийн хувьд энэхүү үйл ажиллагаа амжилтгүй болно. Үүний үр дүнд тоон утгын оронд <code>NA</code> гарч ирнэ. Тиймээс энэ баганыг тооцоололд ашиглахдаа <code>na.rm =</code> аргументыг <code>TRUE</code> гэж тохируулахаа мартуузай. Жишээлбэл:</p>
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Дата байгаа бүх тохиолдлын хувьд эмнэлэгт хэвтэх хоногийн голч утгыг тооцоол</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">linelist_delay</span><span class="op">$</span><span class="va">days_onset_to_hosp</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="date-display" class="section level2" number="1.8">
+<div id="огноо-харуулах" class="section level2" number="9.8">
 <h2>
-<span class="header-section-number">1.8</span> Date display<a class="anchor" aria-label="anchor" href="#date-display"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.8</span> Огноо харуулах<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE-%D1%85%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
 </h2>
-<p>Once dates are the correct class, you often want them to display differently, for example to display as “Monday 05 January” instead of “2018-01-05”. You may also want to adjust the display in order to then group rows by the date elements displayed - for example to group by month-year.</p>
+<p>Огноог зөв ангид хөрвүүлсний дараа та тэдгээрийг зарим тохиолдолд өөрөөр жишээлбэл “2018-01-05”-ны оронд “1-р сарын 05-ны Даваа” гэж харуулахыг хүсдэг. Та мөн харагдаж буй огнооны элементүүдээр мөрүүдийг бүлэглэхийн тулд харагдах байдлыг өөрчлөх хэрэгтэй болж магадгүй - жишээлбэл сар жилээр бүлэглэх.</p>
 <div id="format" class="section level3 unnumbered">
 <h3>
 <code>format()</code><a class="anchor" aria-label="anchor" href="#format"><i class="fas fa-link"></i></a>
 </h3>
-<p>Adjust date display with the <strong>base</strong> R function <code><a href="https://rdrr.io/r/base/format.html">format()</a></code>. This function accepts a character string (in quotes) specifying the <em>desired</em> output format in the “%” strptime abbreviations (the same syntax as used in <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>). Below are most of the common abbreviations.</p>
-<p>Note: using <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> will convert the values to class Character, so this is generally used towards the end of an analysis or for display purposes only! You can see the complete list by running <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>.</p>
-<p>%d = Day number of month (5, 17, 28, etc.)<br>
-%j = Day number of the year (Julian day 001-366)<br>
-%a = Abbreviated weekday (Mon, Tue, Wed, etc.)<br>
-%A = Full weekday (Monday, Tuesday, etc.)<br>
-%w = Weekday number (0-6, Sunday is 0)<br>
-%u = Weekday number (1-7, Monday is 1)<br>
-%W = Week number (00-53, Monday is week start)<br>
-%U = Week number (01-53, Sunday is week start)<br>
-%m = Month number (e.g. 01, 02, 03, 04)<br>
-%b = Abbreviated month (Jan, Feb, etc.)<br>
-%B = Full month (January, February, etc.)<br>
-%y = 2-digit year (e.g. 89)<br>
-%Y = 4-digit year (e.g. 1989)<br>
-%h = hours (24-hr clock)<br>
-%m = minutes<br>
-%s = seconds<br>
-%z = offset from GMT<br>
-%Z = Time zone (character)</p>
-<p>An example of formatting today’s date:</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># today's date, with formatting</span>
+<p><strong>base</strong> R-ын <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> функцээр огнооны харагдах байдлыг тохируулж болно. Энэ функц нь “%” strptime товчлол (<code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>-д ашигласантай ижил синтакс) бүхий хүсэж буй форматыг зааж өгсөн тэмдэгтийн стрингийг (ишлэлд) хүлээн авдаг. Хамгийн түгээмэл товчлолуудыг доор харуулав.</p>
+<p>Тэмдэглэл: <code><a href="https://rdrr.io/r/base/format.html">format()</a></code>-ыг ашигласнаар утгуудыг Тэмдэгт анги руу хөрвүүлэх тул үүнийг ерөнхийдөө дүн шинжилгээний төгсгөлд эсвэл зөвхөн харуулах зорилгоор ашигладаг! Та <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>-г ажиллуулснаар бүрэн жагсаалтыг харах боломжтой.</p>
+<p>%d = Сарын өдрийн дугаар (5, 17, 28 гэх мэт)<br>
+%j = Жилийн өдрийн дугаар (Жулиан өдөр 001-366)<br>
+%a = Товчилсон ажлын өдөр (Mon, Tue, Wed гэх мэт)<br>
+%A = Бүтэн ажлын өдөр (Monday, Tuesday гэх мэт)</p>
+<p>%w = Ажлын өдрийн дугаар (0-6, Ням гараг 0)<br>
+%u = Ажлын өдрийн дугаар (1-7, Даваа гараг 1)<br>
+%W = Долоо хоногийн дугаар (00-53, Даваа гараг долоо хоногийн эхлэл)<br>
+%U = Долоо хоногийн дугаар (01-53, Ням гараг долоо хоногийн эхлэл)<br>
+%m = Сарын дугаар (жишээ нь 01, 02, 03, 04)<br>
+%b = Товчилсон сар (Jan, Feb гэх мэт)<br>
+%B = Бүтэн сар (January, February гэх мэт)<br>
+%y = 2-оронтой жил (жишээ нь 89)<br>
+%Y = 4-оронтой жил (жишээ нь 1989)<br>
+%h = цаг (24 цагийн цаг)<br>
+%m = минут<br>
+%s = секунд</p>
+<p>%z = GMT-ээс офсет<br>
+%Z = Цагийн бүс (тэмдэгт)</p>
+<p>Өнөөдрийн огноог форматлах жишээ:</p>
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># форматтай өнөөдрийн огноо</span>
 <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"%d %B %Y"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "28 Наймдугаар сар 2021"</code></pre>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># easy way to get full date and time (default formatting)</span>
+<pre><code>## [1] "05 Нэгд?гээр сар 2022"</code></pre>
+<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># огноо, цагийг бүрэн авах хялбар арга (өгөгдмөл формат)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "Sat Aug 28 00:25:34 2021"</code></pre>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># formatted combined date, time, and time zone using str_glue() function</span>
-<span class="fu">str_glue</span><span class="op">(</span><span class="st">"{format(Sys.Date(), format = '%A, %B %d %Y, %z  %Z, ')}{format(Sys.time(), format = '%H:%M:%S')}"</span><span class="op">)</span></code></pre></div>
-<pre><code>## бямба, Наймдугаар сар 28 2021, +0000  UTC, 00:25:34</code></pre>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Using format to display weeks</span>
+<pre><code>## [1] "Wed Jan 05 18:16:53 2022"</code></pre>
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># str_glue() функцийг ашиглан форматласан нэгтгэсэн огноо, цаг, цагийн бүс</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{format(Sys.Date(), format = '%A, %B %d %Y, %z  %Z, ')}{format(Sys.time(), format = '%H:%M:%S')}"</span><span class="op">)</span></code></pre></div>
+<pre><code>## лхагва, Нэгд?гээр сар 05 2022, +0000  UTC, 18:16:53</code></pre>
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Долоо хоногуудыг харуулах форматыг ашиглах</span>
 <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y Week %W"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2021 Week 34"</code></pre>
-<p>Note that if using <code>str_glue()</code>, be aware of that within the expected double quotes " you should only use single quotes (as above).</p>
+<pre><code>## [1] "2022 Week 01"</code></pre>
+<p>Хэрэв <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> ашиглаж байгаа бол давхар ишлэл ” дотор зөвхөн ганц ишлэл ’ (дээрх шиг) ашиглах ёстойг анхаарна уу.</p>
 </div>
-<div id="month-year" class="section level3 unnumbered">
-<h3>Month-Year<a class="anchor" aria-label="anchor" href="#month-year"><i class="fas fa-link"></i></a>
+<div id="сар-жил" class="section level3 unnumbered">
+<h3>Сар-жил<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B0%D1%80-%D0%B6%D0%B8%D0%BB"><i class="fas fa-link"></i></a>
 </h3>
-<p>To convert a Date column to Month-year format, we suggest you use the function <code>as.yearmon()</code> from the <strong>zoo</strong> package. This converts the date to class “yearmon” and retains the proper ordering. In contrast, using <code><a href="https://rdrr.io/r/base/format.html">format(column, "%Y %B")</a></code> will convert to class Character and will order the values alphabetically (incorrectly).</p>
-<p>Below, a new column <code>yearmonth</code> is created from the column <code>date_onset</code>, using the <code>as.yearmon()</code> function. The default (correct) ordering of the resulting values are shown in the table.</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># create new column </span>
-<span class="va">test_zoo</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span> 
-     <span class="fu">mutate</span><span class="op">(</span>yearmonth <span class="op">=</span> <span class="fu">zoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html">as.yearmon</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span>
+<p>Огноо баганыг Сар-жил формат руу хөрвүүлэхийн тулд <strong>zoo</strong> багцаас <code>as.yearmon()</code> функцийг ашиглахыг зөвлөж байна. Энэ нь огноог “yearmon” анги руу хувиргаж, зохих дарааллыг хадгална. Үүнтэй харьцуулахад, <code>format(column, "%Y %B")</code> ашиглавал Тэмдэгт анги руу хөрвүүлэх ба утгуудыг цагаан толгойн дарааллаар (буруу) дараалуулна.</p>
+<p>Доор, <code>date_onset</code> баганаас <code>as.yearmon()</code> функцийг ашиглан <code>yearmonth</code> шинэ багана үүсгэсэн байна. Үр дүнгийн утгуудын анхдагч (зөв) дарааллыг хүснэгтэд үзүүлэв.</p>
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># шинэ багана үүсгэх</span>
+<span class="va">test_zoo</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>yearmonth <span class="op">=</span> <span class="fu">zoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html">as.yearmon</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span><span class="op">)</span>
 
-<span class="co"># print table</span>
+<span class="co"># хүснэгт хэвлэх</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test_zoo</span><span class="op">$</span><span class="va">yearmon</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-##  4-р сар 2014  5-р сар 2014  6-р сар 2014  7-р сар 2014  8-р сар 2014  9-р сар 2014 10-р сар 2014 11-р сар 2014 
-##             7            64           100           226           528          1070          1112           763 
-## 12-р сар 2014  1-р сар 2015  2-р сар 2015  3-р сар 2015  4-р сар 2015 
-##           562           431           306           277           186</code></pre>
-<p>In contrast, you can see how only using <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> does achieve the desired display format, but not the correct ordering.</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># create new column</span>
-<span class="va">test_format</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span> 
-     <span class="fu">mutate</span><span class="op">(</span>yearmonth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="st">"%b %Y"</span><span class="op">)</span><span class="op">)</span>
+##  4-р сар 2014  5-р сар 2014  6-р сар 2014  7-р сар 2014  8-р сар 2014 
+##             7            64           100           226           528 
+##  9-р сар 2014 10-р сар 2014 11-р сар 2014 12-р сар 2014  1-р сар 2015 
+##          1070          1112           763           562           431 
+##  2-р сар 2015  3-р сар 2015  4-р сар 2015 
+##           306           277           186</code></pre>
+<p>Үүнтэй харьцуулахад, та зөвхөн <code><a href="https://rdrr.io/r/base/format.html">format()</a></code>-ыг ашигласнаар хэрхэн хүссэн харагдах байдлын форматтай болж буй боловч зөв дараалалгүй болохыг харж болно.</p>
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># шинэ багана үүсгэх</span>
+<span class="va">test_format</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>yearmonth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="st">"%b %Y"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="co"># print table</span>
+<span class="co"># хүснэгт хэвлэх</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test_format</span><span class="op">$</span><span class="va">yearmon</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-##  1-р сар 2015 10-р сар 2014 11-р сар 2014 12-р сар 2014  2-р сар 2015  3-р сар 2015  4-р сар 2014  4-р сар 2015 
-##           431          1112           763           562           306           277             7           186 
-##  5-р сар 2014  6-р сар 2014  7-р сар 2014  8-р сар 2014  9-р сар 2014 
-##            64           100           226           528          1070</code></pre>
-<p>Note: if you are working within a <code>ggplot()</code> and want to adjust how dates are <em>displayed</em> only, it may be sufficient to provide a strptime format to the <code>date_labels =</code> argument in <code>scale_x_date()</code> - you can use <code>"%b %Y"</code> or <code>"%Y %b"</code>. See the [ggplot tips] page.</p>
-<p><strong>zoo</strong> also offers the function <code>as.yearqtr()</code>, and you can use <code>scale_x_yearmon()</code> when using <code>ggplot()</code>.</p>
+##  1-р сар 2015 10-р сар 2014 11-р сар 2014 12-р сар 2014  2-р сар 2015 
+##           431          1112           763           562           306 
+##  3-р сар 2015  4-р сар 2014  4-р сар 2015  5-р сар 2014  6-р сар 2014 
+##           277             7           186            64           100 
+##  7-р сар 2014  8-р сар 2014  9-р сар 2014 
+##           226           528          1070</code></pre>
+<p>Тэмдэглэл: Хэрэв та <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> дээр ажиллаж байгаа бөгөөд зөвхөн огноог хэрхэн харуулахыг тохируулахыг хүсвэл <code><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_date()</a></code> функцийн <code>date_labels =</code> аргументад strptime формат оруулахад хангалттай. Жишээ нь та <code>"%b %Y"</code> эсвэл <code>"%Y %b"</code> ашиглаж болно. <span class="math display">\[ggplot зөвлөмж\]</span> хуудсыг үзнэ үү.</p>
+<p><strong>zoo</strong> нь мөн <code>as.yearqtr()</code> функцийг санал болгодог бөгөөд та <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> ашиглахдаа <code>scale_x_yearmon()</code>-г ашиглаж болно.</p>
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="dates_epi_wks" class="section level2" number="1.9">
+<div id="dates_epi_wks" class="section level2" number="9.9">
 <h2>
-<span class="header-section-number">1.9</span> Epidemiological weeks<a class="anchor" aria-label="anchor" href="#dates_epi_wks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.9</span> Эпидемиологийн долоо хоног<a class="anchor" aria-label="anchor" href="#dates_epi_wks"><i class="fas fa-link"></i></a>
 </h2>
 <div id="lubridate-1" class="section level3 unnumbered">
 <h3>
 <strong>lubridate</strong><a class="anchor" aria-label="anchor" href="#lubridate-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>See the page on [Grouping data] for more extensive examples of grouping data by date. Below we briefly describe grouping data by weeks.</p>
-<p>We generally recommend using the <code>floor_date()</code> function from <strong>lubridate</strong>, with the argument <code>unit = "week"</code>. This rounds the date down to the “start” of the week, as defined by the argument <code>week_start =</code>. The default week start is 1 (for Mondays) but you can specify any day of the week as the start (e.g. 7 for Sundays). <code>floor_date()</code> is versitile and can be used to round down to other time units by setting <code>unit =</code> to “second”, “minute”, “hour”, “day”, “month”, or “year”.</p>
-<p>The returned value is the start date of the week, in Date class. Date class is useful when plotting the data, as it will be easily recognized and ordered correctly by <code>ggplot()</code>.</p>
-<p>If you are only interested in adjusting dates to <em>display</em> by week in a plot, see the section in this page on Date display. For example when plotting an epicurve you can format the date display by providing the desired strptime “%” nomenclature. For example, use “%Y-%W” or “%Y-%U” to return the year and week number (given Monday or Sunday week start, respectively).</p>
+<p>Датаг огноогоор нь бүлэглэх илүү өргөн хүрээний жишээнүүдийг <span class="math display">\[Дата бүлэглэх\]</span> хуудаснаас үзнэ үү. Доор бид өгөгдлийг долоо хоногоор бүлэглэх талаар товч тайлбарлав.</p>
+<p>Бид ерөнхийдөө <code>lubridate</code>-ын <code>floor_date()</code> функцийг <code>unit = "week"</code> аргументын хамт ашиглахыг зөвлөж байна. Энэ нь <code>week_start =</code> аргументаар тодорхойлогдсоны дагуу огноог долоо хоногийн “эхлэл” хүртэл доош нь бүхэлддэг. Долоо хоногийн өгөгдмөл эхлэл нь 1 (Даваа гаригт) гэхдээ та долоо хоногийн аль ч өдрийг эхлэл гэж зааж өгч болно (жишээ нь, Ням гарагт 7). <code>floor_date()</code> нь олон талтай бөгөөд <code>unit =</code> аргументыг “second”, “minute”, “hour”, “day”, “month” эсвэл “year” болгон тохируулснаар төрөл бүрийн хугацааны нэгж рүү бүхэлдэхэд ашиглаж болно.</p>
+<p>Буцаасан утга нь Date анги бүхий долоо хоногийн эхлэх огноо юм. Date анги нь <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>-д амархан танигдаж, зөв ​​эрэмбэлэгддэг тул дата зураглахад тун хэрэгтэй байдаг.</p>
+<p>Хэрэв та зөвхөн график дотор огноог долоо хоногоор <em>харуулахыг</em> сонирхож байгаа бол энэ хуудасны Огноо харуулах хэсгийг үзнэ үү. Жишээлбэл, тархварзүйн муруйг зурахдаа та хүссэн strptime “%” товчлолоо өгснөөр огнооны харагдах байдлыг форматлаж болно. Жишээ нь, “%Y-%W” эсвэл “%Y-%U”-г ашиглан жил, долоо хоногийн дугаарыг буцаана (Даваа эсвэл Ням гарагийн долоо хоногийн эхлэлүүд тус бүрт).</p>
 </div>
-<div id="weekly-counts" class="section level3 unnumbered">
-<h3>Weekly counts<a class="anchor" aria-label="anchor" href="#weekly-counts"><i class="fas fa-link"></i></a>
+<div id="долоо-хоног-тутмын-тоо" class="section level3 unnumbered">
+<h3>Долоо хоног тутмын тоо<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3-%D1%82%D1%83%D1%82%D0%BC%D1%8B%D0%BD-%D1%82%D0%BE%D0%BE"><i class="fas fa-link"></i></a>
 </h3>
-<p>See the page on [Grouping data] for a thorough explanation of grouping data with <code>count()</code>, <code>group_by()</code>, and <code>summarise()</code>. A brief example is below.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> болон <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> ашиглан дата бүлэглэх талаар дэлгэрэнгүй тайлбарыг <span class="math display">\[Дата бүлэглэх\]</span> хуудаснаас үзнэ үү. Товч жишээг доор харуулав.</p>
 <ol style="list-style-type: decimal">
-<li>Create a new ‘week’ column with <code>mutate()</code>, using <code>floor_date()</code> with <code>unit = "week"</code><br>
-</li>
-<li>Get counts of rows (cases) per week with <code>count()</code>; filter out any cases with missing date<br>
-</li>
-<li>Finish with <code>complete()</code> from <strong>tidyr</strong> to ensure that <em>all</em> weeks appear in the data - even those with no rows/cases. By default the count values for any “new” rows are NA, but you can make them 0 with the <code>fill =</code> argument, which expects a named list (below, <code>n</code> is the name of the counts column).</li>
+<li><p>Шинэ “week” баганыг <code>floor_date()</code>-ыг <code>unit = "week"</code> аргументын хамт <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> ашиглан үүсгэнэ.</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> функцээр долоо хоног тутмын мөрийн (тохиолдлын) тоог авна; хоосон огноотой тохиолдлуудыг шүүн хасна</p></li>
+<li><p><em>Бүх</em> долоо хоногууд мөр/тохиолдолгүй байсан ч гэсэн датанд гарч ирэхийг баталгаажуулахын тулд <strong>tidyr</strong> багцын <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> функцийг ашиглан дуусгана. Анхдагч байдлаар аливаа “шинэ” мөрүүдийн тоон утгууд нь <code>NA</code> байна, гэхдээ та тэдгээрийг нэрлэсэн лист хүлээж авдаг <code>fill =</code> аргументын тусламжтайгаар 0 болгож болно (доор, <code>n</code> нь тооны баганын нэр).</p></li>
 </ol>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Make aggregated dataset of weekly case counts</span>
-<span class="va">weekly_counts</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op">%&gt;%</span> 
-  <span class="fu">drop_na</span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op">%&gt;%</span>             <span class="co"># remove cases missing onset date</span>
-  <span class="fu">mutate</span><span class="op">(</span>weekly_cases <span class="op">=</span> <span class="fu">floor_date</span><span class="op">(</span>   <span class="co"># make new column, week of onset</span>
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Долоо хоног тутмын тохиолдлын тооны нэгдсэн датасет үүсгэх</span>
+<span class="va">weekly_counts</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">date_onset</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>             <span class="co"># хоосон шинж тэмдэг эхэлсэн огноо бүхий тохиолдлуудыг хасах</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weekly_cases <span class="op">=</span> <span class="fu">floor_date</span><span class="op">(</span>   <span class="co">#  шинж тэмдэг эхэлсэн долоо хоног хэмээх шинэ багана үүсгэх</span>
     <span class="va">date_onset</span>,
-    unit <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>            
-  <span class="fu">count</span><span class="op">(</span><span class="va">weekly_cases</span><span class="op">)</span> <span class="op">%&gt;%</span>           <span class="co"># group data by week and count rows per group (creates column 'n')</span>
-  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span>                  <span class="co"># ensure all weeks are present, even those with no cases reported</span>
-    weekly_cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span>          <span class="co"># re-define the "weekly_cases" column as a complete sequence,</span>
-      from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weekly_cases</span><span class="op">)</span>,       <span class="co"># from the minimum date</span>
-      to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weekly_cases</span><span class="op">)</span>,         <span class="co"># to the maxiumum date</span>
-      by <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span>,                   <span class="co"># by weeks</span>
-    fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>             <span class="co"># fill-in NAs in the n counts column with 0</span></code></pre></div>
-<p>Here are the first rows of the resulting data frame:</p>
-<div id="htmlwidget-374800b2cca0998c4dfb" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-374800b2cca0998c4dfb">{"x":{"filter":"none","data":[["2014-04-06","2014-04-13","2014-04-20","2014-04-27","2014-05-04","2014-05-11","2014-05-18","2014-05-25","2014-06-01","2014-06-08","2014-06-15","2014-06-22","2014-06-29","2014-07-06","2014-07-13","2014-07-20","2014-07-27","2014-08-03","2014-08-10","2014-08-17"],[1,1,4,4,12,14,14,21,21,18,30,23,31,35,55,58,80,86,114,122]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>weekly_cases<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+    unit <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>            
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">weekly_cases</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>           <span class="co"># датаг долоо хоногоор бүлэглэж, бүлэг бүрт мөр тоолох ('n' багана үүсгэх) </span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span>                  <span class="co"># тохиолдол бүртгэгдээгүй байсан ч гэсэн бүх долоо хоногууд байгааг хангах</span>
+    weekly_cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span>          <span class="co"># "weekly_cases" баганыг бүрэн дараалал болгон дахин тодорхойлох</span>
+      from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weekly_cases</span><span class="op">)</span>,       <span class="co"># хамгийн бага огнооноос</span>
+      to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weekly_cases</span><span class="op">)</span>,         <span class="co"># хамгийн дээд огноо хүртэл</span>
+      by <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span>,                   <span class="co"># 7 хоногоор</span>
+    fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>             <span class="co"># n тооны баганад NA-г 0-ээр бөглөх</span></code></pre></div>
+<p>Энд шинээр үүссэн датафрэймийн эхний мөрүүд байна:</p>
+<div id="htmlwidget-2537b5849086edd63a2e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2537b5849086edd63a2e">{"x":{"filter":"none","vertical":false,"data":[["2014-04-06","2014-04-13","2014-04-20","2014-04-27","2014-05-04","2014-05-11","2014-05-18","2014-05-25","2014-06-01","2014-06-08","2014-06-15","2014-06-22","2014-06-29","2014-07-06","2014-07-13","2014-07-20","2014-07-27","2014-08-03","2014-08-10","2014-08-17"],[1,1,4,4,12,14,14,21,21,18,30,23,31,35,55,58,80,86,114,122]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>weekly_cases<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="epiweek-alternatives" class="section level3 unnumbered">
-<h3>Epiweek alternatives<a class="anchor" aria-label="anchor" href="#epiweek-alternatives"><i class="fas fa-link"></i></a>
+<div id="epiweek-хувилбарууд" class="section level3 unnumbered">
+<h3>Epiweek хувилбарууд<a class="anchor" aria-label="anchor" href="#epiweek-%D1%85%D1%83%D0%B2%D0%B8%D0%BB%D0%B1%D0%B0%D1%80%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
 </h3>
-<p>Note that <strong>lubridate</strong> also has functions <code>week()</code>, <code>epiweek()</code>, and <code>isoweek()</code>, each of which has slightly different start dates and other nuances. Generally speaking though, <code>floor_date()</code> should be all that you need. Read the details for these functions by entering <code>?week</code> into the console or reading the documentation <a href="https://www.rdocumentation.org/packages/lubridate/versions/1.7.4/topics/week">here</a>.</p>
-<p>You might consider using the package <strong>aweek</strong> to set epidemiological weeks. You can read more about it <a href="https://www.repidemicsconsortium.org/aweek/">on the RECON website</a>. It has the functions <code>date2week()</code> and <code>week2date()</code> in which you can set the week start day with <code>week_start = "Monday"</code>. This package is easiest if you want “week”-style outputs (e.g. “2020-W12”). Another advantage of <strong>aweek</strong> is that when <code>date2week()</code> is applied to a date column, the returned column (week format) is automatically of class Factor and includes levels for all weeks in the time span (this avoids the extra step of <code>complete()</code> described above). However, <strong>aweek</strong> does not have the functionality to round dates to other time units such as months, years, etc.</p>
-<p>Another alternative for time series which also works well to show a a “week” format (“2020 W12”) is <code>yearweek()</code> from the package <strong>tsibble</strong>, as demonstrated in the page on [Time series and outbreak detection].</p>
+<p><strong>lubridate</strong> нь мөн <code>week()</code>, <code>epiweek()</code>, <code>isoweek()</code> гэсэн тус бүр нь бага зэрэг өөр эхлэх огноо болон бусад нюансууд бүхий функцуудтай болно. Гэхдээ ихэнх тохиолдолд <code>floor_date()</code> нь танд хэрэг болох ганц функц байдаг. Эдгээр функцүүдийн дэлгэрэнгүйг консол руу <code>?week</code> гэж оруулснаар эсвэл <a href="https://www.rdocumentation.org/packages/lubridate/versions/1.7.4/topics/week">эндээс</a> баримт бичгийг уншина уу.</p>
+<p>Та эпидемиологийн долоо хоногийг тогтоохын тулд <strong>aweek</strong> багцыг мөн ашиглаж болно. Та энэ талаар <a href="https://www.repidemicsconsortium.org/aweek/">RECON вэбсайтаас</a> илүү ихийг уншиж болно. Энэ нь <code>date2week()</code> болон <code>week2date()</code> функцтэй бөгөөд долоо хоногийн эхлэх өдрийг <code>week_start = "Monday"</code> аргументээр тохируулах боломжтой. Хэрэв та “долоо хоног” маягийн гаралтыг (жишээ нь “2020-W12”) авахыг хүсвэл энэ багц хамгийн хялбар юм. <strong>aweek</strong> багцын өөр нэг давуу тал нь <code>date2week()</code>-г огнооны баганад хэрэглэх үед буцаасан багана (долоо хоногийн формат) автоматаар Фактор анги болон тухайн хугацааны бүх долоо хоногийн түвшнийг багтаадаг (ингэснээр дээр үзүүлсэн <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> функцын нэмэлт алхамаас зайлсхийдэг). Гэсэн хэдий ч <strong>aweek</strong> багцад огноог сар, жил гэх мэт бусад цагийн нэгж рүү бүхэлдэх функц байхгүй.</p>
+<p>“Долоо хоног” форматыг (“2020 W12”) харуулахад тохиромжтой цаг хугацааны цувралын өөр нэг хувилбар бол <span class="math display">\[Цагийн цуваа ба дэгдэлт илрүүлэх\]</span> хуудсанд үзүүлсэн шиг <strong>tsibble</strong> багцын <code>yearweek()</code> функц юм.</p>
 <!-- ======================================================= -->
 </div>
 </div>
-<div id="converting-datestime-zones" class="section level2" number="1.10">
+<div id="огнооцагийн-бүсийг-хөрвүүлэх" class="section level2" number="9.10">
 <h2>
-<span class="header-section-number">1.10</span> Converting dates/time zones<a class="anchor" aria-label="anchor" href="#converting-datestime-zones"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.10</span> Огноо/цагийн бүсийг хөрвүүлэх<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%86%D0%B0%D0%B3%D0%B8%D0%B9%D0%BD-%D0%B1%D2%AF%D1%81%D0%B8%D0%B9%D0%B3-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
 </h2>
-<p>When data is present in different time time zones, it can often be important to standardise this data in a unified time zone. This can present a further challenge, as the time zone component of data must be coded manually in most cases.</p>
-<p>In R, each <em>datetime</em> object has a timezone component. By default, all datetime objects will carry the local time zone for the computer being used - this is generally specific to a <em>location</em> rather than a named timezone, as time zones will often change in locations due to daylight savings time. It is not possible to accurately compensate for time zones without a time component of a date, as the event a date column represents cannot be attributed to a specific time, and therefore time shifts measured in hours cannot be reasonably accounted for.</p>
-<p>To deal with time zones, there are a number of helper functions in lubridate that can be used to change the time zone of a datetime object from the local time zone to a different time zone. Time zones are set by attributing a valid tz database time zone to the datetime object. A list of these can be found here - if the location you are using data from is not on this list, nearby large cities in the time zone are available and serve the same purpose.</p>
+<p>Өөр өөр цагийн бүсийн дата байгаа үед энэ датаг нэгдсэн цагийн бүсэд оруулан стандартчилах нь ихэвчлэн чухал байдаг. Ихэнх тохиолдолд датаны цагийн бүсийн бүрэлдэхүүн хэсгийг гараар кодлох шаардлагатай байдаг тул энэ нь нэмэлт бэрхшээл учруулдаг.</p>
+<p>R-д <em>datetime</em> объект бүр цагийн бүсийн бүрэлдэхүүнтэй байна. Бүх огнооны объектууд нь өгөгдмөл байдлаар ашиглаж буй компьютерийн орон нутгийн цагийн бүсийг агуулдаг бөгөөд цагийн бүсүүд ихэвчлэн зуны цагаар өөрчлөгддөг тул энэ нь ерөнхийдөө нэрлэсэн цагийн бүсээс илүү <em>тухайн байршилд</em> зориулагдсан байдаг. Огнооны баганыг харуулсан үйл явдлыг тодорхой цаг хугацаанд хамааруулах боломжгүй тул огнооны цагийн бүрэлдэхүүн хэсэггүйгээр цагийн бүсийг үнэн зөвөөр нөхөх боломжгүй бөгөөд тийм учир цагаар хэмжигдэх хугацааны шилжилтийг үндэслэлтэй тооцож чаддаггүй.</p>
+<p>Цагийн бүстэй харьцахын тулд <strong>lubridate</strong>-д хэд хэдэн туслах функцууд байдаг бөгөөд эдгээрийг огнооны объектын цагийн бүсийг орон нутгийн цагийн бүсээс өөр цагийн бүс болгон өөрчлөхөд ашиглаж болно. Datetime объектод tz өгөгдлийн сангийн хүчинтэй цагийн бүсийг өгөх замаар цагийн бүсийг тохируулдаг. Эдгээрийн жагсаалтыг доорх линкээс олж болно - хэрэв таны ашиглаж байгаа байршил энэ жагсаалтад байхгүй бол цагийн бүсийн ойролцоох томоохон хотуудын цагийн бүсийг ашиглаж болно.</p>
 <p><a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" class="uri">https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a></p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># assign the current time to a column</span>
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># баганад одоогийн цагийг оноох</span>
 <span class="va">time_now</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">time_now</span></code></pre></div>
-<pre><code>## [1] "2021-08-28 00:25:34 +08"</code></pre>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># use with_tz() to assign a new timezone to the column, while CHANGING the clock time</span>
+<pre><code>## [1] "2022-01-05 18:16:54 +08"</code></pre>
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># with_tz()-г ашиглан цагийг ӨӨРЧЛӨХИЙН зэрэгцээ баганад шинэ цагийн бүс оноох</span>
 <span class="va">time_london_real</span> <span class="op">&lt;-</span> <span class="fu">with_tz</span><span class="op">(</span><span class="va">time_now</span>, <span class="st">"Europe/London"</span><span class="op">)</span>
 
-<span class="co"># use force_tz() to assign a new timezone to the column, while KEEPING the clock time</span>
+<span class="co"># force_tz()-г ашиглан цагийг хэвээр ХАДГАЛАХЫН зэрэгцээ баганад шинэ цагийн бүс оноох</span>
 <span class="va">time_london_local</span> <span class="op">&lt;-</span> <span class="fu">force_tz</span><span class="op">(</span><span class="va">time_now</span>, <span class="st">"Europe/London"</span><span class="op">)</span>
 
 
-<span class="co"># note that as long as the computer that was used to run this code is NOT set to London time,</span>
-<span class="co"># there will be a difference in the times </span>
-<span class="co"># (the number of hours difference from the computers time zone to london)</span>
+<span class="co"># Энэ кодыг ажиллуулахад ашигласан компьютерийг Лондонгийн цагаар тохируулаагүй тохиолдолд цагийн зөрүү (компьютерийн цагийн бүсээс Лондон хүртэлх цагийн зөрүү) байх болно гэдгийг анхаарна уу.</span>
 <span class="va">time_london_real</span> <span class="op">-</span> <span class="va">time_london_local</span></code></pre></div>
-<pre><code>## Time difference of -7 hours</code></pre>
-<p>This may seem largely abstract, and is often not needed if the user isn’t working across time zones.</p>
+<pre><code>## Time difference of -8 hours</code></pre>
+<p>Энэ нь хийсвэр мэт санагдаж болох бөгөөд хэрэв хэрэглэгч өөр цагийн бүстэй датан дээр ажиллахгүй тохиолдолд ихэвчлэн шаардлагагүй байдаг.</p>
 <!-- ======================================================= -->
 </div>
-<div id="lagging-and-leading-calculations" class="section level2" number="1.11">
+<div id="хоцрох-болон-түрүүлэх-тооцоолол" class="section level2" number="9.11">
 <h2>
-<span class="header-section-number">1.11</span> Lagging and leading calculations<a class="anchor" aria-label="anchor" href="#lagging-and-leading-calculations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.11</span> Хоцрох болон түрүүлэх тооцоолол<a class="anchor" aria-label="anchor" href="#%D1%85%D0%BE%D1%86%D1%80%D0%BE%D1%85-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D2%AF%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85-%D1%82%D0%BE%D0%BE%D1%86%D0%BE%D0%BE%D0%BB%D0%BE%D0%BB"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>lead()</code> and <code><a href="https://rdrr.io/r/stats/lag.html">lag()</a></code> are functions from the <strong>dplyr</strong> package which help find previous (lagged) or subsequent (leading) values in a vector - typically a numeric or date vector. This is useful when doing calculations of change/difference between time units.</p>
-<p>Let’s say you want to calculate the difference in cases between a current week and the previous one. The data are initially provided in weekly counts as shown below.</p>
-<div id="htmlwidget-54b6704a0c5eb1947a2a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-54b6704a0c5eb1947a2a">{"x":{"filter":"none","data":[["2019-06-23","2019-06-30","2019-07-07","2019-07-14","2019-07-21","2019-07-28","2019-08-04","2019-08-11","2019-08-18","2019-08-25","2019-09-01","2019-09-08","2019-09-15","2019-09-22","2019-09-29","2019-10-06","2019-10-13","2019-10-20","2019-10-27","2019-11-03","2019-11-10","2019-11-17","2019-11-24","2019-12-01","2019-12-08","2019-12-15","2019-12-22","2019-12-29"],[0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19,0]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week_start<\/th>\n      <th>cases_wk<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p><strong>When using <code><a href="https://rdrr.io/r/stats/lag.html">lag()</a></code> or <code>lead()</code> the order of rows in the dataframe is very important! - pay attention to whether your dates/numbers are ascending or descending</strong></p>
-<p>First, create a new column containing the value of the previous (lagged) week.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lead()</a></code> болон <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> нь <strong>dplyr</strong> багцын функцууд бөгөөд ихэвчлэн тоон эсвэл огнооны векторын өмнөх (хоцорсон) эсвэл дараагийн (түрүүлсэн) утгуудыг олоход тусалдаг. Энэ нь цаг хугацааны нэгж хоорондын өөрчлөлт/ялгааг тооцоолоход хэрэг болно.</p>
+<p>Та одоогийн болон өмнөх долоо хоногийн тохиолдлын зөрүүг тооцоолохыг хүсч байна гэж бодъё. Датаг доор үзүүлсэн шиг долоо хоног бүрийн тоогоор эхний байдлаар өгсөн байна.</p>
+<div id="htmlwidget-4c8055b9a4078c84a9ac" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4c8055b9a4078c84a9ac">{"x":{"filter":"none","vertical":false,"data":[["2019-06-23","2019-06-30","2019-07-07","2019-07-14","2019-07-21","2019-07-28","2019-08-04","2019-08-11","2019-08-18","2019-08-25","2019-09-01","2019-09-08","2019-09-15","2019-09-22","2019-09-29","2019-10-06","2019-10-13","2019-10-20","2019-10-27","2019-11-03","2019-11-10","2019-11-17","2019-11-24","2019-12-01","2019-12-08","2019-12-15","2019-12-22","2019-12-29"],[0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19,0]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week_start<\/th>\n      <th>cases_wk<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p><strong><code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> эсвэл <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lead()</a></code>-ийг ашиглах үед датафрэймийн мөрүүдийн дараалал нь маш чухал юм! - Таны огноо/тоо өсөх эсвэл буурах дараалалтай эсэхийг анхаарч үзээрэй</strong></p>
+<p>Эхлээд өмнөх (хоцорсон) долоо хоногийн утгыг агуулсан шинэ багана үүсгэ.</p>
 <ul>
-<li>Control the number of units back/forward with <code>n =</code> (must be a non-negative integer)<br>
-</li>
-<li>Use <code>default =</code> to define the value placed in non-existing rows (e.g. the first row for which there is no lagged value). By default this is <code>NA</code>.<br>
-</li>
-<li>Use <code>order_by = TRUE</code> if your the rows are not ordered by your reference column</li>
+<li><p><code>n =</code> (сөрөг бус бүхэл тоо байх ёстой) аргумент ашиглан ухрах/урагшлах нэгжийн тоог тохируулна</p></li>
+<li><p>Байхгүй мөрүүдэд (жишээ нь, хоцорсон утга байх боломжгүй эхний мөр) байршуулсан утгыг тодорхойлохын тулд <code>default =</code> аргументыг ашиглана уу. Анхдагч байдлаар энэ нь <code>NA</code> байна.</p></li>
+<li><p>Хэрэв датаны мөрүүд таны лавлах баганаар эрэмбэлэгдээгүй бол <code>order_by = TRUE</code> аргументыг ашиглана.</p></li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">counts</span> <span class="op">&lt;-</span> <span class="va">counts</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>cases_prev_wk <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lag.html">lag</a></span><span class="op">(</span><span class="va">cases_wk</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-47eaf33eb2c6ef616d7a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-47eaf33eb2c6ef616d7a">{"x":{"filter":"none","data":[["2019-06-23","2019-06-30","2019-07-07","2019-07-14","2019-07-21","2019-07-28","2019-08-04","2019-08-11","2019-08-18","2019-08-25","2019-09-01","2019-09-08","2019-09-15","2019-09-22","2019-09-29","2019-10-06","2019-10-13","2019-10-20","2019-10-27","2019-11-03","2019-11-10","2019-11-17","2019-11-24","2019-12-01","2019-12-08","2019-12-15","2019-12-22","2019-12-29"],[0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19,0],[null,0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week_start<\/th>\n      <th>cases_wk<\/th>\n      <th>cases_prev_wk<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>Next, create a new column which is the difference between the two cases columns:</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">counts</span> <span class="op">&lt;-</span> <span class="va">counts</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>cases_prev_wk <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lag.html">lag</a></span><span class="op">(</span><span class="va">cases_wk</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">counts</span> <span class="op">&lt;-</span> <span class="va">counts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cases_prev_wk <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">cases_wk</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-0f3931245d310f7ed6db" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0f3931245d310f7ed6db">{"x":{"filter":"none","vertical":false,"data":[["2019-06-23","2019-06-30","2019-07-07","2019-07-14","2019-07-21","2019-07-28","2019-08-04","2019-08-11","2019-08-18","2019-08-25","2019-09-01","2019-09-08","2019-09-15","2019-09-22","2019-09-29","2019-10-06","2019-10-13","2019-10-20","2019-10-27","2019-11-03","2019-11-10","2019-11-17","2019-11-24","2019-12-01","2019-12-08","2019-12-15","2019-12-22","2019-12-29"],[0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19,0],[null,0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week_start<\/th>\n      <th>cases_wk<\/th>\n      <th>cases_prev_wk<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>Дараа нь хоёр тохиолдлын баганын ялгаа болох шинэ багана үүсгэ:</p>
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">counts</span> <span class="op">&lt;-</span> <span class="va">counts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cases_prev_wk <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">cases_wk</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
          case_diff <span class="op">=</span> <span class="va">cases_wk</span> <span class="op">-</span> <span class="va">cases_prev_wk</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-c73291e6e23b757aa58e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c73291e6e23b757aa58e">{"x":{"filter":"none","data":[["2019-06-23","2019-06-30","2019-07-07","2019-07-14","2019-07-21","2019-07-28","2019-08-04","2019-08-11","2019-08-18","2019-08-25","2019-09-01","2019-09-08","2019-09-15","2019-09-22","2019-09-29","2019-10-06","2019-10-13","2019-10-20","2019-10-27","2019-11-03","2019-11-10","2019-11-17","2019-11-24","2019-12-01","2019-12-08","2019-12-15","2019-12-22","2019-12-29"],[0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19,0],[null,0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19],[null,25,34,31,-25,14,-38,6,-16,1,-4,0,48,-35,29,20,34,154,93,-42,-152,-108,8,20,3,-61,-20,-19]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week_start<\/th>\n      <th>cases_wk<\/th>\n      <th>cases_prev_wk<\/th>\n      <th>case_diff<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>You can read more about <code>lead()</code> and <code><a href="https://rdrr.io/r/stats/lag.html">lag()</a></code> in the documentation <a href="https://dplyr.tidyverse.org/reference/lead-lag.html">here</a> or by entering <code><a href="https://rdrr.io/r/stats/lag.html">?lag</a></code> in your console.</p>
+<div id="htmlwidget-3474dda7cf15d12a5571" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3474dda7cf15d12a5571">{"x":{"filter":"none","vertical":false,"data":[["2019-06-23","2019-06-30","2019-07-07","2019-07-14","2019-07-21","2019-07-28","2019-08-04","2019-08-11","2019-08-18","2019-08-25","2019-09-01","2019-09-08","2019-09-15","2019-09-22","2019-09-29","2019-10-06","2019-10-13","2019-10-20","2019-10-27","2019-11-03","2019-11-10","2019-11-17","2019-11-24","2019-12-01","2019-12-08","2019-12-15","2019-12-22","2019-12-29"],[0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19,0],[null,0,25,59,90,65,79,41,47,31,32,28,28,76,41,70,90,124,278,371,329,177,69,77,97,100,39,19],[null,25,34,31,-25,14,-38,6,-16,1,-4,0,48,-35,29,20,34,154,93,-42,-152,-108,8,20,3,-61,-20,-19]],"container":"<table class=\"white-space: nowrap\">\n  <thead>\n    <tr>\n      <th>week_start<\/th>\n      <th>cases_wk<\/th>\n      <th>cases_prev_wk<\/th>\n      <th>case_diff<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>Та <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lead()</a></code> болон <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code>-ын талаар <a href="https://dplyr.tidyverse.org/reference/lead-lag.html">эндээс</a> эсвэл консол дээрээ <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">?lag</a></code> гэж оруулснаар дэлгэрэнгүй уншиж болно.</p>
 <!-- ======================================================= -->
 </div>
-<div id="resources" class="section level2" number="1.12">
+<div id="нэмэлт-материалууд" class="section level2" number="9.12">
 <h2>
-<span class="header-section-number">1.12</span> Resources<a class="anchor" aria-label="anchor" href="#resources"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.12</span> Нэмэлт материалууд<a class="anchor" aria-label="anchor" href="#%D0%BD%D1%8D%D0%BC%D1%8D%D0%BB%D1%82-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>lubridate</strong> <a href="https://lubridate.tidyverse.org/">tidyverse page</a><br><strong>lubridate</strong> RStudio <a href="https://rawgit.com/rstudio/cheatsheets/master/lubridate.pdf">cheatsheet</a><br>
-R for Data Science page on <a href="https://r4ds.had.co.nz/dates-and-times.html">dates and times</a><br><a href="https://www.statmethods.net/input/dates.html">Online tutorial</a> <a href="https://www.r-bloggers.com/2013/08/date-formats-in-r/">Date formats</a></p>
+<p>lubridate багцын <a href="https://lubridate.tidyverse.org/">tidyverse хуудас</a></p>
+<p>lubridate багцын RStudio <a href="https://rawgit.com/rstudio/cheatsheets/master/lubridate.pdf">cheatsheet</a></p>
+<p>R for Data Science номын <a href="https://r4ds.had.co.nz/dates-and-times.html">огноо, цагийн тухай хэсэг</a></p>
+<p><a href="https://www.statmethods.net/input/dates.html">Онлайн хичээл</a> <a href="https://www.r-bloggers.com/2013/08/date-formats-in-r/">Огнооны форматууд</a></p>
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="index.html"></a></div>
-<div class="empty"></div>
+<div class="prev"><a href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></div>
+<div class="next"><a href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C"><span class="header-section-number">1</span> Огноотой ажиллах нь</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
 <li>
-<a class="nav-link" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB"><span class="header-section-number">1.1</span> Бэлтгэл</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#%D0%B1%D1%8D%D0%BB%D1%82%D0%B3%D1%8D%D0%BB"><span class="header-section-number">9.1</span> Бэлтгэл</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%B0%D1%85">Багцуудыг ачаалах</a></li>
-<li><a class="nav-link" href="#import-data">Import data</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85-1">Дата импортлох</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#current-date"><span class="header-section-number">1.2</span> Current date</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B4%D0%BE%D0%BE%D0%B3%D0%B8%D0%B9%D0%BD-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><span class="header-section-number">9.2</span> Одоогийн огноо</a></li>
 <li>
-<a class="nav-link" href="#convert-to-date"><span class="header-section-number">1.3</span> Convert to Date</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE-%D1%80%D1%83%D1%83-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><span class="header-section-number">9.3</span> Огноо руу хөрвүүлэх</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#base-r">base R</a></li>
 <li><a class="nav-link" href="#lubridate">lubridate</a></li>
-<li><a class="nav-link" href="#combine-columns">Combine columns</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D0%BD%D1%8D%D0%B3%D1%82%D0%B3%D1%8D%D1%85">Багануудыг нэгтгэх</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#excel-dates"><span class="header-section-number">1.4</span> Excel dates</a></li>
-<li><a class="nav-link" href="#messy-dates"><span class="header-section-number">1.5</span> Messy dates</a></li>
+<li><a class="nav-link" href="#excel-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><span class="header-section-number">9.4</span> Excel огноо</a></li>
+<li><a class="nav-link" href="#%D1%8D%D0%BC%D1%85-%D1%86%D1%8D%D0%B3%D1%86%D0%B3%D2%AF%D0%B9-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE"><span class="header-section-number">9.5</span> Эмх цэгцгүй огноо</a></li>
 <li>
-<a class="nav-link" href="#working-with-date-time-class"><span class="header-section-number">1.6</span> Working with date-time class</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#convert-dates-with-times">Convert dates with times</a></li>
-<li><a class="nav-link" href="#convert-times-alone">Convert times alone</a></li>
-<li><a class="nav-link" href="#extract-time">Extract time</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#working-with-dates"><span class="header-section-number">1.7</span> Working with dates</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#extract-date-components">Extract date components</a></li>
-<li><a class="nav-link" href="#date-math">Date math</a></li>
-<li><a class="nav-link" href="#date-intervals">Date intervals</a></li>
+<a class="nav-link" href="#date-time-%D0%B0%D0%BD%D0%B3%D0%B8%D1%82%D0%B0%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85"><span class="header-section-number">9.6</span> date-time ангитай ажиллах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%86%D0%B0%D0%B3-%D0%B0%D0%B3%D1%83%D1%83%D0%BB%D1%81%D0%B0%D0%BD-%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%B3-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85">Цаг агуулсан огноог хөрвүүлэх</a></li>
+<li><a class="nav-link" href="#%D0%B7%D3%A9%D0%B2%D1%85%D3%A9%D0%BD-%D1%86%D0%B0%D0%B3%D0%B8%D0%B9%D0%B3-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85">Зөвхөн цагийг хөрвүүлэх</a></li>
+<li><a class="nav-link" href="#%D1%86%D0%B0%D0%B3%D0%B8%D0%B9%D0%B3-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85">Цагийг гаргаж авах</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#date-display"><span class="header-section-number">1.8</span> Date display</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85"><span class="header-section-number">9.7</span> Огноотой ажиллах</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%BD%D1%8B-%D0%B1%D2%AF%D1%80%D1%8D%D0%BB%D0%B4%D1%8D%D1%85%D2%AF%D2%AF%D0%BD-%D1%85%D1%8D%D1%81%D0%B3%D2%AF%D2%AF%D0%B4%D0%B8%D0%B9%D0%B3-%D0%B3%D0%B0%D1%80%D0%B3%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85">Огнооны бүрэлдэхүүн хэсгүүдийг гаргаж авах</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%BD%D1%8B-%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA">Огнооны математик</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D0%BD%D1%8B-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB">Огнооны интервал</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE-%D1%85%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><span class="header-section-number">9.8</span> Огноо харуулах</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#format">format()</a></li>
-<li><a class="nav-link" href="#month-year">Month-Year</a></li>
+<li><a class="nav-link" href="#%D1%81%D0%B0%D1%80-%D0%B6%D0%B8%D0%BB">Сар-жил</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#dates_epi_wks"><span class="header-section-number">1.9</span> Epidemiological weeks</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#dates_epi_wks"><span class="header-section-number">9.9</span> Эпидемиологийн долоо хоног</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#lubridate-1">lubridate</a></li>
-<li><a class="nav-link" href="#weekly-counts">Weekly counts</a></li>
-<li><a class="nav-link" href="#epiweek-alternatives">Epiweek alternatives</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%BE%D0%BB%D0%BE%D0%BE-%D1%85%D0%BE%D0%BD%D0%BE%D0%B3-%D1%82%D1%83%D1%82%D0%BC%D1%8B%D0%BD-%D1%82%D0%BE%D0%BE">Долоо хоног тутмын тоо</a></li>
+<li><a class="nav-link" href="#epiweek-%D1%85%D1%83%D0%B2%D0%B8%D0%BB%D0%B1%D0%B0%D1%80%D1%83%D1%83%D0%B4">Epiweek хувилбарууд</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#converting-datestime-zones"><span class="header-section-number">1.10</span> Converting dates/time zones</a></li>
-<li><a class="nav-link" href="#lagging-and-leading-calculations"><span class="header-section-number">1.11</span> Lagging and leading calculations</a></li>
-<li><a class="nav-link" href="#resources"><span class="header-section-number">1.12</span> Resources</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%86%D0%B0%D0%B3%D0%B8%D0%B9%D0%BD-%D0%B1%D2%AF%D1%81%D0%B8%D0%B9%D0%B3-%D1%85%D3%A9%D1%80%D0%B2%D2%AF%D2%AF%D0%BB%D1%8D%D1%85"><span class="header-section-number">9.10</span> Огноо/цагийн бүсийг хөрвүүлэх</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%BE%D1%86%D1%80%D0%BE%D1%85-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D2%AF%D1%80%D2%AF%D2%AF%D0%BB%D1%8D%D1%85-%D1%82%D0%BE%D0%BE%D1%86%D0%BE%D0%BE%D0%BB%D0%BE%D0%BB"><span class="header-section-number">9.11</span> Хоцрох болон түрүүлэх тооцоолол</a></li>
+<li><a class="nav-link" href="#%D0%BD%D1%8D%D0%BC%D1%8D%D0%BB%D1%82-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4"><span class="header-section-number">9.12</span> Нэмэлт материалууд</a></li>
 </ul>
 
       <div class="book-extra">
@@ -723,7 +731,7 @@ R for Data Science page on <a href="https://r4ds.had.co.nz/dates-and-times.html"
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2021-08-28.</p>
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2022-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -731,6 +739,34 @@ R for Data Science page on <a href="https://r4ds.had.co.nz/dates-and-times.html"
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

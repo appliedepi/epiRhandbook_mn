@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>3 R суурь ойлголтууд | Тархвар судлаачийн R гарын авлага</title>
+<meta name="author" content="гарын авлагын баг">
+<meta name="description" content="Тавтай морилно уу! Энэхүү бүлэгт бид R-ын талаарх үндсэн ойлголтуудыг авч үзнэ. Энэ нь дэлгэрэнгүй заавар болох зорилгогүй бөгөөд танд R-ын талаар анхан шатны мэдлэгийг өгч, мөн өмнө ашиглаж...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="3 R суурь ойлголтууд | Тархвар судлаачийн R гарын авлага">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Тавтай морилно уу! Энэхүү бүлэгт бид R-ын талаарх үндсэн ойлголтуудыг авч үзнэ. Энэ нь дэлгэрэнгүй заавар болох зорилгогүй бөгөөд танд R-ын талаар анхан шатны мэдлэгийг өгч, мөн өмнө ашиглаж...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3 R суурь ойлголтууд | Тархвар судлаачийн R гарын авлага">
+<meta name="twitter:description" content="Тавтай морилно уу! Энэхүү бүлэгт бид R-ын талаарх үндсэн ойлголтуудыг авч үзнэ. Энэ нь дэлгэрэнгүй заавар болох зорилгогүй бөгөөд танд R-ын талаар анхан шатны мэдлэгийг өгч, мөн өмнө ашиглаж...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="libs/selectize-0.12.0/selectize.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style_bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Тархвар судлаачийн R гарын авлага</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"></a></li>
+<li class="book-part">Preview pages</li>
+<li><a class="" href="%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D0%B9%D0%BD-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%BB.html"><span class="header-section-number">1</span> Редакцийн болон техникийн тэмдэглэл</a></li>
+<li><a class="" href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></li>
+<li><a class="active" href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="" href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></li>
+<li><a class="" href="%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D1%85-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">5</span> Санал болгох багцууд</a></li>
+<li><a class="" href="r-%D1%82%D3%A9%D1%81%D3%A9%D0%BB.html"><span class="header-section-number">6</span> R төсөл</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D0%B6-%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BB%D0%BE%D1%85.html"><span class="header-section-number">7</span> Файл импортлож экспортлох</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D1%8D%D0%B2%D1%8D%D1%80%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D-%D0%B1%D0%B0-%D2%AF%D0%BD%D0%B4%D1%81%D1%8D%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4.html"><span class="header-section-number">8</span> Дата цэвэрлэгээ ба үндсэн функцууд</a></li>
+<li><a class="" href="%D0%BE%D0%B3%D0%BD%D0%BE%D0%BE%D1%82%D0%BE%D0%B9-%D0%B0%D0%B6%D0%B8%D0%BB%D0%BB%D0%B0%D1%85-%D0%BD%D1%8C.html"><span class="header-section-number">9</span> Огноотой ажиллах нь</a></li>
+<li><a class="" href="%D0%BA%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80-%D0%B1%D0%B0-%D1%81%D1%82%D1%80%D0%B8%D0%BD%D0%B3%D1%81.html"><span class="header-section-number">10</span> Карактер ба стрингс</a></li>
+<li><a class="" href="%D1%84%D0%B0%D0%BA%D1%82%D0%BE%D1%80.html"><span class="header-section-number">11</span> Фактор</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%BF%D0%B8%D0%B2%D0%BE%D1%82-%D1%85%D0%B8%D0%B9%D1%85.html"><span class="header-section-number">12</span> Датаг пивот хийх</a></li>
+<li><a class="" href="%D0%B4%D0%B0%D1%82%D0%B0%D0%B3-%D0%B1%D2%AF%D0%BB%D1%8D%D0%B3%D0%BB%D1%8D%D1%85.html"><span class="header-section-number">13</span> Датаг бүлэглэх</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-суурь-ойлголтууд" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> R суурь ойлголтууд<a class="anchor" aria-label="anchor" href="#r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h1>
+<div class="inline-figure"><img src="images/basics_header_close.png" width="100%" style="display: block; margin: auto;"></div>
+<p>Тавтай морилно уу!</p>
+<p>Энэхүү бүлэгт бид R-ын талаарх үндсэн ойлголтуудыг авч үзнэ. Энэ нь дэлгэрэнгүй заавар болох зорилгогүй бөгөөд танд R-ын талаар анхан шатны мэдлэгийг өгч, мөн өмнө ашиглаж байсан хүмүүст ой санамжаа сэргээхэд тустай байх болно. <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#learning">Сургалтын материалууд</a> хэсэгт илүү дэлгэрэнгүй сургалтын линкүүд буй.</p>
+<p>Энэ хуудасны зарим хэсгийг <a href="https://r4epis.netlify.app/">R4Epis төслийн</a> зөвшөөрлөөр бага зэрэг өөрчлөн авч ашигласан.</p>
+<p>STATA, SAS, эсвэл Excel-ээс R руу шилжих зөвлөмжийг <span class="math display">\[R руу шилжих\]</span> хуудаснаас үзнэ үү.</p>
+<!-- ======================================================= -->
+<div id="яагаад-r-г-ашиглана-гэж" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Яагаад R-г ашиглана гэж?<a class="anchor" aria-label="anchor" href="#%D1%8F%D0%B0%D0%B3%D0%B0%D0%B0%D0%B4-r-%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D0%BD%D0%B0-%D0%B3%D1%8D%D0%B6"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="https://www.r-project.org/about.html">R төслийн вэбсайтад</a> дурдсанчлан R бол статистикийн тооцоолол, график хийхэд зориулсан програмчлалын хэл, түүний орчин юм. R нь маш уян хатан, өргөтгөх боломжтой, хөгжил нь хэрэглэгчдээрээ удирдуулдаг программ юм.</p>
+<p><strong>Зардал</strong></p>
+<p>R ашиглахад үнэгүй! Чөлөөт, нээлттэй эх сурвалжийн эргэн тойрон өндөр ёс зүйтэй байдаг.</p>
+<p><strong>Давтагдах чадвар</strong></p>
+<p>Дата менежмент, дата анализийг програмчлалын хэлээр (Excel эсвэл бусад голчлон товчлуур дээр дардаг/гараар хийдэг хэрэгслүүдтэй харьцуулахад) хийх нь <strong>давтагдах чадварыг</strong> сайжруулж, <strong>алдааг илрүүлэхэд</strong> амар болж, таны ажлын ачааллыг хөнгөвчилдөг.</p>
+<p><strong>Хамт олон</strong></p>
+<p>R хэрэглэгчдийн хамт олон маш том бөгөөд нэгэндээ үргэлж туслан хамтран ажилладаг. Амьдрал дээр тулгарч буй олон асуудлыг шийдвэрлэх шинэ багц, хэрэгслүүд өдөр бүр гарч, тэдгээрийг нь R хэрэглэгчид хэрэглэж үзэн байнга шалгаж байдаг. Үүний нэг жишээ болох <a href="https://rladies.org/">R-Ladies</a> нь дэлхий даяар салбартай, R хэрэглэгчдийн хамгийн том байгууллагуудын нэг бөгөөд гол зорилго нь R хэрэглэгчдийн дундах жендэрийн олон талт байдлыг хангах, дэмжих явдал юм. Таны ойролцоо ч салбар нь байдаг байж магадгүй!</p>
+</div>
+<div id="гол-нэр-томъёо" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Гол нэр томъёо<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%BE%D0%BB-%D0%BD%D1%8D%D1%80-%D1%82%D0%BE%D0%BC%D1%8A%D1%91%D0%BE"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>RStudio</strong> - RStudio бол <strong>R</strong>-ийг ашиглахад хялбар болгож буй хэрэглэгчийн график интерфэйс (GUI) юм. Дэлгэрэнгүйг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#rstudio">RStudio хэсгээс</a> уншина уу.</p>
+<p><strong>Объектууд</strong> - Таны R-д хадгалдаг бүх зүйл - датасетүүд, хувьсагч, тосгоны нэрсийн жагсаалт, хүн амын нийт тоо, тэр ч байтугай график гэх мэт гаралтууд - нь нэр оноогдсон объект бөгөөд тэрхүү нэрийг ашиглан дараагийн командуудад дуудаж болдог. Дэлгэрэнгүйг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#objects">Объектууд хэсгээс</a> уншина уу.</p>
+<p><strong>Функцууд</strong> - Функц нь оролтыг хүлээн авч, хувиргасан гаралтыг буцааж өгдөг кодын үйлдэл юм. Дэлгэрэнгүйг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#functions">Функц хэсгээс</a> уншина уу.</p>
+<p><strong>Багцууд</strong> - R багц гэдэг нь функцүүдийн нэгдэл юм. Дэлгэрэнгүй мэдээллийг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#packages">Багц хэсгээс</a> уншина уу.</p>
+<p><strong>Скриптүүд</strong> - Скрипт бол таны командуудыг агуулсан файл юм. Дэлгэрэнгүйг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#scripts">Скриптүүд хэсгээс</a> уншина уу</p>
+</div>
+<div id="learning" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Сургалтын материалууд<a class="anchor" aria-label="anchor" href="#learning"><i class="fas fa-link"></i></a>
+</h2>
+<div id="rstudio-доторх-материалууд" class="section level3 unnumbered">
+<h3>RStudio доторх материалууд<a class="anchor" aria-label="anchor" href="#rstudio-%D0%B4%D0%BE%D1%82%D0%BE%D1%80%D1%85-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Тусламжийн баримт бичиг</strong></p>
+<p>R багц болон функцуудын талаархи баримт бичгийг RStudio-гийн “Help” таб дээрээс хайж болно. Энэ нь Files, Plots болон Packages бүхий хэсэгт байдаг (ихэвчлэн баруун доод хэсэгт). Хурдан хандая гэвэл та R консол дотор асуултын тэмдгийн дараа тухайн багц эсвэл функцын нэрийг бичсэнээр хамааралтай Help хуудсыг нээж болно. Ингэхдээ хаалтгүйгээр бичнэ үү.</p>
+<p>Жишээлбэл: <code><a href="https://dplyr.tidyverse.org/reference/filter.html">?filter</a></code> эсвэл <code>?diagrammeR</code>.</p>
+<p><strong>Интерактив хичээлүүд</strong></p>
+<p>RStudio дотор R-ийг интерактив байдлаар сурах хэд хэдэн арга байдаг.</p>
+<p>RStudio өөрөө <a href="https://blog.rstudio.com/2020/02/25/rstudio-1-3-integrated-tutorials/">learnr</a> хэмээх R багцаар ажилладаг Tutorial хэсгийг санал болгодог. Ердөө л энэ багцыг суулгаад RStudio-ийн баруун дээд хэсэгт байрлах “Tutorial” табыг ашиглан хичээлээ нээнэ үү (Environment болон History табуудыг агуулсан хэсэг).</p>
+<p>R багц <a href="https://swirlstats.com/"><strong>swirl</strong></a>нь R консол дотор ажиллаж болох интерактив курсуудыг санал болгодог. Энэ багцыг суулгаад ачаалсны дараа R консол дээр <code>swirl()</code> (хоосон хаалттай) командыг ажиллуулна уу. Таны консол дээр асуулт гарч ирэх болно. Консол дээрээ бичээд хариулна уу. Ийм байдлаар таны сонгосон хичээлийг удирдан явуулах болно.</p>
+</div>
+<div id="cheatsheets" class="section level3 unnumbered">
+<h3>Cheatsheets<a class="anchor" aria-label="anchor" href="#cheatsheets"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://rstudio.com/resources/cheatsheets/">RStudio вэбсайт</a> дээр олон PDF “cheatsheets” байдаг, жишээлбэл:</p>
+<ul>
+<li><p>Факторын <strong>forcats</strong> багц</p></li>
+<li><p>Огноо, цагийн <strong>lubridate</strong> багц</p></li>
+<li><p>Стрингүүдийн <strong>stringr</strong> багц</p></li>
+<li><p>Давтагдах үйлдлүүдэд зориулсан <strong>purrr</strong> багц</p></li>
+<li><p>Дата импортлох</p></li>
+<li><p><strong>dplyr</strong> багцын дата хувиргах cheatsheet</p></li>
+<li><p>R Markdown (PDF, Word, Powerpoint гэх мэт баримт бичиг үүсгэхийн тулд)</p></li>
+<li><p>Shiny (интерактив вэб апп бүтээх)</p></li>
+<li><p>Дата зураглалын <strong>ggplot2</strong> багц</p></li>
+<li><p>Картографи (GIS)</p></li>
+<li><p><strong>leaflet</strong> багц (интерактив газрын зураг)</p></li>
+<li><p>Python-ийг R-тай хамт ашиглах (<strong>reticulate</strong> багц)</p></li>
+</ul>
+<p>Энэ бол <a href="https://jules32.github.io/r-for-excel-users/">Excel хэрэглэгчдэд</a> зориулагдсан онлайн материал.</p>
+</div>
+<div id="twitter" class="section level3 unnumbered">
+<h3>Twitter<a class="anchor" aria-label="anchor" href="#twitter"><i class="fas fa-link"></i></a>
+</h3>
+<p>R нь маш идэвхтэй жиргээчдийн хамт олонтой бөгөөд эндээс та R-тай холбоотой төрөл бүрийн зөвлөгөө, товчлол, мэдээ авч болно. Эдгээр хаягуудыг дагана уу:</p>
+<ul>
+<li>Биднийг дагаарай! <a href="https://twitter.com/epirhandbook">@epiRhandbook</a><br>
+</li>
+<li>Өдөрт нэг R функц <a href="https://twitter.com/rfunctionaday">@rfuntionaday</a> хэмээх энэ хаяг бол <em>маш сайн</em> мэдээлэлтэй<br>
+</li>
+<li>Дата шинжлэх ухаанд R-ыг <a href="https://twitter.com/rstats4ds?lang=en">@rstats4ds</a><br>
+</li>
+<li>RStudio <a href="https://twitter.com/rstudio?lang=en">@RStudio</a><br>
+</li>
+<li>RStudio зөвлөгөөнүүд <a href="https://twitter.com/rstudiotips">@rstudiotips</a><br>
+</li>
+<li>R-Bloggers <a href="https://twitter.com/Rbloggers">@Rbloggers</a><br>
+</li>
+<li>R-ladies <a href="https://twitter.com/RLadiesGlobal">@RLadiesGlobal</a><br>
+</li>
+<li>Hadley Wickham <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">@hadleywickham</a>
+</li>
+</ul>
+<p>Мөн:</p>
+<p><strong>#epitwitter</strong> болон <strong>#rstats</strong></p>
+</div>
+<div id="үнэгүй-онлайн-материалууд" class="section level3 unnumbered">
+<h3>Үнэгүй онлайн материалууд<a class="anchor" aria-label="anchor" href="#%D2%AF%D0%BD%D1%8D%D0%B3%D2%AF%D0%B9-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hadley Wickham, Garrett Grolemund нарын бичсэн <a href="https://r4ds.had.co.nz/">Дата шинжлэх ухаанд R</a>-ыг ном нь энэ чиглэлийн хамгийн гол сурах бичиг юм.</p>
+<p><a href="https://r4epis.netlify.app/">R4Epis төслийн</a> вэбсайт нь “<a href="https://www.msf.org/">MSF</a>-ийн яаралтай тусламжийн нөхцөлд тохиолддог дэгдэлтийн түгээмэл төрлүүд болон хүн амд суурилсан асуумж судалгааны дата цэвэрлэх, анализ хийх, тайлан гаргахад зориулсан стандартчилагдсан хэрэгслүүдийг боловсруулах” зорилготой юм. Та эндээс R-ын анхан шатны сургалтын материалууд, дэгдэлт, асуумж судалгааны RMarkdown тайлангийн загвар болон тэдгээрийг ашиглаж эхлэхэд туслах хичээлүүдийг олж болно.</p>
+</div>
+<div id="англи-хэлээс-бусад-хэл" class="section level3 unnumbered">
+<h3>Англи хэлээс бусад хэл<a class="anchor" aria-label="anchor" href="#%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8-%D1%85%D1%8D%D0%BB%D1%8D%D1%8D%D1%81-%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D1%85%D1%8D%D0%BB"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://www.rstudio.com/collections/espanol/">Materiales de RStudio en Español</a></p>
+<p><a href="https://juba.github.io/tidyverse/index.html">Introduction à R et au tidyverse (Francais)</a></p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="суулгалт" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Суулгалт<a class="anchor" aria-label="anchor" href="#%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D0%BB%D1%82"><i class="fas fa-link"></i></a>
+</h2>
+<div id="r-болон-rstudio" class="section level3 unnumbered">
+<h3>R болон RStudio<a class="anchor" aria-label="anchor" href="#r-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-rstudio"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>R хэрхэн суулгах вэ</strong></p>
+<p><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a> вэбсайт руу орж өөрийн компьютерт тохирсон R-ын хамгийн сүүлийн хувилбарыг татаж авна уу.</p>
+<p><strong>RStudio хэрхэн суулгах вэ</strong></p>
+<p><a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a> вэбсайт руу орж өөрийн компьютерт тохирсон RStudio-гийн хамгийн сүүлийн үеийн үнэгүй хувилбарыг татаж авна уу.</p>
+<p><strong>Зөвшөөрлүүд</strong><br>
+Та R ба RStudio-г өөрийн унших (read), бичих (write) зөвшөөрөлтэй драйвт суулгах ёстойг анхаарна уу. Тэгэхгүй бол таны R багцуудыг суулгах явцад (түгээмэл тохиолддог) сөргөөр нөлөөлөх болно. Хэрэв танд асуудал тулгарвал RStudio нээх лого дээр хулганы баруун товчийг дараад “Run as administrator” сонгон нээхийг оролдоно уу. Бусад зөвлөмжийг <span class="math display">\[Сүлжээний драйв дээрх R\]</span> хуудаснаас олж болно.</p>
+<p><strong>R болон RStudio-г хэрхэн шинэчлэх вэ</strong></p>
+<p>R-ийг эхлүүлэх үед консол дээр таны R программын хувилбар харагддаг. Мөн та <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code> функцийг ажиллуулан харж болно.</p>
+<p>R-г шинэчлэхийн тулд дээр дурдсан вэбсайт руу орж R-г дахин суулгаарай. Өөрөөр <strong>installr</strong> багцын (Windows дээр) <code>installr::updateR()</code> функцыг ажиллуулснаар шинэчилж болно. Энэ функц нь танд хамгийн сүүлийн үеийн R хувилбарыг татаж авах, багцуудаа шинэ R хувилбар болгон шинэчлэхэд туслах харилцах цонхыг нээх болно. Дэлгэрэнгүй мэдээллийг <strong>installr</strong> <a href="https://www.r-project.org/nosvn/pandoc/installr.html">баримт бичгээс</a> олж болно.</p>
+<p>Ингэж суулгасны дараа R-ын хуучин хувилбар таны компьютер дээр байсаар байх болно гэдгийг анхаарна уу. Та RStudio дээрх “Tools” -&gt; “Global Options” дээр дарж R хувилбарыг сонгож R-ын хуучин хувилбарыг (хуучин “суулгац”) түр ажиллуулж болно. Энэ үйлдэл нь та R-ын хамгийн сүүлийн хувилбарт зориулан шинэчлэгдээгүй байгаа багцыг ашиглах шаардлагатай үед хэрэг болдог.</p>
+<p>RStudio-г шинэчлэхийн тулд та дээрх вэбсайт руу орж RStudio-г дахин татаж авах боломжтой. Өөр нэг сонголт нь RStudio дотор “Help” -&gt; “Check for Updates” дээр дарах бөгөөд гэвч энэ нь хамгийн сүүлийн үеийн шинэчлэлтийг харуулахгүй байж магадгүй.</p>
+<p>Энэхүү гарын авлагыг бүтээхэд R, RStudio эсвэл багцуудын аль хувилбарыг ашигласан болохыг харахын тулд <span class="math display">\[Редакцийн болон техникийн тэмдэглэл\]</span> хуудсыг үзнэ үү.</p>
+</div>
+<div id="суулгах-шаардлагатай-болж-магадгүй-бусад-програм-хангамж" class="section level3 unnumbered">
+<h3>Суулгах шаардлагатай болж магадгүй бусад програм хангамж<a class="anchor" aria-label="anchor" href="#%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85-%D1%88%D0%B0%D0%B0%D1%80%D0%B4%D0%BB%D0%B0%D0%B3%D0%B0%D1%82%D0%B0%D0%B9-%D0%B1%D0%BE%D0%BB%D0%B6-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B4%D0%B3%D2%AF%D0%B9-%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC-%D1%85%D0%B0%D0%BD%D0%B3%D0%B0%D0%BC%D0%B6"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>TinyTeX (<em>RMarkdown-ыг PDF болгон нэгтгэхэд зориулсан</em>)<br>
+</li>
+<li>Pandoc (<em>RMarkdown-ыг нэгтгэхэд зориулсан</em>)<br>
+</li>
+<li>RTools (<em>R-ын багцуудыг угсрахад зориулсан</em>)<br>
+</li>
+<li>phantomjs (<em>халдварын гинжин хэлхээ гэх мэт хөдөлгөөнт сүлжээнүүдийн хөдөлгөөнгүй зургийг хадгалахад зориулсан</em>)</li>
+</ul>
+<div id="tinytex" class="section level4 unnumbered">
+<h4>TinyTex<a class="anchor" aria-label="anchor" href="#tinytex"><i class="fas fa-link"></i></a>
+</h4>
+<p>TinyTex бол LaTeX-ийн custom түгээлт бөгөөд R-аас PDF үүсгэхэд хэрэгтэй байдаг. Дэлгэрэнгүй мэдээллийг <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a> харна уу.</p>
+<p>R-аас TinyTex-ийг суулгахын тулд:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'tinytex'</span><span class="op">)</span>
+<span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># TinyTeX-ийг устгахын тулд tinytex::uninstall_tinytex() ажиллуулна</span></code></pre></div>
+</div>
+<div id="pandoc" class="section level4 unnumbered">
+<h4>Pandoc<a class="anchor" aria-label="anchor" href="#pandoc"><i class="fas fa-link"></i></a>
+</h4>
+<p>Pandoc бол баримт бичиг хөрвүүлэгч, R-аас тусдаа програм хангамж юм. <strong>Энэ нь RStudio-той цуг ирдэг тул тусад нь татаж авах шаардлагагүй.</strong> Pandoc нь Rmarkdown-ыг .pdf гэх мэт формат руу хөрвүүлэх, комплекс үйлдлүүд хийхэд тусалдаг.</p>
+</div>
+<div id="rtools" class="section level4 unnumbered">
+<h4>RTools<a class="anchor" aria-label="anchor" href="#rtools"><i class="fas fa-link"></i></a>
+</h4>
+<p>RTools бол R-д зориулсан багц үүсгэх програм хангамжийн цуглуулга юм.</p>
+<p>Энэ вэбсайтаас суулгана: <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></p>
+</div>
+<div id="phantomjs" class="section level4 unnumbered">
+<h4>phantomjs<a class="anchor" aria-label="anchor" href="#phantomjs"><i class="fas fa-link"></i></a>
+</h4>
+<p>Энэ нь ихэвчлэн вэб хуудсуудын “screenshot” авахад ашиглагддаг. Жишээлбэл, та <strong>epicontacts</strong> багц ашиглан халдварын гинжин хэлхээ хийх үед интерактив, динамик HTML файлыг гаргадаг. Хэрэв та үүнээс статик зураг авахыг хүсч байвал энэ үйл явцыг автоматжуулахын тулд <a href="https://wch.github.io/webshot/articles/intro.html"><strong>webshot</strong></a>багцыг ашиглаж болно. Үүний тулд “phantomjs” програм шаардлагатай. Та <strong>webshot</strong> багцаар дамжуулан <code><a href="https://rdrr.io/pkg/webshot/man/install_phantomjs.html">webshot::install_phantomjs()</a></code> командын тусламжтайгаар phantomjs-ийг суулгаж болно.</p>
+<!-- ======================================================= -->
+</div>
+</div>
+</div>
+<div id="rstudio" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> RStudio<a class="anchor" aria-label="anchor" href="#rstudio"><i class="fas fa-link"></i></a>
+</h2>
+<div id="rstudio-чиг-баримжаа" class="section level3 unnumbered">
+<h3>RStudio чиг баримжаа<a class="anchor" aria-label="anchor" href="#rstudio-%D1%87%D0%B8%D0%B3-%D0%B1%D0%B0%D1%80%D0%B8%D0%BC%D0%B6%D0%B0%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Эхлээд RStudio-г нээ.</strong> Тэдний лого нь хоорондоо маш төстэй харагддаг тул та R биш <em>RStudio</em>-г нээж байгаа эсэхээ шалгаарай.</p>
+<p>RStudio-ийг ажиллуулахын тулд та компьютер дээрээ R суулгасан байх ёстой (суулгах зааврыг дээрээс үзнэ үү).</p>
+<p><strong>RStudio</strong> нь R ашиглахыг хялбарчилж буй интерфэйс юм (GUI). Та R-ыг машины хөдөлгүүр, гол ажлыг нь хийж байгаа гэж, харин RStudio-г тухайн хөдөлгүүрийг урагшлуулахад тусалдаг машины их бие (суудал, дагалдах хэрэгсэл гэх мэт) гэж ойлгож болно! Та RStudio хэрэглэгчийн интерфэйсийн бүрэн cheatsheet-ийг (PDF) <a href="https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">эндээс</a> үзэх боломжтой.</p>
+<p>Хамгийн эхний байдлаар RStudio нь дөрвөн тэгш өнцөгт самбарыг харуулдаг.</p>
+<div class="inline-figure"><img src="images/RStudio_overview.PNG" width="100%" style="display: block; margin: auto;"></div>
+<p><span style="color: black;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> Хэрэв таны RStudio зүүн талдаа ганцхан дэлгэцтэй байгаа бол энэ нь та скриптүүд хараахан нээгээгүй байгаатай холбоотой юм.</span></p>
+<p><strong>Үүсвэр самбар (Source pane)</strong><br>
+Эхний байдлаар зүүн дээд буланд байдаг энэ самбар нь <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#scripts">скриптүүдээ</a> засварлах, ажиллуулах, хадгалах зай юм. Скриптүүд нь таны ажиллуулахыг хүссэн командуудыг агуулдаг. Энэ самбар нь мөн датасетүүд (датафрэйм) харуулах боломжтой.</p>
+<p>Stata хэрэглэгчдийн хувьд энэ самбар нь таны Do-file болон Data Editor цонхтой төстэй юм.</p>
+<p><strong>R консол самбар (Console pane)</strong></p>
+<p>RStudio дотор R консол нь зүүн эсвэл зүүн доод хэсэгт эхний байдлаар байрладаг бөгөөд R-ын “хөдөлгүүр”-ийн гэр юм. Энэ нь командуудын ажилладаг хэсэг бөгөөд график бус гаралт, алдаа/анхааруулах мессеж гарч ирдэг. Та R консолд командуудыг шууд оруулж ажиллуулж болох боловч скриптээс командыг ажиллуулахад хадгалагдаж үлддэг шиг эдгээр командууд хадгалагддаггүй гэдгийг ойлгоорой.</p>
+<p>Хэрэв та Stata мэддэг бол R консол нь Command Window болон Results Window-тэй адил юм.</p>
+<p><strong>Орчны самбар (Environment Pane)</strong><br>
+Програм нээгдэх үед баруун дээд буланд байдаг энэ самбарыг ихэвчлэн тухайн ажиллаж буй үеийн R-ын орчинд буй <a href="#objects#objects#objects#objects#objects#objects#objects">объектуудын</a> товч мэдээллийг харахад ашигладаг. Эдгээр объектууд нь импортолсон, өөрчлөгдсөн эсвэл үүсгэсэн датасетүүд, таны тодорхойлсон параметрүүд (жишээлбэл, тухайн анализад зориулсан тодорхой эпи долоо хоног), эсвэл анализ хийх үед тодорхойлсон векторууд эсвэл листүүд (жишээлбэл, бүс нутгийн нэрс) байж болно. Та датафрэймийн нэрний хажууд байгаа сумыг дарж хувьсагчдыг нь харах боломжтой.</p>
+<p>STATA-д энэ нь Variables Manager цонхтой хамгийн төстэй юм.</p>
+<p>Энэ самбарт мөн өмнө нь ажиллуулсан командуудыг харах боломжтой <em>History</em> таб орно. Мөн та <strong>learnr</strong> багцыг суулгасан бол интерактив R хичээл хийх боломжтой “Tutorial” таб энд байдаг. Эдгээрээс гадна энэхүү самбарт гадаад холболт хийхэд зориулсан “Connections” таб, Github-тай интерфэйс хийвэл гарч ирдэг “Git” хэмээх табуудыг агуулагддаг.</p>
+<p><strong>Plots, Viewer, Packages, болон Help самбар</strong></p>
+<p>Баруун доод хэсэгт хэд хэдэн чухал табууд байдаг. Газрын зураг зэргийг багтаасан түгээмэл график дүрслэлүүдийг Plot таб дээр харуулна. Интерактив эсвэл HTML гаралтууд нь Viewer табд гарч ирнэ. Help таб нь баримт бичиг, тусламжийн файлуудыг харуулдаг. Файлын самбар нь файл нээх эсвэл устгахад зориулагдсан хөтөч юм. Packages таб нь танд R багцыг харах, суулгах, шинэчлэх, устгах, ачаалах/буулгах, танд байгаа багцын хувилбарыг харах боломжийг олгодог. Багцын талаар илүү ихийг мэдэхийг хүсвэл доорх <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#packages">багц хэсгээс</a> үзнэ үү.</p>
+<p>Энэ самбар нь Stata-гийн Plots Manager болон Project Manager цонхнуудтай төстэй мэдээлэл агуулдаг.</p>
+</div>
+<div id="rstudio-тохируулгууд" class="section level3 unnumbered">
+<h3>RStudio тохируулгууд<a class="anchor" aria-label="anchor" href="#rstudio-%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B3%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>RStudio-ийн тохиргоо болон харагдах байдлыг Tools цэснээс Global Options-ийг сонгон өөрчилнө үү. Тэнд та харагдах байдал/дэвсгэр өнгө зэрэг үндсэн тохиргоонуудыг өөрчилж болно.</p>
+<p><img src="images/RStudio_tools_options_1.png" width="50%"><img src="images/RStudio_tools_options.png" width="50%"></p>
+<p><strong>Дахин эхлүүлэх (Restart)</strong></p>
+<p>Хэрэв таны R гацвал Session цэс рүү ороод “Restart R” дээр дарж R-г дахин эхлүүлж болно. Энэ нь RStudio-г бүхэлд нь хааж, нээхээс зайлсхийдэг. Үүнийг хийснээр таны R орчинд байгаа бүх зүйл устах болно.</p>
+</div>
+<div id="гарын-товчлолууд-keyboard-shortcuts" class="section level3 unnumbered">
+<h3>Гарын товчлолууд (Keyboard shortcuts)<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D1%82%D0%BE%D0%B2%D1%87%D0%BB%D0%BE%D0%BB%D1%83%D1%83%D0%B4-keyboard-shortcuts"><i class="fas fa-link"></i></a>
+</h3>
+<p>Зарим тун хэрэгтэй гарын товчлолуудыг доор харуулав. Энэхүү RStudio <a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">хэрэглэгчийн интерфэйсийн cheatsheet</a>-ийн хоёр дахь хуудаснаас Windows, Mac, Linux-ийн бүх гарын товчлолыг үзнэ үү.</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="19%">
+<col width="11%">
+<col width="69%">
+</colgroup>
+<thead><tr class="header">
+<th>Windows/Linux</th>
+<th>Mac</th>
+<th>Үйлдэл</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Esc</td>
+<td>Esc</td>
+<td>Одоогийн командыг зогсоох (хэрэв та санамсаргүйгээр бүрэн бус командыг ажиллуулаад R консол дээр “+” тэмдэг гарчихаад байгаа үед хэрэг болдог)</td>
+</tr>
+<tr class="even">
+<td>Ctrl+s</td>
+<td>Cmd+s</td>
+<td>Хадгалах (скрипт)</td>
+</tr>
+<tr class="odd">
+<td>Tab</td>
+<td>Tab</td>
+<td>Автоматаар дүүргэх</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Enter</td>
+<td>Cmd + Enter</td>
+<td>Одоогийн кодын мөр(үүд)/сонголтыг ажиллуулах</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Shift + C</td>
+<td>Cmd + Shift + c</td>
+<td>Тодруулсан мөрүүдэд тайлбар нэмэх/тайлбарыг арилгах</td>
+</tr>
+<tr class="even">
+<td>Alt + -</td>
+<td>Option + -</td>
+<td>
+<code>&lt;-</code> тэмдэг оруулах</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Shift + m</td>
+<td>Cmd + Shift + m</td>
+<td>
+<code>%&gt;%</code> тэмдэг оруулах</td>
+</tr>
+<tr class="even">
+<td>Ctrl + l</td>
+<td>Cmd + l</td>
+<td>R консол цэвэрлэх</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Alt + b</td>
+<td>Cmd + Option + b</td>
+<td>Эхнээс одоогийн мөр хүртэл ажиллуулах</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Alt + t</td>
+<td>Cmd + Option + t</td>
+<td>Одоогийн кодын хэсгийг ажиллуулах (R Markdown)</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Alt + i</td>
+<td>Cmd + Shift + r</td>
+<td>Кодын хэсэг оруулах (R Markdown руу)</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Alt + c</td>
+<td>Cmd + Option + c</td>
+<td>Кодын хэсэг ажиллуулах (R Markdown)</td>
+</tr>
+<tr class="odd">
+<td>R консолд дээшээ/доошоо сумаар</td>
+<td>Ижил</td>
+<td>Саяхан ажиллуулсан командуудыг сэлгэх</td>
+</tr>
+<tr class="even">
+<td>Скрипт дотор Shift + дээшээ/доошоо сум</td>
+<td>Ижил</td>
+<td>Олон кодын мөрийг сонгох</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + f</td>
+<td>Cmd + f</td>
+<td>Одоогийн скрипт дотор хайж олоод солих</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Shift + f</td>
+<td>Cmd + Shift + f</td>
+<td>Файлуудаас хайх (олон скриптийн дунд хайх/солих)</td>
+</tr>
+<tr class="odd">
+<td>Alt + l</td>
+<td>Cmd + Option + l</td>
+<td>Сонгосон кодыг хумих</td>
+</tr>
+<tr class="even">
+<td>Shift + Alt + l</td>
+<td>Cmd + Shift + Option+l</td>
+<td>Сонгосон кодыг дэлгэх</td>
+</tr>
+</tbody>
+</table></div>
+<p><span style="color: darkgreen;"><strong><em>ЗӨВЛӨГӨӨ:</em></strong> RStudio-ийн автоматаар дүүргэх үйлдлийг ашиглахын тулд бичихдээ Tab товчлуураа ашиглана уу. Ингэснээр функцын нэрийг буруу бичихээс урьдчилан сэргийлэх боломжтой юм. Бичлэгийн дундаа Tab товчийг дарснаар одоог хүртэл бичсэн байгаа зүйл дээр үндэслэн байж болох боломжит функцууд болон объектуудын жагсаалтыг гаргана.</span></p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="functions" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> Функцууд<a class="anchor" aria-label="anchor" href="#functions"><i class="fas fa-link"></i></a>
+</h2>
+<p>Функцууд нь R-ыг ашиглах гол цөм болдог. Функцын тусламжтайгаар та төрөл бүрийн даалгавар, үйлдлүүдийг гүйцэтгэх боломжтой болж буй юм. Нэлээд олон функцууд R-тай хамт суулгагдан ирдэг бөгөөд бусад олон функцуудыг <em>багц</em> хэлбэрээр татаж авах боломжтойгоос (<a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#packages">багцууд</a> хэсэгт тайлбарласан) гадна та өөрийн хүссэн функцээ өөрөө бичиж болно!</p>
+<p>Энэхүү функцийн талаархи суурь ойлголтын хэсэгт дараах зүйлийг тайлбарласан болно:</p>
+<ul>
+<li><p>Функц гэж юу вэ, тэд хэрхэн ажилладаг талаар</p></li>
+<li><p>Функцын аргументууд гэж юу болох талаар</p></li>
+<li><p>Тодорхой функцийг ойлгоход хэрхэн тусламж авах талаар</p></li>
+</ul>
+<p><em>Синтаксийн талаархи товч тэмдэглэл:</em> Энэхүү гарын авлагад функцуудыг код-текст маягаар нээлттэй хаалт бүхий бичсэн болно, жишээ нь: <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#packages">Багцууд</a> хэсэгт тайлбарласны дагуу функцуудыг <em>багцууд</em> дотор татаж авдаг. Энэхүү гарын авлагад багцын нэрийг <strong>dplyr</strong> гэж байгаа шиг тодоор (<strong>bold</strong>) бичсэн. Заримдаа жишээ код дээр та функцын нэрийг багцын нэртэй хоёр цэгээр (<code>::</code>) буюу ийм байдлаар <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> холбон бичсэн байхыг харж болно. Энэхүү холболтын зорилгыг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#packages">багцууд</a> хэсэгт тайлбарласан.</p>
+<!-- ======================================================= -->
+<div id="энгийн-функцууд" class="section level3 unnumbered">
+<h3>Энгийн функцууд<a class="anchor" aria-label="anchor" href="#%D1%8D%D0%BD%D0%B3%D0%B8%D0%B9%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Функц нь оролтыг хүлээн авч, тэдгээр оролтон дээр ямар нэгэн үйлдэл хийж, гаралт гаргадаг машинтай адил юм.</strong> Ямар гаралт байх нь тухайн функцээс хамаарна.</p>
+<p><strong>Функцууд нь ихэвчлэн функцын хаалтанд байрлуулсан зарим объект дээр ажилладаг.</strong> Жишээлбэл, <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> функц нь тооны квадрат язгуурыг тооцоолно:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">49</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<p>Мөн функцэд оруулж буй объект нь датасетийн багана байж болно (бүх төрлийн объектуудын талаар дэлгэрэнгүйг <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#objects">Объектууд</a> хэсгээс үзнэ үү). R нь олон тооны датасет хадгалах боломжтой тул та датасет болон баганыг хоёуланг нь зааж өгөх хэрэгтэй. Үүнийг хийх нэг арга бол $ тэмдэглэгээг ашиглан датасетийн нэр болон баганын нэрийг (<code>dataset$column</code>) холбох юм. Доорх жишээн дээр <code>linelist</code> хэмээх датасетийн <code>age</code> хэмээх тоон баганыг <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> функцэд оруулснаар тухайн баганы тоон болон дутуу утгуудын хураангуй мэдээлэл гарч байна.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 'linelist' датасетийн 'age' баганы хураангуй статистикүүдийг хэвлэх </span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##    0.00    6.00   13.00   16.07   23.00   84.00      86</code></pre>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> Хөшигний цаана функц нь хэрэглэгчдэд зориулж нэг хялбар командад багтаасан комплекс нэмэлт кодуудын бүрдэл байдаг.</span></p>
+<!-- ======================================================= -->
+</div>
+<div id="олон-аргументтай-функцууд" class="section level3 unnumbered">
+<h3>Олон аргументтай функцууд<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%82%D0%B0%D0%B9-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Функцууд нь ихэвчлэн таслалаар хоорондоо тусгаарлагдсан, функцын хаалтан дотор байрлах <strong><em>аргумент</em></strong> гэж нэрлэгддэг хэд хэдэн оролтыг шаарддаг.</p>
+<ul>
+<li><p>Зарим аргумент функцыг ажиллуулахын тулд заавал шаардлагатай байдаг бол зарим нь заавал байх шаардлагагүй</p></li>
+<li><p>Заавал байх шаардлагагүй аргументууд нь анхдагч утгатай байдаг</p></li>
+<li><p>Аргументууд нь тэмдэгт (character), тоон, логик (ҮНЭН/ХУДАЛ) болон бусад оролтыг авч болно</p></li>
+</ul>
+<p>Энд ердийн функцийн жишээ болгон <code>oven_bake()</code> гэсэн зохиомол функц байна. Энэ функц нь оролтын объектыг (жишээлбэл, датасет эсвэл энэ жишээнд байгаа шиг “dough”) авч, нэмэлт аргументуудаар тодорхойлсон (<code>minutes =</code> ба <code>temperature =</code>) үйлдлүүдийг гүйцэтгэж байна. Гаралтыг консол дээр шууд хэвлэх эсвэл оноох операторыг (&lt;-) ашиглан объект болгон хадгалах боломжтой .</p>
+<div class="inline-figure"><img src="images/Function_Bread_Example.png" width="75%" style="display: block; margin: auto;"></div>
+<p><strong>Илүү бодитой жишээ дурдвал</strong> доорхи <code>age_pyramid()</code> команд нь тодорхой насны бүлгүүд болон <code>gender</code> гэх мэт хоёртын баганууд дээр үндэслэн насны пирамидын зургийг гаргадаг. Энэхүү функцэд хаалтан дотор нь таслалаар тусгаарлагдсан гурван аргумент өгөгдсөн байна. Аргументэд өгсөн утгууд нь <code>linelist</code>-ийг ашиглах датафрэймээр, <code>age_cat5</code>-ийг тоолох баганаар, <code>gender</code>-ийг пирамидыг өнгөөр хуваахад ашиглах хоёртын баганаар ашиглаж байна.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># насны пирамид зурах</span>
+<span class="fu">age_pyramid</span><span class="op">(</span>data <span class="op">=</span> <span class="va">linelist</span>, age_group <span class="op">=</span> <span class="st">"age_cat5"</span>, split_by <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="75%" height="75%"></div>
+<p>Дээрх командыг аргумент бүр шинэ мөрөн дээр байх замаар урт болгон доорхтой адилаар бичиж болно. Ингэж кодоо бичих нь уншихад илүү хялбар, хэсэг тус бүрийг тайлбарлахын тулд <code>#</code>-тэй “тайлбар” бичихэд илүү хялбар болгодог (дэлгэрэнгүй тайлбар хийж явах нь сайн практик!). Энэхүү урт командыг ажиллуулахын тулд та тушаалыг бүхэлд нь тодруулан “Run” дээр дарах эсвэл курсороо эхний мөрөнд байрлуулаад Ctrl, Enter товчлууруудыг нэгэн зэрэг дарж болно.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># насны пирамид зурах</span>
+<span class="fu">age_pyramid</span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">linelist</span>,        <span class="co"># тохиолдлын linelist хэрэглэх</span>
+  age_group <span class="op">=</span> <span class="st">"age_cat5"</span>, <span class="co"># насны бүлгийн баганыг зааж өгөх</span>
+  split_by <span class="op">=</span> <span class="st">"gender"</span>     <span class="co"># 2 талтай пирамид зурахын тулд хүйсийн баганыг ашиглах</span>
+  <span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="75%" height="75%"></div>
+<p>Аргументыг тодорхой дарааллаар бичсэн тохиолдолд (функцын баримт бичигт заасны дагуу) тухайн аргументын эхний хагасыг (жишээ нь, <code>data =</code>) бичих шаардлагагүй. Доорх код нь дээрхтэй яг ижил пирамид үүсгэдэг, учир нь энэхүү функц нь датафрэйм, <code>age_group</code> хувьсагч, <code>split_by</code> хувьсагчийн аргументуудыг яг ийм дараалалтайгаар хүлээж байдаг.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Энэ команд нь дээрхтэй яг ижил график үүсгэх болно</span>
+<span class="fu">age_pyramid</span><span class="op">(</span><span class="va">linelist</span>, <span class="st">"age_cat5"</span>, <span class="st">"gender"</span><span class="op">)</span></code></pre></div>
+<p><strong>Илүү комплекс <code>age_pyramid()</code> команд нь заавал шаардлагагүй дараахь аргументуудыг агуулж болно:</strong></p>
+<ul>
+<li><p>Тооны оронд пропорцыг харуулах (анхдагч утга нь <code>FALSE</code> үед <code>proportional = TRUE</code> гэж өөрчилнө)</p></li>
+<li><p>Ашиглах хоёр өнгийг тодорхойлох (<code>pal =</code> гэдэг нь “palette” гэсэн үгийн товчлол бөгөөд хоёр өнгөний нэр бүхий вектороор хангагдсан байна. <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> функц хэрхэн вектор үүсгэдэгийг <a href="#objectstructure">объектууд</a> хуудаснаас үзнэ үү)</p></li>
+</ul>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> Аргументийн хоёр хэсгийг хоёуланг нь зааж өгсөн (жишээ нь <code>proportional = TRUE</code>) үед тухайн аргумент дарааллын хувьд хаана байрлах нь хамаагүй болно.</span></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">age_pyramid</span><span class="op">(</span>
+  <span class="va">linelist</span>,                    <span class="co"># тохиолдлын linelist хэрэглэх</span>
+  <span class="st">"age_cat5"</span>,                  <span class="co"># насны бүлгийн багана</span>
+  <span class="st">"gender"</span>,                    <span class="co"># хүйсээр хуваах</span>
+  proportional <span class="op">=</span> <span class="cn">TRUE</span>,         <span class="co"># тооны оронд хувь хэрэглэх</span>
+  pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"orange"</span>, <span class="st">"purple"</span><span class="op">)</span>  <span class="co"># өнгөнүүд</span>
+  <span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="75%" height="75%"></div>
+<!-- ======================================================= -->
+</div>
+<div id="функц-бичих" class="section level3 unnumbered" data-link="Writing functions">
+<h3>Функц бичих<a class="anchor" aria-label="anchor" href="#%D1%84%D1%83%D0%BD%D0%BA%D1%86-%D0%B1%D0%B8%D1%87%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>R бол функцэд чиглэсэн хэл тул та өөрийн функцийг бичих мэдлэгийг эзэмшсэн байх ёстой. Өөрөө функц бичих нь хэд хэдэн давуу талтай:</p>
+<ul>
+<li><p>Модульчлагдсан програмчлалыг хөнгөвчлөх - кодыг бие даасан, удирдах боломжтой хэсгүүдэд хуваадаг</p></li>
+<li><p>Алдаа гаргах магадлал өндөртэй байдаг давтагдсан copy, paste хийхийг орлох</p></li>
+<li><p>Кодын хэсгүүдэд мартагдахааргүй нэр өгөх</p></li>
+</ul>
+<p>Функцийг хэрхэн бичих талаар Функц бичих хуудсан дээр дэлгэрэнгүй авч үзсэн болно.</p>
+<!-- A function is given a name and defined with the assignment operator `<-` to a special **base** R function called `function()`. Within the parentheses, the arguments that the function will accept are defined. This is followed by curly brackets `{ }`, within which the actual code of the function is written.     -->
+<!-- The arguments should be provided in the syntax `argument = default`, separated by commas.   -->
+<!-- Here is an example where we create a function `staff_calc()` to serve as a staffing calculator for COVID-19 case investigation and contact tracing calls.   -->
+<!-- The arguments (inputs) and their default values will be:   -->
+<!-- * `daily_cases = NULL` The number of new COVID-19 cases per day   -->
+<!-- * `contacts_each = 5` The number contacts enumerated for each case   -->
+<!-- * `time_case = 0.5`  Number of hours to complete a case investigaton by phone   -->
+<!-- * `time_contact = 0.25`  Number of hours to complete a contact follow-up by phone   -->
+<!-- * `time_day = 8` The number of hours one staff works per day   -->
+<!-- Below, the function is created. The code ends with the special function `return()`, which is what the function produces.    -->
+<!-- ```{r message=FALSE, warning=FALSE, out.width = "75%", out.height="75%"} -->
+<!-- staff_calc <- function(daily_cases = NULL, contacts_each = 5, -->
+<!--                        time_case = 0.5, time_contact = 0.25, time_day = 8){ -->
+<!--   # Define total daily hours for calling cases -->
+<!--   case_hours <- daily_cases * time_case  -->
+<!--   # Define total daily hours for calling contacts -->
+<!--   contact_hours <- daily_cases * contacts_each * time_contact -->
+<!--   # Calculate number of staff required -->
+<!--   staff_required <- (case_hours + contact_hours)/time_day -->
+<!--   return(staff_required) -->
+<!-- } -->
+<!-- ``` -->
+<!-- Once this code is run, the function will be defined and will appear in the R Environment. We can run the function. Below all the default values are used and the `daily_cases = ` is set to 150.   -->
+<!-- There are many other nuances to understand when writing functions, as discussed in the page [Writing functions].   -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="packages" class="section level2" number="3.7">
+<h2>
+<span class="header-section-number">3.7</span> Багцууд<a class="anchor" aria-label="anchor" href="#packages"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Багцууд нь функцуудээс бүрддэг.</strong></p>
+<p>R багц гэдэг нь урьдчилан тодорхойлсон функцуудыг агуулсан код, баримт бичгийн нэгдэл юм. R-ын хэрэглэгчид тодорхой асуудлуудад зориулагдсан багцуудыг үргэлж хөгжүүлж байдаг бөгөөд таны ажилд тусалж чадах багц байгаа нь ч эргэлзээгүй! Та R ашиглах явцдаа хэдэн зуун багцыг суулгаж ашиглах болно.</p>
+<p>Анх R суулгахад түгээмэл, энгийн даалгавруудыг гүйцэтгэх чадвартай “<strong>base</strong>” багцууд болон функцууд хамт ирдэг. Гэвч олон R хэрэглэгчид өөрсдийн тусгай функцууд зохион <strong>багц</strong> болгосноор бусад хэрэглэгчид хэрэглэн функцуудын үйл ажиллагааг шалгах боломжтой болдог. Энэхүү гарын авлагад багцын нэрийг <strong>тодоор</strong> бичсэн. R -ын бага зэрэг төвөгтэй талуудын нэг нь тодорхой даалгаврыг биелүүлэхийн тулд олон функц, багцуудаас сонгох явдал байдаг.</p>
+<div id="суулгах-ачаалах" class="section level3 unnumbered">
+<h3>Суулгах, ачаалах<a class="anchor" aria-label="anchor" href="#%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Интернетээс компьютер дээрээ татаж авдаг (“суулгадаг”) <strong>багцуудад</strong> <em>функцууд</em> агуулагдсан байдаг. Багцыг татаж авсны дараа таны “library”-д хадгалагдах болно. Дараа нь та багцаа “ачаалах” замаар тухайн багцын агуулж буй функцыг R ашиглах үедээ хэрэглэх боломжтой.</p>
+<p><em>Та R-г өөрийн хувийн номын сан гэж бод:</em> Та багц татаж авахад таны номын сан тухайн багцын функцүүд бүхий шинэ номтой болж байна гэсэн үг, улмаар та тухайн номны функц ашиглахыг хүсэх болгондоо тэр номыг номын сангаасаа зээлэх (“ачаалах”) ёстой.</p>
+<p>Дүгнээд хэлэхэд: R багцад байгаа функцийг ашиглахын тулд 2 алхамыг хэрэгжүүлэх ёстой:</p>
+<ol style="list-style-type: decimal">
+<li><p>Багцыг (нэг удаа) <strong>суулгасан (installed)</strong> байх ёстой</p></li>
+<li><p>Багцыг <strong>ачаалах (load)</strong> ёстой (R ашиглах бүртээ)</p></li>
+</ol>
+<div id="таны-номын-сан-library" class="section level4 unnumbered">
+<h4>Таны номын сан (library)<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B0%D0%BD%D1%8B-%D0%BD%D0%BE%D0%BC%D1%8B%D0%BD-%D1%81%D0%B0%D0%BD-library"><i class="fas fa-link"></i></a>
+</h4>
+<p>Таны “номын сан” нь үнэндээ таны компьютер дээр суулгагдсан багц бүрийн хавтсыг агуулсан хавтас юм. R таны компьютерт хаана суусан болохыг олж мэдээд “win-library” нэртэй хавтас хайж олоорой. Жишээ нь: <code>R\win-library\4.0</code> (4.0 бол R-ын хувилбар юм. Таны татаж авсан R-ын хувилбар бүр өөрийн номын сантай).</p>
+<p>Та <code><a href="https://rdrr.io/r/base/libPaths.html">.libPaths()</a></code> (хоосон хаалттай) функцыг R консол дээр ажиллуулснаар таны номын сангийн файлын байршлыг харах боломжтой. Ялангуяа <span class="math display">\[сүлжээний хөтчүүд дээр R\]</span>-тай ажиллахад энэ нь онцгой ач холбогдолтой.</p>
+</div>
+<div id="cran-аас-суулгах" class="section level4 unnumbered">
+<h4>CRAN-аас суулгах<a class="anchor" aria-label="anchor" href="#cran-%D0%B0%D0%B0%D1%81-%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p>Ихэнх тохиолдолд R хэрэглэгчид CRAN-аас багц татаж авдаг. CRAN (Comprehensive R Archive Network - R-ын цогц архивын сүлжээ) нь R хэрэглэгчдийн нийтэлсэн R багцын олон нийтийн, онлайн агуулах юм.</p>
+<p>CRAN-аас багц татаж авахдаа вирус, аюулгүй байдлын талаар санаа зовж байна уу? Энэ сэдвээр <a href="https://support.rstudio.com/hc/en-us/articles/360042593974-R-and-R-Package-Security">энэ нийтлэлийг</a> уншина уу.</p>
+</div>
+<div id="хэрхэн-суулгаж-ачаалах-вэ" class="section level4 unnumbered">
+<h4>Хэрхэн суулгаж, ачаалах вэ?<a class="anchor" aria-label="anchor" href="#%D1%85%D1%8D%D1%80%D1%85%D1%8D%D0%BD-%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D0%B6-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%B0%D1%85-%D0%B2%D1%8D"><i class="fas fa-link"></i></a>
+</h4>
+<p>Энэхүү гарын авлагад бид <strong>pacman</strong> багцыг ашиглахыг санал болгож байна (“package manager” гэсэн үгийн товчлол). Энэхүү багц нь хэрэглэхэд хялбар <code>p_load()</code> хэмээх функцтэй бөгөөд энэхүү функц нь шаардлагатай бол багцыг суулгаж, одоогийн R сесст ачаалдаг.</p>
+<p>Синтакс нь маш энгийн. Хэрэглэх багцуудын нэрийг таслалаар тусгаарлан <code>p_load()</code> функцын хаалтанд жагсаан бичнэ. Доорх команд нь <strong>rio</strong>, <strong>tidyverse</strong> болон <strong>here</strong> багцуудыг хараахан суулгаагүй байвал суулгаж, ашиглахаар ачаалах болно. Ингэснээр <code>p_load()</code> ашиглах арга нь скриптээ бусадтай хуваалцахыг хялбар, тодорхой болгодог. Багцын нэрүүдийн үсгийн том, жижгийн хэмжээ чухал гэдгийг анхаарна уу.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Хэрэглэх багцуудыг (хэрэв шаардлагатай бол) суулгаад ачаалах</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">rio</span>, <span class="va">tidyverse</span>, <span class="va">here</span><span class="op">)</span></code></pre></div>
+<p>Бид функцийн нэр (<code>p_load()</code>)-ийн өмнө багцын нэрийг (<strong>pacman</strong>) хоёр цэгээр <code>::</code> холбон бичдэг <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">pacman::p_load()</a></code> синтаксыг ашигласан болохыг анхаарна уу. Энэ синтаксыг ашигласнаар <strong>pacman</strong> багцыг (өмнө нь суулгасан үед) шууд ачаалж байгаа тул амар байдаг.</p>
+<p>Та мөн <strong>base</strong> R-ын алтернатив функцуудыг түгээмэл харах болно. Багц суулгах <strong>base</strong> R функц нь <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> юм. Суулгах багцын нэрийг хаалтнд <em>ишлэл</em> доторбичих ёстой. Хэрэв та нэг командаар олон багц суулгахыг хүсвэл тэдгээрийг <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> тэмдэгтийн вектор дотор жагсаан бичнэ.</p>
+<p>Тэмдэглэл: энэ команд нь багцыг <em>суулгадаг</em> боловч одоогийн сешн дээр ашиглахаар ачаалдаггүй.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># base R ашиглан нэг багц суулгах</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span>
+
+<span class="co"># base R ашиглан олон багц суулгах</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"rio"</span>, <span class="st">"here"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Мөн point-and-click замаар багц суулгая гэвэл RStudio-ийн “Packages” таб дээр очоод “Install” дээр дарж хүссэн багцын нэрийг хайж олон суулгаж болдог.</p>
+<p>Суулгасны дараа багцыг ашиглахаар <strong>ачаалах base</strong> R функц нь <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> юм. Энэ функц нь нэг удаад зөвхөн нэг багцыг ачаалах боломжтой (<code>p_load()</code> ашиглах өөр нэг шалтгаан). Та багцын нэрийг ишлэлтэй эсвэл ишлэлгүйгээр өгөх боломжтой.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># base R ашиглан багц ачаалах</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></code></pre></div>
+<p>Багц суулгасан ба/эсвэл ачаалагдсан эсэхийг шалгахын тулд RStudio дахь Packages табыг үзэх боломжтой. Хэрэв багцыг суулгасан бол хувилбарын дугаараар тэнд харуулна. Хэрэв багцын өмнөх хайрцаг тэмдэглэгдсэн байвал тухайн багц нь одоогийн сешнд ачаалагдсан байна гэсэн үг.</p>
+<p><strong>Github-аас суулгах</strong></p>
+<p>Зарим тохиолдолд CRAN-д хараахан байхгүй байгаа багцыг суулгах шаардлагатай болдог. Эсвэл тодорхой багц CRAN дээр байгаа боловч тэрхүү илүү тогтвортой CRAN дээрх хувилбарт хараахан орж ирээгүй байгаа шинэ боломжуудтай <em>хөгжлийн хувилбарыг</em> хэрэглэх шаардлага гарч магад юм. Эдгээр нь ихэвчлэн <a href="https://github.com/">github.com</a> вэбсайт дээр олон нийтэд нээлттэй, үнэгүй кодын “репозитор”-д байршиж байдаг. Github-ын талаар дэлгэрэнгүйг гарын авлагын <span class="math display">\[Хувилбарын хяналт ба Git, Github ашиглан хамтран ажиллах\]</span> хуудаснаас уншина уу.</p>
+<p>Github-аас R багц татаж авахын тулд та <strong>pacman</strong> багцын <code>p_load_gh()</code> функцийг ашиглаж болох бөгөөд энэ функц нь шаардлагатай бол багцыг суулгаж, одоогийн R сешнд ашиглах боломжтой болгон ачаалах болно. Өөрөөр <strong>remotes</strong> эсвэл <strong>devtools</strong> багцыг ашиглан Github-аас багц суулгах боломжтой. <strong>pacman</strong> багцын бүх функцын талаар <a href="https://cran.r-project.org/web/packages/pacman/pacman.pdf">багцын баримт бичгээс</a> уншина уу.</p>
+<p>Github-аас багц суулгахын тулд та дараах мэдээлэлтэй байх шаардлагатай:</p>
+<ol style="list-style-type: decimal">
+<li><p>Репозитор эзэмшигчийн Github ID</p></li>
+<li><p>Багцыг агуулсан репозиторын нэр</p></li>
+<li><p><em>(заавал биш) Татаж авахыг хүсч буй “салбар”-ын нэр (хөгжлийн тусгай хувилбар)</em></p></li>
+</ol>
+<p>Доорх жишээнүүдэд ишлэл дэх эхний үг бол репозитор эзэмшигчийн Github ID бөгөөд ташуу зураасны дараа репозиторын нэр (багцын нэр) байгаа болно.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># epicontacts багцыг Github репозитороос нь суулгах/ачаалах</span>
+<span class="fu">p_load_gh</span><span class="op">(</span><span class="st">"reconhub/epicontacts"</span><span class="op">)</span></code></pre></div>
+<p>Хэрэв та үндсэн салбараас өөр “салбар” (хувилбар) суулгахыг хүсвэл репозиторын нэрний ард “@” тэмдгийн дараа салбарын нэрийг нэмнэ үү.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># epicontacts багцын "timeline" салбарыг Github-аас суулгах/ачаалах</span>
+<span class="fu">p_load_gh</span><span class="op">(</span><span class="st">"reconhub/epicontacts@timeline"</span><span class="op">)</span></code></pre></div>
+<p>Хэрэв Github хувилбар болон таны компьютер дээрх хувилбаруудын хооронд ялгаа байхгүй бол ямар ч үйлдэл явагдахгүй. Та <code>p_load_current_gh()</code> функцыг <code>update = TRUE</code> аргументтэй ашиглан “хүчээр” дахин суулгаж болно. <strong>pacman</strong> тухай нэмэлтээр энэхүү <a href="http://trinker.github.io/pacman/vignettes/Introduction_to_pacman.html">онлайн винетээс</a> уншина уу.</p>
+<p><strong>ZIP эсвэл TAR файлаас суулгах</strong></p>
+<p>Та URL ашиглан багцыг суулгаж болно:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">packageurl</span> <span class="op">&lt;-</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/dsr/dsr_0.2.2.tar.gz"</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">packageurl</span>, repos<span class="op">=</span><span class="cn">NULL</span>, type<span class="op">=</span><span class="st">"source"</span><span class="op">)</span></code></pre></div>
+<p>Эсвэл үүнийг зип файл хэлбэрээр компьютер дээрээ татаж аваад:</p>
+<p>Сонголт 1: <strong>remotes</strong> багцын <code>install_local()</code> функц ашиглан</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_local.html">install_local</a></span><span class="op">(</span><span class="st">"~/Downloads/dplyr-master.zip"</span><span class="op">)</span></code></pre></div>
+<p>Сонголт 2: <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> ашиглан, <code>type = "source"</code>, <code>repos = NULL</code> хэмээн зааж файлын байршлыг ZIP файлд өгнө.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"~/Downloads/dplyr-master.zip"</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="кодын-синтакс" class="section level3 unnumbered">
+<h3>Кодын синтакс<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%BE%D0%B4%D1%8B%D0%BD-%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэхүү гарын авлагад ойлгомжтой болгох үүднээс зарим тохиолдолд функцүүдийн өмнө <code>::</code> тэмдгийг ашиглан багцынх нь нэрийг дараах байдлаар бичсэн: <code>package_name::function_name()</code></p>
+<p>Багцыг тухайн сешнд ачаалсны дараа багцыг ингэж зааж өгөх шаардлагагүй байдаг. Та зүгээр л <code>function_name()</code> ашиглаж болно. Гэсэн хэдий ч нэг функцын нэр нийтлэг хэлбэрээр олон багцад байж болдог бөгөөд энэ тохиолдолд багцын нэрийг бичиж дуудах нь тустай байдаг (жишээ нь <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>). Мөн багцын нэрийг ингэж бичихэд хэрэв тухайн багц ачаалагдаагүй байгаа бол багцыг ачаалах болно.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Энэ команд "rio" багцыг ашиглан түүний "import()" функцыг ашиглан датасет импорт хийж байна</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist.xlsx"</span>, which <span class="op">=</span> <span class="st">"Sheet1"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="функцын-тусламж" class="section level3 unnumbered">
+<h3>Функцын тусламж<a class="anchor" aria-label="anchor" href="#%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%8B%D0%BD-%D1%82%D1%83%D1%81%D0%BB%D0%B0%D0%BC%D0%B6"><i class="fas fa-link"></i></a>
+</h3>
+<p>Тодорхой функцийн талаар дэлгэрэнгүй уншихын тулд та RStudio-ийн баруун доод хэсэгт байрлах Help таб дээрээс хайх боломжтой. Та мөн <code>?thefunctionname</code> (асуултын тэмдгийн дараа функцийн нэрийг оруулна) гэсэн командыг ажиллуулснаар тухайн функцын тусламжийн хуудас нь Help таб дээр гарч ирнэ. Мөн онлайнаар тусламж хайж үзээрэй.</p>
+</div>
+<div id="багц-шинэчлэх" class="section level3 unnumbered">
+<h3>Багц шинэчлэх<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86-%D1%88%D0%B8%D0%BD%D1%8D%D1%87%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Та багцыг дахин суулгах замаар шинэчлэх боломжтой. Та мөн RStudio-ийн Packages таб дээрх ногоон “Update” товчийг дарж аль багцууд шинэ хувилбартай болсныг харж болно. Багц шинэчлэх үед тодорхой функц хэрхэн ажилладаг талаар томоохон өөрчлөлт орсон тохиолдолд хуучин кодоо шинэчлэх шаардлагатай болж магадгүйг анхаарна уу!</p>
+</div>
+<div id="багц-устгах" class="section level3 unnumbered">
+<h3>Багц устгах<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D1%86-%D1%83%D1%81%D1%82%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>pacman</strong> багцын <code>p_delete()</code> эсвэл <strong>base</strong> R-ын <code><a href="https://rdrr.io/r/utils/remove.packages.html">remove.packages()</a></code> функц ашиглана уу. Эсвэл өөрийн library агуулсан хавтсыг компьютер дээрээ олоод багцын хавтсыг гараар устгаж болно.</p>
+</div>
+<div id="хамааралт-багц" class="section level3 unnumbered">
+<h3>Хамааралт багц<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D0%BC%D0%B0%D0%B0%D1%80%D0%B0%D0%BB%D1%82-%D0%B1%D0%B0%D0%B3%D1%86"><i class="fas fa-link"></i></a>
+</h3>
+<p>Багцууд нь ажиллахын тулд ихэвчлэн бусад багцуудыг ашигладаг. Эдгээрийг хамааралт багц (dependencies) гэж нэрлэдэг. Хэрэв хамааралт багцыг суулгаж чадахгүй бол үүнээс хамаарсан багцыг мөн суулгаж чадахгүй байж магадгүй юм.</p>
+<p>Тухайн багцын хамааралт багцуудыг <code>p_depends()</code> функц ашиглан харах ба <code>p_depends_reverse()</code> ашиглан тухайн багцад ямар багцууд хамааралтай болохыг харж болно.</p>
+</div>
+<div id="далдлах-функцууд" class="section level3 unnumbered">
+<h3>Далдлах функцууд<a class="anchor" aria-label="anchor" href="#%D0%B4%D0%B0%D0%BB%D0%B4%D0%BB%D0%B0%D1%85-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хоёр ба түүнээс дээш багц ижил нэртэй функц агуулах нь түгээмэл тохиолддог. Жишээлбэл, <strong>dplyr</strong> багц нь <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> функцтэй байхад <strong>stats</strong> багц ч мөн ижил нэртэй функцтэй. Өгөгдмөл (default) <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> функц нь эдгээр багцыг R сешнд ачаалах дарааллаас хамаарна - хамгийн сүүлд ачаалагдсан <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> өгөгдмөл болох болно.</p>
+<p>Та энэхүү дарааллыг R Studio-ийн Environment табаас шалгаж болно - “Global Environment” гэсэн цэсийг дарж, багцын дарааллыг харна уу. Энэ жагсаалтын <em>доод хэсэгт</em> байгаа багцын функцууд нь жагсаалтын дээд хэсэгт байгаа багцуудын ижил нэртэй функцийг далдлах болно. Тодорхой багцыг анх ачаалах үед тухайн багцын функц өөр багцын функцийг далдалж байгаа тохиолдолд R консол дээр танд анхааруулах боловч үүнийг анзаарахгүй өнгөрөх нь элбэг байдаг.</p>
+<div class="inline-figure"><img src="images/masking_functions.png" width="50%" style="display: block; margin: auto;"></div>
+<p>Далдлалтыг засах дараах аргууд байна:</p>
+<ol style="list-style-type: decimal">
+<li><p>Командад багцын нэрийг зааж өгнө. Жишээлбэл, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> ашиглах.</p></li>
+<li><p>Багцыг ачаалах дарааллыг өөрчлөөд (жишээ нь <code>p_load()</code> дотор), <strong>шинэ R сешн эхлүүлнэ</strong>.</p></li>
+</ol>
+</div>
+<div id="салгахбуулгах" class="section level3 unnumbered">
+<h3>Салгах/буулгах<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B0%D0%BB%D0%B3%D0%B0%D1%85%D0%B1%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Багцыг салгахын (буулгахын) тулд багцын нэрийг зөвөөр, зөвхөн нэг тодорхойлох цэгтэйгээр энэ командыг бичнэ. Энэ нь далдлах асуудлыг шийдэж чадахгүй байж болохыг анхаарна уу.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/detach.html">detach</a></span><span class="op">(</span><span class="va">package</span><span class="op">:</span><span class="va">PACKAGE_NAME_HERE</span>, unload<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="хуучин-хувилбар-суулгах" class="section level3 unnumbered">
+<h3>Хуучин хувилбар суулгах<a class="anchor" aria-label="anchor" href="#%D1%85%D1%83%D1%83%D1%87%D0%B8%D0%BD-%D1%85%D1%83%D0%B2%D0%B8%D0%BB%D0%B1%D0%B0%D1%80-%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Тодорхой багцын хуучин хувилбарыг суулгахын тулд энэ <a href="https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages">зааврыг</a> үзнэ үү.</p>
+</div>
+<div id="санал-болгож-буй-багцууд" class="section level3 unnumbered" data-link="Suggested packages">
+<h3>Санал болгож буй багцууд<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%B1%D1%83%D0%B9-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Өдөр тутмын тархвар судлалын ажилд санал болгож буй багцуудын жагсаалтыг <span class="math display">\[Санал болгож буй багцуудын\]</span> хуудаснаас үзнэ үү.</p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="scripts" class="section level2" number="3.8">
+<h2>
+<span class="header-section-number">3.8</span> Скриптүүд<a class="anchor" aria-label="anchor" href="#scripts"><i class="fas fa-link"></i></a>
+</h2>
+<p>Скрипт бол програмчлалын үндсэн хэсэг юм. Скрипт гэдэг нь таны командуудыг (жишээ нь датасет үүсгэх, өөрчлөх, дүрслэлийг харуулах функцууд гэх мэт) хадгалдаг баримт бичиг юм. Та скриптийг хадгалаад дараа нь дахин ажиллуулж болно. Скриптэд командуудаа хадгалаад дараа нь скриптээсээ шууд ажиллуулах нь олон давуу талтай байдаг (командуудаа R консол “command line” дээр нэг нэгээр нь бичихийн оронд).</p>
+<ul>
+<li><p>Зөөвөрлөх чадвар - та скриптүүдээ илгээх замаар бусадтай хуваалцах боломжтой</p></li>
+<li><p>Давтагдах чадвар - ингэснээр та болон бусад хүмүүс таны яг юу хийснийг мэдэх боломжтой</p></li>
+<li><p>Хувилбарын хяналт - ингэснээр та өөрийн эсвэл хамтран ажиллагсдын хийсэн өөрчлөлтийг хянах боломжтой</p></li>
+<li><p>Тайлбар/тэмдэглэл - хийсэн зүйлээ хамтран ажиллагсаддаа тайлбарлах</p></li>
+</ul>
+<div id="тайлбар-бичих" class="section level3 unnumbered">
+<h3>Тайлбар бичих<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B0%D0%B9%D0%BB%D0%B1%D0%B0%D1%80-%D0%B1%D0%B8%D1%87%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Скрипт дээр та R кодынхоо эргэн тойронд тэмдэглэл (“тайлбар”) оруулах боломжтой. Тайлбар бичих нь юу хийж байгаагаа ирээдүйн өөртөө болон бусад кодыг тань хэрэглэгчдэд тайлбарлахад тустай. Та чагт тэмдгийг (#) бичээд дараа нь тайлбараа бичиж болно. Тайлбарласан текст нь R кодоос өөр өнгөөр харагдах болно.</p>
+<p>#-тэмдгээс хойш бичигдсэн аливаа код ажиллахгүй. Тиймээс кодын өмнө # оруулах нь та устгахыг хүсэхгүй байгаа кодын мөрийг түр хаахад (“comment out”) ашигладаг арга юм. Та олон кодын мөрийг нэг дор тодруулж Ctrl+Shift+c (Mac дээр Cmd+Shift+c) товчийг дарснаар түр хааж/нээж болно.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Тайлбар нь нэг мөрөнд дангаараа байж болно</span>
+<span class="co"># дата импортлох</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"linelist_raw.xlsx"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># тайлбар кодын дараа бас орж болно</span>
+<span class="co"># filter(age &gt; 50)                          # Үүнийг мөн тодорхой кодын мөрийг идэвхгүй болгох/хасахад ашиглаж болно </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<ul>
+<li><p><em>Юу</em> хийж байгаагаа, <strong>яагаад</strong> хийж байгаагаа тайлбарлах.</p></li>
+<li><p>Кодыг логиктой хэсгүүдэд хуваах</p></li>
+<li><p>Өөрийн хийж буй зүйлийн алхам тус бүрийн тайлбарыг кодтойгоо дагалдуулах (жишээлбэл дугаарласан алхамууд)</p></li>
+</ul>
+</div>
+<div id="загвар" class="section level3 unnumbered">
+<h3>Загвар<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%B0%D0%B3%D0%B2%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Кодлох загварынхаа талаар тодорхой бодолтой байх нь чухал, ялангуяа багаар ажиллаж байгаа бол. Бид <strong>tidyverse</strong> <a href="https://style.tidyverse.org/">загварын зааврын</a> дагуу кодоо бичихийг зөвлөж байна. Мөн энэ загварт нийцэхэд тань туслах <strong>styler</strong>, <strong>lintr</strong> гэх мэт багцууд байдаг.</p>
+<p>Таны кодыг бусад хүн уншихад хялбар болгох цөөн хэдэн зөвлөмж:</p>
+<ul>
+<li><p>Объектуудыг нэрлэхдээ зөвхөн жижиг үсэг, тоо, доогуур зураас <code>_</code> ашиглах, жишээ нь <code>my_data</code></p></li>
+<li><p>Space буюу зайг сайн ашиглах, операторуудыг тойруулаад <code>n = 1</code> ба <code>age_new &lt;- age_old + 3</code> гэх мэт</p></li>
+</ul>
+</div>
+<div id="жишээ-скрипт" class="section level3 unnumbered">
+<h3>Жишээ скрипт<a class="anchor" aria-label="anchor" href="#%D0%B6%D0%B8%D1%88%D1%8D%D1%8D-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82"><i class="fas fa-link"></i></a>
+</h3>
+<p>Богино R скриптийн жишээг доор харуулав. Та кодоо товч, ойлгомжтой тайлбарлах тусам хамтран ажиллагсад тань танд талархах болно гэдгийг санаарай!</p>
+<div class="inline-figure"><img src="images/example_script.png" width="100%" style="display: block; margin: auto;"></div>
+<!-- ======================================================= -->
+</div>
+<div id="r-markdown" class="section level3 unnumbered">
+<h3>R markdown<a class="anchor" aria-label="anchor" href="#r-markdown"><i class="fas fa-link"></i></a>
+</h3>
+<p>R markdown скрипт бол тухайн скрипт нь өөрөө гаралтын баримт бичиг (PDF, Word, HTML, Powerpoint гэх мэт) болдог R скриптийн төрөл юм. Эдгээр нь динамик, автомат тайланг гаргахад ихэвчлэн хэрэглэгддэг маш хэрэгцээтэй, олон талын хэрэгсэл юм. Энэ вэбсайт, гарын авлагыг хүртэл R markdown скриптээр хийдэг!</p>
+<p>R анхлан сурж буй хэрэглэгчид ч R Markdown-ийг ашиглаж болно гэдгийг хэлэх нь зүйтэй - сүрдэх зүйл байхгүй! Нэмж суралцахын тулд <span class="math display">\[R Markdown тайлан\]</span> хэмээх гарын авлагын хуудсыг үзнэ үү.</p>
+<!-- ======================================================= -->
+</div>
+<div id="r-notebook" class="section level3 unnumbered">
+<h3>R notebook<a class="anchor" aria-label="anchor" href="#r-notebook"><i class="fas fa-link"></i></a>
+</h3>
+<p>R markdown болон R notebook бичих хоёрын хооронд ялгаа байхгүй. Гэсэн хэдий ч ажиллагааны хувьд бага зэрэг ялгаатай байдаг. Дэлгэрэнгүй мэдээллийг энэ <a href="http://uc-r.github.io/r_notebook">сайтаас</a> үзнэ үү.</p>
+<!-- ======================================================= -->
+</div>
+<div id="shiny" class="section level3 unnumbered">
+<h3>Shiny<a class="anchor" aria-label="anchor" href="#shiny"><i class="fas fa-link"></i></a>
+</h3>
+<p>Shiny апп/вэбсайтууд нь <code>app.R</code> гэсэн нэртэй нэг скрипт дотор агуулагддаг. Энэ файл нь гурван бүрэлдэхүүн хэсэгтэй:</p>
+<ul>
+<li><p>Хэрэглэгчийн интерфэйс (ui)</p></li>
+<li><p>Серверийн функц</p></li>
+<li><p><code>shinyApp</code> функцын дуудлага</p></li>
+</ul>
+<p><span class="math display">\[Shiny хяналтын самбар\]</span> хэмээх гарын авлагын хуудсыг эсвэл энэ онлайн хичээлийг үзнэ үү: <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/">Shiny хичээл</a></p>
+<p><em>Өмнө нь дээрх файлыг хоёр файл болгон хуваадаг байсан (<code>ui.R</code> ба <code>server.R</code>).</em></p>
+</div>
+<div id="код-эвхэх" class="section level3 unnumbered">
+<h3>Код эвхэх<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%BE%D0%B4-%D1%8D%D0%B2%D1%85%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Та өөрийн скриптийг уншихад хялбар болгохын тулд кодын хэсгийг эвхэж болно.</p>
+<p>Үүнийг хийхийн тулд # ашиглан текстийн гарчиг үүсгэж, гарчгаа бичээд зураас (-), чагт ( #) эсвэл тэнцүү (=) гэсэн тэмдгийг 4-ээс доошгүйг бичнэ. Ингэхэд зүүн талын “суваг” хэсэгт жижиг сум гарч ирнэ (мөрний дугаарын хажууд). Та энэ сум дээр дарахад гарчгийн доорх кодоос дараагийн гарчиг хүртэл эвхэгдэж оронд нь хоёр толгойтой сум гарч ирэх болно.</p>
+<p>Кодыг дэлгэхийн тулд суваг дээрх сум эсвэл хоёр толгойтой сумны дүрс дээр дахин дарна. Энэ хуудасны <a href="r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4.html#rstudio">RStudio хэсэгт</a> тайлбарласан шиг гарын товчлолууд бас байдаг.</p>
+<p>Чагт (#) ашиглан гарчиг үүсгэснээр та скриптийнхээ доод хэсэгт Агуулгын хүснэгтийг идэвхжүүлэх болно (доороос үзнэ үү). Та # тэмдгийг нэмж дэд гарчгууд үүсгэж болно, жишээ нь # нэгдүгээр шатны, ## хоёрдугаар шатны, ### гуравдугаар шатны гарчиг гэх мэт.</p>
+<p>Жишээ скриптийн хоёр хувилбарыг доор харуулав. Зүүн талд тайлбарласан гарчгууд бүхий эх хувь байна. Баруун талд гарчиг тус бүрийн ард дөрвөн зураас бичин тэдгээрийг эвхэгддэг болгосон. Тэдгээрийн хоёр нь эвхэгдсэн байгаа бөгөөд та доорх Агуулгын хүснэгтэд хэсэг бүрийг харуулсныг харж болно.</p>
+<p><img src="images/code_folding1.png" width="50%"><img src="images/code_folding2.png" width="50%"></p>
+<p>Автоматаар эвхэх боломжтой кодын бусад хэсэгт функцүүдийн тодорхойлолт зэрэг <code><a href="https://rdrr.io/r/base/Paren.html">{ }</a></code> хаалт бүхий “braced” бүсүүд эсвэл нөхцөлт блокууд (if else statements) орно. Та код эвхэх тухай дэлгэрэнгүй мэдээллийг RStudio <a href="https://support.rstudio.com/hc/en-us/articles/200484568-Code-Folding-and-Sections">сайтаас</a> уншиж болно.</p>
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="ажлын-директор" class="section level2" number="3.9">
+<h2>
+<span class="header-section-number">3.9</span> Ажлын директор<a class="anchor" aria-label="anchor" href="#%D0%B0%D0%B6%D0%BB%D1%8B%D0%BD-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ажлын директор нь R таны ажилд ашигладаг үндсэн хавтасны байршил бөгөөд R нь энэ хавтас дотор файлуудыг хайж, хадгалдаг. Зориудаар өөрчлөөгүй үед шинэ файлууд болон үр дүнг энэ байршилд шууд хадгалах бөгөөд эндээс импортлох файлуудыг (жишээ нь, датасет) мөн хайх болно.</p>
+<p>Ажлын директор нь RStudio Console самбарын дээд талд саарал текстээр харагдана. Та мөн <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> функцыг (хашилтыг хоосон орхи) ажиллуулснаар одоогийн ашиглаж байгаа директорийг харж болно .</p>
+<div class="inline-figure"><img src="images/working_directory_1.png" width="100%" style="display: block; margin: auto;"></div>
+<div id="санал-болгож-буй-арга" class="section level3 unnumbered">
+<h3>Санал болгож буй арга<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%B1%D1%83%D0%B9-%D0%B0%D1%80%D0%B3%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Та ажлын директорио хэрхэн ашиглах талаар бидний санал болгож буй аргын дэлгэрэнгүйг <span class="math display">\[R төслүүд\]</span> хуудаснаас үзнэ үү.</strong><br>
+Өөрийн ажлын директор болон файлын замыг удирдах нийтлэг, үр дүнтэй, асуудалгүй арга бол эдгээр 3 элементийг <span class="math display">\[R project\]</span><span class="math display">\[R projects\]</span>-д чиглэсэн ажлын урсгалд нэгтгэх явдал юм.</p>
+<ol style="list-style-type: decimal">
+<li><p>Таны бүх файлыг хадгалах R төсөл (<span class="math display">\[R төслүүд\]</span> дээрх хуудсыг үзнэ үү)</p></li>
+<li><p>Файлуудыг олох <strong>here</strong> багц (<span class="math display">\[Импорт, экспорт\]</span> дээрх хуудсыг үзнэ үү)</p></li>
+<li><p>Файлуудыг импортлох/экспортлох <strong>rio</strong> багц (<span class="math display">\[Импорт, экспорт\]</span> дээрх хуудсыг үзнэ үү)</p></li>
+</ol>
+<!-- ======================================================= -->
+</div>
+<div id="командаар-тохируулах" class="section level3 unnumbered">
+<h3>Командаар тохируулах<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%B0%D1%80-%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Саяхныг хүртэл R сурч буй олон хүмүүст <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> командаар скриптээ эхлүүлэхийг заадаг байсан. Оронд нь <span class="math display">\[R project\]</span><span class="math display">\[R projects\]</span>-д чиглэсэн ажлын урсгалыг ашиглах талаар бодож үзээд <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/"><code>setwd()</code>-г ашиглахгүй байгаа шалтгааныг</a> уншина уу. Товчхондоо, таны ажил таны хэрэглэж буй компьютертэй хамааралтай болж, файлуудыг импортлох, экспортлоход ашигладаг файлын замууд “хэврэг” болж, бусад компьютер дээр таны кодыг ашиглах, хамтран ажиллахад ихээхэн саад учруулдаг. Үүнээс зайлсхийх өөр хялбар аргууд байна!</p>
+<p>Дээр дурдсанчлан бид ихэнх тохиолдолд ийм аргыг хэрэглэхийг зөвлөдөггүй ч та <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> командыг хүссэн хавтасныхаа файлын замыг ишлэл дотор бичсэнээр ашиглаж болно, жишээлбэл:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"C:/Documents/R Files/My analysis"</span><span class="op">)</span></code></pre></div>
+<p><span style="color: red;"><strong><em>АЮУЛ:</em></strong> Хэрэв файлын зам нь нэг компьютерт зориулагдсан бол <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>-аар ажлын директор тохируулах нь “хэврэг” <em>байж болно</em>. Үүний оронд R Project-ийн үндсэн директортой харьцангуй холбоотой файлын замуудыг ашиглана уу (<strong>here</strong> багцтай).</span></p>
+<!-- ======================================================= -->
+</div>
+<div id="гараар-тохируулах" class="section level3 unnumbered">
+<h3>Гараар тохируулах<a class="anchor" aria-label="anchor" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ажлын директорийг гараар тохируулахын тулд (<code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>-ийн товч дарахтай дүйцэхүйц) Session унадаг цэсийг товшиж “Set Working Directory”, дараа нь “Choose Directory” руу очно уу. Энэ нь тухайн R сессийн ажлын директорийг тохируулах болно. Тэмдэглэл: Хэрэв энэ аргыг хэрэглэж байгаа бол RStudio-г нээх болгондоо үүнийг гараар хийх шаардлагатай болно.</p>
+<!-- ======================================================= -->
+</div>
+<div id="r-төслийн-дотор" class="section level3 unnumbered">
+<h3>R төслийн дотор<a class="anchor" aria-label="anchor" href="#r-%D1%82%D3%A9%D1%81%D0%BB%D0%B8%D0%B9%D0%BD-%D0%B4%D0%BE%D1%82%D0%BE%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>Хэрэв R төслийг ашиглаж байгаа бол ажлын директор нь “.rproj” файлыг агуулсан R төслийн үндсэн хавтсыг ашиглах болно. Та R Project (“.rproj” өргөтгөлтэй файл) дээр дарж RStudio-г нээвэл энэ нь хэрэгжинэ.</p>
+<!-- ======================================================= -->
+</div>
+<div id="r-markdown-ы-ажлын-директор" class="section level3 unnumbered">
+<h3>R markdown-ы ажлын директор<a class="anchor" aria-label="anchor" href="#r-markdown-%D1%8B-%D0%B0%D0%B6%D0%BB%D1%8B%D0%BD-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80"><i class="fas fa-link"></i></a>
+</h3>
+<p>R markdown скриптийн үндсэн ажлын директор нь Rmarkdown файлын (.Rmd) хадгалагдаж буй хавтас юм. Хэрэв R төсөл болон <strong>here</strong> багцыг ашиглаж байгаа бол энэ нь хамаарахгүй бөгөөд <span class="math display">\[R төслүүд\]</span> хуудсанд тайлбарласны дагуу ажлын директор <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> байх болно.</p>
+<p>Хэрэв та бие даасан (R төсөл дотор биш) R markdown-ы ажлын директорийг <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> ашиглан өөрчлөх гэж байвал энэ нь зөвхөн тухайн кодын хэсэгт хамаарна. R markdown дах бүх кодын хэсгүүдэд өөрчлөлт оруулахын тулд тохиргооны хэсгийг засварлаж <code>root.dir =</code> параметрийг доорх жишээ шиг нэмж оруулаарай:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_knit.html">opts_knit</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>root.dir <span class="op">=</span> <span class="st">'desired/directorypath'</span><span class="op">)</span></code></pre></div>
+<p>R markdown-ыг R төслийн дотор <strong>here</strong> багцтай хамт ашиглах нь хамаагүй хялбар юм.</p>
+<!-- ======================================================= -->
+</div>
+<div id="файлын-замууд-бичих" class="section level3 unnumbered">
+<h3>Файлын замууд бичих<a class="anchor" aria-label="anchor" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%B7%D0%B0%D0%BC%D1%83%D1%83%D0%B4-%D0%B1%D0%B8%D1%87%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>R эхлэн суралцагчдын бухимдлын хамгийн түгээмэл эх үүсвэр (наад зах нь Windows машин дээр) бол магадгүй дата импортлох, экспортлох файлын замыг бичих явдал юм. <span class="math display">\[Импорт, экспорт\]</span> хуудсанд файлын замыг хэрхэн хамгийн сайн оруулах талаар дэлгэрэнгүй тайлбар байгаа боловч энд цөөн хэдэн гол санааг дурдав:</p>
+<p><strong>Эвдэрсэн замууд</strong></p>
+<p>Доорх нь “үнэмлэхүй” эсвэл “бүтэн хаяг” файлын замын жишээ юм. Хэрэв өөр компьютер ашиглавал эдгээр нь эвдрэх магадлалтай. Хэрэв та дундын/сүлжээний драйв ашиглаж байгаа бол үүнд хамаарахгүй.</p>
+<pre><code>C:/Users/Name/Document/Analytic Software/R/Projects/Analysis2019/data/March2019.csv  </code></pre>
+<p><strong>Налуу зураасны чиглэл</strong></p>
+<p><em>Хэрэв ташуу зураас файлын замд бичиж байгаа бол түүний чиглэлийг анхаараарай.</em> Бүрэлдэхүүн хэсгүүдийг (“data/provincial.csv”) салгахын тулд <em>урагшаа налуу зураасыг</em> (<code>/</code>) ашиглана уу. Windows хэрэглэгчдийн хувьд файлын замыг <em>арагшаа налуу зураасаар</em> (\) харуулдаг тул та налуу зураас бүрийн чиглэлийг өөрчлөх шаардлагатай болно. Хэрэв та <span class="math display">\[R төслүүд\]</span> хуудсанд тайлбарласны дагуу <strong>here</strong> багцыг ашиглавал налуу зураасны чиглэл асуудал болохгүй.</p>
+<p><strong>Харьцангуй файлын замууд</strong></p>
+<p>Бид ерөнхийдөө “харьцангуй” файлын замууд ашиглахыг зөвлөж байна, өөрөөр хэлбэл таны R төслийн үндсэн хавтастай <em>харьцангуй</em> холбоотой зам. Та үүнийг <span class="math display">\[R төслүүд\]</span> хуудсанд тайлбарласны дагуу <strong>here</strong> багцыг ашиглан хийж болно. Харьцангуй файлын зам дараах байдлаар харагдаж болно:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># R төслийн data/linelist/clean/ дэд хавтаснаас csv лайнлист импортлох</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"linelists"</span>, <span class="st">"marin_country.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>R төсөл дотор харьцангуй файлын замыг ашиглаж байсан ч та R төслөөс гадуур байгаа датаг үнэмлэхүй зам ашиглан импортолж/экспортолж болно.</p>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="objects" class="section level2" number="3.10">
+<h2>
+<span class="header-section-number">3.10</span> Объектууд<a class="anchor" aria-label="anchor" href="#objects"><i class="fas fa-link"></i></a>
+</h2>
+<p>R-д байгаа бүх зүйл нь объект бөгөөд R нь “объект-чиглэлтэй” (object-oriented) хэл юм. Доорх хэсгүүд дараах зүйлсийг тайлбарлах болно:</p>
+<ul>
+<li><p>Хэрхэн объект үүсгэх вэ (<code>&lt;-</code>)</p></li>
+<li><p>Объектуудын төрлүүд (жишээ нь, датафрэймүүд, векторууд..)</p></li>
+<li><p>Объектуудын дэд хэсгүүдэд (жишээ нь, датасетийн хувьсагчид) хэрхэн хандах вэ</p></li>
+<li><p>Объектуудын ангилал (жишээлбэл, тоон, логик, бүхэл тоо, давхар тоо, тэмдэгт, фактор)</p></li>
+</ul>
+<!-- ======================================================= --><div id="бүх-зүйл-объект" class="section level3 unnumbered">
+<h3>Бүх зүйл объект<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D1%85-%D0%B7%D2%AF%D0%B9%D0%BB-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82"><i class="fas fa-link"></i></a>
+</h3>
+<p><em>Энэ хэсгийг <a href="https://r4epis.netlify.app/training/r_basics/objects/">R4Epis төслөөс</a> ашигласан.</em></p>
+<p>R-д хадгалагдаж буй бүх зүйл - датасет, хувьсагч, тосгоны нэрсийн жагсаалт, нийт хүн амын тоо, тэр ч байтугай график гэх мэт гаралтууд нь <strong>нэр оноогдсон</strong> <strong>объектууд</strong> бөгөөд эдгээрийг дараагийн командуудад <strong>ашиглаж болдог</strong>.</p>
+<p>Тухайн объектод утга оноох үед объект бий болдог (доорх оноолтын хэсгийг үзнэ үү). Түүнд утга оноох үед тухайн объект Environment хэсэгт гарч ирнэ (RStudio-ийн баруун дээд хэсгийг харна уу). Ингэснээр түүнийг ажиллуулж, удирдаж, өөрчилж, дахин тодорхойлж болно.</p>
+<!-- ======================================================= -->
+</div>
+<div id="объектуудыг-тодорхойлох--" class="section level3 unnumbered">
+<h3>Объектуудыг тодорхойлох (<code>&lt;-</code>)<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D1%85%D0%BE%D0%B9%D0%BB%D0%BE%D1%85--"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Объектуудад &lt;- операторын тусламжтайгаар тодорхой утгыг оноож үүсгэнэ.</strong></p>
+<p>Та оноох оператор <code>&lt;-</code> -ыг “гэж тодорхойлсон” гэсэн үг гэж бодож болно. Оноолтын командууд нь ерөнхийдөө дараах стандарт дараалалтай байдаг:</p>
+<p><strong>объектын_нэр &lt;- утга</strong> (эсвэл тодорхой утга үүсгэдэг процесс/тооцоолол)</p>
+<p>Жишээлбэл, та одоогийн эпидемиологийн тайлангийн долоо хоногийг дараагийн кодын лавлагааны объект болгон тэмдэглэхийг хүсч байж болох юм. Энэ жишээнд <code>"2018-W10"</code> гэсэн утгыг оноох үед <code>current_week</code> объект үүсч байна (ишлэл нь үүнийг тэмдэгтийн утга болгодог). Ингэснээр <code>current_week</code> объект RStudio Environment хэсэгт (баруун дээд талд) гарч ирэх ба дараагийн командуудад ашиглаж болно.</p>
+<p>R командууд болон тэдгээрийн гаралтыг доор харна уу.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">current_week</span> <span class="op">&lt;-</span> <span class="st">"2018-W10"</span>   <span class="co"># Энэ команд нь утга оноосноор current_week объект үүсгэнэ</span>
+<span class="va">current_week</span>                 <span class="co"># Энэ команд нь консол дахь current_week объектын одоогийн утгыг хэвлэнэ </span></code></pre></div>
+<pre><code>## [1] "2018-W10"</code></pre>
+<p><span style="color: black;"><strong><em>ТЭМДЭГЛЭЛ:</em></strong> R консолын гаралт дахь <span class="math display">\[1\]</span> нь ердөө л таныг гаралтын эхний зүйлийг харж байгааг илэрхийлж байгаа болно.</span></p>
+<p><span style="color: orange;"><strong><em>АНХААРУУЛГА:</em></strong> Объектын утгыг дахин тодорхойлох оноолтын командыг ажиллуулснаар ямар ч үед тухайн <strong>объектын өмнөх утгыг дарж шинэ утга оноож болно</strong>. Тиймээс <strong>командуудыг гүйцэтгэх дараалал нь маш чухал</strong> юм.</span></p>
+<p>Дараах команд нь <code>current_week</code> утгыг дахин тодорхойлох болно:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">current_week</span> <span class="op">&lt;-</span> <span class="st">"2018-W51"</span>   <span class="co"># current_week объектод ШИНЭ утгыг онооно </span>
+<span class="va">current_week</span>                 <span class="co"># current_week утгыг консол дээр хэвлэнэ</span></code></pre></div>
+<pre><code>## [1] "2018-W51"</code></pre>
+<p><strong>Тэнцүүгийн тэмдэг <code>=</code></strong></p>
+<p>Та R код дотор тэнцүүгийн тэмдэгтэй олон таарах болно:</p>
+<ul>
+<li><p>Хоёр объект эсвэл утгын хоорондох давхар тэнцүүгийн тэмдэг <code>==</code> “энэ нь үүнтэй тэнцүү юу?” гэсэн логик <em>асуултыг</em> тавьдаг.</p></li>
+<li><p>Та мөн функц дотор функцийн аргументуудын утгыг тодорхойлоход ашигладаг тэнцүүгийн тэмдгийг харах болно (үүний талаар дараагийн хэсгүүдээс уншина уу), жишээ нь <code>max(age, na.rm = TRUE)</code>.</p></li>
+<li><p>Мөн та объект үүсгэж, тодорхойлохын тулд <code>&lt;-</code>ын оронд <code>=</code> нэг тэнцүү тэмдгийг ашиглаж болох боловч энэ үйлдлийг хийхийг бид зөвлөдөггүй. Үүнийг яагаад зөвлөдөггүй талаар <a href="https://renkun.me/2014/01/28/difference-between-assignment-operators-in-r/">эндээс</a> уншиж болно.</p></li>
+</ul>
+<p><strong>Датасетүүд</strong></p>
+<p>Датасет нь мөн объект (ихэвчлэн “датафрэйм”) бөгөөд тэдгээрийг импортлохдоо нэр өгөх ёстой. Доорх кодонд <strong>rio</strong> багцын <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> функц ашиглан импортолсон CSV файлын утгыг <code>linelist</code> гэсэн объект руу оноож шинээр үүсгэж байна.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># linelist-ийг үүсгэж, импортолсон CSV файлын утгыг оноож өгч байна</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"my_linelist.csv"</span><span class="op">)</span></code></pre></div>
+<p>Та <span class="math display">\[Импорт, экспорт\]</span> хэсгээс датасет импортлох, экспортлох талаар дэлгэрэнгүй унших боломжтой.</p>
+<p><span style="color: orange;"><strong><em>АНХААРУУЛГА:</em></strong> Объектуудыг нэрлэх тухай товч тэмдэглэл:</span></p>
+<ul>
+<li><p>Объектын нэрэнд хоосон зай байх ёсгүй, гэхдээ зайны оронд доогуур зураас (_) эсвэл цэг (.) ашиглаж болно.</p></li>
+<li><p>Объектын нэр нь үсгийн том жижгээр ялгагддаг (Dataset_A нь dataset_A-аас өөр гэсэн үг).</p></li>
+<li><p>Объектын нэр үсгээр эхлэх ёстой (1, 2, 3 гэх мэт тоогоор эхэлж болохгүй).</p></li>
+</ul>
+<p><strong>Гаралтууд</strong></p>
+<p>Хүснэгт, график гэх мэт гаралтууд нь гаралтыг хэрхэн объект болгон хадгалах, эсвэл хадгалахгүйгээр хэвлэх боломжтой жишээг харуулдаг. <strong>base</strong> R функц болох <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> ашиглан хүйс, үр дүнгийн хүснэгтийг R консол дээр шууд хэвлэх боломжтой (<em>хадгалахгүйгээр</em>).</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># зөвхөн R консол дээр хэвлэнэ</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">gender</span>, <span class="va">linelist</span><span class="op">$</span><span class="va">outcome</span><span class="op">)</span></code></pre></div>
+<pre><code>##    
+##     Death Recover
+##   f  1227     953
+##   m  1228     950</code></pre>
+<p>Гэхдээ яг ижил хүснэгтийг нэрлэсэн объект болгон хадгалах боломжтой. Дараа нь хүсвэл үүнийг хэвлэж болно.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># хадгал</span>
+<span class="va">gen_out_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">gender</span>, <span class="va">linelist</span><span class="op">$</span><span class="va">outcome</span><span class="op">)</span>
+
+<span class="co"># хэвлэ</span>
+<span class="va">gen_out_table</span></code></pre></div>
+<pre><code>##    
+##     Death Recover
+##   f  1227     953
+##   m  1228     950</code></pre>
+<p><strong>Баганууд</strong></p>
+<p>Датасетийн баганууд нь мөн объектууд бөгөөд “Баганууд” хэсэгт доор тайлбарласны дагуу тодорхойлж, дахин бичиж, шинээр үүсгэж болно.</p>
+<p>Та шинэ багана үүсгэхийн тулд <strong>base</strong> R-ын оноолтын операторыг ашиглаж болно. Доорх кодонд мөр бүрийн хувьд <code>wt_kg</code> болон <code>ht_cm</code> багана дахь мөрийн утгуудыг ашиглан математик үйлдлийн үр дүнд шинэ утга гарган түүнийг шинэ багана <code>bmi</code> (Биеийн жингийн индекс) дотор хадгалж байна.</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># base R синтакс ашиглан шинэ "bmi" багана үүсгэнэ</span>
+<span class="va">linelist</span><span class="op">$</span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="va">linelist</span><span class="op">$</span><span class="va">wt_kg</span> <span class="op">/</span> <span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">ht_cm</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></code></pre></div>
+<p>Хэдий ингэж болох боловч энэхүү гарын авлагад бид багануудыг тодорхойлох өөр арга болох <strong>dplyr</strong> багцын <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> функц болон пайп оператораар (<code>%&gt;%</code>) дамжуулан пайплахыг санал болгож байна. Ингэснээр синтаксийг уншихад хялбар бөгөөд <span class="math display">\[Дата цэвэрлэх болон үндсэн функцууд\]</span> хуудсанд тайлбарласан бусад давуу талууд байдаг. Та <em>пайпын</em> талаар дэлгэрэнгүй мэдээллийг дараах “Пайплах” хэсгээс уншиж болно.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># dplyr синтакс ашиглан шинэ "bmi" багана үүсгэнэ</span>
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bmi <span class="op">=</span> <span class="va">wt_kg</span> <span class="op">/</span> <span class="op">(</span><span class="va">ht_cm</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+<div id="объектын-бүтэц" class="section level3 unnumbered">
+<h3>Объектын бүтэц<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%D0%BD-%D0%B1%D2%AF%D1%82%D1%8D%D1%86"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Объектууд нь зөвхөн нэг ширхэг дата байж болно (жишээ нь, <code>my_number &lt;- 24</code>) эсвэл тодорхой бүтэцтэй датанаас бүрдэж болно.</strong></p>
+<p>Доорх графикийг <a href="http://venus.ifca.unican.es/Rintro/dataStruct.html">энэхүү онлайн R хичээлээс</a> авсан болно. Энэ нь зарим нийтлэг дата бүтэц, тэдгээрийн нэрийг харуулж байна. Энэ зурагт орон зайн мэдээлэл ороогүй бөгөөд үүнийг <span class="math display">\[GIS-ын суурь\]</span> хуудсанд авч үзсэн болно.</p>
+<div class="inline-figure"><img src="images/R_data_structures.png" width="75%" height="50%" style="display: block; margin: auto;"></div>
+<p>Эпидемиологт (ялангуяа талбарын эпидемиологт) та датафрэймүүд ба векторуудтай хамгийн их тулгарах болно:</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="7%">
+<col width="46%">
+<col width="46%">
+</colgroup>
+<thead><tr class="header">
+<th>Нийтлэг бүтэц</th>
+<th>Тайлбар</th>
+<th>Жишээ</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Векторууд</td>
+<td>Бүгд ижил ангиллын ганц бие объектуудын дараалалд зориулсан агуулах (жишээ нь тоо, тэмдэгт).</td>
+<td>
+<strong>Датафрэймүүдийн “Хувьсагчид” (баганууд) нь векторууд юм</strong> (жишээ нь: <code>age_years</code> багана).</td>
+</tr>
+<tr class="even">
+<td>Датафрэймүүд</td>
+<td>Бүгд ижил тооны мөртэй, хоорондоо холбогдсон векторууд (жишээ нь багана).</td>
+<td>
+<code>linelist</code> бол датафрэйм</td>
+</tr>
+</tbody>
+</table></div>
+<p>Датафрэймийн нэг хэсэг биш “дан” вектор үүсгэхийн тулд <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> функцийг өөр өөр элементүүдийг нэгтгэхэд ашигладаг болохыг анхаарна уу. Жишээлбэл, графикийн өнгөний хуваарь болгон ашиглах өнгөний вектор үүсгэх тохиолдолд : <code>vector_of_colors &lt;- c("blue", "red2", "orange", "grey")</code></p>
+<!-- ======================================================= -->
+</div>
+<div id="объектын-ангиуд" class="section level3 unnumbered">
+<h3>Объектын ангиуд<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%D0%BD-%D0%B0%D0%BD%D0%B3%D0%B8%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>R-д хадгалагдсан бүх объектууд R-д тухайн объектыг хэрхэн зохицуулахыг хэлдэг ангитай байдаг. Олон боломжит ангиуд байдаг боловч нийтлэг байдаг нь:</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="7%">
+<col width="58%">
+<col width="34%">
+</colgroup>
+<thead><tr class="header">
+<th>Анги</th>
+<th>Тайлбар</th>
+<th>Жишээ</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Тэмдэгт (character)</td>
+<td>Эдгээр нь <strong>“ишлэлийн доторх”</strong> текст/үг/өгүүлбэр юм. Эдгээр объектууд дээр математик үйлдэл хийх боломжгүй.</td>
+<td>“Тэмдэгтийн объектууд ишлэл дотор байна”</td>
+</tr>
+<tr class="even">
+<td>Бүхэл тоо</td>
+<td>Зөвхөн <strong>бүхэл тоо</strong> (аравтын бутархай байхгүй)</td>
+<td>-5, 14, эсвэл 2000</td>
+</tr>
+<tr class="odd">
+<td>Тоо</td>
+<td>Эдгээр нь тоо бөгөөд <strong>аравтын бутархайг агуулж болно</strong>. Хэрэв ишлэл дотор байвал тэдгээрийг тэмдэгтийн ангилалд тооцно.</td>
+<td>23.1 эсвэл 14</td>
+</tr>
+<tr class="even">
+<td>Фактор</td>
+<td>Эдгээр нь <strong>тодорхой дараалал</strong> эсвэл утгуудын шатлалтай векторууд юм.</td>
+<td>Орлогын түвшний дараалалт утга бүхий хувьсагч</td>
+</tr>
+<tr class="odd">
+<td>Огноо</td>
+<td>
+<strong>R-д тодорхой дата нь огноо гэж мэдэгдсэний дараа</strong> эдгээр датаг тусгай аргаар удирдаж, харуулах боломжтой. Дэлгэрэнгүй мэдээллийг <span class="math display">\[Огноотой ажиллах\]</span> хуудаснаас үзнэ үү.</td>
+<td>2018-04-12 эсвэл 15/3/1954 эсвэл Wed 4 Jan 1980</td>
+</tr>
+<tr class="even">
+<td>Логик</td>
+<td>Утга нь TRUE эсвэл FALSE гэсэн хоёр тусгай утгын нэг байх ёстой (эдгээр нь ишлэл доторх “TRUE” ба “FALSE” биш гэдгийг анхаарна уу)</td>
+<td>TRUE эсвэл FALSE</td>
+</tr>
+<tr class="odd">
+<td>data.frame</td>
+<td>Датафрэйм нь R <strong>ердийн датасетийг</strong> хадгалдаг арга юм. Энэ нь бүгд ижил тооны ажиглалттай (мөр) хоорондоо холбогдсон дата векторуудаас (баганууд) бүрдэнэ.</td>
+<td>
+<code>linelist_raw</code> нэртэй AJS жишээ датасет нь тус бүр 300 ажиглалт (мөр) бүхий 68 хувьсагчийг агуулна.</td>
+</tr>
+<tr class="even">
+<td>tibble</td>
+<td>tibble нь датафрэймийн хувилбар бөгөөд үйл ажиллагааны гол ялгаа нь консол дээр илүү сайн хэвлэдэг (эхний 10 мөр, зөвхөн дэлгэцэн дээр багтах багануудыг харуулна)</td>
+<td>Ямар ч датафрэйм, лист эсвэл матрицыг <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> ашиглан tibble болгон хувиргаж болно.</td>
+</tr>
+<tr class="odd">
+<td>лист</td>
+<td>Лист нь вектор шиг боловч өөр өөр ангийн объектуудыг агуулж чаддагаараа ялгаатай.</td>
+<td>Листэд нэг тоо, датафрэйм, вектор, тэр ч байтугай дотор нь өөр лист ч байж болно!</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Та <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> функцад нэрийг нь оруулснаар тухайн объектын ангийг шалгаж болно.</strong> Тэмдэглэл: Та <code>$</code> тэмдэглэгээг ашиглан датасетийн нэр болон баганын нэрийг тусгаарласнаар тухайн датасет доторх тодорхой баганыг ашиглаж болно.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">)</span>         <span class="co"># анги нь датафрэйм эсвэл tibble байх ёстой</span></code></pre></div>
+<pre><code>## [1] "data.frame"</code></pre>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span>     <span class="co"># анги тоон байх ёстой</span></code></pre></div>
+<pre><code>## [1] "numeric"</code></pre>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">gender</span><span class="op">)</span>  <span class="co"># анги тэмдэгт байх ёстой</span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<p>Заримдаа R баганыг автоматаар өөр анги руу хөрвүүлдэг. Үүнээс болгоомжил! Жишээлбэл, хэрэв танд тоонуудын вектор эсвэл багана байгаа боловч тэмдэгтийн утга оруулсан бол… багана бүхэлдээ тэмдэгт ангитай болж өөрчлөгдөнө.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">num_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span> <span class="co"># векторыг дан тоогоор тодорхойлно</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">num_vector</span><span class="op">)</span>          <span class="co"># вектор нь тоон анги</span></code></pre></div>
+<pre><code>## [1] "numeric"</code></pre>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">num_vector</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"three"</span>   <span class="co"># гурав дахь элементийг тэмдэгт болгон хувиргана</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">num_vector</span><span class="op">)</span>          <span class="co"># вектор нь одоо тэмдэгтийн анги болжээ</span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<p>Үүний нэг нийтлэг жишээ бол хүснэгтийг хэвлэхийн тулд датафрэймтэй ажиллах үед - хэрэв та нийт гэсэн мөр гаргаж, тоонуудтай нэг нүдэнд хувийг буулгах/наах (жишээ нь <code>23 (40%)</code>) гэж оролдвол дээрх тоон багана нь тэмдэгт болж хувирах бөгөөд цаашид математик тооцоололд ашиглагдах боломжгүй болно. <strong>Тиймээс заримдаа та объект эсвэл баганыг өөр анги руу хөрвүүлэх шаардлагатай болдог.</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="13%">
+<col width="86%">
+</colgroup>
+<thead><tr class="header">
+<th>Функц</th>
+<th>Үйлдэл</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/character.html">as.character()</a></code></td>
+<td>Тэмдэгт анги руу хөрвүүлдэг</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code></td>
+<td>Тоон анги руу хөрвүүлдэг</td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code></td>
+<td>Бүхэл тоон анги руу хөрвүүлдэг</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code></td>
+<td>Огноо анги руу хөрвүүлдэг - Тэмдэглэл: дэлгэрэнгүй мэдээллийг <a href="#dates">огнооны</a> хэсгээс үзнэ үү</td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code></td>
+<td>Фактор анги руу хөрвүүлдэг - Тэмдэглэл: утгын түвшний дарааллыг дахин тодорхойлох нь нэмэлт аргумент шаарддаг</td>
+</tr>
+</tbody>
+</table></div>
+<p>Үүний нэгэн адил <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code>, <code><a href="https://rdrr.io/r/base/character.html">is.character()</a></code>, <code><a href="https://rdrr.io/r/base/double.html">is.double()</a></code>, <code><a href="https://rdrr.io/r/base/factor.html">is.factor()</a></code>, <code><a href="https://rdrr.io/r/base/integer.html">is.integer()</a></code> зэрэг тодорхой ангиллын объект МӨН эсэхийг шалгах <strong>base</strong> R функцууд байдаг.</p>
+<p><a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/">R хэл дээрх анги, датаны бүтцийн талаархи онлайн материалыг</a> эндээс үзнэ үү.</p>
+<!-- ======================================================= -->
+</div>
+<div id="багануудхувьсагчид" class="section level3 unnumbered">
+<h3>Баганууд/Хувьсагчид (<code>$</code>)<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%83%D1%83%D0%B4%D1%85%D1%83%D0%B2%D1%8C%D1%81%D0%B0%D0%B3%D1%87%D0%B8%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Датафрэйм дэх багана нь техникийн хувьд “вектор” (дээрх хүснэгтийг харна уу)</strong> - бүгд ижил ангитай (тэмдэгт, тоон, логик гэх мэт) байх ёстой утгуудын цуврал юм.</p>
+<p>Вектор нь датафрэймээс хамааралгүй оршиж болно, жишээ нь моделд тайлбарлах хувьсагч болгон оруулахыг хүссэн баганын нэрнүүдийн вектор. “Бие даасан” вектор үүсгэхийн тулд дараах байдлаар <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> функцийг ашиглана уу:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># тэмдэгтийн утгууд бүхий бие даасан векторыг тодорхойлно</span>
+<span class="va">explanatory_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"fever"</span>, <span class="st">"chills"</span>, <span class="st">"cough"</span>, <span class="st">"aches"</span>, <span class="st">"vomit"</span><span class="op">)</span>
+
+<span class="co"># энэ нэрлэсэн вектор дахь утгуудыг хэвлэх</span>
+<span class="va">explanatory_vars</span></code></pre></div>
+<pre><code>## [1] "gender" "fever"  "chills" "cough"  "aches"  "vomit"</code></pre>
+<p><strong>Датафрэймийн баганууд нь мөн векторууд бөгөөд <code>$</code> тэмдэг ашиглан дуудаж, лавлаж, задалж эсвэл шинээр үүсгэж болно.</strong> <code>$</code> тэмдэг нь баганын нэрийг датафрэймийн нэртэй холбодог. Энэхүү гарын авлагад бид “хувьсагч” гэхийн оронд “багана” гэсэн үгийг ашиглахыг хичээсэн.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># age_years векторын уртыг ол </span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span> <span class="co"># (age нь linelist датафрэймийн нэг багана юм)</span></code></pre></div>
+<p>Датафреймийн нэрийн дараа <code>$</code> тэмдэг оруулснаар та тухайн датафрэйм дэх бүх баганын унадаг цэсийг харах болно. Та сумны товчийг ашиглан тэдгээрийг гүйлгэж, Enter товчлуураар нэгийг нь сонгосноор зөв бичгийн алдаа гаргахаас зайлсхийх боломжтой!</p>
+<div class="inline-figure"><img src="images/Calling_Names.gif" width="100%" style="display: block; margin: auto;"></div>
+<p><span style="color: darkgreen;"><strong><em>АХИСАН ТҮВШНИЙ ЗӨВЛӨМЖ:</em></strong> Зарим илүү комплекс объектууд (жишээ нь лист, эсвэл <code>epicontacts</code> объект) олон доллар тэмдэгтээр хандах боломжтой олон түвшинтэй байж болно. Жишээлбэл, <code>epicontacts$linelist$date_onset</code></span></p>
+<!-- ======================================================= -->
+</div>
+<div id="хаалт-ашиглан-хандахиндекслэх" class="section level3 unnumbered">
+<h3>Хаалт ашиглан хандах/индекслэх (<code>[ ]</code>)<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D0%B0%D0%BB%D1%82-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D0%BD-%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%85%D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%BB%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Та объектын хэсгүүдийг харах, өөрөөр “индекслэх” гэж нэрлэгддэг, шаардлагатай байж болох бөгөөд үүнийг ихэвчлэн дөрвөлжин хаалт <code>[ ]</code> ашиглан хийдэг. Баганад хандахын тулд датафрэйм дээр <code>$</code>-г ашиглах нь мөн индекслэлтийн нэг төрөл юм.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span>  <span class="co"># векторыг тодорхойлно</span>
+<span class="va">my_vector</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>                                  <span class="co"># 5-р элементийг хэвлэх</span></code></pre></div>
+<pre><code>## [1] "e"</code></pre>
+<p>Дөрвөлжин хаалт нь <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> функцийн гаралт гэх мэт гарч ирсэн гаралтын тодорхой хэсгийг харуулахад ашиглагддаг:</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Бүх хураангуй</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##    0.00    6.00   13.00   16.07   23.00   84.00      86</code></pre>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Нэр бүхий, хураангуйн хоёр дахь элемент (зөвхөн ганц хаалт ашиглан) </span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
+<pre><code>## 1st Qu. 
+##       6</code></pre>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Нэргүй, хураангуйн хоёр дахь элемент (давхар хаалт ашиглан)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Нэрийг харуулахгүйгээр элементийг нэрээр нь задлах</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span><span class="op">)</span><span class="op">[[</span><span class="st">"Median"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<p>Хаалт нь тодорхой мөр, баганыг харахын тулд датафрэйм дээр ажилладаг. Та үүнийг <code>датафрэйм[мөр, багана]</code> синтакс ашиглан хийж болно:</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Датасетийн тодорхой мөрийг (2) бүх баганын хамт харах (таслалыг бүү март!) </span>
+<span class="va">linelist</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span>
+
+<span class="co"># Бүх мөрүүдийг харах, гэхдээ зөвхөн нэг баганатай</span>
+<span class="va">linelist</span><span class="op">[</span>, <span class="st">"date_onset"</span><span class="op">]</span>
+
+<span class="co"># 2-р мөр болон 5-аас 10-р багана хүртэлх утгыг харах </span>
+<span class="va">linelist</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span> 
+
+<span class="co"># 2-р мөр болон 5-аас 10, 18-р багануудын утгыг харах</span>
+<span class="va">linelist</span><span class="op">[</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">18</span><span class="op">)</span><span class="op">]</span> 
+
+<span class="co"># 2-оос 20 хүртэлх мөр, тодорхой багануудыг харах</span>
+<span class="va">linelist</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"outcome"</span>, <span class="st">"age"</span><span class="op">)</span><span class="op">]</span>
+
+<span class="co"># Тодорхой шалгуурт үндэслэн мөр, баганыг харах </span>
+<span class="co"># *** Датафрэймийг шалгуурт нэрлэсэн хэвээр байх ёстойг анхаарна уу! </span>
+<span class="va">linelist</span><span class="op">[</span><span class="va">linelist</span><span class="op">$</span><span class="va">age</span> <span class="op">&gt;</span> <span class="fl">25</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"outcome"</span>, <span class="st">"age"</span><span class="op">)</span><span class="op">]</span>
+
+<span class="co"># RStudio Viewer самбар дээрх гаралтыг харахын тулд View()-г ашиглана уу (уншихад хялбар) </span>
+<span class="co"># *** View() функцийн том "V" үсгийг анхаарна уу </span>
+<span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">linelist</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">20</span>, <span class="st">"date_onset"</span><span class="op">]</span><span class="op">)</span>
+
+<span class="co"># Шинэ объект болгон хадгалах</span>
+<span class="va">new_table</span> <span class="op">&lt;-</span> <span class="va">linelist</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date_onset"</span><span class="op">)</span><span class="op">]</span> </code></pre></div>
+<p>Та мөн <strong>dplyr</strong> синтакс (мөрүүдэд <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> функц, багананд <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> функцийг) ашиглан датафрэйм болон тибл дээр дээрхтэй ижлээр мөр/баганыг индексжүүлэх боломжтойг анхаарна уу. Эдгээр үндсэн функцуудын талаар <span class="math display">\[Дата цэвэрлэх ба үндсэн функцууд\]</span> хуудаснаас дэлгэрэнгүй уншина уу.</p>
+<p>“Мөрийн дугаар” дээр үндэслэн шүүх бол та <strong>dplyr</strong>-ын<code><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number()</a></code> функцийг хоосон хаалттайгаар логик шүүлтийн хэсэг болгон ашиглаж болно. Доор үзүүлсэн шиг ихэнх тохиолдолд та <code>%in%</code> оператор болон тооны хүрээг логик хэллэгийн нэг хэсэг болгож болдог. <em>Эхний</em> N мөрийг харахын тулд та тусгай <strong>dplyr</strong> функц <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> ашиглах боломжтой.</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Эхний 100 мөрийг харах</span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+
+<span class="co"># Зөвхөн 5-р мөрийг харуулах</span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span><span class="op">)</span>
+
+<span class="co"># 2-оос 20 хүртэлх мөр, гурван тодорхой баганыг харах (баганын нэр дээр ишлэл хэрэггүй гэдгийг анхаарна уу) </span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fl">2</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">outcome</span>, <span class="va">age</span><span class="op">)</span></code></pre></div>
+<p><strong>Лист</strong> ангийн объектыг индекслэх үед зөвхөн ганц объектыг буцаасан ч гэсэн ганц дөрвөлжин хаалт нь лист ангийг буцаана. Харин давхар хаалт нь нэг элементэд хандаж, листээс өөр анги буцаахад ашиглагдаж болно.</p>
+<p>Доор үзүүлсэн шиг хаалтуудыг ар араас нь бичиж болно.</p>
+<p><a href="https://r4ds.had.co.nz/vectors.html#lists-of-condiments">Чинжүү сэгсрэгч ашиглан лист индекслэлтийн талаар тайлбарласан энэхүү дүрсэт тайлбар</a> хошин бөгөөд ойлгоход тустай.</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Демо лист тодорхойлох</span>
+<span class="va">my_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  <span class="co"># Листийн эхний элемент нь тэмдэгтийн вектор</span>
+  hospitals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Central"</span>, <span class="st">"Empire"</span>, <span class="st">"Santa Anna"</span><span class="op">)</span>,
+  
+  <span class="co"># Листийн хоёр дахь элемент нь хаягуудын датафрэйм</span>
+  addresses   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+    street <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"145 Medical Way"</span>, <span class="st">"1048 Brown Ave"</span>, <span class="st">"999 El Camino"</span><span class="op">)</span>,
+    city   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Andover"</span>, <span class="st">"Hamilton"</span>, <span class="st">"El Paso"</span><span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<p>Листийг консол дээр хэвлэх үед хэрхэн харагдахыг энд харуулав. Нэрлэгдсэн хоёр элемент байгааг хараарай:</p>
+<ul>
+<li><p><code>hospitals</code>, тэмдэгтийн вектор</p></li>
+<li><p><code>addresses</code>, хаягуудын датафрэйм</p></li>
+</ul>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span></code></pre></div>
+<pre><code>## $hospitals
+## [1] "Central"    "Empire"     "Santa Anna"
+## 
+## $addresses
+##            street     city
+## 1 145 Medical Way  Andover
+## 2  1048 Brown Ave Hamilton
+## 3   999 El Camino  El Paso</code></pre>
+<p>Одоо бид янз бүрийн аргыг ашиглан задалж байна:</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># энэ нь "лист" анги дахь элементийг буцаана - элементийн нэр харагдсан хэвээр байна </span></code></pre></div>
+<pre><code>## $hospitals
+## [1] "Central"    "Empire"     "Santa Anna"</code></pre>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># энэ нь зөвхөн (нэргүй) тэмдэгтийн векторыг буцаана </span></code></pre></div>
+<pre><code>## [1] "Central"    "Empire"     "Santa Anna"</code></pre>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span><span class="op">[[</span><span class="st">"hospitals"</span><span class="op">]</span><span class="op">]</span> <span class="co"># Та мөн листийн элементийн нэрээр индекслэж болно</span></code></pre></div>
+<pre><code>## [1] "Central"    "Empire"     "Santa Anna"</code></pre>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="co"># энэ нь "hospitals" тэмдэгтийн векторын гурав дахь элементийг буцаана </span></code></pre></div>
+<pre><code>## [1] "Santa Anna"</code></pre>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_list</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># Энэ нь хаягийн датафрэймийн эхний баганыг ("street") буцаана</span></code></pre></div>
+<pre><code>##            street
+## 1 145 Medical Way
+## 2  1048 Brown Ave
+## 3   999 El Camino</code></pre>
+<!-- ======================================================= -->
+</div>
+<div id="объектуудыг-устгах" class="section level3 unnumbered">
+<h3>Объектуудыг устгах<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%83%D1%81%D1%82%D0%B3%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Та <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> функцэд нэрийг оруулснаар R орчноосоо бие даасан объектуудыг устгаж болно (ишлэлгүй):</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">object_name</span><span class="op">)</span></code></pre></div>
+<p>Та бүх объектыг дараах байдлаар устгаж болно (ажлын талбайгаа цэвэрлэх):</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span>all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="пайплах" class="section level2" number="3.11">
+<h2>
+<span class="header-section-number">3.11</span> Пайплах (<code>%&gt;%</code>)<a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B0%D0%B9%D0%BF%D0%BB%D0%B0%D1%85"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Объектуудтай ажиллах хоёр ерөнхий арга нь:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Pipes/tidyverse</strong> - пайп нь функцээс функц рүү объектыг илгээдэг - объект биш харин үйлдлийг онцолдог.</p></li>
+<li><p><strong>Завсрын объектуудыг тодорхойлох</strong> - объект дахин дахин тодорхойлогддог - объект дээр анхаарлаа хандуулдаг</p></li>
+</ol>
+<!-- ======================================================= --><div id="пайп" class="section level3 unnumbered">
+<h3>
+<strong>Пайп</strong><a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B0%D0%B9%D0%BF"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Энгийнээр тайлбарлавал пайп оператор (<code>%&gt;%</code>) нь завсрын гаралтыг нэг функцээс нөгөө функц рүү дамжуулдаг.</strong></p>
+<p>Та үүнийг “дараа нь” гэж хэлж байна гэж бодож болно. Олон функцийг <code>%&gt;%</code> ашиглан холбож болно.</p>
+<ul>
+<li><p><strong>Пайплах нь үйлдлүүдийг гүйцэтгэж буй объектыг бус харин дараалсан үйлдлүүдийг онцолдог</strong></p></li>
+<li><p>Нэг объект дээр дараалсан үйлдлүүдийг хийх шаардлагатай үед пайп нь хамгийн тохиромжтой</p></li>
+<li><p>Пайп нь <strong>magrittr</strong> багцаас ашиглагддаг бөгөөд <strong>dplyr</strong> болон <strong>tidyverse</strong> багцад автоматаар ордог</p></li>
+<li><p>Пайп нь кодыг илүү цэвэрхэн, уншихад хялбар, ойлгомжтой болгох боломжтой</p></li>
+</ul>
+<p>Tidyverse <a href="https://style.tidyverse.org/pipes.html">загварын гарын авлагаас</a> энэ аргын талаар дэлгэрэнгүй уншина уу.</p>
+<p>“Бялуу жигнэх” зохиомол функцийг ашиглан харьцуулах хуурамч жишээ энд байна. Эхлээд, пайп арга:</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Пайп синтакс ашиглан бялууг хэрхэн жигнэх тухай хуурамч жишээ </span>
+
+<span class="va">cake</span> <span class="op">&lt;-</span> <span class="va">flour</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>       <span class="co"># бялууг тодорхойлохдоо гурилаар эхэлж, дараа нь...</span>
+  <span class="fu">add</span><span class="op">(</span><span class="va">eggs</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># өндөг нэмнэ</span>
+  <span class="fu">add</span><span class="op">(</span><span class="va">oil</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    <span class="co"># тос нэмнэ</span>
+  <span class="fu">add</span><span class="op">(</span><span class="va">water</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># ус нэмнэ</span>
+  <span class="fu">mix_together</span><span class="op">(</span>         <span class="co"># хооронд нь холино</span>
+    utensil <span class="op">=</span> <span class="va">spoon</span>,
+    minutes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    
+  <span class="fu">bake</span><span class="op">(</span>degrees <span class="op">=</span> <span class="fl">350</span>,   <span class="co"># жигнэнэ</span>
+       system <span class="op">=</span> <span class="st">"fahrenheit"</span>,
+       minutes <span class="op">=</span> <span class="fl">35</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  
+  <span class="fu">let_cool</span><span class="op">(</span><span class="op">)</span>            <span class="co"># хөргөнө</span></code></pre></div>
+<p>Пайп ашиглалтыг тайлбарласан өөр нэг <a href="https://cfss.uchicago.edu/notes/pipes/#:~:text=Pipes%20are%20an%20extremely%20useful,code%20and%20combine%20multiple%20operations">холбоос</a> энд байна.</p>
+<p>Пайп нь <strong>base</strong> функц биш юм. Пайп ашиглахын тулд <strong>magrittr</strong> багцыг суулгаж, ачаалах ёстой (энэ нь ихэвчлэн үүнийг багтаасан <strong>tidyverse</strong> эсвэл <strong>dplyr</strong> багцыг ачаалах замаар хийгддэг). Та <a href="https://magrittr.tidyverse.org/"><strong>magrittr</strong> багцын баримт бичигт пайпын талаар илүү ихийг уншиж</a> болно.</p>
+<p>Бусад R командуудын нэгэн адил пайп нь <code>&lt;-</code> оноох оператор оролцож байгаа эсэхээс хамаарч зөвхөн үр дүнг харуулах, объектыг хадгалах/дахин хадгалахад ашиглагдаж болно гэдгийг анхаарна уу. Доор хоёуланг нь харна уу:</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Насны ангиллаар нийлбэр тоо болгон тодорхойлох объект үүсгэх буюу дарж бичих (хэвлэсэнгүй) </span>
+<span class="va">linelist_summary</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">age_cat</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Тооллогын хүснэгтийг консол дээр хэвлээрэй, гэхдээ үүнийг бүү хадгал</span>
+<span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">age_cat</span><span class="op">)</span></code></pre></div>
+<pre><code>##   age_cat    n
+## 1     0-4 1095
+## 2     5-9 1095
+## 3   10-14  941
+## 4   15-19  743
+## 5   20-29 1073
+## 6   30-49  754
+## 7   50-69   95
+## 8     70+    6
+## 9    &lt;NA&gt;   86</code></pre>
+<p><strong><code>%&lt;&gt;%</code></strong><br>
+Энэ бол <strong>magrittr</strong> багцын “оноолтын пайп” бөгөөд энэ нь <em>объектыг урагш нь зөөж, мөн объектыг дахин тодорхойлдог</em>. Энэ нь гинжин хэлхээний анхны пайп оператор байх ёстой. Энэ нь доор буй хоорондоо ижил утгатай хоёр жишээн дээр үзүүлсэн шиг товчлол юм:</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span>
+
+<span class="va">linelist</span> <span class="op">%&lt;&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+<div id="завсрын-объектуудыг-тодорхойлох" class="section level3 unnumbered">
+<h3>Завсрын объектуудыг тодорхойлох<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%B0%D0%B2%D1%81%D1%80%D1%8B%D0%BD-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D1%85%D0%BE%D0%B9%D0%BB%D0%BE%D1%85"><i class="fas fa-link"></i></a>
+</h3>
+<p>Объект/датафрэйм өөрчлөх энэ арга нь дараах тохиолдолд илүү дээр байж болох юм:</p>
+<ul>
+<li><p>Та олон объектыг өөрчлөх хэрэгтэй</p></li>
+<li><p>Завсрын шатууд нь утга учиртай бөгөөд тусдаа объектын нэрийг авах ёстой</p></li>
+</ul>
+<p><strong>Эрсдэл:</strong></p>
+<ul>
+<li><p>Алхам бүрт шинэ объект бий болгоно гэдэг нь маш олон объект бий болгоно гэсэн үг. Хэрэв та буруу объект ашиглавал түүнийгээ мэдэхгүй байж магадгүй юм!</p></li>
+<li><p>Бүх объектыг нэрлэх нь төөрөгдөл үүсгэдэг</p></li>
+<li><p>Алдаа илрүүлэхэд амаргүй байж магадгүй</p></li>
+</ul>
+<p>Нэг бол завсрын объект бүрийг нэрлэх эсвэл эх хувийг дарж бичих эсвэл бүх функцийг нэгтгэх. Бүгд өөрийн гэсэн эрсдэлтэй байдаг.</p>
+<p>Доорх код нь дээрхтэй адил хуурамч “бялуу” жишээ юм, гэхдээ энэ загварыг ашиглаж байна:</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Энэ аргыг ашиглан бялууг хэрхэн жигнэх тухай хуурамч жишээ (завсрын объектыг тодорхойлох) </span>
+<span class="va">batter_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">flour</span>, <span class="va">eggs</span><span class="op">)</span>
+<span class="va">batter_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">batter_1</span>, <span class="va">oil</span><span class="op">)</span>
+<span class="va">batter_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">batter_2</span>, <span class="va">water</span><span class="op">)</span>
+
+<span class="va">batter_4</span> <span class="op">&lt;-</span> <span class="fu">mix_together</span><span class="op">(</span>object <span class="op">=</span> <span class="va">batter_3</span>, utensil <span class="op">=</span> <span class="va">spoon</span>, minutes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+
+<span class="va">cake</span> <span class="op">&lt;-</span> <span class="fu">bake</span><span class="op">(</span><span class="va">batter_4</span>, degrees <span class="op">=</span> <span class="fl">350</span>, system <span class="op">=</span> <span class="st">"fahrenheit"</span>, minutes <span class="op">=</span> <span class="fl">35</span><span class="op">)</span>
+
+<span class="va">cake</span> <span class="op">&lt;-</span> <span class="fu">let_cool</span><span class="op">(</span><span class="va">cake</span><span class="op">)</span></code></pre></div>
+<p>Бүх функцийг нэгтгэх - үүнийг уншихад хэцүү:</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># олон функцийг хослуулах/нэгтгэх жишээ - уншихад хэцүү </span>
+<span class="va">cake</span> <span class="op">&lt;-</span> <span class="fu">let_cool</span><span class="op">(</span><span class="fu">bake</span><span class="op">(</span><span class="fu">mix_together</span><span class="op">(</span><span class="va">batter_3</span>, utensil <span class="op">=</span> <span class="va">spoon</span>, minutes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, degrees <span class="op">=</span> <span class="fl">350</span>, system <span class="op">=</span> <span class="st">"fahrenheit"</span>, minutes <span class="op">=</span> <span class="fl">35</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="operators" class="section level2" number="3.12">
+<h2>
+<span class="header-section-number">3.12</span> Гол операторууд болон функцууд<a class="anchor" aria-label="anchor" href="#operators"><i class="fas fa-link"></i></a>
+</h2>
+<p>Энэ хэсэгт R хэлний гол операторуудыг дэлгэрэнгүй тайлбарлаж байна, тухайлбал:</p>
+<ul>
+<li><p>Тодорхойлогч операторууд</p></li>
+<li><p>Харьцааны операторууд (бага, тэнцүү..)</p></li>
+<li><p>Логик операторууд (ба, эсвэл …)</p></li>
+<li><p>Хоосон утгатай ажиллах</p></li>
+<li><p>Математикийн операторууд болон функцууд (+/-, &gt;, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>, …)</p></li>
+<li><p><code>%in%</code> оператор</p></li>
+</ul>
+<!-- ======================================================= --><div id="оноолтын-операторууд" class="section level3 unnumbered">
+<h3>Оноолтын операторууд<a class="anchor" aria-label="anchor" href="#%D0%BE%D0%BD%D0%BE%D0%BE%D0%BB%D1%82%D1%8B%D0%BD-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong><code>&lt;-</code></strong></p>
+<p>R хэлний үндсэн оноолтын оператор нь <code>&lt;-</code>. <code>объектын_нэр &lt;- утга</code> гэж ашиглагддаг. Энэхүү оноолтын операторыг мөн <code>=</code> ашиглан бичиж болно. Бид ерөнхий R хэрэглээнд <code>&lt;-</code>-г ашиглахыг зөвлөж байна. Мөн уншихад хялбар байх үүднээс ийм операторуудыг зайгаар хүрээлэхийг зөвлөж байна.</p>
+<p><strong><code>&lt;&lt;-</code></strong></p>
+<p>Хэрэв <span class="math display">\[Функц бичих\]</span> эсвэл R-г үүсвэртэй скриптүүдтэй интерактив байдлаар ашиглаж байгаа бол та оноолтын оператор <code>&lt;&lt;-</code> (<strong>base</strong> R-аас) ашиглах шаардлагатай болж магадгүй юм. Энэ операторыг дээд түвшний “толгой” R орчин дахь объектыг тодорхойлоход ашигладаг. Үүний талаар энэхүү <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html">онлайн лавлагааг</a> үзнэ үү.</p>
+<p><strong><code>%&lt;&gt;%</code></strong></p>
+<p>Энэ бол <strong>magrittr</strong> багцын “оноолтын пайп” бөгөөд энэ нь <em>объектыг урагш нь зөөж, мөн объектыг дахин тодорхойлдог</em>. Энэ нь гинжин хэлхээний анхны пайп оператор байх ёстой бөгөөд товчлолын нэг хэлбэр юм. Доорх хоёр команд нь яг ижил үйлдэл хийж байна:</p>
+<p>Энэ бол <strong>magrittr</strong> багцын “оноолтын пайп” бөгөөд энэ нь объектыг урагш зөөж, мөн объектыг дахин тодорхойлдог. Энэ нь гинжин хэлхээний анхны хоолойн оператор байх ёстой. Энэ нь доор буй хоорондоо ижил утгатай хоёр жишээн дээр үзүүлсэн шиг товчлол юм:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_months <span class="op">=</span> <span class="va">age_years</span> <span class="op">*</span> <span class="fl">12</span><span class="op">)</span></code></pre></div>
+<p>Дээрх код нь доорх кодтой яг ижил үйлдэл хийж байна.</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist</span> <span class="op">%&lt;&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_months <span class="op">=</span> <span class="va">age_years</span> <span class="op">*</span> <span class="fl">12</span><span class="op">)</span></code></pre></div>
+<p><strong><code>%&lt;+%</code></strong></p>
+<p>Энэ нь <strong>ggtree</strong> багц ашиглан филогенетик модонд дата нэмэхэд хэрэглэгддэг. <span class="math display">\[Филогенетик мод\]</span> дээрх хуудас эсвэл энэ <a href="https://yulab-smu.top/treedata-book/">онлайн номыг</a> үзнэ үү.</p>
+<!-- ======================================================= -->
+</div>
+<div id="харьцааны-болон-логик-операторууд" class="section level3 unnumbered">
+<h3>Харьцааны болон логик операторууд<a class="anchor" aria-label="anchor" href="#%D1%85%D0%B0%D1%80%D1%8C%D1%86%D0%B0%D0%B0%D0%BD%D1%8B-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%BB%D0%BE%D0%B3%D0%B8%D0%BA-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Харьцааны операторууд утгыг хооронд нь харьцуулах, шинэ хувьсагч болон датасетийн доторх хэсгийг тодорхойлоход ихэвчлэн ашиглагддаг. R хэл дээрх нийтлэг харьцааны операторууд энд байна:</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="10%">
+<col width="5%">
+<col width="6%">
+<col width="77%">
+</colgroup>
+<thead><tr class="header">
+<th>Илэрхийлэл</th>
+<th>Оператор</th>
+<th>Жишээ</th>
+<th>Жишээний үр дүн</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Тэнцүү</td>
+<td><code>==</code></td>
+<td><code>"A" == "a"</code></td>
+<td>
+<code>FALSE</code> (Учир нь R нь үсгийн том, жижигт мэдрэг) == (<em>давхар тэнцүү</em>) нь <em><code>&lt;-</code></em> оноолтын оператор шиг ажилладаг = (<em>ганц тэнцүү</em>)-ээс ялгаатай гэдгийг анхаарна уу.</td>
+</tr>
+<tr class="even">
+<td>Тэнцүү биш</td>
+<td><code>!=</code></td>
+<td><code>2 != 0</code></td>
+<td><code>TRUE</code></td>
+</tr>
+<tr class="odd">
+<td>-аас их</td>
+<td><code>&gt;</code></td>
+<td><code>4 &gt; 2</code></td>
+<td><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td>-аас бага</td>
+<td><code>&lt;</code></td>
+<td><code>4 &lt; 2</code></td>
+<td><code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td>-аас их буюу тэнцүү</td>
+<td><code>&gt;=</code></td>
+<td><code>6 &gt;= 4</code></td>
+<td><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td>-аас бага буюу тэнцүү</td>
+<td><code>&lt;=</code></td>
+<td><code>6 &lt;= 4</code></td>
+<td><code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td>Утга байхгүй</td>
+<td><code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code></td>
+<td><code>is.na(7)</code></td>
+<td>
+<code>FALSE</code> (<span class="math display">\[Хоосон дата\]</span> хуудсыг үзнэ үү)</td>
+</tr>
+<tr class="even">
+<td>Утга байгаа</td>
+<td><code>!is.na()</code></td>
+<td><code>!is.na(7)</code></td>
+<td><code>TRUE</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>AND ба OR гэх мэт логик операторуудыг ихэвчлэн харьцааны операторуудыг холбож, илүү комплекс шалгууруудыг бий болгоход ашигладаг. Нарийн комплекс мэдэгдлүүд бүлэглэх болон үйлдлийн дарааллыг хадгалахын тулд бөөрөнхий хаалт ( ) ашиглах шаардлагатай байж болно.</p>
+<p>Logical operators, such as AND and OR, are often used to connect relational operators and create more complicated criteria. Complex statements might require parentheses ( ) for grouping and order of application.</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="18%">
+<col width="81%">
+</colgroup>
+<thead><tr class="header">
+<th>Утга</th>
+<th>Оператор</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>AND</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr class="even">
+<td>OR</td>
+<td>
+<code>|</code> (босоо шугам)</td>
+</tr>
+<tr class="odd">
+<td>Бөөрөнхий хаалт</td>
+<td>
+<code>( )</code> Шалгууруудыг нэгтгэж, үйл ажиллагааны дарааллыг тодруулахад ашигладаг</td>
+</tr>
+</tbody>
+</table></div>
+<p>Жишээ нь, доор бидэнд тохиолдлын тодорхойлолтыг бий болгохдоо ашиглахыг хүсэж буй хоёр хувьсагч бүхий лайнлист байна: тестийн үр дүн <code>hep_e_rdt</code> болон тухайн өрхөд өөр тохиолдол байгаа эсэхийг илтгэх <code>other_cases_in_hh</code>. Дараах команд нь <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцийг ашиглан <code>case_def</code> гэсэн шинэ хувьсагчийг үүсгэнэ.</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">linelist_cleaned</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>case_def <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">rdt_result</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">other_case_in_home</span><span class="op">)</span>            <span class="op">~</span> <span class="cn">NA_character_</span>,
+    <span class="va">rdt_result</span> <span class="op">==</span> <span class="st">"Positive"</span>                                 <span class="op">~</span> <span class="st">"Confirmed"</span>,
+    <span class="va">rdt_result</span> <span class="op">!=</span> <span class="st">"Positive"</span> <span class="op">&amp;</span> <span class="va">other_cases_in_home</span> <span class="op">==</span> <span class="st">"Yes"</span>  <span class="op">~</span> <span class="st">"Probable"</span>,
+    <span class="cn">TRUE</span>                                                     <span class="op">~</span> <span class="st">"Suspected"</span>
+  <span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="67%">
+<col width="32%">
+</colgroup>
+<thead><tr class="header">
+<th>Дээрх жишээн дээрх шалгуурууд</th>
+<th>“case_def” шинэ хувьсагчийн үр дүнгийн утга</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Хэрэв <code>rdt_result</code> болон <code>other_cases_in_home</code> хувьсагчийн утга байхгүй бол</td>
+<td>
+<code>NA</code> (хоосон)</td>
+</tr>
+<tr class="even">
+<td>Хэрэв <code>rdt_result</code> дахь утга “Positive” бол</td>
+<td>“Confirmed”</td>
+</tr>
+<tr class="odd">
+<td>Хэрэв <code>rdt_result</code> дахь утга “Positive” БИШ БӨГӨӨД <code>other_cases_in_home</code> дахь утга “Yes” бол</td>
+<td>“Probable”</td>
+</tr>
+<tr class="even">
+<td>Дээрх шалгууруудын аль нэгийг хангаагүй бол</td>
+<td>“Suspected”</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>R хэл нь үсэгний том, жижигт мэдрэг тул “Positive” нь “positive”-ээс өөр гэдгийг анхаарна уу…</em></p>
+<!-- ======================================================= -->
+</div>
+<div id="хоосон-утгууд" class="section level3 unnumbered">
+<h3>Хоосон утгууд<a class="anchor" aria-label="anchor" href="#%D1%85%D0%BE%D0%BE%D1%81%D0%BE%D0%BD-%D1%83%D1%82%D0%B3%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>R-д хоосон утгыг <code>NA</code> (“нөөцлөгдсөн” утга) гэсэн тусгай утгаар илэрхийлнэ (N ба A том үсэг- ишлэл дотор биш). Хэрэв та хоосон датаг өөр аргаар (жишээ нь 99, “Missing” эсвэл .) бүртгэсэн дата импортлох юм бол эдгээр утгыг <code>NA</code> руу дахин кодлохыг хүсэж болох юм. Үүнийг хэрхэн хийх талаар <span class="math display">\[Импорт, экспорт\]</span> хуудаснаас үзнэ үү.</p>
+<p><strong>Утга нь <code>NA</code> эсэхийг шалгахын тулд <code>TRUE</code> эсвэл <code>FALSE</code> буцаадаг <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> тусгай функцийг ашиглана.</strong></p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rdt_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Positive"</span>, <span class="st">"Suspected"</span>, <span class="st">"Positive"</span>, <span class="cn">NA</span><span class="op">)</span>   <span class="co"># хоёр эерэг тохиолдол, нэг сэжигтэй, нэг нь тодорхойгүй байна </span>
+<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">rdt_result</span><span class="op">)</span>  <span class="co"># rdt_result-ийн утга NA эсэхийг шалгана</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE  TRUE</code></pre>
+<p>Хоосон, хязгааргүй (infinite), <code>NULL</code> болон боломжгүй утгуудын талаар дэлгэрэнгүйг <span class="math display">\[Хоосон дата\]</span> хэсгээс уншина уу. <span class="math display">\[Импорт, экспорт\]</span> хуудсан дээр дата импортлохдоо хоосон утгыг хэрхэн хөрвүүлэх талаар олж мэдээрэй.</p>
+<!-- ======================================================= -->
+</div>
+<div id="математик-статистик" class="section level3 unnumbered">
+<h3>Математик, статистик<a class="anchor" aria-label="anchor" href="#%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA"><i class="fas fa-link"></i></a>
+</h3>
+<p>Энэ хуудасны бүх операторууд болон функцууд нь <strong>base</strong> R-д ашиглахад бэлэн бий.</p>
+<div id="математик-операторууд" class="section level4 unnumbered">
+<h4>Математик операторууд<a class="anchor" aria-label="anchor" href="#%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h4>
+<p>Эдгээрийг ихэвчлэн нэмэх, хуваах, шинэ багана үүсгэх гэх мэт үйлдлүүдэд ашигладаг. Доорх нь R хэл дээрх нийтлэг математик операторууд юм. Операторуудын эргэн тойронд хоосон зай тавих эсэх нь чухал биш.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Зорилго</th>
+<th>R дээрх жишээ</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>нэмэх</td>
+<td>2 + 3</td>
+</tr>
+<tr class="even">
+<td>хасах</td>
+<td>2 - 3</td>
+</tr>
+<tr class="odd">
+<td>үржүүлэх</td>
+<td>2 * 3</td>
+</tr>
+<tr class="even">
+<td>хуваах</td>
+<td>30 / 5</td>
+</tr>
+<tr class="odd">
+<td>зэрэг дэвшүүлэх</td>
+<td>2^3</td>
+</tr>
+<tr class="even">
+<td>үйлдлүүдийн дараалал</td>
+<td>( )</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="математик-функцууд" class="section level4 unnumbered">
+<h4>Математик функцууд<a class="anchor" aria-label="anchor" href="#%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h4>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Зорилго</th>
+<th>Функц</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>бүхэлдэх</td>
+<td>round(x, digits = n)</td>
+</tr>
+<tr class="even">
+<td>бүхэлдэх</td>
+<td>janitor::round_half_up(x, digits = n)</td>
+</tr>
+<tr class="odd">
+<td>тааз (round up)</td>
+<td>ceiling(x)</td>
+</tr>
+<tr class="even">
+<td>шал (round down)</td>
+<td>floor(x)</td>
+</tr>
+<tr class="odd">
+<td>үнэмлэхүй утга</td>
+<td>abs(x)</td>
+</tr>
+<tr class="even">
+<td>квадрат язгуур</td>
+<td>sqrt(x)</td>
+</tr>
+<tr class="odd">
+<td>илтгэгч</td>
+<td>exponent(x)</td>
+</tr>
+<tr class="even">
+<td>натурал логарифм</td>
+<td>log(x)</td>
+</tr>
+<tr class="odd">
+<td>10 суурьтай логарифм</td>
+<td>log10(x)</td>
+</tr>
+<tr class="even">
+<td>2 суурьтай логарифм</td>
+<td>log2(x)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Тэмдэглэл: <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> функцын <code>digits =</code> аргумент нь аравтын бутархайн тоог заана. <code><a href="https://rdrr.io/r/base/Round.html">signif()</a></code> функцыг ашиглан хэд хэдэн чухал тоо болгон бүхэлдэнэ үү.</p>
+</div>
+<div id="шинжлэх-ухааны-тэмдэглэгээ" class="section level4 unnumbered">
+<h4>Шинжлэх ухааны тэмдэглэгээ<a class="anchor" aria-label="anchor" href="#%D1%88%D0%B8%D0%BD%D0%B6%D0%BB%D1%8D%D1%85-%D1%83%D1%85%D0%B0%D0%B0%D0%BD%D1%8B-%D1%82%D1%8D%D0%BC%D0%B4%D1%8D%D0%B3%D0%BB%D1%8D%D0%B3%D1%8D%D1%8D"><i class="fas fa-link"></i></a>
+</h4>
+<p>Шинжлэх ухааны тэмдэглэгээг ашиглах магадлал нь <code>scipen</code> тохируулгын утгаас хамаарна.</p>
+<p><code><a href="https://rdrr.io/r/base/options.html">?options</a></code> хуудаснаас: <code>scipen</code> нь тоон утгыг тогтмол эсвэл экспоненциал тэмдэглэгээгээр хэвлэх шийдвэр гаргахад хэрэглэх шийтгэл юм. Эерэг утгууд нь тогтмол, сөрөг утгууд нь шинжлэх ухааны тэмдэглэгээ рүү хазайдаг: “scipen” цифрээс илүү өргөн биш л бол тогтмол тэмдэглэгээг илүүд үзнэ.</p>
+<p>Хэрэв үүн дээр бага тоо (жишээ нь 0) тавьсан бол үргэлж “асаалттай” байх болно. R сессийн шинжлэх ухааны тэмдэглэгээг “унтраахын” тулд үүнийг маш өндөр тоонд тохируулна уу, жишээлбэл:</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># шинжлэх ухааны тэмдэглэгээг унтраа</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>scipen<span class="op">=</span><span class="fl">999</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="бүхэлдэх" class="section level4 unnumbered">
+<h4>Бүхэлдэх<a class="anchor" aria-label="anchor" href="#%D0%B1%D2%AF%D1%85%D1%8D%D0%BB%D0%B4%D1%8D%D1%85"><i class="fas fa-link"></i></a>
+</h4>
+<p><span style="color: red;"><strong><em>АЮУЛ:</em></strong> <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> функц нь зөвхөн дээд тоо нь тэгш байвал .5-аас дээшээ бүхэлддэг “банкны бүхэлдэх” аргыг ашигладаг. Хагасыг хамгийн ойрын бүхэл тоо хүртэл тогтмол бүхэлдэхийн тулд <strong>janitor</strong> багцын <code>round_half_up()</code>-г ашиглана уу. <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#explore-records-with-duplicated-values-for-specific-combinations-of-variables-with-get_dupes">Энэ тайлбарыг</a> үзнэ үү.</span></p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># өөрийн ажилд тохирох бүхэлдэх функцийг ашиглана уу </span>
+<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2.5</span>, <span class="fl">3.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2 4</code></pre>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/round_half_up.html">round_half_up</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2.5</span>, <span class="fl">3.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3 4</code></pre>
+</div>
+<div id="статистикийн-функцууд" class="section level4 unnumbered">
+<h4>Статистикийн функцууд<a class="anchor" aria-label="anchor" href="#%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B8%D0%B9%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h4>
+<p><span style="color: orange;"><strong><em>АНХААРУУЛГА:</em></strong> Доорх функцууд нь тооцоололдоо хоосон утгуудыг өгөгдмөлөөр оруулдаг. <code>na.rm = TRUE</code> аргументыг заагаагүй бол хоосон утгууд нь <code>NA</code> үүсгэнэ. Үүнийг товчоор <code>na.rm = T</code> гэж бичиж болно.</span></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Зорилго</th>
+<th>Функц</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>дундаж (average)</td>
+<td>mean(x, na.rm=T)</td>
+</tr>
+<tr class="even">
+<td>голч</td>
+<td>median(x, na.rm=T)</td>
+</tr>
+<tr class="odd">
+<td>стандарт хазайлт</td>
+<td>sd(x, na.rm=T)</td>
+</tr>
+<tr class="even">
+<td>квантилүүд*</td>
+<td>quantile(x, probs)</td>
+</tr>
+<tr class="odd">
+<td>нийлбэр</td>
+<td>sum(x, na.rm=T)</td>
+</tr>
+<tr class="even">
+<td>хамгийн бага утга</td>
+<td>min(x, na.rm=T)</td>
+</tr>
+<tr class="odd">
+<td>хамгийн их утга</td>
+<td>max(x, na.rm=T)</td>
+</tr>
+<tr class="even">
+<td>тоон утгуудын хүрээ</td>
+<td>range(x, na.rm=T)</td>
+</tr>
+<tr class="odd">
+<td>хураангуй**</td>
+<td>summary(x)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Тэмдэглэл:</p>
+<ul>
+<li>
+<code>*quantile()</code>: <code>x</code> нь шалгах тоон вектор, <code>probs =</code> нь 0-ээс 1.0 хоорондахь магадлал бүхий тоон вектор, жишээлбэл <code>c(0.5, 0.8, 0.85)</code>
+</li>
+<li>
+<code>**summary()</code>: дундаж, голч, нийтлэг персентилүүд зэрэг тоон векторын хураангуйг өгдөг</li>
+</ul>
+<p><span style="color: red;"><strong><em>АЮУЛ:</em></strong> Хэрэв дээрх функцүүдийн аль нэгэнд тоон вектор өгвөл <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> дотор тоонуудыг нийлүүлж оруулахаа мартуузай.</span></p>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Хэрэв функцэд тоонууд өгч байгаа бол тэдгээрийг c()-д боож өгнө үү. </span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">0</span><span class="op">)</span>    <span class="co"># !!! БУРУУ !!!  </span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="co"># ЗӨВ</span></code></pre></div>
+<pre><code>## [1] 5.666667</code></pre>
+</div>
+<div id="бусад-хэрэгтэй-функцууд" class="section level4 unnumbered">
+<h4>Бусад хэрэгтэй функцууд<a class="anchor" aria-label="anchor" href="#%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D1%85%D1%8D%D1%80%D1%8D%D0%B3%D1%82%D1%8D%D0%B9-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h4>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="26%">
+<col width="20%">
+<col width="52%">
+</colgroup>
+<thead><tr class="header">
+<th>Зорилго</th>
+<th>Функц</th>
+<th>Жишээ</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>дараалал үүсгэх</td>
+<td>seq(from, to, by)</td>
+<td><code>seq(1, 10, 2)</code></td>
+</tr>
+<tr class="even">
+<td>x-ийг n удаа давтах</td>
+<td>rep(x, ntimes)</td>
+<td>
+<code>rep(1:3, 2)</code> or <code>rep(c("a", "b", "c"), 3)</code>
+</td>
+</tr>
+<tr class="odd">
+<td>тоон векторыг хуваах</td>
+<td>cut(x, n)</td>
+<td><code>cut(linelist$age, 5)</code></td>
+</tr>
+<tr class="even">
+<td>санамсаргүй түүвэр авах</td>
+<td>sample(x, size)</td>
+<td><code>sample(linelist$id, size = 5, replace = TRUE)</code></td>
+</tr>
+</tbody>
+</table></div>
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="in" class="section level3 unnumbered">
+<h3>
+<code>%in%</code><a class="anchor" aria-label="anchor" href="#in"><i class="fas fa-link"></i></a>
+</h3>
+<p>Утгыг тааруулах, утгыг вектор эсвэл датафрэйм дотор байгаа эсэхийг хурдан үнэлэхэд маш хэрэгтэй оператор.</p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="st">"a"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">my_vector</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="st">"h"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">my_vector</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Утга нь вектор <code>%in%</code> (%дотор%) байхгүй эсэхийг шалгахын тулд логик хэллэгийн <strong>өмнө</strong> анхаарлын тэмдэг (!) тавина:</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># үгүйсгэхэд өмнө нь анхаарлын тэмдэг тавина</span>
+<span class="op">!</span><span class="st">"a"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">my_vector</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">!</span><span class="st">"h"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">my_vector</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>dplyr</strong> багцын <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> функцийг ашиглахад <code>%in%</code> маш хэрэгтэй. Та векторыг өмнө нь тодорхойлж, дараа нь лавлаж болно. Жишээлбэл:</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">affirmative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"Yes"</span>, <span class="st">"YES"</span>, <span class="st">"yes"</span>, <span class="st">"y"</span>, <span class="st">"Y"</span>, <span class="st">"oui"</span>, <span class="st">"Oui"</span>, <span class="st">"Si"</span><span class="op">)</span>
+
+<span class="va">linelist</span> <span class="op">&lt;-</span> <span class="va">linelist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>child_hospitaled <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+    <span class="va">hospitalized</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">affirmative</span> <span class="op">&amp;</span> <span class="va">age</span> <span class="op">&lt;</span> <span class="fl">18</span> <span class="op">~</span> <span class="st">"Hospitalized Child"</span>,
+    <span class="cn">TRUE</span>                                      <span class="op">~</span> <span class="st">"Not"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Тэмдэглэл: Хэрэв та <strong>stringr</strong> багцын <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> ашиглан стрингийн хэсгийг илрүүлэхийг хүсвэл энэ нь <code>c("1", "Yes", "yes", "y")</code> гэх мэт тэмдэгтийн векторыг хүлээн авдаггүй. Үүний оронд “1|Yes|yes|y” гэх мэт OR босоо шугам бүхий нэг хураангуй стринг бүхий <em>ердийн</em> <em>илэрхийлэл (regular expression)</em> өгөх ёстой. Жишээлбэл, <code>str_detect(hospitalized, "1|Yes|yes|y")</code>. Дэлгэрэнгүй мэдээллийг <span class="math display">\[Тэмдэгт болон стринг\]</span> хуудаснаас үзнэ үү.</p>
+<p>Та энэ командыг ашиглан тэмдэгтийн векторыг нэрлэсэн ердийн илэрхийлэл болгон хувиргаж болно:</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">affirmative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"Yes"</span>, <span class="st">"YES"</span>, <span class="st">"yes"</span>, <span class="st">"y"</span>, <span class="st">"Y"</span>, <span class="st">"oui"</span>, <span class="st">"Oui"</span>, <span class="st">"Si"</span><span class="op">)</span>
+<span class="va">affirmative</span></code></pre></div>
+<pre><code>## [1] "1"   "Yes" "YES" "yes" "y"   "Y"   "oui" "Oui" "Si"</code></pre>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># багасгах </span>
+<span class="va">affirmative_str_search</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">affirmative</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>  <span class="co"># base R</span>
+<span class="va">affirmative_str_search</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">affirmative</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>   <span class="co"># stringr багц</span>
+
+<span class="va">affirmative_str_search</span></code></pre></div>
+<pre><code>## [1] "1|Yes|YES|yes|y|Y|oui|Oui|Si"</code></pre>
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+</div>
+</div>
+<div id="алдаа-болон-анхааруулга" class="section level2" number="3.13">
+<h2>
+<span class="header-section-number">3.13</span> Алдаа болон анхааруулга<a class="anchor" aria-label="anchor" href="#%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B0%D0%BD%D1%85%D0%B0%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B3%D0%B0"><i class="fas fa-link"></i></a>
+</h2>
+<p>Энэ хэсэгт дараахь зүйлийг тайлбарласан:</p>
+<ul>
+<li><p>Алдаа болон анхааруулгын ялгаа</p></li>
+<li><p>R код бичих ерөнхий синтакс зөвлөмжүүд</p></li>
+<li><p>Кодын туслахууд</p></li>
+</ul>
+<p>Нийтлэг алдаа, анхааруулга, алдааг олж засварлах зөвлөмжийг <span class="math display">\[Алдаа болон тусламж\]</span> хуудаснаас олж болно.</p>
+<!-- ======================================================= -->
+<div id="алдаа-versus-анхааруулга" class="section level3 unnumbered">
+<h3>Алдаа versus анхааруулга<a class="anchor" aria-label="anchor" href="#%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0-versus-%D0%B0%D0%BD%D1%85%D0%B0%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B3%D0%B0"><i class="fas fa-link"></i></a>
+</h3>
+<p>Заримдаа команд ажиллуулах үед R консол танд анхааруулга эсвэл алдааны мэдэгдлийг улаан бичвэрээр харуулах болно.</p>
+<ul>
+<li><p><strong>Анхааруулга</strong> нь R таны командыг гүйцэтгэсэн боловч нэмэлт алхмуудыг хийх хэрэгтэй болсон эсвэл таны мэдэж байх ёстой хэвийн бус гаралт гаргасан гэсэн үг юм.</p></li>
+<li><p><strong>Алдаа</strong> нь R таны командыг гүйцээж чадаагүй гэсэн үг.</p></li>
+</ul>
+<p>Сэжүүр хайх:</p>
+<ul>
+<li><p>Алдаа/анхааруулах мессеж нь ихэвчлэн асуудлын мөрийн дугаарыг агуулна.</p></li>
+<li><p>Хэрэв объект “үл мэдэгдэх” эсвэл “олдохгүй” бол та буруу бичсэн, library() функцээр багц ачааллахаа мартсан эсвэл өөрчлөлт хийсний дараа скриптийг дахин ажиллуулахаа мартсан байж магадгүй юм.</p></li>
+</ul>
+<p>Хэрэв эдгээрийн аль нь ч биш байвал алдааны мессежийг зарим үндсэн нэр томъёоны хамт Google рүү хуулна уу - өөр хэн нэгэн үүнийг аль хэдийн даван туулсан байх магадлал өндөр!</p>
+<!-- ======================================================= -->
+</div>
+<div id="синтаксийн-ерөнхий-зөвлөмжүүд" class="section level3 unnumbered">
+<h3>Синтаксийн ерөнхий зөвлөмжүүд<a class="anchor" aria-label="anchor" href="#%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D0%B9%D0%BD-%D0%B5%D1%80%D3%A9%D0%BD%D1%85%D0%B8%D0%B9-%D0%B7%D3%A9%D0%B2%D0%BB%D3%A9%D0%BC%D0%B6%D2%AF%D2%AF%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>R дээр команд бичихдээ алдаа, анхааруулгаас зайлсхийхийн тулд хэд хэдэн зүйлийг санах хэрэгтэй:</p>
+<ul>
+<li><p>Үргэлж хаалт хаах - зөвлөгөө: кодын хэсэг бүрийн нээх “(” ба хаах хаалтуудын “)” тоог тоол.</p></li>
+<li><p>Багана болон объектын нэрэнд хоосон зай оруулахаас зайлсхий. Оронд нь доогуур зураас ( _ ) эсвэл цэг ( . ) ашиглана уу</p></li>
+<li><p>Функцийн аргументуудыг таслалаар салгахаа бүү мартаарай</p></li>
+<li><p>R нь үсгийн том, жижигт мэдрэг бөгөөд <code>Variable_A</code> нь <code>variable_A</code>-аас ялгаатай гэсэн үг</p></li>
+</ul>
+<!-- ======================================================= -->
+</div>
+<div id="кодын-туслахууд" class="section level3 unnumbered">
+<h3>Кодын туслахууд<a class="anchor" aria-label="anchor" href="#%D0%BA%D0%BE%D0%B4%D1%8B%D0%BD-%D1%82%D1%83%D1%81%D0%BB%D0%B0%D1%85%D1%83%D1%83%D0%B4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Аливаа скрипт (RMarkdown эсвэл бусад) нь таныг алдаа гаргасан үед сэжүүр өгөх болно. Жишээлбэл, хэрэв та шаардлагатай газар таслал бичих, эсвэл хаалт хаахаа мартсан бол RStudio танд анхааруулахын тулд тухайн мөрөнд, скриптийн баруун талд туг өргөх болно.</p>
+
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D0%B0%D0%B2%D0%BB%D0%B0%D0%B3%D0%B0-%D3%A9%D0%B3%D3%A9%D0%B3%D0%B4%D0%BB%D0%B8%D0%B9%D0%B3-%D1%82%D0%B0%D1%82%D0%B0%D0%B6-%D0%B0%D0%B2%D0%B0%D1%85.html"><span class="header-section-number">2</span> Гарын авлага, өгөгдлийг татаж авах</a></div>
+<div class="next"><a href="r-%D1%80%D1%83%D1%83-%D1%88%D0%B8%D0%BB%D0%B6%D0%B8%D1%85.html"><span class="header-section-number">4</span> R руу шилжих</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-%D1%81%D1%83%D1%83%D1%80%D1%8C-%D0%BE%D0%B9%D0%BB%D0%B3%D0%BE%D0%BB%D1%82%D1%83%D1%83%D0%B4"><span class="header-section-number">3</span> R суурь ойлголтууд</a></li>
+<li><a class="nav-link" href="#%D1%8F%D0%B0%D0%B3%D0%B0%D0%B0%D0%B4-r-%D0%B3-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D0%BD%D0%B0-%D0%B3%D1%8D%D0%B6"><span class="header-section-number">3.1</span> Яагаад R-г ашиглана гэж?</a></li>
+<li><a class="nav-link" href="#%D0%B3%D0%BE%D0%BB-%D0%BD%D1%8D%D1%80-%D1%82%D0%BE%D0%BC%D1%8A%D1%91%D0%BE"><span class="header-section-number">3.2</span> Гол нэр томъёо</a></li>
+<li>
+<a class="nav-link" href="#learning"><span class="header-section-number">3.3</span> Сургалтын материалууд</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rstudio-%D0%B4%D0%BE%D1%82%D0%BE%D1%80%D1%85-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4">RStudio доторх материалууд</a></li>
+<li><a class="nav-link" href="#cheatsheets">Cheatsheets</a></li>
+<li><a class="nav-link" href="#twitter">Twitter</a></li>
+<li><a class="nav-link" href="#%D2%AF%D0%BD%D1%8D%D0%B3%D2%AF%D0%B9-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%83%D1%83%D0%B4">Үнэгүй онлайн материалууд</a></li>
+<li><a class="nav-link" href="#%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8-%D1%85%D1%8D%D0%BB%D1%8D%D1%8D%D1%81-%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D1%85%D1%8D%D0%BB">Англи хэлээс бусад хэл</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D0%BB%D1%82"><span class="header-section-number">3.4</span> Суулгалт</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-rstudio">R болон RStudio</a></li>
+<li><a class="nav-link" href="#%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85-%D1%88%D0%B0%D0%B0%D1%80%D0%B4%D0%BB%D0%B0%D0%B3%D0%B0%D1%82%D0%B0%D0%B9-%D0%B1%D0%BE%D0%BB%D0%B6-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B4%D0%B3%D2%AF%D0%B9-%D0%B1%D1%83%D1%81%D0%B0%D0%B4-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC-%D1%85%D0%B0%D0%BD%D0%B3%D0%B0%D0%BC%D0%B6">Суулгах шаардлагатай болж магадгүй бусад програм хангамж</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#rstudio"><span class="header-section-number">3.5</span> RStudio</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rstudio-%D1%87%D0%B8%D0%B3-%D0%B1%D0%B0%D1%80%D0%B8%D0%BC%D0%B6%D0%B0%D0%B0">RStudio чиг баримжаа</a></li>
+<li><a class="nav-link" href="#rstudio-%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B3%D1%83%D1%83%D0%B4">RStudio тохируулгууд</a></li>
+<li><a class="nav-link" href="#%D0%B3%D0%B0%D1%80%D1%8B%D0%BD-%D1%82%D0%BE%D0%B2%D1%87%D0%BB%D0%BE%D0%BB%D1%83%D1%83%D0%B4-keyboard-shortcuts">Гарын товчлолууд (Keyboard shortcuts)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#functions"><span class="header-section-number">3.6</span> Функцууд</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%8D%D0%BD%D0%B3%D0%B8%D0%B9%D0%BD-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4">Энгийн функцууд</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%82%D0%B0%D0%B9-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4">Олон аргументтай функцууд</a></li>
+<li><a class="nav-link" href="#%D1%84%D1%83%D0%BD%D0%BA%D1%86-%D0%B1%D0%B8%D1%87%D0%B8%D1%85">Функц бичих</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#packages"><span class="header-section-number">3.7</span> Багцууд</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85-%D0%B0%D1%87%D0%B0%D0%B0%D0%BB%D0%B0%D1%85">Суулгах, ачаалах</a></li>
+<li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B4%D1%8B%D0%BD-%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81">Кодын синтакс</a></li>
+<li><a class="nav-link" href="#%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%8B%D0%BD-%D1%82%D1%83%D1%81%D0%BB%D0%B0%D0%BC%D0%B6">Функцын тусламж</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86-%D1%88%D0%B8%D0%BD%D1%8D%D1%87%D0%BB%D1%8D%D1%85">Багц шинэчлэх</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D1%86-%D1%83%D1%81%D1%82%D0%B3%D0%B0%D1%85">Багц устгах</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%B0%D0%BC%D0%B0%D0%B0%D1%80%D0%B0%D0%BB%D1%82-%D0%B1%D0%B0%D0%B3%D1%86">Хамааралт багц</a></li>
+<li><a class="nav-link" href="#%D0%B4%D0%B0%D0%BB%D0%B4%D0%BB%D0%B0%D1%85-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%83%D1%83%D0%B4">Далдлах функцууд</a></li>
+<li><a class="nav-link" href="#%D1%81%D0%B0%D0%BB%D0%B3%D0%B0%D1%85%D0%B1%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85">Салгах/буулгах</a></li>
+<li><a class="nav-link" href="#%D1%85%D1%83%D1%83%D1%87%D0%B8%D0%BD-%D1%85%D1%83%D0%B2%D0%B8%D0%BB%D0%B1%D0%B0%D1%80-%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0%D1%85">Хуучин хувилбар суулгах</a></li>
+<li><a class="nav-link" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%B1%D1%83%D0%B9-%D0%B1%D0%B0%D0%B3%D1%86%D1%83%D1%83%D0%B4">Санал болгож буй багцууд</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#scripts"><span class="header-section-number">3.8</span> Скриптүүд</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%82%D0%B0%D0%B9%D0%BB%D0%B1%D0%B0%D1%80-%D0%B1%D0%B8%D1%87%D0%B8%D1%85">Тайлбар бичих</a></li>
+<li><a class="nav-link" href="#%D0%B7%D0%B0%D0%B3%D0%B2%D0%B0%D1%80">Загвар</a></li>
+<li><a class="nav-link" href="#%D0%B6%D0%B8%D1%88%D1%8D%D1%8D-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82">Жишээ скрипт</a></li>
+<li><a class="nav-link" href="#r-markdown">R markdown</a></li>
+<li><a class="nav-link" href="#r-notebook">R notebook</a></li>
+<li><a class="nav-link" href="#shiny">Shiny</a></li>
+<li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B4-%D1%8D%D0%B2%D1%85%D1%8D%D1%85">Код эвхэх</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B0%D0%B6%D0%BB%D1%8B%D0%BD-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80"><span class="header-section-number">3.9</span> Ажлын директор</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D1%81%D0%B0%D0%BD%D0%B0%D0%BB-%D0%B1%D0%BE%D0%BB%D0%B3%D0%BE%D0%B6-%D0%B1%D1%83%D0%B9-%D0%B0%D1%80%D0%B3%D0%B0">Санал болгож буй арга</a></li>
+<li><a class="nav-link" href="#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%B0%D1%80-%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85">Командаар тохируулах</a></li>
+<li><a class="nav-link" href="#%D0%B3%D0%B0%D1%80%D0%B0%D0%B0%D1%80-%D1%82%D0%BE%D1%85%D0%B8%D1%80%D1%83%D1%83%D0%BB%D0%B0%D1%85">Гараар тохируулах</a></li>
+<li><a class="nav-link" href="#r-%D1%82%D3%A9%D1%81%D0%BB%D0%B8%D0%B9%D0%BD-%D0%B4%D0%BE%D1%82%D0%BE%D1%80">R төслийн дотор</a></li>
+<li><a class="nav-link" href="#r-markdown-%D1%8B-%D0%B0%D0%B6%D0%BB%D1%8B%D0%BD-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80">R markdown-ы ажлын директор</a></li>
+<li><a class="nav-link" href="#%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%D0%BD-%D0%B7%D0%B0%D0%BC%D1%83%D1%83%D0%B4-%D0%B1%D0%B8%D1%87%D0%B8%D1%85">Файлын замууд бичих</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#objects"><span class="header-section-number">3.10</span> Объектууд</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B1%D2%AF%D1%85-%D0%B7%D2%AF%D0%B9%D0%BB-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82">Бүх зүйл объект</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D1%85%D0%BE%D0%B9%D0%BB%D0%BE%D1%85--">Объектуудыг тодорхойлох (&lt;-)</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%D0%BD-%D0%B1%D2%AF%D1%82%D1%8D%D1%86">Объектын бүтэц</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%D0%BD-%D0%B0%D0%BD%D0%B3%D0%B8%D1%83%D0%B4">Объектын ангиуд</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%B0%D0%B3%D0%B0%D0%BD%D1%83%D1%83%D0%B4%D1%85%D1%83%D0%B2%D1%8C%D1%81%D0%B0%D0%B3%D1%87%D0%B8%D0%B4">Баганууд/Хувьсагчид ($)</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%B0%D0%B0%D0%BB%D1%82-%D0%B0%D1%88%D0%B8%D0%B3%D0%BB%D0%B0%D0%BD-%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%85%D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%BB%D1%8D%D1%85">Хаалт ашиглан хандах/индекслэх ([ ])</a></li>
+<li><a class="nav-link" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%83%D1%81%D1%82%D0%B3%D0%B0%D1%85">Объектуудыг устгах</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%BF%D0%B0%D0%B9%D0%BF%D0%BB%D0%B0%D1%85"><span class="header-section-number">3.11</span> Пайплах (%&gt;%)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BF%D0%B0%D0%B9%D0%BF">Пайп</a></li>
+<li><a class="nav-link" href="#%D0%B7%D0%B0%D0%B2%D1%81%D1%80%D1%8B%D0%BD-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%D1%83%D0%B4%D1%8B%D0%B3-%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D1%85%D0%BE%D0%B9%D0%BB%D0%BE%D1%85">Завсрын объектуудыг тодорхойлох</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#operators"><span class="header-section-number">3.12</span> Гол операторууд болон функцууд</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%BE%D0%BD%D0%BE%D0%BE%D0%BB%D1%82%D1%8B%D0%BD-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83%D1%83%D0%B4">Оноолтын операторууд</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%B0%D1%80%D1%8C%D1%86%D0%B0%D0%B0%D0%BD%D1%8B-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%BB%D0%BE%D0%B3%D0%B8%D0%BA-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83%D1%83%D0%B4">Харьцааны болон логик операторууд</a></li>
+<li><a class="nav-link" href="#%D1%85%D0%BE%D0%BE%D1%81%D0%BE%D0%BD-%D1%83%D1%82%D0%B3%D1%83%D1%83%D0%B4">Хоосон утгууд</a></li>
+<li><a class="nav-link" href="#%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA">Математик, статистик</a></li>
+<li><a class="nav-link" href="#in">%in%</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0-%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD-%D0%B0%D0%BD%D1%85%D0%B0%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B3%D0%B0"><span class="header-section-number">3.13</span> Алдаа болон анхааруулга</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0-versus-%D0%B0%D0%BD%D1%85%D0%B0%D0%B0%D1%80%D1%83%D1%83%D0%BB%D0%B3%D0%B0">Алдаа versus анхааруулга</a></li>
+<li><a class="nav-link" href="#%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D0%B9%D0%BD-%D0%B5%D1%80%D3%A9%D0%BD%D1%85%D0%B8%D0%B9-%D0%B7%D3%A9%D0%B2%D0%BB%D3%A9%D0%BC%D0%B6%D2%AF%D2%AF%D0%B4">Синтаксийн ерөнхий зөвлөмжүүд</a></li>
+<li><a class="nav-link" href="#%D0%BA%D0%BE%D0%B4%D1%8B%D0%BD-%D1%82%D1%83%D1%81%D0%BB%D0%B0%D1%85%D1%83%D1%83%D0%B4">Кодын туслахууд</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Тархвар судлаачийн R гарын авлага</strong>" was written by гарын авлагын баг. It was last built on 2022-01-05.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
